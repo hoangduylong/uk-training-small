@@ -39,7 +39,6 @@ bin/
 **/base.web/**/*bundles.js*
 !**/nts.uk.cnv.web/**/*.js*
 
-nts.uk/uk.repo/*
 
 # add ignore file of mobile project
 **/.vscode/*
@@ -49,7 +48,7 @@ nts.uk/uk.repo/*
 **/main-server*
 **/wwwroot/*
 **/.DS_Store
-uk.repo/
+
 
 *.log
 **/.sass-cache/*
