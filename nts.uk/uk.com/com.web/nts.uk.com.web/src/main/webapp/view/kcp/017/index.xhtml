@@ -1,0 +1,280 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+<ui:composition template="../../../master/base.xhtml">
+    <ui:define name="htmlHead">
+        <com:scriptfile set="IGNITE" />
+        <com:stylefile path="../../sample/catalog/catalog.css" />
+        <com:scriptfile path="../../sample/catalog/catalog.js" />
+
+        <com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web"/>
+
+        <com:scriptfile path="/view/kcp/011/kcp.011.vm.js" of="/nts.uk.com.web"/>
+        <com:stylefile path="/view/kcp/011/main.css" of="/nts.uk.com.web"/>
+
+        <com:scriptfile path="/view/kcp/017/kcp017.js"  of="/nts.uk.com.web"/>
+        <com:scriptfile path="kcp017.test.vm.js" />
+
+        <style>
+            .ntsRadioBox { display: block; }
+        </style>
+    </ui:define>
+    <ui:define name="content">
+        <div id="contents-area">
+            <div id="side-menu" class="cf"/>
+            <div id="content" class="cf">
+                <h1>KCP017 組織選択リスト</h1>
+                <div id="overview" class="fixed-flex-layout">
+                    <div class="fixed-flex-layout-left">
+                        <div class="control-group valign-center">
+                            <div data-bind="ntsFormLabel: {}">Boot Mode:</div>
+                            <div class="cf" data-bind="ntsSwitchButton: {
+                                name: $i18n('KCP017_2'),
+                                options: [
+                                    {code: 0, name: $i18n('Com_Workplace')},
+                                    {code: 1, name: $i18n('Com_WorkplaceGroup')}
+                                ],
+                                optionsValue: 'code',
+                                optionsText: 'name',
+                                value: unit
+                            }"/>
+                        </div>
+                        <div class="control-group valign-center">
+                            <div data-bind="ntsFormLabel: {}">Base Date:</div>
+                            <div data-bind="ntsDatePicker: { value: baseDate }"/>
+                        </div>
+                        <div class="control-group valign-center">
+                            <div data-bind="ntsFormLabel: {}">Multiple Select:</div>
+                            <div data-bind="ntsCheckBox: { checked: multiple }"/>
+                        </div>
+                        <div class="control-group valign-center">
+                            <div data-bind="ntsFormLabel: {}">On Dialog:</div>
+                            <div data-bind="ntsCheckBox: { checked: onDialog }"/>
+                        </div>
+                        <div class="control-group valign-center">
+                            <div data-bind="ntsFormLabel: {}">Show Already Setting:</div>
+                            <div data-bind="ntsCheckBox: { checked: showAlreadySetting }"/>
+                        </div>
+                        <div class="control-group valign-center">
+                            <div data-bind="ntsFormLabel: {}">Select Type:</div>
+                            <div data-bind="ntsRadioBoxGroup: {
+                                    options: selectTypes,
+                                    optionsValue: 'value',
+                                    optionsText: 'name',
+                                    value: selectType,
+                                    enable: true}"/>
+                        </div>
+                        <div class="control-group valign-center">
+                            <div data-bind="ntsFormLabel: {}">Visible Rows:</div>
+                            <input data-bind="ntsNumberEditor: {value: rows}" />
+                        </div>
+                        <div class="control-group valign-center">
+                            <button data-bind="click: saveSetting">Save Setting</button>
+                            <button data-bind="click: deleteSetting">Delete Setting</button>
+                        </div>
+                    </div>
+                    <div class="fixed-flex-layout-right">
+                        <div data-bind="component: {
+                            name: componentName,
+                            params: {
+                                unit: unit,
+                                selectType: selectType(),
+                                multiple: multiple(),
+                                baseDate: baseDate(),
+                                onDialog: onDialog(),
+                                showAlreadySetting: showAlreadySetting(),
+                                rows: rows(),
+                                alreadySettingWorkplaces: alreadySettingWorkplaces,
+                                alreadySettingWorkplaceGroups: alreadySettingWorkplaceGroups,
+                                selectedWorkplaces: selectedWkpIds,
+                                selectedWorkplaceGroups: selectedWkpGroupIds
+                            }
+                        }"/>
+                    </div>
+                </div>
+                <article class="cf" style="margin-top: 10px;">
+                    <div class="tabs">
+                        <ol>
+                            <li><a href="#tabs-html">HTML Binding</a></li>
+                            <li><a href="#tabs-viewmodel">ViewModel</a></li>
+                        </ol>
+                        <!-- BEGIN TAB HTML -->
+                        <div id="tabs-html" class="cf">
+                            <h2>HTML</h2>
+                            <p>Using Ignite library so you must include following line in <i>&lt;ui:define name="htmlHead"&gt;</i></p>
+                            <pre>
+                <![CDATA[<ui:define name="htmlHead">
+                    <com:scriptfile set="IGNITE" />
+                    <com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web"/>
+                    <com:scriptfile path="/view/kcp/011/kcp.011.vm.js" of="/nts.uk.com.web"/>
+                    <com:stylefile path="/view/kcp/011/main.css" of="/nts.uk.com.web"/>
+                    <com:scriptfile path="/view/kcp/017/kcp017.js"  of="/nts.uk.com.web"/>
+                </ui:define>]]>
+                            </pre>
+                            <p>Create a div tag to bind component with name kcp017-component</p>
+                            <pre>
+                <![CDATA[<div data-bind="component: {
+                    name: 'kcp017-component',
+                    params: {
+                        unit: unit(),
+                        selectType: selectType(),
+                        multiple: multiple(),
+                        baseDate: baseDate(),
+                        onDialog: onDialog(),
+                        showAlreadySetting: showAlreadySetting(),
+                        rows: rows(),
+                        alreadySettingWorkplaces: alreadySettingWorkplaces,
+                        alreadySettingWorkplaceGroups: alreadySettingWorkplaceGroups,
+                        selectedWorkplaces: selectedWkpIds,
+                        selectedWorkplaceGroups: selectedWkpGroupIds
+                    }
+                }"/>]]>
+                            </pre>
+                        </div>
+                        <div id="tabs-viewmodel" class="cf">
+                            <h2>TypeScript</h2>
+                            <h3>ViewModel</h3>
+                            <pre>
+                <![CDATA[class ViewModel {
+                    init: KnockoutObservable<number>; // WORKPLACE = 0, WORKPLACE GROUP = 1
+                    multiple: KnockoutObservable<boolean>;
+                    onDialog: KnockoutObservable<boolean>;
+                    showAlreadySetting: KnockoutObservable<boolean>;
+                    selectType: KnockoutObservable<number>;
+                    rows: KnockoutObservable<number>;
+                    baseDate: KnockoutObservable<any>;
+                    alreadySettingWorkplaces: KnockoutObservableArray<{workplaceId: string, isAlreadySetting: boolean}>;
+                    alreadySettingWorkplaceGroups: KnockoutObservableArray<string>;
+                    selectedWkpIds: KnockoutObservableArray<any> | KnockoutObservable<any>;
+                    selectedWkpGroupIds: KnockoutObservableArray<any> | KnockoutObservable<any>;
+
+                    created(params: any) {
+                        const vm = this;
+                        vm.unit = ko.observable(0);
+                        vm.multiple = ko.observable(true);
+                        vm.onDialog = ko.observable(false);
+                        vm.showAlreadySetting = ko.observable(false);
+                        vm.selectType = ko.observable(1);
+                        vm.rows = ko.observable(10);
+                        vm.baseDate = ko.observable(new Date);
+                        vm.alreadySettingWorkplaces = ko.observableArray([]);
+                        vm.alreadySettingWorkplaceGroups = ko.observableArray([]);
+                        vm.selectedWkpIds = ko.observableArray([]);
+                        vm.selectedWkpGroupIds = ko.observableArray([]);
+                    }
+                }]]>
+                            </pre>
+                            <h2>API</h2>
+                            <table style="width: 700px">
+                                <thead>
+                                <tr>
+                                    <td style="text-align: center;"><h4>Method</h4></td>
+                                    <td style="text-align: center;"><h4>Description</h4></td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>unit (optional)</td>
+                                    <td>
+                                        <b>Type:</b> number | KnockoutObservable&lt;number&gt;<br />
+                                        <b>Default:</b> 0 (workplace)<br />
+                                        <label><i>Description:</i> select workplace (0) or workplace group (1) initially</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>baseDate (optional)</td>
+                                    <td>
+                                        <b>Type:</b> string | Date<br />
+                                        <b>Default:</b> new Date()<br />
+                                        <label><i>Description:</i> baseDate for KCP004</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>onDialog (optional)</td>
+                                    <td>
+                                        <b>Type:</b> boolean<br />
+                                        <b>Default:</b> false<br />
+                                        <label><i>Description:</i> Show/hide background panel</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>selectType (optional)</td>
+                                    <td>
+                                        <b>Type:</b> number<br />
+                                        <b>Default:</b> 3 (Select first item)<br />
+                                        <label><i>Description:</i> Initial Selection Mode:</label><br/>
+                                        <ul>
+                                            <li>1: select by selectedValue</li>
+                                            <li>2: select All</li>
+                                            <li>3: select First item in the list</li>
+                                            <li>4: select None</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>multiple (optional)</td>
+                                    <td>
+                                        <b>Type:</b> boolean<br />
+                                        <b>Default:</b> false<br />
+                                        <label><i>Description:</i> Enable/disable multiple selection</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>showAlreadySetting (optional)</td>
+                                    <td>
+                                        <b>Type:</b> boolean<br />
+                                        <b>Default:</b> false<br />
+                                        <label><i>Description:</i> show already setting column</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>rows (optional)</td>
+                                    <td>
+                                        <b>Type:</b> number<br />
+                                        <b>Default:</b> 10<br />
+                                        <label><i>Description:</i> visible rows on grid list</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>alreadySettingWorkplaces (optional)</td>
+                                    <td>
+                                        <b>Type:</b> KnockoutObservableArray&lt;{workplaceId: string, isAlreadySetting: boolean}&gt;<br />
+                                        <label><i>Description:</i> List already setting workplaces, required when showAlreadySetting = true</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>alreadySettingWorkplaceGroups (optional)</td>
+                                    <td>
+                                        <b>Type:</b> KnockoutObservableArray&lt;string&gt;<br />
+                                        <label><i>Description:</i> List already setting workplace groups, required when showAlreadySetting = true</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>selectedWorkplaces</td>
+                                    <td>
+                                        <b>Type:</b> KnockoutObservable&lt;any&gt; (single select) | KnockoutObservableArray&lt;any&gt; (multiple select)<br />
+                                        <label><i>Description:</i> Selected Value(s) KCP004</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>selectedWorkplaceGroups</td>
+                                    <td>
+                                        <b>Type:</b> KnockoutObservable&lt;any&gt; (single select) | KnockoutObservableArray&lt;any&gt; (multiple select)<br />
+                                        <label><i>Description:</i> Selected Value(s) KCP011</label>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

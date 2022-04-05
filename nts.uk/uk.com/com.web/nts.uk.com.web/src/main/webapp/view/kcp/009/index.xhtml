@@ -1,0 +1,293 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../master/base.xhtml">
+
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="../../sample/catalog/catalog.css" />
+			<com:scriptfile path="../../sample/catalog/catalog.js" />
+			<!-- <com:scriptfile path="../../../../nts.uk.com.web/view/kcp/009/kcp009.js" /> -->
+			<com:scriptfile path="/view/kcp/009/kcp009.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="kcp009.a.vm.js" />
+			<com:scriptfile path="kcp009.a.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content">
+					<div id="function-area" style="margin: 40px; margin-bottom: 10px">
+						<h1>KCP009-社員送り</h1>
+						<h2>(Employment Feeds)</h2>
+						<h2>Overview</h2>
+						<hr></hr>
+						<div style="margin-left: 10px; padding-top: 10px">
+							<p>
+								<b>Base Date:</b>
+							</p>
+							<br></br>
+							<div data-bind="ntsCheckBox:{checked: setBaseDate}"></div>
+							<div data-bind="ntsDatePicker: {value: baseDate, dateFormat: 'YYYY/MM/DD', enable: setBaseDate}"></div>
+						</div>
+						<br></br>
+						<div style="margin-left: 10px; padding-top: 10px">
+							<p>
+								<b>Display Options:</b>
+							</p>
+							<br></br>
+							<div data-bind="ntsCheckBox:{checked: isDisplayOrganizationName}">Display
+								Organization Name</div>
+              <div data-bind="ntsCheckBox: { checked: isDisplayNumberOfEmployee }">Display Number Of Employee</div>
+						</div>
+						<br></br>
+						<div style="margin-left: 10px; padding-top: 10px">
+							<p>
+								<b>System Reference Type:</b>
+							</p>
+							<br></br>
+							<div id="selection-type"
+								data-bind="ntsRadioBoxGroup: {
+											options: systemReferenceList,
+											optionsValue: 'code',
+											optionsText: 'name',
+											value: selectedSystem,
+											enable: true}"></div>
+
+						</div>
+					</div>
+					<div style="margin-left: 40px">
+						<div id="emp-component"></div>
+					</div>
+					
+					<div style="margin-left: 40px">
+						<div id="emp-component1"></div>
+					</div>
+					
+					<div style="margin-left: 40px">
+						<p>Listbox </p>
+						<span data-bind="text: selectedItem()"></span>
+					</div>
+					
+					<div style="margin-left: 40px">
+						<p>Listbox1 </p>
+						<span data-bind="text: selectedItem1()"></span>
+					</div>
+
+					<!-- BEGIN DESCRIPTION -->
+					<article class="cf" style="margin-top: 40px;">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-html">HTML Binding</a></li>
+								<li><a href="#tabs-viewmodel">ViewModel</a></li>
+								<li><a href="#tabs-method">Methods</a></li>
+
+							</ol>
+							<!-- BEGIN TAB HTML -->
+							<div id="tabs-html" class="cf">
+								<h2>HTML</h2>
+								<p>
+									Using Ignite library so you must include following line in <i>&lt;ui:define
+										name="htmlHead"&gt;</i>
+								</p>
+									<pre>
+<![CDATA[
+<ui:define name="htmlHead">
+	<com:scriptfile set="IGNITE" />
+</ui:define>]]>
+									</pre>
+
+								<p>
+									Import library to use Component, you must include following
+									line in <i>&lt;ui:define name="htmlHead"&gt;</i>
+								</p>
+								<pre>
+<![CDATA[<com:scriptfile path="/view/kcp/009/kcp009.js" of="/nts.uk.com.web" />]]>
+								</pre>
+								<pre>
+<![CDATA[<com:stylefile path="/view/kcp/009/style.css" of="/nts.uk.com.web" />]]>
+								</pre>
+								<p>Create a div tag to bind grid list</p>
+								<pre>
+<![CDATA[
+<div id="sample-component"></div>
+
+Example:
+<div id="emp-component"></div>]]>
+								</pre>
+							</div>
+							<!-- END TAB HTML -->
+
+							<!-- BEGIN VIEWMODEL TAB-->
+							<div id="tabs-viewmodel" class="cf">
+								<h2>TypeScript</h2>
+								<h3>ViewModel</h3>
+								<pre>
+									<![CDATA[
+		export class ScreenModel {
+        employeeInputList: KnockoutObservableArray<EmployeeModel>;
+        systemReference: KnockoutObservable<number>;
+        isDisplayOrganizationName: KnockoutObservable<boolean>;
+        targetBtnText: string;
+        baseDate: KnockoutObservable<Date>;
+        listComponentOption: ComponentOption;
+        selectedItem: KnockoutObservable<string>;
+        tabindex: number;
+        isDisplayNumberOfEmployee: KnockoutObservable<boolean>;
+        constructor() {
+            let self = this;
+            self.employeeInputList = ko.observableArray([
+            {id: '01', code: 'A000000000001', businessName: '日通　純一郎1', workplaceName: '名古屋支店', depName: 'Dep Name'}, 
+            {id: '04', code: 'A000000000004', businessName: '日通　純一郎4', workplaceName: '名古屋支店', depName: 'Dep Name'},
+            {id: '05', code: 'A000000000005', businessName: '日通　純一郎5', workplaceName: '名古屋支店', depName: 'Dep Name'},
+            {id: '06', code: 'A000000000006', businessName: '日通　純一郎6', workplaceName: '名古屋支店', depName: 'Dep Name'},
+            {id: '07', code: 'A000000000007', businessName: '日通　純一郎7', workplaceName: '名古屋支店', depName: 'Dep Name'},
+            {id: '08', code: 'A000000000008', businessName: '日通　純一郎8', workplaceName: '名古屋支店', depName: 'Dep Name'},
+            {id: '09', code: 'A000000000009', businessName: '日通　純一郎9', workplaceName: '名古屋支店', depName: 'Dep Name'},
+            {id: '10', code: 'A000000000010', businessName: '日通　純一郎10', workplaceName: '名古屋支店', depName: 'Dep Name'},
+            {id: '11', code: 'A000000000011', businessName: '日通　純一郎11', workplaceName: '名古屋支店', depName: 'Dep Name'},
+            {id: '02', code: 'A000000000002', businessName: '日通　純一郎2', workplaceName: '名古屋支店', depName: 'Dep Name'},
+            {id: '03', code: 'A000000000003', businessName: '日通　純一郎3', workplaceName: '名古屋支店', depName: 'Dep Name'}]);
+            
+            self.systemReference = ko.observable(SystemType.EMPLOYMENT);
+            self.isDisplayOrganizationName = ko.observable(true);
+            self.targetBtnText = nts.uk.resource.getText("KCP009_3");
+            self.selectedItem = ko.observable(null);
+            self.tabindex = 1;
+            self.isDisplayNumberOfEmployee = ko.observable(false);
+            // Initial listComponentOption
+            self.listComponentOption = {
+                systemReference: self.systemReference(),
+                isDisplayOrganizationName: self.isDisplayOrganizationName(),
+                employeeInputList: self.employeeInputList,
+                targetBtnText: self.targetBtnText,
+                selectedItem: self.selectedItem,
+                tabIndex: self.tabindex
+            };
+        }
+    }
+    export interface ComponentOption {
+        systemReference: SystemType;
+        isDisplayOrganizationName: boolean;
+        employeeInputList: KnockoutObservableArray<EmployeeModel>;
+        targetBtnText: string;
+        selectedItem: KnockoutObservable<string>;
+        tabIndex: number;
+        baseDate?: KnockoutObservable<Date>;
+        isDisplayNumberOfEmployee: boolean;
+    }
+    export interface EmployeeModel {
+        id: string;
+        code: string;
+        businessName: string;
+        depName?: string;
+        workplaceName?: string;
+    }
+    export class SystemType {
+        static EMPLOYMENT = 1;
+        static SALARY = 2;
+        static PERSONNEL = 3;
+        static ACCOUNTING = 4;
+        static OH = 6;
+    }
+								]]>
+								<div>
+										<b>Note:</b> which property contains '?' is not compulsory</div>
+								</pre>
+								<pre>
+									<![CDATA[
+						<!--It is just called after apply binding done to initialize Component.-->
+						<!--This return JQueryPromise<void>-->
+							 $('#sample-component').ntsLoadListComponent(listComponentOption);
+							  
+							 Example:
+							 $('#emp-component').ntsLoadListComponent(self.listComponentOption);
+								]]>
+								</pre>
+								<h2>API</h2>
+								<table style="width: 700px">
+									<thead>
+										<td style="text-align: center;"><h4>Binding</h4></td>
+										<td style="text-align: center;"><h4>Description</h4></td>
+									</thead>
+
+									<tr>
+										<td><lable>systemReference</lable> <br /> <lable>
+											<i>(optional)</i></lable></td>
+										<td><b>Type:</b> number<br /> <b>Default:</b> 1<br /> <pre>
+												<![CDATA[SystemType {
+	static EMPLOYMENT = 1;
+	static SALARY = 2;
+	static PERSONNEL = 3;
+	static ACCOUNTING = 4;
+	static OH = 6;
+}]]>
+											</pre></td>
+									</tr>
+
+									<tr>
+										<td>isDisplayOrganizationName</td>
+										<td><b>Type:</b> boolean<br /> <label>Show/Hide
+												Organization Name</label></td>
+									</tr>
+
+									<tr>
+										<td>targetBtnText</td>
+										<td><b>Type:</b> string<br /> <label>Text for
+												Target Button</label><br></br> <b>Default:</b> #KCP009_3<br /></td>
+									</tr>
+									<tr>
+										<td>selectedItem</td>
+										<td><b>Type:</b> KnockoutObservable(string)<br /> <label>Selected
+												Employee in the List</label></td>
+									</tr>
+									<tr>
+										<td>tabIndex</td>
+										<td><b>Type:</b> number<br /> <label>Set TabIndex
+												to Component Elements</label></td>
+									</tr>
+								</table>
+							</div>
+							<!-- END VIEWMODEL TAB-->
+
+							<!-- BEGIN METHOD TAB-->
+							<div id="tabs-method" class="cf">
+								<table>
+									<thead>
+										<td style="text-align: center;"><h4>Method</h4></td>
+										<td style="text-align: center;"><h4>Description</h4></td>
+									</thead>
+									<tr>
+										<td>$('#sample-component').ntsLoadListComponent(listComponentOption);
+											<br></br>
+										<br></br> <b>Example:</b><br></br>
+											$('#emp-component').ntsLoadListComponent(listComponentOption);
+										</td>
+										<td>
+											<div>
+												<b>Reload Component</b>
+											</div>
+											<div>
+												<i>Description:</i> listComponentOption is initialized.
+											</div>
+										</td>
+									</tr>
+
+								</table>
+							</div>
+							<!-- END METHOD TAB -->
+
+						</div>
+					</article>
+					<!-- END DESCRIPTION -->
+				</div>
+			</div>
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

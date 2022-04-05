@@ -1,0 +1,130 @@
+.widget-container {
+    width: 450px;
+    margin: 3px auto;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 2px;
+    box-sizing: border-box;
+    border: 1px solid #b1b1b1;
+
+    button.icon {
+        border: 0;
+        box-sizing: border-box;
+        box-shadow: none;
+        padding: 0;
+        margin: auto;
+    }
+
+    table {
+        width: 100%;
+        border-width: 0px;
+
+        tr {
+            height: 30px;
+            border-width: 0px;
+
+            td {
+                border-width: 0px;
+                border-bottom: 1px solid #ccc;
+            }
+
+            th {
+                border-width: 0px;
+
+                &:first-child {
+                    padding-left: 3px;
+                }
+            }
+        }
+    }
+    .text-left {
+        text-align: left !important;
+    }
+    
+    .text-right {
+        text-align: right !important;
+    }
+    
+    .text-center {
+        text-align: center !important;
+    }
+
+    & > .widget-title {
+        margin: 1px;
+        overflow: hidden;
+        box-sizing: border-box;
+        border-radius: 2px;
+
+        th {
+            font-weight: bold;
+
+            button.icon {
+                width: 41px;
+                height: 30px;
+                margin: auto;
+                display: block;
+            }
+
+            &:not(:first-child) {
+                text-align: center;
+            }
+        }
+    }
+
+    & > .widget-content {
+        box-sizing: border-box;
+        overflow: hidden;
+        height: calc(100% - 42px);
+        position: relative;
+        padding-bottom: 17px;
+        border-top: 1px solid #b1b1b1;
+
+        button.icon {
+            width: 30px;
+            display: block;
+        }
+
+        & > iframe {
+            width: 100%;
+            height: 100%;
+        }
+
+        & > div {
+            box-sizing: border-box;
+
+            &:not(.ui-resizable-s) {
+                padding: 0 10px;
+                width: 100%;
+                height: 100%;
+                overflow-y: auto;
+                padding-bottom: 10px;
+            }
+
+            &.ui-resizable-s {
+                bottom: 0;
+                height: 17px;
+
+                &:after,
+                &:before {
+                    content: "";
+                    cursor: se-resize;
+                    position: absolute;
+                    border-bottom: 1px solid #3a3a3a;
+                    transform: rotate(-45deg);
+                }
+
+                &:before {
+                    right: 0px;
+                    bottom: 7px;
+                    width: 15px;
+                }
+
+                &:after {
+                    right: 1px;
+                    bottom: 4px;
+                    width: 7px;
+                }
+            }
+        }
+    }
+}

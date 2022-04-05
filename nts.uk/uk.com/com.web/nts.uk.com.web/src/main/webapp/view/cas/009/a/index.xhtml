@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:ValidatorScript>
+				nts.uk.ctx.sys.auth.dom.role.RoleCode
+				nts.uk.ctx.sys.auth.dom.role.RoleName
+            </com:ValidatorScript>
+
+			<com:scriptfile set="IGNITE" />
+
+			<com:stylefile path="/view/ccg/025/component/component.css" />
+			<com:scriptfile path="/view/ccg/025/component/component.vm.js" />
+			<com:scriptfile path="/view/ccg/025/component/component.service.js" />
+
+			<com:scriptfile path="/view/ccg/026/component.js" />
+
+			<com:stylefile path="cas009.a.style.css" />
+			<com:scriptfile path="cas009.a.vm.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<div class="container">
+					<button id="new" data-bind="click: $vm.createNew">#{i18n.getText('CAS009_2')}</button>
+					<button id="registration"
+						data-bind="click: $vm.save, enable : $root.errors.isEmpty"
+						class="proceed">#{i18n.getText('CAS009_3')}</button>
+					<button id="delete"
+						data-bind="click: $vm.remove, enable: !!ko.toJS($vm.selectedRole.roleId)"
+						class="danger">#{i18n.getText('CAS009_4')}</button>
+					<!--<button id="reference"-->
+						<!--data-bind="enable: $vm.enableDetail, click: $vm.openDialog"-->
+						<!--tabindex="4">#{i18n.getText('CAS009_6')}</button>-->
+					<!--Export Excel-->
+					<!--<button id="export"-->
+							<!--data-bind="click: $vm.exportExcel"-->
+							<!--tabindex="4">#{i18n.getText('CAS009_29')}</button>-->
+				</div>
+			</div>
+			<div id="contents-area" class="fixed-flex-layout">
+				<div class="container cf">
+					<div id="left-content" class="fixed-flex-layout-left"
+						data-bind="with: $vm.component025">
+						<div id='list_role'>
+							<ui:include src="/view/ccg/025/component/index.xhtml" />
+						</div>
+					</div>
+
+					<div id="right-content"
+						 class="fixed-flex-layout-right"
+						 data-bind="with: $vm.selectedRole">
+						<div class="control-group valign-center">
+							<div data-bind="ntsFormLabel: {
+										required: true,
+										constraint: ['RoleCode' , 'RoleName']
+									}">#{i18n.getText('CAS009_5')}</div>
+							<input data-bind="
+									attr: {
+										id: 'roleCode'
+									},
+									ntsTextEditor: {
+										 name: '#[CAS009_6]',
+										 constraint: 'RoleCode',
+										 value: roleCode,
+										 required: true,
+										 enable: !!_.isEmpty(ko.toJS(roleId)),
+										 immediate: true
+									 },
+									 hasFocus: roleCodeFocus" />
+							<input data-bind="
+									attr: {
+										id: 'roleName'
+									},
+									ntsTextEditor: {
+										 name: '#[CAS009_7]',
+										 value: roleName,
+										 constraint: 'RoleName',
+										 required: true,
+										 immediate: true
+									 },
+									 hasFocus: roleNameFocus" />
+						</div>
+						<div class="control-group valign-center">
+							<div data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CAS009_8')}</div>
+							<span data-bind="if: assignAtr() == 0">#{i18n.getText('CAS009_9')}</span>
+							<com:ko-if bind="assignAtr() == 1">
+								<div style="width: 215px"
+										data-bind="attr: {
+												id: 'combo-box'
+											},
+											ntsComboBox: {
+												name: '#[CAS009_10]',
+												options: $vm.enumRange,
+												optionsValue: 'value',
+												visibleItemsCount: 20,
+												value: employeeReferenceRange,
+												optionsText: 'localizedName',
+												editable: false,
+												enable: true,
+												columns: [
+													{ prop: 'localizedName', length: 8 },
+												]
+											}">
+								</div>
+							</com:ko-if>
+						</div>
+						<ccg026-component
+								params="{
+													label: {
+														require: false,
+														text: 'CAS009_14'
+													},
+													tabindex: 0,
+													roleId: roleId,
+													roleType: 8,
+													changeData: permisions,
+													maxRow: 6
+												}">
+						</ccg026-component>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

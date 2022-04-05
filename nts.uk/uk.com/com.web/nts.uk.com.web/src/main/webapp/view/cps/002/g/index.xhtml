@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+
+			<script type='text/javascript'>
+				var dialogSize = {
+					width : 710,
+					height : 550
+				};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps002.g.style.css" />
+			<com:scriptfile path="cps002.g.service.js" />
+			<com:scriptfile path="cps002.g.vm.js" />
+			<com:scriptfile path="cps002.g.start.js" />
+			<com:ValidatorScript>
+				nts.uk.ctx.pereg.dom.usesetting.EmpCodeLetter
+				nts.uk.ctx.bs.employee.dom.employeeinfo.EmployeeCode
+				nts.uk.ctx.pereg.dom.usesetting.CardNoLetter
+				nts.uk.ctx.at.record.dom.stamp.card.stampcard.StampNumber
+			</com:ValidatorScript>
+
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area" class="cf coverBlock">
+
+				<div>
+					<table class="tblContent" data-bind="with:currentUserSetting">
+						<tr>
+							<td colspan="2" class="txtTopLable">
+								<div>#{i18n.getText('CPS002_76')}</div>
+							</td>
+						</tr>
+						<tr>
+
+							<td width="145px"><div data-bind="ntsFormLabel: {}">#{i18n.getText('CPS002_77')}</div></td>
+							<td style="position: relative">
+
+								<div id="empInitGroup"
+									data-bind="ntsRadioBoxGroup: {
+										options: $parent.employeeInitItemList ,
+										optionsValue: 'code',
+										optionsText: 'name',
+										value: $parent.employeeCodeType2 ,
+										enable: true }" tabindex="1"></div>
+								<div id="empCodeLetter">
+									<input id="employeeCode"
+										data-bind="ntsTextEditor: {
+													value: employeeCodeLetter ,
+													constraint:'EmployeeCode',
+													name: '#{i18n.getText('CPS002_81')}',
+													option: {
+														textmode: 'text',
+										            	width: '80px',
+										            	textalign: 'left'
+													},
+													enable: $parent.employeeCodeType2() === 1,
+													required: $parent.requiredCode
+													}" tabindex="2"/>
+									<span>#{i18n.getText('CPS002_82')}</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><div data-bind="ntsFormLabel: {}">#{i18n.getText('CPS002_83')}</div></td>
+							<td style="position: relative">
+								<div id="initCardNoGroup"
+									data-bind="ntsRadioBoxGroup: {
+										options: $parent.cardNoInitItemList ,
+										optionsValue: 'code',
+										optionsText: 'name',
+										value: $parent.cardNumberType2 ,
+										enable: true }" tabindex="3"></div>
+
+								<div id="cardNoLetter">
+
+									<input id="cardNumber"
+										data-bind="ntsTextEditor: {
+													value: cardNumberLetter ,
+													constraint:'StampNumber',
+													name: '#{i18n.getText('CPS002_81')}',
+													option: {
+														textmode: 'text',
+										            	width: '80px',
+										            	textalign: 'left'
+													},
+													enable: $parent.cardNumberType2() === 1,
+													required: $parent.requiredCard
+													}" tabindex="4"/>
+
+									<span>#{i18n.getText('CPS002_87')}</span>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td><div data-bind="ntsFormLabel: {}">#{i18n.getText('CPS002_88')}</div></td>
+							<td>
+								<div class="cf"
+									data-bind="ntsSwitchButton: {
+									options: $parent.recentRegistrationItems,
+									optionsValue: 'code',
+									optionsText: 'name',
+									value: recentRegistrationType,
+									enable: true }"  tabindex="5">
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<button class="proceed x-large" data-bind="click: register, enable: $root.errors.isEmpty()"  tabindex="6">#{i18n.getText('CPS002_91')}</button>
+				<button data-bind="click: close"  tabindex="7">#{i18n.getText('CPS002_92')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

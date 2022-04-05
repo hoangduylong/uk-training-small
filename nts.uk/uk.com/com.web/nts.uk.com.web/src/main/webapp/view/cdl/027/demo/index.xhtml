@@ -1,0 +1,103 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div style="padding: 20px">
+				<div class="valign-center control-group">
+					<div data-bind="ntsFormLabel: { required: true, text: 'PGID = __viewContext.program.programId' }"></div>
+				</div>
+				<div class="valign-center control-group">
+					<div data-bind="ntsFormLabel: { required: true, text: 'Function ID' }"></div>
+					<div id="combo-box" data-bind="ntsComboBox: {
+						name: 'Sample List',
+						options: functionIDs,
+						optionsValue: 'code',
+						visibleItemsCount: 5,
+						value: functionId,
+						optionsText: 'name',
+						editable: false,
+						enable: true,
+						required: true,
+						columns: [
+							{ prop: 'code', length: 4 },
+							{ prop: 'name', length: 10 },
+						]}"></div>
+					<div data-bind="ntsFormLabel: { required: true, text: 'Period' }" style="margin-left: 50px"></div>
+					<span data-bind="if: periodType() == 'fullDate'">
+						<div id="ymdrangepicker" style="display: inline-block; vertical-align: inherit; padding-left: 28px" 
+						data-bind="ntsDateRangePicker: { 
+							required: true, 
+							enable: true, 
+							type: 'fullDate',
+							showNextPrevious: false, 
+							value: period, 
+							maxRange: 'none'}"/>
+					</span>
+					<span data-bind="if: periodType() == 'yearmonth'">
+						<div id="ymdrangepicker" style="display: inline-block; vertical-align: inherit; padding-left: 28px"
+						data-bind="ntsDateRangePicker: { 
+							required: true, 
+							enable: true, 
+							type: 'yearmonth',
+							showNextPrevious: false, 
+							value: period, 
+							maxRange: 'none'}"/>
+					</span>
+					<span data-bind="if: periodType() == 'year'">
+						<div id="ymdrangepicker" style="display: inline-block; vertical-align: inherit; padding-left: 28px"
+						data-bind="ntsDateRangePicker: { 
+							required: true, 
+							enable: true, 
+							type: 'year',
+							showNextPrevious: false, 
+							value: period, 
+							maxRange: 'none'}"/>
+					</span>
+					<span data-bind="if: periodType() == 'ym-ymd'">
+						<div data-bind="ntsDatePicker: {value: yearMonth, dateFormat: 'yearmonth'}"></div>
+						<div data-bind="ntsDatePicker: {value: date, dateFormat: 'YYYY/MM/DD'}"></div>
+					</span>
+				</div>
+				<div class="valign-center control-group cf">
+					<div data-bind="ntsFormLabel: { required: true, text: 'Select Employee' }"></div>
+					<div data-bind="ntsFormLabel: { required: true, text: 'Display Format' }" style="margin-left: 227px"></div>
+					<div data-bind="ntsSwitchButton: {
+						name: 'Sample Switch',
+						options: displayFormats,
+						optionsValue: 'code',
+						optionsText: 'name',
+						value: displayFormat,
+						required: true,
+						enable: true }"></div>
+				</div>
+				<div class="valign-center control-group cf">
+					<table id="multi-list" class="cf" data-bind="ntsGridList: {
+							rows: 10,
+							options: listEmployee,
+							optionsValue: 'employeeId',
+							columns: [
+								{ headerText: 'id', key: 'employeeId', width: 140, formatter: _.escape, hidden: true },
+								{ headerText: 'Employee Code', key: 'employeeCode', width: 140, formatter: _.escape },
+								{ headerText: 'Employee Name', key: 'employeeName', width: 140, formatter: _.escape }
+							],
+							multiple: true,
+							value: selectedEmployee
+						}"></table>
+				</div>
+				
+				<button tabindex="1" data-bind="click: openCdl027Dialog, enable: selectedEmployee().length > 0 &amp;&amp; $root.errors.isEmpty">Open CDL027</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:com="http://xmlns.jcp.org/jsf/component"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+<ui:composition template="/master/base.xhtml">
+	<ui:define name="htmlHead">
+		<com:scriptfile set="IGNITE" />
+		<com:stylefile path="cmf001.x.style.css" />
+		<com:scriptfile path="cmf001.x.vm.js" />
+		
+	</ui:define>
+
+	<ui:define name="content">
+		<div id="functions-area">
+			<a class="goback" data-bind="ntsLinkButton: { jump: '../a/index.xhtml' }, text: '戻る'"></a>
+		</div>
+
+		<div id="contents-area">
+			
+			<div id="setting">
+				<div class="row">
+					<div class="label" data-bind="ntsFormLabel: {}">受入設定</div>
+					<div class="detail">
+						<div id="settings-list" data-bind="ntsComboBox: {
+							options: settings,
+							optionsValue: 'code',
+							optionsText: 'name',
+							value: selectedSettingCode,
+							editable: false,
+							selectFirstIfNull: true,
+							visibleItemsCount: 10,
+						}"></div>
+					</div>
+				</div>
+
+				<div class="row">
+					<div class="label" data-bind="ntsFormLabel: {}">受入CSVファイル</div>
+					<div class="detail">
+						<div id="file-upload" data-bind="ntsFileUpload:{
+							filename: csvFileName,
+							accept: ['csv'],
+							text: '選択',
+							aslink: false,
+							onchange: csvFileSelected,
+							immediateUpload: false,
+							uploadFinished: csvFileUploaded
+						}"></div>
+					</div>
+				</div>
+			</div>
+
+			<div id="execute">
+				<button class="normal"  data-bind="click: prepare, text: '受入準備', enable: canPrepare"></button>
+				　＞＞＞　
+				<button class="proceed" data-bind="click: execute, text: '受入実行', enable: canExecute"></button>
+			</div>
+
+			<div id="error">
+				<textarea id="error-disp"  data-bind="ntsMultilineEditor: { value: messageBox, enable: true, readonly: true }" />
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
+</body>
+</html>

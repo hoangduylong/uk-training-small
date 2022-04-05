@@ -1,0 +1,79 @@
+@import "compass-for-vs2013-master/compass";
+@import "compass-for-vs2013-master/compass/_reset.scss";
+
+@import "base/base_def";
+@import "base/clearfix";
+
+@import "base/menu";
+@import "components/color";
+@import "components/commons";
+@import "components/icons";
+@import "components/ignitecommons";
+@import "components/accordion";
+@import "components/editor";
+@import "components/form-label";
+@import "components/block-ui";
+@import "components/button";
+@import "components/caret";
+@import "components/switchbutton";
+@import "components/checkbox";
+@import "components/panel";
+@import "components/radiobox";
+@import "components/listbox";
+@import "components/gridlist";
+@import "components/tabpanel";
+@import "components/treedrag";
+@import "components/treegridview";
+@import "components/combobox";
+@import "components/dialog";
+@import "components/wizard";
+@import "components/widget";
+@import "components/swaplist";
+@import "components/updown";
+@import "components/searchbox";
+@import "components/datepicker";
+@import "components/contextmenu";
+@import "components/userguide";
+@import "components/helpbutton";
+@import "components/images";
+@import "components/functionpanel";
+@import "components/ntsgrid";
+@import "components/extable";
+@import "components/limitedlabel";
+@import "components/legendbutton";
+@import "components/linkbutton";
+@import "components/fixedtable";
+@import "components/fileupload";
+@import "components/mgrid";
+@import "components/monthdays";
+@import "frame/header";
+@import "frame/functions";
+@import "frame/contents";
+@import "frame/sidebar";
+@import "frame/guide";
+@import "components/imagepreview";
+@import "components/buttontable";
+@import "components/datetime";
+@import "components/assy";
+
+html {
+    overflow: hidden;
+    font-family: $font_family;
+    font-size: $normal_font_size;
+    font-weight: 500;
+
+    body {
+        overflow: hidden;
+        font-size: 1rem;
+        font-family: $font_family;
+        height: 100vh;
+        width: 100vw;
+
+        * {
+            font-size: 1rem;
+            font-family: $font_family;
+            color: $font_color;
+            font-weight: 600;
+        }
+    }
+}

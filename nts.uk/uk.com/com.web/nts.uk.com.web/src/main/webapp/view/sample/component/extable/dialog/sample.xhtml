@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:com="http://xmlns.jcp.org/jsf/component"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<body>
+		
+		<ui:composition template="../../../../../master/dialog.xhtml">
+			<ui:define name="htmlHead">
+				<script>var dialogSize = { width: 800, height: 700 };</script>
+				<com:stylefile path="../../../catalog/catalog.css" />
+				<com:scriptfile set="IGNITE" />
+				<com:scriptfile path="../../../catalog/catalog.js" />		
+				<com:scriptfile path="start.js" />
+				<style>
+					.medium-font-size {
+						font-size: 0.6rem;
+					}
+					.small-font-size {
+						font-size: 0.5rem;
+					}
+					.cell-red {
+						background-color: red;
+					}
+					.cell-green {
+						background-color: green;
+					}
+					.extable div.cell-light-green, td.cell-light-green {
+						background-color: #B8FF33;
+					}
+					.extable div.cell-light-green.selected, td.cell-light-green.selected {
+						background-color: #3498DB;
+						color: #FFF;
+					}
+				</style>
+			</ui:define>
+			
+			<ui:define name="content">
+				<div id="functions-area"></div>
+				<div id="contents-area">
+					<div id="content" class="cf">
+						<h2>Update</h2>
+						<br />
+						<div id="extable2" style="height: 140px;"></div>
+						<div id="extable3"></div>
+						<article class="cf">
+							
+						</article>
+					</div>
+		   		</div>
+			</ui:define>
+		</ui:composition>
+   	</body>
+</html>

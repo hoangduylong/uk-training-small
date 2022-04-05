@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 500, height: 350 };</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cmm018.q.main.css" />
+			<com:scriptfile path="cmm018.q.vm.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<!-- Q1_1 -->
+				<div class="label labelFirst">#{i18n.getText('CMM018_112')}</div>
+				<!-- Q1_2 -->
+				<div data-bind="visible: param.systemAtr == 0" class="label labelSecond">#{i18n.getText('CMM018_113', [i18n.getText('Com_Workplace')])}</div>
+				<div data-bind="visible: param.systemAtr == 1" class="label labelSecond">#{i18n.getText('CMM018_113', [i18n.getText('Com_Department')])}</div>
+				
+				<!-- Q2_1 -->
+				<div>
+					<div id='q2_1' class= "checkBox" data-bind="ntsCheckBox: { checked: model.companyUnit, enable: true, text: $i18n('CMM018_75')}"></div>
+				</div>
+				<!-- Q2_2 -->
+				<div>
+					<div class= "checkBox" data-bind="ntsCheckBox: { checked: model.workPlaceUnit, enable: true, text: $i18n('CMM018_76', param.systemAtr == 0 ? [$i18n('Com_Workplace')] : [$i18n('Com_Department')])}"></div>					
+				</div>
+				<!-- Q2_3 -->
+				<div>
+					<div class= "checkBox" data-bind="ntsCheckBox: { checked: model.personUnit, enable: true, text: $i18n('CMM018_78')}"></div>				
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<!-- Q3_1 -->
+				<button data-bind="click: register" class="x-large proceed center-e">#{i18n.getText('CMM018_18')}</button>
+				<!-- Q3_2 -->
+				<button data-bind="click: closeModal" class="ui-dialog-titlebar-close" >#{i18n.getText('CMM018_45')}</button>
+			</div>
+			
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

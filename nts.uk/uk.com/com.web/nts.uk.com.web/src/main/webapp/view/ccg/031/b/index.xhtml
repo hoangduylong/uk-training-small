@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 710, height: 645 };</script>
+			<com:ValidatorScript>
+				nts.uk.ctx.sys.portal.dom.toppagepart.size.Width
+				nts.uk.ctx.sys.portal.dom.toppagepart.size.Height
+				nts.uk.ctx.sys.portal.dom.placement.externalurl.Url
+  			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="../../common/model.js" />
+			<com:scriptfile path="ccg031.b.service.js" />
+			<com:scriptfile path="ccg031.b.vm.js" />
+			<com:scriptfile path="ccg031.b.start.js" />
+			<com:stylefile path="../../common/common.css" />
+			<com:stylefile path="ccg031.b.style.css" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area" class="cf">
+				<div class="label-area">
+					<label class="label-lg">#{i18n.getText('CCG031_9')}</label> <label
+						class="label-lg label-row"><span>#{i18n.getText('CCG031_10')}</span>
+						<span data-bind="text: positionRow"></span><span>#{i18n.getText('CCG031_12')}</span></label>
+					<label class="label-lg label-column"><span>#{i18n.getText('CCG031_11')}</span>
+						<span data-bind="text: positionColumn"></span><span>#{i18n.getText('CCG031_12')}</span></label>
+				</div>
+				<div class="part-area">
+					<div id="combo-box" class="animated-background" tabindex="1"
+						data-bind="ntsComboBox: {
+						options: listPartType,
+						optionsValue: 'value',
+						value: selectedPartType,
+						enable: true,
+						columns: [{ prop: 'localizedName' }]}"></div>
+					<div class="part-container">
+						<!-- TopPage Part -->
+						<div class="top-page-part" data-bind="visible: !isExternalUrl()">
+							<label class="label add-widget-label"
+								data-bind="text: instructionText"></label>
+							<div class="cf">
+								<div class="col-1 pull-left">
+									<div class="toppage-part-list-placeholder placeholder">
+										<table data-name="#{i18n.getText('CCG031_15')}"
+											id="toppage-part-list"
+											data-bind="ntsGridList: {								
+											height: 340,
+											width: '100%',
+											dataSource: listPart,
+											value: selectedPartID,
+											primaryKey: 'topPagePartID',
+											columns: listPartColumn,
+											multiple: false}"></table>
+									</div>
+								</div>
+								<div class="col-2 pull-left">
+									<span class="caret-right caret-inline"></span>
+								</div>
+								<div class="col-3 pull-left">
+									<div class="widget-panel" data-bind="with: selectedPart">
+										<div class="panel-header">
+											<span class="square green"></span> <span class="title"
+												data-bind="text: codeName"></span>
+										</div>
+										<div class="panel-content">
+											<div class="valign-center control-group">
+												<div data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CCG031_20')}</div>
+												<label class="label-width"><span>#{i18n.getText('CCG031_21')}</span><span
+													data-bind="text: width"></span><span>#{i18n.getText('CCG031_23')}</span></label>
+												<label>x</label> <label class="label-height"><span>#{i18n.getText('CCG031_22')}</span><span
+													data-bind="text: height"></span><span>#{i18n.getText('CCG031_23')}</span></label>
+											</div>
+											<label>#{i18n.getText('CCG031_24')}</label>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- External Url -->
+						<div class="external-url-part" data-bind="visible: isExternalUrl"
+							style="display: none;">
+							<div class="widget-panel">
+								<div class="panel-header">
+									<span class="square green"></span> <span class="title">#{i18n.getText('CCG031_14')}</span>
+								</div>
+								<div class="panel-content">
+									<div class="valign-center control-group">
+										<div data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CCG031_20')}</div>
+										<label class="label-width"> <span>#{i18n.getText('CCG031_21')}</span>
+											<input class="nts-validate input-width" tabindex="2"
+											data-bind="ntsNumberEditor: {value: urlWidth, name: '#[CCG031_30]', constraint: 'Width', required: true}" />
+											<span>#{i18n.getText('CCG031_23')}</span>
+										</label> <label class="label-height"> <span>#{i18n.getText('CCG031_22')}</span>
+											<input class="nts-validate input-height" tabindex="3"
+											data-bind="ntsNumberEditor: {value: urlHeight, name: '#[CCG031_31]', constraint: 'Height', required: true}" />
+											<span>#{i18n.getText('CCG031_23')}</span>
+										</label>
+									</div>
+									<div class="valign-center control-group">
+										<div data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CCG031_29')}</div>
+										<input class="nts-validate input-url" tabindex="4"
+											data-bind="ntsTextEditor: {value: url, name: '#[CCG031_14]', constraint: 'Url', required: true}" />
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<button class="btn x-large btn-register proceed" tabindex="5"
+					data-bind="click: submitDialog, enable: $root.errors.isEmpty">#{i18n.getText('CCG031_25')}</button>
+				<button class="btn large btn-close" tabindex="6"
+					data-bind="click: closeDialog">#{i18n.getText('CCG031_26')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

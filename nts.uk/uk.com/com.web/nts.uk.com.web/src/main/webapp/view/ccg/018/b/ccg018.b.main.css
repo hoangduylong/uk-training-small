@@ -1,0 +1,105 @@
+@CHARSET "UTF-8";
+
+#contents-area {
+	position: static;
+	padding: 0px
+}
+
+#sample-component {
+	margin: 30px 0 0 45px;
+}
+
+.fixed-flex-layout-right {
+	margin-top: 30px;
+}
+
+#table-1 {
+	margin-top: 20px;
+	border-spacing: 15px;
+}
+
+#table-1 tbody tr td #combo-box {
+	padding: 2px 2px 0 2px;
+	height: 25px;
+	min-width: 150px !important;
+	width: 150px !important;
+}
+
+.ui-igcombo-button {
+	background-color: white;
+	border: none !important;
+}
+
+#B1_4 {
+	margin: 0 20px 0 50px;
+}
+
+#B1_5 {
+	margin-top: 3px;
+}
+
+#B1_6 {
+	margin-left: 45px;
+}
+
+#B3_13 {
+	margin: 0px 10px;
+}
+
+.screen-b .nts-searchbbox-wrapper {
+	min-width: 100%;
+}
+
+.tableb th.tbl-thb {
+	border: 1px solid #999999;
+	background-color: #CFF1A5;
+	height: 25px;
+	font-weight: bold;
+}
+
+.tableb td.tbl-tdb {
+	border: 1px solid #999999;
+	border-top: 0px;
+	height: 40px;
+	padding: 5px;
+}
+
+.sidebar-content-header button {
+	margin-left: 45px;
+	min-width: 65px;
+}
+
+/* .position-mid {
+	top: 35% !important;
+} */
+
+div#ccg001-btn-search-drawer {
+	height: 290px !important;
+}
+
+span.ui-iggrid-headertext {
+	padding-left: 5px;
+}
+
+.combo-box.combo-box-switch-date.ui-igcombo-wrapper.ntsControl {
+	width: 90px;
+}
+
+/* .ui-igcombo-wrapper {
+    width: 150px;
+} */
+#hor-scroll-button-hide > .ccg001-caret-vertical:after {
+	margin-left: 46px !important;
+}
+.ccg-lbl-vertical {
+	width: 35px !important;
+}
+#B6_1 {
+	margin-left: 20px;
+}
+#A3_1 {
+	margin-left: 12px;
+}
+.fixed-flex-layout > .fixed-flex-layout-left {
+	margin-right: 0px !important;
+}

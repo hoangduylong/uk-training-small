@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = {
+					width : 500,
+					height : 470
+				};
+			</script>
+
+			<com:scriptfile set="IGNITE" />
+
+			<com:stylefile path="style.css" />
+			<com:scriptfile path="vm.js" />
+			<com:scriptfile path="start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area" style="padding: 20px 30px;">
+				<div>#{i18n.getText('JDL0060_A222_1')}</div>
+
+				<div style="margin: 20px 30px;">
+					<div style="margin-right: 50px;"
+						data-bind="ntsFormLabel: {required: true}">#{i18n.getText('JDL0060_A222_2')}</div>
+					<div id="start-date" tabindex="1"
+						data-bind="ntsDatePicker: {name: '#[JDL0060_A222_3]', required: true, value: startDate, dateFormat: 'YYYY/MM/DD'}"></div>
+					<span style="margin: 20px;">#{i18n.getText('JDL0060_A222_4')}</span> <span
+						data-bind="text: endDate"></span>
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<button class="x-large proceed" tabindex="2"
+					data-bind="click: execute">#{i18n.getText('JDL0060_A3_1')}</button>
+				<button class="large" tabindex="3" data-bind="click: close">#{i18n.getText('JDL0060_A3_2')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

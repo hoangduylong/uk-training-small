@@ -1,0 +1,45 @@
+#master-wrapper {
+	overflow: hidden;
+}
+
+.dialog-contents{
+  padding: 20px;
+}
+
+.bg-yellow {
+	text-align: center;
+	background-color: #BFEA60;
+}
+
+.button {
+	text-align: center;
+	margin-top: 30px;
+}
+
+table {
+	box-sizing: border-box;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+td {
+	padding: 5px;
+	border: 1px solid black;
+}
+
+#F1_1 {
+	font-size: 24px;
+}
+
+#F1_2 {
+	margin-top: 5px;
+}
+
+#F2_1 {
+	margin-left: 20px;
+}
+
+#F2_5 label {
+	padding-left: 50px;
+}
+

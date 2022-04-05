@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:ValidatorScript>
+				nts.uk.ctx.at.shared.dom.era.name.EraName
+				nts.uk.ctx.at.shared.dom.era.name.SymbolName
+			</com:ValidatorScript>
+			<com:stylefile path="cmm020.a.style.css" />
+			<com:scriptfile path="cmm020.a.start.js" />
+			<com:scriptfile path="cmm020.a.service.js" />
+			<com:scriptfile path="cmm020.a.vm.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="functions-area">
+				<!-- A1_1 -->
+				<button tabindex="1" data-bind="click: newItem">#{i18n.getText('CMM020_1')}</button>
+				<!-- A1_2 -->
+				<button tabindex="2"
+					data-bind="click: createEra,enable: activeUpdate" class="proceed">#{i18n.getText('CMM020_2')}</button>
+				<!-- A1_3 -->
+				<!-- <button tabindex="3">#{i18n.getText('CMM020_3')}</button> -->
+				<!-- A1_4 -->
+				<button tabindex="4"
+					data-bind="click: deleteEra,enable: activeDelete" class="danger"
+					style="margin-left: 170px;">#{i18n.getText('CMM020_4')}</button>
+			</div>
+			<div id="contents-area" class="fixed-flex-layout">
+				<div class="fixed-flex-layout-left"
+					style="padding-top: 20px; padding-left: 20px; margin-right: 5px;">
+					<!-- A2_1 -->
+					<div
+						data-bind="ntsPanel:{width: '260px', height: '390px', showIcon: false, visible: true, direction: 'right'}">
+						<!-- A2_2 -->
+						<div>
+							<table id="single-list" tabindex="5"
+								data-bind="ntsGridList: {
+									name: '#[CMM020_5]',
+									width: 260,
+									height: 390,
+									options: dataSource,
+									optionsValue: 'eraId',
+									columns: columns,
+									multiple: false,
+									value: currentCode,
+									enable: true
+							}">
+							</table>
+						</div>
+					</div>
+				</div>
+
+				<div class="fixed-flex-layout-right" style="padding-top: 35px;">
+					<div class="table fixed-height">
+						<table>
+							<colgroup>
+								<col width="130" />
+								<col width="*" />
+							</colgroup>
+							<tbody>
+								<tr class="row">
+									<td>
+										<!-- A3_1 -->
+										<div
+											data-bind="ntsFormLabel: {required: true, constraint: 'EraName'}">#{i18n.getText('CMM020_6')}</div>
+									</td>
+									<td colspan="2" class="th-col2">
+										<div>
+											<input tabindex="6"
+												data-bind="ntsTextEditor: {
+													name: '#[CMM020_6]',
+													value:currentName,
+													constraint: 'EraName',
+													required: true,
+													enable: activeUpdate(),
+													option: {width: '55px'}},
+													hasFocus: isFocus" />
+										</div>
+									</td>
+								</tr>
+
+								<tr class="row">
+									<td>
+										<!-- A3_1 -->
+										<div
+											data-bind="ntsFormLabel: {required: true, constraint: 'SymbolName' }">#{i18n.getText('CMM020_7')}</div>
+									</td>
+									<td>
+										<div>
+											<input tabindex="7"
+												data-bind="ntsTextEditor: {
+													name: '#[CMM020_7]',
+													value:currentSymbol,
+													constraint: 'SymbolName',
+													required: true,
+													enable: activeUpdate(),
+													option: {width: '55px'}}" />
+										</div>
+									</td>
+								</tr>
+
+								<tr class="row">
+									<td>
+										<!-- A3_1 -->
+										<div data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CMM020_8')}</div>
+									</td>
+									<td>
+										<div>
+
+											<div tabindex="8"
+												data-bind="ntsDatePicker: {
+												name: '#[CMM020_8]', 
+												required: true, 
+												value: currentStartDate, 
+												enable: activeUpdate(), 
+												dateFormat: 'YYYY/MM/DD'}"></div>
+										</div>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

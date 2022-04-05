@@ -1,0 +1,124 @@
+#appType {
+	margin-right: 45px;
+}
+
+.leftExtend {
+	margin-top: 10px;
+}
+
+.selectApprover {
+	padding-bottom: 0px;
+	padding-top: 25px;
+}
+
+/*#swap-list-gridArea2, #swap-list-grid2_displayContainer, #swap-list-grid2_scrollContainer, #swap-list-grid2_container {*/
+/*	height: 160px !important;*/
+/*}*/
+
+#swap-list-gridArea2, #swap-list-grid2_displayContainer, #swap-list-grid2_scrollContainer {
+	height: 123px !important;
+}
+
+#swap-list-grid2_container {
+	height: 147px !important;
+}
+
+#swap-list-search-area-input {
+	width: 180px !important;
+}
+table.ntsSwapGrid tbody tr td {
+	white-space: nowrap !important;
+}
+#swap-list-search-area{
+	height: 36px !important;
+}
+.ntsMoveDataArea, #swap-list-move-data,  .move-button, #swap-list-gridArea1{
+	vertical-align: top;
+	width: 45px !important;
+}
+
+.row-search {
+	display:none;
+}
+
+.settingApprover {
+	margin-top: 30px !important;
+	height: 300px;
+}
+.titleSelect {
+	width: 320px !important;
+}
+.nts-searchbbox-wrapper button.search-btn, .nts-searchbbox-wrapper button.clear-btn {
+	min-width: 45px;
+}
+.ntsSearchBox {
+	width: 250px !important;
+}
+.upDown-container {
+	padding-left: 10px;
+	height: 260px !important;
+}
+/*fix tam*/
+#swap-list-move-data{
+	padding-top: 40px !important;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.nts-column {
+	width: 150px !important;
+}
+html{
+	overflow:hidden;
+}
+
+.titleSelected {
+	width: 60px;
+}
+
+#typeSetting {
+	float: right;
+	margin-right: 37px;
+}
+
+.swap-btn {
+	width: 75px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#prev-next-button {
+	width: 75px;
+	margin-top: 150px;
+	margin-left: 22px !important;
+}
+
+#selected-approver {
+	margin-left: 23px !important;
+}
+
+.top-16 {
+	margin-top: -16px;
+}
+
+.top-8 {
+	margin-top: -8px;
+}
+
+.k2-14 {
+	position: absolute !important;
+	margin-left: 50px;
+	top: 120px;
+}
+
+/*#swap-list-grid1_container {*/
+/*	height: 270px !important;*/
+/*}*/
+
+#swap-list-grid1_displayContainer, #swap-list-grid1_scrollContainer {
+	border-bottom: 1px solid #eae8f2 !important;
+}
+
+#single-tree-grid-tree-grid_displayContainer, #single-tree-grid-tree-grid_scrollContainer {
+	height: 290px !important;
+}

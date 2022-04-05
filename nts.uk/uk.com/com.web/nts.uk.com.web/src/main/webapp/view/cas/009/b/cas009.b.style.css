@@ -1,0 +1,17 @@
+#list_link {
+	margin: 0 auto;
+	width: 90%;
+	height: 100%;
+	overflow-y: scroll;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+}
+
+#list_link .hyperlink {
+	display: block;
+	padding: 5px;
+}
+
+#list_link .hyperlink:hover {
+	background-color: #f2f2f2;
+}

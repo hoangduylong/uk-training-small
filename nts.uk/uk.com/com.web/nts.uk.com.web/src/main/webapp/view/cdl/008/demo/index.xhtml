@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<head>
+</head>
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="../../../sample/catalog/catalog.css" />
+			<com:scriptfile path="../../../sample/catalog/catalog.js" />
+			<com:stylefile path="cdl008.parent.main.css" />
+			<com:scriptfile path="cdl008.parent.start.js" />
+			<com:scriptfile path="cdl008.parent.vm.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+				
+				<h1>CDL008 職場選択ダイアログ Workplace Selection Dialog</h1>
+				<hr />
+				<h2>Overview</h2>
+				<h4 style="margin-top: 30px; margin-bottom: 10px; font-size: 17px">Parameters:</h4>
+					<div>
+						<table>
+							<tr>
+								<td class="header-text">起動モード:</td>
+								<td class="content-sample"><div
+										data-bind="ntsRadioBoxGroup: {
+										 options: listStartMode,
+									     optionsValue: 'code',
+									     optionsText: 'name',
+									     value: selectedStartMode,
+									     enable: enable}"></div></td>
+							</tr>
+							<tr>
+								<td class="header-text">基準日</td>
+								<td class="content-sample">
+									<div
+										data-bind="ntsDatePicker: {dateFormat: 'YYYY/MM/DD', value: baseDate, required: true}"
+										style="padding: 0px;"></div>
+								</td>
+							</tr>
+							<tr>
+								<td class="header-text">職場ID 選択済項目:</td>
+								<td class="content-sample"><input class="inputSelectCode"
+									data-bind="ntsTextEditor: {
+								value: canSelectWorkplaceIds,
+								required: false,
+								enable: true,
+								readonly: false}" /></td>
+							</tr>
+							<tr>
+								<td class="header-text">選択モード:</td>
+								<td class="content-sample"><div
+										data-bind="ntsCheckBox: { checked: selectMode }"></div></td>
+							</tr>
+							<tr>
+								<td class="header-text">システム区分:</td>
+								<td class="content-sample"><div
+										data-bind="ntsRadioBoxGroup: {
+										 options: listSystemType,
+									     optionsValue: 'code',
+									     optionsText: 'name',
+									     value: selectedSystemType,
+									     enable: enable}"></div></td>
+							</tr>
+							<tr>
+								<td class="header-text">参照範囲の絞込:</td>
+								<td class="content-sample"><div
+										data-bind="ntsCheckBox: { checked: restrictionOfReferenceRange }"></div></td>
+							</tr>
+							<tr>
+								<td class="header-text">Unselection Item</td>
+								<td>
+									<div data-bind="ntsCheckBox:{ checked: isDisplayUnselect }"></div>
+								</td>
+							</tr>
+							<tr>
+								<td class="header-text">Show base date</td>
+								<td>
+									<div data-bind="ntsCheckBox:{ checked: isShowBaseDate }"></div>
+								</td>
+							</tr>
+
+						</table>
+						<button class="large" style="margin-top: 10px;" data-bind="click: openDialogCDL008">Open
+						CDL008 dialog</button>
+						<br />
+						<div style="font-weight: bold">Returned Data:</div>
+						<div data-bind="if: selectedStartMode() == 0">Selected Workplace id:</div>
+						<div data-bind="if: selectedStartMode() == 1">Selected Department id:</div>
+						<div style="word-break: break-all;" data-bind="text: selectWorkplaceIds"></div>
+						<div>Selected Base date:</div>
+						<div style="word-break: break-all;" data-bind="text: selectedBaseDate"></div>
+						<h2 style="margin-top: 50px;">Guide</h2>
+						<pre>
+						<![CDATA[
+						//open dialog cdl008
+						public openDialogCDL008(): void {
+				           let self = this;
+				           let canSelected = self.canSelectWorkplaceIds() ? self.canSelectWorkplaceIds().split(',') : [];
+				           nts.uk.ui.windows.setShared('inputCDL008', {
+				               baseDate: self.baseDate(),//基準日
+				               selectedCodes: self.selectMode() ? canSelected : canSelected[0],//職場ID 選択済項目
+				               isMultiple: self.selectMode(),//選択モード
+				               selectedSystemType: self.selectedSystemType(),//システム区分
+				               isrestrictionOfReferenceRange: self.restrictionOfReferenceRange,//参照範囲の絞込
+				               showNoSelection: self.isDisplayUnselect(),//Unselection Item
+				               isShowBaseDate: self.isShowBaseDate(),//Show base date
+				               startMode: self.selectedStartMode()//Start mode
+				           }, true);
+				
+				           nts.uk.ui.windows.sub.modal('/view/cdl/008/a/index.xhtml').onClosed(function(): any {
+				               // Check is cancel.
+				               if (nts.uk.ui.windows.getShared('CDL008Cancel')) {
+				                   return;
+				               }
+				               //view all code of selected item 
+				               var output = nts.uk.ui.windows.getShared('outputCDL008');
+				               self.selectWorkplaceIds(output);
+				               var baseDateOutput = nts.uk.ui.windows.getShared('outputCDL008_baseDate');
+				               self.selectedBaseDate(baseDateOutput);
+				           })
+				       }
+						]]>
+						</pre>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,74 @@
+div.label {
+    width: 100%;
+}
+
+.label {
+    display: inline-block;
+    box-sizing: border-box;
+}
+
+.label_top {
+	text-align: center;
+  width: 120px;
+}
+
+.form-label lable {
+	text-align: justify;
+}
+
+.title_content {
+	padding-bottom: 20px;
+}
+
+.title_content_left{
+	float:left;
+}
+
+.title_content_right{
+	width:100px;
+	float:right;
+	
+}
+
+.clear {
+	clear: both;
+}
+td{
+	margin:5px 5px 10px 10px;
+	/* height: 20px; */
+}
+
+.td_center {
+	width: 50px;
+}
+
+.td_center_sp {
+	width: 35px;
+	padding-left: 88px;
+}
+
+.td_right {
+	padding-left: 20px;	
+}
+
+.td_left {
+	width: 120px;	
+}
+
+tr{
+	margin-bottom: 10px;
+	width: auto;
+}
+
+.checkbox_bottom {
+	margin-left: 136px;
+  margin-top: 20px;
+}
+
+.flex.valign-center {
+  margin-top: 10px;
+}
+
+.flex.valign-center > .ntsControl {
+  margin-right: 5px;
+}

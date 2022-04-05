@@ -1,0 +1,5 @@
+#left-content {  float: left; width: 360px; margin-top: 15px; margin-left: 15px; height: 465px; }
+#right-content {float: left; margin-top: 15px; width: 525px;}
+.inputValue{ width: 45px;}
+.control-group.valign-center > * {float: left;margin-top: 5px; margin-left: 5px;}
+input.ntsSearchBox.nts-editor.ntsSearchBox_Component {width: 202px !important }

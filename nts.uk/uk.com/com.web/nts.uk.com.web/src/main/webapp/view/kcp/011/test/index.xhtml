@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:com="http://xmlns.jcp.org/jsf/component"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+  <body>
+    <ui:composition template="../../../../master/base.xhtml">
+      <ui:define name="htmlHead">
+        <com:scriptfile set="IGNITE" />
+        <com:stylefile path="/view/kcp/011/main.css" />
+        <com:scriptfile
+          path="/view/kcp/011/kcp.011.vm.js"
+          of="/nts.uk.com.web"
+        />
+        <com:scriptfile path="test.service.js" />
+        <com:scriptfile path="test.start.js" />
+        <com:scriptfile path="test.vm.js" />
+      </ui:define>
+
+      <ui:define name="content">
+        <div id="functions-area"></div>
+        <div id="contents-area">
+          <div class="pull-left" style="width: 500px;">
+            <workplace-group params="options: options"> </workplace-group>
+          </div>
+          <div class="pull-left" style="width: 700px;">
+            <!-- <p data-bind="text: currentIds"></p>
+					<p data-bind="text: currentCodes"></p>
+					<p data-bind="text: currentNames"></p> -->
+            <button data-bind="click: testAlreadySetting">
+              Test reload data
+            </button>
+          </div>
+          <div>
+            <h4>Tree select grid type:</h4>
+            <div
+              data-bind="ntsRadioBoxGroup: {
+									options: listTreeType,
+									optionsValue: 'code',
+									optionsText: 'name',
+									value: selectedTreeType,
+									enable: true}"
+            ></div>
+          </div>
+          <div>
+            <h4>Selection type:</h4>
+            <div
+              data-bind="ntsRadioBoxGroup: {
+									options: listSelectionType,
+									optionsValue: 'code',
+									optionsText: 'name',
+									value: selectedSelectionType,
+									enable: enable}"
+            ></div>
+          </div>
+          <div>
+            <h4>Other select:</h4>
+            <div
+              data-bind="ntsRadioBoxGroup: {
+									options: listOther,
+									optionsValue: 'code',
+									optionsText: 'name',
+									value: selectedOther,
+									enable: enable}"
+            ></div>
+            <h4>Already setting:</h4>
+            <div
+              data-bind="ntsRadioBoxGroup: {
+									options: listSetting,
+									optionsValue: 'code',
+									optionsText: 'name',
+									value: selectedSetting,
+									enable: enable}"
+            ></div>
+            <h4>Show Panel:</h4>
+            <div
+              data-bind="ntsRadioBoxGroup: {
+									options: listPanelSetting,
+									optionsValue: 'code',
+									optionsText: 'name',
+									value: selectedPanel,
+									enable: enable}"
+            ></div>
+          </div>
+        </div>
+      </ui:define>
+    </ui:composition>
+  </body>
+</html>

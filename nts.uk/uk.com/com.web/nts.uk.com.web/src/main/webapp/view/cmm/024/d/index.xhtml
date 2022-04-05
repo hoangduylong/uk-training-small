@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+    <ui:composition template="../../../../master/dialog.xhtml">
+        <ui:define name="htmlHead">
+            <script>
+                var dialogSize = {
+                    width: 600,
+                    height: 430
+                };
+            </script>
+            <com:scriptfile set="IGNITE" />
+            <com:stylefile path="cmm024.d.main.css" />
+            <com:scriptfile path="../a/cmm024.a.common.js" />
+            <com:scriptfile path="cmm024.d.vm.js" />
+        </ui:define>
+        <ui:define name="content">
+            <div id="contents-area" class="cmm024-d">
+                <div class="title">#{i18n.getText('CMM024_30')}</div>
+                <div class="row">
+                    <div class="col-left" data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CMM024_31')}</div>
+                    <div class="col-right">
+                        <div tabindex="1" class="row-radios" data-bind="ntsRadioBoxGroup: {
+                                    options: registrationHistory,
+                                    optionsValue: 'id',
+                                    optionsText: 'name',
+                                    value: registrationHistoryType,
+                                    required: true,
+                                    enable: true,
+                                    name: '#{i18n.getText('CMM024_32')}'}"></div>
+                        <div class="row-date">
+                            <div data-bind="ntsFormLabel: {}" class="date-label">
+                                <label data-bind="text: '#{i18n.getText('CMM024_7')}' "></label>
+                            </div>
+                            <div class="date-col">
+                                <div tabindex="3" data-bind="ntsDatePicker: {
+                                    value: newStartDate,
+                                    required: true,
+                                    dateFormat: 'YYYY/MM/DD',
+                                    enable: enableDatePicker,
+                                    name: '#{i18n.getText('CMM024_22')}'}"></div>
+                            </div>
+                            <div class="date-label end-date-label">
+                                <label data-bind="text: '#{i18n.getText('CMM024_23')}'"></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="functions-area-bottom" class="btn-click">
+                <button tabindex="4" data-bind="click: proceed, enable: $root.errors.isEmpty"
+                    class="proceed large">#{i18n.getText('CMM024_28')}</button>
+                <button tabindex="5" data-bind="click: cancel">#{i18n.getText('CMM024_29')}</button>
+            </div>
+        </ui:define>
+    </ui:composition>
+</body>
+
+</html>

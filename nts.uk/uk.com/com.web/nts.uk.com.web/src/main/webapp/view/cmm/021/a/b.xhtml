@@ -1,0 +1,298 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<com:ValidatorScript>
+				nts.uk.ctx.sys.gateway.dom.singlesignon.HostName				
+				nts.uk.ctx.sys.gateway.dom.singlesignon.UserName				
+	</com:ValidatorScript>
+	<div class="screen-b-mode">
+
+		<table>
+			<!-- 		//1 -->
+
+			<tr>
+				<td class="padding-checkbox">
+					<!-- B1_1 -->
+					<div tabindex="-1"
+						data-bind="ntsCheckBox: { checked: enable_WinAcc1 }">#{i18n.getText('CMM021_20')}</div>
+				</td>
+			</tr>
+			<!-- B1_2 -->
+			<tr>
+				<td colspan="2" class='td-hr'><hr /></td>
+			</tr>
+			<tr>
+
+				<td class="padding-scr-b">
+					<!-- B1_3 -->
+					<div>#{i18n.getText('CMM021_35')}</div>
+				</td>
+				<!-- B1_4 -->
+				<td class="padding-scr-b"><input id="focus-hostName1"
+					tabindex="8"
+					data-bind="ntsTextEditor: {
+									value: hostName1,
+									name: '#[CMM021_21]',
+									option: {
+										width: '200px',
+									},
+									constraint: 'HostName',
+									enable: enable_WinAcc1,
+									required: true
+								}" />
+				</td>
+
+			</tr>
+			<tr>
+				<td class="padding-scr-b padding-botom-scr-b">
+					<!-- B1_5 -->
+					<div>#{i18n.getText('CMM021_36')}</div>
+				</td>
+				<!-- B1_6 -->
+				<td class="padding-scr-b padding-botom-scr-b"><input
+					id="userName1" tabindex="9"
+					data-bind="ntsTextEditor: {
+									value: userName1,
+									name: '#[CMM021_22]',
+									option: {
+										width: '200px',
+									},
+									constraint: 'UserName',
+									enable: enable_WinAcc1,
+									required: true
+								}" />
+				</td>
+
+			</tr>
+
+
+
+			<!-- //2 -->
+			<tr>
+				<!-- B2_1 -->
+				<td class="padding-checkbox">
+					<div tabindex="-1"
+						data-bind="ntsCheckBox: { checked: enable_WinAcc2 }">#{i18n.getText('CMM021_23')}</div>
+				</td>
+			</tr>
+			<!-- B2_2 -->
+			<tr>
+				<td colspan="2" class='td-hr'><hr /></td>
+			</tr>
+
+			<tr>
+				<!-- B2_3 -->
+				<td class="padding-scr-b">
+					<div>#{i18n.getText('CMM021_35')}</div>
+				</td>
+				<!-- B2_4 -->
+				<td class="padding-scr-b"><input id="hostName2" tabindex="10"
+					data-bind="ntsTextEditor: {
+									value: hostName2,
+									name: '#[CMM021_24]',
+									option: {
+										width: '200px',
+									},
+									constraint: 'HostName',
+									enable: enable_WinAcc2,
+									required: true
+								}" />
+				</td>
+
+			</tr>
+			<tr>
+				<!-- B2_5 -->
+				<td class="padding-scr-b padding-botom-scr-b">
+					<div>#{i18n.getText('CMM021_36')}</div>
+				</td>
+				<!-- B2_6 -->
+				<td class="padding-scr-b padding-botom-scr-b"><input
+					id="userName2" tabindex="11"
+					data-bind="ntsTextEditor: {
+									value: userName2,
+									name: '#[CMM021_25]',
+									option: {
+										width: '200px',
+									},
+									constraint: 'UserName',
+									enable: enable_WinAcc2,
+									required: true
+								}" />
+				</td>
+
+			</tr>
+
+
+
+			<!-- //3 -->
+			<tr>
+				<!-- B3_1 -->
+				<td class="padding-checkbox">
+					<div tabindex="-1"
+						data-bind="ntsCheckBox: { checked: enable_WinAcc3 }">#{i18n.getText('CMM021_26')}</div>
+				</td>
+			</tr>
+			<!-- B3_2 -->
+			<tr>
+				<td colspan="2" class='td-hr'><hr /></td>
+			</tr>
+			<tr>
+				<!-- B3_3 -->
+				<td class="padding-scr-b">
+					<div>#{i18n.getText('CMM021_35')}</div>
+				</td>
+				<!-- B3_4 -->
+				<td class="padding-scr-b"><input id="hostName3" tabindex="12"
+					data-bind="ntsTextEditor: {
+									value: hostName3,
+									name: '#[CMM021_27]',
+									option: {
+										width: '200px',
+									},
+									constraint: 'HostName',
+									enable: enable_WinAcc3,
+									required: true
+								}" />
+				</td>
+
+			</tr>
+			<tr>
+				<!-- B3_5 -->
+				<td class="padding-scr-b padding-botom-scr-b">
+					<div>#{i18n.getText('CMM021_36')}</div>
+				</td>
+				<!-- B3_6 -->
+				<td class="padding-scr-b padding-botom-scr-b"><input
+					id="userName3" tabindex="13"
+					data-bind="ntsTextEditor: {
+									value: userName3,
+									name: '#[CMM021_28]',
+									option: {
+										width: '200px',
+									},
+									constraint: 'UserName',
+									enable: enable_WinAcc3,
+									required: true
+								}" />
+				</td>
+
+			</tr>
+
+
+
+			<!-- //4 -->
+			<tr>
+				<!-- B4_1 -->
+				<td class="padding-checkbox">
+					<div tabindex="-1"
+						data-bind="ntsCheckBox: { checked: enable_WinAcc4 }">#{i18n.getText('CMM021_29')}</div>
+				</td>
+			</tr>
+			<!-- B4_2 -->
+			<tr>
+				<td colspan="2" class='td-hr'><hr /></td>
+			</tr>
+			<tr>
+				<!-- B4_3 -->
+				<td class="padding-scr-b">
+					<div>#{i18n.getText('CMM021_35')}</div>
+				</td>
+				<!-- B4_4 -->
+				<td class="padding-scr-b"><input id="hostName4" tabindex="14"
+					data-bind="ntsTextEditor: {
+									value: hostName4,
+									name: '#[CMM021_30]',
+									option: {
+										width: '200px',
+									},
+									constraint: 'HostName',
+									enable: enable_WinAcc4,
+									required: true
+								}" />
+				</td>
+
+			</tr>
+			<tr>
+				<!-- B4_5 -->
+				<td class="padding-scr-b padding-botom-scr-b">
+					<div>#{i18n.getText('CMM021_36')}</div>
+				</td>
+				<!-- B4_6 -->
+				<td class="padding-scr-b padding-botom-scr-b"><input
+					id="userName4" tabindex="15"
+					data-bind="ntsTextEditor: {
+									value: userName4,
+									name: '#[CMM021_31]',
+									option: {
+										width: '200px',
+									},
+									constraint: 'UserName',
+									enable: enable_WinAcc4,
+									required: true
+								}" />
+				</td>
+
+			</tr>
+
+
+
+			<!-- //5 -->
+			<tr>
+				<!-- B5_1 -->
+				<td class="padding-checkbox">
+					<div tabindex="-1"
+						data-bind="ntsCheckBox: { checked: enable_WinAcc5 }">#{i18n.getText('CMM021_32')}</div>
+				</td>
+			</tr>
+			<!-- B5_2 -->
+			<tr>
+				<td colspan="2" class='td-hr'><hr /></td>
+			</tr>
+			<tr>
+				<!-- B5_3 -->
+				<td class="padding-scr-b">
+					<div>#{i18n.getText('CMM021_35')}</div>
+				</td>
+				<!-- B5_4 -->
+				<td class="padding-scr-b"><input id="hostName5" tabindex="16"
+					data-bind="ntsTextEditor: {
+									value: hostName5,
+									name: '#[CMM021_33]',
+									option: {
+										width: '200px',
+									},
+									constraint: 'HostName',
+									enable: enable_WinAcc5,
+									required: true
+								}" />
+				</td>
+
+			</tr>
+			<tr>
+				<!-- B5_5 -->
+				<td class="padding-scr-b padding-botom-scr-b">
+					<div>#{i18n.getText('CMM021_36')}</div>
+				</td>
+				<!-- B5_6 -->
+				<td class="padding-scr-b padding-botom-scr-b"><input
+					id="userName5" tabindex="17"
+					data-bind="ntsTextEditor: {
+									value: userName5,
+									name: '#[CMM021_34]',
+									option: {
+										width: '200px',
+									},
+									constraint: 'UserName',
+									enable: enable_WinAcc5,
+									required: true
+								}" />
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 650, height: 500 };</script>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="../share/model.js" />
+			<com:scriptfile path="cmf002.h.vm.js" />
+			<com:scriptfile path="cmf002.h.start.js" />
+			<com:stylefile path="cmf002.h.style.css" />
+			<com:scriptfile path="cmf002.h.service.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<!--F1_1 登録-->
+				<button id="F1_2" data-bind="click: gotoScreenH" tabindex="2">Screen H</button>
+				<button id="F1_2" data-bind="click: gotoScreenF" tabindex="2">Screen F</button>
+
+			</div>
+			<!--  I20  -->
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

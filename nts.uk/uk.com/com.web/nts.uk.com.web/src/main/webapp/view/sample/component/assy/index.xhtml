@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 300, height: 200 };</script>
+            	
+   				<com:scriptfile set="IGNITE" />
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="service.js" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+            </ui:define>
+            
+            <ui:define name="content">
+				<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<div style="height: 300px;">
+							<assy-com params="screenMode: screenMode, masterId: masterId, 
+								histList: histList, selectedHistId: selectedHistId,
+							 	servicePath: { get: pathGet, add: pathAdd, update: pathUpdate, delete: pathDelete },
+							 	getQueryResult: getQueryResult,
+							 	getSelectedStartDate: getSelectedStartDate,
+							 	commandAdd: commandAdd,
+							 	commandUpdate: commandUpdate,
+							 	commandDelete: commandDelete,
+							 	delVisible: delVisible,
+							 	delChecked: delChecked,
+							 	afterRender: afterRender,
+							 	afterAdd: afterAdd,
+							 	afterUpdate: afterUpdate,
+							 	afterDelete: afterDelete"></assy-com>
+							<button data-bind="click: loadHist"></button>
+							<label data-bind="text: selectedHistId"></label>
+						</div>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

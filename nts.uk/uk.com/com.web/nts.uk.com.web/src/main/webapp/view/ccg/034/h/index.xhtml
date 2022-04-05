@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:com="http://xmlns.jcp.org/jsf/component"
+  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+  <ui:composition template="../../../../master/dialog.xhtml">
+
+    <!-- head -->
+    <ui:define name="htmlHead">
+      <script>
+        var dialogSize = { width: 700, height: 445 };
+      </script>
+      <com:ValidatorScript>
+        nts.uk.ctx.sys.portal.dom.toppagepart.createflowmenu.DisplayName
+        nts.uk.ctx.sys.portal.dom.toppagepart.createflowmenu.FontSize
+      </com:ValidatorScript>
+      <com:stylefile path="ccg034.h.style.css" />
+      <com:scriptfile path="ccg034.h.vm.js" />
+      <com:scriptfile path="/view/ccg/034/share/model.js" />
+      <com:scriptfile set="IGNITE" />
+    </ui:define>
+
+    <!-- content -->
+    <ui:define name="content">
+      <div id="contents-area">
+        <div class="div-line flex valign-center">
+          <!-- H1_1 ファイル表示名称(ラベル) -->
+          <div id="H1_1" class="column-label" data-bind="ntsFormLabel: { constraint: 'DisplayName' }">
+            ${i18n.getText('CCG034_102')}</div>
+          <!-- H1_2 ファイル表示名称 -->
+          <input id="H1_2" class="column-value" data-bind="ntsTextEditor: {
+            name: '#[CCG034_102]',
+            value: fileName,
+            constraint: 'DisplayName',
+            required: false,
+            enable: true
+          }" tabindex="1" />
+        </div>
+        <div class="div-line flex valign-center">
+          <!-- H2_1 表示ファイル(ラベル) -->
+          <div id="H2_1" class="column-label" data-bind="ntsFormLabel: { required: true }">${i18n.getText('CCG034_103')}
+          </div>
+          <!-- H2_2 表示ファイル -->
+          <div id="H2_2" data-bind="ntsFileUpload: {
+            name: '#{i18n.getText('CCG034_103')}',
+            required: true,
+            filename: uploadedFileName,
+            text: 'CCG034_104',
+            enable: true,
+            asLink: false,
+            immediateUpload: true,
+            stereoType: 'flowmenu_document',
+            uploadFinished: uploadFinished,
+            maxSize: 10
+          }" tabindex="2"></div>
+        </div>
+        <div class="div-line flex valign-center size-zone">
+          <!-- H2_4 最大ファイルサイズ -->
+          <label id="H2_4" class="column-value">${i18n.getText('CCG034_106')}</label>
+          <!-- H2_3 ファイルサイズ -->
+          <label id="H2_3" class="column-value" data-bind="text: displayFileSize"></label>
+        </div>
+        <div class="div-line flex valign-center">
+          <!-- H3_1 文字サイズ(ラベル) -->
+          <div id="H3_1" class="column-label" data-bind="ntsFormLabel: { required: true, constraint: 'FontSize' }">
+            ${i18n.getText('CCG034_107')}
+          </div>
+          <!-- H3_2 文字サイズ -->
+          <div class="column-value">
+            <input id="H3_2" data-bind="ntsNumberEditor: {
+              name: '#[CCG034_107]',
+              value: fontSize,
+              constraint: 'FontSize',
+              required: true,
+              enable: true,
+              option: { width: '20px' }
+            }" tabindex="3"></input>
+          </div>
+          <!-- H3_3 太字指定 -->
+          <div id="H3_3" class="column-value" data-bind="ntsCheckBox: { checked: isBold, enable: true, text: $vm.$i18n('CCG034_53')}" tabindex="4"></div>
+        </div>
+        <div class="div-line">
+          <!-- H4_1 文字位置(ラベル) -->
+          <div id="H4_1" class="column-label" data-bind="ntsFormLabel: {  }">${i18n.getText('CCG034_108')}</div>
+          <!-- H4_2 左右位置 -->
+          <div id="H4_2" class="column-value" data-bind="ntsRadioBoxGroup: {
+           name: '#[CCG034_109]',
+           options: horizontalAlignList,
+           optionsValue: 'code',
+           optionsText: 'name',
+           value: horizontalAlign,
+           enable: true
+          }" tabindex="5"></div>
+          <!-- H4_3 左右位置 -->
+          <div id="H4_3" class="column-value" data-bind="ntsRadioBoxGroup: {
+            name: '#[CCG034_113]',
+            options: verticalAlignList,
+            optionsValue: 'code',
+            optionsText: 'name',
+            value: verticalAlign,
+            enable: true
+           }" tabindex="6"></div>
+        </div>
+      </div>
+      <div id="functions-area-bottom">
+        <!-- H20_1 決定 -->
+        <button class="large proceed" tabindex="7" data-bind="click: updatePartDataAndCloseDialog">#{i18n.getText('CCG034_117')}</button>
+        <!-- H20_2 閉じる -->
+        <button class="large" tabindex="8" data-bind="click: closeDialog">#{i18n.getText('CCG034_118')}</button>
+      </div>
+    </ui:define>
+  </ui:composition>
+</body>
+
+</html>

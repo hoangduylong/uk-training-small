@@ -1,0 +1,282 @@
+#ex_accept_wizard {
+	width: 1250px;
+	height: 480px;
+}
+
+#ex_accept_wizard>.steps {
+	width: 250px;
+	height: 640px;
+}
+
+#ex_accept_wizard>.content {
+	width: 990px;
+	height: 590px;
+	background: none;
+	margin-left: 5px;
+	margin-right: 0px;
+}
+#ex_accept_wizard > .content > .body {
+	padding-top: 0;
+	left: 0px !important;
+}
+#ex_accept_wizard, #ex_accept_wizard .content {
+	overflow: visible;
+}
+
+.box-list {
+  width: 70%;
+  display: inline-block;
+}
+
+.title-right {
+	float: right;
+	margin-right: 20px;
+}
+
+.contentB {
+	display: flex;
+}
+
+.fixed-flex-layout-left {
+	width: 350px;
+}
+
+.pull-right {
+	float: right;
+}
+
+#B4_16, #B4_17, #B4_18 {
+	display: inline-block;
+}
+
+.space {
+	width: 122px;
+    height: 10px;
+    display: inline-block;
+}
+.password{
+	width: 32px;
+}
+.valign-center control-group{
+	display: inline;
+}
+.fixed-flex-layout-right{
+  float: right;
+  margin-left: 40px;
+}
+
+.fixed-flex-layout-right-screenD{
+	display: grid;
+  margin-left: 100px;
+}
+
+.button-bottom-area {
+	text-align: center;
+	margin-bottom: 20px;
+	margin-top: 10px;
+}
+
+#B3_15 {
+	margin-left: 10px;
+}
+
+#B4_4_container {
+	margin-left: 15px !important;
+}
+
+#B4_16, #B4_17, #B4_18 {
+	display: inline-block;
+}
+
+#B4_12, #B4_30, #B4_34, #B4_36, #B4_42, .space {
+	width: 135px;
+}
+
+#B4_33 {
+	margin-left: 33px;
+    margin-right: 24px;
+    width: 126px;
+}
+
+#B4_35 {
+	width: 318px !important;
+}
+
+#B5_2 {
+  margin-left: 180px;
+}
+
+#D4_8 {
+	margin-left: 10px;
+}
+
+#D5_1 {
+	margin-left: 150px;
+}
+
+#D4_7 {
+	display: inline-block;
+    width: 80px;
+}
+
+#E3_1 {
+	margin-bottom: 15px;
+}
+
+#E3_39, #E3_36, #E3_32, #E3_20 {
+	width: 135px;
+}
+
+#E3_37 {
+    padding-right: 20px;
+    padding-left: 5px;
+}
+
+.area-text-right{
+	float: right;
+    margin-right: 55px;
+}
+
+.employeeInfoSearch {
+	margin-top: 10px;
+	float: right;
+	width: 50%;
+}
+
+.ccg001searchkcp005 {
+	
+}
+
+.employeeAction {
+	border: 1px solid #ccc !important;
+	border-radius: 5px;
+	float: right;
+	width: 550px;
+	padding: 5px;
+	margin-top: 37px;
+	height: 511px;
+}
+
+.infoKDL003 {
+	width: 250px;
+}
+
+.periodCovered {
+	margin-bottom: 10px;
+	padding-left: 0px;
+}
+
+.lableInfo {
+	margin-top: 8px;
+	margin-left: 10px;
+	width: 100%;
+}
+
+.buttonWorkSetting {
+	margin-left: -5px;
+	height: 60px;
+}
+
+.infoButtonSetting {
+	width: 300px;
+	display: inline-flex;
+}
+
+.label {
+	margin-top: 5px;
+}
+
+.selectionEmployee {
+	border: 1px solid #ccc !important;
+	border-radius: 5px;
+	padding: 20px;
+	width: 600px;
+	margin-bottom: 20px;
+}
+
+.top-right-list-employee {
+	height: 60px;
+}
+
+.bot-right-list-employee {
+	height: 60px;
+}
+
+.labelRangeDate {
+	margin-right: 5px;
+	width: 100px;
+}
+
+.labelWork {
+	margin-top: 30px;
+	margin-left: 15px;
+	width: 120px;
+}
+
+.employeeWorkSetting {
+	padding-left: 40px;
+}
+
+#contents-area {
+	overflow-x: auto;
+}
+
+#A3_2 {
+	margin-bottom: 40px;
+}
+
+#A3_10 {
+	margin-top: 40px;
+}
+
+#A2_2 {
+	margin: 0px 30px 0px 90px;
+	padding-bottom: 10px;
+	width: 600px;
+}
+
+.bot-button-action{
+	margin: 20px 20px;
+}
+
+.nts-help-button-image{
+	width: 350px;
+}
+
+.other .space {
+	width: 135px;
+}
+
+.save-period tr td {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 5px;
+}
+
+.compressed-password tr td {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 5px;
+}
+
+#B4_32 {
+	width: 150px !important;
+}
+#B4_41 {
+	width: 150px !important;
+}
+
+#B3_4 input.ntsSearchBox {
+  width: 173px !important;
+}
+
+.nts-wizard .steps+.contents {
+  margin-left: 260px !important;
+}
+
+/* Fix bug on screen D for IE only */
+@media screen and (min-width:0\0) {
+  .selectionEmployee {
+    margin-top: 30px;
+  }
+}

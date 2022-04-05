@@ -1,0 +1,62 @@
+#ex_output_wizard .btn_select_mode {
+	width: 300px;
+	text-align: left;
+	margin-bottom: 15px;
+}
+
+#ex_output_wizard {
+	width: 1260px;
+}
+
+#ex_output_wizard>.steps>ul>li:first-child {
+	display: none;
+}
+
+#ex_output_wizard>.steps {
+	width: 230px;
+}
+
+#ex_output_wizard>.content>.body {
+	/* left: 0px !important; */
+	padding-top: 0px;
+}
+
+#ex_output_wizard>.content {
+	width: 1030px;
+	height: 100%;
+	background: none;
+	margin-left: 0;
+}
+
+#ex_output_wizard>div.content.clearfix {
+	margin-right: 0px;
+}
+
+div#ex_output_wizard-p-2 {
+	padding: 0;
+}
+
+div#nts-component-list {
+	margin-left: 60px;
+}
+
+.content clearfix {
+	height: 100%;
+}
+
+#content-q {
+	margin-left: 590px;
+	width: 417px;
+}
+
+.accordion {
+	width: 430px !important;
+}
+
+.margin-left-10 {
+	margin-left: 5px !important;
+}
+
+.nts-wizard .steps+.contents {
+  margin-left: 260px !important;
+}

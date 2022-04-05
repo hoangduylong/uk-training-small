@@ -1,0 +1,57 @@
+.hyperlink { 
+	color: $hyperlink_color;
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.link-button {
+	position: relative;
+	display: inline-block;
+	padding: 0px 12px;
+	line-height: 30px;
+	// background-color: $green_background_color;
+	color: #30CC40;
+	text-decoration: underline;
+	cursor: pointer;
+	user-select: none;
+	white-space: nowrap;
+	box-sizing: border-box;
+	border-radius: 3px;
+	
+	&.goout {
+		padding-left: 40px;
+		
+		&:before {
+			content: '';
+			position: absolute;
+			left: 7px;
+			top: 6px;
+			display: block;
+			background-image: url('images/icons/go-out.png');
+			background-size: auto 100%;
+			background-repeat: no-repeat;
+			height: 20px;
+			width: 26px;
+		}
+	}
+	
+	&.goback {
+	    padding-left: 25px;
+	    margin-left: 15px;
+		text-decoration: none;
+		color: #30CC40;
+	    
+		&:before {
+			content: '';
+			position: absolute;
+			left: -15px;
+			top: 0px;
+			display: block;
+			background-image: url('images/icons/go-back-light-blue.png');
+			background-size: auto 100%;
+			background-repeat: no-repeat;
+			height: 30px;
+			width: 30px;
+		}
+	}
+}

@@ -1,0 +1,12 @@
+{
+    "jp": {
+        "documentscontrolsfix-table": "Fix Table",
+        "nature-table": "コンポーネントを使わないテーブル",
+        "fix-table": "コンポーネントを使うテーブル"
+    },
+    "vi": {
+        "documentscontrolsfix-table": "Fix Table",
+        "nature-table": "Table không sử dụng component fix-table",
+        "fix-table": "Table sử dụng component fix-table"
+    }
+}

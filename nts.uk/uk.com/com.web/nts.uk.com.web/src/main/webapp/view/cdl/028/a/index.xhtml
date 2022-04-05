@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+<ui:composition template="../../../../master/dialog.xhtml">
+    <ui:define name="htmlHead">
+        <script>
+            var dialogSize = {
+                width : 540,
+                height : 355
+            };
+        </script>
+        <com:scriptfile set="IGNITE" />
+        <com:stylefile path="cdl028.a.style.css" />
+        <com:scriptfile path="cdl028.a.service.js" />
+        <com:scriptfile path="cdl028.a.vm.js" />
+        <com:scriptfile path="cdl028.a.start.js" />
+    </ui:define>
+
+    <ui:define name="content">
+        <div id="contents-area">
+            <!--MODE_SCREEN.ALL-->
+            <div data-bind="if: modeScreen() == nts.uk.com.view.cdl028.a.viewmodel.MODE_SCREEN.ALL">
+                <div id="table-1" class="table table-1">
+                    <!-- A1_1 -->
+                    <div class="cell">
+                        <div id="A1_1" class="lable" data-bind="ntsFormLabel: { required: true}">#{i18n.getText('CDL028_2')}</div>
+                    </div>
+                    <!-- A1_2 -->
+                    <div class="cell">
+                        <div tabindex="1" id="A1_2" data-bind="ntsDatePicker: {required: true, value: standardDate, dateFormat: 'YYYY/MM/DD', name:'#[CDL028_2]'}"></div>
+                    </div>
+                </div>
+
+                <div  class="valign-center control-group">
+                    <!-- A2_1 -->
+                    <div id="A2_1" class="lable table-2" data-bind="ntsFormLabel: { required: true}">#{i18n.getText('CDL028_3')}</div>
+                    <!-- A2_2 -->
+                    <div tabindex="2" id="A2_2" class="table-2" data-bind="ntsDateRangePicker: { required: true, showNextPrevious: true, value: yearValue, type: 'year', jumpUnit: 'year', name:'#[CDL028_3]'}"/>
+
+                </div>
+
+            </div>
+
+            <!--MODE_SCREEN.BASE_DATE-->
+            <div data-bind="if: modeScreen() == nts.uk.com.view.cdl028.a.viewmodel.MODE_SCREEN.BASE_DATE">
+                <div id="table-1" class="table table-1">
+                    <!-- A1_1 -->
+                    <div class="cell">
+                        <div id="A1_1" class="lable" data-bind="ntsFormLabel: { required: true}">#{i18n.getText('CDL028_2')}</div>
+                    </div>
+                    <!-- A1_2 -->
+                    <div class="cell">
+                        <div tabindex="1" id="A1_2" data-bind="ntsDatePicker: {required: true, value: standardDate, dateFormat: 'YYYY/MM/DD', name:'#[CDL028_2]'}"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!--MODE_SCREEN.YEAR_PERIOD-->
+            <div data-bind="if: modeScreen() == nts.uk.com.view.cdl028.a.viewmodel.MODE_SCREEN.YEAR_PERIOD ">
+                <div id="" class="valign-center control-group">
+                    <!-- A1_1 -->
+                    <div id="A2_1" class="lable table-2" data-bind="ntsFormLabel: { required: true}">#{i18n.getText('CDL028_8')}</div>
+                    <!-- A1_2 -->
+                    <div id="A2_2" class="table-2" tabindex="1" data-bind="ntsDateRangePicker: { required: true, showNextPrevious: true, value: yearValue, type: 'year', jumpUnit: 'year', name:'#[CDL028_8]'}"/>
+
+                </div>
+
+            </div>
+
+            <!--MODE_SCREEN.YEAR_PERIOD_FINANCE-->
+            <div data-bind=" if: modeScreen() == nts.uk.com.view.cdl028.a.viewmodel.MODE_SCREEN.YEAR_PERIOD_FINANCE">
+                <div id="" class="valign-center control-group">
+                    <!-- A2_1 -->
+                    <div id="A2_1" class="lable table-2" data-bind="ntsFormLabel: { required: true}">#{i18n.getText('CDL028_3')}</div>
+                    <!-- A2_2 -->
+                    <div id="A2_2" class="table-2" tabindex="1" data-bind="ntsDateRangePicker: { required: true, showNextPrevious: true, value: yearValue, type: 'year', jumpUnit: 'year', name:'#[CDL028_3]'}"/>
+
+                </div>
+
+            </div>
+
+            <div data-bind=" if: modeScreen() == nts.uk.com.view.cdl028.a.viewmodel.MODE_SCREEN.YEAR_MONTH">
+                <div id="table-1" class="table table-1">
+                    <div class="cell">
+                        <div id="A1_1" class="lable" data-bind="ntsFormLabel: { required: true}">#{i18n.getText('CDL028_9')}</div>
+                    </div>
+                    <!-- A1_2 -->
+                    <div class="cell">
+                        <div tabindex="1" id="A1_2" data-bind="ntsDatePicker: {required: true, value: standardYearMonth, dateFormat: 'yearmonth', name:'#[CDL028_9]'}"></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div id="functions-area-bottom" class="btn-click">
+            <button tabindex="4" data-bind="click: proceed" class="proceed" id="A10_1" >#{i18n.getText('CDL028_6')}</button>
+            <button tabindex="5" data-bind="click: cancel" id="A10_2">#{i18n.getText('CDL028_7')}</button>
+        </div>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

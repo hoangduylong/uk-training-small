@@ -1,0 +1,250 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = {
+					width : 1180,
+					height : 750
+				};
+			</script>
+			<com:ValidatorScript>
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selectionitem.primitive.format.SelectionCodeLength
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selectionitem.primitive.format.SelectionNameLength
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selectionitem.primitive.format.SelectionExternalCDLength
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selectionitem.primitive.SelectionItemName
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selectionitem.primitive.IntegrationCode
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selectionitem.primitive.Memo
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selection.primitive.SelectionCD 
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selection.primitive.SelectionName
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selection.primitive.MemoSelection
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selection.primitive.ExternalCdNumeric
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selection.primitive.ExternalCdAlphalNumeric
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selection.primitive.SelectionCdNumeric
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selection.primitive.SelectionCdAlphaNumeric
+					
+			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="../../007/a/layout-control-ko-ext.js" />
+			<com:stylefile path="cps017.a.style.css" />
+			<com:scriptfile path="cps017.a.service.js" />
+			<com:scriptfile path="cps017.a.start.js" />
+			<com:scriptfile path="cps017.a.vm.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+
+				<button id="A1_001" tabindex="1"
+					data-bind="click : createNewData, enable: enableCreateNew">#{i18n.getText('CPS017_1')}</button>
+				<button id="A1_002" class="proceed" tabindex="2"
+					data-bind="click : register, enable: enableRegister">#{i18n.getText('CPS017_2')}</button>
+				<button id="A1_005" class="danger" tabindex="3"
+					data-bind="click : remove, enable: enableRemove ">#{i18n.getText('CPS017_4')}</button>
+
+				<button id="A1_003"
+					data-bind="click: openDialogB, enable: enableOpenDialogB" tabindex="5">#{i18n.getText('CPS017_3')}</button>
+
+				<button id="A1_007" tabindex="6"
+					data-bind="click: ReflUnrComp, visible : true , enable: enableReflUnrComp">#{i18n.getText('CPS017_49')}</button>
+
+				<com:ko-if bind="(isDialog() === true)">
+					<button id="A1_008" tabindex="5" style="display: none"
+						data-bind="visible: closeUp, click: close">#{i18n.getText('CPS017_50')}</button>
+				</com:ko-if>
+				
+				<button tabindex="6" id="print-button" data-bind="click: saveAsExcel">#{i18n.getText('CPS017_63')}</button>
+			</div>
+			<div id="contents-area" class="cf">
+
+				<!-- phần trái của màn hình -->
+				<div id="content-left" class="pull-left">
+					<!-- panel -->
+					<div
+						data-bind="ntsPanel:{
+							width: '278px', 
+							direction: 'right', 
+							showIcon: true, 
+							visible: true}">
+
+						<!-- thanh tìm kiếm  -->
+						<div tabindex="7"
+							data-bind="ntsSearchBox: {
+								searchMode: 'highlight',
+								targetKey: 'selectionItemId',
+								mode: 'igGrid', 
+								comId: 'sel_item_grid',
+								items: listItems , 
+								placeHolder: '名称で検索…',
+								searchText: '検索',    
+								selected: perInfoSelectionItem().selectionItemId,
+								selectedKey: 'selectionItemId',
+								fields: ['selectionItemName'],
+								mode: 'igGrid' 
+								}" />
+						<!-- kết quả tìm kiếm  -->
+						<table id="sel_item_grid"
+							data-bind="ntsGridList: {
+								options: listItems,
+								primaryKey: 'selectionItemId',
+								showNumbering: false,
+								columns: [
+					                { headerText: 'aa', key: 'selectionItemId', hidden: true},
+					                { headerText: '#{i18n.getText('CPS017_7')}', key: 'selectionItemName', formatter: _.escape}
+					            ],
+								multiple: false,
+								rows: 6,
+								value: perInfoSelectionItem().selectionItemId}">
+						</table>
+
+						<!-- mũi tên -->
+						<span id="caret" class="caret-bottom outline"></span>
+
+						<!-- khu vực thêm lịch sử, sửa lịch sử  -->
+						<div id="history" class="cf">
+							<button tabindex="9" id="add-history"
+								class="history-control-button"
+								data-bind="click: openDialogC, enable: enableAddUpdateHist">#{i18n.getText('CPS017_8')}</button>
+							<button tabindex="10" id="edit-history"
+								class="history-control-button"
+								data-bind="click: openDialogD, enable: enableAddUpdateHist">#{i18n.getText('CPS017_9')}</button>
+							<button tabindex="11" id="remove-history"
+								class="danger history-control-button"
+								data-bind="click : removeHistory, enable: enableDelHist ">#{i18n.getText('CPS017_10')}</button>
+						</div>
+
+						<!-- khu vực history list -->
+						<div id="history_lst"
+							data-bind="ntsListBox: {
+							options: listHistorySelection,
+							optionsValue: 'histId',
+							optionsText: 'histId',
+							value: historySelection().histId,
+							enable: true,
+							multiple: false,
+							rows: 5,
+							columns: [
+								{ key: 'displayDate', length: 17 }
+							]}">
+						</div>
+
+					</div>
+
+				</div>
+
+				<!-- phần giữa của màn hình -->
+				<div id="content-center" class="pull-left">
+					<div data-bind="with: perInfoSelectionItem">
+						<div data-bind="ntsFormLabel: {required: true}"
+							class='distane col1'>
+							<label>#{i18n.getText('CPS017_13')}</label>
+						</div>
+						<span class="col1" data-bind="text: selectionItemName"></span>
+					</div>
+
+					<div id="register">
+						<span> #{i18n.getText('CPS017_14')}</span>
+					</div>
+
+					<div id="itemRegisterLst" class="caret-right caret-background">
+						<table id="item_register_grid"
+							data-bind="ntsGridList: {
+									height: 270,
+									options: listSelection,
+									primaryKey: 'selectionID',
+									showNumbering: false,
+									columns: [
+						                { headerText: '', key: 'selectionID', width: 20 ,hidden:true},
+						                { headerText: '#{i18n.getText('CPS017_18')}', key: 'initSelection', width: 60, formatter :makeIcon },
+						                { headerText: '#{i18n.getText('CPS017_16')}', key: 'selectionCD', width: 120 },
+						                { headerText: '#{i18n.getText('CPS017_17')}', key: 'selectionName', width: 210}
+						            ],
+									multiple: false,
+									value: selection().selectionID,
+									rows: 15}">
+						</table>
+					</div>
+
+				</div>
+
+				<!-- phần bên phải của màn hình  -->
+				<div id="content-right" class="pull-left"
+					data-bind="with: selection">
+
+					<div class="form-input">
+						<div class="form-lable"
+							data-bind="ntsFormLabel: {constraint: $vm.codeNameLabelConstraint, required: true }">
+							<label>#{i18n.getText('CPS017_20')}</label>
+						</div>
+						<div class="input">
+							
+							 	<span><input id="code" class = "limited-label" 
+									data-bind="ntsTextEditor: {
+										name: '#[CPS017_21]', 
+										value: selectionCD,
+										constraint: $vm.codeConstraint, 
+										required: true, 
+										enable: $parent.enableSelectionCd,
+		 								immediate: false}, hasFocus: $vm.focus.code" />
+								</span>
+							
+							
+								<input id="name"
+									data-bind="ntsTextEditor: {
+								name: '#[CPS017_22]',
+								value: selectionName, 
+								constraint: $vm.nameConstraint, 
+								required: true, 
+ 								enable: $parent.enableSelectionName, 
+								immediate: false}, hasFocus: $vm.focus.name" />
+							
+						</div>
+						<div class="form-input">
+							<div class="form-lable"
+								data-bind="ntsFormLabel: {constraint: $vm.extenalLabelConstraint , required: false }">
+								<label>#{i18n.getText('CPS017_23')}</label>
+							</div>
+							<div class="input">
+								<input id="exCode"
+									data-bind="ntsTextEditor: {
+									name: '#[CPS017_24]',
+									value: externalCD,
+									constraint: $vm.extenalLabelConstraint ,
+									option: '',
+									required: false,
+									enable: $parent.enableSelectionName,
+									readonly: false}" />
+							</div>
+						</div>
+
+					</div>
+					
+					<div class="form-input">
+						<div class="form-lable"
+							data-bind="ntsFormLabel: {constraint: 'MemoSelection', required: false }">
+							<label>#{i18n.getText('CPS017_25')}</label>
+						</div>
+
+
+						<div class="input">
+							<textarea id="memoSelection"
+								data-bind="ntsMultilineEditor: { 
+										name: '#[CPS017_26]',
+										value: memoSelection , 
+										constraint: 'MemoSelection',
+										required: false, 
+										enable: $parent.enableSelectionName}" />
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

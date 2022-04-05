@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 1000, height: 700 };</script>
+			<com:stylefile path="/view/ccg/share/style.css" of="/nts.uk.com.web" />
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.service.js"
+				of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.vm.js" of="/nts.uk.com.web" />
+			<com:stylefile path="cmm018.n.main.css" />
+			<com:scriptfile path="cmm018.n.start.js" />
+			<com:scriptfile path="cmm018.n.vm.js" />
+			<com:scriptfile path="cmm018.n.service.js" />
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web"/>
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<button id="btnPrint" data-bind="click: printExcel" class="proceed">#{i18n.getText('CMM018_71')}</button>
+				<button id="btnClose" data-bind="click: closeDialog">#{i18n.getText('CMM018_72')}</button>
+			</div>
+			<div id="contents-area">
+
+				<div id="ccgcomponent"></div>
+				<div id="container">
+					<div class="controlTop">
+						<!-- N2_1 -->
+						<div style="display: inline-block;">
+							<div class="N21Button" data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CMM018_125')}</div>						
+						</div>
+						<!-- N2_2 -->
+						<div style="display: inline-block;">						
+							<div data-bind="ntsDatePicker: { value: baseDate }"></div>
+						</div>
+						<!-- rightButton -->
+						<div data-bind="ntsFormLabel: {required: true}" class='rightButton'>#{i18n.getText('CMM018_90')}</div>
+					</div>
+					<!-- N3 -->
+					<div id="component-items-list" class="N3Component"></div>						
+					<!-- rightComponent -->
+					<div class="rightComponent">
+						<div>
+							<table id="multi-list"
+								data-bind="ntsGridList: {
+									height: 390,
+									options: lstAppDis,
+									optionsValue: 'id',
+									columns: columns,
+									multiple: true,
+									value: currentAppType,
+									showNumbering: true
+							}"></table>
+						</div>
+					</div>
+				
+				</div>
+
+			</div>
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

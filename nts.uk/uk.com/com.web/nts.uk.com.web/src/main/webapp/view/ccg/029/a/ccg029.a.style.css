@@ -1,0 +1,47 @@
+#component-search-employee{
+	width: 360px;
+	display: inline-block;
+    vertical-align: top;
+    height: 100%;
+}
+
+#component-search-employee .row {
+	margin: 10px;
+	width: 350px;
+}
+
+#component-search-employee .row .inline {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#component-search-employee .row .mr5 {
+	margin-right: 5px;
+}
+
+#component-search-employee .row .mr3 {
+	margin-right: 3px;
+}
+
+#component-search-employee #gridListEmployeesContent {
+	width: 340px;
+	position: relative;
+	z-index: 99;
+}
+
+#component-search-employee #gridListEmployees_container{
+	min-height: 200px;
+}
+
+#component-search-employee #gridListEmployeesContent.showFullColumn {
+	width: 680px;
+}
+
+#component-search-employee .tooltip-grid-notes {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+#component-search-employee .ui-iggrid tbody td {
+	white-space: nowrap;
+}

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="main.css" />
+			<com:scriptfile path="ktg002.a.vm.js" />
+			<com:scriptfile path="ktg002.a.start.js" />
+			<com:scriptfile path="ktg002.a.service.js" />
+		</ui:define>
+		
+		<table>
+			<tr>
+				<td colspan="2"><label class="a1">#{i18n.getText('KTG002_2')}</label></td>
+			</tr>
+			<tr>
+				<td colspan="2"><label class="a1_1">#{i18n.getText('KTG002_3')}</label></td>
+			</tr>
+			<tr>
+				<td><label class="a2_1"><span data-bind="text: presenceAppTxt"></span></label></td>
+				<td><button><i class="icon icon-button-arrow-right"></i></button></td>
+			</tr>
+		</table>
+	</ui:composition>
+</body>
+</html>

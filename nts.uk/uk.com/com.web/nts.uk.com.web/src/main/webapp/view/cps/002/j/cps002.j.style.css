@@ -1,0 +1,46 @@
+.coverBlock {
+	text-align: center;
+}
+
+.coverBlock .tblInput {
+	margin: auto
+}
+
+.coverBlock .tblInput td {
+	padding: 5px 0px;
+}
+
+.tblInput .secondLine {
+	font-size: 12px;
+}
+
+.btnGetEmlCode {
+	margin-top: 25px;
+	margin-bottom: 5px;
+}
+
+.caretGetEmlCode {
+	color: #AEEE60;
+}
+
+.tblObtainedCode {
+	margin: 30px auto 0px auto;
+}
+
+.caret-bottom:after {
+	border-top: 1em solid;
+	border-right: 2.5em solid transparent;
+	border-left: 2.5em solid transparent;
+	font-size: 20px;
+}
+
+.tblObtainedCode td {
+	border: 1px solid #7F7F7F;
+	width: 140px;
+	height: 33px;
+	padding-left: 10px;
+}
+
+.tblObtainedCode td:first-child {
+	background-color: #E6F4B5
+}

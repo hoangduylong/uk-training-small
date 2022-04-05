@@ -1,0 +1,46 @@
+.image-left{
+	float: left;
+	margin-right: 20px;
+}
+.image-right{
+	float: right;
+	margin-right: 20px;
+}
+
+.clear {
+	clear: both;
+}
+
+.navigation-label {
+	margin-left: 20px;
+	vertical-align: 12px;
+	padding-bottom: 20px;
+}
+
+.import-creation {
+	background-image: url("../resource/外部受入A1.jpg");
+	background-size: 100%;
+	height: 254px;
+	width: 257px;
+	background-repeat: no-repeat;
+	margin-left: 20px;
+}
+
+.setting-creation {
+	background-image: url("../resource/外部受入A2.jpg");
+	background-size: 100%;
+	height: 254px;
+	width: 264px;
+	background-repeat: no-repeat;
+	margin-left: 20px;
+}
+
+.history-reference {
+	background-image: url("../resource/外部受入A3.jpg");
+	background-size: 100%;
+	width: 286px;
+	height: 109px;
+	background-repeat: no-repeat;
+	margin-left: 20px;
+}
+

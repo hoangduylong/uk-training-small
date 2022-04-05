@@ -1,0 +1,253 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 300, height: 200 };</script>
+            	
+				<com:ValidatorScript>
+					nts.uk.shr.com.primitive.PersonId
+					nts.arc.time.YearMonth
+					nts.uk.shr.com.primitive.sample.ResidenceCode
+   				</com:ValidatorScript>
+   				<com:scriptfile set="IGNITE" />
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+            </ui:define>
+            
+            <ui:define name="content">
+				<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Accordion</h1>
+						<h2>Demo</h2>
+						<h3>Single</h3>
+						<div data-bind="ntsCheckBox: { checked: enable }">Enable</div>
+						<div data-bind="ntsAccordion: { }">
+							<h3>詳細検索</h3>
+							<div>First content panel</div>
+						</div>
+						<div data-bind="ntsAccordion: { enable: enable }" tabindex="-1">
+							<h3>
+								詳細検索
+								<span class="status">全選択</span>
+								<span class="close-button ui-icon ui-icon-closethick"></span>
+							</h3>
+							<div>First content panel</div>
+						</div>
+						<h3>Group</h3>
+						<input data-bind="ntsTextEditor: { value: active }"></input>
+						<div id="group-accordion" data-bind="ntsAccordion: { active: active, enable: enable }" tabindex="3">
+							<h3>詳細検索</h3>
+							<div>
+								<table id="multi-list" data-bind="ntsGridList: {
+							 		height: 350,
+							 		options: items,
+							 		optionsValue: 'code',
+							 		columns: columns,
+							 		multiple: true,
+							 		value: currentCodeList }"></table>
+							</div>
+							<h3>サブ画面</h3>
+							<div><table id="grid"></table></div>
+							<h3>画面ID</h3>
+							<div>Third content panel</div>
+						</div>
+						<article class="cf">
+							<div class="tabs">
+								<ol>
+									<li><a href="#tabs-html">Usage</a></li>
+									<li><a href="#tabs-api">API</a></li>
+								</ol>
+								<div id="tabs-html" class="cf">
+									<h2>HTML</h2>
+<pre><![CDATA[<!-- Simple Accordion -->
+<div data-bind="ntsAccordion: { }">
+	<h3>詳細検索</h3>
+	<div>First content panel</div>
+</div>
+
+<!-- Icon & Status -->
+<div data-bind="ntsAccordion: { active: 0, enable: enable }">
+	<h3> 詳細検索 <span class="status">全選択</span> <span class="close-button ui-icon ui-icon-closethick"></span></h3>
+	<div>First content panel</div>
+</div>
+
+<!-- Group Accordion -->
+<div class="accordion">
+	<h3>詳細検索</h3>
+	<div>First content panel</div>
+	<h3>サブ画面</h3>
+	<div>Second content panel</div>
+</div>]]></pre>
+								</div>
+								<div id="tabs-api" class="cf">
+									<h2>Properties</h2>
+									<table class="table">
+										<colgroup>
+											<col width="150px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Name</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>active<br/><i>(optional)</i></td>
+												<td>
+													<b>Type:</b> KnockoutObservable&lt;number&gt; | KnockoutObservable&lt;any&gt; | number | boolean<br/>
+													<b>Default:</b> false<br/>
+													<i>boolean</i> Setting <b>active</b> to false will collapse all panels. This requires the <b>collapsible</b> option to be true.<br/>
+													<i>number</i> The zero-based index of the panel that is active. A negative value selects panels going backward from the last panel.
+												</td>
+											</tr>
+											<tr>
+												<td>collapsible<br/><i>(optional)</i></td>
+												<td>
+													<b>Type:</b> KnockoutObservable&lt;boolean&gt; | boolean<br/>
+													<b>Default:</b> false<br/>
+													Whether all the sections can be closed at once. Allows collapsing the active section.
+												</td>
+											</tr>
+											<tr>
+												<td>event<br/><i>(optional)</i></td>
+												<td>
+													<b>Type:</b> KnockoutObservable&lt;string&gt; | string<br/>
+													<b>Default:</b> "click"<br/>
+													The event that accordion headers will react to in order to activate the associated panel. Multiple events can be specified, separated by a space.
+												</td>
+											</tr>
+											<tr>
+												<td>heightStyle<br/><i>(optional)</i></td>
+												<td>
+													<b>Type:</b> KnockoutObservable&lt;string&gt; | string<br/>
+													<b>Default:</b> "auto"<br/>
+													<b>Members:</b>
+													<i>"auto"</i> All panels will be set to the height of the tallest panel.<br/>
+													<i>"fill"</i> Expand to the available height based on the accordion's parent height.<br/>
+													<i>"content"</i> Each panel will be only as tall as its content.<br/>
+												</td>
+											</tr>
+											<tr>
+												<td>enable<br/><i>(optional)</i></td>
+												<td>
+													<b>Type:</b> KnockoutObservable&lt;boolean&gt; | boolean<br/>
+													<b>Default:</b> true<br/>
+													Set enable/disable for accordion.
+												</td>
+											</tr>
+											<tr>
+												<td>activate<br/><i>(optional)</i></td>
+												<td>
+													<b>Type:</b> function<br/>
+													<b>Default:</b> function(event, ui) {}<br/>
+													<div class="catalog-accordion">
+														<a href="#texteditoroption">ui</a>
+														<table class="table">
+															<colgroup>
+																<col width="150px" />
+															</colgroup>
+															<thead>
+																<tr>
+																	<th><h4>Name</h4></th>
+																	<th><h4>Description</h4></th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>newHeader</td>
+																	<td>
+																		<b>Type:</b> JQuery<br/>
+																		The header that is about to be activated.
+																	</td>
+																</tr>
+																<tr>
+																	<td>oldHeader</td>
+																	<td>
+																		<b>Type:</b> JQuery<br/>
+																		The header that is about to be deactivated.
+																	</td>
+																</tr>
+																<tr>
+																	<td>newPanel</td>
+																	<td>
+																		<b>Type:</b> JQuery<br/>
+																		The panel that is about to be activated.
+																	</td>
+																</tr>
+																<tr>
+																	<td>oldPanel</td>
+																	<td>
+																		<b>Type:</b> JQuery<br/>
+																		The panel that is about to be deactivated.
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													Triggered after a panel has been activated.
+												</td>
+											</tr>
+											<tr>
+												<td>create<br/><i>(optional)</i></td>
+												<td>
+													<b>Type:</b> function<br/>
+													<b>Default:</b> function(event, ui) {}<br/>
+													<div class="catalog-accordion">
+														<a href="#texteditoroption">ui</a>
+														<table class="table">
+															<colgroup>
+																<col width="150px" />
+															</colgroup>
+															<thead>
+																<tr>
+																	<th><h4>Name</h4></th>
+																	<th><h4>Description</h4></th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>header</td>
+																	<td>
+																		<b>Type:</b> JQuery<br/>
+																		The active header.
+																	</td>
+																</tr>
+																<tr>
+																	<td>panel</td>
+																	<td>
+																		<b>Type:</b> JQuery<br/>
+																		The active panel.
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+													Triggered when the accordion is created.
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:com="http://xmlns.jcp.org/jsf/component"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+	<body>
+		<ui:composition template="../../../../master/base.xhtml">
+			<ui:define name="htmlHead">
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+				<com:scriptfile set="IGNITE" />
+			</ui:define>
+			<ui:define name="content">				
+				<div id="functions-area"></div>
+				<div id="contents-area" class="cf">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Setting Default Query Hint</h1>
+						<div>
+							<h2>Query Hint Configuration</h2>
+							<table>
+								<tr>
+									<td>DEFAULT_AUTO_SET_HINT:</td>
+									<td><div data-bind="ntsCheckBox: { checked: autoSetHint }"></div></td>
+								</tr>
+								<tr>
+									<td>DEFAULT_FETCH_SIZE:</td>
+									<td><input data-bind="ntsNumberEditor: { value: fetchSize }" style="width: 100px;"/></td>
+								</tr>
+								<tr>
+									<td>DEFAULT_CACHE_STATEMENT:</td>
+									<td><div data-bind="ntsCheckBox: { checked: cacheStatement }"></div></td>
+								</tr>
+								<tr>
+									<td>DEFAULT_CACHE_STATEMENT_SIZE:</td>
+									<td><input data-bind="ntsNumberEditor: { value: cacheStatementSize }" style="width: 100px;"/></td>
+								</tr>
+								<tr>
+									<td>DEFAULT_CACHE_QUERY_RESULT_SIZE:</td>
+									<td><input data-bind="ntsNumberEditor: { value:  cacheQueryResultSize }" style="width: 100px;"/></td>
+								</tr>
+								<tr>
+									<td>DEFAULT_CACHE_USAGE:</td>
+									<td><div data-bind="ntsComboBox: {
+															options: cacheUsages,
+															optionsValue: 'value',
+															visibleItemsCount: 5,
+															value: cacheUsage,
+															optionsText: 'name',
+															editable: false,
+															selectFirstIfNull: true,
+															columns: [
+																{ prop: 'name', length: 10 },
+															]}"></div></td>
+								</tr>
+								<tr>
+									<td>DEFAULT_BATCH_SIZE:</td>
+									<td><input data-bind="ntsNumberEditor: { value:  batchSize }" style="width: 100px;"/></td>
+								</tr>
+								<tr>
+									<td>DEFAULT_BATCH_TYPE:</td>
+									<td><div data-bind="ntsComboBox: {
+															options: batchTypes,
+															optionsValue: 'value',
+															visibleItemsCount: 5,
+															value: batchType,
+															optionsText: 'name',
+															editable: false,
+															selectFirstIfNull: true,
+															columns: [
+																{ prop: 'name', length: 10 },
+															]}"></div></td>
+								</tr>
+								<tr>
+									<td>DEFAULT_BATCH_WRITE_TYPE:</td>
+									<td><div data-bind="ntsComboBox: {
+															options: batchWrites,
+															optionsValue: 'value',
+															visibleItemsCount: 5,
+															value: batchWrite,
+															optionsText: 'name',
+															editable: false,
+															selectFirstIfNull: true,
+															columns: [
+																{ prop: 'name', length: 10 },
+															]}"></div></td>
+								</tr>
+								<tr>
+									<td>DEFAULT_BATCH_WRITE_SIZE:</td>
+									<td><input data-bind="ntsNumberEditor: { value: batchWriteSize }" style="width: 100px;"/></td>
+								</tr>
+								<tr>
+									<td>DEFAULT_FLUSH_MODE:</td>
+									<td><div data-bind="ntsCheckBox: { checked: flushMode }"></div></td>
+								</tr>
+							</table>
+							<button data-bind="click: update">Update</button>
+							
+						</div>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+					</div>
+				</div>
+			</ui:define>
+		</ui:composition>
+   	</body>
+</html>

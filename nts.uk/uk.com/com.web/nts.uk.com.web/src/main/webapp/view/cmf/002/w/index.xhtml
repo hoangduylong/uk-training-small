@@ -1,0 +1,229 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:com="http://xmlns.jcp.org/jsf/component"
+  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+  <ui:composition template="../../../../master/dialog.xhtml">
+
+    <!-- head -->
+    <ui:define name="htmlHead">
+      <script>
+        var dialogSize = {
+          width: 500,
+          height: 570
+        };
+        __viewContext.primitiveValueConstraints.MonthAdjustment = {
+          valueType: 'Integer',
+          min: -12,
+          max: 12,
+        };
+      </script>
+
+      <com:stylefile path="cmf002.w.style.css" />
+      <com:scriptfile set="IGNITE" />
+      <com:scriptfile path="cmf002.w.service.js" />
+      <com:scriptfile path="cmf002.w.vm.js" />
+
+      <com:ValidatorScript>
+        nts.uk.ctx.exio.dom.exo.condset.DateAdjustment
+      </com:ValidatorScript>
+    </ui:define>
+
+    <!-- content -->
+    <ui:define name="content">
+      <div id="contents-area">
+        <div class="cmf002-w-content">
+          <!-- W1 -->
+          <div class="div-line">
+            <!-- W1-1 -->
+            <div id="W1_1" class="column-label" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CMF002_532')}</div>
+            <!-- W1_2 -->
+            <div id="W1_2" class="cf cmf002-w-switch-btn" tabindex="1" data-bind="ntsSwitchButton: {
+              name: '#[CMF002_532]',
+              value: selectedPeriodSetting,
+              options: listPeriodSetting,
+              optionsValue: 'code',
+              optionsText: 'name',
+              required: true,
+              enable: true,
+            }"></div>
+          </div>
+
+          <!-- W2 -->
+          <div class="div-line">
+            <!-- W2-1 -->
+            <div id="W2_1" class="column-label" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CMF002_533')}</div>
+            <!-- W2_2 -->
+            <div id="W2_2" tabindex="2" data-bind="ntsComboBox: {
+              name: '#[CMF002_533]',
+              width: 200,
+              value: selectedClosureDayAtr,
+              options: listClosureDayAtr,
+              optionsValue: 'id',
+              optionsText: 'name',
+              visibleItemsCount: 5,
+              required: true,
+              selectFirstIfNull: true,
+              columns: [
+                { prop: 'id', length: 2 },
+                { prop: 'name', length: 10 },
+              ]}"></div>
+          </div>
+
+          <!-- W3 -->
+          <div class="div-line">
+            <!-- W3-1 -->
+            <div id="W3_1" class="column-label" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CMF002_534')}</div>
+            <!-- W3_2 -->
+            <div id="W3_2" tabindex="3" data-bind="ntsComboBox: {
+              name: '#[CMF002_534]',
+              width: 200,
+              value: selectedStartDateSegment,
+              options: listStartDateSegment,
+              optionsValue: 'code',
+              optionsText: 'name',
+              visibleItemsCount: 5,
+              required: true,
+              selectFirstIfNull: true,
+              columns: [
+                { prop: 'code', length: 2 },
+                { prop: 'name', length: 10 },
+              ]}"></div>
+          </div>
+
+          <!-- W4 -->
+          <com:ko tag="ifnot" bind="isStartDateAdjustment">
+            <div class="div-line">
+              <!-- W4-1 -->
+              <div id="W4_1" class="column-label" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_535')}</div>
+              <!-- W4_2 -->
+              <com:ko tag="if" bind="isStartDateMonthAdjustment">
+                <input id="W4_2_2" tabindex="3" class="cmf002-w-input" data-bind="ntsNumberEditor: {
+                  name: '#[CMF002_535]',
+                  value: startDateAdjustment,
+                  constraint: ['MonthAdjustment']
+                }" />
+              </com:ko>
+              <com:ko tag="ifnot" bind="isStartDateMonthAdjustment">
+                <input id="W4_2_1" tabindex="3" class="cmf002-w-input" data-bind="ntsNumberEditor: {
+                  name: '#[CMF002_535]',
+                  value: startDateAdjustment,
+                  constraint: ['DateAdjustment']
+                }" />
+              </com:ko>
+            </div>
+          </com:ko>
+          <com:ko tag="if" bind="isStartDateAdjustment">
+            <div class="div-line">
+              <!-- W4-3 -->
+              <div id="W4_3" class="column-label" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_536')}</div>
+              <!-- W4_4 -->
+              <div id="W4_4" tabindex="4" data-bind="ntsDatePicker: {
+                name: '#[CMF002_536]',
+                value: startDateSpecified,
+              }"></div>
+            </div>
+          </com:ko>
+
+          <!-- W5 -->
+          <div class="div-line">
+            <!-- W5-1 -->
+            <div id="W5_1" class="column-label" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CMF002_537')}</div>
+            <!-- W5_2 -->
+            <div id="W5_2" tabindex="5" data-bind="ntsComboBox: {
+              name: '#[CMF002_537]',
+              width: 200,
+              value: selectedEndDateSegment,
+              options: listEndDateSegment,
+              optionsValue: 'code',
+              optionsText: 'name',
+              visibleItemsCount: 5,
+              required: true,
+              selectFirstIfNull: true,
+              columns: [
+                { prop: 'code', length: 2 },
+                { prop: 'name', length: 10 },
+              ]}"></div>
+          </div>
+
+          <!-- W6 -->
+          <com:ko tag="ifnot" bind="isEndDateAdjustment">
+            <div class="div-line">
+              <!-- W6-1 -->
+              <div id="W6_1" class="column-label" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_538')}</div>
+              <!-- W6_2 -->
+              <com:ko tag="if" bind="isEndDateMonthAdjustment">
+                <input id="W6_2_2" tabindex="6" class="cmf002-w-input" data-bind="ntsNumberEditor: {
+                  name: '#[CMF002_538]',
+                  value: endDateAdjustment,
+                  constraint: ['MonthAdjustment']
+                }" />
+              </com:ko>
+              <com:ko tag="ifnot" bind="isEndDateMonthAdjustment">
+                <input id="W6_2_1" tabindex="6" class="cmf002-w-input" data-bind="ntsNumberEditor: {
+                  name: '#[CMF002_538]',
+                  value: endDateAdjustment,
+                  constraint: ['DateAdjustment']
+                }" />
+              </com:ko>
+            </div>
+          </com:ko>
+          <com:ko tag="if" bind="isEndDateAdjustment">
+            <div class="div-line">
+              <!-- W6-3 -->
+              <div id="W6_3" class="column-label" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_539')}</div>
+              <!-- W6_4 -->
+              <div id="W6_4" tabindex="7" data-bind="ntsDatePicker: {
+                name: '#[CMF002_539]',
+                value: endDateSpecified,
+              }"></div>
+            </div>
+          </com:ko>
+
+          <!-- W7 -->
+          <div class="div-line">
+            <!-- W7-1 -->
+            <div id="W7_1" class="column-label" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CMF002_540')}</div>
+            <!-- W7_2 -->
+            <div id="W7_2" tabindex="8" data-bind="ntsComboBox: {
+              name: '#[CMF002_540]',
+              width: 200,
+              value: selectedBaseDateSegment,
+              options: listBaseDateSegment,
+              optionsValue: 'code',
+              optionsText: 'name',
+              visibleItemsCount: 5,
+              required: true,
+              selectFirstIfNull: true,
+              columns: [
+                { prop: 'code', length: 2 },
+                { prop: 'name', length: 10 },
+              ]}"></div>
+          </div>
+
+          <!-- W8 -->
+          <div class="div-line">
+            <!-- W8-1 -->
+            <div id="W8_1" class="column-label" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_541')}</div>
+            <!-- W8_2 -->
+            <div id="W8_2" tabindex="9" data-bind="ntsDatePicker: {
+              name: '#[CMF002_541]',
+              value: baseDateSpecified,
+              enable: isBaseDateSpecifiedEnable,
+            }"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="functions-area-bottom">
+        <!-- btn close dialog -->
+        <button tabindex="10" class="proceed x-large cmf002-w-main-btn"
+          data-bind="click: save, enable: $root.errors.isEmpty">#{i18n.getText('CMF002_161')}</button>
+        <button tabindex="11" data-bind="click: closeDialog">#{i18n.getText('CMF002_162')}</button>
+      </div>
+    </ui:define>
+  </ui:composition>
+</body>
+
+</html>

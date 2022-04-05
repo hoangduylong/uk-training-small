@@ -1,0 +1,14 @@
+{
+    "jp": {
+        "documentscontrolsinput-time": "Time Input",
+        "time-with-day": "日区分付き時刻",
+        "time-point": "時刻",
+        "time-duration": "時間"
+    },
+    "vi": {
+        "documentscontrolsinput-time": "Time Input",
+        "time-with-day": "Time With Day",
+        "time-point": "Time Point",
+        "time-duration": "Time Duration"
+    }
+}

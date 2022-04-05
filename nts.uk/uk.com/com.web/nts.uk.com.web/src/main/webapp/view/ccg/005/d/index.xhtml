@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<script>var dialogSize = { width: 530, height: 350 };</script>
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<com:ValidatorScript>
+        nts.uk.ctx.at.function.dom.attendancerecord.item.ItemName
+        nts.uk.ctx.office.dom.favorite.FavoriteName
+			</com:ValidatorScript>
+			<com:stylefile path="ccg005.d.style.css" />
+			<com:scriptfile path="ccg005.d.vm.js" />
+		</ui:define>
+		<ui:define name="content">
+      <div id="functions-area" style="padding-bottom: 5px;">
+        <!-- D1_1 -->
+        <button id="D1_1" class="large" data-bind="i18n: 'CCG005_8', click: createNewFavorite" />
+        <!-- D1_2 -->
+        <button id="D1_2" class="large proceed" data-bind="i18n: 'CCG005_2', click: saveFavorite" />
+        <!-- D1_3 -->
+        <button id="D1_3" class="large danger" data-bind="i18n: 'CCG005_9', click: deleteFavorite, enable: enableDeleteBtn" />
+        <!-- D1_4 -->
+        <button id="D1_4" class="large" data-bind="i18n: 'CCG005_3', click: onClickCancel" />
+      </div>
+			<div class="contents-area">
+        <div class="text">
+          <!-- D2_1 -->
+          <span style="font-size: unset;" data-bind="i18n: 'CCG005_10'" />
+        </div>
+        <div style="margin-top: 5px;">
+          <div class="table-left">
+            <div style="display: inline-block;">
+              <!-- D3 -->
+              <table id="grid-test-single"
+                data-bind="ntsGridList: {
+                    height: 200,
+                    dataSource: favoriteList,
+                    primaryKey: 'inputDate',
+                    columns: columns,
+                    value: selectedFavoriteInputDate,
+                    multiple: false
+                  }"
+                class=""></table>
+            </div>
+            <!-- D4 -->
+            <div id="grid-up-down"
+              data-bind="ntsUpDown: {
+                  targetSource: favoriteList,
+                  primaryKey: 'inputDate',
+                  comId: '#grid-test-single',
+                  type: 'grid'
+                }"
+            />
+          </div>
+          <div class="content-right">
+            <div>
+              <!-- D5_1 -->
+              <input id="D5_1" data-bind="ntsTextEditor: {
+                name: '#[CCG005_11]',
+                constraint: 'FavoriteName',
+                value: favoriteName,
+                required: true,
+                enable: true,
+                 option: {
+                  textmode: 'text',
+                  placeholder: '#{i18n.getText('CCG005_12')}',
+                  width: '240px',
+                  textalign: 'left'
+                }
+              }" />
+            </div>
+            <!-- D5_2 -->
+            <div class="D5_2_switch_btn">
+              <div class="cf" style="margin-top: 20px;" data-bind="ntsSwitchButton: {
+                name: 'Sample Switch',
+                options: roundingRules,
+                optionsValue: 'code',
+                optionsText: 'name',
+                value: selectedRuleCode,
+                enable: true }" />
+            </div>
+              <com:ko-if bind="buttonSelectWkspDisable()">
+                <div style="margin-top: 20px;">
+                  <!-- D5_3 -->
+                  <button data-bind="i18n: 'CCG005_31', click: openCDL008Dialog" />
+                  <!-- D5_4 -->
+                  <input class="limited-label" id="D5_4" data-bind="ntsTextEditor: {
+                              value: displayChoosenWkspName,
+                              readonly: true,
+                              name: '#[CCG005_17]',
+                              option: {
+                                textmode: 'text',
+                                width: '190px',
+                                textalign: 'left'
+                              }
+                            }" />
+              
+                </div>
+              </com:ko-if>
+          </div>
+        </div>
+			</div>
+		</ui:define>
+
+	</ui:composition>
+
+</body>
+
+</html>

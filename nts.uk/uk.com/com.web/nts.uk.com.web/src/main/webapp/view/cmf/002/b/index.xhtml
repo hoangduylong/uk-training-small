@@ -1,0 +1,246 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:ValidatorScript>
+                    nts.uk.ctx.exio.dom.exo.condset.ExternalOutputConditionCode
+                    nts.uk.ctx.exio.dom.exo.condset.ExternalOutputConditionName
+            </com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="../share/model.js" />
+			<com:scriptfile path="cmf002.b.start.js" />
+			<com:scriptfile path="cmf002.b.service.js" />
+			<com:scriptfile path="cmf002.b.vm.js" />
+			<com:stylefile path="cmf002.b.style.css" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="functions-area">
+				<!--B1_1 操作選択に戻る-->
+				<a id="B1_1" class="goback"
+					data-bind="ntsLinkButton: { jump: '../a/index.xhtml' }">#{i18n.getText('CMF002_27')}</a>
+				<!--B1_7 画面タイプ名-->
+				<label class="title-left">#{i18n.getText('CMF002_34')}</label>
+				<!--B1_2 新規-->
+				<button id="B1_2" data-bind="click: createNewCondition, enable: !isNewMode()">#{i18n.getText('CMF002_28')}</button>
+				<!--B1_3 登録-->
+				<button id="B1_3" data-bind="click: register, enable: $root.errors.isEmpty" class="proceed">#{i18n.getText('CMF002_29')}</button>
+				<!--B1_5 複製-->
+				<button id="B1_5" data-bind="click: openCopyScreen, enable: !isNewMode()" >#{i18n.getText('CMF002_32')}</button>
+				<!--B1_6 削除-->
+				<button id="B1_6" data-bind="click: deleteCnd, enable: !isNewMode()" class="danger">#{i18n.getText('CMF002_33')}</button>
+				<div class="clear"></div>
+			</div>
+			<div id="contents-area">
+				<div style="text-align: center; width: 1250px; height: 40px; margin-bottom:10px">
+					<span id = "B4" class="label warning">#{i18n.getText('CMF002_39')}</span>
+				</div>
+				<div class="fixed-flex-layout" data-bind="with: conditionSetData">
+					<div class="fixed-flex-layout-left padding-item">
+						<!--B3 条件設定選択(パネル)-->
+						<div id="B3"
+							data-bind="ntsPanel:{width: '330px', height: '390px', showIcon:true, direction: 'none', visible: true}">
+							<div class="flex">
+								<!--B3_1 コード/名称-->
+								<div data-bind="ntsFormLabel: { }">#{i18n.getText('CMF002_36')}</div>
+								<!--B3_2 絞り込み検索-->
+								<div style="width: 240px" id = "B3_2"
+									data-bind="ntsSearchBox: {
+												searchMode: 'filter',
+												targetKey: 'conditionSetCode',
+												comId: 'B3_3',
+												items: $parent.conditionSettingList,
+												selected: $parent.selectedConditionSettingCode,
+												selectedKey: 'conditionSetCode',
+												fields: ['conditionSetCode', 'conditionSetName'],
+												mode: 'igGrid'
+											}"
+											tabindex="1"
+									 />
+							</div>
+							<div class="flex">
+								<!--B3_3 条件設定一覧-->
+								<table id="B3_3"
+									data-bind="ntsGridList: {
+													name: '#[CMF002_345]',
+													rows: 14,
+		                                            options: $parent.conditionSettingList,
+		                                            optionsValue: $parent.selectedConditionSetting,
+		                                            primaryKey: 'conditionSetCode',
+		                                            columns: [
+																{headerText: '#{i18n.getText('CMF002_37')}', key: 'conditionSetCode', width: 100, formatter: _.escape},
+								                				{headerText: '#{i18n.getText('CMF002_38')}', key: 'conditionSetName', width: 210, formatter: _.escape}
+								                			],
+		                                            multiple: false,
+		                                            value: $parent.selectedConditionSettingCode
+		                                            }">
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="fixed-flex-layout-right padding-item">
+						<div style="width: 800px">
+							<div class="layout-right-column-1 pull-left">
+								<div class="div-line">
+									<!--B5 条件コード/名称-->
+									<div id="B5" class="column-1"
+										data-bind="ntsFormLabel: {constraint: ['ExternalOutputConditionCode', 'ExternalOutputConditionName'], required:true}">#{i18n.getText('CMF002_40')}</div>
+									<!--B5_1 条件設定コード-->
+									<input id="B5_1" style="width: 50px"
+										data-bind="ntsTextEditor: {
+													value: conditionSetCode,
+													name:'#{i18n.getText('CMF002_41')}',
+													required: true,
+													constraint: 'ExternalOutputConditionCode',
+													enable: $parent.isNewMode()
+												}"
+										tabindex="2" />
+									<!--B5_2 条件設定名称-->
+									<input id="B5_2" style="margin-left: 5px; width: 150px"
+										data-bind="ntsTextEditor: {
+													value: conditionSetName,
+													name:'#{i18n.getText('CMF002_42')}',
+													constraint: 'ExternalOutputConditionName',
+													required: true,
+												}"
+										tabindex="3" />
+								</div>
+								<div class="div-line">
+									<!--B6 カテゴリ選択(ラベル)-->
+									<div id="B6" class="column-1"
+										data-bind="ntsFormLabel: {required:true}">#{i18n.getText('CMF002_43')}</div>
+									<!--B6_1 カテゴリ名称-->
+									<label id="B6_1" style="display: inline-block;width: 200px;" data-bind="text: $parent.categoryName"></label>
+									<!--B6_2 カテゴリ選択-->
+									<button id="B6_2" tabindex="4" data-bind="click: function (){$vm.openVScreen()}, enable: $parent.isNewMode()">#{i18n.getText('CMF002_44')}</button>
+								</div>
+								<div class="div-line">
+									<!--B7 条件名-->
+									<div id="B7" class="column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_45')}</div>
+									<!--B7_1 条件名出力選択-->
+									<div id="B7_1"
+										data-bind="ntsSwitchButton: {
+														name: '#{i18n.getText('CMF002_46')}',
+														options: $parent.notUseAtrItems,
+														optionsValue: 'code',
+														optionsText: 'name',
+														value: conditionOutputName,
+														enable: true }"
+										tabindex="5" />
+								</div>
+								<div class="div-line">
+									<!--B8 項目名-->
+									<div id="B8" class="column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_49')}</div>
+									<!--B8_1 項目名出力選択-->
+									<div id="B8_1"
+										data-bind="ntsSwitchButton: {
+														name: '#{i18n.getText('CMF002_50')}',
+														options: $parent.notUseAtrItems,
+														optionsValue: 'code',
+														optionsText: 'name',
+														value: itemOutputName,
+														enable: true }"
+										tabindex="6" />
+								</div>
+								<div class="div-line">
+									<!--B9 区切り文字-->
+									<div id="B9" class="column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_51')}</div>
+									<!--B9_1 区切り文字選択-->
+									<div id="B9_1" style="width: 115px;"
+										data-bind="ntsComboBox: {
+														name: '#{i18n.getText('CMF002_52')}',
+														options: $parent.delimiterItems,
+														optionsValue: 'code',
+														visibleItemsCount: 5,
+														value: delimiter,
+														optionsText: 'name',
+														enable: true }"
+										tabindex="7" />
+								</div>
+								<div class="div-line">
+									<!--B10 文字列形式-->
+									<div id="B10" class="column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_53')}</div>
+									<!--B10_1 文字列形式選択-->
+									<div id="B10_1" style="width: 255px;"
+										data-bind="ntsComboBox: {
+														name: '#{i18n.getText('CMF002_54')}',
+														options: $parent.stringFormatItems,
+														optionsValue: 'code',
+														visibleItemsCount: 5,
+														value: stringFormat,
+														optionsText: 'name',
+														enable: true }"
+										tabindex="8" />
+								</div>
+								<div class="div-line">
+									<!--B11 出力内容の設定-->
+									<div id="B11" class="column-1"
+										data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_55')}</div>
+									<!--B11_1 出力内容を設定-->
+									<button id="B11_1" class="large" tabindex="9"  data-bind="click: function(){$vm.openCscreen()}, enable: !$parent.isNewMode()">#{i18n.getText('CMF002_56')}</button>
+								</div>
+								<div class="div-line">
+									<!--B12 出力条件の設定-->
+									<div id="B12" class="column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_57')}</div>
+									<!--B12_1 出力条件を設定-->
+									<button id="B12_1" tabindex="10" data-bind="click: function(){$vm.openDscreen()}, enable: !$parent.isNewMode()" >#{i18n.getText('CMF002_58')}</button>
+								</div>
+								<div class="div-line">
+									<!--B15 出力期間の設定 -->
+									<div id="B15" class="column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_529')}</div>
+									<!--B15_1 出力期間の設定（ボタン）-->
+									<button id="B15_1" tabindex="11" data-bind="click: function(){$vm.openWscreen()}, enable: !$parent.isNewMode()" >#{i18n.getText('CMF002_529')}</button>
+									<!--B15_2 出力期間の有無 -->
+									<label id="B15_2" class="margin-left-15" data-bind="text: $vm.isSetPeriodText"></label>
+								</div>
+							</div>
+							<div class="pull-left">
+								<!--B13 条件設定選択(パネル)-->
+								<div id="B13"
+									data-bind="ntsPanel:{width: '260px', height: '390px', direction: 'none', visible: true}">
+									<div class="div-line">
+										<!--B13_1 出力項目(ラベル)-->
+										<label>#{i18n.getText('CMF002_59')}</label>
+									</div>
+									<div class="div-line table">
+										<!--B13_2 出力項目一覧-->
+										<div class="cell pull-left">
+											<table id="B13_2"
+												data-bind="ntsGridList: {
+
+													rows: 15,
+													dataSource: $parent.outputItemList,
+													primaryKey: 'outItemCd',
+													columns: [
+																{headerText: '#{i18n.getText('CMF002_60')}', key: 'outItemCd', width: 50, formatter: _.escape},
+																{headerText: '#{i18n.getText('CMF002_61')}', key: 'outItemName', width: 160, formatter: _.escape}
+															],
+													value: $parent.outItemCd,
+													multiple: false
+												}"></table>
+										</div>
+										<div class="cell">
+											<div id="B14_2" style="margin-left: 10px"
+												data-bind="ntsUpDown: {
+													targetSource: $parent.outputItemList,
+													primaryKey: 'outputItemCode',
+													comId: '#B13_2',
+													type: 'grid',
+													enable: !$parent.isNewMode()
+												}"></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

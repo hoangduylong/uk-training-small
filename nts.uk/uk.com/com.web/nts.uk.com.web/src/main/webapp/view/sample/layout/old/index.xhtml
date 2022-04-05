@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+
+			<com:scriptfile path="viewmodel.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="functions-area">
+				<div data-bind="pg-name: 'PG_NAME_ID', back: ''"></div>
+				<div data-bind="floating: true, left: 100, bottom: -15">
+					<button class="green solid">Solid</button>
+					<button class="green outline">Outline</button>
+				</div>
+				<button class="green solid">Solid</button>
+				<button class="green outline">Outline</button>
+				<button class="green">Proceed</button>
+				<button class="white">Normal</button>
+				<button class="red">Danger</button>
+			</div>
+			<div id="contents-area">
+				<div data-bind="markdown: 'document.md'"></div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+
+</html>

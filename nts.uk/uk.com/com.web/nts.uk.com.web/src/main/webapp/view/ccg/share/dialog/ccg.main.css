@@ -1,0 +1,19 @@
+@CHARSET "UTF-8";
+
+.endAction {
+	margin-top: 20px;
+}
+
+.btnAction {
+	width: 100px;
+	margin-left: 15px;
+}
+
+.beginAction {
+	margin-top: 20px;
+}
+
+.labelccg {
+	margin-top: 15px;
+	margin-left: 15px;
+}

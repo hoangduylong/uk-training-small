@@ -1,0 +1,418 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="../../sample/catalog/catalog.css" />
+			<com:scriptfile path="../../sample/catalog/catalog.js" />
+			<com:scriptfile
+				path="../../../../nts.uk.com.web/view/kcp/share/tree.js" />
+			<com:scriptfile
+				path="../../../../nts.uk.com.web/view/kcp/share/tree.js" />
+			<com:scriptfile path="kcp004.a.vm.js" />
+			<com:scriptfile path="kcp004.a.start.js" />
+			<style>
+.table-tree-sample tr td {
+	border: none;
+}
+
+h4 {
+	font-size: 17px !important;
+}
+
+.ntsRadioBox {
+	padding: 10px 0px 10px 20px;
+}
+
+.ntsCheckBox {
+	padding-top: 10px !important;
+}
+
+#multiple-tree-grid .cf::after, .cf::before {
+	content:none;
+}
+</style>
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+					<!-- BEGIN ORVERVIEW -->
+					<div>
+						<h1>KCP004 職場リスト（共通部品）Workplace List</h1>
+						<note style="width:500px;">
+						<b>Update 2019/04/19</b> <br/>
+						- Add start mode (workplace or department)
+						<br/><br/>
+						<b>Update 2018/04/19</b> <br></br>
+						- Add optional properties: restrictionOfReferenceRange
+						</note>
+						<h2>Overview</h2>
+						<div style="margin: 20px 0px;">
+							<button data-bind="click: copy">Copy</button>
+							<button data-bind="click: register">Register</button>
+							<button data-bind="click: remove">Remove</button>
+						</div>
+						<div>
+							<div>
+								<h4>Start mode:</h4>
+								<div data-bind="ntsRadioBoxGroup: {
+									options: listStartMode,
+									optionsValue: 'code',
+									optionsText: 'name',
+									value: selectedStartMode,
+									enable: true}"/>
+							</div>
+							<div>
+								<h4>Tree select grid type:</h4>
+								<div
+									data-bind="ntsRadioBoxGroup: {
+									options: listTreeType,
+									optionsValue: 'code',
+									optionsText: 'name',
+									value: selectedTreeType,
+									enable: true}"></div>
+							</div>
+							<div>
+								<h4>Selection type:</h4>
+								<div
+									data-bind="ntsRadioBoxGroup: {
+									options: listSelectionType,
+									optionsValue: 'code',
+									optionsText: 'name',
+									value: selectedSelectionType,
+									enable: enable}"></div>
+							</div>
+							<h4>Other option:</h4>
+							<div style="margin-left: 17px;">
+								<div data-bind="ntsCheckBox:{checked: isMultipleUse}">Multiple
+									use (複数使用区分)</div>
+								<div data-bind="ntsCheckBox:{checked: isDialog}">Dialog</div>
+								<div data-bind="ntsCheckBox:{checked: isShowAlreadySet}">Show
+									Already Setting</div>
+								<div
+									data-bind="ntsCheckBox:{checked: isShowSelectButton, enable: enableShowSelectButton}">Show
+									SelectAll/SelectSubParent button</div>
+								<div data-bind="ntsCheckBox:{checked: restrictionOfReferenceRange}">Enable restriction of reference range</div>
+							</div>
+
+							<div>
+								<h4>System type:</h4>
+								<div
+									data-bind="ntsRadioBoxGroup: {
+									options: listSystemType,
+									optionsValue: 'code',
+									optionsText: 'name',
+									value: selectedSystemType,
+									enable: enable}"></div>
+							</div>
+
+
+
+							<hr></hr>
+						</div>
+						<div>
+							<table class="table-tree-sample">
+								<tr>
+									<td><div id="tree-grid"
+											style="margin-top: 30px; margin-left: 10px;"></div></td>
+									<td>
+										<div>
+											<table class="table-tree-sample"
+												data-bind="with: rowSelected">
+												<tr>
+													<td style="min-width: 130px;"><label
+														style="margin-right: 10px;">Affiliation id:</label></td>
+													<td><span data-bind='text: workplaceId'></span></td>
+												</tr>
+												<tr>
+													<td style="min-width: 130px;"><label
+														style="margin-right: 10px;">Affiliation code:</label></td>
+													<td><span data-bind='text: workplaceCode'></span></td>
+												</tr>
+											</table>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<!-- END ORVERVIEW -->
+
+						<!-- BEGIN DESCRIPTION -->
+						<article class="cf" style="margin-top: 10px;">
+							<div class="tabs">
+								<ol>
+									<li><a href="#tabs-html">HTML Binding</a></li>
+									<li><a href="#tabs-viewmodel">ViewModel</a></li>
+									<li><a href="#tabs-data">Data</a></li>
+									<li><a href="#tabs-method">Methods</a></li>
+								</ol>
+								<!-- BEGIN TAB HTML -->
+								<div id="tabs-html" class="cf">
+									<h2>HTML</h2>
+									<p>
+										Using Ignite library so you must include following line in <i>&lt;ui:define
+											name="htmlHead"&gt;</i>
+									</p>
+									<pre>
+<![CDATA[<ui:define name="htmlHead">
+		<com:scriptfile set="IGNITE" />
+		<com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web"/>
+</ui:define>]]>
+									</pre>
+									<p>Create a div tag to bind tree grid</p>
+									<pre>
+<![CDATA[<div id="tree-grid"></div>]]>
+									</pre>
+								</div>
+								<!-- END TAB HTML -->
+
+								<!-- BEGIN TABS VIEWMODEL -->
+								<div id="tabs-viewmodel" class="cf">
+									<h2>TypeScript</h2>
+									<h3>ViewModel</h3>
+									<pre>
+<![CDATA[<!--MULTIPLE TREE GRID-->
+export class ScreenModel {
+
+		multiSelectedId: KnockoutObservable<any>;
+		baseDate: KnockoutObservable<Date>;
+		alreadySettingList: KnockoutObservableArray<UnitAlreadySettingModel>;
+		treeGrid: TreeComponentOption;
+		
+		constructor() {
+				let self = this;
+				
+				self.baseDate = ko.observable(new Date());
+				self.multiSelectedId = ko.observableArray([]);
+				self.alreadySettingList = ko.observableArray([]);
+				self.treeGrid = {
+						isShowAlreadySet: true,
+						isMultipleUse: false,
+						isMultiSelect: true,
+						startMode: StartMode.WORKPLACE,
+						selectedId: self.multiSelectedId,
+						baseDate: self.baseDate,
+						selectType: SelectionType.SELECT_FIRST_ITEM,
+						isShowSelectButton: true,
+						isDialog: false,
+						alreadySettingList: self.alreadySettingList,
+						maxRows: 10,
+						tabindex: 1,
+						systemType : 2
+				};
+		}
+}
+]]>
+									</pre>
+									<pre>
+<![CDATA[<!--It is called after apply binding done. This return JQueryPromise<void>-->
+$('#tree-grid').ntsTreeComponent(self.treeGrid);
+									]]>
+									</pre>
+									<h2>API</h2>
+									<table style="width: 700px">
+										<thead>
+											<td style="text-align: center;"><h4>Method</h4></td>
+											<td style="text-align: center;"><h4>Description</h4></td>
+										</thead>
+										<tr>
+											<td>isShowAlreadySet</td>
+											<td><b>Type:</b> boolean<br /> <label><i>Description:</i>Show/hide
+													icon flag/tick of column 名称</label></td>
+										</tr>
+										<tr>
+											<td>isMultipleUse (複数使用区分)</td>
+											<td><b>Type:</b> boolean<br /> <label><i>Description:</i>Use
+													multiple component ?. if single component, show base date.</label>
+											</td>
+										</tr>
+										<tr>
+											<td>isMultiSelect</td>
+											<td><b>Type:</b> boolean<br /> <label><i>Description:</i>Enable/disable
+													multiple selection</label></td>
+										</tr>
+										<tr>
+											<td><lable>startMode</lable> <br /> <lable>
+												<i>(optional)</i></lable></td>
+											<td><b>Type: </b>number<br /> <b>Default: </b>0 (WORKPLACE)<br /> <pre>
+<![CDATA[StartMode {
+     static WORKPLACE = 0;
+     static DEPARTMENT = 1;
+}]]>
+												</pre></td>
+										</tr>
+										<tr>
+											<td>selectedId</td>
+											<td><b>Type:</b> string | Array[string] <br /> <label><i>Description:</i>Selected
+													code that has workplaceId/departmentId = selectedId in tree
+													grid</label></td>
+										</tr>
+										<tr>
+											<td>baseDate</td>
+											<td><b>Type:</b> Date<br /> <label><i>Description:</i>Base
+													date</label></td>
+										</tr>
+										<tr>
+											<td>selectType</td>
+											<td><b>Type:</b> number<br /> <b>Default:</b>4 ~
+												NO_SELECT<br />
+												<div>
+													<i>Description:</i> Selection mode.
+												</div> <pre>
+<![CDATA[SelectionType {
+    static SELECT_BY_SELECTED_CODE = 1;
+    static SELECT_ALL = 2;
+    static SELECT_FIRST_ITEM = 3;
+    static NO_SELECT = 4;
+}]]>
+												</pre></td>
+										</tr>
+										<tr>
+											<td>systemType</td>
+											<td><b>Type:</b> number<br />
+												<div>
+													<i>Description:</i> System type.
+												</div> <pre>
+<![CDATA[SystemType {
+	// 個人情報
+	static PERSONAL_INFORMATION: number = 1;
+	 // 就業
+	static EMPLOYMENT: number = 2;
+	 // 給与
+	static SALARY: number = 3;
+	// 人事
+	static HUMAN_RESOURCES: number = 4;
+	// 管理者
+	static ADMINISTRATOR: number = 5;
+}]]>
+												</pre></td>
+										</tr>
+										<tr>
+											<td>isShowSelectButton</td>
+											<td><b>Type:</b> boolean<br /> <label><i>Description:</i>Show/hide
+													button select all and selected sub parent.</label></td>
+										</tr>
+										<tr>
+											<td>isDialog</td>
+											<td><b>Type:</b> boolean<br /> <label><i>Description:</i>Show/hide
+													icon search</label></td>
+										</tr>
+										<tr>
+											<td><lable>alreadySettingList</lable> <br /> <lable>
+												<i>(if isShowAlreadySet is true, it is a required, and
+													opposite.)</i></lable></td>
+											<td><b>Type:</b>Array[UnitAlreadySettingModel]<br /> <b>Default:</b><i>undefined</i><br />
+												<div>
+													<i>Description:</i>if it is true (saved setting), it will
+													display icon <img src="../share/icon/icon78.png"
+														style="width: 20px;"></img> and childrent do not save
+													setting, will display <img src="../share/icon/icon84.png"
+														style="width: 20px;"></img>
+												</div> <pre>
+<![CDATA[UnitAlreadySettingModel {
+    id: string;
+    isAlreadySetting: boolean;
+}]]>
+												</pre></td>
+										</tr>
+										<tr>
+											<td><lable>maxRows</lable> <br /> <lable>
+												<i>(optinal)</i></lable></td>
+											<td><b>Type:</b> number<br /> <b>Default:</b><i>12</i><br />
+												<label><i>Description:</i>Display max row in tree
+													grid.</label></td>
+										</tr>
+										<tr>
+											<td><lable>tabindex</lable> <br /> <lable>
+												<i>(optional)</i></lable></td>
+											<td><b>Type:</b> number<br /> <b>Default:</b><i> If
+													not set, tabindex will same as spec of KCPs.</i><br /></td>
+
+										</tr>
+										<tr>
+											<td><lable>restrictionOfReferenceRange</lable> <br /> <lable>
+												<i>(optional)</i></lable></td>
+											<td><b>Type:</b> boolean<br /> <b>Default:</b><i>undefined</i><br /></td>
+
+										</tr>
+									</table>
+								</div>
+								<!-- END TABS VIEWMODEL -->
+
+								<!-- BEGIN TABS DATA -->
+								<div id="tabs-data" class="cf">
+									<pre data-bind="text: jsonData">
+<![CDATA[]]>
+									</pre>
+								</div>
+								<!-- END TABS DATA -->
+
+								<!-- BEGIN TABS METHOD -->
+								<div id="tabs-method" class="cf">
+									<table style="width: 700px">
+										<thead>
+											<td style="text-align: center;"><h4>Method</h4></td>
+											<td style="text-align: center;"><h4>Description</h4></td>
+										</thead>
+										<tr>
+											<td>$('#tree-grid').getDataList()</td>
+											<td>
+												<div>
+													<b>Type:</b>Array[UnitModel]
+												</div>
+												<div>
+													<i>Description:</i>Get list data tree.
+												</div> <pre>
+<![CDATA[UnitModel {
+    id: string;
+    code: string;
+    name: string;
+    nodeText?: string;
+    level: number;
+    heirarchyCode: string;
+    isAlreadySetting?: boolean;
+    children: Array<UnitModel>;
+}]]>
+												</pre>
+											</td>
+										</tr>
+										<tr>
+											<td>$('#tree-grid').getRowSelected()</td>
+											<td>
+												<div>
+													<b>Type:</b> Array[RowSelection]
+												</div>
+												<div>
+													<i>Description:</i>Get selected row data.
+												</div> <pre>
+<![CDATA[RowSelection {
+    id: string;
+    code: string;
+}]]>
+												</pre>
+											</td>
+										</tr>
+										<tr>
+											<td>$('#tree-grid').focusTreeGridComponent()</td>
+											<td><i>Description:</i>Focus input control in tree grid.</td>
+										</tr>
+									</table>
+								</div>
+								<!-- END TABS METHOD -->
+							</div>
+						</article>
+						<!-- END DESCRIPTION -->
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

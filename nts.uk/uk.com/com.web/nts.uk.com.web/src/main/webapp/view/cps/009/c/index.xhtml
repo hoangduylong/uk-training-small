@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = {
+					width : 660,
+					height :255
+				};
+			</script>
+			<com:ValidatorScript>
+					nts.uk.ctx.pereg.dom.person.setting.init.ValueSettingCode
+					nts.uk.ctx.pereg.dom.person.setting.init.ValueSettingName
+			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps009.c.style.css" />
+			<com:scriptfile path="cps009.c.service.js" />
+			<com:scriptfile path="cps009.c.start.js" />
+			<com:scriptfile path="cps009.c.vm.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div id="copy_row_1" style="margin-bottom: 5px;"
+					class="flex valign-center">
+					<!-- C_001: label 複製元情報： -->
+					<label id="C_001">#{i18n.getText('CPS009_26')}</label>
+					<!-- C_002: label コード/名称 -->
+					<div id="label_code" data-bind="ntsFormLabel: {}"
+						class="form-label ">#{i18n.getText('CPS009_12')}</div>
+					<!-- C3_003: 複製元のコード -->
+					<label id="roleCodeOld" data-bind="text: codeCtg"></label>
+					<!-- C3_004: 複製元の名称 -->
+					<label id="roleNameOld" data-bind="text: nameCtg"></label>
+				</div>
+				<div id="copy_row_2" class="flex valign-center">
+					<!-- C_005: label 複製先情報： -->
+					<label id="C_001">#{i18n.getText('CPS009_27')}</label>
+					<!-- C_006: label コード/名称 -->
+					<div id="label_code"
+						data-bind="ntsFormLabel: {required: true, 
+											constraint: ['ValueSettingCode' , 'ValueSettingName']}"
+						class="form-label ">#{i18n.getText('CPS009_12')}</div>
+					<!-- C_007: コード -->
+					<input id="codeInput" tabindex="1"
+						data-bind="ntsTextEditor: {
+											name: '#[CPS009_13]',
+											value: currentInitVal().itemCode, 
+											constraint: 'ValueSettingCode',
+											required: true, 
+											enable: true,
+											immediate: true}" />
+					<!-- C_008: 名称 -->
+					<input id="roleName" tabindex="2"
+						data-bind="ntsTextEditor: {
+											name: '#[CPS009_14]',
+											value: currentInitVal().itemName,  
+											required: true,
+											constraint: 'ValueSettingName',
+											enable: true,
+											immediate: true}" />
+
+				</div>
+			</div>
+			<div id='functions-area-bottom'>
+				<div style="height: 100px;">
+          <!-- C_009: check box -->
+          <div id='copyCheck' tabindex="3"
+            data-bind="ntsCheckBox: {checked: isCopy, text: nts.uk.resource.getText('CPS009_28'), style: 'warnpanel'}"/>
+          <div style="margin-top: 10px;">
+            <!-- C_010: button 実行 -->
+            <button id="registration" tabindex="4"
+              data-bind="click: copyInitValue" class="proceed x-large">#{i18n.getText('CPS009_29')}</button>
+            <!-- C_011: button キャンセル -->
+            <button id="cancel" tabindex="5"
+              data-bind="click: cancelCopyInitValue">#{i18n.getText('CPS009_30')}</button>
+          </div>
+        </div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

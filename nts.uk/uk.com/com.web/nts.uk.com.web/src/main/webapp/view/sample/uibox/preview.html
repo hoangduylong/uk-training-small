@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="shortcut icon" type="image/x-icon" href="/nts.uk.com.web/favicon.ico" /><link rel="stylesheet" type="text/css" href="/nts.uk.com.js.web/lib/generic/jqueryui/jquery-ui.css?v=20190329130303" />
+<link rel="stylesheet" type="text/css" href="/nts.uk.com.js.web/lib/generic/igniteui/css/structure/infragistics.css?v=20190329130303" />
+<link rel="stylesheet" type="text/css" href="/nts.uk.com.js.web/lib/nittsu/ui/style/stylesheets/base.css?v=20190329130303" />
+<link rel="stylesheet" type="text/css" href="/nts.uk.com.js.web/lib/generic/spectrum/spectrum.css?v=20190329130303" />
+<style>
+	#content {
+		padding-top: 10px;
+	}
+	#functions-area {
+		background: #002240;
+    	color: white;
+	}
+	#functions-area h3 {
+       	font-size: 19px;
+	   	text-align: center;
+	   	font-weight: bold;
+	}
+</style>
+<script type="text/javascript">window.__viewContext = { rootPath: '../../../', primitiveValueConstraints: {}, preview: true }; //{rootPath: '../../../',program: {isDebugMode: true},user: {contractCode: '000000000000', companyId: '000000000000-0001', companyCode: '0001', isEmployee: 'true', employeeId: 'ae7fe82e-a7bd-4ce3-adeb-5cd403a9d570', employeeCode: '000001', selectedLanguage: { basicLanguageId: 'ja', personNameLanguageId: 'ja' }, role: { attendance: '952986c6-2cf4-429f-af17-b94276b22306', companyAdmin: '00000000-0000-0000-00000000000000004', groupCompanyAdmin: '00000000-0000-0000-00000000000000007', officeHelper: 'null', payroll: 'null', personalInfo: '00000000-0000-0000-00000000000000005', personnel: 'null', systemAdmin: '00000000-0000-0000-00000000000000000' }},preview: true};
+</script>
+<script src="/nts.uk.com.web/webapi/i18n/resources/screen?v=000000000000-0001_ja_COM_20190329_125553"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/generic/jquery/jquery-3.1.1.js?v=20190329130303"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/generic/jqueryui/jquery-ui.js?v=20190329130303"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/generic/jquery/jquery.steps.js?v=20190329130303"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/generic/jqueryplugin/jquery.blockui.js?v=20190329130303"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/generic/jqueryplugin/jquery.fileDownload.js?v=20190329130303"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/generic/spectrum/spectrum.js?v=20190329130303"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/generic/momentjs/moment.js?v=20190329130303"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/generic/momentjs/ja.js?v=20190329130303"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/generic/lodash/lodash-4.16.6.min.js?v=20190329130303"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/generic/knockoutjs/knockout-3.4.1.js?v=20190329130303"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/generic/knockoutjs/knockout.mapping-2.4.1.js?v=20190329130303"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/generic/jquery/datepicker.js?v=20190329130303"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/generic/jquery/datepicker.ja-JP.js?v=20190329130303"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/generic/jquery/jquery.cookie.min.js?v=20190329130303"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/nittsu/iefix.js?v=20190329130303"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/nittsu/nts.uk.com.web.nittsu.bundles.js?v=20190329130303"></script>
+<script>var dialogSize = { width: 300, height: 200 };</script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/generic/igniteui/js/infragistics.core.js?v=20190410120353"></script>
+<script type="text/javascript" src="/nts.uk.com.js.web/lib/generic/igniteui/js/infragistics.lob.js?v=20190410120353"></script>
+<script id="start">
+	var vm,
+		ScreenModel = (function() {
+		function ScreenModel() {
+		}
+		return ScreenModel;
+	}());
+	
+	__viewContext.ready(function() {	
+		vm = new ScreenModel();
+		this.bind(vm);
+	});
+	
+	var build = function(html, js) {
+		var content = document.getElementById("content");
+        nts.uk.ui.errors.clearAll();
+        ko.cleanNode(content);
+        content.innerHTML = html;
+        _.keys(vm).forEach(function(k) { delete vm[k]; });
+        var props = new Function("self", "ko", js);
+        props(vm, ko);
+        ko.applyBindings(vm, content);
+	};
+</script>
+</head>
+<body>
+	<div id="master-wrapper" data-bind="with: content"><!-- ko let: { $vm: $data } -->
+		<div id="master-content">
+			<div id="functions-area"><h3></h3></div>
+          	<div id="contents-area">
+				<div id="content" class="cf">
+					<h1>こんにちは！</h1>
+					
+          		</div>
+         	</div>
+		</div>
+		<!-- /ko -->
+	</div>
+	<div data-bind="with: kiban.errorDialogViewModel">
+		<div data-bind="ntsErrorDialog: {title: title, errors: displayErrors, option: option}"></div>
+		<div id="func-notifier-errors" data-bind="css: { shown: occurs }, click: open">エラーがあります</div>
+	</div>
+</body>
+</html>

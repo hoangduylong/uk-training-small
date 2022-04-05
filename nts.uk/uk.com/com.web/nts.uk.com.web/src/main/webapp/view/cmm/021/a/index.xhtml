@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead" tabindex="-1">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="/view/ccg/share/style.css" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.service.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.vm.js" of="/nts.uk.com.web" />
+		
+			<com:scriptfile path="cmm021.a.service.js" />
+			<com:scriptfile path="cmm021.a.vm.js" />
+			<com:scriptfile path="cmm021.a.start.js" />
+			<com:stylefile path="style.css" />
+		</ui:define>
+
+		<ui:define name="content" tabindex="-1">
+
+			<!-- BEGIN A2_1 & A2_2 -->
+			<div id="functions-area" tabindex="-1">
+				<button tabindex="1" class="proceed"
+					data-bind="click: saveAccount, enable: $root.errors.isEmpty">#{i18n.getText('CMM021_5')}</button>
+				<button tabindex="2" class="danger"
+					data-bind="click: deleteAccount, enable: enable_Delete">#{i18n.getText('CMM021_6')}</button>
+			</div>
+			<!-- END A2_1 & A2_2 -->
+
+			<div class="fixed-flex-layout" id="contents-area">
+			<div id="com-ccg001" />
+			<!-- start-left-content -->
+			<div class="master-list-select fixed-flex-layout-left">
+				<div class="caret-right caret-background bg-green">
+					<i class="icon icon-searchbox"></i>
+
+					<!-- A6_2 , A6_3 , A6_4: Setting Use -->
+					<div class="switch-button">
+						<div tabindex="6" id="switch-use"
+							data-bind="ntsSwitchButton: {
+									name: '#[CMM021_41]',							
+									options: useSet,
+									optionsValue: 'code',
+									optionsText: 'name',
+									value: selectUse
+							}">
+						</div>
+					</div>
+
+					<!-- table grid list -->
+					<!-- A7_1 -->
+					<div id="tabpanel-1" role="tabpanel" class="table-grid-list"
+						tabindex="-1">
+						<table id="single-list" tabindex="7"
+							data-bind="ntsGridList: {								
+								dataSource: listUserInfos,								
+								primaryKey: 'employeeId',
+								columns: columns,																
+								multiple: false,
+								value: selectedEmployeeId,
+								rows: 20
+							}"></table>
+					</div>
+				</div>
+			</div>
+			<!-- end-left-content -->
+
+			<!-- start-right-content -->
+			<div class="right-content fixed-flex-layout-right">
+				<div class="show-text-user-id">
+					<table>
+						<tr class="right-content-space-businessName">
+							<td class="right-content-space-businessName1"><span>#{i18n.getText('CMM021_18')}</span></td>
+							<td class="right-content-space-businessName2"><span>#{i18n.getText('CMM021_19')}</span></td>
+							<td class="right-content-space-businessName3"><span
+								data-bind="text: businessName"></span></td>
+						</tr>
+
+						<tr class="right-content-space-employee">
+							<td class="right-content-space-employee-code1"><span>#{i18n.getText('CMM021_14')}</span></td>
+							<td class="right-content-space-employee-code2"><span>#{i18n.getText('CMM021_19')}</span></td>
+							<td class="right-content-space-employee-code3"><span
+								data-bind="text: employeeCode"></span></td>
+						</tr>
+
+						<tr class="right-content-space-login">
+							<td class="right-content-space-login1"><span>#{i18n.getText('CMM021_13')}</span></td>
+							<td class="right-content-space-login2"><span>#{i18n.getText('CMM021_19')}</span></td>
+							<td class="right-content-space-login3"><span
+								data-bind="text: loginId"></span></td>
+						</tr>
+					</table>
+				</div>
+				<ui:include src="b.xhtml" />
+			</div>
+			<!-- end-right-content -->
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

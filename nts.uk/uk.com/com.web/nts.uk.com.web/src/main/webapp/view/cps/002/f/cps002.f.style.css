@@ -1,0 +1,73 @@
+#functions-area .btnRight {
+	margin-right: 35px;
+}
+
+#functions-area .btnLeft {
+	margin-left: 30px;
+}
+
+#contents-area table.cover {
+	margin: 0px 10px 20px 30px;
+}
+
+#contents-area div.caret-background {
+	width: 250px;
+	height: 470px;
+	background-color: #E0F59E;
+}
+
+#contents-area div.leftCover input.txtSearch {
+	margin: 10px 0px;
+	padding-left: 10px;
+	width: 150px;
+	height: 28px;
+	border: 1px solid #7F7F7F;
+	border-radius: 3px;
+}
+
+#singleList_container {
+	margin-top: 5px;
+}
+
+.blockTblCover {
+	margin-top: 5px;
+}
+
+.leftGrid {
+	padding-left: 50px;
+	vertical-align: top;
+}
+
+.leftFormLabel {
+	margin-bottom: 10px;
+}
+
+.txtCheckBox {
+	margin-top: 1px;
+}
+
+.setStyleDot {
+	margin-top: 3px;
+}
+
+.textAlignCenter {
+	text-align: center;
+}
+
+#multiList_headers colgroup col:NTH-CHILD(1), #multiList col:NTH-CHILD(1)
+	{
+	width: 100px !important;
+}
+
+#multiList_headers colgroup col:NTH-CHILD(2), #multiList col:NTH-CHILD(2)
+{
+	width: 175px !important;
+}
+#multiList .ui-state-active {
+	background-color: white !important;
+	color: black !important;
+}
+
+#searchCtg {
+	margin-top: 10px;
+}

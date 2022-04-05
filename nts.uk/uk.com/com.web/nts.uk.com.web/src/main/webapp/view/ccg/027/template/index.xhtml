@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="../../../sample/catalog/catalog.css" />
+			<com:scriptfile path="../../../sample/catalog/catalog.js" />
+
+			<com:scriptfile path="ccg027.temp.vm.js" />
+			<com:scriptfile path="ccg027.temp.start.js" />
+			<com:stylefile path="ccg027.temp.style.css" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+					<div>
+						<div id="overview">
+							<h1>CCG027 メール内容の設定</h1>
+							<h2>Overview</h2>
+						</div>
+						<div id="left-setting">
+							<div data-bind="ntsCheckBox: { checked: sendingAddressCheck }">Show
+								Sending Address</div>
+							<div data-bind="ntsCheckBox: { checked: setCC }">Show CC</div>
+							<div data-bind="ntsCheckBox: { checked: setBCC }">Show BCC</div>
+						</div>
+						<div id="right-setting">
+							<div data-bind="ntsCheckBox: { checked: setReply }">Show
+								Reply</div>
+							<div data-bind="ntsCheckBox: { checked: setSubject }">Show
+								Subject</div>
+							<div data-bind="ntsCheckBox: { checked: setBody }">Show
+								Body</div>
+						</div>
+						
+						<div id="bottom-setting">
+							<label>Wording</label>
+							<input id="wording" data-bind="ntsTextEditor: {value: wording}" />
+						</div>
+						<br />
+						<button id="dialog-button" class="x-large" data-bind="click: openDialogCCG207">Open
+							Dialog</button>
+					</div>
+
+					<hr></hr>
+					
+					<div>
+						<div class="tabs">
+							<ol>
+								<li><a href="#sample-tab">Sample</a></li>
+								<li><a href="#api-tab">API</a></li>
+							</ol>
+							<div id="sample-tab" class="cf">
+								<p>
+									Set relate parameters before get dialog. Then using "nts.uk.ui.windows.sub.modal" to get the dialog
+								</p>
+								<pre>
+									<![CDATA[
+	nts.uk.ui.windows.setShared("sendingAddressCheck", sendingAddressCheck);
+	nts.uk.ui.windows.setShared("SetCC", setCC);
+	nts.uk.ui.windows.setShared("SetBCC", setBCC);
+	
+	nts.uk.ui.windows.setShared("SetReply", setReply);
+	nts.uk.ui.windows.setShared("SetSubject", setSubject);
+	nts.uk.ui.windows.setShared("SetBody", setBody);
+	
+	nts.uk.ui.windows.setShared("wording", wording);
+	
+	// Mail Setting
+	nts.uk.ui.windows.setShared("MailSettings", mailSetting);
+	
+	nts.uk.ui.windows.sub.modal("com","view/ccg/027/a/index.xhtml").onClosed(() => {
+	});
+									]]>
+								</pre>
+								<p> Mail Setting use this class</p>
+								<pre>
+										<![CDATA[
+	class MailSetting {
+        subject: string;
+        text: string;
+        mailAddressCC: Array<string>;
+        mailAddressBCC: Array<string>;
+        mailReply: string;
+    }
+										]]>
+								</pre>
+							</div>	
+							<div id="api-tab" class="cf">
+								<h2>Component Properties</h2>
+								<table class="table">
+									<colgroup>
+										<col width="200px" />
+									</colgroup>
+									<thead>
+										<tr>
+											<th><h4>Name</h4></th>
+											<th><h4>Description</h4></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>sendingAddressCheck</td>
+											<td><b>Type:</b> boolean
+											<br /> Show sending address</td>
+										</tr>
+										<tr>
+											<td>SetCC</td>
+											<td><b>Type:</b> boolean
+											<br /> Show the CC</td>
+										</tr>
+										<tr>
+											<td>SetBCC</td>
+											<td><b>Type:</b> boolean
+											<br /> Show the BCC</td>
+										</tr>
+										<tr>
+											<td>SetReply</td>
+											<td><b>Type:</b> boolean
+											<br /> Show reply</td>
+										</tr>
+										<tr>
+											<td>SetSubject</td>
+											<td><b>Type:</b> boolean
+											<br /> Show the subject</td>
+										</tr>
+										<tr>
+											<td>SetBody</td>
+											<td><b>Type:</b> boolean
+											<br /> Show the body</td>
+										</tr>
+										<tr>
+											<td>wording</td>
+											<td><b>Type:</b> string
+											<br /> The text what is showed under body</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>						
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

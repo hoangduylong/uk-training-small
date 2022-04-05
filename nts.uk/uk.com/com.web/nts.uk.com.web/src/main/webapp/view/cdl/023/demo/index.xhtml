@@ -1,0 +1,223 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:EnumScript>
+				nts.uk.ctx.sys.auth.dom.role.RoleType
+			</com:EnumScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="/view/sample/catalog/catalog.css" />
+			<com:scriptfile path="/view/sample/catalog/start.js" />
+			<com:scriptfile path="/view/sample/catalog/catalog.js" />
+			<com:scriptfile path="cdl023.demo.start.js" />
+			<com:scriptfile path="cdl023.demo.vm.js" />
+
+			<style>
+#content table {
+	width: 850px;
+}
+
+#content table td {
+	padding: 10px;
+}
+
+.ntsRadioBox {
+	display: inline-block;
+	width: 94px;
+}
+</style>
+		</ui:define>
+
+		<ui:define name="content">
+
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+
+				<div id="content" class="cf">
+					<h1>CDL023 複写ダイアログ Copy Dialog</h1>
+					<hr />
+					<h2>Overview</h2>
+
+					<h4 style="margin-top: 30px; margin-bottom: 10px; font-size: 17px">Parameters:</h4>
+					<table>
+						<col width="70"></col>
+						<col width="200"></col>
+						<tr>
+							<td>複写元コード</td>
+							<td><input id="code"
+								data-bind="ntsTextEditor: {
+								value: code,
+								required: true,
+								enable: true,
+								readonly: false}" /></td>
+						</tr>
+						<tr>
+							<td>複写元名称</td>
+							<td><input id="name"
+								data-bind="ntsTextEditor: {
+								value: name,
+								required: true,
+								enable: true,
+								readonly: false}" /></td>
+						</tr>
+						<com:ko tag="if" bind="requiredRoleType">
+							<tr>
+								<td>ロールの種類</td>
+								<td><div data-bind="ntsComboBox: {
+											options: listRoleType,
+											optionsValue: 'value',
+											value: roleType,
+											optionsText: 'value',
+											editable: false,
+											enable: true,
+											columns: [ { prop: 'name', length: 10 }]}">
+									</div>
+								</td>
+							</tr>
+						</com:ko>
+						<tr>
+							<td>選択対象区分</td>
+							<td><div
+									data-bind="ntsRadioBoxGroup: {
+									options: targetList,
+									optionsValue: 'value',
+									optionsText: 'name',
+									value: selectedTarget,
+									enable: true}"></div>
+							</td>
+						</tr>
+						<com:ko tag="if" bind="enableBaseDate">
+							<tr>
+								<td>基準日</td>
+								<td><div id="base-date"
+										data-bind="ntsDatePicker: {value: baseDate, dateFormat: 'YYYY/MM/DD'}"></div>
+								</td>
+							</tr>
+						</com:ko>
+						<com:ko tag="if" bind="selectedTarget() == 10">
+							<tr>
+								<td>作業枠NO</td>
+								<td>
+									<div data-bind="ntsComboBox: {
+														name: '#[KMT009_7]',
+														options: [
+															{code: 1, name: 'Task frame 1'},
+															{code: 2, name: 'Task frame 2'},
+															{code: 3, name: 'Task frame 3'},
+															{code: 4, name: 'Task frame 4'},
+															{code: 5, name: 'Task frame 5'}
+														],
+														optionsValue: 'code',
+														visibleItemsCount: 5,
+														value: workFrameNoSelection,
+														optionsText: 'name',
+														editable: false,
+														enable: true,
+														required: true,
+														selectFirstIfNull: true
+													}"></div>
+								</td>
+							</tr>
+						</com:ko>
+						<tr>
+							<td>設定済項目リスト</td>
+							<td><input
+								data-bind="ntsTextEditor: { value: itemSetting, option: { width: '310' } }" />
+							</td>
+						</tr>
+						<!-- <tr>
+							<td>作業枠NO</td>
+							<td>
+								<div id="combo-box" data-bind="ntsComboBox: {
+									name: '作業枠NO',
+									options: ko.observable([
+										{ code: 1, name: '作業 1'},
+										{ code: 2, name: '作業 2'},
+										{ code: 3, name: '作業 3'},
+										{ code: 4, name: '作業 4'},
+										{ code: 5, name: '作業 5'},
+									]),
+									optionsValue: 'code',
+									optionsText: 'name',
+									visibleItemsCount: 5,
+									value: workFrameNoSelection
+								}"></div>
+							</td>
+						</tr> -->
+					</table>
+
+					<button style="margin-top: 10px;" data-bind="click: openDialog">Open
+						CDL023 dialog</button>
+
+					<h4 style="margin-top: 30px; margin-bottom: 10px; font-size: 17px">Return
+						value:</h4>
+					<table>
+						<col width="100"></col>
+						<col width="400"></col>
+						<tr>
+							<td>複写先List</td>
+							<td><div data-bind="text: valueReturn"></div></td>
+						</tr>
+					</table>
+
+					<h2 style="margin-top: 50px;">Guide</h2>
+					<pre>
+						<![CDATA[// Model Transfer
+interface IObjectDuplication {
+    code: string;
+    name: string;
+    targetType: TargetType;
+    itemListSetting: Array<string>;
+    baseDate?: Date; // needed when target type: 職場 or 部門 or 職場個人 or 部門個人
+    roleType?: number; // needed when target type: ロール
+}
+
+class TargetType {
+    // 雇用
+    static EMPLOYMENT = 1;
+    // 分類
+    static CLASSIFICATION = 2;
+    // 職位
+    static JOB_TITLE = 3;
+    // 職場
+    static WORKPLACE = 4;
+    // 部門
+    static DEPARTMENT = 5;
+    // 職場個人
+    static WORKPLACE_PERSONAL = 6;
+    // 部門個人
+    static DEPARTMENT_PERSONAL = 7;
+    // ロール
+    static ROLE = 8;
+    // 勤務種別
+    static WORK_TYPE = 9;
+		//作業
+    static  WORK = 10; //ver 6
+}
+
+// create object has data type IObjectDuplication and use:
+nts.uk.ui.windows.setShared("CDL023Input", object);
+
+// open dialog
+nts.uk.ui.windows.sub.modal('/view/cdl/023/a/index.xhtml').onClosed(() => {
+    // show data respond
+    let lstSelection: Array<string> = nts.uk.ui.windows.getShared("CDL023Output");
+});
+
+// check has close dialog
+nts.uk.ui.windows.setShared("CDL023Cancel", true);
+]]>
+					</pre>
+				</div>
+			</div>
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

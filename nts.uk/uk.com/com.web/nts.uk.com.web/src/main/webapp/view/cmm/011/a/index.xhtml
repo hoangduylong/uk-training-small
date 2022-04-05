@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:ValidatorScript>
+				nts.uk.ctx.bs.employee.dom.workplace.master.WorkplaceName
+				nts.uk.ctx.bs.employee.dom.workplace.master.WorkplaceExternalCode
+				nts.uk.ctx.bs.employee.dom.workplace.master.WorkplaceDisplayName
+				nts.uk.ctx.bs.employee.dom.workplace.master.WorkplaceGeneric
+				nts.uk.ctx.bs.employee.dom.department.master.DepartmentCode
+				nts.uk.ctx.bs.employee.dom.department.master.DepartmentName
+				nts.uk.ctx.bs.employee.dom.department.master.DepartmentExternalCode
+				nts.uk.ctx.bs.employee.dom.department.master.DepartmentDisplayName
+				nts.uk.ctx.bs.employee.dom.department.master.DepartmentGeneric
+			</com:ValidatorScript>
+
+			<com:scriptfile set="IGNITE" />
+
+			<com:stylefile path="style.css" />
+			<com:scriptfile path="cmm011.v2.a.service.js" />
+			<com:scriptfile path="cmm011.v2.a.vm.js" />
+			<com:scriptfile path="cmm011.v2.a.start.js" />
+		</ui:define>
+
+		<!-- PAGE CONTENT -->
+		<ui:define name="content">
+			<div id="functions-area">
+				<button id="A1_1" tabindex="1" class="proceed" data-bind="enable: items().length > 0 &amp;&amp; $root.errors.isEmpty, click: registerMaster">#{i18n.getText('CMM011_102')}</button>
+				<button id="A1_2" tabindex="2" data-bind="visible: initMode == 0, click: openWkpDepCreateDialog, enable: configuration().historyId() != null">#{i18n.getText('CMM011_204')}</button>
+				<button id="A1_2" tabindex="2" data-bind="visible: initMode == 1, click: openWkpDepCreateDialog, enable: configuration().historyId() != null">#{i18n.getText('CMM011_304')}</button>
+				<button id="A1_3" tabindex="3" class="danger" data-bind="enable: items().length > 0, click: deleteMaster">#{i18n.getText('CMM011_103')}</button>
+			</div>
+			<div id="contents-area" class="fixed-flex-layout">
+				<div class="fixed-flex-layout-left" style="padding-top: 10px; padding-left: 20px">
+					<div class="flex" style="width: max-content;">
+            <div id="A2_1" data-bind="ntsPanel:{
+							width: '400px', height: '40px', 
+							showIcon: false, direction: 'bottom'}">
+              <div id="A2_2" data-bind="ntsFormLabel: {}, visible: initMode == 0">#{i18n.getText('CMM011_202')}</div>
+              <div id="A2_2" data-bind="ntsFormLabel: {}, visible: initMode == 1">#{i18n.getText('CMM011_302')}</div>
+              <div data-bind="with: configuration" style="display: inline-block; width: 213px">
+                <div id="A2_3" style="width: 83px; display: inline-block;" data-bind="text: startDate"></div> 
+                <div id="A2_4" style="margin-left: 8px; margin-right: 8px; display: inline-block;">#{i18n.getText('CMM011_106')}</div>
+                <div id="A2_5" style="width: 83px; display: inline-block;" data-bind="text: endDate"></div>
+              </div>
+              <button id="A2_6" tabindex="6" data-bind="click: openConfigDialog" style="display: inline-block;">#{i18n.getText('CMM011_107')}</button>
+            </div>
+
+            <div class="cf" style="margin-bottom: 20px; margin-top: 5px; margin-left: 10px;">
+              <span id="A2_7" data-bind="visible: initMode == 0 &amp;&amp; isSynchronized()">#{i18n.getText('CMM011_205')}</span>
+              <span id="A2_7" data-bind="visible: initMode == 1 &amp;&amp; isSynchronized()">#{i18n.getText('CMM011_305')}</span>
+              <div style="display: inline-block;" class="pull-right">
+                <button id="A3_1" tabindex="7" class="small" data-bind="click: moveLeft">#{i18n.getText('CMM011_108')}</button>
+                <button id="A3_2" tabindex="8" class="small" data-bind="click: moveRight">#{i18n.getText('CMM011_109')}</button>
+                <button id="A3_3" tabindex="9" class="small" data-bind="click: moveUp">#{i18n.getText('CMM011_110')}</button>
+                <button id="A3_4" tabindex="10" class="small" data-bind="click: moveDown">#{i18n.getText('CMM011_111')}</button>
+              </div>
+            </div>
+          </div>
+					
+					<div style="width: 449px; color: #000; 
+								background-color: #CFF1A5; 
+								border: 1px solid #CCC; 
+								padding: 2px 2px;
+								font-size: 14px; 
+								font-family: 'DroidSansMono', 'Meiryo';">#{i18n.getText('COM008_44')}</div>
+					<div id="A4_1" tabindex="11" style="margin-bottom: 20px"
+						data-bind="ntsTreeDragAndDrop:{
+							width: 453,
+              height: 400,
+							rows: 20,
+							dataSource: items,
+							value: selectedId,
+							primaryKey: 'id',
+							childDataKey: 'children',
+							primaryText: 'nodeText',
+							multiple: false,
+							enable: true,
+							maxDeepLeaf: 10,
+							maxChildInNode: 999,
+							showCheckBox: false}">
+					</div>
+					
+				</div>
+				
+				<div class="fixed-flex-layout-right" style="padding-top: 20px;">
+					<div class="valign-center control-group">
+						<div data-bind="ntsFormLabel: {  required: true, constraint: 'DepartmentCode' }">#{i18n.getText('CMM011_112')}</div>
+						<input tabindex="12" id="A5_2" data-bind="ntsTextEditor: {
+							name: '#[CMM011_112]',
+							value: selectedCode,
+							constraint: 'DepartmentCode',
+							required: true, enable: selectedId() != null }" />
+					</div>
+					<div class="valign-center control-group">
+						<div data-bind="ntsFormLabel: {  required: true, constraint: 'DepartmentName' }">#{i18n.getText('CMM011_113')}</div>
+						<input tabindex="13" id="A6_2" data-bind="ntsTextEditor: {
+							name: '#[CMM011_113]',
+							value: selectedName,
+							constraint: 'DepartmentName',
+							required: true, enable: selectedId() != null }" />
+					</div>
+					<div class="valign-center control-group">
+						<div data-bind="ntsFormLabel: {  required: true, constraint: 'WorkplaceDisplayName' }">#{i18n.getText('CMM011_114')}</div>
+						<input tabindex="14" id="A7_2" data-bind="ntsTextEditor: {
+							name: '#[CMM011_114]',
+							value: selectedDispName,
+							constraint: 'WorkplaceDisplayName',
+							required: true, enable: selectedId() != null }" />
+					</div>
+					<div class="valign-center control-group">
+						<div data-bind="ntsFormLabel: {  required: true, constraint: 'WorkplaceGeneric' }">#{i18n.getText('CMM011_115')}</div>
+						<input tabindex="15" id="A8_2" data-bind="ntsTextEditor: {
+							name: '#[CMM011_115]',
+							value: selectedGenericName,
+							constraint: 'WorkplaceGeneric',
+							option: { width: '512px' },
+							required: true, enable: selectedId() != null }" />
+					</div>
+					<div class="valign-center control-group">
+						<div data-bind="ntsFormLabel: {  required: false, constraint: 'WorkplaceExternalCode' }">#{i18n.getText('CMM011_116')}</div>
+						<input tabindex="16" id="A9_2" data-bind="ntsTextEditor: {
+							name: '#[CMM011_116]',
+							value: selectedExternalCode,
+							constraint: 'WorkplaceExternalCode',
+							required: false, enable: selectedId() != null }" />
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

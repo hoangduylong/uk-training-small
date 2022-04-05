@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script
+				src="http://cdn-na.infragistics.com/jquery/20132/latest/js/extensions/infragistics.ui.tree.knockout-extensions.js"></script>
+			<script
+				src="http://cdn-na.infragistics.com/jquery/20132/latest/js/extensions/infragistics.ui.editors.knockout-extensions.js"></script>
+			<script
+				src="http://cdn-na.infragistics.com/jquery/20132/latest/js/extensions/infragistics.ui.grid.knockout-extensions.js"></script>
+			<script>var dialogSize = { width: 480, height: 590 };</script>
+			<com:ValidatorScript>
+				nts.uk.ctx.sys.portal.dom.standardmenu.MenuDisplayName
+			</com:ValidatorScript>
+			<com:stylefile path="ccg013.k.style.css" />
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="ccg013.k.start.js" />
+			<com:scriptfile path="ccg013.k.service.js" />
+			<com:scriptfile path="ccg013.k.vm.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<div id="process">
+					<!-- K1_11: Button Registration-->
+					<button id="btnSave" class="proceed" data-bind="click: register"
+						tabindex="3">#{i18n.getText('CCG013_100')}</button>
+					<!-- Button Close dialog -->
+					<button id="btnCancel" data-bind="click: closeDialog" tabindex="4">#{i18n.getText('CCG013_101')}</button>
+				</div>
+			</div>
+
+			<div>
+				<table id="table">
+					<tr>
+						<td><div id="lb_systemSelection" data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CCG013_47')}</div></td>
+						<td><div id="combo-box" tabindex="1" style="width: 160px"
+								data-bind="ntsComboBox: {
+																name: '#[CCG013_24]',
+																options: itemList,
+																optionsValue: 'code',
+																value: selectedCode,
+																optionsText: 'name',
+																enable: isEnable
+																}">
+							</div></td>
+					</tr>
+				</table>
+				<div id="caret-bottom">
+					<span class="caret-bottom caret-inline"></span>
+				</div>
+				<div id="gridlist">
+
+					<div id="search">
+						<div style="width: 300px" tabindex="2"
+							data-bind="ntsSearchBox: {
+								searchMode: 'filter',
+								targetKey: 'id',
+								mode: 'igGrid',
+								comId: 'grid',
+								items: list,
+								selected: currentCode,
+								selectedKey: 'id',
+								fields: ['displayOrder', 'displayName']}" />
+					</div>
+
+					<table id="grid"></table>
+					<br />
+				</div>
+			</div>
+
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,35 @@
+#contents-area {
+	padding-top: 0px !important;
+}
+
+#emp-component {
+	margin-left: 90px;
+}
+
+.ntsControl.radio-wrapper {
+	margin-left: 56px;
+	margin-top: 7px;
+}
+
+.radio {
+	width: 211px;
+}
+
+.ntsRadioBox:not(:last-child) {
+	margin-bottom: 17px;
+	display: block;
+}
+
+.radio-right {
+	/*margin-top: -52px;*/
+	margin-left: 20px;
+}
+
+.control-group .form-label {
+	width: 100px;
+}
+
+.ntsDateRangeComponent {
+	float: unset !important;
+	display: inline-block;
+}

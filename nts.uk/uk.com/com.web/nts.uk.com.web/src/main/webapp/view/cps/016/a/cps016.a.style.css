@@ -1,0 +1,155 @@
+/* #master-wrapper { */
+/* 	width: 1405px; */
+/* } */
+
+/* #master-wrapper { */
+/*     height: 890px; */
+/*     width: 1352px; */
+/* } */
+ 
+body {
+	overflow: hidden;
+}
+
+.valign-center {
+	vertical-align: middle !important;
+}
+
+.divHeader {
+	margin: 5px;
+}
+
+#A_BTN_NEW {
+	margin-left: 19px;
+}
+
+#A_BTN_REGISTER {
+	margin-left: 10px;
+}
+
+#A_BTN_COPPY {
+	margin-left: 15px;
+}
+
+#functions-area button.danger {
+	margin-left: 45px;
+	margin-right: 30px;
+}
+
+#A_BTN_DELETE {
+	margin-left: 100px;
+}
+
+#A_BTN_JUMP {
+	min-width: 0px;
+	margin-left: 0px;
+}
+
+#A_BTN_CPS016_4 {
+	margin-left: 15px;
+	margin-right: 0px;
+}
+
+#left-content {
+	margin-left: 10px;
+	margin-top: 12px;
+	padding: 20px;
+	float: left;
+	min-height: 403px;
+	min-width: 200px !important;
+	/* 	width: 15%; */
+}
+
+button.search-btn {
+	/* margin: 5px; */
+	margin-left: 23px;
+	width: 77px;
+}
+
+#right-content {
+	margin-left: 30px;
+	margin-top: 14px;
+	float: left;
+	min-height: 408px;
+	width: 560px;
+}
+
+.input_002 {
+	display: inline-block;
+}
+
+.table_content td {
+	border: 10px solid transparent;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
+.sub_table {
+	width: 97px;
+	height: 376px;
+	background: #F3F3F3;
+	margin-top: 62px;
+	border: 5px solid white;
+	border-left: none;
+}
+
+div#left-content.relative.bg-green.caret-right.caret-background {
+	width: 381px;
+}
+
+input.ntsSearchBox.nts-editor.ntsSearchBox_Component {
+	width: 208px !important;
+}
+
+i.icon.icon-searchbox {
+	top: 8px;
+}
+
+.layout-control .drag-panel {
+	height: 500px !important;
+}
+#contents-area {
+	min-width: 1920px !important;
+}
+
+#contents-area-left {
+	width: 350px;
+	height: 520px;
+	float: left;
+	clear: right;
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+#contents-area-right {
+	width: 900px;
+	height: 520px;
+	float: left;
+	clear: right;
+	padding-left: 100px;
+	margin-top: 10px;
+}
+
+#contents-area .form-group {
+	margin-bottom: 20px;
+}
+
+#contents-area .form-group .row {
+	padding-bottom: 15px;
+}
+
+#contents-area .form-group .coll {
+	width: 155px;
+	vertical-align: top; /*can cho len thang hang nhau:*/
+}
+
+#coll {
+	width: 150px;
+}
+
+.ui-widget-content.ui-iggrid-tablebody.ui-ig-record.ui-iggrid-record th
+	{
+	background-color: #CFF1A5;
+	color: #000;
+}

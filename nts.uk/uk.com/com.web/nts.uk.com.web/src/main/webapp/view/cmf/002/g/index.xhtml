@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+<ui:composition template="/master/dialog.xhtml">
+    <ui:define name="htmlHead">
+        <script type='text/javascript'>
+            var dialogSize = {
+                width : 1000,
+                height : 590
+            };
+        </script>
+        <com:ValidatorScript>
+            nts.uk.ctx.exio.dom.exo.cdconvert.ConvertCode
+            nts.uk.ctx.exio.dom.exo.cdconvert.ConvertName
+            nts.uk.ctx.exio.dom.exo.cdconvert.CdConvertValue
+        </com:ValidatorScript>
+        <com:scriptfile set="IGNITE" />
+        <com:scriptfile path="../share/model.js" />
+        <com:stylefile path="cmf002.g.style.css" />
+        <com:scriptfile path="cmf002.g.service.js" />
+        <com:scriptfile path="cmf002.g.vm.js" />
+        <com:scriptfile path="cmf002.g.start.js" />
+    </ui:define>
+
+    <ui:define name="content">
+        <div id="functions-area">
+            <button data-bind="click: btnCreateCodeConvert, enable: enableBtn "
+                    tabindex="1">#{i18n.getText('CMF002_114')}</button>
+            <button class="proceed" data-bind="click: btnRegOutputCodeConvert, enable: $root.errors.isEmpty"
+                    tabindex="2">#{i18n.getText('CMF002_115')}</button>
+            <button data-bind="click: btnCloseDialog" tabindex="3">#{i18n.getText('CMF002_116')}</button>
+            <button class="danger" data-bind="click: btnDeleteOutputCodeConvert, enable: screenMode() == 1"
+                    tabindex="4">#{i18n.getText('CMF002_117')}</button>
+        </div>
+        <div id="contents-area" class="fixed-flex-layout">
+            <div id="left-content" class="fixed-flex-layout-left" style="padding-top: 5px;">
+                <div
+                        data-bind="ntsPanel:{showIcon:true, direction: 'none', visible: true}"
+                        style="padding-top: 10px;">
+                    <div class="flex">
+                        <div data-bind="ntsFormLabel: { }">#{i18n.getText('CMF002_118')}</div>
+                        <div style="width: 220px" tabindex="5"
+                             data-bind="ntsSearchBox: {
+									searchMode :'filter',
+									targetKey: 'dispConvertCode',
+									mode: 'igGrid',
+									comId: 'G2_3',
+									items: listOutputCodeConvert,
+									selected: selectedCodeConvert,
+									selectedKey: 'dispConvertCode',
+									fields: ['dispConvertCode', 'dispConvertName'] }" />
+                    </div>
+                    <div class="flex">
+                        <table  id="G2_3" class="auto-increment"
+                                data-bind="ntsGridList: {
+											options: listOutputCodeConvert,
+											optionsValue: selectedCodeConvert,
+											primaryKey: 'dispConvertCode',
+                                            columns:
+                                            [
+                                            	{headerText: '#{i18n.getText('CMF002_119')}', key: 'dispConvertCode', width: 70, formatter: _.escape},
+			                					{headerText: '#{i18n.getText('CMF002_120')}', key: 'dispConvertName', width: 248, formatter: _.escape} ],
+                                            multiple: false,
+                                            value: selectedCodeConvert,
+                                            rows: 14,
+                                            enable: true}">
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="fixed-flex-layout-right">
+                <div class="line-height flex">
+                    <div>
+                        <div class="float_left display_block" style = "padding-right: 50px;"
+                             data-bind="ntsFormLabel: {constraint: ['ConvertCode', 'ConvertName'], required:true  }">#{i18n.getText('CMF002_121')}</div>
+                    </div>
+                    <div>
+                        <input id = "G3_1" type="text" style="width: 30px;" tabindex="6"
+                               data-bind="ntsTextEditor: {
+										value: codeConvertCurrent().convertCode,
+										name:'#{i18n.getText('CMF002_122')}',
+										required: true,
+										constraint: 'ConvertCode',
+										enable: screenMode() == 0 }" />
+                        <input type="text" tabindex="7"
+                               data-bind="ntsTextEditor: {
+										value: codeConvertCurrent().convertName,
+										name:'#{i18n.getText('CMF002_123')}',
+										required: true,
+										constraint: 'ConvertName',
+										enable: true }" />
+
+                    </div>
+                </div>
+                <div class="flex">
+                    <div class="float_left display_block"
+                         data-bind="ntsFormLabel: { required:true }">#{i18n.getText('CMF002_124')}</div>
+                </div>
+
+                <div class="flex">
+                    <button style="margin-left: 20px;" data-bind="click: btnAddCdConvertDetails"
+                            tabindex="-1">#{i18n.getText('CMF002_125')}</button>
+
+                    <button class="danger push-right-1x" data-bind="click: btnRemoveCdConvertDetails"
+                            tabindex="-1">#{i18n.getText('CMF002_126')}</button>
+                </div>
+                <div class="flex">
+                    <table id="fixed-table" tabindex="8">
+                        <colgroup>
+                            <col width="50px"/>
+                            <col width="132px"/>
+                            <col width="132px"/>
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th class="ui-widget-header"></th>
+                            <th class="ui-widget-header">#{i18n.getText('CMF002_127')}</th>
+                            <th class="ui-widget-header">#{i18n.getText('CMF002_128')}</th>
+                        </tr>
+                        </thead>
+                        <tbody data-bind="foreach: codeConvertCurrent().listCdConvertDetail">
+                        <tr data-bind="attr: { 'data-id': lineNumber }">
+                            <td class="order-column"><span
+                                    data-bind="text: lineNumber"></span></td>
+                            <td><input tabindex="9"
+                                       data-bind="attr: { 'data-focus-input': lineNumber }, ntsTextEditor: {value: outputItem, constraint: 'CdConvertValue',  name:'#{i18n.getText('CMF002_127')}', option: {width: '98px'}}" /></td>
+                            <td><input tabindex="9"
+                                       data-bind="attr: { 'data-focus-system': lineNumber }, ntsTextEditor: {value: systemCode, constraint: 'CdConvertValue', required: true, name:'#{i18n.getText('CMF002_128')}', option: {width: '98px'}}" /></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="flex" style="padding-top: 15px;">
+                    <div data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_129')}</div>
+                    <button tabindex="11"
+                            data-bind="ntsHelpButton: {image: '../resource/上記の設定にないコード.jpg', position: 'bottom left'}">?</button>
+                    <div class="cf" data-bind="ntsSwitchButton: {
+										options: acceptWithoutSettingItems,
+										optionsValue: 'code',
+										optionsText: 'name',
+										value: codeConvertCurrent().acceptWithoutSetting,
+										enable: true }" tabindex="12" />
+                </div>
+
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

@@ -1,0 +1,45 @@
+table {
+	border: 1px #c0c0c0 solid;
+	width:800px;
+}
+
+thead {
+	background-color: #deefff;
+}
+input {
+	height:20px;
+}
+
+select {
+	width:80px;
+	height:22px;
+}
+
+.type_select {
+	width:50px;
+	height:22px;
+	float: left;
+}
+
+div {
+	vertical-align:middle;
+}
+
+.row_label {
+	background-color: #ceefdf;
+	width:150px;
+}
+.param_name {
+	width:150px;
+}
+.param_value {
+	width:120px;
+}
+.add_button{
+	width:50px;
+}
+.params {
+	font-size:80%;
+	width:370px;
+	height:200px;
+}

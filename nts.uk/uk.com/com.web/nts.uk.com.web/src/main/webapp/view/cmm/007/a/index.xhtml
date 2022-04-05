@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="../../../../master/sidebar.xhtml">
+		<ui:define name="sidebar-head">
+			<com:ValidatorScript>
+					nts.uk.ctx.bs.employee.dom.temporaryabsence.frame.TempAbsenceFrameName
+					nts.uk.ctx.bs.employee.dom.temporaryabsence.frame.TempAbsenceFrameNo
+					nts.uk.shr.com.i18n.name.LongName
+					nts.uk.shr.com.i18n.name.ShortName
+					nts.uk.shr.com.i18n.name.IntermediateDesignation
+			</com:ValidatorScript>
+
+			<com:scriptfile set="IGNITE" />
+
+			<script>
+				__viewContext.primitiveValueConstraints.PlanYearHolidayFrameName = {
+						valueType: 'String',
+						maxLength: 12,
+				};
+
+				__viewContext.primitiveValueConstraints.OvertimeWorkFrameName = {
+						valueType: 'String',
+						maxLength: 12,
+				};
+				
+				__viewContext.primitiveValueConstraints.WorkdayoffFrameName = {
+						valueType: 'String',
+						maxLength: 12,
+				};
+
+				__viewContext.primitiveValueConstraints.WorkplaceGroup = {
+						valueType: 'String',
+						maxLength: 40,
+				};
+				__viewContext.primitiveValueConstraints.WorkName = {
+						valueType: 'String',
+						maxLength: 12,
+				};
+			</script>
+			<!--Tab CMM007_104-->
+			<com:stylefile path="../i/cmm007.i.main.css" />
+			<com:scriptfile path="../i/cmm007.i.service.js" />
+			<com:scriptfile path="../i/cmm007.i.vm.js" />
+
+			<com:stylefile path="../g/cmm007.g.main.css" />
+			<com:scriptfile path="../g/cmm007.g.service.js" />
+			<com:scriptfile path="../g/cmm007.g.vm.js" />
+
+			<com:stylefile path="../e/cmm007.e.main.css" />
+			<com:scriptfile path="../e/cmm007.e.service.js" />
+			<com:scriptfile path="../e/cmm007.e.vm.js" />
+
+			<com:stylefile path="../d/cmm007.d.main.css" />
+			<com:scriptfile path="../d/cmm007.d.service.js" />
+			<com:scriptfile path="../d/cmm007.d.vm.js" />
+
+			<com:stylefile path="../c/cmm007.c.main.css" />
+			<com:scriptfile path="../c/cmm007.c.service.js" />
+			<com:scriptfile path="../c/cmm007.c.vm.js" />
+
+			<com:stylefile path="../b/cmm007.b.main.css" />
+			<com:scriptfile path="../b/cmm007.b.service.js" />
+			<com:scriptfile path="../b/cmm007.b.vm.js" />
+
+			<com:stylefile path="cmm007.a.main.css" />
+			<com:scriptfile path="cmm007.a.vm.js" />
+			<com:scriptfile path="cmm007.a.start.js" />
+		</ui:define>
+		<ui:define name="sidebar">
+			<ul tabindex="1" class="navigator">
+				<li data-bind="click: onSelectTabB"><a tabindex="-1"
+					href="#tabpanel-1" role="tab-navigator" class="active">#{i18n.getText('CMM007_2')}</a></li>
+				<li data-bind="click: onSelectTabC"><a tabindex="-1"
+					href="#tabpanel-2" role="tab-navigator">#{i18n.getText('CMM007_3')}</a></li>
+					
+				<!-- ko xoá code dưới vì đối ứng http://192.168.50.4:3000/issues/88358 -->
+				<!-- <li data-bind="click: onSelectTabD"><a tabindex="-1"
+					href="#tabpanel-3" role="tab-navigator">#{i18n.getText('CMM007_4')}</a></li> -->
+					
+				<li data-bind="click: onSelectTabE"><a tabindex="-1"
+					href="#tabpanel-4" role="tab-navigator">#{i18n.getText('CMM007_49')}</a></li>
+				<li data-bind="click: onSelectTabG"><a tabindex="-1"
+					href="#tabpanel-5" role="tab-navigator">#{i18n.getText('CMM007_73')}</a></li>
+				<!--Tab CMM007_104-->
+				<!-- <li data-bind="click: onSelectTabI"><a tabindex="-1"
+					href="#tabpanel-6" role="tab-navigator">#{i18n.getText('CMM007_104')}</a></li> -->
+			</ul>
+		</ui:define>
+		<ui:define name="sidebar-content">
+			<div id="functions-area"></div>
+			<!-- COMPANY WORK TIME SETTING  START -->
+			<div id="tabpanel-1" role="tabpanel" data-bind="with: systemDefine()">
+				<ui:include src="../b/index.xhtml" />
+			</div>
+			<div id="tabpanel-2" role="tabpanel"
+				data-bind="with: temporaryAbsenceFr()">
+				<ui:include src="../c/index.xhtml" />
+			</div>
+			
+			<!-- ko xoá code dưới vì đối ứng http://192.168.50.4:3000/issues/88358 -->
+			<!-- <div id="tabpanel-3" role="tabpanel"
+				data-bind="with: planYearHolidayFr()">
+				<ui:include src="../d/index.xhtml" />
+			</div> -->
+			
+			<div id="tabpanel-4" role="tabpanel"
+				data-bind="with: overtimeWorkFr()">
+				<ui:include src="../e/index.xhtml" />
+			</div>
+			<div id="tabpanel-5" role="tabpanel" data-bind="with: workdayoffFr()">
+				<ui:include src="../g/index.xhtml" />
+			</div>
+			<!--Tab CMM007_104-->
+			<!-- <div id="tabpanel-6" role="tabpanel" data-bind="with: workName()">
+				<ui:include src="../i/index.xhtml" />
+			</div> -->
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

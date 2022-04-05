@@ -1,0 +1,112 @@
+{
+    "defaultSeverity": "warning",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "linterOptions": {
+        "exclude": [
+            "node_modules/**",
+            "ClientApp/**/*.d.ts"
+        ]
+    },
+    "rules": {
+        "quotemark": [
+            true,
+            "single"
+        ],
+        "indent": [
+            true,
+            "spaces"
+        ],
+        "align": [
+            true,
+            "parameters",
+            "statements"
+        ],
+        "member-ordering": [
+            false,
+            {
+                "order": [
+                    "public-static-field",
+                    "public-instance-field",
+                    "public-constructor",
+                    "private-static-field",
+                    "private-instance-field",
+                    "private-constructor",
+                    "public-instance-method",
+                    "protected-instance-method",
+                    "private-instance-method"
+                ]
+            }
+        ],
+        "file-header": [
+            false,
+            {
+                "match": "Copyright \\d{4}",
+                "allow-single-line-comments": true,
+                "default": "Copyright Nittsu System Viet Nam",
+                "enforce-trailing-newline": true
+            }
+        ],
+        "interface-name": [
+            false,
+            "always-prefix"
+        ],
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-operator",
+            "check-typecast"
+        ],
+        "no-this-assignment": [
+            false,
+            {
+                "allowed-names": [
+                    "^self$",
+                    "^that$",
+                    "^vm$"
+                ],
+                "allow-destructuring": true
+            }
+        ],
+        "encoding": true,
+        "ordered-imports": false,
+        "object-literal-sort-keys": false,
+        "no-consecutive-blank-lines": false,
+        "switch-default": true,
+        "no-switch-case-fall-through": true,
+        "eofline": false,
+        "array-type": false,
+        "trailing-comma": false,
+        "object-literal-key-quotes": false,
+        "only-arrow-functions": false,
+        "max-line-length": false,
+        "prefer-const": false,
+        "no-trailing-whitespace": false,
+        "no-empty": false,
+        "no-var-keyword": true,
+        "callable-types": false,
+        "space-before-function-paren": false,
+        "triple-equals": false,
+        "no-console": false,
+        "no-shadowed-variable": false,
+        "forin": false,
+        "variable-name": false,
+        "prefer-for-of": false,
+        "radix": false,
+        "ban-types": false,
+        "no-namespace": false,
+        "no-debugger": false,
+        "no-unused-expression": false,
+        "max-classes-per-file": false,
+        "one-variable-per-declaration": false,
+        "no-unsafe-finally": true,
+        "no-duplicate-imports": true,
+        "newline-per-chained-call": false,
+        "newline-before-return": true,
+        "comment-format": true,
+        "no-use-before-declare": false,
+        "arrow-return-shorthand": true,
+        "class-name": true
+    }
+}

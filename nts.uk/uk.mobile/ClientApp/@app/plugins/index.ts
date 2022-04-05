@@ -1,0 +1,12 @@
+import '@app/plugins/goto';
+import '@app/plugins/mask';
+import '@app/plugins/ajax';
+import '@app/plugins/i18n';
+import '@app/plugins/modal';
+import '@app/plugins/picker';
+import '@app/plugins/validate';
+import '@app/plugins/dialog';
+import '@app/plugins/object';
+import '@app/plugins/date-time';
+import '@app/plugins/auth';
+import '@app/plugins/bstrp';

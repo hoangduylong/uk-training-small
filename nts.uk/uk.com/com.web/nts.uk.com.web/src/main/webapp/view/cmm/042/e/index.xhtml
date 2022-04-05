@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script type='text/javascript'>
+				var dialogSize = {
+					width : 600,
+					height : 410
+				};
+			</script>
+			<com:ValidatorScript>
+					nts.uk.ctx.bs.employee.dom.employee.mgndata.RemoveReason
+			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cmm042.e.style.css" />
+			<com:scriptfile path="cmm042.e.service.js" />
+			<com:scriptfile path="cmm042.e.vm.js" />
+			<com:scriptfile path="cmm042.e.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area" style="margin-left: 10px; margin-top: 10px">
+				<div class="form-group">
+					
+					<div class="row1"> <!-- row 1 -->
+						<div class="input_row1" style="margin-left: 5px"
+							data-bind="ntsFormLabel: { required: false }">  ポート番号 </div>
+						<div class="input_row1 input_code" style="margin-left: 21px;">
+							<span data-bind="text: portType"></span>
+						</div>
+					</div>
+					
+					<div class="row2 cell valign-center" ><!-- row 2 --> 
+						<div style="margin-left: 5px" class="component_row2" data-bind="ntsFormLabel: { required: false }"> 使用区分  </div>
+						<div style="width: 100px; margin-left: 26px" class="component_row2 valign-center" id="combo-box-Cab"
+							data-bind="ntsComboBox: {
+										options: listCable,
+										optionsValue: 'value',
+										value: selectedCode_Cable,
+										optionsText: 'text',
+										enable: true,
+										editable: false,
+										columns: [
+											{ prop: 'text', length: 10 }
+										]}"></div>
+						<div style="margin-left: 31px" class="component_row2" data-bind="ntsFormLabel: { required: false }"> 常時収集  </div>
+						<div style="width: 100px; margin-left: 26px" class="component_row2 valign-center" id="combo-box-AlwaysCollect"
+							data-bind="ntsComboBox: {
+										options: listSpeed,
+										optionsValue: 'value',
+										value: selectedCode_Speed,
+										optionsText: 'text',
+										enable: true,
+										editable: false,
+										columns: [
+											{ prop: 'text', length: 8 }
+										]}"></div>									
+					</div>
+
+					<div class="row3"> <!-- row 3 --> 
+						<span> モデム（ターミナルアダプタ）種類 </span>
+					</div>
+					
+					<div class="groupDetail" style="margin-left: 117px"> 
+						<div class="row4"> <!-- row 4 --> 
+							<div data-bind="ntsRadioBoxGroup: {
+								options: itemList,
+								optionsValue: 'id',
+								optionsText: 'name',
+								value: selectedId,
+								enable: true}"></div>
+						</div>
+						
+						<div class="row5"> <!-- row 5 -->
+							<div style="" class="component_row5">
+								<button data-bind="click: showDialogF, enable: enaBtnshowDialogF()"> 選択 </button>
+							</div>
+							<div class="component_row5" style="margin-left : 82px;"> 
+								<span data-bind="text: resultFromF"> 123 </span>
+							</div>
+						</div>
+						
+						<div class="row6"> <!-- row 6 --> 
+							<div style="margin-left: 5px" class="component_row6" data-bind="ntsFormLabel: { required: false }"> 使用区分  </div>
+							<div class="component_row6" style="margin-left: 45px;">
+								<input style="width: 275px" id="A_INP_COMMAND" data-bind="ntsTextEditor: {
+															value: codeCommand,
+															required: false,
+															enable: true }" />
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<button style=" margin-top: 10px " class="proceed x-large" data-bind="click: pushDataToAScreen">了解</button>
+				<button style=" margin-top: 10px " class="x-large" data-bind="click: close">取消</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

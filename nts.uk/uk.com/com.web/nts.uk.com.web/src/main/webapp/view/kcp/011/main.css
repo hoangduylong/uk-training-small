@@ -1,0 +1,13 @@
+#workplace-group-pannel {
+    margin: 15px;
+}
+.icon-78{
+    background:url('icon/icon78.png');
+    width: 18px;
+    height: 18px;
+    background-size: 20px 20px;
+}
+.cssDiv{
+    max-height: 18px;
+    text-align: center;
+}

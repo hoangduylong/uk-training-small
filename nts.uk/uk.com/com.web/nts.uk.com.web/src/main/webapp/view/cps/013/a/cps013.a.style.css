@@ -1,0 +1,51 @@
+.link_button{
+	margin-right: 15px;
+	display: inline;
+	float: right;
+}
+
+.hr_width{
+	width: 760px;
+}
+
+#table tr td {
+    padding-top: 15px;
+}
+
+.column_left{
+    padding-right:200px;
+}
+
+.column_right{
+    padding-left: 10px;
+}
+
+.label_left{
+	padding-left:30px;
+}
+
+.label_right{
+	padding-left:40px;
+}
+
+.table1 th.tbl-th {
+	border: 1px solid #999999;
+	background-color: #CFF1A5;
+	height: 25px;
+    font-weight: bold;
+}
+
+.table1 td.tbl-td {
+	border: 1px solid #999999;
+	border-top: 0px
+}
+
+#oniggrid{
+	padding-left: 645px;
+    padding-top: -147px;
+    margin-top: -60px;
+}
+
+#grid2_flag > span > div > label > span{
+	margin-left: 2px;
+}

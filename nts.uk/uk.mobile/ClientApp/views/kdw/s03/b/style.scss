@@ -1,0 +1,39 @@
+.kdws03b {
+    .mgrid-lock{
+        background-color: #CCC !important;
+    }
+    .mgrid-reflect{
+        background-color: #BFEA60 !important;
+    }
+    .mgrid-manual-edit-other{
+        background-color: #CEE6FF !important;
+    }
+    .mgrid-manual-edit-target{
+        background-color: #94B7FE !important;
+    }
+    .mgrid-calc{
+        background-color: #F69164 !important;
+    }
+    .mgrid-alarm{
+        background-color: #F6F636 !important;
+    }
+    .mgrid-error{
+        background-color: #FD4D4D !important;
+    }
+    .custom-show {
+        .card-header {
+            &.db-caret-right {
+                &:before {
+                    content: '\f105';
+                }
+            }  
+        }
+        &.show {
+            .card-header {
+                &:before {
+                    transform: none;
+                }
+            }
+        }
+    }
+}

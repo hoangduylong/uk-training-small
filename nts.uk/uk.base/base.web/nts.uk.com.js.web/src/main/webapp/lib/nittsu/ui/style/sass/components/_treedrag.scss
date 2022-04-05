@@ -1,0 +1,31 @@
+@import "_ignitecommons.scss";
+
+.ui-igtree{
+	border: 1px solid #dddddd;
+}
+.ui-igtree .ui-igtree-root{
+	border: 0px white solid;
+}
+.ui-igtree .ui-igcheckbox-normal-on {
+	top: -2px;
+}
+.ui-igtree .ui-igcheckbox-normal-off {
+	top: -4px;
+    left: -2px;
+}
+.ui-igtree li{
+	list-style-type: none;
+}
+.ui-igtree .ui-igtree-dropindicator .ui-icon {
+	float: none !important;
+	top: 0;
+	margin-top: -1px;
+}
+
+.ui-igtree .ui-igtree-dropindicator .ui-icon-arrowthick-1-e{
+	margin-top: -5px;
+}
+
+.ui-igtree .ui-igtree-dropindicator p {
+	vertical-align: middle;
+}

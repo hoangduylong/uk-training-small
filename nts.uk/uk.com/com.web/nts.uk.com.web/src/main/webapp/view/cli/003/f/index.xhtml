@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:com="http://xmlns.jcp.org/jsf/component"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+  <body>
+    <ui:composition template="/master/base.xhtml">
+      <ui:define name="htmlHead">
+        <com:ValidatorScript>
+          nts.uk.shr.com.time.TimeClockWithSeconds
+        </com:ValidatorScript>
+        <com:scriptfile set="IGNITE" />
+        <com:scriptfile path="cli003.f.service.js" />
+        <com:scriptfile path="cli003.f.vm.js" />
+        <com:stylefile path="cli003.f.style.css" />
+      </ui:define>
+      <ui:define name="content">
+        <div id="functions-area">
+          <a
+            class="goback"
+            data-bind="ntsLinkButton: { jump: '/view/cli/003/a/index.xhtml' }"
+            >#{i18n.getText('CLI003_2')}</a
+          >
+        </div>
+        <div id="contents-area">
+          <div class="contentF">
+            <com:ko-if bind="isDisplayText">
+              <div id="F2_2">
+                <label>#{i18n.getText('CLI003_60')}</label>
+              </div>
+            </com:ko-if>
+            <div id="F2">
+              <table tabindex="2" id="igGridLog"></table>
+            </div>
+            <div id="bottom-button">
+              <button
+                id="F3_1"
+                class="small"
+                data-bind="click: previousScreenB"
+              >
+                #{i18n.getText('CLI003_20')}
+              </button>
+              <button
+                tabindex="3"
+                id="F1_1"
+                class="x-large proceed"
+                data-bind="click: exportCsvF, hasFocus:true"
+              >
+                #{i18n.getText('CLI003_8')}
+              </button>
+            </div>
+          </div>
+        </div>
+      </ui:define>
+      <!-- F Screen -->
+    </ui:composition>
+  </body>
+</html>

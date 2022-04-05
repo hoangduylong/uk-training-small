@@ -1,0 +1,562 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:ValidatorScript>
+					nts.uk.ctx.bs.company.dom.company.CompanyCode
+					nts.uk.ctx.bs.company.dom.company.Name
+					nts.uk.ctx.bs.company.dom.company.primitive.KNName
+					nts.uk.ctx.bs.company.dom.company.primitive.ABName
+					nts.uk.ctx.bs.company.dom.company.primitive.TaxNo
+					nts.uk.ctx.bs.company.dom.company.primitive.RepName
+					nts.uk.ctx.bs.company.dom.company.primitive.RepJob
+					nts.uk.shr.com.primitive.PostCode
+					nts.uk.ctx.bs.company.dom.company.primitive.Add_1
+					nts.uk.ctx.bs.company.dom.company.primitive.Add_2
+					nts.uk.ctx.bs.company.dom.company.primitive.Add_Kana_1
+					nts.uk.ctx.bs.company.dom.company.primitive.Add_Kana_2
+					nts.uk.ctx.bs.company.dom.company.primitive.PhoneNum 
+					nts.uk.ctx.bs.company.dom.company.primitive.FaxNum
+				</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cmm001.a.style.css" />
+			<com:scriptfile path="cmm001.a.start.js" />
+			<com:scriptfile path="cmm001.a.vm.js" />
+			<com:scriptfile path="cmm001.a.service.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<!-- A1_1 -->
+				<button id="reset" tabindex="1" class="group-button-1"
+					data-bind="click: innit">#{i18n.getText('CMM001_1')}</button>
+				<!-- A1_2 -->
+				<button id="register" tabindex="2" class="proceed group-button-1"
+					data-bind="click: register, enable:  $root.errors.isEmpty">#{i18n.getText('CMM001_2')}</button>
+				<!-- A1_3 -->
+				<button id="setting" tabindex="3" class="group-button-1"
+					data-bind="click: openEDialog, enable: !checkInsert()">#{i18n.getText('CMM001_3')}</button>
+				<!-- A1_4 -->
+				<button id="masterLog" tabindex="4" class="group-button-1"
+				    data-bind="visible: false">#{i18n.getText('CMM001_4')}</button>
+				<button tabindex="5" class="group-button-1" id="print-button" data-bind="click: exportExcel" hidden= "false">#{i18n.getText('KMK007_4')}</button>  
+			</div>
+			<div id="contents-area" class="fixed-flex-layout" style="display: none" data-bind="visible: true">
+				<div class="fixed-flex-layout-left">
+					<div id="ntsleft" class="bg-green caret-right caret-background">
+						<!-- A2_2 -->
+						<div id="displayAttribute" tabindex="6"
+							data-bind="ntsCheckBox: {checked: display}"
+							class="cf minimalist ntsCheckbox-left">#{i18n.getText('CMM001_5')}</div>
+						<!-- A2_1 -->
+						<i class="icon icon-searchbox"></i>
+						<div style="margin-left: 20px; margin-top: 5px"
+							class="flex valign-center">
+							<!-- A2_11 -->
+							<div id="codeNameLb" data-bind="ntsFormLabel: {}">
+								<label id="codeName">#{i18n.getText('CMM001_40')}</label>
+							</div>
+							<!-- A2_3 -->
+							<div style="width: 260px" tabindex="7"
+								data-bind="ntsSearchBox:
+                    	       {targetKey: 'companyCode', comId: 'gridCompany',
+                    	        items: sel001Data, 
+                    	        selected: currentCompanyCode,
+                    	        selectedKey: 'companyCode',
+                    	        fields: ['companyName', 'companyCode'], mode: 'igGrid'}" />
+						</div>
+						<!-- A2_4 -->
+						<div class="div-table" tabindex="8">
+							<table id="gridCompany"
+								data-bind="ntsGridList: {								
+								rows: 10,
+								options: sel001Data,
+								optionsValue: 'companyCode',
+								columns: gridColumns,
+								value: currentCompanyCode }"
+								class="cf"></table>
+
+						</div>
+					</div>
+				</div>
+
+				<!-- ======================= Chi tiet man hinh ben phai của màn hình A ========================== -->
+				<div class="fixed-flex-layout-right"
+					data-bind="with: currentCompany">
+					<div class="line-height flex">
+						<div style="width: 150px">
+							<!-- A3_1 -->
+							<div id="LBLCompanyCode"
+								data-bind="ntsFormLabel: { required: true, constraint: 'CompanyCode'}">
+                #{i18n.getText('CMM001_7')}
+              </div>
+						</div>
+						<div>
+							<!-- A3_2 -->
+							<input id="companyCode" tabindex="9" class="save-error"
+								data-bind="ntsTextEditor: {value: companyCode, constraint: 'CompanyCode', required: true,
+																		enable: $parent.checkInsert, name: '#[CMM001_7]'}" />
+						</div>
+						<div class="bg-yellow">
+							<!--  -->
+							<!-- A3_3 -->
+							<div id="checked2" data-name="Check box" tabindex="10"
+								class="cf minimalist ntsCheckBox-right valign-center"
+								data-bind="ntsCheckBox: { checked: isAbolition, enable: !$parent.checkInsert(), text: '#{i18n.getText('CMM001_10')}' }"></div>
+							<!-- A3_4 -->
+							<button id="checkbtn" tabindex="11"
+								data-bind="ntsHelpButton: {image: '../images/CMM001_02.png', position: 'left top',enable: true}">?</button>
+						</div>
+					</div>
+					<!-- table -->
+					<div class="table fixed-height">
+						<table>
+							<tbody>
+								<tr>
+									<th colspan="1" class="th-col1">
+										<div class="form-label" style="margin-top: 5px;"
+											data-bind="ntsFormLabel:{required: true, constraint: 'Name'}">
+											<!-- A3_5 -->
+											#{i18n.getText('CMM001_11')}
+										</div>
+									</th>
+
+									<th colspan="2" class="th-col2">
+										<div>
+											<!-- A3-6 -->
+											<input id="companyName" tabindex="12" class="save-error"
+												data-bind="ntsTextEditor: {value: companyName,constraint: 'Name', required: true,
+																						name: '#[CMM001_11]'}" />
+										</div>
+									</th>
+								</tr>
+								<tr style="margin-top: 20px;">
+									<th colspan="1" class="th-col1">
+										<div
+											data-bind="ntsFormLabel:{required: true, constraint: 'KNName'}">
+											<!-- A3_7 -->
+											#{i18n.getText('CMM001_12')}
+										</div>
+									</th>
+
+									<th colspan="2" class="th-col2">
+										<div style="margin-top: 5px">
+											<!-- A3_8 -->
+											<input id="companyNameKana" tabindex="13" class="save-error"
+												data-bind="ntsTextEditor: {value: comNameKana, constraint: 'KNName', required: true, name: '#[CMM001_13]'}" />
+										</div>
+									</th>
+								</tr>
+								<tr style="margin-top: 20px;">
+									<th colspan="1" class="th-col1">
+										<!-- data-bind="ntsFormLabel:{required: true, constraint:'CompanyNameAbb'}" -->
+										<div
+											data-bind="ntsFormLabel: {required: true, constraint: 'ABName'}">
+											<!-- A3_9 -->
+											#{i18n.getText('CMM001_14')}
+										</div>
+									</th>
+
+									<th colspan="2" class="th-col2">
+										<div>
+											<!-- A3_10 -->
+											<input id="companyNameAbb" class="save-error" tabindex="14"
+												data-bind="ntsTextEditor: {value: shortComName, constraint: 'ABName', required: true, name: '#[CMM001_15]'}" />
+										</div>
+
+									</th>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+
+					<!-- <Tabpanel> -->
+					<div class="cf flex">
+						<div style="margin-top: 20px">
+
+							<div class="cf"
+								data-bind="ntsTabPanel: { dataSource: $parent.tabs,
+										   active: $parent.selectedTab, 
+										   direction: 'vertical' }">
+								<!-- Màn hình B -->
+								<div class="tab-content-1">
+									<table>
+										<tbody>
+											<!-- 1 -->
+											<tr style="margin-top: 10px;">
+												<th colspan="1" class="th-col3" style="width: 150px">
+													<div class="form-label"
+														data-bind="ntsFormLabel:{required: false}"
+														style="margin-top: 5px;">
+														<!-- B1_1 -->
+														#{i18n.getText('CMM001_19')}
+													</div>
+												</th>
+												<th colspan="2" class="th-col2">
+													<div>
+														<!-- B1_2 -->
+														<input id="corporateMyNumber" tabindex="18"
+															class="save-error"
+															data-bind="ntsTextEditor: {value: taxNum, constraint: 'TaxNo', name: '#[CMM001_19]'}" />
+													</div>
+												</th>
+											</tr>
+											<!--  2  -->
+											<tr style="margin-top: 10px;">
+												<th colspan="1" class="th-col3">
+													<div class="form-label"
+														data-bind="ntsFormLabel:{required: false, constraint: 'RepName'}">
+														<!-- B1_3 -->
+														#{i18n.getText('CMM001_20')}
+													</div>
+												</th>
+
+												<th colspan="2" class="th-col2">
+													<div>
+														<!-- B1_4 -->
+														<input id="presidentName" tabindex="19" class="save-error"
+															data-bind="ntsTextEditor: {value: repname, constraint: 'RepName', name: '#[CMM001_20]'}" />
+													</div>
+												</th>
+											</tr>
+											<!-- 3  -->
+
+											<tr style="margin-top: 20px;">
+												<th colspan="1" class="th-col3">
+													<div class="form-label"
+														data-bind="ntsFormLabel:{required: false, constraint: 'RepJob'}">
+														<!-- B1_5 -->
+														#{i18n.getText('CMM001_21')}
+													</div>
+												</th>
+
+												<th colspan="2" class="th-col2">
+													<div>
+														<!-- B1_6 -->
+														<input id="presidentJobTitle" tabindex="20"
+															class="save-error"
+															data-bind="ntsTextEditor: {value: repJob, constraint: 'RepJob', name: '#[CMM001_21]'}" />
+													</div>
+												</th>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+								<!-- Màn hình C -->
+								<div class="tab-content-2">
+									<table>
+										<tbody>
+											<!-- 1 -->
+											<tr style="margin-top: 5px;">
+												<th colspan="1" class="th-col3">
+													<div class="form-label"
+														data-bind="ntsFormLabel:{required: false}">
+														<!-- C1_1 -->
+														#{i18n.getText('CMM001_22')}
+													</div>
+												</th>
+
+												<th colspan="1" class="th-col-sub">
+													<div id="colum1">
+														<!-- C1_2 -->
+														<input id="postal" tabindex="18" class="save-error"
+															data-bind="ntsTextEditor: {value: addinfor().postCd, constraint: 'PostCode', name: '#[CMM001_22]'}"></input>
+													</div>
+												</th>
+
+												<th colspan="1">
+													<button id="searchZipCode" tabindex="19"
+														data-bind="click: $parent.search.bind($parent)" hidden="false">
+														<!-- C1_3 -->
+														<span class="labelRed">〒</span>#{i18n.getText('CMM001_23')}
+													</button>
+												</th>
+											</tr>
+											<tr style="margin-top: 5px;">
+												<th colspan="2" class="th-col3">
+													<!-- C1_4 -->
+													<div class="form-label"
+														data-bind="ntsFormLabel:{required: false, constraint: ['Add_1', 'Add_2']}">
+														#{i18n.getText('CMM001_24')}</div>
+												</th>
+											</tr>
+											<!-- 4 -->
+											<tr style="margin-top: 5px;">
+												<!-- C1_5 -->
+												<th colspan="1" class="th-col3"><div
+														class="left20 border_none"
+														data-bind="ntsFormLabel:{required: false}">
+														#{i18n.getText('CMM001_25')}
+													</div></th>
+
+												<th colspan="2" class="th-col2">
+													<div id="colum1">
+														<!-- C1_6 -->
+														<input id="address1" tabindex="20" class="save-error"
+															type="text" placeholder=""
+															style="width: 200px; text-align: left; margin-bottom: 10px;"
+															data-bind="ntsTextEditor: {value: addinfor().add_1, constraint: 'Add_1',
+																		required: false, name: '#[CMM001_25]'}">
+														</input>
+
+													</div>
+												</th>
+											</tr>
+											<!-- 5 -->
+											<tr style="margin-top: 5px;">
+												<!-- C1_7 -->
+												<th colspan="1" class="th-col3">
+													<div class="left20 border_none"
+														data-bind="ntsFormLabel:{required: false}">
+														#{i18n.getText('CMM001_26')}
+													</div>
+												</th>
+												<th colspan="2" class="th-col2">
+													<div id="colum1">
+														<!-- C1_8 -->
+														<input id="address2" tabindex="21" class="save-error"
+															data-name="#{i18n.getText('CMM001_26')}"
+															data-bind="ntsTextEditor: {value: addinfor().add_2, constraint: 'Add_2',
+																				required: false, name: '#[CMM001_26]'}" />
+													</div>
+												</th>
+											</tr>
+											<!-- 6 -->
+											<tr style="margin-top: 5px;">
+												<th colspan="2" class="th-col3">
+													<!-- C1_9 -->
+													<div class="form-label"
+														data-bind="ntsFormLabel:{required: false, constraint: ['Add_Kana_1', 'Add_Kana_2']}">
+														#{i18n.getText('CMM001_27')}</div>
+												</th>
+											</tr>
+											<!-- 7 -->
+											<tr style="margin-top: 5px;">
+												<!-- C1_10 -->
+												<th colspan="1" class="th-col3">
+													<div class="left20 border_none"
+														data-bind="ntsFormLabel:{required: false}">
+														#{i18n.getText('CMM001_25')}
+													</div>
+												</th>
+
+												<th colspan="2" class="th-col2">
+													<div id="colum1" style="width: 200px">
+														<!-- C1_11 -->
+														<input id="addressKana1" tabindex="21" class="save-error"
+															data-bind="ntsTextEditor: {value: addinfor().addKana_1, constraint: 'Add_Kana_1',
+															 required: false, name: '#[CMM001_25]'}" />
+													</div>
+												</th>
+											</tr>
+											<!-- 8 -->
+											<tr style="margin-top: 5px;">
+												<!-- C1_12 -->
+												<th colspan="1" class="th-col3">
+													<div class="left20 border_none"
+														data-bind="ntsFormLabel:{required: false}">
+														#{i18n.getText('CMM001_26')}
+													</div>
+												</th>
+												<th colspan="2" class="th-col2">
+													<div id="colum1">
+														<!-- c1_13 -->
+														<input id="addressKana2" tabindex="22" class="save-error"
+															data-bind="ntsTextEditor: {value: addinfor().addKana_2, constraint: 'Add_Kana_2', required: false, name: '#[CMM001_26]'}" />
+													</div>
+												</th>
+											</tr>
+											<!-- 9 -->
+											<tr style="margin-top: 5px;">
+												<th colspan="1" class="th-col3">
+													<!-- C1_14 -->
+													<div class="form-label"
+														data-bind="ntsFormLabel:{required: false}">
+                            #{i18n.getText('CMM001_28')}
+                          </div>
+												</th>
+
+												<th colspan="2" class="th-col2">
+													<div id="colum1">
+														<!-- C1_15 -->
+														<input id="telephoneNo" tabindex="23" class="save-error"
+															data-bind="ntsTextEditor: {value: addinfor().phoneNum, constraint: 'PhoneNum',
+																			required: false, name: '#[CMM001_28]'}" />
+													</div>
+												</th>
+											</tr>
+											<!-- 10 -->
+											<tr style="margin-top: 5px;">
+												<th colspan="1" class="th-col3">
+													<!-- " -->
+													<div id="fax" data-bind="ntsFormLabel:{required: false}">
+														<!-- C1_16 -->
+														#{i18n.getText('CMM001_29')}
+													</div>
+												</th>
+
+												<th colspan="2" class="th-col2"><input id="faxNo"
+													tabindex="24" class="save-error"
+													data-bind="ntsTextEditor: {value: addinfor().faxNum, constraint: 'FaxNum', name: '#[CMM001_29]'}" />
+												</th>
+											</tr>
+
+										</tbody>
+									</table>
+								</div>
+								<!-- Màn hình D -->
+								<div class="tab-content-3">
+									<div>
+										<table>
+											<tbody>
+												<!-- 1 -->
+												<tr style="margin-top: 5px;" hidden= "false">
+													<th colspan="1" class="th-col3">
+														<!-- D1_1 -->
+														<div class="form-label"
+															data-bind="ntsFormLabel:{required: true}"
+															style="margin-top: 5px;">
+															#{i18n.getText('CMM001_30')}
+														</div>
+													</th>
+
+													<th colspan="2" class="th-col2">
+														<div>
+															<!-- D1_2 -->
+															<!--  -->
+															<!--temporarily default default with redmin 121528: value: jinji, -->
+															<div class="cf1" tabindex="18"
+																data-bind="ntsSwitchButton: {
+																			options: $parent.roundingRules,
+																			optionsValue: 'code',
+																			optionsText: 'name',
+																			value: 0
+																		 }">
+															</div>
+														</div>
+													</th>
+												</tr>
+												<!-- 2 -->
+												<tr style="margin-top: 5px;" hidden= "false">
+													<th colspan="1" class="th-col3">
+														<div class="form-label"
+															data-bind="ntsFormLabel:{required: true}">
+															<!-- D1_3 -->
+															#{i18n.getText('CMM001_33')}
+														</div>
+													</th>
+
+													<th colspan="2" class="th-col2">
+														<div>
+															<!-- D1_4 -->
+															<!--temporarily default default with redmin 121528: value: shugyo, -->
+															<div class="cf1" tabindex="19"
+																data-bind="ntsSwitchButton: {
+																			options: $parent.roundingRules,
+																			optionsValue: 'code',
+																			optionsText: 'name',
+																			value: 1
+																		 }">
+															</div>
+														</div>
+													</th>
+												</tr>
+												<!-- 3 -->
+												<!-- D1_5 -->
+												<tr style="margin-top: 5px;" hidden= "false">
+													<th colspan="1" class="th-col3">
+														<div class="form-label"
+															data-bind="ntsFormLabel:{required: true}">
+															#{i18n.getText('CMM001_34')}
+														</div>
+													</th>
+
+													<th colspan="2" class="th-col2">
+														<!-- D1_6 -->
+														<!--temporarily default default with redmin 121528: value: kyuyo, -->
+														<div>
+															<div class="cf1" tabindex="20"
+																data-bind="ntsSwitchButton: {
+																			options: $parent.roundingRules,
+																			optionsValue: 'code',
+																			optionsText: 'name',
+																			value:0
+																		 }">
+															</div>
+														</div>
+													</th>
+												</tr>
+												<tr style="margin-top: 5px;" hidden= "false">
+													<th colspan="1" class="th-col3">
+														<div class="form-label"
+															data-bind="ntsFormLabel:{required: true}">
+															<!-- D1_7 -->
+															#{i18n.getText('CMM001_35')}
+														</div>
+													</th>
+
+													<th colspan="2" class="th-col2">
+														<div class="flex">
+															<!-- D1_8 -->
+															<!--temporarily default default with redmin 121528: value: regWorkDiv, -->
+															<div class="cf1" tabindex="21"
+																data-bind="ntsSwitchButton: {
+																			options: $parent.roundingRules3,
+																			optionsValue: 'code',
+																			optionsText: 'name',
+																			value: 0
+																		 }">
+															</div>
+															<!-- d1_9 -->
+															<button id="switchhelpbtn" tabindex="-1"
+																data-bind="ntsHelpButton: {image: '../images/CMM001_01.png', position: 'bottom center',enable: true}">?</button>
+														</div>
+													</th>
+												</tr>
+												<tr style="margin-top: 5px;">
+													<th colspan="1" class="th-col3">
+														<div data-bind="ntsFormLabel:{required: true}">
+															<!-- D1_10 -->
+															#{i18n.getText('CMM001_38')}
+														</div>
+													</th>
+
+													<th colspan="2" class="th-col2">
+														<div class="control-group valign-center">
+															<!-- D1_11 -->
+															<div id="termBeginMon" tabindex="22"
+																data-bind="ntsComboBox: {
+																			 options: $parent.itemList,
+																			 optionsValue: 'code',
+																			 value: startMonth,
+																			 optionsText: 'name',
+																			 editable: false,
+																			 enable: true,
+																			 dropDownAttachedToBody: true,
+																			 columns: [{ prop: 'name' }]}">
+															</div>
+														</div>
+
+													</th>
+												</tr>
+											</tbody>
+										</table>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

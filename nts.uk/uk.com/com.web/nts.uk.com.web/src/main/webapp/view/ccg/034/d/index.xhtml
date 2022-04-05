@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+  <ui:composition template="../../../../master/dialog.xhtml">
+
+    <!-- head -->
+    <ui:define name="htmlHead">
+      <com:scriptfile path="../share/model.js" />
+      <com:stylefile path="ccg034.d.style.css" />
+      <com:scriptfile path="ccg034.d.vm.js" />
+      <com:scriptfile set="IGNITE" />
+    </ui:define>
+
+    <!-- content -->
+    <ui:define name="content">
+      <!-- Header -->
+      <div id="functions-area">
+        <button id="D1_1" tabindex="1" class="proceed" data-bind="i18n: 'CCG034_37', click: saveLayout"></button>
+        <button id="D1_3" tabindex="2" data-bind="i18n: 'CCG034_39', click: openPreviewDialog"></button>
+        <button id="D1_4" tabindex="3" data-bind="i18n: 'CCG034_40', click: closeDialog"
+          style="margin-left: 150px;"></button>
+      </div>
+      <!-- Content -->
+      <div id="contents-area">
+        <div class="div-line">
+          <!-- D2_2 フローメニュー名 -->
+          <label id="D2_2" data-bind="text: menuName"></label>
+        </div>
+        <div class="contents-area flex">
+          <div id="menu-item-container">
+            <span class="label" style="margin-bottom: 10px;">#{i18n.getText('CCG034_41')}</span>
+            <div>
+              <div data-part-type="1" class="menu-creation-option">
+                <i data-bind="ntsIcon: { no: 166, width: 30, height: 30 }" class="menu-icon"></i>
+                <span class="label">#{i18n.getText('CCG034_42')}</span>
+              </div>
+              <div data-part-type="2" class="menu-creation-option">
+                <i data-bind="ntsIcon: { no: 167, width: 30, height: 30 }" class="menu-icon"></i>
+                <span class="label">#{i18n.getText('CCG034_43')}</span>
+              </div>
+              <div data-part-type="3" class="menu-creation-option">
+                <i data-bind="ntsIcon: { no: 168, width: 30, height: 30 }" class="menu-icon"></i>
+                <span class="label">#{i18n.getText('CCG034_44')}</span>
+              </div>
+              <div data-part-type="4" class="menu-creation-option">
+                <i data-bind="ntsIcon: { no: 169, width: 30, height: 30 }" class="menu-icon"></i>
+                <span class="label">#{i18n.getText('CCG034_45')}</span>
+              </div>
+              <div data-part-type="5" class="menu-creation-option">
+                <i data-bind="ntsIcon: { no: 170, width: 30, height: 30 }" class="menu-icon"></i>
+                <span class="label">#{i18n.getText('CCG034_46')}</span>
+              </div>
+              <div data-part-type="6" class="menu-creation-option">
+                <i data-bind="ntsIcon: { no: 171, width: 30, height: 30 }" class="menu-icon"></i>
+                <span class="label">#{i18n.getText('CCG034_47')}</span>
+              </div>
+            </div>
+            <span class="label" style="margin-top: 20px;">#{i18n.getText('CCG034_48')}</span>
+          </div>
+          <div class="menu-right-container">
+            <div>
+              <span id="D5_1" class="label">#{i18n.getText('CCG034_49')}</span>
+              <span id="D5_2" class="label" data-bind="text: layoutSizeText"></span>
+            </div>
+            <div class="menu-creation-layout-container">
+              <div id="menu-creation-layout">
+                <div id="J_1"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ui:define>
+  </ui:composition>
+</body>
+
+</html>

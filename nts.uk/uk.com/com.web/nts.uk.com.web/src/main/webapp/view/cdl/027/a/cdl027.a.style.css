@@ -1,0 +1,14 @@
+/* style */
+
+.ui-iggrid .ui-iggrid-tablebody td{
+	white-space: nowrap;
+}
+
+span.label{
+	padding-left: 10px;
+}
+
+.ui-iggrid table tr {
+    background-color: #FFFFFF !important;
+}
+

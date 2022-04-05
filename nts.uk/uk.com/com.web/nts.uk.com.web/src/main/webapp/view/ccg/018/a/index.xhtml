@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="../../../../master/sidebar.xhtml">
+		<ui:define name="sidebar-head">
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="../base/base.js" />
+			<com:scriptfile path="ccg018.a.vm.js" />
+			<com:scriptfile path="ccg018.a.service.js" />
+			<com:stylefile path="ccg018.a.main.css" />
+			<com:scriptfile path="../a1/ccg018.a1.vm.js" />
+			<com:scriptfile path="../a1/ccg018.a1.service.js" />
+			<com:scriptfile path="../b/ccg018.b.vm.js" />
+			<com:scriptfile path="../b/ccg018.b.service.js" />
+
+			<!-- component -->
+			<com:stylefile path="/view/ccg/share/style.css" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.service.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.vm.js" of="/nts.uk.com.web" />
+		</ui:define>
+
+		<script type="text/html" id="jobtitle-template">
+    	<ui:include src="../a1/index.xhtml" />
+		</script>
+
+		<script type="text/html" id="person-template">
+    	<ui:include src="../b/index.xhtml" />
+		</script>
+
+		<ui:define name="sidebar">
+			<div>
+				<ul id="A1_1" class="navigator" data-bind="foreach: tabs().filter(function(t) { return t.display() == true; })">
+					<li><a tabindex="-1" data-bind="text: name,
+						click: $parent.changeTab.bind($parent, $data),
+						css: { 'active': active },
+						attr: { href: '#tabpanel-' + id().toLowerCase() }"></a></li>
+				</ul>
+			</div>
+		</ui:define>
+		<ui:define name="sidebar-content">
+			<com:ko-if bind="currentTab() != null">
+				<div role="tabpanel" data-bind="attr:{id: 'tabpanel-' + currentTab().id()}">
+					<div data-bind="attr:{class: 'screen-content screen-' + currentTab().id(), id: 'screen-' + currentTab().id()} ">
+					</div>
+				</div>
+			</com:ko-if>
+		</ui:define>
+	</ui:composition>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+.kafs11a {
+    .invalid {
+        border-style: solid;
+        border-color: red;
+        border-radius: 0.25rem;
+        border-width: 1px;
+    }
+
+    .topError {
+        margin-bottom: 5px;
+        button {
+            text-align: left;
+            border-radius: 3px !important;
+        }
+    }
+}

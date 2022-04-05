@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = {
+					width : 700,
+					height : 660
+				};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="cli001.b.service.js" />
+			<com:scriptfile path="cli001.b.vm.js" />
+			<com:scriptfile path="cli001.b.start.js" />
+		</ui:define>
+		
+		<ui:define name="content">
+			<div id="content-area" class="flex" style="padding-top: 15px; padding-left: 5px; height:520px;">
+				<!-- B1-001 -->
+				<div id="searchLb" data-bind="ntsFormLabel: {required:true}">
+					<label>#{i18n.getText('CLI001_16')}</label>
+				</div>
+				<div>
+					<div class="nts-searchbbox-wrapper">
+						<!-- B1-002 -->
+						<div class="input-wrapper">
+							<input id="searchInput" data-bind="ntsTextEditor:{
+								 name: '#[CLI001_17]',
+								 value: searchText,
+								 option: ko.mapping.fromJS(new nts.uk.ui.option.TextEditorOption({
+									textmode: 'text',
+									placeholder: '#{i18n.getText('CLI001_18')}',
+									width: '230px',
+									textalign: 'left'
+								 }))
+							 }" tabindex="1" />
+						</div>
+						<!-- B1-003 -->
+						<div class="input-wrapper">
+							<button id="search" class="search-btn" style="padding: 0 25px;" data-bind="click: search" tabindex="2">#{i18n.getText('CLI001_19')}</button>
+						</div>
+					</div>
+					<!-- B2-001 -->
+					<div id="grid-table" class="listbox-wrapper" tabindex="3">
+						<table id="single-list" data-bind="ntsGridList: {								
+							name: '#[CLI001_20]',
+							dataSource: items,
+							primaryKey: 'userID',
+							columns: columns,
+							value: currentId,
+							rows: 12
+						}"></table>
+					</div>
+				</div>
+			</div>
+			
+			<div id="functions-area-bottom">
+				<!-- B3-001 -->
+				<button style="padding: 0 45px" class="x-large proceed" data-bind="click: lockData" tabindex="4">#{i18n.getText('CLI001_23')}</button>
+				<!-- B3-002 -->
+				<button style="margin-left: 30px; padding: 0 10px" class="large" data-bind="click: cancel" tabindex="5">#{i18n.getText('CLI001_24')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

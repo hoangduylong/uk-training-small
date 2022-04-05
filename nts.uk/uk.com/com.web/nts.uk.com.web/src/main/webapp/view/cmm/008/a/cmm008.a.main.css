@@ -1,0 +1,22 @@
+#ruled-line {
+	background-color: #7f7f7f;
+	margin-top: 25px;
+}
+
+#right-contents {
+	padding-top: 20px;
+	vertical-align: top;
+}
+
+.width-label {
+	white-space: nowrap;
+	width: 95px;
+}
+
+#row2 > div:nth-child(1), #row2 > div:nth-child(2) {
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+#right-contents > div > div.fixed-flex-layout-left {
+	width: 95px;
+}

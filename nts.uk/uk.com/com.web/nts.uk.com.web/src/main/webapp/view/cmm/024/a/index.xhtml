@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:com="http://xmlns.jcp.org/jsf/component"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+  <body>
+    <ui:composition template="../../../../master/sidebar.xhtml">
+      <ui:define name="sidebar-head">
+        <com:scriptfile set="IGNITE" />
+        <com:stylefile path="/view/kcp/010/style.css" of="/nts.uk.com.web" />
+        <com:stylefile path="cmm024.a.main.css" />
+
+        <com:scriptfile path="/view/kcp/010/kcp010.js" of="/nts.uk.com.web" />
+        <com:scriptfile path="cmm024.a.common.js" />
+        <com:scriptfile path="cmm024.a.vm.js" />
+      </ui:define>
+      <ui:define name="sidebar" tabindex="-1">
+        <ul class="navigator" tabindex="-1">
+          <li tabindex="-1">
+            <a
+              tabindex="-1"
+              href="#tabpanel-1"
+              role="tab-navigator"
+              class="active"
+              data-bind="click: initialScreenA"
+              >#{i18n.getText('Com_Company')}</a
+            >
+          </li>
+          <li tabindex="-1">
+            <a
+              tabindex="-1"
+              href="#tabpanel-2"
+              role="tab-navigator"
+              data-bind="click: function() { initialScreenB('reload'); }"
+              >#{i18n.getText('Com_Workplace')}</a
+            >
+          </li>
+        </ul>
+      </ui:define>
+      <ui:define name="sidebar-content">
+        <div id="tabpanel-1" role="tabpanel">
+          <ui:include src="a.xhtml" />
+        </div>
+        <div id="tabpanel-2" role="tabpanel">
+          <ui:include src="b.xhtml" />
+        </div>
+      </ui:define>
+    </ui:composition>
+  </body>
+</html>

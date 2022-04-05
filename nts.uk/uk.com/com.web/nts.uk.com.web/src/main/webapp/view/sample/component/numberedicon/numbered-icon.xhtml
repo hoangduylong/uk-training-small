@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:com="http://xmlns.jcp.org/jsf/component"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<body>
+		
+		<ui:composition template="../../../../master/base.xhtml">
+			<ui:define name="htmlHead">
+				<script>var dialogSize = { width: 300, height: 200 };</script>
+				
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+			</ui:define>
+			
+			<ui:define name="content">
+				<div id="functions-area"></div>
+				<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Numbered Icon</h1>
+						
+						<h2>Overview</h2>
+						<p>
+							"Numbered Icon" means the icons that are put in here:<br />
+							\\192.168.50.4\share\500_新構想開発\03_概要設計\01_概要設計書\アイコン定義<br />
+							<br />
+							And these are copied into:<br />
+							\uk.base\base.web\nts.uk.com.js.web\src\main\webapp\lib\nittsu\ui\style\stylesheets\images\icons\numbered<br />
+							<br />
+							When new icon added and you want to use it, plz copy its file there.
+						</p>
+						
+						<h2>Icon</h2>
+						<p>
+							This sample is to show the icon numbered "2". 
+						</p>
+						<div class="cf">
+							<i data-bind="ntsIcon: { no: 2, width: 30, height: 30 }"></i>
+						</div>
+						<pre><![CDATA[<i data-bind="ntsIcon: { no: 2, width: 30, height: 30 }"></i>]]></pre>
+						
+						<h2>Icon on other element</h2>
+						<p>
+							If size of icon is not specified, the size is adjusted according to size of parent element.
+						</p>
+						<br />
+						<div class="cf">
+							<button style="width: 100px; height: 50px;"><i data-bind="ntsIcon: { no: 2 }"></i></button>
+						</div>
+						<pre><![CDATA[<button style="width: 100px; height: 50px;">
+    <i data-bind="ntsIcon: { no: 2 }"></i>
+</button>]]></pre>
+						<br/>
+						
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+					</div>
+		   		</div>
+			</ui:define>
+		</ui:composition>
+   	</body>
+</html>

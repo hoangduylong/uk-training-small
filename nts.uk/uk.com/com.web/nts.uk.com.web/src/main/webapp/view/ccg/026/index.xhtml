@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="/view/sample/catalog/catalog.css" />
+			<com:scriptfile path="/view/sample/catalog/catalog.js" />
+
+			<com:scriptfile path="component.js" />
+			<com:scriptfile path="ccg026.start.js" />
+			<style type="text/css">
+table, tr, td {
+	border: 0
+}
+</style>
+		</ui:define>
+		<ui:define name="content">
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+					<table>
+						<colgroup>
+							<col width="200px" />
+							<col />
+						</colgroup>
+						<tr>
+							<td>
+								<div
+									data-bind="ntsFormLabel: { required: true, text: 'RoleID' }"></div>
+							</td>
+							<td><input data-bind="ntsTextEditor: { value: roleId }" />
+							</td>
+							<td rowspan="3">
+								<div data-bind="ntsFormLabel: { text: 'JSON result' }"></div> <pre
+									style="height: 400px; width: 400px;"
+									data-bind="text: ko.toJSON(_.map(ko.toJS(permisions), function(m) { 
+										return _.pick(m, ['functionNo', 'available']); 
+									}), null, 4)">
+								</pre>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<div
+									data-bind="ntsFormLabel: { 
+									required: true, 
+									text: 'Role type/classification' 
+								}"></div>
+							</td>
+							<td><div>Note: ⚪ - RoleType avaiable in ccg026.</div>
+								<div id="combo-box"
+									data-bind="ntsComboBox: {
+										width: 'auto',
+										name: 'Role type/classification',
+										options: lstRoleType,
+										optionsValue: 'id',
+										visibleItemsCount: 5,
+										value: roleType,
+										optionsText: 'nameJP',
+										editable: false,
+										enable: true,
+										required: true,
+										selectFirstIfNull: true,
+										columns: [
+											{ prop: 'nameJP', length: 4 },
+											{ prop: 'nameEN', length: 10 },
+											{ prop: 'avaiable' }
+										]}"></div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" style="width: 800px;"><ccg026-component
+									params="{
+									label: {
+										text: 'Sample of ccg026 component'
+									},
+									roleId: roleId,
+									roleType: roleType,
+									changeData: permisions,
+									maxRow: 6
+								}"></ccg026-component>
+							</td>
+						</tr>
+					</table>
+					<article class="cf">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-html">Usage</a></li>
+								<li><a href="#tabs-api">API</a></li>
+							</ol>
+							<div id="tabs-html" class="cf">
+								<h2>HTML</h2>
+								<pre>
+									<![CDATA[
+// Add Javascript file
+<com:scriptfile path="view/ccg/026/component.js" />
+
+// Use in HTML
+<ccg026-component params="{
+	roleId: roleId,
+	roleType: roleType /* See ROLE_TYPE enum in ccg026 */,
+	changeData: changeData
+}"></ccg026-component>]]>
+								</pre>
+								<h2>TypeScript</h2>
+								<pre>
+									<![CDATA[
+import ROLE_TYPE = nts.uk.com.view.ccg026.component.ROLE_TYPE;
+import IPermision = nts.uk.com.view.ccg026.component.IPermision;
+
+class ViewModel {
+    // role id
+    roleId: KnockoutObservable<string> = ko.observable('');
+
+    // role type | classification
+    roleType: KnockoutObservable<ROLE_TYPE> = ko.observable(ROLE_TYPE.PERSONAL_INFO);
+
+    // event fire after change permision avaiable
+    //changeData = (data: Array<IPermision>) => {
+        // code at here
+    //}
+    
+    // or replace changeData event by knockout observable for getting data manually
+   	permisions: KnockoutObservableArray<IPermision> = ko.observableArray([]);
+}]]>
+								</pre>
+							</div>
+							<div id="tabs-api" class="cf">
+								<h2>Component Params</h2>
+								<table class="table">
+									<colgroup>
+										<col width="200px" />
+									</colgroup>
+									<thead>
+										<tr>
+											<th><h4>Name</h4></th>
+											<th><h4>Description</h4></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>Role Id<br /> <i>(require)</i></td>
+											<td><b>Type:</b> string<br />
+												RoleId to get permisions</td>
+										</tr>
+										<tr>
+											<td>RoleType/classification<br /> <i>(require)</i></td>
+											<td><b>Type:</b> number/RoleType (see RoleType enum for more detail)<br />
+												RoleType/Classification to get permisions</td>
+										</tr>
+										<tr>
+											<td>maxRow<br /> <i>(optional)</i></td>
+											<td><b>Type:</b> number<br /> <b>Default:</b> 10<br />
+												Display row</td>
+										</tr>
+										<tr>
+											<td>tabindex<br /> <i>(optional)</i></td>
+											<td><b>Type:</b> number<br /> <b>Default:</b> 0<br />
+												Set tabindex for component</td>
+										</tr>
+										<tr>
+											<td>label<br /> <i>(optional)</i></td>
+											<td><b>Type:</b> object<br /> <b>Default:</b>undefined<br />
+												Set label for component (see ILabel interface for more detail)</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

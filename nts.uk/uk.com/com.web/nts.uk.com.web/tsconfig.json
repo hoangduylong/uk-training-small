@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"experimentalDecorators": true,
+		"target": "ES5",
+        "module": "none",
+		"moduleResolution": "Classic",
+        "noImplicitAny": true,
+        "removeComments": false,
+        "preserveConstEnums": true,
+		"charset": "utf8",
+		"skipLibCheck": true,
+        "sourceMap": true
+    },
+	 "include": [
+        "src/main/webapp/view/**/*"
+    ]
+}

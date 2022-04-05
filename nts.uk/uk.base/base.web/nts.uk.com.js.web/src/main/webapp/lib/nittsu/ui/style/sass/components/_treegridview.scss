@@ -1,0 +1,88 @@
+@import "_ignitecommons.scss";
+
+.ui-igtreegrid {
+	@include iggridstyle();
+	@include iggridrowselector();
+	
+	cursor: default;
+	 
+	table {
+		.tr {
+		  	background-color: #FFFFFF;
+		} 
+		.ui-ig-altrecord {
+		  	background-color: #FFFFFF;
+		} 
+	}
+	
+	.ui-iggrid-table {
+		.ui-iggrid-tablebody {
+			tr {
+				td:last-child {
+				  	padding-right: 2px !important;
+				}
+			}
+			tr.row-disabled {
+				background-color: #CCC;
+  				color: #333;
+			}
+			.ui-state-hover {
+				color: #30CC40;
+				background: linear-gradient(0deg, rgba(68, 224, 140, 0.1), rgba(68, 224, 140, 0.1)), #FFFFFF;					
+			}
+
+			.ui-state-active {
+				font-weight: 700;
+				color: #30CC40;
+				background: linear-gradient(0deg, rgba(68, 224, 140, 0.1), rgba(68, 224, 140, 0.1)), #FFFFFF;
+				box-shadow: 0px 8px 10px rgba(22, 154, 28, 0.1);
+			}
+		}
+	}
+}
+
+.nts-treegridview {
+	.ui-icon-triangle-1-e {
+		display : none;
+	}
+	
+	.ui-igtreegrid-expandcell{
+		margin-top: -10px !important;
+	}
+	
+	.ui-iggrid-headertable {
+		th {
+			position: relative;
+			
+			span.ui-iggrid-headertext {
+				width: 100%;
+				// display: inline-block;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+			}
+		}
+	}
+}
+
+.no-selector {
+	table {
+		th:first-child.ui-iggrid-rowselector-class {
+			visibility: hidden;
+			width: 0;
+			border: none;
+			padding: 0;
+		}
+		
+		th:first-child.ui-iggrid-rowselector-header {
+			visibility: hidden;
+			width: 0;
+			border: none;
+			padding: 0;
+		}
+	}
+}
+
+.no-width{
+	width: 0% !important;
+}

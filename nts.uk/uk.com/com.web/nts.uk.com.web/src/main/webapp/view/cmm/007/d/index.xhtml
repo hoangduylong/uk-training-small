@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition>
+		<div class="sidebar-content-header">
+			<span class="title">#{i18n.getText('CMM007_4')}</span>
+			<button tabindex="1" class="proceed"
+				data-bind="click: savePlanYearHdFrSetting">#{i18n.getText('CMM007_5')}</button>
+		</div>
+		<div id="contents-area">
+			<div class="plan_year_holiday">
+				<p>#{i18n.getText('CMM007_43')}</p>
+
+				<table class="table_content">
+					<tr>
+						<td>
+							<div
+								data-bind="ntsFormLabel: {
+									required: true, constraint: 'PlanYearHolidayFrameName', }">#{i18n.getText('CMM007_4')}</div>
+						</td>
+						<td class="pl">
+							<div class=" " tabindex="-1"
+								data-bind="ntsCheckBox: { 
+									checked: isCheckedNo1,
+									text: planYearHdFrCheckboxLabel1}"></div>
+							<input id="plan_year_hd_frame1" tabindex="2"
+							data-bind="ntsTextEditor: {
+									name: '#[CMM007_44]',
+									value: planYearHdFrName1,
+									required: requiredPlanYearHdFrName1,
+									enable: enablePlanYearHdFrName1,
+									constraint: 'PlanYearHolidayFrameName',
+									option: {width: '130px'}}" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div data-bind="visible: false"></div>
+						</td>
+						<td class="pl">
+							<div class=" " tabindex="-1"
+								data-bind="ntsCheckBox: { 
+									checked: isCheckedNo2,
+									text: planYearHdFrCheckboxLabel2}"></div>
+							<input id="plan_year_hd_frame2" tabindex="3"
+							data-bind="ntsTextEditor: {
+									name: '#[CMM007_45]',
+									value: planYearHdFrName2,
+									required: requiredPlanYearHdFrName2,
+									enable: enablePlanYearHdFrName2,
+									constraint: 'PlanYearHolidayFrameName',
+									option: {width: '130px'}}" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div data-bind="visible: false"></div>
+						</td>
+						<td class="pl">
+							<div class=" " tabindex="-1"
+								data-bind="ntsCheckBox: { 
+									checked: isCheckedNo3,
+									text: planYearHdFrCheckboxLabel3}"></div>
+							<input id="plan_year_hd_frame3" tabindex="4"
+							data-bind="ntsTextEditor: {
+									name: '#[CMM007_46]',
+									value: planYearHdFrName3,
+									required: requiredPlanYearHdFrName3,
+									enable: enablePlanYearHdFrName3,
+									constraint: 'PlanYearHolidayFrameName',
+									option: {width: '130px'}}" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div data-bind="visible: false"></div>
+						</td>
+						<td class="pl">
+							<div class=" " tabindex="-1"
+								data-bind="ntsCheckBox: { 
+										checked: isCheckedNo4,
+										text: planYearHdFrCheckboxLabel4}"></div>
+							<input id="plan_year_hd_frame4" tabindex="5"
+							data-bind="ntsTextEditor: {
+									name: '#[CMM007_47]',
+									value: planYearHdFrName4,
+									required: requiredPlanYearHdFrName4,
+									enable: enablePlanYearHdFrName4,
+									constraint: 'PlanYearHolidayFrameName',
+									option: {width: '130px'}}" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<div data-bind="visible: false"></div>
+						</td>
+						<td class="pl">
+							<div class=" " tabindex="-1"
+								data-bind="ntsCheckBox: { 
+									checked: isCheckedNo5,
+									text: planYearHdFrCheckboxLabel5}"></div>
+							<input id="plan_year_hd_frame5" tabindex="6"
+							data-bind="ntsTextEditor: {
+									name: '#[CMM007_48]',
+									value: planYearHdFrName5,
+									required: requiredPlanYearHdFrName5,
+									enable: enablePlanYearHdFrName5,
+									constraint: 'PlanYearHolidayFrameName',
+									option: {width: '130px'}}" />
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:com="http://xmlns.jcp.org/jsf/component"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<body>
+		
+		<ui:composition template="../../../../master/masterpage.xhtml">
+			<ui:define name="htmlHead">
+				<script>var dialogSize = { width: 300, height: 200 };</script>
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile set="IGNITE" />
+				<com:scriptfile path="../../catalog/catalog.js" />		
+				<com:scriptfile path="start.js" />
+				<com:ValidatorScript>
+					nts.uk.ctx.at.request.dom.application.holidayworktime.primitivevalue.HolidayAppPrimitiveTime
+					nts.uk.shr.com.time.TimeWithDayAttr
+				</com:ValidatorScript>
+				<style>
+					.medium-font-size {
+						font-size: 0.6rem;
+					}
+					.small-font-size {
+						font-size: 0.5rem;
+					}
+					.cell-red {
+						background-color: red;
+					}
+					.cell-green {
+						background-color: green;
+					}
+					.extable div.cell-light-green, td.cell-light-green {
+						background-color: #B8FF33;
+					}
+					.extable div.cell-light-green.selected, td.cell-light-green.selected {
+						background-color: #3498DB;
+						color: #FFF;
+					}				
+					.blue-text {
+						color: blue;
+					}	
+					.red-text {
+						color: red;
+					}
+					.per-icon {
+						margin-top: 2px !important;
+					}
+					a {
+						color: black;
+					}
+					.header-image {
+						background-image: url("http://localhost:8080/nts.uk.com.js.web/lib/nittsu/ui/style/stylesheets/images/icons/numbered/72.png");
+						background-size: contain;
+						width: 20px;
+						height: 20px;
+					}
+					.header-image:hover {
+						background-image: url("http://localhost:8080/nts.uk.com.js.web/lib/nittsu/ui/style/stylesheets/images/icons/numbered/2.png");
+						cursor: pointer;
+					}
+				</style>
+			</ui:define>
+			
+			<ui:define name="content">
+				<div id="functions-area"></div>
+				<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>ExTable</h1>
+						<h2>Overview</h2>
+						<br />
+						<div>
+						<button id="open-dialog">Open Dialog</button>
+						<input type="button" id="show-last-week" value="Show Last Week"/>
+						<input type="button" id="update-detail-color" value="Update detail color"/>
+						<input type="button" id="update-middle" value="Update Middle"/>
+						<input type="button" id="set-sticker-single" value="Single Sticker"/>
+						<input type="button" id="set-sticker-multi" value="Multi Sticker"/>
+						<input type="button" id="set-sticker-multi2" value="Multi Sticker 2"/>
+						<input type="button" id="set-sticker-valid" value="Sticker Validate"/>
+						<input type="button" id="stick-styler" value="Stick Styler"/>
+						<input type="button" id="set-paste-valid" value="Paste Validate"/>
+						<input type="button" id="stick-undo" value="Undo Stick"/>
+						<input type="button" id="stick-redo" value="Redo Stick"/>
+						</div>
+						<br/>
+						<div id="extable" style="height: 1000px;"></div>
+						<div id="subtable" style="height: 300px;"></div>
+						<div id="popup" style="font-weight: bold; display: none">
+							<span>2017/04/03</span>
+							<br/>
+							<label>会社の行事</label>
+							<br/>
+							<input id="popup-val" type="text"></input>
+							<button id="popup-set">決定</button>
+						</div>
+						<div id="popup-items" style="display: none;">
+							<label>カテゴリを選択してください。</label>
+							<br/><br/>
+							<button id="item-select">選択</button>
+						</div>
+						<div id="popup-items2" style="display: none;">
+							<label>カテゴリを選択してください。</label>
+							<br/><br/>
+							<button id="item-select2">選択</button>
+						</div>
+						<article class="cf">
+							
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+					</div>
+		   		</div>
+			</ui:define>
+		</ui:composition>
+   	</body>
+</html>

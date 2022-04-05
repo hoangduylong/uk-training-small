@@ -1,0 +1,61 @@
+.title-right {
+	float: right;
+	margin-right: 20px;
+}
+
+.mgrid .mgrid-header td {
+  background-color: #CFF1A5;
+}
+
+.content {
+  margin-left: 20px;
+}
+
+.search-panel {
+  width: fit-content;
+  display: table;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.search-button {
+  margin-top: auto;
+  margin-left: 20px;
+}
+
+.storage-size {
+  margin-top: 10px;
+}
+
+.download-icon {
+  background: url("../resource/102.png");
+  width: 50%;
+  height: 20px !important;
+  background-size: 100% 100%;
+  -webkit-background-size: 100% 100%; /*  Safari  */
+  -khtml-background-size: 100% 100%; /*  Konqueror  */
+  -moz-background-size: 100% 100%; /*  Firefox  */
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.hidden-item > button, .hidden-item > span {
+  display: none;
+}
+
+td.red-color {
+	color: #FF0000;
+}
+
+#I4_4 {
+  margin-left: 10px;
+}
+
+#I1_2 {
+  float: right;
+  margin-right: 10px;
+}
+
+#I2_2 > div:first-child {
+  margin-bottom: 10px;
+}

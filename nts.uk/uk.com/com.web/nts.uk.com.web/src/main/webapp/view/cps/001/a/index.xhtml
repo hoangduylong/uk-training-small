@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+
+			<com:stylefile path="/view/ccg/share/style.css" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.service.js"
+				of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.vm.js" of="/nts.uk.com.web" />
+
+			<com:stylefile path="cps001.a.style.css" />
+			<com:scriptfile path="cm/cps-tabs-ko-comp.js" />
+			<com:scriptfile path="cm/cps-employees-ko-comp.js" />
+			<com:scriptfile path="cm/cps-bdate-ko-comp.js" />
+			
+			<com:scriptfile path="/view/cps/shr/layout-control-validation.js" />
+			<com:scriptfile path="/view/cps/shr/layout-control-ko-ext.js" />
+
+			<com:scriptfile path="cps001.a.service.js" />
+			<com:scriptfile path="cps001.a.vm.js" />
+			<com:scriptfile path="cps001.a.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<a tabindex="1" class="goback" 
+					data-bind="ntsLinkButton: { jump: '/view/cps/018/a/index.xhtml' }, visible: $vm.isFromCPS018">#{i18n.getText('CPS001_157')}</a>
+				<button type="button" class="proceed"
+					data-bind="click: saveData, enable: $root.errors.isEmpty &amp;&amp; saveAble"
+					tabindex="2">#{i18n.getText('CPS001_4')}</button>
+				<button type="button" data-bind="click: unManagerEmployee,
+												 enable: !!employee.employeeId(),
+												 style: { visibility: enaBtnManagerEmp() ? 'visible' : 'hidden' }"
+					tabindex="3">#{i18n.getText('CPS001_5')}</button>
+				<button type="button" class="danger"
+					data-bind="click: deleteEmployee,					
+							   enable: !!employee.employeeId(),
+							   style: { visibility: enaBtnDelEmp() ? 'visible' : 'hidden' }" tabindex="4">#{i18n.getText('CPS001_6')}</button>
+				<span class="licenseCheck" data-bind="text:licenseCheck, css: classWarning, style: { visibility: licenseCheckDipslay() ? 'visible' : 'hidden', marginLeft: $vm.isFromCPS018() ? '18px' : '140px'  }"></span>
+				<a class="goout"
+					data-bind="ntsLinkButton: { jump: '/view/cas/001/a/index.xhtml' }"
+					tabindex="5">#{i18n.getText('CPS001_7')}</a> <a class="goout"
+					data-bind="ntsLinkButton: { jump: '/view/cps/008/a/index.xhtml' }"
+					tabindex="6">#{i18n.getText('CPS001_8')}</a>
+			</div>
+			<div id="contents-area" class="cf">
+				<div id="ccgcomponent" tabindex="7"></div>
+				<com:ko tag="let" bind="{ 
+					text: nts.uk.resource.getText,
+					TABS: {
+						LAYOUT: 'layout',
+						CATEGORY: 'category'
+					}
+				}">
+					<employee-list class="cf"
+						params="{
+									personId: employee.personId,
+									employeeId: employee.employeeId,
+									employeeIds: employee.employeeIds,
+									employees: employee.employees,
+									hireDate: employee.hireDate
+								}"></employee-list>
+					<div class="left-area">
+						<layout-tabs
+							params="{
+							personId: employee.personId,
+							employeeId: employee.employeeId,
+							change: change
+						}"></layout-tabs>
+					</div>
+					<div class="right-area">
+						<com:ko tag="if" bind="ko.toJS(layout.mode) == TABS.LAYOUT">
+							<base-date
+								params="
+								id: layout.id,
+								employeeId: employee.employeeId,
+								standardDate: layout.standardDate
+							"></base-date>
+						</com:ko>
+						<!--<com:ko tag="if" bind="ko.toJS(layout.mode) == TABS.CATEGORY">
+							<div class="title" data-bind="text: titleResource"></div>
+						</com:ko>-->
+						<div
+							data-bind="ntsLayoutControl: { 
+								editAble: 2,
+								data: layout.listItemCls,
+								showColor: layout.showColor, 
+								outData: layout.outData 
+							}"></div>
+					</div>
+				</com:ko>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,19 @@
+@import url("base.css");
+
+.column-1 {
+	padding: 20px;
+}
+
+#common-master_arena {
+	
+	display: inline-block;
+	
+}
+
+.column-2 {
+	padding-left: 30px;
+}
+
+.column-3 {
+	padding-left: 45px;
+}

@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:ValidatorScript>
+					nts.uk.ctx.pereg.dom.person.layout.LayoutCode
+					nts.uk.ctx.pereg.dom.person.layout.LayoutName
+			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="/view/cps/shr/layout-control-validation.js" />
+			<com:scriptfile path="/view/cps/shr/layout-control-ko-ext.js" />
+			<com:stylefile path="cmm042.a.style.css" />
+			<com:scriptfile path="cmm042.a.service.js" />
+			<com:scriptfile path="cmm042.a.vm.js" />
+			<com:scriptfile path="cmm042.a.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+					<button id="A_BTN_NEW" data-bind="click : createNewMode">新規</button>
+					<button id="A_BTN_REGISTER" class="proceed" data-bind="click: register">登録</button>
+					<button id="A_BTN_REMOVE" class="danger" data-bind="click: removeSetting , enable: enaBtnDel()">削除</button>
+					<button id="A_BTN_SHOWDIALOGB" data-bind="click: showDialogB ">オプション</button>				
+			</div>
+			<div id="contents-area">
+				<div id="left-content"
+					class="relative bg-green caret-right caret-background">
+					<div class="cf">
+						<div style="float: left">
+							<div style="width: 300px"
+								data-bind="ntsSearchBox: {
+									searchMode :'highlight',
+									targetKey: 'id', 
+									mode: 'igGrid',
+									comId: 'multi-list',
+									items: settings, 
+									selected: 'id',
+									selectedKey: 'id', 
+									fields: ['name', 'code'] }" />
+							<table id="multi-list"
+								data-bind="ntsGridList: {
+									height: 535,
+									options: settings,
+									optionsValue: 'id',
+									columns: [
+						                { headerText: '', key: 'id', width: 0, hidden: true },
+						                { headerText: '#{i18n.getText('CPS008_9')}', key: 'code', width: 60, hidden: false },
+						                { headerText: '#{i18n.getText('CPS008_10')}', key: 'name', width: 220, hidden: false, formatter: _.escape }
+						            ],
+									multiple: false,
+									value: setting().id}">
+							</table>
+						</div>
+					</div>
+				</div>
+				<div id="right-content" data-bind="with: setting">
+						<div class="row1 cell valign-center" > <!-- row 1 -->
+							<div style="margin-left: 5px" data-bind="ntsFormLabel: { required: true }"> 端末No/名称  </div>
+							<div class="input_row1 input_code">
+								<input style="width: 80px" id="A_INP_CODE" data-bind="ntsTextEditor: {
+															value: code,
+															required:true,
+															enable: $parent.setting().id() == undefined }" />
+							</div>
+							<div class="input_row1 input_name">
+								<input style="width: 212px ; margin-left: 10px" id="A_INP_NAME"  data-bind="ntsTextEditor: {
+															value: name,
+															required:true,
+															enable: true }" />
+							</div>
+						</div>
+						
+						<div class="row2 cell valign-center" > <!-- row 2 -->
+							<div class="component_row2" style="margin-left: 5px" data-bind="ntsFormLabel: { required: true }">機種</div>
+							<div class="component_row2 valign-center " style="margin-left: 54px; width: 100px" id="combo-box"
+											data-bind="ntsComboBox: {
+														options: listTeminal,
+														optionsValue: 'value',
+														value: selectedCode_Teminal,
+														optionsText: 'text',
+														enable: true,
+														editable: false,
+														columns: [
+															{ prop: 'text', length: 10 }
+														]}"></div>
+	
+							<div class="component_row2" style="margin-left: 12px" data-bind="ntsFormLabel: { required: true }">機種区分</div>
+							<div class="component_row2 valign-center " style="width: 150px" id="combo-box-rom"
+								 data-bind="ntsComboBox: {
+											options: listRom,
+											optionsValue: 'value',
+											value: selectedCode_rom,
+											optionsText: 'text',
+											enable: enableComBoRom,
+											editable: false,
+											columns: [
+												{ prop: 'text', length: 15 }
+											]}"></div>
+					</div>
+
+					<div class="row3"> <!-- row 3 -->
+						<div class="component_row3" data-bind="ntsCheckBox: { checked: checked_CardNo , enable: enable_CardNo, text: 'カードNO拡張モード' }"></div>
+						<div style="margin-left: 70px" class="component_row3" data-bind="ntsCheckBox: { checked: checked_ExtendeRrese, enable: enable_ExtendeRrese, text: '拡張予約通信モード' }"></div>
+						<div style="margin-left: 35px" class="component_row3" data-bind="ntsCheckBox: { checked: checked_Rese40item, enable: enable_Rese40item, text: '予約４０項目モード' }"></div>
+					</div>
+
+					<div class="row4"> <!-- row 4 --> 
+						<div class="component_row4" data-bind="ntsCheckBox: { checked: checked_RemoteAllItem , enable: enable_RemoteAllItem, text: 'リモート全項目設定モード' }"></div>
+						<div style="margin-left: 40px" class="component_row4" data-bind="ntsCheckBox: { checked: checked_WorkType , enable: enable_WorkType, text: '勤務種類コード拡張モード' }"></div>
+					</div>
+
+					<div class="row5"><!-- row 5 -->
+						<div class="component_row5" data-bind="ntsCheckBox: { checked: checked_TCPIP , enable: enable_TCPIP, text: 'TCP/IP接続' }"></div>
+						<div style="margin-left: 148px" class="component_row5" data-bind="ntsFormLabel: { required: true }"> <span data-bind="text: tcpip_phone_label"></span> </div>
+						<div class="component_row5">
+							<input style = "width: 130px" id="A_INP_PHONE_OR_IPADRESS" data-bind="ntsTextEditor: {
+																value: tcpip_phone_value,
+																required:true,
+																enable: true }" />
+						</div>
+					</div>
+
+					<div class="row6"> <!-- row 6 --> 
+						<div style="margin-left: 5px" class="component_row6" data-bind="ntsFormLabel: { required: true }"> MACアドレス </div>
+						<div class="component_row6">
+							<input style = "width: 130px; margin-left: 10px" id="MAC_IPADRESS" data-bind="ntsTextEditor: {
+																value: macAddress_value,
+																required:true,
+																enable: true }" />
+						</div>
+					</div>
+
+					<div class="row7" ><!-- row 7 -->
+						<div style="margin-left: 5px" class="component_row7" data-bind="ntsFormLabel: { required: true }"> 端末アドレス  </div>
+						<div class="component_row7">
+							<input style="width: 80px; margin-left: 12px" id="TerminalAddress" data-bind="ntsTextEditor: {
+																value: terminalAddress_value,
+																required:true,
+																enable: true }" />
+						</div>
+						<div style="margin-left: 25px" class="component_row7"> 
+							<button id="A_BTN_SHOWDIALOGD" class="large" style="margin-left: 20px;" data-bind="click: $parent.showDialogD.bind($parent) ">設置場所選択</button>	
+						</div>
+						<div class="component_row7" style="margin-left: 20px;">
+							<span data-bind="text: location_code"></span>
+							<span style="margin-left: 20px;" data-bind="text: location_name"></span>
+						</div>
+						
+					</div>
+
+					<div class="row8" ><!-- row 8 --> 
+						<div style="margin-left: 5px" class="component_row8" data-bind="ntsFormLabel: { required: true }"> ポート番号  </div>
+						<div style="width: 100px; margin-left: 21px" class="component_row8 valign-center " id="combo-box-port"
+							data-bind="ntsComboBox: {
+										options: listPortType,
+										optionsValue: 'value',
+										value: selectedCode_PortType,
+										optionsText: 'text',
+										enable: enablelistPortType ,
+										editable: false,
+										columns: [
+											{ prop: 'text', length: 10 }
+										]}"></div>
+						<div style="margin-left: 27px" class="component_row8">
+							<button class="large" style="margin-left: 20px; width: 120px;" data-bind="click: $parent.showDialogE.bind($parent), enable: enaBtnshowDialogE() " > ポート設定 </button>
+						</div>
+					</div>
+						
+					<div class="row9" ><!-- row 9 --> 
+						<div style="margin-left: 5px" class="component_row9" data-bind="ntsFormLabel: { required: true }"> 常時収集  </div>
+						<div style="width: 100px; margin-left: 26px" class="component_row9 valign-center " id="combo-box-AlwaysCollect"
+							data-bind="ntsComboBox: {
+										options: listAlwaysCollect,
+										optionsValue: 'value',
+										value: selectedCode_AlwaysCollect,
+										optionsText: 'text',
+										enable: true,
+										editable: false,
+										columns: [
+											{ prop: 'text', length: 10 }
+										]}"></div>
+					
+					</div>
+						
+					<div class="row10"><!-- row 10 -->
+						<div class="component_row10" data-bind="ntsCheckBox: { checked: checked_INOUT , enable: enable_INOUT, text: '外出・戻りを応援（出・入）として扱う' }"></div>
+						<div class="component_row10" style="margin-left: 9px;" data-bind="ntsFormLabel: { required: true }"> 外出区分  </div>
+						<div style="width: 100px; margin-left: 26px" class="component_row10 valign-center " id="combo-box-InoutType"
+							 data-bind="ntsComboBox: {
+										options: listInoutType,
+										optionsValue: 'value',
+										value: selectedCode_InoutType,
+										optionsText: 'text',
+										enable: enable_listInoutType,
+										editable: false,
+										columns: [
+											{ prop: 'text', length: 10 }
+										]}"></div>	
+						
+					</div>
+						
+					<div class="row11"><!-- row 11 --> 
+						<div class="component_row11" data-bind="ntsCheckBox: { checked: checked_EntryExit , enable: enable_EntryExit, text: '入門・退門を管理する端末として扱う' }"></div>											
+					</div>
+						
+					<div class="row12"><!-- row 12 -->
+						<div class="component_row12"
+							data-bind="ntsCheckBox: { checked: checked_Unlock , enable: enable_Unlock, text: '電子錠の開錠を' }"></div>
+						<div style="width: 70px; margin-left: 2px" class="component_row12 valign-center " id="combo-box-Unlock"
+							data-bind="ntsComboBox: {
+										options: listUnlock,
+										optionsValue: 'value',
+										value: selectedCode_Unlock,
+										optionsText: 'text',
+										enable: enable_listUnlock,
+										editable: false,
+										columns: [
+											{ prop: 'text', length: 7 }
+										]}"></div>
+						<div class="component_row12">
+							<span> として扱う </span>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = { width: 1110, height: 555 };
+			</script>
+			<com:stylefile path="cmm044.d.main.css" />
+			<com:scriptfile path="cmm044.d.start.js" />
+			<com:scriptfile path="cmm044.d.vm.js" />
+			<com:scriptfile path="cmm044.d.service.js" />
+			<com:scriptfile set="IGNITE" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="functions-area">
+			 	<button class="proceed" id="D_BTN_001" data-bind="click: printData">#{i18n.getText('CMM044_4')}</button>
+				<button id="D_BTN_002" data-bind="click: closeDialog">#{i18n.getText('CMM044_23')}</button>
+			</div>
+
+			<div id="contents-area">
+				<div style="padding: 10px;">
+					<div class="control-group valign-center">
+						<div data-bind="ntsFormLabel: {}">#{i18n.getText('CMM044_10')}</div>
+						<div id="daterangepicker"
+							 style="display: inline-block"
+							 data-bind="ntsDateRangePicker: {
+							enable: true,
+							value: dateValue,
+							maxRange: 'none'}" />
+						<button class="caret-bottom" data-bind="click : findAgentByDate">#{i18n.getText('CMM044_30')}</button>
+					</div>
+					<table id="fixed-table">
+						<colgroup>
+							<col width="115px" />
+							<col width="115px" />
+							<col width="115px" />
+							<col width="100px" />
+							<col width="100px" />
+							<col width="100px" />
+							<col width="100px" />
+							<!--<col width="100px" />-->
+							<col width="115px" />
+							<col width="115px" />
+							<col width="115px" />
+							<col width="100px" />
+							<col width="100px" />
+						</colgroup>
+						<thead>
+						<tr>
+							<th class="ui-widget-header" colspan="2">#{i18n.getText('CMM044_7')}</th>
+							<th class="ui-widget-header" colspan="1">#{i18n.getText('CMM044_31')}</th>
+							<th class="ui-widget-header" colspan="1">#{i18n.getText('CMM044_32')}</th>
+							<th class="ui-widget-header" colspan="1">#{i18n.getText('Com_Jobtitle')}</th>
+							<th class="ui-widget-header" colspan="1">#{i18n.getText('CMM044_34')}</th>
+							<th class="ui-widget-header" colspan="1">#{i18n.getText('CMM044_35')}</th>
+							<!--<th class="ui-widget-header" colspan="1">#{i18n.getText('CMM044_36')}</th>-->
+							<th class="ui-widget-header" colspan="2">#{i18n.getText('CMM044_25')}</th>
+							<th class="ui-widget-header" colspan="1">#{i18n.getText('CMM044_31')}</th>
+							<th class="ui-widget-header" colspan="1">#{i18n.getText('CMM044_32')}</th>
+							<th class="ui-widget-header" colspan="1">#{i18n.getText('Com_Jobtitle')}</th>
+						</tr>
+						</thead>
+						<tbody data-bind="foreach: personList">
+						<tr>
+							<td>
+								<span class="limited-label" data-bind="text: $data.employeeCode"/>
+							</td>
+							<td>
+								<span class="limited-label" data-bind="text: $data.employeeName"/>
+							</td>
+							<td>
+								<span class="limited-label" data-bind="text: $data.workPlaceCode"/>
+							</td>
+							<td>
+								<span class="limited-label" data-bind="text: $data.workPlaceName"/>
+							</td>
+							<td>
+								<span class="limited-label" data-bind="text: $data.position"/>
+							</td>
+							<td>
+								<span class="limited-label" data-bind="text: $data.startDate"/>
+							</td>
+							<td>
+								<span class="limited-label" data-bind="text: $data.endDate"/>
+							</td>
+							<!--<td>-->
+								<!--<span class="limited-label" data-bind="text: $data.agentTarget"/>-->
+							<!--</td>-->
+							<!--<com:ko-if bind="$data.hasColSpan">-->
+								<!--<td colspan="2">-->
+									<!--<span class="limited-label" data-bind="text: $data.agentCode"/>-->
+								<!--</td>-->
+							<!--</com:ko-if>-->
+							<!--<com:ko-if bind="!$data.hasColSpan">-->
+                            <td>
+                                <span class="limited-label" data-bind="text: $data.agentCode"/>
+                            </td>
+                            <td>
+                                <span class="limited-label" data-bind="text: $data.agentName"/>
+                            </td>
+							<!--</com:ko-if>-->
+							<td>
+								<span class="limited-label" data-bind="text: $data.agentWorkPlaceCode"/>
+							</td>
+							<td>
+								<span class="limited-label" data-bind="text: $data.agentWorkPlaceName"/>
+							</td>
+							<td>
+								<span class="limited-label" data-bind="text: $data.agentPosition"/>
+							</td>
+						</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

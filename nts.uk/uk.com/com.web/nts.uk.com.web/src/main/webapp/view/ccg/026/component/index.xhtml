@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition>
+		<table data-bind="attr: { id: 'table-permission-' + componentId }">
+			<colgroup>
+				<col width="250px" />
+				<col width="80px" />
+				<col width="250px" />
+			</colgroup>
+			<thead>
+				<tr>
+					<th class="ui-widget-header" >#{i18n.getText('CCG026_2')}</th>
+					<th class="ui-widget-header" >#{i18n.getText('CCG026_3')}</th>
+					<th class="ui-widget-header" >#{i18n.getText('CCG026_4')}</th>
+				</tr>
+			</thead>
+			<tbody data-bind="foreach: listPermissions">
+				<tr>
+					<td><div data-bind="text: displayName"
+							class="limited-label description"></div></td>
+					<td class="halign-center"><div style="vertical-align: middle;"
+							data-bind="attr: {tabindex: $parent.setting.tabindex}, ntsCheckBox: {checked: availability, enable: $parent.enable}"></div></td>
+					<td><div data-bind="text: description"
+							class="limited-label description"></div></td>
+				</tr>
+			</tbody>
+		</table>
+	</ui:composition>
+</body>
+</html>

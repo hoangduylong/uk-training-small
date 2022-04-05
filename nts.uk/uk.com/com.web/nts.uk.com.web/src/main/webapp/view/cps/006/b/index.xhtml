@@ -1,0 +1,397 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+
+			<script>
+				var dialogSize = {
+					width : 1100,
+					height : 650
+				};
+			</script>
+			<com:ValidatorScript>
+				nts.uk.ctx.pereg.dom.person.info.item.ItemName
+				nts.uk.ctx.pereg.dom.person.setting.selectionitem.selectionitem.primitive.SelectionItemName
+			</com:ValidatorScript>
+			<com:stylefile path="cps006.b.style.css" />
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="cps006.b.start.js" />
+			<com:scriptfile path="cps006.b.service.js" />
+			<com:scriptfile path="cps006.b.vm.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<button id="B_1" tabindex="1" class="proceed" data-bind="click:updateItemChange, enable: $root.errors.isEmpty">#{i18n.getText('CPS006_19')}</button>
+				<button id="B_2" tabindex="2" data-bind="click:OpenCDL022Modal">#{i18n.getText('CPS006_20')}</button>
+				<button id="B_3" tabindex="3" data-bind="click:closeDialog">#{i18n.getText('CPS006_21')}</button>
+			</div>
+			<div id="contents-area" class="cf">
+				<div id="content_main">
+					<div id="content-left"
+						data-bind="ntsPanel:{width: '260px', height: '485px', direction: 'right', showIcon: false, visible: true}">
+
+						<div>
+							<div id="checked" tabindex="4"
+								data-bind="ntsCheckBox: { checked: ckbDisplayAbolition}">#{i18n.getText('CPS006_22')}</div>
+						</div>
+
+						<div>
+							<div tabindex="5"
+								data-bind="ntsSearchBox: {
+							searchMode: 'highlight',
+							targetKey: 'id', 
+							comId: 'B1_3', 
+							items: itemInfoDefList , 
+							selected: currentSelectId , 
+							selectedKey: 'id', 
+							fields: ['itemName'], 
+							placeHolder:'名称で検索…',
+							mode: 'igGrid'}" />
+						</div>
+
+						<div class="div_grid">
+							<table id="B1_3"
+								data-bind="ntsGridList: {
+							rows : 15,
+							options: itemInfoDefList ,
+							optionsValue: 'id',
+							columns: columns ,
+							multiple: false ,
+							columnResize: true,
+							value: currentSelectId,
+							width: '320',
+							rowVirtualization: true}">
+							</table>
+						</div>
+
+					</div>
+					<div id="content-right">
+						<div class="div_line">
+
+							<div class="line_col_1">
+								<div id="B2_1" data-bind="ntsFormLabel: {  }">#{i18n.getText('CPS006_23')}</div>
+							</div>
+
+							<div class="line_col_2">
+								<span id="B2_2" data-bind="text:currentItem().itemDefaultName"></span>
+							</div>
+
+						</div>
+
+						<div class="div_line flex valign-center ">
+
+							<div class="line_col_1">
+								<div
+									data-bind="ntsFormLabel: { required:true ,constraint:'ItemName' }">#{i18n.getText('CPS006_16')}</div>
+							</div>
+
+							<div class="line_col_2">
+								<input id="itemName" tabindex = "6"
+									data-bind="ntsTextEditor: {name: '#[CPS006_16]', value: itemNameText, constraint:'ItemName', required:true}" />
+							</div>
+
+							<com:ko-if bind="currentItem().canAbolition === true">
+								<div id="B2_5" tabindex = "7"
+									data-bind="ntsCheckBox: { checked: ckbIsAbolition, style: 'warnpanel' }">#{i18n.getText('CPS006_24')}</div>
+							</com:ko-if>
+
+						</div>
+
+
+						<div class="div_line">
+							<com:ko-if bind="currentItem().requireChangable === 1">
+								<div class="line_col_1">
+									<div id="B2_6" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CPS006_25')}</div>
+								</div>
+
+								<div class="line_col_2">
+									<div class="cf" tabindex = "8"
+										data-bind="ntsSwitchButton: {
+									options: roundingRules,
+									optionsValue: 'code',
+									optionsText: 'name',
+									value: isRequired ,
+									enable: true }">
+									</div>
+
+								</div>
+							</com:ko-if>
+							<com:ko-if bind="currentItem().requireChangable === 0">
+
+								<div class="line_col_1">
+									<div id="B2_17" data-bind="ntsFormLabel: { required: false }">#{i18n.getText('CPS006_25')}</div>
+								</div>
+
+								<div class="line_col_2">
+									<span id="B2_18" data-bind="text:genRequiredText()"></span>
+								</div>
+							</com:ko-if>
+
+							<div data-bind="if: displayB2_48()">
+							<com:ko-if bind=" dataType() !== 12 &amp; dataType() !== 11 &amp; dataType() !== 10">
+								<div class="div_line">
+
+									<div class="line_col_1">
+										<div id="B2_8" data-bind="ntsFormLabel: { required:false }">#{i18n.getText('CPS006_28')}</div>
+									</div>
+
+									<div class="line_col_2">
+										<span id="B2_9" data-bind="text:genDatatypeValueText()"></span>
+									</div>
+								</div>
+							</com:ko-if>
+
+								<com:ko-if bind=" dataType() === 1">
+
+									<div class="div_line">
+
+										<div class="line_col_1">
+											<div id="B2_10" data-bind="ntsFormLabel: { required:false }">#{i18n.getText('CPS006_29')}</div>
+										</div>
+
+										<div class="line_col_2">
+											<span id="B2_11" data-bind="text:genStringItemTypeText()">roleCode</span>
+										</div>
+
+									</div>
+
+									<div class="div_line">
+
+										<div class="line_col_1">
+											<div id="B2_12" data-bind="ntsFormLabel: { required:false }">#{i18n.getText('CPS006_30')}</div>
+										</div>
+
+										<div class="line_col_2">
+											<span id="B2_13"
+												data-bind="text:currentItem().itemTypeState.dataTypeState.stringItemLength">roleCode</span>
+										</div>
+
+									</div>
+
+									<div class="div_line">
+
+										<div class="line_col_1">
+											<div id="B2_14" data-bind="ntsFormLabel: { required:false }">#{i18n.getText('CPS006_31')}</div>
+										</div>
+
+										<div class="national_string">
+											<span id="B2_15"
+												data-bind="text: genStringItemDataTypeText ()"></span>
+										</div>
+
+										<button class="float_left" tabindex = "9"
+											data-bind="ntsHelpButton: {image: 'B2_161.png', position: 'right top', enable: true }">?</button>
+
+									</div>
+
+								</com:ko-if>
+
+								<com:ko-if bind="dataType()  === 2">
+
+									<div class="div_line">
+
+										<div class="line_col_1">
+											<div id="B2_20" data-bind="ntsFormLabel: { required:false }">#{i18n.getText('CPS006_32')}</div>
+										</div>
+
+										<com:ko-if
+											bind="currentItem().itemTypeState.dataTypeState.numericItemAmount === 1">
+											<div class="line_col_2">
+												<span id="B2_21">#{i18n.getText('CPS006_52')}</span>
+											</div>
+										</com:ko-if>
+
+										<com:ko-if
+											bind="currentItem().itemTypeState.dataTypeState.numericItemAmount === 0">
+											<div class="line_col_2">
+												<span id="B2_21">#{i18n.getText('CPS006_53')}</span>
+											</div>
+										</com:ko-if>
+
+									</div>
+
+									<div class="div_line">
+
+										<div class="line_col_1">
+											<div id="B2_22" data-bind="ntsFormLabel: { required:false }">#{i18n.getText('CPS006_33')}</div>
+										</div>
+
+										<div class="line_col_2">
+											<span id="B2_23"
+												data-bind="text:genStringNumericItemMinusText()">roleCode</span>
+										</div>
+
+									</div>
+
+									<div class="div_line">
+
+										<div class="line_col_1">
+											<div id="B2_24" data-bind="ntsFormLabel: { required:false }">#{i18n.getText('CPS006_34')}</div>
+										</div>
+
+										<div class="line_col_2">
+											<span id="B2_25"
+												data-bind="text:currentItem().itemTypeState.dataTypeState.integerPart"></span>
+										</div>
+
+									</div>
+
+									<div class="div_line">
+
+										<div class="line_col_1">
+											<div id="B2_26" data-bind="ntsFormLabel: { required:false }">#{i18n.getText('CPS006_35')}</div>
+										</div>
+
+										<div class="line_col_2">
+											<span id="B2_27"
+												data-bind="text:currentItem().itemTypeState.dataTypeState.decimalPart"></span>
+										</div>
+
+									</div>
+									<com:ko-if
+										bind="currentItem().itemTypeState.dataTypeState.numericItemMax !=null">
+										<div class="div_line">
+
+											<div class="line_col_1">
+												<div id="B2_24" data-bind="ntsFormLabel: { required:false }">#{i18n.getText('CPS006_40')}</div>
+											</div>
+
+											<div class="line_col_2">
+												<com:ko-if
+													bind=" currentItem().itemTypeState.dataTypeState.numericItemAmount === 1">
+													<span id="B2_25"
+														data-bind="text:genNumber(currentItem().itemTypeState.dataTypeState.numericItemMin,currentItem().itemTypeState.dataTypeState.decimalPart )"></span>
+													<span class="label">～</span>
+													<span id="B2_25"
+														data-bind="text:genNumber(currentItem().itemTypeState.dataTypeState.numericItemMax,currentItem().itemTypeState.dataTypeState.decimalPart )"></span>
+												</com:ko-if>
+
+												<com:ko-if
+													bind=" currentItem().itemTypeState.dataTypeState.numericItemAmount === 0">
+													<span id="B2_25"
+														data-bind="text:currentItem().itemTypeState.dataTypeState.numericItemMin"></span>
+
+
+													<span class="label">～</span>
+													<span id="B2_25"
+														data-bind="text:currentItem().itemTypeState.dataTypeState.numericItemMax"></span>
+												</com:ko-if>
+
+											</div>
+
+										</div>
+									</com:ko-if>
+
+								</com:ko-if>
+
+								<com:ko-if bind="dataType() === 3">
+
+									<div class="div_line">
+
+										<div class="line_col_1">
+											<div id="B2_29" data-bind="ntsFormLabel: { required:false }">#{i18n.getText('CPS006_36')}</div>
+										</div>
+
+										<div class="line_col_2">
+											<span id="B2_30" data-bind="text:genDateTypeText()"></span>
+										</div>
+
+									</div>
+
+								</com:ko-if>
+
+								<com:ko-if bind="dataType() === 4">
+									<div class="div_line">
+
+										<div class="line_col_1">
+											<div id="B2_32" data-bind="ntsFormLabel: { required:false }">#{i18n.getText('CPS006_37')}</div>
+										</div>
+
+										<div class="line_col_2">
+											<span id="B2_33"
+												data-bind="text: genTime(currentItem().itemTypeState.dataTypeState.min) "></span>
+											<span id="B2_34">~</span> <span id="B2_35"
+												data-bind="text: genTime(currentItem().itemTypeState.dataTypeState.max)"></span>
+										</div>
+
+									</div>
+
+								</com:ko-if>
+
+								<com:ko-if bind="dataType() === 5">
+
+									<div class="div_line">
+
+										<div class="line_col_1">
+											<div id="B2_37" data-bind="ntsFormLabel: { required:false }">#{i18n.getText('CPS006_40')}</div>
+										</div>
+
+										<div class="line_col_2">
+											<span id="B2_38"
+												data-bind="text: genTime(currentItem().itemTypeState.dataTypeState.timePointItemMin)"></span>
+											<span id="B2_39">~</span> <span id="B2_40"
+												data-bind="text: genTime(currentItem().itemTypeState.dataTypeState.timePointItemMax)"></span>
+										</div>
+
+									</div>
+
+								</com:ko-if>
+
+								<com:ko-if bind="dataType() === 6">
+
+									<com:ko-if bind="selectionType() === 2">
+										<div class="div_line flex valign-center">
+
+											<div class="line_col_1_sel">
+												<div id="B2_42"
+													data-bind="ntsFormLabel: { required: true , constraint: ['SelectionItemName']}">#{i18n.getText('CPS006_43')}</div>
+											</div>
+
+											<div class="line_col_2_sel">
+												<span id="B2_43" class="limited-label"
+													data-bind="text: currentItem().selectionItemName"></span>
+											</div>
+											
+											<button id="B2_44" tabindex = "10" data-bind="click: settingSelection">#{i18n.getText('CPS006_44')}</button>
+	
+										</div>
+										<div class="div_line">
+											<table class="contents-header">
+												<thead>
+													<tr>
+														<!-- A3_017: header 項目名 -->
+														<td id="COL_1">#{i18n.getText('CPS006_50')}</td>
+														<td id="COL_2">#{i18n.getText('CPS006_51')}</td>
+													</tr>
+												</thead>
+											</table>
+											<section class="table-container">
+												<div>
+													<table>
+														<tbody data-bind="foreach:  currentItem().selectionLst()">
+															<td id="code"><span class="months-input "
+																data-bind="text: selectionCode" /></td>
+															<td id="name"><span class="months-input "
+																data-bind="text: selectionName" /></td>
+														</tbody>
+													</table>
+												</div>
+											</section>
+										</div>
+									</com:ko-if>
+								</com:ko-if>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

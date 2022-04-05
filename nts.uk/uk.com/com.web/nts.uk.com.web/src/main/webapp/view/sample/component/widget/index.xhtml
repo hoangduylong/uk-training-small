@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+    <ui:composition template="/master/base.xhtml">
+        <ui:define name="htmlHead">
+            <com:scriptfile set="IGNITE" />
+
+            <com:scriptfile path="/lib/generic/igniteui/js/infragistics.dv.js" of="nts.uk.com.js.web" />
+
+            <com:stylefile path="../../catalog/catalog.css" />
+            <com:scriptfile path="../../catalog/catalog.js" />
+
+            <com:scriptfile path="./viewmodel.js" />
+            <!--<com:scriptfile path="/view/kdp/001/a/kdp001.a.component.js" of="nts.uk.at.web" />-->
+            <com:scriptfile path="/view/ktg/001/a/ktg001.a.component.js" of="nts.uk.at.web" />
+            <com:scriptfile path="/view/ktg/004/a/ktg004.a.component.js" of="nts.uk.at.web" />
+            <com:scriptfile path="/view/ktg/005/a/ktg005.a.component.js" of="nts.uk.at.web" />
+            <com:scriptfile path="/view/ktg/026/a/ktg026.a.component.js" of="nts.uk.at.web" />
+            <com:scriptfile path="/view/ktg/027/a/ktg027.a.component.js" of="nts.uk.at.web" />
+            <com:scriptfile path="/view/ktg/027/a/ktg027.a.vm.js" of="nts.uk.at.web" />
+        </ui:define>
+
+        <ui:define name="content">
+            <div id="functions-area"></div>
+            <div id="contents-area">
+                <div id="side-menu" class="cf"></div>
+                <div id="content" class="cf">
+                    <h1>Widget CCG008</h1>
+                    <h2>Overview</h2>
+                    <!--<div data-bind="widget: 'ccg-widget-1'"></div>-->
+                    <!--<div data-bind="widget: 'ccg-widget-frame'"></div>
+                    <button data-bind="click: $vm.changeMode">Switch Mode</button>
+                    <div data-bind="widget: { name: 'kdp-001-a', params: $vm.kmode }"></div>-->
+                    <div data-bind="widget: 'ktg-001-a'"></div>
+                    <div data-bind="widget: 'ktg-004-a'"></div>
+                    <div data-bind="widget: 'ktg-005-a'"></div>
+                    <div data-bind="widget: 'ktg-026-a'"></div>
+                    <div data-bind="widget: { name: 'ktg-027-a', params: { currentOrNextMonth: 1 } }"></div>
+                    <!--<div data-bind="widget: 'ktg027-component'"></div>-->
+
+                    <div data-bind="markdown: 'document.md'"></div>
+                    <div class="footer cf">
+                        <button class="previous large">Previous</button>
+                        <button class="next proceed large">Next</button>
+                    </div>
+                </div>
+            </div>
+        </ui:define>
+    </ui:composition>
+</body>
+
+</html>

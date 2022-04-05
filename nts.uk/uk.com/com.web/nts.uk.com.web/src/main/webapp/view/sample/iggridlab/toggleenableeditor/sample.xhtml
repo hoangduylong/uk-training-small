@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:com="http://xmlns.jcp.org/jsf/component"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<body>
+		
+		<ui:composition template="../../../../master/base.xhtml">
+			<ui:define name="htmlHead">
+				<script>var dialogSize = { width: 300, height: 200 };</script>
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile set="IGNITE" />
+				<com:scriptfile path="/lib/generic/igniteui/js/extensions/infragistics.datasource.knockoutjs.js"  of="/nts.uk.com.js.web"/>
+				<com:scriptfile path="/lib/generic/igniteui/js/extensions/infragistics.ui.grid.knockout-extensions.js"  of="/nts.uk.com.js.web"/>
+				<com:scriptfile path="../../catalog/catalog.js" />		
+				<com:scriptfile path="start.js" />
+			</ui:define>
+			
+			<ui:define name="content">
+				<div id="functions-area"></div>
+				<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Custom NtsComponents on igGrid With How to toggle enable/disable editor</h1>
+						<h2>Overview</h2>
+						<br />
+						
+						<table id="grid"></table>
+						<article class="cf">
+							<h2>When option 2 of combobox (column 2) is selected, cell name can't be editted.</h2>
+							<pre>
+								<![CDATA[
+$('#grid').igGrid({
+       dataSource: ko.mapping.toJS(sm.items),
+       primaryKey: 'code',
+       autoCommit: true,
+       width: '520px',
+       height: '400px',
+       autoGenerateColumns: false,
+       features: [
+           {
+               name: 'Updating',
+               editMode: 'cell',
+               enableDeleteRow: false,
+               enableAddRow: false,
+               editCellStarting: function(evt, ui){ 
+                   if(ui.columnKey === "name"){
+                       var comboSelected = $("#grid").igGrid("getCellValue", ui.rowID, "combo");
+                       if(comboSelected === options[1].value){
+                           return false;
+                       }
+                   }
+                   return true;
+               },
+               columnSettings: [
+                   { columnKey: 'code', readOnly: true },
+                   { columnKey: 'combo', editorType: 'combo',  editorOptions: {
+                               mode: "dropdown",
+                               dataSource: options,
+                               textKey: "text",
+                               valueKey: "value"
+                           }}
+               ]
+           }
+       ],
+       columns: [
+           {headerText: 'Code', key: 'code', dataType: 'string', width: 100},
+           {headerText: 'Combo', key: 'combo', dataType: 'string', width: 200, formatter: formatCombo},
+           {headerText: 'Name', key: 'name', dataType: 'string', width: 200}
+       ]
+   });]]>
+							</pre>	
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+					</div>
+		   		</div>
+			</ui:define>
+		</ui:composition>
+   	</body>
+</html>

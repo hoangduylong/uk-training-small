@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="../../catalog/catalog.css" />
+			<com:scriptfile path="start.js" />
+			<com:scriptfile path="../../catalog/catalog.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area"></div>
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+					<h1>Click binding</h1>
+					<span>Override original click binding with timeClick</span>
+					<h2>Demo</h2>
+					<table style="width: 100%">
+						<tr>
+							<td style="width: 50%; vertical-align: top;">
+								<div style="margin-bottom: 10px">
+									<button data-bind="click: $vm.clickEvent, timeClick: $vm.timeClickNumber">Prevent multi-click</button>
+								</div>
+								<div style="margin-bottom: 10px">
+									<div data-bind="ntsFormLabel: {}">Time click:</div>
+								</div>
+								<div style="margin-bottom: 10px">
+									<input data-bind="ntsNumberEditor: { value: $vm.timeClick }" />
+									<span>ms</span>
+								</div>
+							</td>
+							<td style="width: 50%" id="clickResult">
+							</td>
+						</tr>
+					</table>					
+					<article class="cf">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-view">Use</a></li>
+								<li><a href="#tabs-api">API</a></li>
+							</ol>
+							<div id="tabs-view" class="cf">
+								<h3>Event binding</h3>
+								Use in case many event click subscribe:
+								<pre><![CDATA[<button data-bind="click: clickEvent, timeClick: 500">Prevent multi-click</button>]]></pre>
+							</div>
+							<div id="tabs-api">
+								<table class="table">
+										<colgroup>
+											<col width="150px"></col>
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Name</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>click</td>
+												<td>
+													<b>Type:</b><span>void</span>
+													<br />
+													<span>Default click event binding</span>
+												</td>
+											</tr>
+											<tr>
+												<td>timeClick</td>
+												<td>
+													<b>Type:</b><span>number | KnockoutObservable&lt;number&gt;</span>
+													<br />
+													<span>Value for prevent click event</span>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+							</div>
+						</div>
+					</article>
+					<div class="footer cf">
+						<button class="previous large">Previous</button>
+						<button class="next proceed large">Next</button>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

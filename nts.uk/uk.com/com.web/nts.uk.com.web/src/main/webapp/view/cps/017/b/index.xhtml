@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = {
+					width : 505,
+					height : 410
+				};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps017.b.style.css" />
+			<com:scriptfile path="cps017.b.service.js" />
+			<com:scriptfile path="cps017.b.start.js" />
+			<com:scriptfile path="cps017.b.vm.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="functions-area">
+				<!-- B1_1: button 登録 -->
+				<button id="buton-register" class="proceed"
+					data-bind="click: register" tabindex="1">#{i18n.getText('CPS017_27')}</button>
+				<!-- B1_2: button 閉じる -->
+				<button id="button-close" style="margin-left: 328px;"
+					data-bind="click: close" tabindex="2">#{i18n.getText('CPS017_28')}</button>
+			</div>
+			<div id="contents-area">
+				<div style="margin-left: 10px;">
+					<!-- B2_1: label 個人情報の選択肢の既定値と表示順を設定してください。 -->
+					<label>#{i18n.getText('CPS017_29')}</label>
+					<!-- B2_2: grid list  -->
+					<div id="table-grid-selection" tabindex="3">
+						<table id="item_register_grid2" class="pull-left"></table>
+					</div>
+					<!-- B2_12 - B2_13: Button 並び替えボタン（上） - 並び替えボタン（下） -->
+					<div id="grid-up-down"
+						data-bind="ntsUpDown: {
+								targetSource: listSelection,
+								primaryKey: 'selectionID',
+								comId: '#item_register_grid2',
+								type: 'grid'
+							}"
+						style="margin-left: 10px;"></div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

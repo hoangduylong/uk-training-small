@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<com:ValidatorScript>
+                    nts.uk.ctx.exio.dom.exo.condset.ExternalOutputConditionCode
+                    nts.uk.ctx.exio.dom.exo.condset.ExternalOutputConditionName
+            </com:ValidatorScript>
+			<script type='text/javascript'>
+				var dialogSize = {
+					width : 630,
+					height : 320
+				};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="../share/model.js" />
+			<com:stylefile path="cmf002.t.style.css" />
+			<com:scriptfile path="cmf002.t.vm.js" />
+			<com:scriptfile path="cmf002.t.start.js" />
+			<com:scriptfile path="cmf002.t.service.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div style="margin: 15px;">
+					<div class="title_content">
+						<!-- T1ユーザ設定の複写 -->
+						<div class="title_content_left">#{i18n.getText('CMF002_250')}</div>
+					</div>
+
+					<div class="content_center">
+						<div id="table_content">
+							<!-- row1 -->
+							<div class="flex valign-center">
+								<!-- T2コピー元情報： -->
+                <div class="label_top">#{i18n.getText('CMF002_253')}</div>
+                <!-- T2_1コード/名称 -->
+                <div class="td_left"
+                  data-bind="ntsFormLabel: {required: false }">
+                  #{i18n.getText('CMF002_254')}
+                </div>
+								<!-- T2_2条件設定名 -->
+								<div class="lable td_center">
+										<label data-bind="text: conditionSetCd"></label>
+								</div>
+								<div class="lable td_right">
+									<label data-bind="text: conditionName"></label>
+								</div>
+							</div>
+							<!-- row2 -->
+							<div class="flex valign-center">
+								<!-- T3コピー先情報： -->
+                <div class="label_top">#{i18n.getText('CMF002_255')}</div>
+								<!-- T3_1条件コード/名称 -->
+                <div class="td_left" data-bind="ntsFormLabel: {constraint: ['ExternalOutputConditionCode', 'ExternalOutputConditionName'],required: true }">
+                  #{i18n.getText('CMF002_254')}
+                </div>
+								<!-- T3_2コード -->
+								<input id="T3_2" class="td_center_sp" tabindex="1"
+									data-bind="ntsTextEditor: {value: copyDestinationCode, name: '#[CMF002_256]', optionsText: 'name', required: true, constraint: 'ExternalOutputConditionCode'}" />
+								<!-- T3_3名称 -->
+								<input id="T3_3" class="td_right" tabindex="2" style="width: 185px;"
+									data-bind="ntsTextEditor: {value: destinationName, name: '#[CMF002_257]', optionsText: 'name', required: true, constraint: 'ExternalOutputConditionName'}" />
+							</div>
+						</div>
+						<!-- T4上書きチェック -->
+            <div class="checkbox_bottom" tabindex="3" data-bind=" ntsCheckBox: { checked: overWrite, style: 'warnpanel'}">#{i18n.getText('CMF002_258')}</div>
+					</div>
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<!-- T20_1実行-->
+				<button class="proceed x-large" tabindex="4" data-bind="click: excuteCopy, enable: $root.errors.isEmpty">#{i18n.getText('CMF002_259')}</button>
+				<!-- T20_2キャンセル  -->
+				<button class="large" tabindex="5" data-bind="click: cancelSetting">#{i18n.getText('CMF002_260')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,65 @@
+#contents-area {
+	overflow: auto;
+}
+
+#G1_4 {
+	margin-left: 79px!important;
+}
+
+.table {
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.contentL {
+	width: 300px;
+}
+
+.contentR {
+	width: 800px;
+}
+
+#G3 td {
+	padding-right: 20px;
+	padding-bottom: 8px;
+}
+
+#G4 td {
+	padding-right: 20px;
+}
+
+#labelSwapList {
+	display: inline-flex;
+}
+
+#labelSwapList #G4_7 {
+	margin-left: 225px;
+}
+
+#G4_2 td {
+	padding-right: 0px!important;
+}
+
+.ui-iggrid table td{
+	text-overflow: ellipsis!important;
+	overflow: hidden!important;
+	white-space: nowrap!important;
+}
+.nts-searchbox-wrapper.ntsSearchArea {
+	margin-bottom: -3px;
+}
+#up-down {
+	height: inherit;
+}
+.upDown-container {
+	height: inherit;
+}
+#G4_1 {
+  width: auto;
+  white-space: nowrap;
+}
+.ntsMoveDataArea {
+  padding: 0px 10px;
+}
+
+

@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"experimentalDecorators": true,
+		"target": "ES5",
+        "module": "none",
+		"moduleResolution": "Classic",
+		"declaration": true,
+        "noImplicitAny": true,
+        "removeComments": false,
+        "preserveConstEnums": true,
+		"charset": "utf8",
+		"skipLibCheck": true,
+        "sourceMap": true,
+		"outFile": "src/main/webapp/lib/nittsu/nts.uk.com.web.nittsu.bundles.js"
+	},
+	"include": [
+		"src/main/webapp/**/*"
+	]
+}

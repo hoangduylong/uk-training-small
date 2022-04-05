@@ -1,0 +1,108 @@
+.ntsRadioBox {
+  margin-left: 60px !important;
+}
+
+#A8_2_headers_v {
+  width: 180px !important;
+}
+
+#A8_2_scrollContainer {
+  overflow: hidden !important;
+}
+
+#A8_2_container {
+  margin-right: 50px !important;
+}
+
+#A4_2 {
+  border: 1px solid black;
+  margin-top: 20px !important;
+}
+
+#td_a8_4 div.nts-grid-wrapper {
+  position: absolute;
+  top: 0;
+}
+
+table#A4_2 tr td {
+  border-collapse: collapse;
+  padding: 5px;
+}
+
+#A4_2 tr td[rowspan] {
+  vertical-align: top;
+  text-align: left;
+}
+
+#A1_2 {
+  float: right;
+  margin-right: 220px;
+}
+
+#master-wrapper {
+  overflow: hidden;
+}
+
+/* fix bug 114010 */
+@media only screen and (max-height: 700px) {
+  #A4,
+  #A5,
+  #A6,
+  #A7,
+  #A8 {
+    overflow-y: auto;
+    height: 76vh;
+  }
+}
+
+@media only screen and (min-height: 700px) {
+  #A4,
+  #A5,
+  #A6,
+  #A7,
+  #A8 {
+    overflow-y: auto;
+    height: 81vh;
+  }
+}
+/* fix bug 114010 end */
+
+#A3 {
+  margin: 0 15px 15px 15px !important;
+}
+
+td.style-normal,
+td.contactName {
+  border-top: 1px solid black;
+}
+
+table#A4_2 tbody tr td:not(.style-normal):not(.contactName) {
+  border: 1px solid black;
+}
+
+.lastCheckbox {
+  float: right !important;
+}
+
+.margin-l-20 {
+  margin-left: 20px !important;
+}
+
+.margin-r-10 {
+  margin-right: 10px !important;
+}
+
+.w-85 {
+  width: 85px;
+  text-align: center;
+}
+
+.w-145 {
+  width: 145px;
+}
+.tab-content-1 > div > div.radio-wrappers label.radio-wrapper,
+.tab-content-2 > div > div.radio-wrappers label.radio-wrapper,
+.tab-content-3 > div > div.radio-wrappers label.radio-wrapper,
+.tab-content-4 > div > div.radio-wrappers label.radio-wrapper {
+  margin-left: 50px;
+}

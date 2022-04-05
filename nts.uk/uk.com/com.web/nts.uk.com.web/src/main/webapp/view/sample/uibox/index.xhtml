@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		<ui:composition template="../../../master/base.xhtml">
+			<ui:define name="htmlHead">
+				<com:stylefile path="../catalog/catalog.css" />
+				<com:stylefile path="/lib/generic/codemirror/css/codemirror.css" of="nts.uk.com.js.web" />
+				<com:stylefile path="/lib/generic/codemirror/css/cobalt.css" of="nts.uk.com.js.web" />
+				<com:stylefile path="styles.css" />
+				<com:scriptfile path="/lib/generic/codemirror/js/codemirror.js" of="nts.uk.com.js.web" />
+				<com:scriptfile path="/lib/generic/codemirror/js/javascript.js" of="nts.uk.com.js.web" />
+				<com:scriptfile path="/lib/generic/codemirror/js/xml.js" of="nts.uk.com.js.web" />
+				<com:scriptfile path="/lib/generic/codemirror/js/active-line.js" of="nts.uk.com.js.web" />
+				<com:scriptfile path="/lib/generic/codemirror/js/matchbrackets.js" of="nts.uk.com.js.web" />
+				<com:scriptfile path="../catalog/catalog.js" />
+				<com:scriptfile path="template.js" />
+				<com:scriptfile path="template_grid.js" />
+				<com:scriptfile path="start.js" />	
+			</ui:define>
+			
+			<ui:define name="content">
+            	<div id="functions-area">
+          		</div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<div class="preview">
+							<div class="window">
+								<button id="run" data-bind="click: run, enable: enable">実行 ▶</button>
+							</div>
+							<div class="view-area validator">
+								<div class="title">ValidatorScript</div>
+								<textarea />
+							</div>
+						</div>
+						<div class="code-view">
+							<div class="view-area html">
+								<div class="title">HTML</div>
+								<textarea />
+							</div>
+							<div class="view-area js">
+								<div class="title">JavaScript</div>
+								<textarea />
+							</div>
+						</div>
+					</div>
+				</div>
+			</ui:define>
+		</ui:composition>
+   	</body>
+</html>

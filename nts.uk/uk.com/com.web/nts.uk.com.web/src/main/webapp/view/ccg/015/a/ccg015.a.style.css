@@ -1,0 +1,96 @@
+/* css panel */
+.panel-center,
+.panel-left,
+.panel-right {
+  height: 380px;
+  width: 235px;
+  margin-top: 45px;
+}
+
+.panel-left {
+  margin-left: 30px;
+}
+
+.panel-center {
+  margin-left: 125px;
+}
+
+.panel-right {
+  margin-left: 80px;
+}
+
+.div-panel {
+  align-items: center;
+  display: flex;
+  margin-top: 10px;
+  height: 40px;
+  font-weight: bold;
+}
+
+/* row inline */
+.inline-row {
+  display: inline-flex;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+/* css width */
+.w-100 {
+  width: 102%;
+}
+
+/* css margin */
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-15 {
+  margin-top: 15px;
+  
+}
+
+.mt-30 {
+  margin-top: 30px;
+}
+.mt-45 {
+  margin-top: 45px;
+}
+
+.ml-30 {
+  margin-left: 30px;
+}
+
+.ml-40 {
+  margin-left: 40px;
+}
+
+.ml-50 {
+  margin-left: 50px;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+.fix-color-caret::after {
+  color: #97D155 !important;
+}
+
+.width-btn {
+  width: 170px;
+}
+
+.fix-btn {
+  height: 50px;
+  white-space: normal !important;
+}
+.font24 {
+  font-size: 24px;
+}
+#A1_1,
+#A2_1,
+#A3_1 {
+  font-size: 1.5rem;
+}

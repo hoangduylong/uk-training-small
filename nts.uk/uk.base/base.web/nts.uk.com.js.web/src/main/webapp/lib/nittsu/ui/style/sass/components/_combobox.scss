@@ -1,0 +1,122 @@
+#contents-area {
+	input.ui-igcombo-field {
+		font-family: $font_family_monospace;
+		font-size: $normal_font_size;
+		color: $font_color;
+	}
+}
+
+.ui-igcombo-wrapper {
+	outline: none;
+	border-radius: 2px;
+
+	&:focus {
+		.ui-igcombo {
+			border-color: $focused_color;
+			box-shadow: 0 0 0 2px lighten($color: $focused_color, $amount: 30);
+		}
+	}
+
+	&.ui-state-disabled {
+		opacity: 0.65;
+	}
+
+	.ui-igcombo {
+		border-radius: 2px;
+		border-color: #eae8f2;
+
+		&.ui-state-active {
+			border-color: $focused_color;
+			box-shadow: 0 0 0 2px lighten($color: $focused_color, $amount: 30);
+
+			&:focus {
+				border-color: #0096f2;
+			}
+		}
+
+		.ui-igcombo-button {
+			background-color: transparent;
+		}
+
+		// .ui-igcombo-buttonicon {
+		// 	border-left: none !important;
+		// 	background-color: transparent !important;
+		// }
+	}
+
+	&.error {
+		& > .ui-igcombo {
+			border-color: #ff6666;
+		}
+
+		&:focus {
+			& > .ui-igcombo {
+				border-color: #ff6666;
+				box-shadow: 0 0 0 2px lighten($color: #ff6666, $amount: 15);
+			}
+		}
+
+		& > .ui-igcombo {
+			&.ui-state-active {
+				border-color: #ff6666;
+				box-shadow: 0 0 0 2px lighten($color: #ff6666, $amount: 15);
+			}
+		}
+	}
+}
+
+// .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled
+
+.nts-combo-item {
+	height: 20px;
+	font-size: 1rem;
+	white-space: nowrap;
+
+	.nts-column {
+		display: inline-block;
+		height: 20px;
+		overflow: hidden;
+		margin-right: 5px;
+	}
+}
+
+.ui-igcombo-dropdown {
+	.ui-igcombo-fieldholder {
+		background-color: #fbfcff !important;
+
+		input {
+			&.ui-igcombo-field {
+				border-radius: 2px;
+				border: 1px solid #dcdde4;
+			}
+		}
+	}
+
+	.ui-igcombo-listitem {
+		&.ui-state-default {
+			background-color: #fbfcff;
+
+			&.ui-state-active {
+				background-color: #30cc40;
+			}
+		}
+	}
+
+	&.ui-widget-content {
+		margin-top: 3px;
+		border-radius: 2px;
+		&:not(.ui-igcombo-no-border) {
+			border: 1px solid #dcdde4;
+		}
+	}
+
+	.ui-igcombo-listitemholder {
+		overflow: hidden;
+	}
+}
+
+.compact-grid {
+	.ui-igcombo-wrapper {
+		height: 20px;
+	}
+}

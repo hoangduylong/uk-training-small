@@ -1,0 +1,107 @@
+.list-group {
+    &-selection {
+        .list-group-item {
+            &.active,
+            &.selected {
+                color: #fff;
+                background-color: $primary;
+            }
+            &:after {
+                content: "\f054";
+                font-weight: 600;
+                font-family: "Font Awesome 5 Free";
+                position: absolute;
+                top: calc(50% - 10px);
+                right: 15px;
+                color: #aaa;
+            }
+        }
+    }
+    &-single-select {
+        .list-group-item {
+            &:after {
+                content: "\f111";
+                font-family: "Font Awesome 5 Free";
+                position: absolute;
+                top: calc(50% - 10px);
+                right: 15px;
+                color: #aaa;
+            }
+            &.active,    
+            &.selected {
+                color: #fff;
+                background-color: $primary;
+                &:after {
+                    content: "\f058";
+                }
+            }
+        }
+    }
+    &-tree {
+        .list-group-item {
+            position: relative;
+            .collapse {
+                display: block;
+                position: absolute;
+                top: calc(50% - 10px);
+                left: 15px;
+                text-align: center;
+                width: 20px;
+                line-height: 20px;
+            }
+            .selection {
+                right: 10px;
+                top: calc(50% - 9px);
+                position: absolute;
+            }
+        }
+    }
+    &-xs {
+        .list-group-item {
+            padding: 0.25rem;
+            font-size: 0.75rem;
+        }
+    }
+    &-sm {
+        .list-group-item {
+            padding: 0.5rem;
+            font-size: 0.8rem;
+        }
+    }
+}
+
+@for $i from 1 through 10 {
+    .list-group-tree {
+        .list-group-item {
+            &.indent-#{$i} {
+                padding-left: #{$i * 30}px;
+                
+                .collapse {
+                    left: #{$i * 30 - 22}px;
+                }
+            }
+        }
+        &.list-group-xs {
+            .list-group-item {
+                &.indent-#{$i} {
+                    padding-left: #{$i * 20}px;
+                
+                    .collapse {
+                        left: #{$i * 20 - 20}px;
+                    }
+                }
+            }
+        }
+        &.list-group-sm {
+            .list-group-item {
+                &.indent-#{$i} {
+                    padding-left: #{$i * 25}px;
+                
+                    .collapse {
+                        left: #{$i * 25 - 20}px;
+                    }
+                }
+            }
+        }
+    }
+}

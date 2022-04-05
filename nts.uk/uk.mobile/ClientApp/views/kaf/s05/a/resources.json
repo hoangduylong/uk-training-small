@@ -1,0 +1,14 @@
+{
+    "jp": {
+        "kafs05step1": "#{KAFS05_1000}",
+        "kafs05step2": "#{KAFS05_1001}",
+        "kafs05step3": "#{KAFS05_1002}",
+        "kafs05step4": "#{KAFS05_1003}"
+    },
+    "vi": {
+        "kafs05step1": "#{KAFS05_1000}",
+        "kafs05step2": "#{KAFS05_1001}",
+        "kafs05step3": "#{KAFS05_1002}",
+        "kafs05step4": "#{KAFS05_1003}"
+    }
+}

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 500, height: 650 };</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="ccg.main.css" />
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="ccg.start.js" />
+			<com:scriptfile path="ccg.dialog.vm.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div class="labelccg">
+				<label>#{i18n.getText('CCG001_15')}</label>
+			</div>
+			<div id="workplaceList"></div>
+			<center>
+				<div class="endAction">
+					<hr />
+					<div class="beginAction">
+						<button class="proceed x-large" data-bind="click: saveWorkplace">#{i18n.getText('KMK012_32')}</button>
+						<button class="large btnclose" data-bind="click: saveWorkplace">#{i18n.getText('KMK012_33')}</button>
+					</div>
+				</div>
+			</center>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

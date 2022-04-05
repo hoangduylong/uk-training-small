@@ -1,0 +1,164 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 300, height: 200 };</script>
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+            </ui:define>
+            
+            <ui:define name="content">
+            	<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Master List Print Guide</h1>
+						
+						<h2>This page will show guide for implement and run print master list.</h2>
+						
+						<h3>Below are steps for init master list:</h3>
+						<ul>
+							<li><h4>Implement interface for get data to print:</h4>
+								<ul>
+									<li><h5>Implement method getHeaderColumns() of interface MasterListData</h5>
+										<i>(return list attributes of master list and style of this as column.)</i></li>
+									<li><h5>Implement method getMasterDatas() of interface MasterListData</h5>
+										<i>(return list datas of master list and from them, kiban will draw table master list.)</i></li>
+								</ul>
+							</li>
+							<li><h4>Call print master list web service</h4> 
+								<i>(call web service for print master list.)</i></li>
+						</ul>
+						
+						<h3>Below are detail guide for each steps:</h3>
+						
+						<div class="feature-box">
+							<div class="header"><h3>Implement interface for get datas</h3></div>
+							<div class="content">
+								<ul>
+									<li>Create a class for implement interface MasterListData</li>
+									<li>Attach annotation @Stateless at top of class declaration</li>
+									<li>Attach annotation @DomainID at top of class declaration and pass domain id corresponding to master list.</li>
+									<li>Override method getHeaderColumns for return attributes of master and style for them.</li>
+									<li>Override method getMasterDatas for return master list datas.</li>
+									<li><b><i>Note: (optional) If there are many table, override getExtraMasterData and getExtraHeaderColumn</i></b></li>
+								</ul>
+<pre><![CDATA[@Stateless
+@DomainID(value = "test") 
+public class TestMasterListExportImpl implements MasterListData {
+	
+	@Override
+	public List<MasterData> getMasterDatas() {
+		List<MasterData> datas = new ArrayList<>();
+		
+		int i = 1;
+		Random random = new Random();
+		while (i <= 20) {
+			int j = 1;
+			Map<String, Object> data = new HashMap<>();
+			while (j <= 100){
+				data.put("Column " + j, random.nextInt(1000) + 1);
+				j++;
+			}
+			datas.add(new MasterData(data, null, ""));
+			i++;
+		}
+		return datas;
+	}
+	
+	@Override
+	public List<MasterHeaderColumn> getHeaderColumns() {
+		List<MasterHeaderColumn> columns = new ArrayList<>();
+		
+		int i = 1;
+		
+		while (i <= 100) {
+			columns.add(new MasterHeaderColumn("Column " + i, "", ColumnTextAlign.CENTER, "", true));
+			i++;
+		}
+		
+		return columns;
+	}
+
+}]]></pre>
+								<div>
+									<h3>Structure of class MasterData</h3>
+<pre><![CDATA[
+@Data
+@AllArgsConstructor
+public class MasterData {
+
+	private Map<String, Object> datas; // data of a row
+	
+	private List<MasterData> childGroup;  // data for a other structure table in this row (not implement yet)
+	
+	private String group; // a table group that this row belong to. 
+}
+]]></pre>
+								</div>
+								<div>
+									<h3>Structure of class MasterHeaderColumn</h3>
+<pre><![CDATA[
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class MasterHeaderColumn {
+
+	private String columnId;            // ColumnId - is key for map datas in class MasterData
+	
+	private String columnText;          // Column text - text display in header of table
+	
+	private ColumnTextAlign textAlign;  // Column text align
+	
+	private String columnFormat;        // Column format (current, not implement yet)
+	
+	private boolean display;            // Column visible - is show this column in table
+}]]></pre>
+								</div>
+							</div>
+						</div>
+						
+						<div class="feature-box">
+							<div class="header"><h3>Call print master list web service</h3></div>
+							<div class="content">
+							<ul>
+									<li>Prepare query params with class MasterListExportQuery.</li>
+									<li>Call web service.</li>
+								</ul>
+<pre><![CDATA[// Query class
+@Data
+public class MasterListExportQuery {
+
+	private String domainId;     // Domain id that is declared with @DomainID at step 1.
+	
+	private String domainType;   // Domain Type: (text for 種類 in common header of report).
+	
+	private String languageId;     // Current languageId is selected in current master screen.
+}
+
+// Call web service
+nts.uk.request.exportFile('/masterlist/report/print', {domainId: "test", domainType: "test"}).done(() => {
+    console.log('DONE!!');
+});
+]]></pre>
+							</div>
+						</div>
+
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

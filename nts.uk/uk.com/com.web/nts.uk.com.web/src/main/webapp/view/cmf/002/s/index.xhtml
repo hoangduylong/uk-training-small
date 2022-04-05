@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { 
+					width: 600, 
+					height: 400 
+			};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="../share/model.js" />
+			<com:scriptfile path="cmf002.s.service.js" />
+			<com:scriptfile path="cmf002.s.vm.js" />
+			<com:scriptfile path="cmf002.s.start.js" />
+			<com:stylefile path="cmf002.s.style.css" />
+
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area" class="dialog-contents">
+				<label id="S1">#{i18n.getText('CMF002_236')}</label>
+				<table>
+					<tr>
+						<td class="bg-yellow" id="S2_1_1" width='150px'><label>#{i18n.getText('CMF002_237')}</label>
+						</td>
+						<td id="S2_1_2" width='400px'><label
+							data-bind="text : timeOver()"></label></td>
+					</tr>
+
+					<tr>
+						<td class="bg-yellow" id="S2_2_1" width='150px'><label>#{i18n.getText('CMF002_238')}</label>
+						</td>
+						<td width='400px'><label id="S2_2_2"
+							data-bind="text : status"></label> <label id="S2_2_3"
+							style="padding-left: 20px;" data-bind="text : proCnt"></label> <label
+							id="S2_2_4">#{i18n.getText('CMF002_239')}</label> <label
+							id="S2_2_5" data-bind="text : totalProCnt"></label> <label
+							id="S2_2_6" data-bind="text : proUnit"></label></td>
+					</tr>
+					<tr>
+						<td class="bg-yellow" id="S2_3_1" width="150px"><label>#{i18n.getText('CMF002_240')}</label>
+						</td>
+						<td width="400px"><label id="S2_3_2"
+							data-bind="text : errCnt"></label> <label id="S2_3_3">#{i18n.getText('CMF002_241')}</label></td>
+					</tr>
+				</table>
+
+				<label id="S3">#{i18n.getText('CMF002_242')}</label>
+				<table>
+					<tr>
+						<td class="bg-yellow" id="S3_1_1" width="150px"><label>#{i18n.getText('CMF002_243')}</label>
+						</td>
+						<td id="S3_1_2"><label data-bind="text : dataSaveSetCode + ' ' + dataSaveSetName"></label>
+						</td>
+					</tr>
+					<tr>
+						<td class="bg-yellow" id="S3_2_1" width="150px"><label>#{i18n.getText('CMF002_244')}</label>
+						</td>
+						<td width="400px"><label id="S3_2_2"
+							data-bind="text : dayStartValue"></label> <label id="S3_2_3">#{i18n.getText('CMF002_235')}</label>
+							<label id="S3_2_4" data-bind="text : dayEndValue"></label></td>
+					</tr>
+				</table>
+			</div>
+			<div id="functions-area-bottom" class="button">
+				<com:ko-if bind="(dialogMode() == 'saving')">
+					<button id="S10_1" class="large" tabindex="1"
+						data-bind="click : interrupt">#{i18n.getText('CMF002_245')}</button>
+				</com:ko-if>
+				<com:ko-if bind="(dialogMode() !== 'saving')">
+					<button id="S10_2" class="large" tabindex="2"
+						data-bind="click : close">#{i18n.getText('CMF002_246')}</button>
+					<button id="S10_3" class="large" tabindex="3"
+						data-bind="click : download, visible: dialogMode() == 'done', enable: ((dialogMode() == 'done') &amp;&amp; (isDownloaded()))">#{i18n.getText('CMF002_247')}</button>
+					<button id="S10_4" class="large" tabindex="4"
+						data-bind="click : nextToScreenY, visible: isToNext()">#{i18n.getText('CMF002_248')}</button>
+				</com:ko-if>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,50 @@
+.no-wrap {
+  white-space: nowrap;
+}
+.fa-search {
+  opacity: 0 !important;
+}
+.accordion .card .card-header:before {
+  top: 0.5rem;
+}
+.control-label {
+  border-left: 0px;
+  max-height: none;
+  white-space: pre-wrap;
+  line-height: 0px;
+}
+.title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: calc(90% - 30px);
+  display: block;
+  white-space: nowrap;
+}
+.iconNew {
+  width: 25px;
+  height: 10px;
+  margin-top: 5px;
+}
+.flex {
+  display: flex;
+}
+
+.small-size {
+  font-size: 0.8em;
+}
+
+.card-body {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+@media only screen and (max-width: 320px) {
+  .date-range-input {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+  }
+  .btn-search {
+    max-width: 100% !important;
+    margin-bottom: 10px !important;
+  }
+}

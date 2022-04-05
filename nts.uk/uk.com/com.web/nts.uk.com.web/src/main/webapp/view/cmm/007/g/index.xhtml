@@ -1,0 +1,478 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition>
+		<div class="sidebar-content-header">
+			<span class="title">#{i18n.getText('CMM007_73')}</span>
+			<button class="proceed" tabindex="1"
+				data-bind="click: saveWorkdayoffFrSetting">#{i18n.getText('CMM007_5')}</button>
+		</div>
+		<div id="contents-area" class="main-content">
+			<div class="">
+				<p>#{i18n.getText('CMM007_74')}</p>
+				
+				<div class="main-table-e fixed-flex-layout">
+					<div class="fixed-flex-layout-left">
+						<table class="table_content">
+							<tr>
+								<td style="padding-right: 20px;">
+									<div data-bind="ntsFormLabel: {
+											required: true, constraint: 'WorkdayoffFrameName', }">#{i18n.getText('CMM007_73')}</div>
+								</td>
+								<td>
+									<span data-bind="text: wdoFrCheckboxLabel1"></span>
+									<input id="work_day_off_name1" tabindex="2"
+										data-bind="ntsTextEditor: {
+											name: '#[CMM007_75]',
+											value: wdoFrName1,
+											required: requiredWdoFrName1,
+											enable: enableWdoFrName1,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+								<td class="pl">
+									<div class=" " tabindex="-1"
+										data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: isCheckedNo1, 
+												enable: true,
+												}"></div>
+								</td>
+								
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td>
+									<span data-bind="text: wdoFrCheckboxLabel2"></span>
+									<input id="work_day_off_name2" tabindex="3"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_76]',
+											value: wdoFrName2,
+											required: requiredWdoFrName2,
+											enable: enableWdoFrName2,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+								<td class="pl">
+									<div class=" " tabindex="-1"
+										data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: isCheckedNo2, 
+												enable: true,
+												}"></div>
+								</td>
+								
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td>
+									<span data-bind="text: wdoFrCheckboxLabel3"></span>
+									<input id="work_day_off_name4" tabindex="4"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_77]',
+											value: wdoFrName3,
+											required: requiredWdoFrName3,
+											enable: enableWdoFrName3,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+								<td class="pl">
+									<div class=" " tabindex="-1"
+										data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: isCheckedNo3, 
+												enable: true,
+												}"></div>
+								</td>
+								
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td>
+									<span data-bind="text: wdoFrCheckboxLabel4"></span>
+									<input id="work_day_off_name4" tabindex="5"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_78]',
+											value: wdoFrName4,
+											required: requiredWdoFrName4,
+											enable: enableWdoFrName4,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+								<td class="pl">
+									<div class=" " tabindex="-1"
+										data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: isCheckedNo4, 
+												enable: true,
+												}"></div>
+								</td>
+								
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td>
+									<span data-bind="text: wdoFrCheckboxLabel5"></span>
+									<input id="work_day_off_name5" tabindex="6"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_79]',
+											value: wdoFrName5,
+											required: requiredWdoFrName5,
+											enable: enableWdoFrName5,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+								<td class="pl">
+									<div class=" " tabindex="-1"
+										data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: isCheckedNo5, 
+												enable: true,
+												}"></div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td>
+									<span data-bind="text: wdoFrCheckboxLabel6"></span>
+									<input id="work_day_off_name6" tabindex="7"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_80]',
+											value: wdoFrName6,
+											required: requiredWdoFrName6,
+											enable: enableWdoFrName6,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+								<td class="pl">
+									<div class=" " tabindex="-1"
+										data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: isCheckedNo6, 
+												enable: true,
+												}"></div>
+								</td>
+								
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td>
+									<span data-bind="text: wdoFrCheckboxLabel7"></span>
+									<input id="work_day_off_name7" tabindex="8"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_81]',
+											value: wdoFrName7,
+											required: requiredWdoFrName7,
+											enable: enableWdoFrName7,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+								<td class="pl">
+									<div class=" " tabindex="-1"
+										data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: isCheckedNo7, 
+												enable: true,
+												}"></div>
+								</td>
+								
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td>
+									<span data-bind="text: wdoFrCheckboxLabel8"></span>
+									<input id="work_day_off_name8" tabindex="9"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_82]',
+											value: wdoFrName8,
+											required: requiredWdoFrName8,
+											enable: enableWdoFrName8,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+								<td class="pl">
+									<div class=" " tabindex="-1"
+										data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: isCheckedNo8, 
+												enable: true,
+												}"></div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td>
+									<span data-bind="text: wdoFrCheckboxLabel9"></span>
+									<input id="work_day_off_name9" tabindex="10"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_83]',
+											value: wdoFrName9,
+											required: requiredWdoFrName9,
+											enable: enableWdoFrName9,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+								<td class="pl">
+									<div class=" " tabindex="-1"
+										data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: isCheckedNo9, 
+												enable: true,
+												}"></div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td style="padding-left: 21px !important;">
+									<span data-bind="text: wdoFrCheckboxLabel10"></span>
+									<input id="work_day_off_name10" tabindex="11"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_84]',
+											value: wdoFrName10,
+											required: requiredWdoFrName10,
+											enable: enableWdoFrName10,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+								<td class="pl">
+									<div class=" " tabindex="-1"
+										data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: isCheckedNo10, 
+												enable: true,
+												}"></div>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="fixed-flex-layout-right">
+						<table class="table_content" style="margin-left: 200px;">
+							<tr>
+								<td>
+									<div
+										data-bind="ntsFormLabel: {
+											required: true, constraint: 'WorkdayoffFrameName', }">#{i18n.getText('CMM007_85')}</div>
+								</td>
+								<td class="pl"><span data-bind="text: wdoFrCheckboxLabel1"></span>
+								</td>
+								<td><input id="work_day_off_trans_name1" tabindex="11"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_87]',
+											value: transferName1,
+											required: requiredtransferName1,
+											enable: enabletransferName1,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+		
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td class="pl"><span data-bind="text: wdoFrCheckboxLabel2"></span>
+								</td>
+								<td><input id="work_day_off_trans_name2" tabindex="13"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_88]',
+											value: transferName2,
+											required: requiredtransferName2,
+											enable: enabletransferName2,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td class="pl"><span data-bind="text: wdoFrCheckboxLabel3"></span>
+								</td>
+								<td><input id="work_day_off_trans_name3" tabindex="14"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_89]',
+											value: transferName3,
+											required: requiredtransferName3,
+											enable: enabletransferName3,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td class="pl"><span data-bind="text: wdoFrCheckboxLabel4"></span>
+								</td>
+								<td><input id="work_day_off_trans_name4" tabindex="15"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_90]',
+											value: transferName4,
+											required: requiredtransferName4,
+											enable: enabletransferName4,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td class="pl"><span data-bind="text: wdoFrCheckboxLabel5"></span>
+								</td>
+								<td><input id="work_day_off_trans_name5" tabindex="16"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_91]',
+											value: transferName5,
+											required: requiredtransferName5,
+											enable: enabletransferName5,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td class="pl"><span data-bind="text: wdoFrCheckboxLabel6"></span>
+								</td>
+								<td><input id="work_day_off_trans_name6" tabindex="17"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_92]',
+											value: transferName6,
+											required: requiredtransferName6,
+											enable: enabletransferName6,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td class="pl"><span data-bind="text: wdoFrCheckboxLabel7"></span>
+								</td>
+								<td><input id="work_day_off_trans_name7" tabindex="18"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_93]',
+											value: transferName7,
+											required: requiredtransferName7,
+											enable: enabletransferName7,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td class="pl"><span data-bind="text: wdoFrCheckboxLabel8"></span>
+								</td>
+								<td><input id="work_day_off_trans_name8" tabindex="19"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_94]',
+											value: transferName8,
+											required: requiredtransferName8,
+											enable: enabletransferName8,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td class="pl"><span data-bind="text: wdoFrCheckboxLabel9"></span>
+								</td>
+								<td><input id="work_day_off_trans_name9" tabindex="20"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_95]',
+											value: transferName9,
+											required: requiredtransferName9,
+											enable: enabletransferName9,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<div data-bind="visible: false"></div>
+								</td>
+								<td class="pl"><span data-bind="text: wdoFrCheckboxLabel10"></span>
+								</td>
+								<td><input id="work_day_off_trans_name10" tabindex="21"
+									data-bind="ntsTextEditor: {
+											name: '#[CMM007_96]',
+											value: transferName10,
+											required: requiredtransferName10,
+											enable: enabletransferName10,
+											constraint: 'WorkdayoffFrameName',
+											option: {width: '130px'}}" />
+								</td>
+							</tr>
+						</table>
+			
+					</div>
+				</div>
+				
+
+				<!-- Transfer name  -->
+			
+			</div>
+		</div>
+	</ui:composition>
+</body>
+</html>

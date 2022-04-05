@@ -1,0 +1,40 @@
+.ntsTable {
+	td{
+		border: 0px;
+	}
+	
+	.ntsButtonTableButton {
+	  	box-shadow: 0 0px rgba(0, 0, 0, 0.4);
+	  	border: 1px solid LightGrey;
+  		margin-bottom: 0px;
+		color: LightGrey;
+	
+  		:active{
+  			position: unset;
+  		}
+  		:hover {
+			background: #fff;
+		}
+		:focus{
+			border: 1px solid LightGrey;
+		}
+	}
+	.ntsButtonCellData {
+	  	border: 1px solid black;
+		color: black;
+	  	:focus{
+		  	border: 1px solid black;
+		}
+	}
+	.ntsButtonCellSelected{
+		background-color: #BDD7EE;
+		border: 1px solid DodgerBlue;
+	  	:focus{
+		  	border: 1px solid DodgerBlue;
+		}
+  		:hover {
+			background: #BDD7EE;
+  			border: 1px solid DodgerBlue;
+		}
+	}
+}

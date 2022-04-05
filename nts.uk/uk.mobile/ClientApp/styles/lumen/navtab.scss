@@ -1,0 +1,136 @@
+.nav-tabs {
+    .nav-item {
+        margin: 0;
+
+        .nav-link {
+            margin: 0;
+            border: 0;
+            cursor: pointer;
+            padding: 0.65rem 1rem;
+
+            &:hover,
+            &.active {
+                cursor: pointer;
+                margin-top: 0;
+                margin-bottom: 0;
+                padding-bottom: calc(0.65rem - 3px);
+                background-color: transparent;
+                border-bottom: 3px solid darken($color: $secondary, $amount: 10%);
+            }
+        }
+    }
+}
+
+.card {
+    .card-header {
+        &.nav-tabs {
+            padding: 0;
+
+            .nav-link {
+                border: 0;
+                padding: 0.65rem 1rem;
+
+                &:hover,
+                &.active {
+                    cursor: pointer;
+                    margin-top: 0;
+                    margin-bottom: 0;
+                    padding-bottom: calc(0.65rem - 3px);
+                    background-color: transparent;
+                    border-bottom: 3px solid darken($color: $secondary, $amount: 15%);
+                }
+            }
+        }
+    }
+
+    &.bg {
+        &-primary {
+            .card-header {
+                .nav-link {
+
+                    &:hover,
+                    &.active {
+                        border-bottom: 3px solid darken($color: $primary, $amount: 15%);
+                    }
+                }
+            }
+        }
+
+        &-success {
+            .card-header {
+                .nav-link {
+
+                    &:hover,
+                    &.active {
+                        border-bottom: 3px solid darken($color: $success, $amount: 15%);
+                    }
+                }
+            }
+        }
+
+        &-danger {
+            .card-header {
+                .nav-link {
+
+                    &:hover,
+                    &.active {
+                        border-bottom: 3px solid darken($color: $danger, $amount: 15%);
+                    }
+                }
+            }
+        }
+
+        &-warning {
+            .card-header {
+                .nav-link {
+
+                    &:hover,
+                    &.active {
+                        border-bottom: 3px solid darken($color: $warning, $amount: 15%);
+                    }
+                }
+            }
+        }
+
+        &-info {
+            .card-header {
+                .nav-link {
+
+                    &:hover,
+                    &.active {
+                        border-bottom: 3px solid darken($color: $info, $amount: 15%);
+                    }
+                }
+            }
+        }
+
+        &-light {
+            .card-header {
+                .nav-link {
+
+                    &:hover,
+                    &.active {
+                        border-bottom: 3px solid darken($color: $light, $amount: 15%);
+                    }
+                }
+            }
+        }
+
+        &-dark {
+            .card-header {
+                .nav-link {
+
+                    &:hover,
+                    &.active {
+                        border-bottom: 3px solid darken($color: $dark, $amount: 15%);
+                    }
+                }
+            }
+        }
+    }
+
+    &>.tab-content {
+        padding: 15px;
+        padding-top: 0;
+    }
+}

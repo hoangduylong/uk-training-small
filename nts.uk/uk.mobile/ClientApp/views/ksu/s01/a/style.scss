@@ -1,0 +1,159 @@
+.ksus01a {
+    margin-top: -1rem;
+
+    .large-icon {
+        font-size: 4.5vw;
+    }
+
+    .card-header {
+        font-size: 3.75vw;
+        padding: 0.35rem 0.75rem;
+        align-items: center;
+    }
+
+    .card-body {
+        font-size: 3vw;
+    }
+
+    #year-month-component {
+        width: 11.5em;
+    }
+
+    #year-month-component .col-md-12 {
+        padding: 0;
+    }
+
+    #year-month-component input {
+        box-shadow: none;
+        border: none;   
+        border-radius: 0;
+        font-weight: bold;
+        font-size: 3.5vw;
+    }
+
+    #year-month-component .input-group {
+        background-color: #E0F59E;
+    }
+
+    #year-month-component .input-group-text {
+        font-size: 3.5vw;
+    }
+
+    #year-month-component .form-group {
+        margin: 0;
+        width: 8.25em;
+    }
+
+    #backCurrentMonth {
+        padding: 0.25em 0.5em; 
+        border: 1px solid black; 
+        border-radius: 0.25rem;
+        margin: 0 1.25em;
+    }
+
+    #calendar {
+        margin: -0.5rem -1rem 0 -1rem;
+    }
+
+    #detail-component {
+        position: fixed;
+        bottom: 0;
+        height: calc(var(--vh, 1vh) * 100 - 6.5vh - 4vh - 39px - (100vh - 6.5vh - 4vh - 39px)/6);
+        width: 100vw;
+    }
+
+    #detail-component .card-header {
+        padding-right: 3rem;
+        min-height: 5.5vh;
+    }
+
+    #detail-component .card-body {
+        overflow-y: auto;
+        margin-left: -1rem;
+        padding: 0.5rem 1.75rem 0.5rem 0.75rem;
+        background-color: #F4FBFD;
+        font-size: 3.5vw;
+    }
+
+    #detail-component span {
+        margin-right: 1em
+    }
+
+    .date-header-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .date-header {
+        height: 4vh;
+        width: calc(100vw/7);
+        border: 1px solid #D9D9D9;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: bold;
+        font-size: 2vh;
+    }
+
+    .date-cell-container {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .date-cell {
+        height: calc((100vh - 6.5vh - 4vh - 39px)/6);
+        width: calc(100vw/7);
+        padding: 0.2rem;
+        border: 1px solid #D9D9D9;
+        display: inline-block;
+    }
+
+    .date-cell-content {
+        height: 100%; 
+        display: flex; 
+        justify-content: flex-start; 
+        flex-direction: column;
+    }
+
+    .date-cell-top {
+        display: flex; 
+        justify-content: space-between
+    }
+
+    .flex-center-vert {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .detail-spacing {
+        margin-bottom: 1em;
+    }
+
+    .detail-indent {
+        padding-left: 2em;
+    }
+
+    // color
+    .uk-bg-schedule-focus {
+        background-color: #FFFFCC !important; 
+    }
+
+    .uk-bg-green {
+        background-color: #E0F59E !important; 
+    }
+
+    .uk-bg-disable {
+        background-color: #D9D9D9 !important; 
+    }
+
+    .uk-bg-schedule-sunday {
+        background-color: #FABF8F !important; 
+    }
+
+    .uk-bg-schedule-saturday {
+        background-color: #8BD8FF !important; 
+    }
+    
+}

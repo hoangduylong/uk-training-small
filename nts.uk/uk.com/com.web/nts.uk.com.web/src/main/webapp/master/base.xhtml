@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:com="http://xmlns.jcp.org/jsf/component">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/favicon.ico" />
+	<com:stylefile set="BASIC" />
+	<com:viewcontext />
+	<com:scriptfile set="BASIC" />
+	<com:scriptfile path="/view/ccg/020/a/ccg020.a.vm.js" of="nts.uk.com.web" />
+	<com:scriptfile path="/view/ccg/003/a/ccg003.a.vm.js" of="nts.uk.com.web" />
+	<com:stylefile path="/view/ccg/020/a/ccg020.a.style.css" of="nts.uk.com.web" />
+	<ui:insert name="htmlHead" />
+</h:head>
+
+<h:body>
+	<div data-bind="vm: content">
+		<div data-bind="ui-master-notification" class="hidden"></div>
+		<div data-bind="ui-master-header" class="hidden"></div>
+		<div data-bind="ui-master-content">
+			<ui:insert name="content" />
+		</div>
+	</div>
+	<div data-bind="kb: kiban">
+		<div data-bind="ntsErrorDialog: {
+				title: title,
+				errors: displayErrors,
+				option: option
+			}"></div>
+	</div>
+</h:body>
+
+</html>

@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="../../catalog/catalog.css" />
+			<com:scriptfile path="start.js" />
+			<com:scriptfile path="../../catalog/catalog.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area"></div>
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+					<h1>Popup</h1>
+					<h2>Overview</h2>
+					<h3>Dismissible</h3>
+					<button class="show-popup1">Show Popup</button>
+					<button class="destroy-popup1">Destroy This Popup!</button>
+					<div class="popup-area1">
+						<div id="combo-box" data-bind="ntsComboBox: {options: itemList,
+							optionsValue: 'code',
+							visibleItemsCount: 5,
+							value: selectedCode,
+							optionsText: 'name',
+							columns: [
+									{ prop: 'name', length: 4 },
+							]}">
+						</div>
+						<h2>Popup 1!</h2>
+						<input data-bind="ntsTextEditor:{value: ko.observable('DEEP BLUE')}" /><br />
+						<br/>
+						<button class="proceed close-popup">Save</button>
+						<button class="close-popup">Cancel</button>
+					</div>
+					<br/><br/>
+					<h3>Un-dismissible</h3>
+					<button class="show-popup2">Show Popup</button>
+					<button class="toggle-popup2">Toggle the popup</button>
+					<div class="popup-area2">
+						<h2>Popup 2!</h2>
+						<input data-bind="ntsTextEditor:{value: ko.observable('ALPHA GO')}" /><br />
+						<br/>
+						<button class="proceed close-popup">Save</button>
+						<button class="close-popup">Cancel</button>
+					</div>
+					<article class="cf">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-call">Usage</a></li>
+								<li><a href="#tabs-api">API</a></li>
+							</ol>
+							<div id="tabs-call" class="cf">
+							<h3>HTML</h3>
+<pre><![CDATA[<div class="popup-area1">
+	<h2>Popup 1!</h2>
+	<p>Any content go here</p>
+</div>]]></pre>
+							<h3>TypeScript</h3>
+<pre><![CDATA[// Init
+$(".popup-area1").ntsPopup({
+    trigger: ".show-popup1",
+    position: {
+        my: "left top",
+        at: "left bottom",
+        of: ".show-popup1"
+    },
+    showOnStart: false,
+    dismissible: true
+});
+// Show
+$(".popup-area1").ntsPopup("show");
+// Hide
+$(".popup-area1").ntsPopup("hide");
+// Toggle
+$(".popup-area1").ntsPopup("toggle");
+// Destroy
+$(".popup-area1").ntsPopup("destroy");]]></pre>
+							</div>
+							<div id="tabs-api" class="cf">
+								<article>
+									<h2>Information</h2>
+									<b>Type:</b> Jquery extension<br /> <b>File:</b>
+									/lib/nittsu/ui/jquery-ext.ts<br />
+								</article>
+								<br />
+								<article>
+									<h2>API</h2>
+									<table class="table">
+										<colgroup>
+											<col width="250px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Function</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													$(".selector").ntsPopup(option)<br/>
+													$(".selector").ntsPopup("init", option)
+												</td>
+												<td>
+													<b>Return:</b> <i>JQuery</i><br/>
+													<b>Agruments:</b><br/>
+													<i>option: PopupSetting (optional)</i><br/>
+													<div class="catalog-accordion">
+														<a href="#">PopupSetting</a>
+														<table class="table">
+															<colgroup>
+																<col width="150px" />
+															</colgroup>
+															<thead>
+																<tr>
+																	<th>Name</th>
+																	<th>Description</th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>trigger<br/><i>(optional)</i></td>
+																	<td>
+																		<b>Type:</b> string<br/>
+																		<b>Default:</b> ""<br/>
+																		JQuery selector to show popup
+																	</td>
+																</tr>
+																<tr>
+																	<td>position<br/><i>(optional)</i></td>
+																	<td>
+																		<b>Type:</b> JQueryPosition<br/>
+																		<b>Default:</b> {<br/>
+														                    my: 'left top',<br/>
+														                    at: 'left bottom',<br/>
+														                    of: control.siblings('.show-popup')<br/>
+														                }<br/>
+																		Position to display popup
+																	</td>
+																</tr>
+																<tr>
+																	<td>showOnStart<br/><i>(optional)</i></td>
+																	<td>
+																		<b>Type:</b> boolean<br/>
+																		<b>Default:</b> false<br/>
+																		Show popup on start page
+																	</td>
+																</tr>
+																<tr>
+																	<td>dismissible<br/><i>(optional)</i></td>
+																	<td>
+																		<b>Type:</b> boolean<br/>
+																		<b>Default:</b> false<br/>
+																		Hide popup when click outside
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>$(".selector").ntsPopup('show')</td>
+												<td>
+													<b>Return:</b> <i>JQuery</i><br/>
+													Show popup
+												</td>
+											</tr>
+											<tr>
+												<td>$(".selector").ntsPopup('hide')</td>
+												<td>
+													<b>Return:</b> <i>JQuery</i><br/>
+													Hide popup
+												</td>
+											</tr>
+											<tr>
+												<td>$(".selector").ntsPopup('toggle')</td>
+												<td>
+													<b>Return:</b> <i>JQuery</i><br/>
+													Toggle show/hide popup
+												</td>
+											</tr>
+											<tr>
+												<td>$(".selector").ntsPopup('destroy')</td>
+												<td>
+													<b>Return:</b> <i>JQuery</i><br/>
+													Destroy popup
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</article>
+							</div>
+						</div>
+					</article>
+					<div class="footer cf">
+						<button class="previous large">Previous</button>
+						<button class="next proceed large">Next</button>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

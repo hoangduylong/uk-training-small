@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<script type="text/javascript">
+				__viewContext.noHeader = false;
+			</script>
+
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="viewmodel.js" />
+			<style rel="stylesheet">
+				.sample-tl .form-label {
+					min-width: 120px;
+				}
+
+				.sample-tl .spacer {
+					margin-left: 35px;
+					margin-right: 35px;
+					color: #ccc;
+				}
+			</style>
+		</ui:define>
+		<ui:define name="content">
+			<div class="two-panel">
+				<div class="left-panel">
+					<div id="contents-area">
+						<table id="single-list" data-bind="ntsGridList: {
+							dataSource: $vm.listbox,
+							primaryKey: 'code',
+							columns: [{
+								headerText: 'Code',
+								key: 'code',
+								width: 100
+							},{
+								headerText: 'Name',
+								key: 'name',
+								width: 200
+							},{
+								headerText: 'Abolition',
+								key: 'abolition',
+								width: 120
+							}],
+							rows: 20,
+							value: ko.observable()
+						}"></table>
+					</div>
+				</div>
+				<div class="right-panel">
+					<com:ko-if bind="$vm.show() === true">
+						<div id="functions-area" data-title="勤務種類の登録">
+							<button class="green solid" data-bind="click: $vm.click">Proceed</button>
+							<button class="green" data-bind="click: $vm.click">Proceed</button>
+							<button class="white" data-bind="click: $vm.click">Normal</button>
+							<button class="red" data-bind="click: $vm.click">Danger</button>
+							<button data-bind="btn-functional: { items: ['並び順設定', 'マスタリスト出力'], select: $vm.selectDropdown }"></button>
+						</div>
+					</com:ko-if>
+					<div id="contents-area" class="sample-tl">
+						<div class="form-group">
+							<label
+								data-bind="ntsFormLabel: { required: true, text: 'コード', constraint: 'EmployeeCode' }"></label>
+							<input data-bind="ntsTextEditor: { value: ko.observable('003'), enable: false }" />
+							<span class="spacer">|</span>
+							<label
+								data-bind="ntsFormLabel: { required: true, text: '名前', constraint: 'EmployeeCode'  }"></label>
+							<input
+								data-bind="ntsTextEditor: { value: ko.observable('出勤'), enable: true, required: true }" />
+							<label data-bind="ntsCheckBox: { checked: ko.observable(true), text: '廃止する' }"></label>
+						</div>
+						<div class="form-group">
+							<label
+								data-bind="ntsFormLabel: { required: true, text: '略名', constraint: 'EmployeeCode' }"></label>
+							<input
+								data-bind="ntsTextEditor: { value: ko.observable('出勤'), enable: true, required: true }" />
+							<span class="spacer">|</span>
+							<label
+								data-bind="ntsFormLabel: { required: true, text: '記号', constraint: 'EmployeeCode' }"></label>
+							<input
+								data-bind="ntsTextEditor: { value: ko.observable('出勤'), enable: true, required: true }" />
+						</div>
+						<div class="form-group">
+							<label
+								data-bind="ntsFormLabel: { required: false, text: '備考', constraint: 'EmployeeCode' }"></label>
+							<input
+								data-bind="ntsTextEditor: { value: ko.observable(''), enable: true, required: false, option: { width: '700px' } }" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+
+</html>

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+                var dialogSize = {
+                    width : 1040,
+                    height : 540
+                };
+            </script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cdl027.a.style.css" />
+			<com:scriptfile path="cdl027.a.service.js" />
+			<com:scriptfile path="cdl027.a.vm.js" />
+			<com:scriptfile path="cdl027.a.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<button tabindex="1" data-bind="click: exportCsv" class="proceed" id="A1_1">#{i18n.getText('CDL027_1')}</button>
+				<button tabindex="2" data-bind="click: closeDialog">#{i18n.getText('CDL027_2')}</button>
+			</div>
+			<div class="contents-area">
+				<div style="padding: 20px">
+					<div class="valign-center control-group">
+						<span class="label">#{i18n.getText('CDL027_5')}</span>
+						<span class="label" data-bind="text: targetStart"></span>
+						<span class="label" data-bind= "visible: targetEnd != null">#{i18n.getText('CDL027_6')}</span>
+						<span class="label" data-bind="text: targetEnd"></span>
+					</div>
+					<table id="list" tabindex="3"></table>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

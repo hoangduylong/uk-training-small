@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:com="http://xmlns.jcp.org/jsf/component"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+<ui:composition template="/master/base.xhtml">
+	<ui:define name="htmlHead">
+    	<com:scriptfile set="IGNITE" />
+		<com:stylefile path="cmf001.c.style.css" />
+		<com:scriptfile path="cmf001.c.vm.js" />
+		
+		<com:ValidatorScript>
+			nts.uk.ctx.exio.dom.input.setting.assembly.revise.type.string.PaddingLength
+			nts.uk.ctx.exio.dom.input.setting.assembly.revise.type.real.DecimalDigitNumber
+		</com:ValidatorScript>
+		
+		<com:EnumScript>
+			nts.uk.ctx.exio.dom.input.setting.assembly.revise.type.string.PaddingMethod
+			nts.uk.ctx.exio.dom.input.setting.assembly.revise.type.date.ExternalImportDateFormat
+			nts.uk.ctx.exio.dom.input.setting.assembly.revise.type.time.HourlySegment
+			nts.uk.ctx.exio.dom.input.setting.assembly.revise.type.time.TimeBaseNumber
+			nts.uk.ctx.exio.dom.input.setting.assembly.revise.type.time.TimeBase60Delimiter
+			nts.uk.ctx.exio.dom.input.setting.assembly.revise.type.time.TimeBase10Rounding
+		</com:EnumScript>
+	</ui:define>
+
+	<ui:define name="content" >
+		<div id="functions-area">
+			<a class="goback" data-bind="ntsLinkButton: { action: clickBackButton }, text: '戻る'"></a>
+			<button class="proceed" data-bind="enable: canSave, click: save">登録</button>
+			<button class="danger" data-bind="enable: canDeleteSetting, click: deleteSetting">設定を削除する</button>
+		</div>
+
+		<div id="contents-area" class="fixed-flex-layout">
+
+			<div class="fixed-flex-layout-left">
+					
+				<table id="items" data-bind="ntsGridList: {
+					height: '600px',
+					dataSource: items,
+					primaryKey: 'itemNo',
+					columns: itemsColumns,
+					value: selectedItemNo,
+				}"></table>
+				
+			</div>
+			<div id="current-item" class="fixed-flex-layout-right" data-bind="with: currentItem">
+				
+				<div data-bind="if: $parent.isItemSelected">
+					<div id="item-def" data-bind="with: def">
+						<div class="label inline" data-bind="text: name"></div>
+						<div class="inline">
+							<span data-bind="text: constraint"></span><span data-bind="if: required">必須</span>
+						</div>
+					</div>
+	
+					<div id="select-mapping">
+						<div class="label inline">受入元</div>
+						<div class="inline">
+							<div data-bind="ntsSwitchButton: {
+								options: $parent.mappingSource,
+								optionsValue: 'code',
+								optionsText: 'name',
+								value: selectedMappingType,
+								required: true }"></div>
+						</div>
+						<div class="inline" data-bind="if: selectedMappingType() == '固定値'">
+							<div class="inline" data-bind="if: def.type() == 'STRING'">
+								<input class="check-target" data-bind="ntsTextEditor: {value: fixedMapping, name: def.name, constraint: def.constraintName, required: selectedMappingType() == '固定値' }" />
+							</div>
+							<div class="inline" data-bind="if: def.type() == 'INT'">
+								<input class="check-target" data-bind="ntsNumberEditor: {value: fixedMapping, name: def.name, constraint: def.constraintName, required: selectedMappingType() == '固定値' }" />
+							</div>
+							<div class="inline" data-bind="if: def.type() == 'REAL'">
+								<input class="check-target" data-bind="ntsNumberEditor: {value: fixedMapping, name: def.name, constraint: def.constraintName, required: selectedMappingType() == '固定値' }" />
+							</div>
+							<div class="inline" data-bind="if: def.type() == 'DATE'">
+								<div class="check-target" data-bind="ntsDatePicker: {value: fixedMapping, name: def.name, required: selectedMappingType() == '固定値' }"></div>
+							</div>
+							<div class="inline" data-bind="if: def.type() == 'TIME_DURATION'">
+								<input class="check-target" data-bind="ntsTimeEditor: {value: fixedMapping, name: def.name, constraint: def.constraintName, inputFormat: 'time', mode: 'time', required: selectedMappingType() == '固定値' }" />
+							</div>
+							<div class="inline" data-bind="if: def.type() == 'TIME_POINT'">
+								<input class="check-target" data-bind="ntsTimeWithDayEditor: {value: fixedMapping, name: def.name, required: selectedMappingType() == '固定値' }" />
+							</div>
+						</div>
+					</div>
+					
+					<div id="csv-mapping" data-bind="if: selectedMappingType() == 'CSV'">
+						<div data-bind="with: csvMapping">
+							<div class="label">項目の編集設定</div>
+							<div id="revising" data-bind="with: revisingValue">
+	
+								<div class="row" data-bind="if: $root.content.currentItem().def.type() == 'STRING'">
+									<div class="inline check">
+										<div data-bind="ntsCheckBox: { checked: usePadding, text: '桁埋めする' }"></div>
+									</div>
+									<div class="inline detail">
+										<input class="check-target" id="padding-length" data-bind="ntsNumberEditor: {
+											name: '桁埋め桁数',
+											value: paddingLength,
+											enable: usePadding() === true,
+											constraint: 'PaddingLength',
+											required: usePadding, 
+											option: {
+												symbolChar: '桁'
+											}
+										}" />
+										<input data-bind="ntsComboBox: {
+											options: __viewContext.enums.PaddingMethod,
+											optionsValue: 'value',
+											optionsText: 'name',
+											value: paddingMethod,
+											editable: false,
+											enable: usePadding,
+											selectFirstIfNull: true,
+										}" />
+									</div>
+								</div>
+	
+								<div class="row" data-bind="if: $root.content.currentItem().def.type() == 'REAL'">
+									<div class="inline check">
+										<div data-bind="ntsCheckBox: { checked: isDecimalization, text: '小数点を付与する' }"></div>
+									</div>
+									<div class="inline detail">
+										<input class="check-target" data-bind="ntsNumberEditor: {
+											name: '少数桁数',
+											value: decimalizationLength,
+											enable: isDecimalization,
+											constraint: 'DecimalDigitNumber',
+											required: isDecimalization }" />
+										桁目に付与
+									</div>
+								</div>
+	
+								<div class="row" data-bind="if: ['STRING', 'INT'].contains($root.content.currentItem().def.type())">
+									<div class="inline check">
+										<div data-bind="ntsCheckBox: { checked: useCodeConvert, text: 'コード変換する' }"></div>
+									</div>
+									<div id="code-convert" class="detail" data-bind="with: codeConvert">
+										
+										<div>変換前と変換後の文字列を半角カンマ記号 "," で区切って入力してください</div>
+										
+										<div class="inline">
+											<textarea data-bind="ntsMultilineEditor: { value: convertDetailsText, enable: $parent.useCodeConvert() === true }" />
+										</div>
+										
+										<div class="inline">
+											<div data-bind="ntsCheckBox: { checked: importWithoutSetting, text: '変換対象外を受け入れる', enable: $parent.useCodeConvert() === true }"></div>
+										</div>
+									</div>
+								</div>
+	
+								<div class="row" data-bind="if: $root.content.currentItem().def.type() == 'DATE'">
+									<div class="inline label">日付形式</div>
+									<div class="inline detail">
+										<input data-bind="ntsComboBox: {
+											options: __viewContext.enums.ExternalImportDateFormat,
+											optionsValue: 'value',
+											optionsText: 'name',
+											value: dateFormat,
+											editable: false,
+											selectFirstIfNull: true,
+										}" />
+									</div>
+								</div>
+	
+								<div data-bind="if: ['TIME_DURATION', 'TIME_POINT'].contains($root.content.currentItem().def.type())">
+									<div class="row">
+										<div class="inline label">時間データ形式</div>
+										<div class="inline detail">
+											<div data-bind="ntsSwitchButton: {
+												options: __viewContext.enums.HourlySegment,
+												optionsValue: 'value',
+												optionsText: 'name',
+												value: timeHourlySegment,
+												required: false }"></div>
+										</div>
+									</div>
+									<div data-bind="if: timeHourlySegment() == 0">
+										<div class="row">
+											<div class="inline label">時分の表現形式</div>
+											<div class="inline detail">
+												<div class="inline">
+													<div data-bind="ntsSwitchButton: {
+														options: __viewContext.enums.TimeBaseNumber,
+														optionsValue: 'value',
+														optionsText: 'name',
+														value: timeBaseNumber,
+														required: false }"></div>
+												</div>
+											</div>
+										</div>
+										<div class="row" data-bind="if: timeBaseNumber() == 0">
+											<div class="inline label">時分の区切り文字</div>
+											<div class="inline detail">
+												<div data-bind="ntsSwitchButton: {
+													options: __viewContext.enums.TimeBase60Delimiter,
+													optionsValue: 'value',
+													optionsText: 'name',
+													value: timeDelimiter,
+													required: false }"></div>
+											</div>
+										</div>
+										<div class="row" data-bind="if: timeBaseNumber() == 1">
+											<div class="inline label">1分未満の端数処理</div>
+											<div class="inline detail">
+												<div data-bind="ntsSwitchButton: {
+													options: __viewContext.enums.TimeBase10Rounding,
+													optionsValue: 'value',
+													optionsText: 'name',
+													value: timeRounding,
+													required: false }"></div>
+											</div>
+										</div>
+									</div>
+								</div> 
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		
+		</div>
+	</ui:define>
+</ui:composition>
+</body>
+</html>

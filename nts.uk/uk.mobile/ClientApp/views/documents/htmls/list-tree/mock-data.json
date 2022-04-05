@@ -1,0 +1,752 @@
+[
+    {
+        "workplaceId": "dea95de1-a462-4028-ad3a-d68b8f180412",
+        "hierarchyCode": "004",
+        "name": "横展開7",
+        "code": "HT0002"
+    },
+    {
+        "workplaceId": "c165b6a7-7294-4300-a63e-e95c51914ddb",
+        "hierarchyCode": "005",
+        "name": "TUBYUG",
+        "code": "RG00000000"
+    },
+    {
+        "workplaceId": "a8c579a2-860a-42a0-aada-7203274f3f8c",
+        "hierarchyCode": "006",
+        "name": "横展開7_201904",
+        "code": "HT0003"
+    },
+    {
+        "workplaceId": "e34d86c4-1e32-463e-b86c-68551e0bbf18",
+        "hierarchyCode": "008",
+        "name": "横展開7",
+        "code": "HT00001"
+    },
+    {
+        "workplaceId": "367d210a-6e4b-4437-b187-8527153f612a",
+        "hierarchyCode": "011",
+        "name": "ITEAM",
+        "code": "ITEAM"
+    },
+    {
+        "workplaceId": "ccafa85d-f324-422c-a7c7-062c4682f604",
+        "hierarchyCode": "016",
+        "name": "シフト用職場",
+        "code": "SFT0002001"
+    },
+    {
+        "workplaceId": "a2316878-a3a5-4362-917e-ad71d956e6c2",
+        "hierarchyCode": "016001",
+        "name": "シフト用子職場１",
+        "code": "SFT0002002"
+    },
+    {
+        "workplaceId": "2a08b71c-9e16-4e65-8e34-a78df6d67a01",
+        "hierarchyCode": "016002",
+        "name": "シフト用子職場２",
+        "code": "SFT0002003"
+    },
+    {
+        "workplaceId": "9d68af4d-437d-4362-a118-65899039c38f",
+        "hierarchyCode": "018",
+        "name": "CTEAM00001-Jo",
+        "code": "CTEAM00001"
+    },
+    {
+        "workplaceId": "7a67f5b6-1568-4a0a-bb4f-97212e0f040c",
+        "hierarchyCode": "018001",
+        "name": "CTEAM00011-Oj",
+        "code": "CTEAM00011"
+    },
+    {
+        "workplaceId": "96271791-1279-40bd-a98b-35be66c04d6a",
+        "hierarchyCode": "019",
+        "name": "加藤家職場",
+        "code": "K000001"
+    },
+    {
+        "workplaceId": "e05a845f-38c0-43e9-a136-8c0ce657187f",
+        "hierarchyCode": "020",
+        "name": "CTEAM00002",
+        "code": "CTEAM00002"
+    },
+    {
+        "workplaceId": "fbc0b591-7f3f-462f-9bc9-bba923f69d15",
+        "hierarchyCode": "020001",
+        "name": "CTEAM00021",
+        "code": "CTEAM00021"
+    },
+    {
+        "workplaceId": "c899efc3-2284-47aa-a239-46800b296ce1",
+        "hierarchyCode": "020002",
+        "name": "CTEAM00022",
+        "code": "CTEAM00022"
+    },
+    {
+        "workplaceId": "958f80fe-5b49-449a-ba4d-4e594e1554cc",
+        "hierarchyCode": "022",
+        "name": "職場",
+        "code": "H1"
+    },
+    {
+        "workplaceId": "bb9e800c-9e3a-464c-bfbc-98f29fdb6ee2",
+        "hierarchyCode": "022001",
+        "name": "分割１",
+        "code": "H11"
+    },
+    {
+        "workplaceId": "0b0cbcd9-39af-4c82-8692-2ca0ec48a984",
+        "hierarchyCode": "022001001",
+        "name": "TESTTEST",
+        "code": "TESTTEST"
+    },
+    {
+        "workplaceId": "1ee58ad2-83a6-4064-b7e1-acf78d857de9",
+        "hierarchyCode": "025",
+        "name": "日別確認",
+        "code": "TEST"
+    },
+    {
+        "workplaceId": "e1a86925-4f6e-402d-b3ac-799b2c205953",
+        "hierarchyCode": "025001",
+        "name": "TEST77",
+        "code": "TEST77"
+    },
+    {
+        "workplaceId": "6add1c9c-9c28-4331-9e55-86223c45d4d2",
+        "hierarchyCode": "025002",
+        "name": "法人販売課",
+        "code": "TEST02"
+    },
+    {
+        "workplaceId": "8c4392ba-c356-4652-936d-0255a665cbd0",
+        "hierarchyCode": "025003",
+        "name": "住宅販売課",
+        "code": "TEST03"
+    },
+    {
+        "workplaceId": "9c7712d7-1939-41bb-bbd2-191fa2cd7a72",
+        "hierarchyCode": "026",
+        "name": "日別確認5",
+        "code": "TEST07"
+    },
+    {
+        "workplaceId": "f76c9584-886c-4f58-ae74-a5ac2a0cf61f",
+        "hierarchyCode": "027",
+        "name": "日別確認２",
+        "code": "TEST04"
+    },
+    {
+        "workplaceId": "290fc037-2b00-4d6d-aca7-9ff5feb73bf8",
+        "hierarchyCode": "028",
+        "name": "日別確認3",
+        "code": "TEST05"
+    },
+    {
+        "workplaceId": "9e01a840-e107-44bb-a3c2-7c2c6443ebc2",
+        "hierarchyCode": "029",
+        "name": "日別確認4",
+        "code": "TEST06"
+    },
+    {
+        "workplaceId": "f883c12a-bcca-48c2-92e0-1a4b0ec968d2",
+        "hierarchyCode": "030",
+        "name": "日別勤務Z1",
+        "code": "HBPTZ001"
+    },
+    {
+        "workplaceId": "3899aed2-dd1f-4e39-855b-abc6fd831c4e",
+        "hierarchyCode": "031",
+        "name": "日別勤務A1",
+        "code": "HBPA01"
+    },
+    {
+        "workplaceId": "cc83113e-6697-44a3-a22c-447719a33d1c",
+        "hierarchyCode": "031001",
+        "name": "日別勤務A2",
+        "code": "HBPA02"
+    },
+    {
+        "workplaceId": "8ba7e015-a1d6-4415-bec3-aa0c8ebaf873",
+        "hierarchyCode": "031001001",
+        "name": "日別勤務A3",
+        "code": "HBPA03"
+    },
+    {
+        "workplaceId": "cf001a75-7b5f-4c80-b84a-7653f9661a26",
+        "hierarchyCode": "031001001001",
+        "name": "日別勤務A4",
+        "code": "HBPA04"
+    },
+    {
+        "workplaceId": "83beed90-f08b-4f0f-b8d9-9f5179cccfcb",
+        "hierarchyCode": "031001001001001",
+        "name": "日別勤務A5",
+        "code": "HBPA05"
+    },
+    {
+        "workplaceId": "d0b3ca84-2822-47c8-a361-d45fe1c64cf7",
+        "hierarchyCode": "031001001001001001",
+        "name": "日別勤務A6",
+        "code": "HBPA06"
+    },
+    {
+        "workplaceId": "7818fd41-4661-4c74-aebc-a13654ce409b",
+        "hierarchyCode": "031001001001001001001",
+        "name": "日別勤務A7",
+        "code": "HBPA07"
+    },
+    {
+        "workplaceId": "f45272e4-ba63-43d8-a1bf-8933ec1462e8",
+        "hierarchyCode": "031001001001001001001001",
+        "name": "日別勤務A8",
+        "code": "HBPA08"
+    },
+    {
+        "workplaceId": "5942f2e1-f635-4a70-b739-fea80a83cfb6",
+        "hierarchyCode": "031001001001001001001001001",
+        "name": "日別勤務A9",
+        "code": "HBPA09"
+    },
+    {
+        "workplaceId": "8d10a8b3-21af-42ee-8959-78110e7f0373",
+        "hierarchyCode": "031001001001001001001001001001",
+        "name": "日別勤務A10",
+        "code": "HBPA10"
+    },
+    {
+        "workplaceId": "5b1594d0-47f9-456f-a8b0-440bda5514fc",
+        "hierarchyCode": "031001001001002",
+        "name": "HBPA055_A55",
+        "code": "HBPA055"
+    },
+    {
+        "workplaceId": "e9f6731c-de89-4041-a8d4-af88cb4f0d38",
+        "hierarchyCode": "031002001001001001",
+        "name": "日別勤務A6-2",
+        "code": "HBP062"
+    },
+    {
+        "workplaceId": "4960a0ab-d9ce-4a39-888d-8e79d455bc6c",
+        "hierarchyCode": "031001001002",
+        "name": "HBPA06_lan1",
+        "code": "HBPA066"
+    },
+    {
+        "workplaceId": "c8ffb6dc-b8e8-42cd-be9d-279a657a2711",
+        "hierarchyCode": "031002001001001",
+        "name": "日別勤務A5-2",
+        "code": "HBP052"
+    },
+    {
+        "workplaceId": "6c939167-3cd6-4c78-bf70-7844215ddd57",
+        "hierarchyCode": "031002",
+        "name": "日別勤務A2-2",
+        "code": "HBPA022"
+    },
+    {
+        "workplaceId": "492fa5b8-7b01-4012-9bd4-c6b85f384721",
+        "hierarchyCode": "031002001",
+        "name": "日別勤務A3-2",
+        "code": "HBP032"
+    },
+    {
+        "workplaceId": "0fa847a8-74fb-4564-9980-fff19f35aef6",
+        "hierarchyCode": "032",
+        "name": "日別勤務B1",
+        "code": "HBPB01"
+    },
+    {
+        "workplaceId": "c3ecc245-5e2f-47c3-b05e-0fde604d4371",
+        "hierarchyCode": "032001",
+        "name": "日別勤務B2",
+        "code": "HBPB02"
+    },
+    {
+        "workplaceId": "e3fc12fb-c9f8-47d6-be98-27e207684c9d",
+        "hierarchyCode": "032001001",
+        "name": "日別勤務B3",
+        "code": "HBPB03"
+    },
+    {
+        "workplaceId": "e2907372-99e5-448a-a12d-0a5c5fa5ac03",
+        "hierarchyCode": "032001001001",
+        "name": "日別勤務B4",
+        "code": "HBPB04"
+    },
+    {
+        "workplaceId": "67e02cc4-e3d1-4230-9d2b-7cc0220ce283",
+        "hierarchyCode": "032001001001001",
+        "name": "日別勤務B5",
+        "code": "HBPB05"
+    },
+    {
+        "workplaceId": "a84c039b-365d-478e-a5b2-270686290c0c",
+        "hierarchyCode": "032001001001001001",
+        "name": "日別勤務B6",
+        "code": "HBPB06"
+    },
+    {
+        "workplaceId": "32509791-a25c-4ba4-ad47-83d4269e4d2f",
+        "hierarchyCode": "032001001001001001001",
+        "name": "日別勤務B7",
+        "code": "HBPB07"
+    },
+    {
+        "workplaceId": "9283c5d8-68bb-4dd8-8389-b4cc316775a2",
+        "hierarchyCode": "032001001001001001001001",
+        "name": "日別勤務B8",
+        "code": "HBPB08"
+    },
+    {
+        "workplaceId": "9b65abc2-3d55-45fb-a762-e36da2fa9f07",
+        "hierarchyCode": "032001001001001001001001001",
+        "name": "日別勤務B9",
+        "code": "HBPB09"
+    },
+    {
+        "workplaceId": "9fbbf7b7-7d0e-4700-9262-df0b09060d69",
+        "hierarchyCode": "032001001001001001001001001001",
+        "name": "日別勤務B10",
+        "code": "HBPB10"
+    },
+    {
+        "workplaceId": "e059dc35-00bc-498b-8c5c-4899a5797fcb",
+        "hierarchyCode": "036",
+        "name": "aabbcc",
+        "code": "19"
+    },
+    {
+        "workplaceId": "d5811232-c5e4-4f59-bf47-dc2ed072b6e3",
+        "hierarchyCode": "037",
+        "name": "99",
+        "code": "99"
+    },
+    {
+        "workplaceId": "a80bac51-34a2-4df6-b926-5aab391da95c",
+        "hierarchyCode": "037001",
+        "name": "999",
+        "code": "999"
+    },
+    {
+        "workplaceId": "5f7abfdd-785e-4e74-af1d-13c720dda387",
+        "hierarchyCode": "037001001",
+        "name": "9999",
+        "code": "9999"
+    },
+    {
+        "workplaceId": "509a8d6a-d644-413e-85da-fbae5776e5ce",
+        "hierarchyCode": "038",
+        "name": "いいい",
+        "code": "123"
+    },
+    {
+        "workplaceId": "64439417-f88a-4e2c-a1ce-10bac6a5fdb2",
+        "hierarchyCode": "040",
+        "name": "MK職場",
+        "code": "MK001"
+    },
+    {
+        "workplaceId": "153e44e1-6711-458f-ab58-28f1bb943a64",
+        "hierarchyCode": "040001",
+        "name": "○○部",
+        "code": "0301"
+    },
+    {
+        "workplaceId": "c16e0932-e302-4f43-8084-3c9897c13879",
+        "hierarchyCode": "040002",
+        "name": "□□部",
+        "code": "0302"
+    },
+    {
+        "workplaceId": "1240a93f-ce10-4df4-9fe4-c480cc26f0d3",
+        "hierarchyCode": "041",
+        "name": "MM職場親",
+        "code": "MM001"
+    },
+    {
+        "workplaceId": "584b7262-da11-4dda-9f25-263dd4353344",
+        "hierarchyCode": "041001",
+        "name": "MM子101",
+        "code": "MM101"
+    },
+    {
+        "workplaceId": "4bef3f3f-67b9-466b-80ce-08f4bb8bbc01",
+        "hierarchyCode": "041002",
+        "name": "MM子201",
+        "code": "MM201"
+    },
+    {
+        "workplaceId": "4f39b2d1-4061-4382-90c6-68f91509eb88",
+        "hierarchyCode": "042",
+        "name": "営業部",
+        "code": "2"
+    },
+    {
+        "workplaceId": "77628222-087c-43c0-8dd7-a34de161bf7d",
+        "hierarchyCode": "042003",
+        "name": "経理課",
+        "code": "12"
+    },
+    {
+        "workplaceId": "1b8b003e-8348-44bc-8cca-54aecb1a74ef",
+        "hierarchyCode": "042003",
+        "name": "人事課",
+        "code": "11"
+    },
+    {
+        "workplaceId": "fbdf1cb9-1849-43c5-8bf5-db2f0b0683ef",
+        "hierarchyCode": "043",
+        "name": "情報システム部",
+        "code": "03"
+    },
+    {
+        "workplaceId": "feeac4ec-800a-416b-946a-436f984e27ea",
+        "hierarchyCode": "043004",
+        "name": "マーケティング",
+        "code": "X02X"
+    },
+    {
+        "workplaceId": "50ffcfa2-ace8-4f49-8f64-1ab81e396d0e",
+        "hierarchyCode": "043004001",
+        "name": "WEB特化チーム",
+        "code": "21U"
+    },
+    {
+        "workplaceId": "4ddf0b32-7e97-4ed5-856b-8a825e0a3114",
+        "hierarchyCode": "043004002",
+        "name": "海外特化チーム",
+        "code": "X02XU"
+    },
+    {
+        "workplaceId": "f89a991a-e5df-4493-b0bd-f4682146ae75",
+        "hierarchyCode": "043004",
+        "name": "営業部",
+        "code": "02"
+    },
+    {
+        "workplaceId": "e1543f3e-d144-42e6-bcf4-665ee46aef9c",
+        "hierarchyCode": "043004",
+        "name": "大手町営業１課",
+        "code": "21"
+    },
+    {
+        "workplaceId": "3f4220a2-d1c5-48e6-b63b-d15276ff18b9",
+        "hierarchyCode": "043004",
+        "name": "大手町営業２課",
+        "code": "22"
+    },
+    {
+        "workplaceId": "5f57d032-24e2-4411-bb21-39be0bf46064",
+        "hierarchyCode": "045",
+        "name": "情報システム部",
+        "code": "3"
+    },
+    {
+        "workplaceId": "18b5ef22-9d1c-4950-bd18-64349810a8cc",
+        "hierarchyCode": "045001",
+        "name": "ｼｽﾃﾑﾃｽﾄ2-6",
+        "code": "301"
+    },
+    {
+        "workplaceId": "d5ea5209-44d7-4dea-83a7-ebb6c51f41cd",
+        "hierarchyCode": "045002",
+        "name": "ｼｽﾃﾑﾃｽﾄ3-2",
+        "code": "302"
+    },
+    {
+        "workplaceId": "5dd4417c-0c82-4219-81a5-e10943237591",
+        "hierarchyCode": "045003",
+        "name": "ｼｽﾃﾑﾃｽﾄ4-2",
+        "code": "303"
+    },
+    {
+        "workplaceId": "365257e8-f725-490c-abeb-e1b17f2ed92c",
+        "hierarchyCode": "047",
+        "name": "Ｎ＿００部",
+        "code": "N100"
+    },
+    {
+        "workplaceId": "d06c46b7-b1c1-49a1-a839-764abaf79349",
+        "hierarchyCode": "047001",
+        "name": "Ｎ＿００１課",
+        "code": "N1001"
+    },
+    {
+        "workplaceId": "be1d7b25-f95a-4915-80ec-67304666a80b",
+        "hierarchyCode": "047001001",
+        "name": "Ｎ＿００１１係",
+        "code": "N10011"
+    },
+    {
+        "workplaceId": "127e7848-b656-4066-a3ad-e6d133f60899",
+        "hierarchyCode": "047002",
+        "name": "Ｎ＿００２課",
+        "code": "N1002"
+    },
+    {
+        "workplaceId": "beaa6cfa-3efb-4605-919c-1fe4297b353c",
+        "hierarchyCode": "047002001",
+        "name": "Ｎ＿００２１係",
+        "code": "N10021"
+    },
+    {
+        "workplaceId": "296b5728-9140-43ba-9243-6e56e77d8191",
+        "hierarchyCode": "047002002",
+        "name": "Ｎ＿００２２係",
+        "code": "N10022"
+    },
+    {
+        "workplaceId": "d4ebc79a-b469-4a94-93a0-f1f434000e44",
+        "hierarchyCode": "047003",
+        "name": "Ｎ＿２０１課",
+        "code": "N2001"
+    },
+    {
+        "workplaceId": "4f27f2a5-0677-4226-af32-c08c7ee4bdb0",
+        "hierarchyCode": "047003001",
+        "name": "Ｎ＿２０１１係",
+        "code": "N20011"
+    },
+    {
+        "workplaceId": "b2da971c-6234-4ca9-92a6-48659a07bb28",
+        "hierarchyCode": "047003002",
+        "name": "Ｎ＿２０１２係",
+        "code": "N20012"
+    },
+    {
+        "workplaceId": "4b33e56a-4049-4d33-986c-39fc868e7d92",
+        "hierarchyCode": "051",
+        "name": "榎谷部",
+        "code": "EN00"
+    },
+    {
+        "workplaceId": "a2447a67-c153-4e41-ba3f-528986ba9c93",
+        "hierarchyCode": "051001",
+        "name": "榎谷１課",
+        "code": "EN001"
+    },
+    {
+        "workplaceId": "88ef0677-193d-473f-a82c-1e418d5ffdad",
+        "hierarchyCode": "051001001",
+        "name": "榎谷１係",
+        "code": "EN0011"
+    },
+    {
+        "workplaceId": "1cdf7d27-0675-417c-a9d3-fd66fe98540c",
+        "hierarchyCode": "053",
+        "name": "階層テスト０",
+        "code": "KH000"
+    },
+    {
+        "workplaceId": "445ed3dd-084f-482f-a891-65552c4f68c1",
+        "hierarchyCode": "053007",
+        "name": "階層テストX",
+        "code": "KH00X"
+    },
+    {
+        "workplaceId": "79eb1b8d-5cd7-48bb-a40e-f5fbf10fda95",
+        "hierarchyCode": "053007",
+        "name": "階層テスト３",
+        "code": "KH003"
+    },
+    {
+        "workplaceId": "4ad5e502-52b1-4c83-af7c-365e7f711bae",
+        "hierarchyCode": "053007",
+        "name": "階層テスト１",
+        "code": "KH001"
+    },
+    {
+        "workplaceId": "a940aba3-6945-41a2-ae84-4b6b167d9216",
+        "hierarchyCode": "053007",
+        "name": "階層テスト２",
+        "code": "KH002"
+    },
+    {
+        "workplaceId": "dceaea76-84c3-44d5-bf18-2ab4cb24b590",
+        "hierarchyCode": "054",
+        "name": "高橋Ａ０１",
+        "code": "TA01"
+    },
+    {
+        "workplaceId": "55236624-9d84-4548-8a4a-543512d4bdbd",
+        "hierarchyCode": "054001",
+        "name": "高橋Ａ０２",
+        "code": "TA02"
+    },
+    {
+        "workplaceId": "267cb0a5-d936-4a16-98d2-5084ead2843d",
+        "hierarchyCode": "055",
+        "name": "高橋テスト",
+        "code": "TT000"
+    },
+    {
+        "workplaceId": "f2bff205-b762-4fd5-996f-3c1d3d35ed33",
+        "hierarchyCode": "055001",
+        "name": "高橋１",
+        "code": "TT001"
+    },
+    {
+        "workplaceId": "58732f7a-9e93-42ca-bbfc-562544b6dcf0",
+        "hierarchyCode": "055002",
+        "name": "高橋２",
+        "code": "TT02"
+    },
+    {
+        "workplaceId": "11ed1a0f-767c-4631-97ae-8783118d9379",
+        "hierarchyCode": "056",
+        "name": "開発部",
+        "code": "KA00000000"
+    },
+    {
+        "workplaceId": "d0749650-bfe7-4fae-9137-4cb39aa256b6",
+        "hierarchyCode": "057",
+        "name": "SUZUKI",
+        "code": "SZK001"
+    },
+    {
+        "workplaceId": "6963e09f-1ae9-4160-b72a-ab34ededc84a",
+        "hierarchyCode": "058",
+        "name": "実績テスト職場a",
+        "code": "KDW0000000"
+    },
+    {
+        "workplaceId": "c5c95e7f-f3a0-457c-8580-7d46de2e3e4f",
+        "hierarchyCode": "058001",
+        "name": "テスト１",
+        "code": "KDW0000001"
+    },
+    {
+        "workplaceId": "c172ae98-7b2d-4cdd-8b88-5fbee87bc87a",
+        "hierarchyCode": "058001001",
+        "name": "テスト２",
+        "code": "KDW0000002"
+    },
+    {
+        "workplaceId": "5122c9a2-f754-4b00-9cc5-63d517dd426d",
+        "hierarchyCode": "058001001001",
+        "name": "テスト３",
+        "code": "KDW0000003"
+    },
+    {
+        "workplaceId": "69607aa0-e0dc-4deb-92e7-5e7b965bce43",
+        "hierarchyCode": "059",
+        "name": "更新処理自動実行TEST",
+        "code": "KBT002TEST"
+    },
+    {
+        "workplaceId": "aae4786c-bc8a-4a3d-b866-d3eab2d97364",
+        "hierarchyCode": "059001",
+        "name": "子職場",
+        "code": "KBTBABY"
+    },
+    {
+        "workplaceId": "45fa8575-df64-4ff8-b93d-be55f7a97dfe",
+        "hierarchyCode": "059002",
+        "name": "前川テスト",
+        "code": "70"
+    },
+    {
+        "workplaceId": "c84b81e5-ce72-44ee-a5ae-04a76a7d7534",
+        "hierarchyCode": "059003",
+        "name": "子職場2",
+        "code": "KBTBABY2"
+    },
+    {
+        "workplaceId": "9e214d11-95e5-4198-b547-b18095b811a8",
+        "hierarchyCode": "060",
+        "name": "大平テスト",
+        "code": "KO1"
+    },
+    {
+        "workplaceId": "c1940c27-c5b8-4b54-9b4e-1f3d6d6837ce",
+        "hierarchyCode": "061",
+        "name": "更新処理自動実行TES2",
+        "code": "KBT002TES2"
+    },
+    {
+        "workplaceId": "d9097716-3053-4c53-90d0-1b2407c12caf",
+        "hierarchyCode": "063",
+        "name": "SCH0000001",
+        "code": "SCH0000001"
+    },
+    {
+        "workplaceId": "78e86e18-76fb-44ad-adbc-951e1754ebbc",
+        "hierarchyCode": "064",
+        "name": "階層テスト",
+        "code": "1111"
+    },
+    {
+        "workplaceId": "8cb4afc0-77ca-425e-a053-82fb379cce94",
+        "hierarchyCode": "064001",
+        "name": "階層テスト２",
+        "code": "1112"
+    },
+    {
+        "workplaceId": "c01f062d-52ec-44d2-b692-a92030fdfa88",
+        "hierarchyCode": "064001001",
+        "name": "階層テスト３",
+        "code": "1113"
+    },
+    {
+        "workplaceId": "4330de1a-e9ba-4947-9efc-ebb3c7baf019",
+        "hierarchyCode": "064001001001",
+        "name": "階層テスト",
+        "code": "1114"
+    },
+    {
+        "workplaceId": "1d16211b-f9ea-4eed-8c18-e2b64b621065",
+        "hierarchyCode": "064001001001001",
+        "name": "階層テスト５",
+        "code": "1115"
+    },
+    {
+        "workplaceId": "cf3554f1-b3d8-4ebf-b20c-4795c7a58981",
+        "hierarchyCode": "065",
+        "name": "ＫＴＧ０２７＿１",
+        "code": "KTG0271"
+    },
+    {
+        "workplaceId": "08724c6a-d899-48e1-a1d4-bfa92e13212f",
+        "hierarchyCode": "065001",
+        "name": "ＫＴＧ０２７＿１＿１",
+        "code": "KTG02711"
+    },
+    {
+        "workplaceId": "e6a3818a-832c-481d-97af-441ebf287c24",
+        "hierarchyCode": "065001001",
+        "name": "０２７＿１＿１＿１",
+        "code": "KTG027111"
+    },
+    {
+        "workplaceId": "e75cccb5-0431-4083-8ee1-c166deb5d113",
+        "hierarchyCode": "066",
+        "name": "０２７＿２",
+        "code": "KTG0272"
+    },
+    {
+        "workplaceId": "0e935b55-a557-4f23-b545-c26994f61037",
+        "hierarchyCode": "066001",
+        "name": "０２７＿２＿１",
+        "code": "KTG02721"
+    },
+    {
+        "workplaceId": "734eb5c1-232c-4a3e-aac5-4287a0629242",
+        "hierarchyCode": "066001001",
+        "name": "０２７＿２＿１＿１",
+        "code": "KTG027211"
+    },
+    {
+        "workplaceId": "573a352f-9aef-48e9-a2cb-b731774827d4",
+        "hierarchyCode": "067",
+        "name": "aaaaaa",
+        "code": "AAAAAAAA"
+    },
+    {
+        "workplaceId": "cff58d0e-b97c-42d5-a64f-8b772b96fa6d",
+        "hierarchyCode": "067001",
+        "name": "bbbbbbb",
+        "code": "BBBBBBB"
+    }
+]

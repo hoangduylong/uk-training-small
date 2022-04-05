@@ -1,0 +1,21 @@
+#body-form {
+	margin-left: 50px;
+	margin-top: 20px;
+}
+
+td {
+	padding-bottom: 30px;
+}
+
+#functions-area-bottom {
+	padding-bottom: 35px !important;
+}
+
+#functions-area button, #functions-area-bottom button,
+	.sidebar-content-header button {
+	padding-bottom: 16px;
+}
+
+#contents-area {
+  height: calc(100vh - 130px) !important;
+}

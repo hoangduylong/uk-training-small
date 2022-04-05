@@ -1,0 +1,21 @@
+.panel-item{
+	margin-top: 15px;
+    margin-left: 20px;
+}
+
+.left-content{
+	width: 490px;
+    float: left;
+}
+
+.right-content{
+	width: 470px;
+    float: right;
+}
+#tree-up-down{
+	display: inline-block;
+}
+
+#listItem{
+	display: inline-block;
+}

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script type='text/javascript'>
+				var dialogSize = {
+					width : 580,
+					height : 540
+				};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps003.i.style.css" />
+			<com:scriptfile path="cps003.i.service.js" />
+			<com:scriptfile path="cps003.i.vm.js" />
+			<com:scriptfile path="cps003.i.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area"
+				data-bind="let: { 
+						text: nts.uk.resource.getText
+					}>
+			</div>
+			<div id="functions-area-bottom">
+				<button class="proceed x-large" data-bind="">#{i18n.getText('CPS007_16')}</button>
+				<button data-bind="click: close">#{i18n.getText('CPS007_17')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

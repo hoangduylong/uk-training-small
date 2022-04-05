@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 300, height: 200 };</script>
+            	
+				<com:ValidatorScript>
+					nts.uk.shr.sample.primitive.decimals.SampleDecimalMinMax
+					nts.uk.shr.sample.primitive.decimals.SampleDecimalRange
+					nts.uk.shr.sample.primitive.halfints.SampleHalfIntMinMax
+					nts.uk.shr.sample.primitive.halfints.SampleHalfIntRange
+					nts.uk.shr.sample.primitive.ints.SampleIntMinMax
+					nts.uk.shr.sample.primitive.ints.SampleIntRange
+					nts.uk.shr.sample.primitive.longs.SampleLongMinMax
+					nts.uk.shr.sample.primitive.longs.SampleLongRange
+					nts.uk.shr.sample.primitive.times.SampleClockMinMax
+					nts.uk.shr.sample.primitive.times.SampleClockRange
+					nts.uk.shr.sample.primitive.times.SampleDurationMinMax
+					nts.uk.shr.sample.primitive.times.SampleDurationRange
+					nts.uk.shr.sample.primitive.strings.SampleStringAlphaNumeric
+					nts.uk.shr.sample.primitive.strings.SampleStringAny
+					nts.uk.shr.sample.primitive.strings.SampleStringAnyHalf
+					nts.uk.shr.sample.primitive.strings.SampleStringKana
+					nts.uk.shr.sample.primitive.strings.SampleStringNumeric
+   				</com:ValidatorScript>
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+            </ui:define>
+            
+            <ui:define name="content">
+            	<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>FormLabel List</h1>
+						
+		            	<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleDecimalMinMax', text: 'SampleDecimalMinMax' }"></div><br/><br/>
+		            	<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleDecimalRange', text: 'SampleDecimalRange' }"></div><br/><br/>
+		            	<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleHalfIntMinMax', text: 'SampleHalfIntMinMax' }"></div><br/><br/>
+		            	<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleHalfIntRange', text: 'SampleHalfIntRange' }"></div><br/><br/>
+		            	<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleIntMinMax', text: 'SampleIntMinMax' }"></div><br/><br/>
+		            	<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleIntRange', text: 'SampleIntRange' }"></div><br/><br/>
+		            	<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleLongMinMax', text: 'SampleLongMinMax' }"></div><br/><br/>
+		            	<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleLongRange', text: 'SampleLongRange' }"></div><br/><br/>
+		            	<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleClockMinMax', text: 'SampleClockMinMax' }"></div><br/><br/>
+		            	<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleClockRange', text: 'SampleClockRange' }"></div><br/><br/>
+		            	<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleDurationMinMax', text: 'SampleDurationMinMax' }"></div><br/><br/>
+		            	<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleDurationRange', text: 'SampleDurationRange' }"></div><br/><br/>
+		            	<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleStringAlphaNumeric', text: 'SampleStringAlphaNumeric' }"></div><br/><br/>
+		            	<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleStringAny', text: 'SampleStringAny' }"></div><br/><br/>
+						<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleStringAnyHalf', text: 'SampleStringAnyHalf' }"></div><br/><br/>
+						<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleStringKana', text: 'SampleStringKana' }"></div><br/><br/>
+						<div data-bind="ntsFormLabel: { cssClass: css, constraint: 'SampleStringNumeric', text: 'SampleStringNumeric' }"></div><br/><br/>
+						
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

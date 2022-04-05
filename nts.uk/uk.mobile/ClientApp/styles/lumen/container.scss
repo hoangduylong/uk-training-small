@@ -1,0 +1,39 @@
+body {
+    .wrapper {
+        display: flex;
+        .sidebar {
+            &+.container,
+            &+.container-fluid {
+                padding-top: 55px;
+                min-height: 100vh;
+                // transition: all 0.6s cubic-bezier(0.810, -0.330, 0.345, 1.375);
+            }
+        }
+    }
+    &.modal-open,
+    &.show-side-bar {
+        .wrapper {
+            .sidebar {
+                &+.container,
+                &+.container-fluid {
+                    position: fixed;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    body {
+        &.show-side-bar {
+            .wrapper {
+                .sidebar {
+                    &+.container,
+                    &+.container-fluid {
+                        padding-left: 320px;
+                    }
+                }
+            }
+        }
+    }
+}

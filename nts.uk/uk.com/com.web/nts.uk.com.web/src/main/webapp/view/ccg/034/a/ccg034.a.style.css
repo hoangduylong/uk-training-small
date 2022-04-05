@@ -1,0 +1,35 @@
+.div-line {
+	margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+.column-label {
+	width: 130px;
+}
+.input-code {
+  width: 50px;
+  margin-right: 10px;
+}
+.left-content {
+  float: left;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+.right-content {
+  display: inline-block;
+  margin-left: 40px;
+  margin-top: 5px;
+}
+.margin-left-200 {
+  margin-left: 130px;
+}
+#A2_2 {
+  width: 320px;
+}
+#A5_2 {
+  width: 200px;
+}
+#A6_1 {
+  width: 100px;
+  margin-top: 100px;
+}

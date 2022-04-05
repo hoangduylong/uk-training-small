@@ -1,0 +1,36 @@
+.dialog-content{
+	height: 150px;
+}
+.div-table {
+  display: table;         
+  width: 350px; 
+  border: 0;
+  border-spacing: 5px; 
+  margin-left: 30px; 
+}
+.div-table-row {
+  display: table-row;
+  width: 250px;
+  height:37px;
+  clear: both;
+}
+.div-table-row-1 {
+  display: table-row;
+  width: 250px;
+  height:20px;
+  clear: both;
+}
+.div-table-col {
+  float: left; 
+  margin-top :auto;
+  display: table-column;         
+  width: 120px;   
+  height: 37px;
+}
+.div-table-col-big {
+  float: left; 
+  margin-top :auto;
+  display: table-column;         
+  width: 200px;   
+  height: 37px;
+}

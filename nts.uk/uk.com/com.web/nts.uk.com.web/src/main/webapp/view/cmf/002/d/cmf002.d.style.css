@@ -1,0 +1,145 @@
+#contents-area {
+	padding-left: 20px;
+}
+
+.table {
+	margin-bottom: 5px;
+}
+
+.table.title .cell:NTH-CHILD(1) {
+	width: 140px;
+}
+
+.table.title .cell:NTH-CHILD(2) {
+	width: 360px;
+}
+
+.table.content{
+	width: 1240px;
+}
+
+.table.content .cell.grid-list {
+	padding-top: 15px;
+}
+
+.table.content .cell:NTH-CHILD(1) {
+	width: 450px;
+}
+
+.table.content .cell:NTH-CHILD(2) {
+	width: 65px;
+}
+
+.table.content .cell:NTH-CHILD(3) {
+	width: 725px;
+}
+
+.table.content .search-item:NTH-CHILD(1) {
+	width: 220px;
+}
+
+.table.content .search-item:NTH-CHILD(2) {
+	width: 180px;
+}
+
+.table.content .arrow-item {
+	text-align: center;
+}
+
+.table.content .arrow-item button {
+	margin-bottom: 10px;
+}
+
+.D6_C3_1 {
+	width: 132px;
+	display: block;
+}
+
+.nts-fixed-body-container{
+	overflow-x: hidden !important;
+	overflow-y: auto !important;
+}
+
+#fixed-table tr {
+	height: 38px;
+}
+
+#fixed-table tr td {
+	padding: 2px;
+}
+/* 
+.fixed-table tr td:NTH-CHILD(3) {
+	border-right: none;
+}
+
+.fixed-table tr td:NTH-CHILD(4) {
+	border-left: none;
+} */
+
+.fixed-table .view-over {
+	overflow: visible !important;
+}
+
+.fixed-table .view-control .ntsControl {
+	display: inline;
+}
+
+.my-active-row {
+	background: #007fff !important;
+	color: #ffffff;
+}
+
+.my-active-row:hover {
+	color: #000000;
+}
+
+.D6_C4_16 {
+	width: 360px !important;
+}
+
+#fixed-table tbody tr .nts-help-button-image {
+	margin-top: 20px !important;
+	top: 24px !important;
+	left: -251px !important;
+}
+
+#fixed-table .last-item .nts-help-button-image,
+	#fixed-table .last-item .nts-help-button-image {
+	margin-top: -20px !important;
+	top: -72px !important;
+	left: -251px !important;
+}
+
+#fixed-table .last-item .nts-help-button-image .caret-helpbutton.caret-top,
+	#fixed-table .last-item .nts-help-button-image .caret-helpbutton.caret-top
+	{
+	bottom: 0;
+	top: auto;
+}
+
+#fixed-table .last-item .nts-help-button-image .caret-helpbutton.caret-top:before,
+	#fixed-table .last-item .nts-help-button-image .caret-helpbutton.caret-top:before
+	{
+	left: 0.5em;
+	border-bottom: 1px solid #CCC;
+	border-top: 2.1em solid;
+	border-right: 1.1em solid transparent;
+	border-left: 1.1em solid transparent;
+	margin-left: -0.1em;
+	margin-bottom: -0.1em;
+	margin-top: auto;
+}
+
+#fixed-table .last-item .nts-help-button-image .caret-helpbutton.caret-top:after,
+	#fixed-table .last-item .nts-help-button-image .caret-helpbutton.caret-top:after
+	{
+	left: 0.5em;
+	border-bottom: 1px solid #CCC;
+	border-top: 2em solid;
+	border-right: 1em solid transparent;
+	border-left: 1em solid transparent;
+}
+
+#fixed-table tr:hover {
+  border: 1px solid #CCC;
+}

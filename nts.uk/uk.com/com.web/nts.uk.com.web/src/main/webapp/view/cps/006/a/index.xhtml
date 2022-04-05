@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:ValidatorScript>
+				nts.uk.ctx.pereg.dom.person.info.category.CategoryName
+			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps006.a.style.css" />
+			<com:scriptfile path="cps006.a.service.js" />
+			<com:scriptfile path="cps006.a.start.js" />
+			<com:scriptfile path="cps006.a.vm.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<button id="register" class="proceed" tabindex="1"
+					data-bind="click: registerCategoryInfo, enable: $root.errors.isEmpty() &amp; categoryList().length > 0">#{i18n.getText('CPS006_1')}</button>
+				<button id="sort" tabindex="2" data-bind="click: openCDL022Modal, enable:categoryList().length > 0">#{i18n.getText('CPS006_2')}</button>
+				<button tabindex="2" data-bind="click: function(){exportExcel('ChangePerInforDefinitionExport')}">#{i18n.getText('CPS006_71')}</button>
+
+				<div class='float-right'>
+					<a class='goout'
+						data-bind="ntsLinkButton: { jump: '/view/cps/005/a/index.xhtml'  }"
+						tabindex="3">#{i18n.getText('CPS006_49')}</a> <a class='goout'
+						data-bind="ntsLinkButton: { jump: '/view/cas/001/a/index.xhtml' }"
+						tabindex="4">#{i18n.getText('CPS006_3')}</a>
+				</div>
+			</div>
+			<div id="contents-area" class="cf">
+			<div id="content">
+				<div id="content-left"
+					data-bind="ntsPanel:{
+					width: '290px', 
+					height: (window.screen.height - 345) >= 535 ? 535 : (window.screen.height - 345),
+					direction: 'right', 
+					showIcon: false, 
+					visible: true}">
+					<div id="isAbolition"
+						data-bind="ntsCheckBox: { checked: isAbolished }" tabindex="5">#{i18n.getText('CPS006_4')}</div>
+					<div id="search" tabindex="6"
+						data-bind="ntsSearchBox: {
+						searchMode: 'highlight',
+						targetKey: 'id',
+						mode: 'igGrid', 
+						comId: 'category_grid',
+						items: categoryList ,  
+						selectedKey: 'id',
+						placeHolder: '名称で検索…',
+						fields: ['categoryName']}" />
+					<table id="category_grid"
+						data-bind="ntsGridList: {	
+						dataSource: categoryList ,
+						columnResize: true,  
+						primaryKey: 'id' ,
+						columns: ctgColums ,
+						multiple: false,
+						value: id ,
+						columnResize: true,
+						rows: Math.round((window.screen.height - 414)/23) >= 20 ? 19 : Math.round((window.screen.height - 414)/23) - 1,
+						width: '300', }">
+					</table>
+				</div>
+				<div id="content-right">
+					<div data-bind="with: currentCategory">
+						<div>
+							<div id='col1' data-bind="ntsFormLabel: {}" class='distane'>
+								<label>#{i18n.getText('CPS006_8')}</label>
+							</div>
+							<span id="defaultName" data-bind="text: categoryNameDefault()"></span>
+						</div>
+
+						<div class='valign-center control-group'>
+							<div id='col1' data-bind="ntsFormLabel: {required: true, constraint: 'CategoryName'}">
+								<label>#{i18n.getText('CPS006_9')}</label>
+							</div>
+							<input id="ctgName" tabindex="7"
+								data-bind="ntsTextEditor: {
+								name: '#[CPS006_10]',
+								value: categoryName ,
+								constraint:'CategoryName',
+								enable: true,
+								required: true,
+								immediate: false}"></input>
+							<com:ko-if bind="displayIsAbolished() === 1">
+								<div tabindex="8" data-bind="ntsCheckBox: { checked: isAbolition, style: 'warnpanel' }">#{i18n.getText('CPS006_11')}</div>
+							</com:ko-if>
+						</div>
+
+						<div>
+							<com:ko-if bind="categoryType() === 1 || categoryType() === 2  ">
+								<div>
+									<div id='col1' data-bind="ntsFormLabel: {}" class='distane'>
+										<label>#{i18n.getText('CPS006_12')}</label>
+									</div>
+									<label id="historyType">#{i18n.getText('CPS006_46')}</label>
+								</div>
+
+								<div id='col1' data-bind="ntsFormLabel: {}" class='distane'>
+									<label>#{i18n.getText('CPS006_18')}</label>
+								</div>
+								<com:ko-if bind="categoryType() === 1 ">
+									<label id="continue">#{i18n.getText('CPS006_47')}</label>
+								</com:ko-if>
+								<com:ko-if bind="categoryType() === 2 ">
+									<label id="continue">#{i18n.getText('CPS006_48')}</label>
+								</com:ko-if>
+								<div class="custom-img-1">
+								<button tabindex="9"
+									data-bind="ntsHelpButton: {image: '/view/cps/005/image/singe_multi.png', 
+									position: 'right+100 top',
+									enable: true }">?</button>
+								</div>
+							</com:ko-if>
+
+							<com:ko-if
+								bind="(categoryType() === 3 || categoryType() === 4 ||categoryType() === 5 || categoryType() === 6)">
+								<div>
+									<div id='col1' data-bind="ntsFormLabel: {}" class='distane'>
+										<label>#{i18n.getText('CPS006_12')}</label>
+									</div>
+									<label id="historyType">#{i18n.getText('CPS006_45')}</label>
+								</div>
+
+
+								<div id='col1' data-bind="ntsFormLabel: {}" class='distane'>
+									<label>#{i18n.getText('CPS006_13')}</label>
+								</div>
+
+								<com:ko-if bind="categoryType() === 3 || categoryType() === 6 ">
+									<label id="continue">#{i18n.getText('Enum_HistoryTypes_CONTINUOUS')}</label>
+								</com:ko-if>
+
+								<com:ko-if bind="categoryType() === 4 ">
+									<label id="continue">#{i18n.getText('Enum_HistoryTypes_NO_DUPLICATE')}</label>
+								</com:ko-if>
+
+								<com:ko-if bind="categoryType() === 5 ">
+									<label id="continue">#{i18n.getText('Enum_HistoryTypes_DUPLICATE')}</label>
+								</com:ko-if>
+								<div class="custom-img-2">
+								<button tabindex="10"
+									data-bind="ntsHelpButton: {image: '/view/cps/005/image/history_type.png', position: 'right+100 top-115', enable: true }">?</button>
+								</div>
+							</com:ko-if>
+						</div>
+					</div>
+					<div>
+						<com:ko-if
+								bind="currentCategory().isExistedItemLst() === 1">
+						<div id='col1'>
+							<button tabindex="11" data-bind="click: openBModal">#{i18n.getText('CPS006_14')}</button>
+						</div>
+						</com:ko-if>
+						<table id="item_grid"
+							data-bind="ntsGridList: {	
+							dataSource: currentCategory().itemList ,
+							primaryKey: 'id' ,
+							columns: currentCategory().itemColums ,
+							multiple: false,
+							value: ko.observable(),
+							columnResize: true,
+							rows:9 }">
+						</table>
+					</div>
+				</div>
+			</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

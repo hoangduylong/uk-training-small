@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+  <ui:composition template="../../../../master/dialog.xhtml">
+
+    <!-- head -->
+    <ui:define name="htmlHead">
+      <script>
+        var dialogSize = { width: 500, height: 430 };
+      </script>
+      <com:stylefile path="ccg034.i.style.css" />
+      <com:scriptfile path="ccg034.i.vm.js" />
+      <com:scriptfile set="IGNITE" />
+    </ui:define>
+
+    <!-- content -->
+    <ui:define name="content">
+      <div id="contents-area">
+        <div class="div-line">
+          <!-- I1_1 イメージ選択(ラベル) -->
+          <div id="I1_2" class="column-label" data-bind="ntsFormLabel: {}">${i18n.getText('CCG034_119')}</div>
+        </div>
+        <!-- I2 画像の選択 -->
+        <div class="div-line">
+          <!-- I2_1 既定の画像 -->
+          <div id="I2_1" class="radio-button" data-bind="ntsRadioButton: {
+            name: '#[CCG034_120]',
+            checked: imageType,
+            option: $vm.imageOption[0],
+            optionValue: 'code',
+            optionText: 'name',
+            enable: true,
+            group: 'effectDigitCls'
+           }" tabindex="1"></div>
+        </div>
+        <div class="div-line flex valign-center preview-line">
+          <!-- I2_1_1 既定画像選択 -->
+          <button id="I2_1_1" class="choose-button"
+            data-bind="enable: imageType() === 0">${i18n.getText('CCG034_122')}</button>
+          <!-- I2_1_2 選択画像 -->
+          <img id="I2_1_2" class="pic-preview" data-bind="attr: { src: imageSrc }, visible: imageSrc() &amp;&amp; imageType() === 0" />
+        </div>
+        <div class="div-line">
+          <!-- I2_2 任意のイメージ -->
+          <div id="I2_2" class="radio-button" data-bind="ntsRadioButton: {
+            name: '#[CCG034_120]',
+            checked: imageType,
+            option: $vm.imageOption[1],
+            optionValue: 'code',
+            optionText: 'name',
+            enable: true,
+            group: 'effectDigitCls'
+           }" tabindex="1"></div>
+        </div>
+        <div class="div-line flex valign-center preview-line">
+          <!-- I2_2_1 画像のアップロード -->
+          <div id="I2_2_1" class="choose-button" data-bind="ntsFileUpload: {
+            name: '#{i18n.getText('CCG034_124')}',
+            filename: uploadedFileName,
+            accept: ['.png','.gif', '.jpeg', '.jpg', '.tiff', '.bmp'],
+            text: '#{i18n.getText('CCG034_124')}',
+            enable: imageType() === 1,
+            asLink: true,
+            immediateUpload: true,
+            uploadFinished: uploadFinished,
+            stereoType: 'avatarfile',
+            maxSize: 1
+          }" tabindex="2"></div>
+          <!-- I2_2_2 アップロード画像 -->
+          <div id="I2_2_2" data-bind="visible: imageType() === 1"></div>
+        </div>
+        <div class="div-line flex valign-center size-zone">
+          <!-- I2_3 最大ファイルサイズ -->
+          <label id="I2_3">${i18n.getText('CCG034_126')}</label>
+          <!-- I2_2_3 ファイルサイズ -->
+          <label id="I2_2_3" data-bind="text: displayFileSize, visible: imageType() === 1"></label>
+        </div>
+        <!-- I2_4 既定の画像リスト -->
+        <div id="I2_4"></div>
+      </div>
+      <div id="functions-area-bottom">
+        <!-- I20_1 決定 -->
+        <button id="I20_1" class="large proceed" tabindex="6"
+          data-bind="click: updatePartDataAndCloseDialog">#{i18n.getText('CCG034_127')}</button>
+        <!-- I20_2 閉じる -->
+        <button id="I20_2" class="large" tabindex="7" data-bind="click: closeDialog">#{i18n.getText('CCG034_128')}</button>
+      </div>
+    </ui:define>
+  </ui:composition>
+</body>
+
+</html>

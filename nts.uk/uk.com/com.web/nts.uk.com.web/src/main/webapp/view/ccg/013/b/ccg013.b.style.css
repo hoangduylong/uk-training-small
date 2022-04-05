@@ -1,0 +1,79 @@
+.caret-bottom.outline {
+	font-size: 1.5rem;;
+	display: block;
+	margin: 5px 0px 5px 130px;
+}
+
+#list {
+	width: 320px;
+	height: 333px;
+	margin-left: 15px;
+	padding-top: 10px;
+}
+
+.ui-igcombo-wrapper {
+	vertical-align: middle;
+}
+
+.caret-bottom.outline:after, .caret-top.outline:after, .caret-left.outline:after,
+	.caret-right.outline:after {
+	color: #97D155;
+}
+
+.ntsControl.radio-wrapper.reset-element {
+	margin-top: 7px;
+}
+
+.ntsRadioBox {
+	margin-bottom: 10px;
+	display: block;
+}
+
+td {
+	padding-right: 20px;
+	border-style: solid;
+	border-color: #FFFFFF;
+}
+
+.ntsHelpButton {
+	top: -15px;
+}
+
+#contents-area {
+	padding-left: 0px;
+}
+
+table.control {
+	margin-left: 15px;
+	margin-top: 10px;
+}
+
+.sp-replacer.sp-light.sp-active {
+	width: 40px;
+}
+
+.sp-preview {
+	width: 20px;
+}
+
+.ui-igcombo-wrapper {
+	width: 190px !important;
+}
+
+#contents-area>span {
+	margin-left: 15px
+}
+.ccg013-nowrap {
+	white-space: nowrap;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+#contents-area {
+	overflow: hidden;
+}
+.control .nts-help-button-image {
+	padding: 9px 6px 3px 6px !important;
+}

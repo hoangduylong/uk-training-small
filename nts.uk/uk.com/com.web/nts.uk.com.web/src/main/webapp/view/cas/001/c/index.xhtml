@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = {
+					width : 355,
+					height : 540
+				};
+			</script>
+			<com:ValidatorScript>
+					nts.uk.ctx.pereg.dom.roles.RoleCode
+					nts.uk.ctx.pereg.dom.roles.RoleName
+			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cas001.c.style.css" />
+			<com:scriptfile path="cas001.c.service.js" />
+			<com:scriptfile path="cas001.c.start.js" />
+			<com:scriptfile path="cas001.c.vm.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div class=' valign-center' data-bind="with: roleCopy">
+					<div class='distane' data-bind="ntsFormLabel: {}">
+						<label id="codeName">#{i18n.getText('CAS001_63')}</label>
+					</div>
+					<label id="roleCode" data-bind="text: personRole.roleCode"></label>
+					<label id="roleName" data-bind="text: personRole.roleName"></label>
+				</div>
+				<div class='distane' data-bind="ntsFormLabel: {}">
+					<label id="codeName">#{i18n.getText('CAS001_64')}</label>
+				</div>
+				<div id='category'>
+					<table id="grid0">
+					</table>
+				</div>
+
+			</div>
+			<div id='functions-area-bottom'>
+				<button id="registration" class="proceed x-large"
+					data-bind='click: createCategory' tabindex="2">#{i18n.getText('CAS001_61')}
+				</button>
+				<button id="cancel" data-bind='click: closeDialog' tabindex="3">#{i18n.getText('CAS001_62')}</button>
+
+			</div>
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps013.a.style.css" />
+			<com:scriptfile path="cps013.a.service.js" />
+			<com:scriptfile path="cps013.a.vm.js" />
+			<com:scriptfile path="cps013.a.start.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="functions-area">
+				<!-- A1_001 -->
+				<button tabindex="1" id="btn_001" class="proceed large" data-bind = "click: execute, enable: $root.errors.isEmpty">#{i18n.getText('CPS013_1')}</button>
+				<!-- A1_002 -->
+				<div class="link_button">
+				<a class="goout" tabindex="2" data-bind="ntsLinkButton: { jump: '/view/cps/001/a/index.xhtml' }">#{i18n.getText('CPS013_2')}</a>
+				</div>
+			</div>
+			<div id="contents-area">
+				<div style="margin-left: 35px; padding-top: 10px;">
+					<!-- A1_003 -->
+					<div data-bind="ntsFormLabel: {required: true}" style="margin-right: 50px;">#{i18n.getText('CPS013_3')}</div>
+					<!-- A1_004 -->
+					<div id="date_text" tabindex="3" data-bind="ntsDatePicker: {value: date, 
+													required: true, 
+													name: '#[CPS013_4]',
+													dateFormat: 'YYYY/MM/DD'}"></div>
+					<table id="table">
+						<tbody>
+							<tr>
+								<td>
+									<!-- A2_001 -->
+									<div class = "column_left"  tabindex="4" data-bind="ntsCheckBox: { checked: perInfoChk }">#{i18n.getText('CPS013_5')}</div>
+									<div class = "column_left" style = "width: 400px">
+										<hr></hr>
+									</div>
+								</td>
+								<td>
+									<!-- A3_001 -->
+									<div class = "column_right" tabindex="5" data-bind="ntsCheckBox: { checked: masterChk }">#{i18n.getText('CPS013_11')}</div>
+									<div class = "column_right" style = "width: 450px">
+										<hr></hr>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<!-- A2_002 -->
+									<label class="label_left">#{i18n.getText('CPS013_6')}</label>
+								</td>
+								<td>
+									<!-- A3_002 -->
+									<label class="label_right">#{i18n.getText('CPS013_12')}</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<!-- A2_003 -->
+									<label class="label_left">#{i18n.getText('CPS013_7')}</label>
+								</td>
+								<td>
+									<!-- A3_003 -->
+									<label class="label_right">#{i18n.getText('CPS013_13')}</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<!-- A2_004 -->
+									<label class="label_left">#{i18n.getText('CPS013_8')}</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<!-- A2_005 -->
+									<label class="label_left">#{i18n.getText('CPS013_9')}</label>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<!-- A2_006 -->
+									<label class="label_left">#{i18n.getText('CPS013_10')}</label>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<div id = "oniggrid">
+						<table id="grid2" tabindex="6"></table>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

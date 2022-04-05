@@ -1,0 +1,12 @@
+table {
+	width: 200px;
+	padding: 0px 5px;
+}
+
+table tr:first-child td {
+    border-bottom: 1px solid;
+}
+
+table tr::nth-child(2) td, table tr::nth-child(3) td {
+    text-align: center;
+}

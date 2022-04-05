@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cmf002.x.style.css" />
+			<com:scriptfile path="cmf002.x.service.js" />
+			<com:scriptfile path="../share/model.js" />
+			<com:scriptfile path="cmf002.x.vm.js" />
+			<com:scriptfile path="cmf002.x.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<!-- X1 -->
+				<a class="goback"
+					data-bind="ntsLinkButton: { jump: '../a/index.xhtml' }">#{i18n.getText('CMF002_27')}</a>
+				<!-- X1_2 -->
+				<span id="X1_2" class="label">#{i18n.getText('CMF002_25')}</span>
+			</div>
+			<div id="contents-area">
+				<!-- X2 -->
+				<div class="label" style="font-size: 1.5rem">#{i18n.getText('CMF002_304')}</div>
+				<div style="padding-top: 5px; padding-left: 20px">
+					<!-- X3 -->
+					<div id="X3"
+						data-bind="ntsPanel:{width: '570px', height: '182px', direction: 'none', showIcon: true, visible: true}">
+						<div class="table" style="margin-bottom: 5px;">
+							<div class="cell valign-top">
+								<!-- X3_1 -->
+								<div data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_305')}</div>
+							</div>
+							<div class="cell valign-center">
+								<!-- X3_1_1 -->
+								<div id="X3_1_1" tabindex="1"
+									data-bind="ntsDateRangePicker: {name: '#[CMF002_305]', required: true, enable: true, showNextPrevious: false, value: exePeriod}" />
+							</div>
+							<div class="cell valign-center"></div>
+						</div>
+						<div class="table">
+							<div class="cell valign-top">
+								<!-- X3_2 -->
+								<div data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_306')}</div>
+							</div>
+							<div class="cell valign-top">
+								<!-- X3_3 -->
+								<table id="single-list"
+									data-bind="ntsGridList: {								
+									rows: 5,
+									dataSource: cndSetList,
+									primaryKey: 'code',
+									columns: colCndSet,
+									multiple: false,
+									value: selectorCndSet
+								}"></table>
+							</div>
+							<div class="cell valign-bottom">
+								<!-- X4 -->
+								<button id="X4" tabindex="2" class="large caret-bottom"
+									data-bind="click: searchExecHist, enable: $root.errors.isEmpty">#{i18n.getText('CMF002_344')}</button>
+							</div>
+						</div>
+					</div>
+					<!-- X5 -->
+					<table id="execHistGrid" tabindex="3"></table>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+  <!-- <ui:composition template="../../../../master/dialog.xhtml">
+			<ui:define name="htmlHead">
+							<script>
+				                var dialogSize = {
+				                    width : 900,
+				                    height : 580
+				                };
+            				</script>
+				<com:scriptfile set="IGNITE" />
+				<com:scriptfile path="../share/model.js" />
+				<com:scriptfile path="cmf005.c.service.js" />
+				<com:scriptfile path="cmf005.c.vm.js" />
+				<com:scriptfile path="cmf005.c.start.js" />
+				<com:stylefile path="cmf005.c.style.css" />
+				
+			</ui:define>
+
+			<ui:define name="content">
+				<div id="bodyScreen">
+					<div id="inline" >
+						<div id = "C2_1" tabindex="1" style="margin-left: 20px;margin-top: 10px"  
+							data-bind="ntsComboBox: {
+										options: systemTypes,
+										value: selectedCode,
+										optionsValue: 'code',
+										optionsText: 'name'
+										}"/>
+		
+					</div>
+					<div id="abc" style="display: flex">
+								<div id= "C3_1">
+									<div  data-bind="ntsFormLabel: {}">#{i18n.getText('CMF005_46')}</div>
+									<hr/>
+								</div>
+								<div id= "C3_2">
+									<div data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CMF005_47')}</div>
+									<hr/>
+								</div>
+					</div>
+					
+					<div id="swap-list" tabindex="2" data-bind="ntsSwapList: {
+									showSearchBox: { showLeft : true},
+									height: 330,
+	                            	rows:10,
+									dataSource: listCategory,
+									primaryKey: 'categoryId',
+									columns: columns,
+									value: currentCategorySelected,
+									searchCriterion: ['categoryId','categoryName'],
+									draggable: false,
+									multipleDrag: { left: true, right: false },
+									innerDrag: { left: false, right: true },
+									outerDrag: { left: true, right: true } 
+								}"/>
+				</div>
+				<div id="footerScreen">
+					<hr/>
+					<button id = "C20_1" tabindex="16" data-bind="click : submit" class="x-large proceed ">#{i18n.getText('CMF005_48')}</button>
+					<button id = "C20_2" tabindex="17" data-bind="click : closePopup" class="large" >#{i18n.getText('CMF005_49')}</button>
+				</div>
+			</ui:define>
+	</ui:composition> -->
+  <ui:composition template="../../../../master/base.xhtml">
+    <ui:define name="htmlHead">
+      <com:ValidatorScript>
+        nts.uk.ctx.sys.assist.dom.storage.PatternCode
+        nts.uk.ctx.sys.assist.dom.storage.PatternName
+        nts.uk.ctx.sys.assist.dom.deletedata.SupplementExplanation
+        nts.uk.ctx.sys.assist.dom.deletedata.PasswordCompressFile
+      </com:ValidatorScript>
+      <com:scriptfile set="IGNITE" />
+      <com:scriptfile path="cmf005.c.vm.js" />
+      <com:scriptfile path="cmf005.c.service.js" />
+      <com:stylefile path="cmf005.c.style.css" />
+    </ui:define>
+
+    <ui:define name="content">
+      <div id="functions-area">
+        <a class="goback" data-bind="ntsLinkButton: { jump: '../a/index.xhtml' }">#{i18n.getText('CMF003_80')}</a>
+        <!-- C7_1 新規ボタン -->
+        <button class="large functional-button" data-bind="click: refreshNew"
+          tabindex="1">#{i18n.getText('CMF005_75')}</button>
+        <!-- C7_2 登録ボタン -->
+        <button class="large functional-button proceed" data-bind="click: register, enable: saveFormatEnabled"
+          tabindex="2">#{i18n.getText('CMF005_76')}</button>
+        <!-- C7_3 新規ボタン -->
+        <button class="large functional-button" data-bind="click: duplicate, enable: !isNewMode()"
+          tabindex="3">#{i18n.getText('CMF005_77')}</button>
+        <!-- C7_4 登録ボタン -->
+        <button class="large functional-button danger" data-bind="click: deletePattern, enable: saveFormatEnabled() &amp;&amp; !isNewMode()"
+          tabindex="4">#{i18n.getText('CMF005_78')}</button>
+      </div>
+      <div id="contents-area">
+        <div class="content">
+          <div class="fixed-flex-layout-left">
+            <!-- C8_1 削除セット選択(パネル) -->
+            <div
+              data-bind="ntsPanel: { height: '540px', direction: 'right', showIcon: true, visible: true }">
+              <div class="valign-center halign-center">
+                <!-- C8_2 絞り込み検索 -->
+                <div id="C8_2" data-bind="ntsSearchBox: {
+                  searchMode: 'highlight',
+                  targetKey: 'displayCode',
+                  comId: 'C9',
+                  items: patternList,
+                  selected: selectedPatternCode,
+                  selectedKey: 'displayCode',
+                  mode: 'igGrid',
+                  fields: ['displayCode', 'patternName']
+                }" tabindex="5" />
+                <!-- C9 削除セット一覧 -->
+                <table id="C9" data-bind="ntsGridList: {
+                  name: '#[CMF005_143]',
+                  options: patternList,
+                  optionsValue: 'displayCode',
+                  columns: patternColumns,
+                  multiple: false,
+                  value: selectedPatternCode,
+                  primaryKey: 'displayCode',
+                  rows: 20
+                }" tabindex="6" />
+              </div>
+            </div>
+          </div>
+          <div class="fixed-flex-layout-right">
+            <div class="div-line flex">
+              <!-- C10_1 コード(ラベル) -->
+              <div id="C10_1" class="div-column-1"
+                data-bind="ntsFormLabel: { required: true, constraint: 'PatternCode' }">#{i18n.getText('CMF005_19')}
+              </div>
+              <!-- C10_2 パターンコード -->
+              <div id="C10_2" class="control-group div-column-2">
+                <input data-bind="ntsTextEditor: {         
+                  name: '#[CMF005_19]',         
+                  value: codeValue,         
+                  constraint: 'PatternCode',         
+                  required: true,         
+                  enable: isNewMode}" />
+              </div>
+              <!-- C10_3 パターン名称(ラベル) -->
+              <div id="C10_3" class="div-column-3"
+                data-bind="ntsFormLabel: { required: true, constraint: 'PatternName' }">#{i18n.getText('CMF005_20')}
+              </div>
+              <!-- C10_4 パターン名称 -->
+              <div id="C10_4" class="control-group valign-center div-column-4">
+                <input data-bind="ntsTextEditor: {
+                  name: '#[CMF005_20]',
+                  value: nameValue,
+                  constraint: 'PatternName',
+                  required: true,
+                  enable: true,
+                  option: options
+                }" />
+              </div>
+            </div>
+            <div class="div-line flex">
+              <!-- C3_1 削除可能カテゴリ -->
+              <div id="C3_1" class="div-column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF005_46')}</div>
+              <!-- C2_1 システム種類 -->
+              <div id="C2_1" class="div-column-2" data-bind="ntsComboBox: {
+                width: 150,
+                name: '#[CMF005_45]',
+                options: systemTypes,
+                optionsValue: 'code',
+                optionsText: 'name',
+                value: selectedSystemType,
+                visibleItemsCount: 5,
+                editable: false,
+              }">
+              </div>
+            </div>
+            <div class="div-line swap-zone">
+              <!-- C4 削除可能カテゴリ一覧 -->
+              <div id="C4" tabindex="11" data-bind="ntsSwapList: {
+                name: '#[CMF005_46]',
+                disableMoveButton: disableMoveButton,
+                showSearchBox: { showLeft : true},
+                showSort: { showLeft: true, showRight: false },
+								height: 470,
+								dataSource: categoriesFiltered,
+								primaryKey: 'id',
+                leftColumns: leftColumns,
+                rightColumns: rightColumns,
+								value: currentCateSelected,
+								searchCriterion: ['categoryId', 'displayName'],
+								draggable: true,
+								multipleDrag: { left: true, right: false },
+								innerDrag: { left: false, right: true },
+                outerDrag: { left: true, right: true },
+                afterMoveLeft: checkAfterMoveLeft,
+                afterMoveRight: checkAfterMoveRight
+              }">
+                <!-- C3_2 削除するカテゴリ -->
+                <div id="C3_2" class="div-column-2" data-bind="ntsFormLabel: { required: true }">
+                  #{i18n.getText('CMF005_47')}
+                </div>
+              </div>
+            </div>
+            <div class="div-line flex">
+              <!-- C11_1 保存期間の設定 -->
+              <div id="C11_1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF005_230')}</div>
+              <div>
+                <div class="div-line flex valign-center">
+                  <!-- C11_2_1 日次 -->
+                  <label class="div-column-1" id="C11_2_1">#{i18n.getText('CMF003_639')}</label>
+                  <div class="div-column-2 flex time-dropdown valign-center">
+                    <!-- C11_2_2 対象年 -->
+                    <label id="C11_2_2">#{i18n.getText('CMF003_232')}</label>
+                    <!-- C11_2_3 日次対象年 -->
+                    <div id="C11_2_3" data-bind="ntsComboBox: {
+                        width: 100,
+                        name: '#[CMF003_232]',
+                        options: targetYearDD,
+                        optionsValue: 'code',
+                        optionsText: 'name',
+                        editable: false,
+                        value: selectedDailyTargetYear,
+                        visibleItemsCount: 5
+                      }" tabindex="12"></div>
+                  </div>
+                  <div class="div-column-3 flex time-dropdown valign-center">
+                    <!-- C11_2_4 対象月 -->
+                    <label id="C11_2_4">#{i18n.getText('CMF003_233')}</label>
+                    <!-- C11_2_5 日次対象月 -->
+                    <div id="C11_2_5" data-bind="ntsComboBox: {
+                        width: 100,
+                        name: '#[CMF003_233]',
+                        options: targetMonthDD,
+                        optionsValue: 'code',
+                        optionsText: 'name',
+                        editable: false,
+                        value: selectedDailyTargetMonth,
+                        visibleItemsCount: 12
+                      }" tabindex="13"></div>
+                  </div>
+                </div>
+                <div class="div-line flex valign-center">
+                  <!-- C11_3_1 月次 -->
+                  <label class="div-column-1" id="C11_3_1">#{i18n.getText('CMF003_640')}</label>
+                  <div class="div-column-2 flex time-dropdown valign-center">
+                    <!-- C11_3_2 対象年 -->
+                    <label id="C11_3_2">#{i18n.getText('CMF003_232')}</label>
+                    <!-- C11_3_3 月次対象年 -->
+                    <div id="C11_3_3" data-bind="ntsComboBox: {
+                        width: 100,
+                        name: '#[CMF003_232]',
+                        options: targetYearDD,
+                        optionsValue: 'code',
+                        optionsText: 'name',
+                        editable: false,
+                        value: selectedMonthlyTargetYear,
+                        visibleItemsCount: 5
+                      }" tabindex="12"></div>
+                  </div>
+                  <div class="div-column-3 flex time-dropdown valign-center">
+                    <!-- C11_3_4 対象月 -->
+                    <label id="C11_3_4">#{i18n.getText('CMF003_233')}</label>
+                    <!-- C11_3_5 月次対象月 -->
+                    <div id="C11_3_5" data-bind="ntsComboBox: {
+                        width: 100,
+                        name: '#[CMF003_233]',
+                        options: targetMonthDD,
+                        optionsValue: 'code',
+                        optionsText: 'name',
+                        editable: false,
+                        value: selectedMonthlyTargetMonth,
+                        visibleItemsCount: 12
+                      }" tabindex="13"></div>
+                  </div>
+                </div>
+                <div class="div-line flex valign-center">
+                  <!-- C11_4_1 年次 -->
+                  <label class="div-column-1" id="C11_4_1">#{i18n.getText('CMF003_641')}</label>
+                  <div class="div-column-2 flex time-dropdown valign-center">
+                    <!-- C11_4_2 対象年 -->
+                    <label id="C11_2_2">#{i18n.getText('CMF003_232')}</label>
+                    <!-- C11_4_3 年次対象年 -->
+                    <div id="C11_2_3" data-bind="ntsComboBox: {
+                        width: 100,
+                        name: '#[CMF003_232]',
+                        options: targetYearDD,
+                        optionsValue: 'code',
+                        optionsText: 'name',
+                        editable: false,
+                        value: selectedAnnualTargetYear,
+                        visibleItemsCount: 5
+                      }" tabindex="12"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="div-line flex">
+              <!-- C12_1 圧縮パスワード -->
+              <div id="C12_1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF003_236')}</div>
+              <div>
+                <div class="div-line flex valign-center">
+                  <!-- C12_2 圧縮パスワード有無 -->
+                  <div id="C12_2" class="div-column-1 checkbox"
+                    data-bind="ntsCheckBox: { checked: usePasswordChecked, enable: true }" tabindex="14">
+                    #{i18n.getText('CMF003_237')}</div>
+                  <!-- C12_3 圧縮パスワード-->
+                  <input id="C12_3" class="password-input form-B div-column-2" data-bind="ntsTextEditor: { 
+                    name: '#[CMF003_238]',
+                    value: password, 
+                    enable: usePasswordChecked,
+                    required: usePasswordChecked,
+                    constraint: 'PasswordCompressFile',
+                    option: { textmode: 'password' } }" tabindex="15" />
+                </div>
+                <div class="div-line flex valign-center">
+                  <!-- C12_5 パスワード確認 -->
+                  <label class="time-label div-column-1" id="C12_5">#{i18n.getText('CMF003_285')}</label>
+                  <!-- C12_6 パスワード確認入力-->
+                  <input id="C12_6" class="password-input form-B div-column-2" data-bind="ntsTextEditor: { 
+                    name: '#[CMF003_286]',
+                    value: confirmPassword, 
+                    enable: usePasswordChecked,
+                    required: usePasswordChecked,
+                    constraint: 'PasswordCompressFile',
+                    option: { textmode: 'password' } }" tabindex="16" />
+                </div>
+              </div>
+            </div>
+            <div class="div-line flex valign-center">
+              <!-- C13_1 補足説明 -->
+              <div id="C13_1" class="div-column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF003_226')}</div>
+              <!-- C10_2 補足説明入力 -->
+              <input id="C13_2" class="div-column-2" data-bind="ntsTextEditor: {
+                name: '#[CMF003_227]',
+                value: explanation,
+                enable: true,
+                required: false,
+                constraint: 'SupplementExplanation',
+                option: {
+                  width: '307px'
+                }
+              }" tabindex="10" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </ui:define>
+  </ui:composition>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+#fof {
+	position: relative;
+	margin: 20px 0 0px;
+	text-align: center;
+}
+
+#fof div {
+}
+
+#fof canvas,
+#fof img {
+	position: relative;
+	width: 1000px;
+	height: 500px;
+	margin: 0 auto 0;
+	z-index: 1;
+}

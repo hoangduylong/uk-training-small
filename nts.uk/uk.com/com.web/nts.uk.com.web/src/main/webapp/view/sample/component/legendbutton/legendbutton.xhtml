@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<com:scriptfile set="IGNITE" />
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+				<style>
+					.bg-red {
+						background-color: #ff0000;
+					}
+					.bg-green {
+						background-color: #00aa00;
+					}
+					.font-blue {
+						color: #0000ff;
+					}
+				</style>
+            </ui:define>
+            
+            <ui:define name="content">
+            	<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Legend Button</h1>
+						<h2>Overview</h2>
+						
+						<button data-bind="ntsLegendButton: legendOptions"></button>
+						
+						<button id="with-template" data-bind="ntsLegendButton: legendWithTemplateOptions"></button>
+						<article class="cf">
+							<div class="tabs">
+								<ol>
+									<li><a href="#tabs-html">HTML Binding</a></li>
+									<li><a href="#tabs-viewmodel">ViewModel</a></li>
+								</ol>
+								<div id="tabs-html" class="cf">
+									<h2>HTML</h2>
+<pre><![CDATA[<style>
+	.bg-red {
+		background-color: #ff0000;
+	}
+	.bg-green {
+		background-color: #00aa00;
+	}
+	.font-blue {
+		color: #0000ff;
+	}
+</style>
+
+
+<button data-bind="ntsLegendButton: legendOptions"></button>
+
+<button id="with-template" data-bind="ntsLegendButton: legendWithTemplateOptions"></button>]]></pre>
+								</div>
+								<div id="tabs-viewmodel" class="cf">
+									<h2>TypeScript</h2>
+<pre><![CDATA[class ScreenModel {
+    
+    legendOptions: any;
+    
+    legendWithTemplateOptions: any;
+    
+    constructor() {
+        var self = this;
+        
+        // use CSS class
+        this.legendOptions = {
+            items: [
+                { cssClass: { className: 'bg-red', colorPropertyName: 'background-color' }, labelText: 'RED' },
+                { cssClass: { className: 'bg-green', colorPropertyName: 'background-color' }, labelText: 'GREEN' },
+                { cssClass: { className: 'font-blue', colorPropertyName: 'color' }, labelText: 'BLUE' }
+            ]
+        };
+        
+        // use color code
+        this.legendWithTemplateOptions = {
+            items: [
+                { colorCode: '#ff0000', labelText: 'RED' },
+                { colorCode: '#00AA00', labelText: 'GREEN' },
+                { colorCode: '#0000FF', labelText: 'BLUE' }
+            ],
+            template : '<div style="color: # {colorCode}; "> # {labelText} </div>'
+        };
+        
+    }
+}]]></pre>
+								</div>
+							</div>
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

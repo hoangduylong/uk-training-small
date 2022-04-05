@@ -1,0 +1,191 @@
+.contents-area {
+  height: calc(100% - 20px);
+  flex-direction: row;
+}
+
+#contents-area {
+  overflow: hidden !important;
+}
+
+#menu-item-container {
+  width: 240px;
+  height: 100%;
+  padding: 10px 40px 20px 10px;
+  box-sizing: border-box;
+}
+.menu-creation-option {
+  z-index: 5;
+  width: 100%;
+  max-width: 190px;
+  height: 40px;
+  border: 1px solid #bcbcbc;
+  cursor: grab;
+  box-sizing: border-box;
+  background-color: #eeeeee;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+.menu-creation-option > .menu-icon {
+  margin-right: 10px;
+}
+#menu-item-container .menu-creation-option:not(:last-child) {
+  border-bottom: 0;
+}
+
+.menu-right-container {
+  width: calc(100% - 250px);
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.menu-creation-layout-container {
+  width: 100%;
+  box-sizing: content-box;
+  overflow: auto;
+  border: solid 2px #607d8b;
+}
+
+#menu-creation-layout {
+  z-index: 1;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  background-attachment: local;
+  background-size: 40px 40px;
+  background-image: linear-gradient(90deg, #b0bec5 1px, transparent 1px), linear-gradient(0deg, #b0bec5 1px, transparent 1px);
+}
+
+#menu-creation-layout .menu-creation-item {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+#menu-creation-layout > .menu-creation-item-container {
+  z-index: 2;
+  position: absolute;
+  box-sizing: border-box;
+  background-color: white;
+  border: 1px solid #aaaaaa;
+}
+#menu-creation-layout > .menu-creation-item-container:hover {
+  cursor: pointer;
+}
+#menu-creation-layout > .menu-creation-item-container.ui-selected {
+  z-index: 4;
+  border: 2px solid #97d155;
+}
+#menu-creation-layout > .menu-creation-item-container.ui-selected:hover {
+  cursor: grab;
+}
+#menu-creation-layout > .menu-creation-item-highlight {
+  z-index: 3;
+  position: absolute;
+  background-color: #e0f59e;
+  opacity: 0.5;
+}
+#menu-creation-layout > .menu-creation-item-copy-placeholder {
+  z-index: 5;
+  position: absolute;
+  box-sizing: border-box;
+  border: 1px solid #aaaaaa;
+  opacity: 0.8;
+}
+
+/* Part class */
+#menu-creation-layout .menu-creation-item.part-menu {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  -ms-word-break: break-all;
+}
+#menu-creation-layout .menu-creation-item.part-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  -ms-word-break: break-all;
+}
+#menu-creation-layout .menu-creation-item.part-link {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  -ms-word-break: break-all;
+}
+#menu-creation-layout .menu-creation-item.part-attachment {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+  -ms-word-break: break-all;
+}
+#menu-creation-layout .menu-creation-item.part-image {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#menu-creation-layout .menu-creation-item.part-arrow {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Setting part class */
+#menu-creation-layout .menu-creation-item-container .part-setting {
+  display: none;
+  position: absolute;
+  top: 8px; /* .menu-creation-item.ui-selected border 2px */
+  right: 8px; /* .menu-creation-item.ui-selected border 2px */
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  /* background-color: rgba(64, 64, 64, 0.5); */
+  background-image: url("/nts.uk.com.js.web/lib/nittsu/ui/style/stylesheets/images/icons/numbered/172.png");
+  background-size: contain;
+}
+#menu-creation-layout .menu-creation-item-container.ui-selected .part-setting {
+  display: block;
+}
+#menu-creation-layout .menu-creation-item-container .part-setting-popup {
+  z-index: 100;
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: -30px;
+  width: 40px;
+  height: 75px;
+  background-color: white;
+  box-shadow: 1px 1px 5px 1px #888;
+}
+#menu-creation-layout .menu-creation-item-container .part-setting-popup > .part-setting-popup-option {
+  padding: 0 5px;
+  width: 100%;
+  height: 25px;
+  line-height: 25px;
+  box-sizing: border-box;
+  color: #607d8b;
+  background-color: white;
+  overflow: hidden;
+  text-overflow: clip;
+  font-size: 12px;
+  font-weight: normal;
+}
+#menu-creation-layout .menu-creation-item-container .part-setting-popup > .part-setting-popup-option:hover {
+  color: white;
+  background-color: #607d8b;
+}
+#D2_2 {
+  margin-left: 10px;
+  word-spacing: 10px;
+}
+.ui-selectable-helper, .ui-resizable-se { 
+  display: none !important;
+}
+#menu-creation-layout .menu-creation-item-container:hover > .ui-resizable-se {
+  display: block !important;
+}
+.limited-label-view {
+  display: none !important;
+}

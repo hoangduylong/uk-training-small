@@ -1,0 +1,74 @@
+<div id="reset-pass">
+        <div class="text-center page-title">{{ 'CCGS07_18' | i18n }}</div>
+        <div class="text-left page-info alert-light alert">
+            <div>{{ 'CCGS07_18' | i18n(userName) }}</div>
+            <div>{{ 'CCGS07_19' | i18n }}</div>
+        </div>
+        <fieldset class="login-form">
+            <nts-input-password
+                tabindex='1'
+                class="control-label-inline"
+                v-model="model.newPassword"
+                name='CCGS07_11'
+                v-bind:disabled="disabled"
+                v-bind:show-title="true"
+                v-bind:constraint="validations.model.newPassword"
+                v-bind:errors-always="$errors.model.newPassword"
+                v-bind:columns="{ title: 'col-md-2', input: 'col-md-4' }" />
+    
+            <nts-input-password
+                tabindex='2'
+                class="control-label-inline"
+                v-model="model.newPasswordConfirm"
+                name='CCGS07_12'
+                v-bind:disabled="disabled"
+                v-bind:show-title="true"
+                v-bind:constraint="validations.model.newPasswordConfirm"
+                v-bind:errors-always="$errors.model.newPasswordConfirm"
+                v-bind:columns="{ title: 'col-md-2', input: 'col-md-4' }"
+                @keyup.enter="changePass" />
+    
+            <div class="accordion" v-nts-accordion v-if="policy.isUse">
+                <div class="card">
+                    <div class="card-header">
+                        <button class="btn btn-link" type="button">
+                            {{ 'CCGS07_13' | i18n }}
+                        </button>
+                    </div>
+                    <div class="collapse">
+                        <div class="card-body">
+                            <span>{{ 'CCGS07_22' | i18n }} {{ 'CCGS07_23' | i18n(policy.lowestDigits) }}</span>
+                            <span v-if="policy.alphabetDigit > 0 || policy.numberOfDigits > 0 || policy.symbolCharacters > 0">
+                                <br/>
+                                {{ 'CCGS07_24' | i18n }}<span v-if="policy.alphabetDigit > 0">　
+                                                            {{ 'CCGS07_25' | i18n(policy.alphabetDigit) }}
+                                                        </span> 
+                                                        <span v-if="policy.alphabetDigit > 0 && (policy.numberOfDigits > 0 || policy.symbolCharacters > 0)">　
+                                                            、
+                                                        </span> 
+                                                        <span v-if="policy.numberOfDigits > 0">　
+                                                            {{ 'CCGS07_26' | i18n(policy.numberOfDigits) }}
+                                                        </span>
+                                                        <span v-if="policy.symbolCharacters > 0 && (policy.numberOfDigits > 0 || policy.alphabetDigit > 0)">　
+                                                            、
+                                                        </span> 
+                                                        <span v-if="policy.symbolCharacters > 0">　
+                                                            {{ 'CCGS07_27' | i18n(policy.symbolCharacters) }}
+                                                        </span>
+                            </span><br/>
+                            <span v-if="policy.historyCount > 0">
+                                {{ 'CCGS07_28' | i18n }}　{{ 'CCGS07_29' | i18n(policy.historyCount) }}
+                            </span>
+                            <span v-if="policy.validPeriod > 0">
+                                {{ 'CCGS07_30' | i18n }}　{{ 'CCGS07_31' | i18n(policy.validPeriod) }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br/>
+            <div class="mb-2">
+                <button class="btn btn-primary btn-lg btn-block" v-click:500="changePass">{{ 'CCGS07_38' | i18n }}</button>
+            </div>
+        </fieldset>
+    </div>

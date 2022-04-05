@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="cmf005.a.vm.js" />
+			<com:scriptfile path="cmf005.a.start.js" />
+			<com:stylefile path="cmf005.a.style.css" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div class="container">
+					<div class="flex">
+						<div class="image-left">
+							<button id="buttonDeleteData" class="delete-data"
+								data-bind="click : openDeleteDataScreen" tabindex="1"></button>
+            </div>
+            <div class="image-left">
+              <button id="buttonSetting" class="setting"
+                data-bind="click: openSettingScreen" tabindex="2"></button>
+            </div>
+            <div class="image-left">
+              <button id="buttonHistory" class="history"
+                data-bind="click: openHistoryScreen" tabindex="3"></button>
+            </div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

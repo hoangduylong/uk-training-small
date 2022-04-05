@@ -1,0 +1,10 @@
+{
+    "jp": {
+        "prevent_multi_click": "Prevent multi click",
+        "documentsdirectivesclick": "Prevent multi click"
+    },
+    "vi": {
+        "prevent_multi_click": "Chống click liên tục",
+        "documentsdirectivesclick": "Phòng chống click liên tục"
+    }
+}

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+	<body>
+		<ui:composition template="../../../../master/base.xhtml">
+			<ui:define name="htmlHead">
+				<com:scriptfile set="IGNITE" />
+				<com:scriptfile path="cmf001.a.vm.js" />
+				<com:scriptfile path="cmf001.a.start.js" />
+				<com:stylefile path="cmf001.a.style.css" />
+			</ui:define>
+			
+			<ui:define name="content">
+
+				<div id="ccgcomponent"></div>
+				<div id="contents-area">
+					<div class="container">
+						<label class="navigation-label">#{i18n.getText('CMF001_26')}</label>
+						<div>
+							<div class="image-left">
+								<button id="buttonImport" class="import-creation" 
+								data-bind="click : importScreen" tabindex="1"></button>
+							</div>
+							<div class="image-left">
+								<button id="buttonSettingB" class="setting-creation" 
+								data-bind="click : settingScreenB" tabindex="2"></button>
+							</div>
+							<div class="clear"></div>
+						</div>	
+					</div>
+				</div>
+			</ui:define>
+		</ui:composition>
+   	</body>
+</html>

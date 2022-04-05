@@ -1,0 +1,102 @@
+.ccg008a {
+  $button-padding: 0.1rem 0.75rem;
+  $element-margin: 20px;
+  .section {
+    padding: 10px 0px 10px 0px;
+    border-bottom: 1px solid #F2F2F2;
+    .control-label{
+      margin: 0rem 0rem 0.3rem 0rem;
+    }
+    .content{
+      margin-top: 0.6rem; 
+    }
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  // top alert
+  .top-alert-wrapper {
+    .top-alert {
+      background-color: #f8d7da !important;
+      border-radius: 3px !important;
+      .btn-link {
+        text-decoration: none;
+      }
+      .card-header {
+        padding: 0.1rem 0.1rem 0.1rem 0.1rem;
+        &:before {
+          top: 8px;
+          right: 14px;
+        }
+      }
+      .card-body{
+        ul{
+          padding-inline-start: 15px;
+        }
+      }
+      
+    }
+  }
+  // notice
+ 
+  // overtime
+  .overtime-wrapper {
+    .date-label {
+      padding: 6px 0px 10px 24px;
+      width: auto;
+    }
+    .overtime-working-hours {
+      table-layout: fixed;
+      text-align: center;
+      thead {
+        tr {
+          th {
+            text-align: center;
+            &:nth-child(1) {
+              width: 30%;
+            }
+            &:nth-child(2) {
+              width: 30%;
+            }
+            &:nth-child(3) {
+              width: 30%;
+            }
+          }
+        }
+      }
+      .normal{
+        background: #ffffff;
+      }
+      .overtime-status-1, .overtime-status-3 {
+        background : #FD4D4D; 
+        color : #ffffff; 
+      }
+      .overtime-status-2, .overtime-status-4 {
+        background : #F6F636;
+        color: #ff0000; 
+      }
+      .overtime-status-6, .overtime-status-7 {
+        background : #eb9152; 
+      }
+    }
+    
+  }
+
+  // time status
+  .time-status-wrapper {
+    .time-status-table {
+      tr:nth-child(odd) {
+        background-color: #E0F59E;
+      }
+    }
+  }
+  
+  .btn-outline-info {
+    color: #33b5e5 !important;
+    border-color: #33b5e5 !important;
+    background-color: transparent !important;
+    margin-top: 0px !important;
+    border-bottom-width: 3px;
+  }
+}

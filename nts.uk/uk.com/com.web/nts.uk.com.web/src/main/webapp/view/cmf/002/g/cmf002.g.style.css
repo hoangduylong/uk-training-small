@@ -1,0 +1,41 @@
+.push-right-1x {
+	margin-left: 100px !important;
+}
+
+.order-column {
+	background-color: #CFF1A5;
+	text-align: right;
+	padding-right: 7px !important;
+}
+
+.flex {
+	margin-left: 0px;
+	margin-top: 5px;
+}
+
+.fixed-flex-layout>.fixed-flex-layout-left {
+	margin-left: 7px;
+	margin-top: 7px;
+}
+
+.panel.ntsPanel.direction-right{
+	margin-right: auto;
+}
+
+.auto-increment th[role="rowheader"] {
+	text-align: right !important;
+	background-color: #CFF1A5;
+}
+
+#F3_1_displayContainer {
+	height: 346px !important;
+}
+
+#F3_1_scrollContainer{
+	height: 346px !important;
+}
+.nts-fixed-table .nts-fixed-body-container {
+	/* width: 270px; */
+	}
+
+

@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+    <ui:composition>
+        <ui:define name="htmlHead">
+            <com:scriptfile set="IGNITE" />
+        </ui:define>
+        <div class="sidebar-content-header">
+            <span class="title">#{i18n.getText('Com_Company')}</span>
+            <button class="proceed" tabindex="4"
+                data-bind="click: RegisterA, enable: enableRegisterA">#{i18n.getText('CMM024_1')}</button>
+        </div>
+        <div class="contents-area">
+            <div class="panel-content">
+                <div class="panel-left bg-green caret-right caret-background">
+                    <div class="buttons">
+                        <button class="left" tabindex="2"
+                            data-bind="click: screenAShowDialogC, enable: screenAModeAddNew">#{i18n.getText('CMM024_4')}</button>
+                        <button class="danger right" tabindex="3"
+                            data-bind="click: function() { screenShowDialogAD() }, enable: screenAModeEdit">#{i18n.getText('CMM024_5')}</button>
+                    </div>
+                    <div class="ntsGrid" tabindex="1">
+                        <table tabindex="-1" id="historyList" data-bind="ntsGridList: {
+                                height: 260,
+                                dataSource: companyScheduleHistoryList,
+                                primaryKey: 'code',
+                                optionsValue: 'code',
+                                columns: ntsHeaderColumns,
+                                multiple: false,
+                                enable: enableScheduleHistoryA,
+                                value: companyScheduleHistorySelected,
+                                name: '#{i18n.getText('CMM024_6')}'
+                            }"></table>
+                    </div>
+                </div>
+                <div class="panel-right">
+                    <div class="panel panel-frame noted">#{i18n.getText('CMM024_8')}</div>
+                    <div class="panel-title">
+                        <div data-bind="ntsFormLabel: {}">#{i18n.getText('CMM024_9')}</div>
+                        <label data-bind="with: companyScheduleHistoryObjSelected">
+                            <label data-bind="text: display"></label>
+                        </label>
+                    </div>
+                    <div class="approver-employee-panel">
+                        <div class="panel panel-frame panel-box">
+                            <div class="panel-info">
+                                <div class="form" data-bind="ntsFormLabel: { required: true}">
+                                    #{i18n.getText('CMM024_10')}</div>
+                            </div>
+                            <div class="employee-lists-a employee-lists employees-list-approved"
+                                data-bind="with: modelA" tabindex="-1">
+                                <div data-bind="foreach: approverPanel">
+                                    <a class="hyperlink" data-bind="ntsLinkButton: { 
+                                                        action: function($data){ $vm.showDialogScreenF(1, 'A') } 
+                                                    }, 
+                                                    text: displayName,
+                                                    css: {
+                                                        'link-setting' : (employeeCode == -1)
+                                                    }"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="move-left">
+                            <div class="bnt-move">
+                                <span class="caret-left caret-inline"></span>
+                            </div>
+                        </div>
+                        <div class="panel panel-frame panel-box">
+                            <div class="panel-info">
+                                <div data-bind="ntsFormLabel: {}">#{i18n.getText('CMM024_11')}</div>
+                            </div>
+                            <div class="employee-lists employees-waiting-approve" data-bind="with: modelA"
+                                tabindex="-1">
+                                <div data-bind="foreach: employeesRepresentative">
+                                    <a class="hyperlink" data-bind="ntsLinkButton: { 
+                                                        action: function($data){ $vm.showDialogScreenF(2, 'A') } 
+                                                    }, 
+                                                    text: displayName,
+                                                    css: {
+                                                        'link-setting' : (employeeCode == -1)
+                                                    }"></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ui:composition>
+</body>
+
+</html>

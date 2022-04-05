@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="../../../sample/catalog/catalog.css" />
+			<com:scriptfile path="../../../sample/catalog/catalog.js" />
+			<com:scriptfile path="demo.a.vm.js" />
+			<com:scriptfile path="demo.a.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content">
+					<h1>Demo Main SCR to test -> CDL002 - 雇用選択ダイアログ</h1>
+					<h2>(Launch Employment selection dialog)</h2>
+					<hr />
+					<h2>Overview</h2>
+
+					<h4 style="margin-top: 30px; margin-bottom: 10px; font-size: 17px">Parameters:</h4>
+					<table>
+						<col width="300"></col>
+						<col width="500"></col>
+						<tr>
+							<td>Single/Multiple Selection (選択モード)</td>
+							<td><div class="cf"
+									data-bind="ntsSwitchButton: {
+														options: selectionOption,
+														optionsValue: 'code',
+														optionsText: 'name',
+														value: selectedOption,
+														enable: true }"></div></td>
+						</tr>
+						<tr>
+							<td>Unselection Item (未選択表示)</td>
+							<td><div
+									data-bind="ntsCheckBox:{checked: isDisplayUnselect}">Show/Hide</div></td>
+						</tr>
+						<tr>
+							<td>Show Work Closure (全締め表示)</td>
+							<td><div
+									data-bind="ntsCheckBox:{checked: isShowWorkClosure}">Show/Hide</div>
+							</td>
+						</tr>
+						<tr>
+							<td>Selected Code(s) (選択済項目):</td>
+							<td><input class="inputSelectCode"
+								data-bind="ntsTextEditor: {
+								value: selectedItem,
+								required: false,
+								enable: true,
+								readonly: false}" /></td>
+						</tr>
+					</table>
+					<div style="padding-top: 10px">
+						<button data-bind="click: openDialog">Open CDL002 Dialog</button>
+						<br></br>
+					</div>
+					<h4 style="margin-top: 30px; margin-bottom: 10px; font-size: 17px">Return
+						value:</h4>
+					<table>
+						<col width="100"></col>
+						<col width="400"></col>
+						<tr>
+							<td>複写先List</td>
+							<td><div data-bind="text: valueReturn"></div></td>
+						</tr>
+					</table>
+					<h2 style="margin-top: 50px;">Guide</h2>
+					<article class="cf">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-html">Usage</a></li>
+							</ol>
+							<div id="tabs-html" class="cf">
+								<h2>HTML</h2>
+								<pre>
+										<![CDATA[
+<ui:define name="htmlHead">
+	<com:scriptfile set="IGNITE" />
+	<com:stylefile path="../../../sample/catalog/catalog.css" />
+	<com:scriptfile path="../../../sample/catalog/catalog.js" />
+	<com:scriptfile path="demo.a.vm.js" />
+	<com:scriptfile path="demo.a.start.js" />
+</ui:define>										
+										]]>
+									</pre>
+								<h2>TypeScript</h2>
+								<pre>
+										<![CDATA[
+export class ScreenModel {
+       selectedItem: KnockoutObservable<any>;  
+       isMultiSelect: KnockoutObservable<boolean>;  //選択モード
+       isDisplayUnselect: KnockoutObservable<boolean>;  //未選択表示
+       isShowWorkClosure: KnockoutObservable<boolean>;  //全締め表示
+       selectedCode: KnockoutObservable<string>;  //選択済項目
+       selectedCodes: KnockoutObservableArray<string>;  //選択済項目
+       valueReturn: KnockoutObservable<string>;  //複写先List
+       
+       selectionOption: KnockoutObservableArray<any>;
+       selectedOption: KnockoutObservable<number>;
+       constructor() {
+           var self = this;
+           self.isMultiSelect = ko.observable(true);
+           self.selectedCodes = ko.observableArray([]);
+           self.selectedCode = ko.observable('');
+           self.selectedItem = ko.observable(self.isMultiSelect() ? self.selectedCodes() : self.selectedCode());
+           self.isDisplayUnselect = ko.observable(false);
+           self.isShowWorkClosure = ko.observable(false);
+           self.valueReturn = ko.observable(null);
+           self.isMultiSelect.subscribe(function(data) {
+               if (data) {
+                   if (self.isDisplayUnselect()) {
+                       self.isDisplayUnselect(false);
+                   }
+                   self.selectedItem(self.selectedCodes());
+               } else {
+                   self.selectedItem(self.selectedCode());
+               }
+           });
+           
+           self.isDisplayUnselect.subscribe(function(data) {
+               if (data && self.isMultiSelect()) {
+                   nts.uk.ui.dialog.alert("Displaying Unselect Item is not available for Multiple Selection!");
+                   self.isDisplayUnselect(false);
+               }
+           })
+           
+           
+           self.selectionOption = ko.observableArray([
+               {code : 0, name: 'Single Selection'},
+               {code : 1, name: 'Multiple Selection'},
+           ]);
+           self.selectedOption = ko.observable(self.isMultiSelect() ? 1 : 0);
+           self.selectedOption.subscribe(function(data: number) {
+               if (data == 0) {
+                   self.isMultiSelect(false);
+               }
+               else {
+                   self.isMultiSelect(true);
+               }
+           });
+       }
+       // Open Dialog CDL002
+       private openDialog() {
+           let self = this;
+           setShared('CDL002Params', {
+               isMultiple: self.isMultiSelect(),
+               selectedCodes: _.split(self.selectedItem(), ','),
+               showNoSelection: self.isDisplayUnselect(),
+               isShowWorkClosure: self.isShowWorkClosure()
+           }, true);
+           
+           nts.uk.ui.windows.sub.modal("/view/cdl/002/a/index.xhtml").onClosed(function() {
+               var isCancel = getShared('CDL002Cancel');
+               if (isCancel) {
+                   return;
+               }
+               var output = getShared('CDL002Output');
+               self.valueReturn(output);
+           });
+       }
+       
+   }
+										]]>
+									</pre>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

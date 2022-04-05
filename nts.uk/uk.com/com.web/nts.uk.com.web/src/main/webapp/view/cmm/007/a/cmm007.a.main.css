@@ -1,0 +1,30 @@
+.title {
+	width: 200px;
+}
+
+.main-content {
+	margin-left: 35px;
+	margin-top: 40px;
+}
+
+.main-content>div:NTH-CHILD(2) {
+	padding-top: 40px;
+}
+
+td#sidebar-area {
+	min-width: 100px;
+}
+
+.fixed-flex-layout > .fixed-flex-layout-right {
+	flex: 1 1 auto;
+}
+
+#functions-area {
+	min-height: 0px !important;
+	padding: 0px !important;
+	top: 25px;
+}
+
+#functions-area > button.btn-error {
+	left: 310px !important;
+}

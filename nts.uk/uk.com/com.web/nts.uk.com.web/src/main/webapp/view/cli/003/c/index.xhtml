@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:com="http://xmlns.jcp.org/jsf/component"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+  <body>
+    <ui:composition template="/master/dialog.xhtml">
+      <ui:define name="htmlHead">
+        <script>
+          var dialogSize = {
+            width: 800,
+            height: 590,
+          };
+        </script>
+        <com:stylefile path="/view/ccg/share/style.css" of="/nts.uk.com.web" />
+        <com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+        <com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web" />
+        <com:scriptfile path="/view/ccg/share/ccg.service.js" of="/nts.uk.com.web" />
+        <com:scriptfile path="/view/ccg/share/ccg.vm.js" of="/nts.uk.com.web" />
+        <com:scriptfile set="IGNITE" />
+        <com:stylefile path="cli003.c.style.css" />
+        <com:scriptfile path="cli003.c.vm.js" />
+        <com:ValidatorScript>
+          nts.uk.ctx.sys.log.dom.reference.LogDetailCondition
+        </com:ValidatorScript>
+      </ui:define>
+      <ui:define name="content">
+        <div id="contents-area">
+          <div id="ccgComponent" tabindex="2" />
+          <div class="ScreenC">
+            <div class="panel panel-frame" >
+              <table>
+                <tr>
+                  <div id="C2" data-bind=" ntsFormLabel: {text: formLabelTitle}" />
+                </tr>
+                <tr>
+                  <div id="C2_3" tabindex="4" class="selectionEmployee">
+                    <div id="employeeSearch"></div>
+                  </div>
+                </tr>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div id="functions-area-bottom">
+          <hr/>
+          <button id="C4_1" class="large proceed" tabindex="5" data-bind="click: setEmployee">
+            #{i18n.getText('CLI003_50')}
+          </button>
+           <button id="C4_2" class="large" tabindex="6" data-bind="click: closeDialog">
+             #{i18n.getText('CLI003_51')}
+            </button>
+        </div>
+      </ui:define>
+    </ui:composition>
+  </body>
+</html>

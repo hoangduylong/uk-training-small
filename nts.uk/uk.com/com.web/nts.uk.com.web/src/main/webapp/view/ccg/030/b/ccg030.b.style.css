@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+
+.preview {
+	position: relative;
+	height: 470px;
+	overflow: auto;
+}
+
+button.large {
+	min-width: 85px;
+}

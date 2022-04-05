@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+<ui:composition template="../../../../master/dialog.xhtml">
+    <ui:define name="htmlHead">
+        <script>
+            var dialogSize = { width: 500, height: 420 };
+        </script>
+        <com:scriptfile set="IGNITE" />
+        <com:stylefile path="style.css" />
+        <com:scriptfile path="cmm011.v2.c.service.js" />
+        <com:scriptfile path="cmm011.v2.c.vm.js" />
+        <com:scriptfile path="cmm011.v2.c.start.js" />
+    </ui:define>
+
+    <ui:define name="content">
+        <div id="contents-area">
+            <div class="valign-center control-group">
+                <div style="width: 465px" id="C1_1" class="label" data-bind="visible: screenMode == 0">
+                    #{i18n.getText('CMM011_207')}
+                </div>
+                <div style="width: 465px" id="C1_1" class="label" data-bind="visible: screenMode == 1">
+                    #{i18n.getText('CMM011_307')}
+                </div>
+            </div>
+            <div class="valign-center control-group" align="center">
+            	<div id="C2_1" tabindex="1" style="width: 355px;"
+            		data-bind="ntsRadioBoxGroup: {
+		                name: '作成方法',
+		                options: itemList,
+		                optionsValue: 'id',
+		                optionsText: 'name',
+		                value: createMethod,
+		                enable: true}">
+	            </div>
+            </div>
+            <button data-bind="visible: false, ntsHelpButton: {textId: 'Help Button Text', position: 'left top', enable: true }">?</button>
+            <div class="valign-center control-group" align="center">
+                <table id="single-list" tabindex="2" 
+                	data-bind="ntsGridList: {
+                          rows: 5,
+                          dataSource: inputList,
+                          columns: listColums,
+                          primaryKey: 'historyId',
+                          multiple: false,
+                          value: targetHistId,
+                          name:'#CMM011_129'}">
+                </table>
+            </div>
+        </div>
+        <div id="functions-area-bottom">
+            <button id="C4_2" data-bind="enable: $root.errors.isEmpty, click: create" class="proceed x-large" tabindex="3">#{i18n.getText('CMM011_127')}</button>
+            <button id="C4_3" class="large" data-bind="click: close" tabindex="4">#{i18n.getText('CMM011_128')}</button>
+        </div>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<div class="kaf00504">
+    <div class="input-container">
+        <div class="card card-label">
+            <div class="card-body">
+                    <span v-if="kafs05ModelStep4.isCreate">申請が完了しました</span>
+                    <span v-if="!kafs05ModelStep4.isCreate">申請の修正が完了しました</span>
+            </div>
+        </div>
+        <div class="card card-label">
+            <div class="card-body">
+                <button v-if="kafs05ModelStep4.isCreate" type="button" class="btn btn-primary btn-block" v-on:click="toConfirmList">{{'KAFS05_13' | i18n}}</button>
+                <button v-if="!kafs05ModelStep4.isCreate" type="button" class="btn btn-primary btn-block" v-on:click="toConfirmList">{{'KAFS05_19' | i18n}}</button>
+
+                <button type="button" class="btn btn-secondary btn-block btn-sm" v-on:click="toRegisterList">{{'KAFS05_14' | i18n}}</button>
+            </div>
+        </div>
+    </div>
+</div>

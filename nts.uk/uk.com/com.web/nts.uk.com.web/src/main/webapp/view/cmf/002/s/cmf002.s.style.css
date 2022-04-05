@@ -1,0 +1,38 @@
+
+table {
+	box-sizing: border-box;
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+td {
+	padding: 5px;
+	border: 1px solid black;
+}
+
+.button {
+	text-align: center;
+	margin-top: 30px;
+}
+
+#master-wrapper {
+	overflow: hidden; 
+}
+
+.dialog-contents{
+  padding: 20px;
+}
+
+.bg-yellow {
+	text-align: center;
+	background-color: #BFEA60;
+}
+#S1 {
+	font-size: 24px;
+}
+#S3 {
+	margin-left: 20px;
+}
+#S10_4{
+	margin-left: 50px;
+}

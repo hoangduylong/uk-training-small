@@ -1,0 +1,104 @@
+.left-contents {
+	position: absolute;
+	top: 110px;
+	left: 40px;
+}
+
+.right-contents {
+	position: absolute;
+	left: 420px;
+	top: 163px;
+}
+
+.top-left-contents {
+	padding: 0 15px;
+}
+
+.move-function {
+	position: absolute;
+	left: 335px;
+	top: 260px;
+	width: 60px;
+}
+
+.move-function button {
+	margin-bottom: 50px;
+}
+
+.chane-position-function {
+	width: 30px;
+	position: absolute;
+	left: 860px;
+	top: 245px;
+}
+
+.chane-position-function button {
+	margin-bottom: 50px;
+}
+
+.first-caret .caret-bottom {
+	float: left;
+	padding-left: 125px;
+	margin-bottom: -18px;
+	position: fixed;
+}
+
+
+#multi-list1_tooltips,
+#multi-list2_tooltips {
+	border: none;
+	background: none;
+	box-shadow: none;
+}
+
+#multi-list1_tooltips .ui-tooltip-content,
+#multi-list2_tooltips .ui-tooltip-content {
+	white-space: nowrap;
+	background: #ffc;
+	border: solid 1px #b85;
+	padding: 5px;
+}
+
+table#table-top-content {
+	margin-left: 20px;
+	margin-top: -10px;
+}
+
+#table-top-content>tbody>tr>td>span.nts-editor-wrapped.ntsControl {
+	margin-right: 30px;
+}
+
+#table-top-content>tbody>tr>td {
+	padding: 10px;
+}
+
+#table-top-content>tbody>tr>td>div.cellColor {
+	margin: 0 10px 0 10px;
+}
+
+.systemGroup {
+	margin: 10px 0 0 30px;
+}
+
+.nts-searchbbox-wrapper {
+	margin-bottom: 0;
+}
+
+button#c1_28 {
+	margin-left: -140px !important;
+	margin-right: 90px !important;
+	float: right;
+}
+
+button#c1_26 {
+	width: 160px;
+}
+
+#swap-up-down,
+#swap-up-down .upDown-container {
+	height: 100px !important;
+}
+.functions-area-content {
+	position: absolute;
+	top: 10px;
+}

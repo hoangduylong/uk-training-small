@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:stylefile path="../../catalog/catalog.css" />
+			<com:scriptfile path="start.js" />
+			<com:scriptfile path="../../catalog/catalog.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area"></div>
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+					<h1>CheckBox</h1>
+					<h2>Overview</h2>
+					<div data-bind="ntsCheckBox: { checked: checked, enable: enable, readonly: readonly}">A simple yet
+						elegant checkbox</div>
+					<div class="cf" style="background:#00B050; padding:10px 5px; margin: 10px -5px;">
+						<label tabindex="3" id="test"
+							data-bind="ntsCheckBox: { checked: checked, enable: enable, readonly: readonly,  text: 'A simple yet elegant checkbox' }"
+							class="outline"></label>
+					</div>
+					<div class="bg-yellow" style="padding: 10px 5px; margin: 10px -5px;">
+						<label tabindex="3" id="test2"
+							data-bind="ntsCheckBox: { checked: checked, enable: enable, readonly: readonly, text: 'A simple yet elegant checkbox' }"
+							class="minimalist"></label>
+					</div>
+					<div tabindex="3" data-bind="ntsCheckBox: { checked: enable, group: 'abc' }">Enable</div>
+					<div tabindex="3" data-bind="ntsCheckBox: { checked: readonly, group: 'abc' }">Readonly</div>
+					<table>
+						<tbody data-bind="foreach: [1,2,3,4,5]">
+							<tr>
+								<td>
+									Checkbox
+								</td>
+								<td>
+									<label style="display: block;" data-bind="ntsCheckBox: { checked: ko.observable(false), group: 'abc' }">
+									</label>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<div data-bind="text: ko.toJSON($vm.checked, null, 4)"></div>
+
+					<h2>Specify style</h2>
+					<div tabindex="3" data-bind="ntsCheckBox: { checked: enable, style: 'normal' }">style "normal"
+						(default) ... スタイル＝一般</div><br />
+					<br />
+					<div tabindex="3" data-bind="ntsCheckBox: { checked: enable, style: 'button' }">style "button" ...
+						スタイル＝ボタン</div><br />
+					<br />
+					<div tabindex="3" data-bind="ntsCheckBox: { checked: enable, style: 'warnpanel' }">style "warnpanel"
+						... スタイル＝警告パネル</div><br />
+					<article class="cf">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-html">HTML Binding</a></li>
+								<li><a href="#tabs-api">API</a></li>
+								<li><a href="#tabs-css">CSS</a></li>
+							</ol>
+							<div id="tabs-html" class="cf">
+								<h2>HTML</h2>
+								<pre><![CDATA[<div data-bind="ntsCheckBox: { checked: enable }">Enable</div>
+<!-- Full binding -->
+<div data-bind="ntsCheckBox: { checked: checked, enable: enable, text: 'A simple yet elegant checkbox' }"></div>
+<!-- Styling -->
+<div data-bind="ntsCheckBox: { checked: checked, style: 'warnpanel'}">warn panel style</div>
+]]></pre>
+								<h2>ViewModel</h2>
+								<pre><![CDATA[class ScreenModel {
+    checked: KnockoutObservable<boolean>;
+    enable: KnockoutObservable<boolean>;
+    
+    constructor() {
+        var self = this;
+        self.checked = ko.observable(true);
+        self.enable = ko.observable(true);
+    }
+}]]></pre>
+							</div>
+							<div id="tabs-api" class="cf">
+								<h2>Properties</h2>
+								<table class="table">
+									<colgroup>
+										<col width="150px" />
+									</colgroup>
+									<thead>
+										<tr>
+											<th>
+												<h4>Name</h4>
+											</th>
+											<th>
+												<h4>Description</h4>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>checked</td>
+											<td>
+												<b>Type:</b> boolean<br />
+												Set checked value for CheckBox
+											</td>
+										</tr>
+										<tr>
+											<td>text<br /><i>(optional)</i></td>
+											<td>
+												<b>Type:</b> string<br />
+												Text for CheckBox or you can put text inside CheckBox control
+											</td>
+										</tr>
+										<tr>
+											<td>readonly<br /><i>(optional)</i></td>
+											<td>
+												<b>Type:</b> boolean<br />
+												<b>Default:</b> false<br />
+												User can't interact with checkbox
+											</td>
+										</tr>
+										<tr>
+											<td>enable<br /><i>(optional)</i></td>
+											<td>
+												<b>Type:</b> boolean<br />
+												<b>Default:</b> true<br />
+												Set enable/disable for CheckBox control
+											</td>
+										</tr>
+										<tr>
+											<td>style<br /><i>(optional)</i></td>
+											<td>
+												<b>Type:</b> string<br />
+												<b>Default:</b> "normal"<br />
+												Choose style according to スタイル of チェックボックス in 項目定義.<br />
+												一般　＝　"normal"<br />
+												ボタン　＝　"button"<br />
+												警告パネル　＝　"warnpanel"<br />
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div id="tabs-css" class="cf">
+								<h3>Outline</h3>
+								<p>Style CheckBox for better appearance on colored background</p>
+								<pre><![CDATA[<div class="outline" data-bind="ntsCheckBox: { checked: checked, enable: enable, text: 'Outline CheckBox on colored backgournd' }"></div>]]></pre>
+								<div class="cf" style="background:#FF6138; padding:10px 5px; margin: 10px 0;">
+									<div data-bind="ntsCheckBox: { checked: checked, enable: enable, text: 'Outline CheckBox on colored backgournd' }"
+										class="cf outline"></div>
+								</div>
+								<div class="cf" style="background:#CC4452; padding:10px 5px; margin: 10px 0;">
+									<div data-bind="ntsCheckBox: { checked: checked, enable: enable, text: 'Outline CheckBox on colored backgournd' }"
+										class="cf outline"></div>
+								</div>
+								<div class="cf" style="background:#723147; padding:10px 5px; margin: 10px 0;">
+									<div data-bind="ntsCheckBox: { checked: checked, enable: enable, text: 'Outline CheckBox on colored backgournd' }"
+										class="cf outline"></div>
+								</div>
+								<div class="cf" style="background:#79BD8F; padding:10px 5px; margin: 10px 0;">
+									<div data-bind="ntsCheckBox: { checked: checked, enable: enable, text: 'Outline CheckBox on colored backgournd' }"
+										class="cf outline"></div>
+								</div>
+								<div class="cf" style="background:#00A388; padding:10px 5px; margin: 10px 0;">
+									<div data-bind="ntsCheckBox: { checked: checked, enable: enable, text: 'Outline CheckBox on colored backgournd' }"
+										class="cf outline"></div>
+								</div>
+								<br />
+								<h3>Minimalist</h3>
+								<pre><![CDATA[<div class="minimalist" data-bind="ntsCheckBox: { checked: checked, enable: enable, text: 'A simple yet elegant checkbox' }"></div>]]></pre>
+								<div class="bg-yellow" style="padding: 10px 5px; margin: 10px -5px;">
+									<div data-bind="ntsCheckBox: { checked: checked, enable: enable, text: 'A simple yet elegant checkbox' }"
+										class="cf minimalist"></div>
+								</div>
+								<div class="bg-green" style="padding: 10px 5px; margin: 10px -5px;">
+									<div data-bind="ntsCheckBox: { checked: checked, enable: enable, text: 'A simple yet elegant checkbox' }"
+										class="cf minimalist"></div>
+								</div>
+							</div>
+						</div>
+					</article>
+					<div class="footer cf">
+						<button class="previous large">Previous</button>
+						<button class="next proceed large">Next</button>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+
+</html>

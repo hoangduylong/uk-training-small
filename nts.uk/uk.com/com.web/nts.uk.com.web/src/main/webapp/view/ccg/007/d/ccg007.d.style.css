@@ -1,0 +1,39 @@
+.ccg007 {
+	background-color: transparent !important;
+}
+
+.ccg007 .login-form {
+	width: 450px;
+	margin: 100px auto 0 auto;
+}
+
+.ccg007 .login-form table {
+	width: 100%;
+}
+
+.ccg007 .login-form table tr {
+	height: 50px;
+}
+
+.ccg007 .login-form table tr:first-child td {
+	padding-bottom: 15px;
+}
+
+.ccg007 .login-form table td:first-child {
+	min-width: 80px;
+}
+
+.ccg007 .login-form table td:last-child {
+	min-width: 80px;
+}
+
+.ccg007 .login-form table td.align_center {
+	text-align: center;
+}
+
+.ccg007 .login-form table td > div,
+.ccg007 .login-form table td > button,
+.ccg007 .login-form table td > div > input {
+	width: 100%;
+	box-sizing: border-box;
+}

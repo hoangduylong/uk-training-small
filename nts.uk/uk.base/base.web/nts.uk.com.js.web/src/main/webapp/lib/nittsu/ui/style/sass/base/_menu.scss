@@ -1,0 +1,260 @@
+#header #menu-header {
+  background-color: #fff;
+  position: relative;
+  top: 0;
+  width: 100%;
+  white-space: nowrap;
+  z-index: 10000000;
+}
+
+#header #menu-header #logo-area {
+  height: 30px;
+}
+
+#header #menu-header #logo-area #logo {
+	width: 300px;
+	height: 30px;
+	cursor: pointer;
+}
+
+#header #menu-header #pg-area #pg-name {
+	width: 330px;
+	height: 25px;
+	padding: 5px 0px 0px 10px;
+	color: #000;
+}
+
+#header #menu-header #pg-area #manual {
+	position: absolute;
+	top: 60px;
+	right: 0px;
+}
+
+#header #menu-header #pg-area #manual .manual-button {
+	width: 23px;
+	height: 26px;
+}
+
+#header #menu-header #pg-area #manual .tgl {
+	display: inline-block;
+	height: 24px;
+	width: 32px;
+	margin: 3px 3px 0px 3px;
+	padding-top: 3px;
+	text-align: center;
+	cursor: pointer;
+}
+
+#header #menu-header #pg-area #manual .tgl:hover {
+	background-color: #F3F2F6;
+}
+
+#header #menu-header #logo-area > #user-info {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+#header #menu-header #logo-area > #user-info > #company {
+  display: inline-block;
+  border-left: solid 3px #1AC911;
+  line-height: 22px;
+  margin: 2px;
+  padding: 2px 20px 2px 8px;
+}
+
+#header #menu-header #logo-area > #user-info > #user {
+  display: inline-block;
+  line-height: 22px;
+  margin: 2px;
+  padding: 2px 12px 2px 8px;
+}
+
+#header #menu-header #logo-area > #user-info > #user > #user-image {
+	cursor: pointer;
+}
+
+#header #menu-header #logo-area > #user-info > #company > #company-name,
+#header #menu-header #logo-area > #user-info > #user > #user-name {
+	color: #000;
+}
+
+#header #menu-header #logo-area > #user-info > #company > .company-select,
+#header #menu-header #logo-area > #user-info > #user > .user-settings {
+	margin-left: 6px;
+	cursor: pointer;
+	float: right;
+}
+
+#header #menu-header #logo-area > #user-info > #company > .company-select:hover,
+#header #menu-header #logo-area > #user-info > #user > .user-settings:hover {
+	background-color: #F3F2F6;
+}
+
+#header #menu-header #logo-area > #user-info > #company > .company-select > ul.company-list,
+#header #menu-header #logo-area > #user-info > #user > .user-settings > ul.user-options {
+	display: none;
+	position: absolute;
+	top: 30px;
+	z-index: 20000;
+	margin-left: 0;
+	list-style: none;
+	padding: 0;
+	background: #FFF;
+	color: #000;
+	border: solid 1px #ABA6A9;
+}
+
+#header #menu-header #logo-area > #user-info > #user > .user-settings > ul.user-options {
+	right: 12px;
+}
+
+#header #menu-header #nav-area {
+  background: #666;
+  border-bottom: solid 3px #1AC911;
+  white-space: nowrap;
+}
+
+#header #menu-header #nav-area #menu-nav {
+  list-style-type: none;
+  height: 28px;
+  margin-right: 50px;
+  white-space: nowrap;
+  display: inline-block;
+  float: left;
+  position: relative;
+}
+
+#header #menu-header #nav-area #menu-nav li {
+  position: relative;
+}
+
+#header #menu-header #nav-area #menu-nav > li.category {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-right: solid 2px #1AC911;
+}
+
+#header #menu-header #nav-area #menu-nav > li.category:first-child {
+  	border-left: solid 2px #1AC911;
+	width: 48px;
+}
+
+#header #menu-header #nav-area #menu-nav > li.category > div.category-name {
+  padding: 5px 20px;
+  background: #666;
+  color: #FFF;
+  cursor: pointer;
+  font-family: "DroidSansMono", "Meiryo";
+  line-height: 18px;
+}
+
+#header #menu-header #nav-area #menu-nav > li.category:not(.menu-select) > div.category-name:hover {
+  background: #90F203 !important;
+}
+
+#header #menu-header #nav-area #menu-nav > li.category:not(.menu-select) > div.category-name.opening {
+  background: #FFF !important;
+  color: #000 !important;
+}
+
+#header #menu-header #nav-area #menu-nav li.menu-select > div.category-name {
+	text-align: center;
+}
+
+#header #menu-header #nav-area #menu-nav li.menu-select  ul.menu-items > li.menu-item {
+  width: 200px;
+  cursor: pointer;
+  padding: 5px 5px 5px 23px;
+  white-space: nowrap;
+}
+
+#header #menu-header #nav-area #menu-nav li.menu-select  ul.menu-items > li.menu-item:first-child {
+  font-size: medium;
+  font-weight: bold;
+  cursor: default;
+  padding: 8px;
+}
+
+#header #menu-header #nav-area #menu-nav li.menu-select  ul.menu-items > li.menu-item:not(:first-child):hover {
+	background: #F7F7D1;
+  	color: #000;
+}
+
+#header #menu-header #nav-area #menu-nav > li.category > ul.menu-items {
+  display: none;
+  position: absolute;
+  top: 31px;
+  z-index: 20000;
+  margin-left: 0;
+  list-style: none;
+  padding: 0;
+  background: #FFF;
+  color: #000;
+  border: solid 1px #ABA6A9;
+}
+
+/* Title menu */
+#header #menu-header #nav-area #menu-nav > li.category > ul.menu-items > div.title-menu > div.title-div {
+	width: 192px;
+	position: absolute;
+	margin: 0px 8px 4px 2px;
+	top: 5px;
+}
+
+#header #menu-header #nav-area #menu-nav > li.category > ul.menu-items > div.title-menu > div.title-div > div.title-name {
+	height: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#header #menu-header #nav-area #menu-nav > li.category > ul.menu-items > div.title-menu > div.title-div > img.title-image {
+	height: 80px;		
+	width: 100%;
+	margin: 6px 0px 8px 0px;
+	border-radius: 16px;
+}
+
+#header #menu-header #nav-area #menu-nav > li.category > ul.menu-items > div.title-menu > div.title-div > li.title-item {
+	cursor: pointer;
+	padding: 8px;
+	white-space: pre-wrap;
+}
+
+#header #menu-header #nav-area #menu-nav > li.category > ul.menu-items > div.title-menu > div.title-div > li.title-item:hover {
+	background: #F7F7D1;		
+}
+
+#header #menu-header #nav-area #menu-nav > li.category:not(.menu-select) > ul.menu-items > li.menu-item,
+#header #menu-header #logo-area > #user-info > #company > .company-select > ul.company-list > li.company-item {
+  width: 230px;
+  cursor: pointer;
+  padding: 5px;
+  white-space: nowrap;
+}
+
+#header #menu-header #logo-area > #user-info > #user > .user-settings > ul.user-options > li {
+	width: 180px;
+	cursor: pointer;
+	padding: 5px;
+	white-space: nowrap;
+}
+
+#header #menu-header #nav-area #menu-nav > li.category:not(.menu-select) > ul.menu-items > li.menu-item:hover,
+#header #menu-header #logo-area > #user-info > #company > .company-select > ul.company-list > li.company-item:hover,
+#header #menu-header #logo-area > #user-info > #user > .user-settings > ul.user-options > li:hover {
+  background: #F7F7D1;
+  color: #000;
+}
+
+#header #menu-header #pg-area {
+	height: 30px;
+	border-bottom: 1px solid #ABA6A9;
+	border-right: 1px solid #ABA6A9;
+	border-left: 2px solid #1AC911; 
+}

@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = {
+					width : 420,
+					height :740
+				};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps009.b.style.css" />
+			<com:scriptfile path="cps009.b.service.js" />
+			<com:scriptfile path="cps009.b.start.js" />
+			<com:scriptfile path="cps009.b.vm.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area" class="cf">
+				<!-- B001: label カテゴリ -->
+				<div data-bind="ntsFormLabel: {}" class='distane'>
+					<label id="ctg">#{i18n.getText('CPS009_31')}</label>
+				</div>
+				<!-- B002: Text: カテゴリ名 -->
+				<label id="ctgName" style="margin-top: 10px; margin-left: 10px;"
+					data-bind="text: categoryName"></label>
+				<!-- B003: label 項目選択 -->
+				<div data-bind="ntsFormLabel: {}" class='distane' style="
+				display: block;
+				margin-top: -7px;
+			">
+					<label id="itemSel">#{i18n.getText('CPS009_32')}</label>
+				</div>
+				<!-- B004: table -->
+				<!-- 				<div id="itemLst" style="margin-left: 80px">
+					<div id="grid_B" style="background-color: #F3F3F3; width: 260px;"></div>
+				</div> -->
+				<div id="itemLst" style="margin-left: 80px">
+					<table id='grid0' ></table>
+				</div>
+				<!-- B009: label 一括指定する区分 -->
+				<div data-bind="ntsFormLabel: {}" class='distane'>
+					<label id="itemSel">#{i18n.getText('CPS009_34')}</label>
+				</div>
+				<!-- B010: switch button 項目初期値設定-->
+				<div id="B_010" class="cf" tab-index="4"
+					data-bind="ntsSwitchButton: {
+											name: '#[CPS009_35]',
+											options: roundingRules,
+											optionsValue: 'code',
+											optionsText: 'name',
+											value: selectedRuleCode,
+											enable: true }"></div>
+			</div>
+			<div id='functions-area-bottom'>
+				<!-- B011: button 決定 -->
+				<button id="registration" class="proceed x-large"
+					data-bind="click: registerItems" tab-index="5">#{i18n.getText('CPS009_38')}</button>
+				<!-- B012: button キャンセル -->
+				<button id="cancel" data-bind="click: closeDialog" tab-index="6">#{i18n.getText('CPS009_30')}</button>
+
+			</div>
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+/* Override base */
+#header {
+	display: none;
+}
+
+#functions-area {
+	position: relative;
+}
+
+html, body, #master-wrapper, #master-content, #contents-area,
+	.placement-wraper, .widget-container {
+	height: 100%;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+#contents-area {
+	padding: 0;
+}
+
+.placement-container {
+	overflow: auto;
+}
+
+.placement-container.overflow-y {
+	overflow-y: auto;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+
+.placement-container.overflow-x {
+	overflow-x: auto;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}

@@ -1,0 +1,8 @@
+.nts-fileupload-container {
+	.browser-button { float: left; margin-right: 5px; }
+	.filenamelabel,
+	.nts-editor-wrapped { display: block; overflow: hidden; }
+	.filenamelabel { line-height: 30px; text-overflow: ellipsis; }
+	.nts-input { display: block; width: 100%; box-sizing: border-box; }
+	.fileinput { display: none; }
+}

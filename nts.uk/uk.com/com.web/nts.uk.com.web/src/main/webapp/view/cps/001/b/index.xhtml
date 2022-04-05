@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script type='text/javascript'>
+				var dialogSize = {
+					width : 520,
+					height : 440
+				};
+			</script>
+			<com:ValidatorScript>
+					nts.uk.ctx.bs.employee.dom.employee.mgndata.RemoveReason
+			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps001.b.style.css" />
+			<com:scriptfile path="cps001.b.service.js" />
+			<com:scriptfile path="cps001.b.vm.js" />
+			<com:scriptfile path="cps001.b.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area" data-bind="with: empDelete">
+				<div class="form-group">
+					<div data-bind="ntsFormLabel: {}">#{i18n.getText('CPS001_45')}</div>
+					<span class="text-inform" data-bind="text: code"></span> <span
+						class="text-inform" data-bind="text: name"></span>
+				</div>
+				<div class="form-group-2">
+					<div class="row1"
+						data-bind="ntsFormLabel: {constraint: 'RemoveReason'}">#{i18n.getText('CPS001_46')}</div>
+					<div>
+						<textarea id="reason"
+							data-bind="ntsMultilineEditor: {
+						value: reason,
+						constraint: 'RemoveReason',
+						name: '#[CPS001_47]',
+						enable: true,
+						readonly: false,
+						immediate: false}">
+						</textarea>
+					</div>
+				</div>
+				<div class="text-bottom"
+					data-bind="html: nts.uk.resource.getText('CPS001_48').replace(/\n/g, '&lt;br/&gt;')"></div>
+			</div>
+			<div id="functions-area-bottom">
+				<button class="danger x-large"
+					data-bind="click: pushData, enable: $root.errors.isEmpty()">#{i18n.getText('CPS001_43')}</button>
+				<button data-bind="click: close">#{i18n.getText('CPS001_44')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

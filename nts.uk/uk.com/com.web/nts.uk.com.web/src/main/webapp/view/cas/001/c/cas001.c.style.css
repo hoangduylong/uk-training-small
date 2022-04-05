@@ -1,0 +1,67 @@
+#role {
+	margin-left: 15px;
+	margin-top: 5px;
+}
+
+#category {
+	margin-left: 17px;
+	width: 300px;
+	margin-bottom: 10px;
+}
+
+#search {
+	margin-left: 5px;
+}
+
+input.ntsSearchBox {
+	width: 180px !important;
+	margin-left: 3px;
+	margin-top: 10px;
+}
+
+button.search-btn, button.clear-btn {
+	margin-top: 10px;
+	width: 30px !important;
+}
+
+#delete {
+	margin-left: 10px;
+}
+
+.distane {
+	margin-bottom: 5px;
+}
+
+#roleCode {
+	margin-left: 10px;
+	width: 90px;
+}
+
+#roleName {
+	width: 100px;
+	margin-left: 10px;
+}
+
+#grid0 td[role="gridcell"] {
+	white-space: nowrap;
+}
+
+#registration {
+	margin-right: 5px;
+	margin-top: 8px;
+}
+#grid0_displayContainer.ui-iggrid-scrolldiv.ui-widget-content.ui-iggrid-virtualscrolldiv.igscroll-touchscrollable{
+    height: 291px !important;
+}
+#grid0_scrollContainer{
+	height: 291px !important;	
+}
+div#grid0_container.ui-widget.ui-helper-clearfix.ui-corner-all.ui-iggrid{
+	height: 305px !important;
+}
+div.ui-id-6.ui-dialog-content.ui-widget-content{	
+	height: 500px !important;
+}
+div.ui-id-8.ui-dialog-content.ui-widget-content{
+	height: 505px !important;
+}

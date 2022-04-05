@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cli001.a.style.css" />
+			<com:scriptfile path="cli001.a.service.js" />
+			<com:scriptfile path="cli001.a.vm.js" />
+			<com:scriptfile path="cli001.a.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<button id="button-unlock"  tabindex="1" class="proceed"
+					data-bind="click: unLock">#{i18n.getText('CLI001_3')}</button>
+				<button id="add-Lock" tabindex="2" class="large"
+					data-bind="click: openDialogAddLockOutData">#{i18n.getText('CLI001_4')}</button>
+			</div>
+			<div id="contents-area" style="display: none" data-bind="visible: true">
+				<div style="margin-left: 45px; margin-top: 10px;">
+					<div tabindex="3" 
+						data-bind="ntsSearchBox: {
+					searchMode: 'filter',
+					searchText: '絞り込み',
+					placeHolder:'ログインID・氏名で検索…',
+					targetKey: 'userId',
+					mode: 'igGrid',
+					comId: 'multi-list',
+					items: items,
+					selectedKey: 'userId',
+					fields: ['userName', 'loginId']}">
+					</div>
+				</div>
+				<div id="tableGrid" tabindex="4">
+					<table id="multi-list"
+						data-bind="ntsGridList: {
+										name: '#[CLI001_9]',
+										height: 350,
+										options: items,
+										optionsValue: 'userId',
+										columns: columns,
+										multiple: true,
+										value: currentCodeList,
+										rows: Math.round((window.innerHeight - 273)/24)
+					}"></table>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

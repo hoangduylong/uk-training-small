@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component">
+<body>
+<ui:composition>
+    <!-- CCG001 -->
+    <div id="G4_3"/>
+    <!-- G:データ復旧社員選択 -->
+    <div class="contentG">
+        <div data-bind="with: dataContentConfirm">
+            <div class="flex div-line valign-center" style="width: 200%">
+                <!--G6_1 復旧方法-->
+                <div id="G6_1" data-bind="ntsFormLabel: {required : true }" class="div-column-1">#{i18n.getText('CMF004_91')}</div>
+                <!--G6_2 全件復旧-->
+                <div id="G6_2" tabindex="1" class="div-column-2" data-bind="ntsRadioButton: {checked: selectedRecoveryMethod,
+                            enable: true, 
+                            option: $vm.recoveryMethodOptions()[0],
+                            optionValue: 'value',
+                            optionText: 'text',
+                            group: 'recoveryMethod' }"></div>
+                <!--G6_4 全件復旧-->
+                <label id="G6_4">#{i18n.getText('CMF004_94')}</label>
+            </div>
+            <div class="flex div-line valign-center" style="width: 200%">
+                <div class="div-column-1"></div>
+                <!--G6_3 選択範囲復旧-->
+                <div id="G6_3" tabindex="2" class="div-column-2" data-bind="ntsRadioButton: {checked: selectedRecoveryMethod,
+                            enable: true, 
+                            option: $vm.recoveryMethodOptions()[1],
+                            optionValue: 'value',
+                            optionText: 'text',
+                            group: 'recoveryMethod' }"></div>
+                <!--G6_5 選択社員復旧-->
+                <label id="G6_5">#{i18n.getText('CMF004_95')}</label>
+            </div> 
+        </div>
+        <div>
+            <div class="flex div-line valign-center">
+                <!--G3_6 復旧する期間設定-->
+                <div id="G3_6" class="div-column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_466')}</div>
+                <!--G3_7 日次-->
+                <label id="G3_7" class="flex valign-center">#{i18n.getText('CMF004_467')}</label>
+                <div class="ntsControl" data-bind="with: dataContentConfirm">
+                    <!--G3_8 日次期間入力-->
+                    <div id="G3_8" class="valign-center" tabindex="3" data-bind="ntsDateRangePicker: { 
+                        required: selectedRecoveryMethod() === 1, 
+                        enable: selectedRecoveryMethod() === 1, 
+                        value: $vm.dateValue().dateRange, 
+                        maxRange: 'none',
+                        name: '#[CMF003_37]',
+                        showNextPrevious: true }"/>
+                </div>
+            </div>
+            <div class="flex div-line valign-center">
+                <div class="div-column-1"></div>
+                <!--G3_10 月次-->
+                <label id="G3_10" class="flex valign-center">#{i18n.getText('CMF004_468')}</label>
+                <div class="ntsControl" data-bind="with: dataContentConfirm">
+                    <!--G3_11 月次期間入力-->
+                    <div id="G3_11" class="valign-center" tabindex="4" data-bind="ntsDateRangePicker: { 
+                        required: selectedRecoveryMethod() === 1, 
+                        enable: selectedRecoveryMethod() === 1, 
+                        value: $vm.dateValue().monthRange, 
+                        type: 'yearmonth',
+                        maxRange: 'none',
+                        name: '#[CMF003_38]',
+                        showNextPrevious: true }"/>
+                </div>
+            </div>
+            <div class="flex div-line valign-center">
+                <div class="div-column-1"></div>
+                <!--G3_12 年次-->
+                <label id="G3_12" class="flex valign-center">#{i18n.getText('CMF004_469')}</label>
+                <div class="ntsControl" data-bind="with: dataContentConfirm">
+                    <!--G3_13 年次期間入力-->
+                    <div id="G3_13" class="valign-center" tabindex="5" data-bind="ntsDateRangePicker: { 
+                        required: selectedRecoveryMethod() === 1, 
+                        enable: selectedRecoveryMethod() === 1, 
+                        value: $vm.dateValue().yearRange, 
+                        type: 'year',
+                        jumpUnit: 'year',
+                        maxRange: 'none',
+                        name: '#[CMF003_39]',
+                        showNextPrevious: true }"/>
+                </div>
+            </div>
+        </div>
+        <div class="div-line">
+            <!--G4_2-->
+            <div id="G4_2" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CMF004_479')}</div>
+            <!-- KCP005 -->
+            <!-- G4_1 社員リスト -->
+            <div tabindex="6" class = "inputs" id="kcp005component" style="margin-top: 20px;"/>
+        </div>
+        <div class="halign-center" style="width: 760px;">
+            <!--G5_1 復旧期間設定へ-->
+            <button tabindex="7" class="large inputs" data-bind="click: backToPreviousScreen">#{i18n.getText('CMF004_142')}</button>
+            <!--G5_2 次へボタン-->
+            <button tabindex="8" class="x-large proceed inputs" data-bind="click: nextToScreenH,enable: selectedEmployeeCodeScreenG().length != 0">#{i18n.getText('CMF004_143')}</button>
+        </div>
+    </div>
+</ui:composition>
+</body>
+</html>

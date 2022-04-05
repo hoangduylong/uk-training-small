@@ -1,0 +1,26 @@
+#content {
+	
+}
+
+#left-setting {
+	width: 210px;
+	float: left;
+	/*background: red;*/
+}
+
+#right-setting {
+	width: 200px;
+	float: left;
+	/*background: blue;*/
+}
+
+#bottom-setting {
+	margin-left: 5px;
+	padding-top: 10px;
+	clear: left;
+}
+
+#dialog-button{
+	margin-left: 5px;
+}
+

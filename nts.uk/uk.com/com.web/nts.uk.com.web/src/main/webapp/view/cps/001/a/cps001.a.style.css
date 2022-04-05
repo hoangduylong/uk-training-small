@@ -1,0 +1,138 @@
+#functions-area button ~ .ntsControl {
+	margin-left: 15px;
+}
+
+#functions-area button+.ntsControl {
+	margin-left: 515px;
+}
+
+#functions-area, #contents-area {
+	min-width: 1260px;
+}
+
+.licenseCheck{
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-right: 140px;
+    min-width: 160px;
+    display: inline-block;
+}
+#contents-area{
+	min-width: 1280px;
+}
+
+#contents-area>.left-area, 
+#contents-area>.right-area,
+#contents-area>*>.left-area, 
+#contents-area>*>.right-area {
+	float: left;
+}
+
+#contents-area>.left-area,
+#contents-area>*>.left-area {
+	width: 280px;
+	margin-left: 85px;
+}
+
+#contents-area>.right-area,
+#contents-area>*>.right-area {
+	padding-left: 15px;
+	width: 860px;
+}
+
+#contents-area>.right-area {
+	margin-top: -110px;
+}
+
+#contents-area>.left-area #lefttabs,
+#contents-area>*>.left-area #lefttabs {
+	margin-top: 5px;
+}
+
+#lefttabs .ntsSearchBox.ntsSearchBox_Component {
+	width: 173px;
+}
+
+.bottom-right-area {
+	padding-top: 5px;
+}
+
+.form-group:not (.item-classification )>* {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#contents-area .layout-control .drag-panel {
+	min-width: 860px;
+	min-height: 445px;
+	height: calc(100vh - 390px) !important;
+}
+
+#contents-area .category-input .cat-has-childs .layout-control .drag-panel
+	{
+	min-width: 830px;
+	border: none;
+	height: auto;
+}
+
+.ui-iggrid .ui-iggrid-tablebody .ui-state-hover, .ui-iggrid .ui-iggrid-tablebody .ui-state-active,
+	.ui-iggrid .ui-iggrid-tablebody td {
+	border-top: none;
+	white-space: pre;
+	line-height: 22px;
+}
+
+.bg-green .ui-iggrid-headertable th:last-child, .bg-green .ui-iggrid-tablebody td.ui-state-hover:last-child,
+	.bg-green .ui-iggrid-tablebody td.ui-state-active:last-child, .bg-green .ui-iggrid-tablebody td:last-child
+	{
+	border-left: none;
+}
+
+.bg-green .ui-iggrid-headertable th:first-child, .bg-green .ui-iggrid-tablebody td.ui-state-hover:first-child,
+	.bg-green .ui-iggrid-tablebody td.ui-state-active:first-child,
+	.bg-green .ui-iggrid-tablebody td:first-child {
+	border-right: none;
+}
+
+.ui-tabs .ui-tabs-panel {
+	padding: 10px;
+}
+
+.form-group.search-box {
+	margin-bottom: 15px;
+	position: relative;
+}
+
+.form-group.search-box>* {
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.form-group.search-box .btn-delete {
+	position: absolute;
+	right: 0;
+}
+
+.form-group.search-box .ui-igcombo-wrapper {
+	width: 100%;
+}
+
+.caret-background.caret-right:after {
+	top: 40px;
+	border-width: 35px 10px
+}
+
+#contents-area>.right-area>.title {
+	display: block;
+	line-height: 37px;
+	text-align: center;
+	background-color: #cee6ff;
+}
+
+#contents-area>.right-area>.ntsControl.layout-control {
+	margin-top: 10px;
+}
+
+#lefttabs .tabs-list:empty {
+	padding: 0px !important;
+}

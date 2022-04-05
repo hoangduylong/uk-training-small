@@ -1,0 +1,4 @@
+> UK mobile sử dụng hệ thống icons miễn phí `font-awesome` version 5. Developer có thể sử dụng mã hexa đội thiết kế cung cấp để tìm các class tương ứng từ khung tìm kiếm dưới đây.
+
+> **Update**: Để sử dụng các icon với mã hexa được cung cấp, developer chỉ cần sử dụng component `fa-font` như sau: `<fa-font icon="hexa_code" />`, trong đó `hexa_code` chính là mã hexa mà đội thiết kế cung cấp/yêu cầu sử dụng.
+<br /> `fa-font` có cung cấp thêm 2 prop nữa là `class` và `size`, `class` là prop html chỉ định các lớp css, `size` là prop điều chỉnh kích thước icon với các giá trị: `[lg, sm, xs, 1,..., 10]`.

@@ -1,0 +1,87 @@
+.color-proceed { color:$activated_color; }
+.color-danger { color:$red_warning_color; }
+
+.bg-green { background-color: $green_background_color; }
+.bg-yellow { background-color: $yellow_background_color; }
+
+.color-working-day {color: #31859C !important;}
+.color-non-working-day {color: #FF3B3B !important;}
+.color-attendance {color: #0000ff;}
+.color-holiday {color: #ff0000;}
+.color-daily-holiday {color: #FF2D2D !important;}
+.color-daily-extra-holiday {color: #0086EA !important;}
+.bg-daily-alter-self {background-color:#94B7FE;}
+.bg-daily-alter-other {background-color:#CEE6FF;}
+.bg-daily-reflect-application {background-color:#BFEA60;}
+.bg-daily-error {background-color:#FD4D4D !important;}
+.bg-daily-alarm {background-color:#F6F636 !important;}
+.bg-daily-calculated {background-color:#E4C9FF !important;}
+
+.color-schedule-performance {color:#92D050;}
+.color-schedule-error {color:#FF0000 !important;}
+.color-schedule-saturday {color:#0000FF;}
+.color-schedule-sunday {color:#FF0000;}
+.bg-schedule-support {background-color:#fedfe6 !important;}
+.bg-schedule-no-empl-insurance {background-color:#ef7f7f !important;}
+.bg-schedule-no-health-insurance {background-color:#acfe2f !important;}
+.bg-schedule-no-empl-health-insurance {background-color:#fea400 !important;}
+.bg-schedule-fixed {background-color:#eccefb !important;}
+.bg-schedule-uncorrectable {background-color:#ddddd2 !important;}
+.bg-schedule-work-by-dow {background-color:#FFFF69 !important;}
+.bg-schedule-shift-work {background-color:#FFE699 !important;}
+.bg-schedule-saturday {background-color:#8bd8ff;}
+.bg-schedule-sunday {background-color:#fabf8f;}
+.bg-schedule-specific-date {background-color:#ffc0cb;}
+.bg-schedule-that-day {background-color:#ffff00;}
+.bg-schedule-focus {background-color:#ffffcc !important;}
+
+.bg-choice-row {background-color:#CEE6FF !important;}
+.bg-calendar-ym-set {background-color:#BFEA60 !important;}
+.bg-workinh-result-excess {background-color:#ffff00 !important;}
+.bg-pre-application-excess {background-color:#ffc0cb !important;}
+.bg-application-approved {background-color:#BFEA60 !important;}
+.bg-application-reflected {background-color:#CEE6FF !important;}
+.bg-denial-application {background-color:#FD4D4D !important;}
+.bg-unapproved-application {background-color:#ffffff !important;}
+.bg-remanded-application {background-color:#FD4D4D !important;}
+.bg-canceled-application {background-color:#F6F636 !important;}
+
+.color-operation-case-character {color: #ff0000 !important;}
+.color-working-schedule {color: #00cc00 !important;}
+.color-sunday {color: #FF2D2D !important;}
+.color-saturday {color: #0086EA !important;}
+.color-half-day-work {color: #FF7F27;}
+.bg-weekdays {background-color:#D9D9D9;}
+.color-weekdays {color: #404040;}
+.bg-pasted {background-color:#F8CBAD !important;}
+.bg-updating-cell {background-color:#FFD966 !important;}
+.bg-selecting {background-color:#BDD7EE !important;}
+.bg-added-row {background-color:#AFEEEE !important;}
+.bg-actual-superior-unverified {background-color:#FF7F27 !important;}
+.bg-error-actual {background-color:#ffc0cb !important;}
+
+.bg-36contract-error {
+	background-color: #ff99cc; 
+}
+.bg-36contract-alarm {
+	background-color: #ffff99;
+}
+.bg-36contract-exception {
+	background-color: #eb9152;
+}
+.bg-error {
+	background-color: #ff0000;
+}
+.color-36contract-error {
+	color: #ffffff;
+}
+.color-36contract-alarm {
+	color: #ff9900;
+}
+.bg-exceed-special-upperlimit {
+	background-color: #ff0000;
+}
+.color-exceed-special-upperlimit {
+	color: #ffffff;
+}
+

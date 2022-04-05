@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 380, height: 550 };</script>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="../share/model.js" />
+			<com:scriptfile path="cmf002.v2.vm.js" />
+			<com:scriptfile path="cmf002.v2.start.js" />
+			<com:stylefile path="cmf002.v2.style.css" />
+			<com:scriptfile path="cmf002.v2.service.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div class="contents-area dialog-content">
+				<!--V21:条件選択(ラベル)--> 
+				<div id="V21" class="dialog-title"
+					data-bind="ntsFormLabel: {required : true }">#{i18n.getText('CMF002_268')}</div>
+				<!--V2:条件設定選択(パネル)-->
+				<div class="table-contents-area">
+					<!--V2_1:絞り込み検索-->
+					<div id="V2" 
+						data-bind="ntsPanel:{width: '280px', height: '300px', direction: 'none', showIcon: true, visible: true}">
+						<div id = "V2_1" tabindex="1"
+							data-bind="ntsSearchBox: {
+							searchMode: 'highlight', 
+							targetKey: 'dispConvertCode', 
+							comId: 'V2_2', 
+							items: listOutputCodeConvert, 
+							selected: selectedOutputCodeConvert,  
+							selectedKey: 'dispConvertCode', 
+							fields: ['dispConvertCode','dispConvertName'], 
+							mode: 'igGrid'}" 
+							/>
+							
+						<!--V2_2:コード変換一覧-->
+						<table id="V2_2" class = "auto-increment"
+							data-bind="ntsGridList: {
+								height: 300,
+								width: 280,
+								name:'#{i18n.getText('CMF002_350')}',
+								dataSource: listOutputCodeConvert,
+								primaryKey: 'dispConvertCode',
+									columns: [
+					                { headerText: '#{i18n.getText('CMF002_270')}', key: 'dispConvertCode', width: 70, formatter: _.escape },
+					                { headerText: '#{i18n.getText('CMF002_271')}', key: 'dispConvertName', width: 160, formatter: _.escape }
+					            ],
+					            rows: 10,
+								multiple: false,
+								value: selectedOutputCodeConvert
+							}">
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<!--V22_1:選択-->
+				<button id="V22_1" tabindex="2" class="x-large proceed "
+					data-bind="click: selectConvertCode">#{i18n.getText('CMF002_272')}</button>
+				<!--V22_2:キャンセル-->
+				<button id="V22_2" tabindex="3" class="large"
+					data-bind="click: cancelSelectConvertCode">#{i18n.getText('CMF002_273')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

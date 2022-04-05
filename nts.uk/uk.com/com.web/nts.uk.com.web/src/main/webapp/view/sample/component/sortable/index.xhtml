@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:stylefile path="../../catalog/catalog.css" />
+			<com:stylefile path="style.css" />
+			<com:scriptfile path="start.js" />
+			<com:scriptfile path="../../catalog/catalog.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area"></div>
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+					<h1>Sortable</h1>
+					<h2>Overview</h2>
+					<div>
+						<div class="drag-panel">
+							<div
+								data-bind="ntsSortable: { 
+							data: items, 
+							isEnabled: true,
+							beforeMove: preventStopSort }">
+								<div class="form-group item-classification">
+									<div data-bind="ntsFormLabel: {}">
+										<span data-bind="text: name"></span>
+									</div>
+									<input
+										data-bind="ntsTextEditor: {
+										value: ko.observable(''),
+										constraint: '',
+										option: {},
+										required: false,
+										enable: true,
+										readonly: false,
+										immediate: false}" />
+									<span class="close-btn"
+										data-bind="click: $parent.removeItem.bind($parent, $data)">✖</span>
+								</div>
+							</div>
+							<p>
+								<button data-bind="click: addItem">Add new</button>
+							</p>
+						</div>
+						<div class="drag-panel">
+							<div data-bind="foreach: items">
+								<div>
+									<span data-bind="text: id"></span>: <span
+										data-bind="text: name"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					<article class="cf">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-html">HTML Binding</a></li>
+								<li><a href="#tabs-viewmodel">ViewModel</a></li>
+							</ol>
+							<div id="tabs-html" class="cf">
+								<h2>HTML</h2>
+								<h3>Using anonymous templates:</h3>
+								<pre>
+									<![CDATA[
+<ul data-bind="sortable: items">
+  <li data-bind="text: name"></li>
+</ul>
+									]]>
+								</pre>
+								<h3>Using named templates:</h3>
+								<pre>
+									<![CDATA[
+<ul data-bind="sortable: { template: 'itemTmpl', data: items }"></ul>
+<script id="itemTmpl" type="text/html"><li data-bind="text: name"></li></script>
+									]]>
+								</pre>
+								<h2>Additional Options (API)</h2>
+								<table>
+									<colgroup>
+										<col width="200px" />
+									</colgroup>
+									<thead>
+										<tr>
+											<th><h4>Binding</h4></th>
+											<th><h4>Description</h4></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>data</td>
+											<td><b>Type:</b> array&lt;any&gt;<br /> List data for sortable</td>
+										</tr>
+										<tr>
+											<td>isEnabled <br /> <i>(optional)</i></td>
+											<td><b>Type:</b>boolean<i> | default: true</i><br />Specify whether the sortable widget should be enabled. If this is an observable, then it will enable/disable the widget when the observable's value changes. This option can be passed in the binding or configured globally by setting ko.bindingHandlers.ntsSortable.isEnabled.</td>
+										</tr>
+										<tr>
+											<td>options <br /> <i>(optional)</i></td>
+											<td><b>Type:</b>any<i> | default: undefined</i><br />
+											Options - specify any additional options to pass on to the .sortable jQuery UI call. These options can be specified in the binding or specified globally by setting ko.bindingHandlers.ntsSortable.options
+											</td>
+										</tr>
+										<tr>
+											<td>allowDrop <br /> <i>(optional)</i></td>
+											<td><b>Type:</b> boolean<i> | default: true</i><br />
+											 specify whether this container should be a target for drops. This can be a static value, observable, or a function that is passed the observableArray as its first argument. If a function is specified, then it will be executed in a computed observable, so it will run again whenever any dependencies are updated. This option can be passed in the binding or configured globally by setting ko.bindingHandlers.ntsSortable.allowDrop
+											 </td>
+										</tr>
+										<tr>
+											<td>connectClass <br /> <i>(optional)</i></td>
+											<td><b>Type:</b> string<br />
+												specify the class that should be used to indicate a droppable target. This value can be passed in the binding.
+											 </td>
+										</tr>
+										<tr>
+											<td>beforeMove <br /> <i>(optional)</i></td>
+											<td><b>Type:</b> void<br />
+											 Specify a function to execute prior to an item being moved from its original position to its new position in the data. This function receives an object for its first argument.
+											 <br />
+											 This option can be passed in the binding or configured globally by setting ko.bindingHandlers.sortable.beforeMove. This callback also receives the event and ui objects as the second and third arguments.
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div id="tabs-viewmodel" class="cf">
+								<h2>TypeScript</h2>
+								<pre>
+									<![CDATA[
+class ViewModel {
+    drop: KnockoutObservable<boolean> = ko.observable(false);
+    items: KnockoutObservableArray<any> = ko.observableArray([]);
+    constructor() {
+        let self = this;
+
+        for (let i = 1; i < 5; i++) {
+            self.items.push({ id: i, name: '000' + i, 'type': !!(i % 2) });
+        }
+    }
+
+    removeItem(item) {
+        let self = this;
+
+        self.items.remove(x => x.id == item.id);
+    }
+
+    addItem() {
+        let self = this,
+            items = self.items();
+
+        self.items.push({ id: items.length + 1, name: '000' + items.length + 1, 'type': false });
+    }
+
+    toggleDrop() {
+        let self = this,
+            drop = !ko.toJS(self.drop);
+
+        self.drop(drop);
+    }
+
+    preventStopSort(data, event, ui) {        
+        data.cancelDrop = __viewContext['viewModel'].drop();
+    }
+}
+
+__viewContext.ready(() => {
+    __viewContext['viewModel'] = new ViewModel();
+    __viewContext.bind(__viewContext['viewModel']);
+});
+									]]>
+								</pre>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

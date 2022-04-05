@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:com="http://xmlns.jcp.org/jsf/component"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<body>
+		
+		<ui:composition template="../../../../master/base.xhtml">
+			<ui:define name="htmlHead">
+				<script>var dialogSize = { width: 300, height: 200 };</script>
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile set="IGNITE" />
+				<com:scriptfile path="/lib/generic/igniteui/js/extensions/infragistics.datasource.knockoutjs.js"  of="/nts.uk.com.js.web"/>
+				<com:scriptfile path="/lib/generic/igniteui/js/extensions/infragistics.ui.grid.knockout-extensions.js"  of="/nts.uk.com.js.web"/>
+				<!-- <com:scriptfile path="../../catalog/catalog.js" /> -->		
+				<com:scriptfile path="start.js" />
+				<com:ValidatorScript>
+					nts.uk.shr.com.primitive.sample.SampleTimeClock
+					nts.uk.shr.com.primitive.sample.ProcessingNo
+					nts.uk.ctx.bs.employee.dom.jobtitle.info.JobTitleCode
+				</com:ValidatorScript>
+				<style>
+					.mgrid .mgrid-header td.header1 {
+						background-color: orange;
+					}
+					.mgrid .mgrid-header td.header2 {
+						background-color: green;
+					}
+					.mgrid .text-color1 {
+						color: red;
+					}
+					.center-align {
+						text-align: center !important;
+					}
+					.italic-text {
+						font-style: italic;
+					}
+					.bold-text {
+						font-weight: bold;
+					}
+				</style>
+			</ui:define>
+			
+			<ui:define name="content">
+				<div id="functions-area"></div>
+				<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>MGrid</h1>
+						<h2>Overview</h2>
+						<br />
+						
+						<div class="compact-grid" style="height: 850px;">
+							<div id="grid"></div>
+						</div>
+						<div id="combo"></div>
+						<input type="button" id="run" value="Run"/>
+						<input type="button" id="update-row" value="updateRow"/>
+						<input type="button" id="enable-ctrl" value="Enable"/>
+						<input type="button" id="disable-ctrl" value="Disable"/>
+						<input type="button" id="enable-ctrls" value="Enable All"/>
+						<input type="button" id="disable-ctrls" value="Disable All"/>
+						<article class="cf">
+							<div class="tabs">
+								<ol>
+									<li><a href="#tabs-options">Options</a></li>
+									<li><a href="#tabs-method">Methods</a></li>
+								</ol>
+								<div id="tabs-options" class="cf">
+									<h2>Options</h2>
+									<table>
+										<colgroup>
+											<col width="200px" />
+											<col width="800px"/>
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Name</h4></th>
+												<th><h4>Descriptions</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>dataSource</td>
+												<td>
+													Data to display on grid.
+												</td>
+											</tr>
+											<tr>
+												<td>enter</td>
+												<td>
+													"right" or "below"
+												</td>
+											</tr>
+											<tr>
+												<td>columns</td>
+												<td>
+													- ntsControl<br/>
+													- constraint<br/>
+														+ primitiveValue<br/>
+														+ required<br/>
+												</td>
+											</tr>
+											<tr>
+												<td>features</td>
+												<td>
+													- Resizing<br/>
+													- MultiColumnHeaders<br/>
+													- ColumnFixing<br/>
+													- Summaries<br/>
+													- Paging
+												</td>
+											</tr>
+											<tr>
+												<td>ntsFeatures</td>
+												<td>
+													- CopyPaste<br/>
+													- CellEdit<br/>
+													- CellColor<br/>
+													- CellState<br/>
+													- RowState<br/>
+													- TextColor<br/>
+													- HeaderStyles<br/>
+													- Sheet<br/>
+												</td>
+											</tr>
+											<tr>
+												<td>ntsControls</td>
+												<td>
+													- name<br/>
+													- options<br/>
+													- optionsValue<br/>
+													- optionsText<br/>
+													- controlType<br/>
+													- enable<br/>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div id="tabs-method" class="cf">
+									<table>
+										<colgroup>
+											<col width="400px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Methods</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>$(".selector").ntsGrid("updateRow", rowId, newObject);</td>
+												<td>
+													Update row of rowId with data from newObject.
+												</td>
+											</tr>
+											<tr>
+												<td>$(".selector").ntsGrid("enableNtsControlAt", rowId, columnKey, controlType);</td>
+												<td>
+													Enable control in the cell corresponding to rowId and columnKey.
+												</td>
+											</tr>											
+											<tr>
+												<td>$(".selector").ntsGrid("disableNtsControlAt", rowId, columnKey, controlType);</td>
+												<td>
+													Disable control in the cell corresponding to rowId and columnKey.
+												</td>
+											</tr>
+											<tr>
+												<td>$(".selector").ntsGrid("enableNtsControls", columnKey, controlType);</td>
+												<td>
+													Enable controls in a column of columnKey.
+												</td>
+											</tr>											
+											<tr>
+												<td>$(".selector").ntsGrid("disableNtsControls", columnKey, controlType);</td>
+												<td>
+													Disable controls in a column of columnKey.
+												</td>
+											</tr>
+											<tr>
+												<td>$(".selector").ntsGrid("directEnter", direction);</td>
+												<td>
+													Set direction when Enter key is pressed.
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+					</div>
+		   		</div>
+			</ui:define>
+		</ui:composition>
+   	</body>
+</html>

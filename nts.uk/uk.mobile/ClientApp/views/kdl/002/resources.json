@@ -1,0 +1,10 @@
+{
+    "vi": {
+        "save": "Lưu",
+        "worktype" : "Loại Công việc"
+    },
+    "jp": {
+        "save": "戻る",
+        "worktype" : "勤務種類"
+    }
+}

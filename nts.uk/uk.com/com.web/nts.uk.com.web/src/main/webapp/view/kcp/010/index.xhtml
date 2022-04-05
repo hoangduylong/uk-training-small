@@ -1,0 +1,179 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../master/base.xhtml">
+
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="../../sample/catalog/catalog.css" />
+			<com:scriptfile path="../../sample/catalog/catalog.js" />
+			<com:scriptfile path="/view/kcp/010/kcp010.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="kcp010.a.vm.js" />
+			<com:scriptfile path="kcp010.a.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content">
+					<div id="function-area" style="margin: 40px; margin-bottom: 10px">
+						<h1>KCP010-職場送り</h1>
+						<h2>(Workplace Feeds)</h2>
+						<h2>Overview</h2>
+						<hr></hr>
+					</div>
+					<div style="margin-left: 40px">
+						<div id="wkp-component"></div>
+					</div>
+
+					<!-- BEGIN DESCRIPTION -->
+					<article class="cf" style="margin-top: 40px;">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-html">HTML Binding</a></li>
+								<li><a href="#tabs-viewmodel">ViewModel</a></li>
+								<li><a href="#tabs-method">Methods</a></li>
+
+							</ol>
+							<!-- BEGIN TAB HTML -->
+							<div id="tabs-html" class="cf">
+								<h2>HTML</h2>
+								<p>
+									Using Ignite library so you must include following line in <i>&lt;ui:define
+										name="htmlHead"&gt;</i>
+								</p>
+								<pre>
+									<![CDATA[<ui:define name="htmlHead">
+		<com:scriptfile set="IGNITE" />
+</ui:define>]]>
+								</pre>
+
+								<p>
+									Import library to use Component, you must include following
+									line in <i>&lt;ui:define name="htmlHead"&gt;</i>
+								</p>
+								<pre>
+									<![CDATA[<com:scriptfile path="/view/kcp/010/kcp010.js" of="/nts.uk.com.web" />]]>
+								</pre>
+								<pre>
+									<![CDATA[<com:stylefile path="/view/kcp/010/style.css" of="/nts.uk.com.web" />]]>
+								</pre>
+								<p>Create a div tag to bind grid list</p>
+								<pre>
+									<![CDATA[
+								<div id="sample-component"></div>
+								
+								Example:
+								<div id="wkp-component"></div>]]>
+								</pre>
+							</div>
+							<!-- END TAB HTML -->
+
+							<!-- BEGIN VIEWMODEL TAB-->
+							<div id="tabs-viewmodel" class="cf">
+								<h2>TypeScript</h2>
+								<h3>ViewModel</h3>
+								<pre>
+								<![CDATA[
+	export class ScreenModel {
+        listComponentOption: ComponentOption;
+
+        targetBtnText: string;
+        tabIndex: number;
+        constructor() {
+            let self = this;
+            self.targetBtnText = nts.uk.resource.getText("KCP010_3");
+            self.tabIndex = 1;
+            
+            // Initial listComponentOption
+            self.listComponentOption = {
+                targetBtnText: self.targetBtnText,
+                tabIndex: self.tabIndex
+            };
+        }
+    }
+    export interface ComponentOption {
+        targetBtnText: string;
+        tabIndex: number;
+    }
+   export interface WorkplaceModel {
+        workplaceId: string;
+        workplaceCode: string;
+        workplaceName: string;
+    }
+							]]>
+							<div>
+										<b>Note:</b> which property contains '?' is not compulsory</div>
+							</pre>
+								<pre>
+									<![CDATA[
+					<!--It is just called after apply binding done to initialize Component.-->
+					<!--This return JQueryPromise<void>-->
+						 $('#sample-component').ntsLoadListComponent(listComponentOption);
+						  
+						 Example:
+						 $('#wkp-component').ntsLoadListComponent(self.listComponentOption);
+							]]>
+								</pre>
+								<h2>API</h2>
+								<table style="width: 700px">
+									<thead>
+										<td style="text-align: center;"><h4>Binding</h4></td>
+										<td style="text-align: center;"><h4>Description</h4></td>
+									</thead>
+
+
+									<tr>
+										<td>targetBtnText</td>
+										<td><b>Type:</b> string<br /> <label>Text for
+												Target Button</label><br></br> <b>Default:</b> #KCP010_3<br /></td>
+									</tr>
+									<tr>
+										<td>tabIndex</td>
+										<td><b>Type:</b> number<br /> <label>Set TabIndex
+												to Component Elements</label></td>
+									</tr>
+								</table>
+							</div>
+							<!-- END VIEWMODEL TAB-->
+
+							<!-- BEGIN METHOD TAB-->
+							<div id="tabs-method" class="cf">
+								<table>
+									<thead>
+										<td style="text-align: center;"><h4>Method</h4></td>
+										<td style="text-align: center;"><h4>Description</h4></td>
+									</thead>
+									<tr>
+										<td>$('#sample-component').ntsLoadListComponent(listComponentOption);
+											<br></br>
+										<br></br> <b>Example:</b><br></br>
+											$('#wkp-component').ntsLoadListComponent(listComponentOption);
+										</td>
+										<td>
+											<div>
+												<b>Reload Component</b>
+											</div>
+											<div>
+												<i>Description:</i> listComponentOption is initialized.
+											</div>
+										</td>
+									</tr>
+
+								</table>
+							</div>
+							<!-- END METHOD TAB -->
+
+						</div>
+					</article>
+					<!-- END DESCRIPTION -->
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

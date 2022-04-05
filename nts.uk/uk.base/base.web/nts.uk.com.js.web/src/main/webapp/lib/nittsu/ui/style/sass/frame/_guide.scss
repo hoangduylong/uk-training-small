@@ -1,0 +1,24 @@
+.nts-guide-link {
+	float: right;
+	margin-right: 20px;
+	color: #0066CC;
+	text-decoration: underline;
+  	cursor: pointer;
+}
+
+.nts-guide-area {
+	width: calc(100% - 20px);
+	overflow-y: auto;
+	overflow-x: hidden;
+	margin: 5px;
+	padding: 0px 5px 3px;
+	line-height: 20px;
+    border: solid 1px #D2DFB5;
+    background-color: #EDF3DD;
+    color: #0066CC;
+}
+
+.nts-guide-area.nts-bottom {
+	position: absolute;
+	bottom: 72px;
+}

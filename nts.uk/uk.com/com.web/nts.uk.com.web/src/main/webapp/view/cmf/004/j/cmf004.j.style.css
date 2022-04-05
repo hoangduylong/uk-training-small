@@ -1,0 +1,27 @@
+.mgrid .mgrid-header td {
+  background-color: #CFF1A5;
+}
+
+.content {
+  margin-left: 20px;
+}
+
+.search-panel {
+  width: 555px;
+  height: 200px !important;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.search-button {
+  margin-top: 100px;
+  margin-left: 20px;
+}
+
+td.red-color {
+	color: #FF0000;
+}
+
+#J2_2 > div:first-child {
+  margin-bottom: 10px;
+}

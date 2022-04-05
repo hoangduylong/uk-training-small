@@ -1,0 +1,27 @@
+.distane {
+	margin-left: 10px;
+}
+
+#itemLst {
+	margin-left: 65px !important;
+}
+
+#B_010 {
+	margin-left: 80px;
+}
+
+.requiredCell {
+	background-color: #FFC000;
+}
+
+.notrequiredCell {
+	background-color: #C7F391;
+}
+
+#grid0 td[role="gridcell"] {
+	white-space: nowrap;
+}
+
+#grid0_virtualContainer {
+	margin-top: -9px !important;
+}

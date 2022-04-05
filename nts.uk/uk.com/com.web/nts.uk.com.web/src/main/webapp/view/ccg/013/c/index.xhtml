@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 930, height: 580 };</script>
+			<com:stylefile path="ccg013.c.style.css" />
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="ccg013.c.start.js" />
+			<com:scriptfile path="ccg013.c.service.js" />
+			<com:scriptfile path="ccg013.c.vm.js" />
+			<com:stylefile path="../../common/common.css" />
+			<com:ValidatorScript>
+				nts.uk.ctx.sys.portal.dom.webmenu.TitleBarName
+			</com:ValidatorScript>
+		</ui:define>
+		<ui:define name="content">
+			<div id="contents-area">
+				<div class="functions-area-content">
+					<table id="table-top-content">
+						<tr>
+							<td>
+								<div data-bind="ntsFormLabel: { constraint: 'TitleBarName', required: true }">#{i18n.getText('CCG013_31')}</div>
+							</td>
+							<td>
+								<input id='C1_3' data-bind="ntsTextEditor: {
+										name:'#[CCG013_50]',
+										required: true,
+										value: nameTitleBar,
+										constraint: 'TitleBarName'
+									}" />
+							</td>
+							<td>
+								<div class="labelRight cellColor" data-bind="ntsFormLabel: { required: true }">
+									#{i18n.getText('CCG013_32')}
+								</div>
+							</td>
+							<td>
+								<div class="cellColor" id="colorpicker1" tabindex="2" data-name="#{i18n.getText('CCG013_19')}"
+									data-bind="ntsColorPicker: {name:'#[CCG013_19]', value: letterColor, enable: true, width: 50, required: true}" />
+							</td>
+							<td>
+								<div class="labelRight cellColor" data-bind="ntsFormLabel: { required: true }">
+									#{i18n.getText('CCG013_36')}
+								</div>
+							</td>
+							<td>
+								<div class="cellColor" id="colorpicker1" tabindex="4" data-name="#{i18n.getText('CCG013_23')}"
+									data-bind="ntsColorPicker: {name:'#[CCG013_23]', value: backgroundColor, enable: true, width: 50, required: true}" />
+							</td>
+						</tr>
+						<tr class="systemGroup">
+							<td class="flex valign-center">
+								<div data-bind="ntsFormLabel: {required: false}">#{i18n.getText('CCG013_47')}</div>
+							</td>
+							<td>
+								<div id="combo-box" tabindex="5" class="cbb-system-data" data-bind="ntsComboBox: {
+									options: systemList,
+									optionsValue: 'systemCode',
+									value: selectedSystemCode,
+									optionsText: 'systemName',
+									editable: false,
+									enable: true,
+									dropDownAttachedToBody: true,
+									columns: [
+										{ prop: 'systemName', length: 10 }
+									]}"></div>
+							</td>
+						</tr>
+					</table>
+				</div>
+
+				<div class="left-contents">
+					<div style="width: 295px" data-bind="ntsSearchBox: {
+						searchMode: 'filter',
+						targetKey: 'primaryKey',
+						comId: 'multi-list1',
+						items: items,
+						selected: currentCodeList,
+						selectedKey: 'primaryKey',
+						fields: ['displayOrder', 'name'],
+						mode: 'igGrid'}" />
+					<br />
+					<table class="left-data" id="multi-list1" tabindex="2" data-bind="ntsGridList: {
+							options: items,
+							optionsValue: 'primaryKey',
+							columns: columns,
+							multiple: true,
+							rows: 11,
+							value: currentCodeList}">
+					</table>
+				</div>
+
+				<div class="move-function">
+					<button data-bind="click: add">
+						<i class="icon icon-button-arrow-right"></i>
+					</button>
+					<button id="remove-items" data-bind="click: remove, enable: disableSwap">
+						<i class="icon icon-button-arrow-left"></i>
+					</button>
+				</div>
+
+				<div class="right-contents">
+					<table id="multi-list2" tabindex="3" data-bind="ntsGridList: {
+							options: newItems,
+							optionsValue: 'primaryKey',
+							columns: newColumns,
+							multiple: true,
+							rows: 11,
+							value: newCurrentCodeList}">
+					</table>
+				</div>
+
+				<div class="chane-position-function">
+					<div id="swap-up-down" data-bind="ntsUpDown: {
+								targetSource: newItems,
+								primaryKey: 'primaryKey',
+								comId: '#multi-list2',
+								type: 'grid',
+								enable: disableSwap
+							}" class=""></div>
+				</div>
+			</div>
+      <div id="functions-area-bottom">
+        <button id="c1_26" class="x-large proceed" data-bind="click: submit">#{i18n.getText('CCG013_45')}</button>
+        <button id="c1_27" class="large" data-bind="click: closeDialog">#{i18n.getText('CCG013_46')}</button>
+        <button id="c1_28" class="x-large danger" data-bind="click: removeTitleBar, attr: {'disabled': getData} ">#{i18n.getText('CCG013_138')}</button>
+      </div>
+		</ui:define>
+	</ui:composition>
+</body>
+
+</html>

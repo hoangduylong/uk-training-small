@@ -1,0 +1,12 @@
+{
+    "jp": {
+        "kafs08a1": "#{KAFS08_2}",
+        "kafs08a2": "#{KAFS08_3}",
+        "kafs08c": "#{KAFS08_8}"
+    },
+    "vi": {
+        "kafs08a1": "#{KAFS08_2}",
+        "kafs08a2": "#{KAFS08_3}",
+        "kafs08c": "#{KAFS08_8}"
+    }
+}

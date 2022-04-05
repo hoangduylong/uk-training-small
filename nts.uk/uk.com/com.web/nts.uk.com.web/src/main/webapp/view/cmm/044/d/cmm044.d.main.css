@@ -1,0 +1,21 @@
+.ntsDateRangeComponent {
+    float: unset !important;
+    display: inline-block;
+}
+
+.caret-bottom {
+	margin-left: 10px;
+}
+
+.nts-fixed-table.cf {
+	margin-top: 15px;
+}
+
+.nts-fixed-table .ui-widget-header {
+	text-align: center;
+	height: 30px;
+}
+
+.nts-fixed-table .nts-fixed-body-table>tbody>tr>td {
+	height: 26px;
+}

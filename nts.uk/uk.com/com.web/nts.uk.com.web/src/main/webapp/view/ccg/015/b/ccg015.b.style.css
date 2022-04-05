@@ -1,0 +1,234 @@
+/* .divHeader {
+	padding-left : 30px !important;
+	min-width: 1200px;
+} */
+
+#functions-area{
+  overflow: visible;
+}
+.tr360 {
+width: 360px !important;
+}
+
+.tr120 {
+width: 120px !important;
+}
+
+.tr180 {
+width: 180px !important;
+}
+
+.tr500 {
+width: 500px !important;
+}
+
+.tr240 {
+width: 240px !important;
+}
+
+.tr40 {
+width: 40px !important;
+}
+
+.tr50 {
+width: 50px !important;
+}
+
+.tr90 {
+width: 90px !important;
+}
+
+.left20 {
+margin-left: 20px;
+}
+
+.labelRed {
+font-weight: bold;
+color: red;
+}
+
+#lbl_registrationOfLaborInsurancePlant {
+float: right;
+}
+
+#contents-left, #contents-right {
+vertical-align: top !important;
+}
+
+#contents-right {
+  width: 100%;
+}
+
+.leftTop {
+display: inline;
+width: 100%;
+}
+
+#SCH_001 {
+width: 100%;
+}
+
+.spanSearch {
+float: right;
+width: 20%;
+}
+
+.contentsRL {
+width: 50%;
+padding-bottom: 5px;
+}
+
+#tableRight {
+width: 100%;
+margin-top: -16px;
+}
+
+button.nts-switch-button {
+min-width: 80px;
+}
+
+#searchlaborInsuranceOffice {
+margin-top: 20px;
+}
+
+.border_none {
+border: none !important;
+}
+
+.tr240 {
+width: 240px !important;
+}
+
+.tr110 {
+width: 110px !important;
+}
+
+.btn_margin_top {
+margin-top: 10px;
+}
+
+.preview-container {
+padding: 20px 0 0 20px;
+border: 1px solid #a0a0a0;
+margin-top: 15px;
+border-radius: 3px;
+}
+
+/* #preview-iframe {
+width: 630px;
+height: 330px;
+} */
+
+#nodata-iframe {
+width: 1005px;
+height: 550px;
+}
+
+.contentsRL {
+width: 262px;
+}
+
+.contentsRR {
+width: 70px;
+}
+
+#box-search {
+width: 327px;
+}
+
+.pad-left-20 {
+padding-left: 10px;
+}
+
+.drop_links {
+max-height: 50px;
+margin-left: 270px;
+  color: #0D86D1;
+  z-index: 4;
+}
+
+.drop_links .function-header{
+background-color: #E0F59E;
+}
+
+.float-left { 
+float: left;
+}
+html {
+overflow: hidden;
+}
+.function-icon {
+line-height: 0px !important;
+}
+
+/* margin css */
+.mt-20 {
+margin-top: 20px;
+}
+
+.ml-5 {
+  margin-left: 5px;
+}
+
+.ml-15 {
+  margin-left: 15px;
+}
+
+.ml-20 {
+  margin-left: 20px;
+}
+
+.mr-5 {
+  margin-right: 5px;
+}
+
+/* inline row */
+.inline-row {
+  display: inline-flex;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.fix-margin {
+  height: 25px;
+}
+
+.button-fix {
+  width: 180px;
+  height: 50px;
+  display: flex;
+}
+
+.fix-span-62 {
+  width: 180px;
+  text-align: right;
+}
+
+.size08 {
+  font-size: 0.85rem;
+}
+.size100 {
+  width: 100px;
+}
+
+#btn-1, #btn-3 {
+  width: 125px;
+}
+
+#btn-2 {
+  width: 145px;
+}
+
+.plus-icon {
+  padding-top: 28px;
+}
+
+.cell {
+  padding-right: 7px !important;
+}
+
+.pl-30 {
+  padding-left: 30px;
+}

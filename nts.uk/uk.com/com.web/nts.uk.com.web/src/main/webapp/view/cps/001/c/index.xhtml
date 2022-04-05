@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script type='text/javascript'>
+				var dialogSize = {
+					width : 990,
+					height : 700
+				};
+			</script>
+			<com:ValidatorScript>
+					nts.uk.ctx.bs.employee.dom.employeeinfo.EmployeeCode
+					nts.uk.ctx.bs.person.dom.person.info.personnamegroup.BusinessName
+			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps001.c.style.css" />
+			<com:scriptfile path="cps001.c.service.js" />
+			<com:scriptfile path="cps001.c.vm.js" />
+			<com:scriptfile path="cps001.c.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<button type="button" class="proceed"
+					data-bind="click: reStoreData , enable: enaBtnRes()">#{i18n.getText('CPS001_49')}</button>
+				<button type="button" class="danger"
+					data-bind="click: deleteData , enable : enaBtnDel()">#{i18n.getText('CPS001_50')}</button>
+				<button type="button" data-bind="click : closeUp">#{i18n.getText('CPS001_51')}</button>
+			</div>
+			<div id="contents-area" class="cf"
+				data-bind="let: {text: nts.uk.resource.getText}">
+				<div class="left-area">
+					<div class="bg-green caret-right caret-background">
+						<div style="width: 700px"
+							data-bind="ntsSearchBox: {
+								searchMode: 'filter',
+								targetKey: 'id', 
+								comId:'list_employees', 
+								items: listEmployee,
+								selected: 'id',
+								selectedKey: 'id',
+								fields: ['code', 'name'],
+								mode:'igGrid',}"></div>
+						<table id="list_employees"
+							data-bind="ntsGridList: {								
+								rows: 20,
+								dataSource: listEmployee ,
+								primaryKey: 'id',
+								columns: [
+					                { headerText: '', key: 'id', width: 160 , hidden: true },
+					                { headerText: text('CPS001_52'), key: 'code', width: 300 , hidden: false }, 
+					                { headerText: '', key: 'name', width: 160 , hidden: true }
+								],
+								multiple: false,
+								value: currentEmployee().id
+							}"></table>
+					</div>
+				</div>
+				<div class="right-area" data-bind="with: currentEmployee">
+					<div class="form-group">
+						<div data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CPS001_56')}</div>
+						<input id="A_INP_CODE"
+							data-bind="ntsTextEditor: {
+							value: code,
+							name: '#[CPS001_57]',
+							constraint: 'EmployeeCode',
+							required: true,
+							enable: enableCode}" />
+					</div>
+					<div class="form-group">
+						<div data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CPS001_58')}</div>
+						<input id="A_INP_NAME"
+							data-bind="ntsTextEditor: {
+							value: name,
+							name: '#[CPS001_58]',
+							required: true,
+							constraint: 'BusinessName',
+							enable: enableName}" />
+					</div>
+					<div class="form-group">
+						<div data-bind="ntsFormLabel: {}">#{i18n.getText('CPS001_54')}</div>
+						<span class="text-inform" data-bind="text: dateDelete"></span>
+					</div>
+					<div class="form-group">
+						<div class="reasonLable" data-bind="ntsFormLabel: {}">#{i18n.getText('CPS001_55')}</div>
+						<div class="reason" data-bind="text: reason" style="word-break: break-all"></div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

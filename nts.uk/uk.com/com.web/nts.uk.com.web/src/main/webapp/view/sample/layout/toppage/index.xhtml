@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<script type="text/javascript">
+				__viewContext.noHeader = false;
+			</script>
+
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="viewmodel.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div class="toppage-panel">
+				<div class="left-panel">
+					<div id="functions-area">
+						<button class="green solid" data-bind="click: $vm.click">Proceed</button>
+						<button class="green" data-bind="click: $vm.click">Proceed</button>
+						<button class="white" data-bind="click: $vm.click">Normal</button>
+						<button class="red" data-bind="click: $vm.click">Danger</button>
+					</div>
+					<div id="contents-area">
+						<pre data-bind="text: ko.toJSON($vm.text, null, 4)"></pre>
+						<input type="text" data-bind="value: $vm.text" />
+						<div style="height: 4000px;"></div>
+					</div>
+				</div>
+				<div class="right-panel">
+					<div id="contents-area">
+						<div style="height: 4000px;"></div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+
+</html>

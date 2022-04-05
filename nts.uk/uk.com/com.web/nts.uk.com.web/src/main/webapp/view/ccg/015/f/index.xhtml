@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:com="http://xmlns.jcp.org/jsf/component"
+  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<head>
+</head>
+
+<body>
+  <ui:composition template="../../../../master/dialog.xhtml">
+    <ui:define name="htmlHead">
+      <com:scriptfile set="IGNITE" />
+      <com:stylefile path="ccg015.f.style.css" />
+      <com:scriptfile path="../../034/share/model.js" />
+      <com:scriptfile path="ccg015.f.vm.js" />
+      <com:scriptfile path="/view/ccg/008/a/layout1Component.vm.js" />
+      <com:scriptfile path="/view/ccg/008/a/layout2Component.vm.js" />
+      <com:scriptfile path="/view/ktg/027/a/ktg027.a.component.js" of="nts.uk.at.web" />
+      <com:scriptfile path="/view/ktg/026/a/ktg026.a.component.js" of="nts.uk.at.web" />
+      <com:scriptfile path="/view/ktg/005/a/ktg005.a.component.js" of="nts.uk.at.web" />
+      <com:scriptfile path="/view/ktg/004/a/ktg004.a.component.js" of="nts.uk.at.web" />
+      <com:scriptfile path="/view/ktg/001/a/ktg001.a.component.js" of="nts.uk.at.web" />
+      <com:scriptfile path="/view/kdp/001/a/kdp001.a.component.js" of="nts.uk.at.web" />
+      <com:scriptfile path="/view/ccg/005/a/ccg005.a.vm.js"/>
+      
+      
+      <com:scriptfile path="/view/ktg/031/a/ktg031.a.component.js"/>
+      <com:scriptfile path="/view/ccg/005/a/ccg005.a.vm.js"/>
+    </ui:define>
+    <ui:define name="content" style="padding: 7px;">
+      <div class="contents_layout_ccg015" id="resizable">
+          <com:ko-if bind="layoutDisplayType() === 2 || layoutDisplayType() === 3">
+            <div class="contents_2" id="F2">
+              <layout2-component params= "{item:paramWidgetLayout2(), isLayout: 2}"></layout2-component>
+              <com:ko-if bind="isNoContentLayout2">
+                <h2 style="text-align: center;">#{i18n.getText('CCG015_39')}</h2>
+             </com:ko-if>
+            </div>
+          </com:ko-if>
+          <com:ko-if bind="visible()">
+            <div class="contents_1" id="F1">
+              <com:ko-if bind="isNoContent">
+                 <h2 style="text-align: center;">#{i18n.getText('CCG015_39')}</h2>
+              </com:ko-if>
+              <layout1-component params= "item: paramIframe1()"></layout1-component>
+            </div>
+          </com:ko-if>
+          <com:ko-if bind="layoutDisplayType() === 1">
+            <div class="contents_2" id="F4">
+              <layout2-component params= "{item:paramWidgetLayout2(), isLayout: 2}"></layout2-component>
+              <com:ko-if bind="isNoContentLayout2">
+                <h2 style="text-align: center;">#{i18n.getText('CCG015_39')}</h2>
+             </com:ko-if>
+            </div>
+          </com:ko-if>
+          <com:ko-if bind="layoutDisplayType() === 3">
+            <div class="contents_3" id="F3">
+              <layout2-component params= "{item:paramWidgetLayout3(), isLayout: 3}"></layout2-component>
+              <com:ko-if bind="isNoContentLayout3">
+                <h2 style="text-align: center;">#{i18n.getText('CCG015_39')}</h2>
+             </com:ko-if>
+            </div>
+          </com:ko-if>
+      </div>
+      <div id="functions-area-bottom">
+        <!-- btn close dialog -->
+        <button class="large" data-bind="click: close">#{i18n.getText('CCG015_87')}</button>
+      </div>
+    </ui:define>
+  </ui:composition>
+</body>
+
+</html>

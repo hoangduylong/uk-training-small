@@ -1,0 +1,32 @@
+
+td {
+	padding: 5px;
+	border: 1px solid black;
+}
+
+.button {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.bg-yellow {
+	text-align: center;
+	background-color: #BFEA60;
+}
+
+#master-wrapper {
+	overflow: hidden; 
+}
+#listlog_container {
+	margin-left: 20px !important;
+}
+
+#Y_1 {
+	font-size: 20px;
+}
+#Y_3 {
+	font-size: 20px;
+}
+#Y_5 {
+    font-size: 20px;
+}

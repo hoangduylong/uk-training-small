@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 1000, height: 600 };</script>
+			<com:stylefile path="cmm022.b.style.css" />
+			<com:scriptfile path="cmm022.b.start.js" />
+			<com:scriptfile path="cmm022.b.service.js" />
+			<com:scriptfile path="cmm022.b.vm.js" />
+			<com:scriptfile set="IGNITE" />
+
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<button class="proceed"
+					data-bind="click: register, enable: enabledSave()">#{i18n.getText('CMM022_B1_1')}</button>
+				<button data-bind="click: closeDialog">#{i18n.getText('CMM022_B1_2')}</button>
+
+			</div>
+			<div id="contents-area" style="width: 980px">
+				<div class="left-content">
+					<div class="panel-item" id="height-panel"
+						data-bind="ntsPanel: {width: '410px', height: '430', direction: 'right', showIcon: true, visible: true}">
+						<div style="width: 350px"
+							data-bind="ntsSearchBox: {
+							searchMode: 'filter',
+							comId: 'multi-list', 
+							targetKey: 'commonMasterId', 
+							items: listMaster , 
+							selectedKey: 'commonMasterId', 
+							fields: ['commonMasterName', 'commonMasterCode'], 
+							mode: 'igGrid'}" />
+
+						<table id="multi-list"
+							data-bind="ntsGridList: {
+								height: 390,
+								options: listMaster,
+								optionsValue: 'commonMasterId',
+								columns: [
+				                    { headerText: nts.uk.resource.getText('CMM022_B1_6'), key: 'commonMasterId', width: 80, hidden: true },
+				                    { headerText: nts.uk.resource.getText('CMM022_B221_6'), key: 'commonMasterCode', width: 80, formatter: _.escape},
+				                    { headerText: nts.uk.resource.getText('CMM022_B221_7'), key: 'commonMasterName', width: 160, formatter: _.escape},
+				                    { headerText: nts.uk.resource.getText('CMM022_B221_8'), key: 'commonMasterMemo', width: 160, formatter: _.escape}
+				                	],
+								multiple: false,
+								value: masterSelected().commonMasterId
+							}"></table>
+					</div>
+				</div>
+
+				<div class="right-content">
+					<div style="margin-top: 10px; margin-bottom: 15px;"
+						data-bind="text: title()"></div>
+					<div id="labelRequired" data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CMM022_B222_2')}</div>
+					<div style="margin-top: 15px">
+						<div class="master-item" id="listItem">
+							<table id="item-list"
+								data-bind="ntsGridList: {
+										height: 380,
+										options: listItems ,
+										optionsValue: 'commonMasterItemId',
+										columns: [
+								                    { headerText: nts.uk.resource.getText('CMM022_B222_5'), key: 'commonMasterItemId', width: 80, hidden: true },
+								                    { headerText: nts.uk.resource.getText('CMM022_B222_6'), key: 'commonMasterItemCode', width: 80, formatter: _.escape},
+								                    { headerText: nts.uk.resource.getText('CMM022_B222_7'), key: 'commonMasterItemName', width: 160, formatter: _.escape}
+								                ] ,
+										multiple: false,
+										value: itemSelected().commonMasterItemId
+									}"></table>
+						</div>
+						<div class="up-and-down" id="tree-up-down"
+							data-bind="ntsUpDown: {
+							targetSource: listItems ,
+							primaryKey: 'commonMasterItemId',
+							comId: '#item-list',
+							type: 'grid'}"></div>
+					</div>
+
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

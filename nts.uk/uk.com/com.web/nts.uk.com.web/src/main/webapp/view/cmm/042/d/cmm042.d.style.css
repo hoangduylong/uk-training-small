@@ -1,0 +1,12 @@
+#functions-area-bottom {
+    position: absolute;
+    bottom: 0px;
+    height: 65px;
+    width: 100%;
+    border-top: solid 1px #B1B1B1;
+    text-align: center;
+    padding-top: 0px;
+    white-space: nowrap;
+    background-color: #fff;
+    z-index: 10001;
+}

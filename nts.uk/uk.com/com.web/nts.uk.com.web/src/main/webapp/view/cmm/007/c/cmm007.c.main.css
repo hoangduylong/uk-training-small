@@ -1,0 +1,19 @@
+tr {
+	height: 45px;
+}
+
+.main-content>div:NTH-CHILD(2) {
+	margin-left: 20px;
+}
+
+.title {
+	width: 200px;
+}
+
+.main-content table>tbody>tr>td:NTH-CHILD(2) {
+	padding-left: 50px;
+}
+
+#tabpanel-2 .main-content {
+	min-width: 900px;
+}

@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<!-- <com:stylefile path="../../sample/catalog/catalog.css" /> -->
+	<com:stylefile path="/view/kcp/010/style.css" of="/nts.uk.com.web" />
+
+	<div id="component-content">
+		<div id="function-panel">
+			<table id="wkp_view">
+				<tr id="function-tr">
+					<td class="bg-green border-left wkp-tdpad" id="tbl_left"><button
+							id="btn_show_dialog"
+							data-bind="click: openDialogCDL008, text: targetBtnText, attr: {tabindex: tabIndex}"></button>
+					</td>
+					<td class="bg-green none_border wkp-tdpad">
+						<button class="btn_select" id="prev-btn"
+							data-bind="click: previousWkp, enable: isActivePreviousBtn(), attr: {tabindex: tabIndex}">◀
+						</button>
+					</td>
+					<td class="bg-green border-right wkp-tdpad">
+						<button class="btn_select" id="next-btn"
+							data-bind="click: nextWkp, enable: isActiveNextBtn(), attr: {tabindex: tabIndex}">▶
+						</button>
+					</td>
+					<td class="none_border wkp-tdpad nts-searchbbox-wrapper"><input
+						type="search" class="ntsSearchBox" id="kcp010-search-input"
+						data-bind=" ntsTextEditor: {
+										value: keySearch,
+										name: '#[KCP009_2]',
+										option: {enable: true}
+										}, attr: {tabindex: tabIndex}, valueUpdate: 'afterkeydown'" />
+					</td>
+					<td class="none_border em_display wkp-tdpad">
+						<div class="over_text">
+							<span class="limited-label" data-bind="text: workplaceName"></span>
+						</div>
+					</td>
+					<td class="border-right em_display wkp-tdpad">
+						<div>
+							<span data-bind="text: selectedNumberOfWorkplace"></span><span>#{i18n.getText('Com_Workplace')}</span>
+						</div>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</ui:composition>

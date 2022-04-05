@@ -1,0 +1,15 @@
+@CHARSET "UTF-8";
+
+.workplaceContent {
+	margin-top: 10px;
+	position: absolute;
+	margin-left: 10px;
+}
+
+.lableCDL {
+	margin-left: 20px;
+}
+
+#multiple-tree-grid-workplaceList_horizontalScrollContainer {
+ overflow: hidden !important;
+}

@@ -1,0 +1,35 @@
+.contents-area {
+	margin: 10px 35px;
+}
+
+.header-text {
+	font-size: 1.2rem;
+}
+
+table tr td {
+	padding-bottom: 10px;
+}
+
+.web-code {
+	width: 40px;
+	text-align: right;
+}
+
+.web-name {
+	width: 170px;
+	text-align: left;
+}
+
+.display-code {
+	padding-right: 12px;
+	float: right;
+}
+
+.display-name {
+	padding-left: 12px;
+}
+
+#functions-area-bottom {
+	height: 100px !important;
+	padding-bottom: 20px;
+}

@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:com="http://xmlns.jcp.org/jsf/component"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+  <body>
+    <ui:composition template="/master/base.xhtml">
+      <ui:define name="htmlHead">
+        <com:scriptfile set="IGNITE" />
+        <com:stylefile path="cli002.a.style.css" />
+        <com:scriptfile path="cli002.a.vm.js" />
+      </ui:define>
+
+      <ui:define name="content">
+        <div id="functions-area">
+          <button
+            id="A1_1"
+            tabindex="1"
+            class="proceed"
+            data-bind="i18n: 'CLI002_2', click: register"
+          ></button>
+        </div>
+        <div id="contents-area" class="view-cli flex">
+          <div class="list-component">
+            <div class="caret-right caret-background bg-green">
+              <table
+                id="A2_1"
+                tabindex="2"
+                data-bind="ntsGridList: {
+                  name: '#[CLI002_3]',
+                  height: 200,
+                  dataSource: systemList,
+                  primaryKey: 'index',
+                  columns: systemColumns,
+                  value: selectedSystemCode
+                }"
+              ></table>
+            </div>
+          </div>
+          <div class="model-component">
+            <div
+              id="A3_1"
+              tabindex="3"
+              data-bind="ntsSearchBox: {
+                  name: '#[CLI002_8]',
+                  searchMode: 'highlight',
+                  targetKey: 'rowNumber',
+                  comId: 'item-list',
+                  items: dataSourceItem,
+                  selectedKey: 'rowNumber',
+                  fields: ['functionName', 'rowNumber'],
+                  mode: 'igGrid',
+                  placeHolder: $vm.$i18n('CLI002_8'),
+                  searchText: $vm.$i18n('KMP001_23')
+                }"
+            ></div>
+            <table id="item-list"></table>
+          </div>
+        </div>
+      </ui:define>
+    </ui:composition>
+  </body>
+</html>

@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:ValidatorScript>
+				nts.uk.ctx.sys.shared.dom.user.LoginID
+				nts.uk.ctx.sys.shared.dom.user.MailAddress
+				nts.uk.ctx.sys.shared.dom.user.UserName
+				nts.uk.ctx.sys.gateway.dom.login.password.userpassword.PlainLoginPassword
+			</com:ValidatorScript>
+			<com:stylefile path="cas004.a.main.css" />
+			<com:scriptfile path="cas004.a.start.js" />
+			<com:scriptfile path="cas004.a.vm.js" />
+			<com:scriptfile path="cas004.a.service.js" />
+		</ui:define>
+		<ui:define name="content">
+			<!-- A1 -->
+			<div id="functions-area" style="margin-left: 10px;">
+				<!-- A1_001 -->
+				<button id="new" tabindex="1" class="group-button-1"
+					data-bind="click: newMode">#{i18n.getText('CAS004_3')}</button>
+				<!-- A1_002 -->
+				<button id="register" tabindex="2" class="proceed group-button-1"
+					data-bind="click: register">#{i18n.getText('CAS004_4')}</button>
+				<!-- A1_003 -->
+				<button id="delete" tabindex="3" class="danger group-button-1"
+					style="margin-left: 335px;"
+					data-bind="enable: isDelete, click: deleteItem">#{i18n.getText('CAS004_5')}</button>
+			</div>
+			<div id="contents-area" class="fixed-flex-layout">
+				<!-- A2 -->
+				<div class="fixed-flex-layout-left"
+					style="margin: 0px; margin-right: 35px;">
+					<div style="margin: 10px;"
+						data-bind="ntsPanel: {direction: 'right',width: '415px', height: '425px', showIcon: true}">
+						<!-- A2_002 -->
+						<div style="display:flex; width: 410px; align-items: center;">
+						<div style="width: 60px;"
+							data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CAS004_6')}</div>
+						<!-- A2_003 -->
+						<div id="companies-cbbx" tabindex="4" style="width: 100%"
+							data-bind="ntsComboBox: {
+										options: comList,
+										optionsValue: 'companyCode',
+										optionsText: 'companyName',
+										value: companyCode,
+										visibleItemsCount: 10,
+										selectFirstIfNull: true,}"></div></div>
+						<div style="padding-left: 60px;">
+							<div tabindex="5" style="width: 350px; margin-top: 10px;"
+								data-bind="ntsSearchBox:
+		                    	       {targetKey: 'loginID',
+		                    	        comId: 'single-user-list',
+		                    	        items: userList,
+		                    	        searchMode: 'filter',
+		                    	        selected: currentCode,
+		                    	        selectedKey: 'loginID',
+		                    	        fields: ['loginID', 'userName'],
+		                    	        mode: 'igGrid'}" />
+							<table id="single-user-list" tabindex="6"
+								style="margin-right: 20px;"
+								data-bind="ntsGridList: {
+									name: '#[CAS004_12]',
+									width: 350,
+									height: 550,
+									dataSource: userList,
+									primaryKey:'userID',
+									columns: columns,
+									multiple: false,
+									rows: 13, 
+									value: currentCode}">
+							</table>
+						</div>
+
+					</div>
+				</div>
+				<!-- A3 -->
+				<div class="fixed-flex-layout-right" style="padding-top: 30px; min-width: 500px;">
+					<table>
+						<colgroup>
+							<col width="150px" />
+							<col width="150px" />
+							<col width="200px"/>
+						</colgroup>
+						<tr>
+							<td>
+								<!-- A3_001 -->
+								<div 
+									data-bind="ntsFormLabel: {required: true, constraint: 'LoginID'}">#{i18n.getText('CAS004_13')}</div>
+							</td>
+							<td>
+								<!-- A3_002 -->
+								<input id="login-id" tabindex="7" class="input-lead"
+									data-bind="ntsTextEditor: {
+										value: currentLoginID,
+										required: true,
+										name: '#[CAS004_13]',
+										constraint: 'LoginID',
+										option: { width: '110px'}
+								}" />
+							</td>
+							<td>
+								<!-- A3_003 -->
+								<div data-bind="ntsFormLabel: {required: false}">#{i18n.getText('CAS004_15')}</div>
+								<!-- A3_004 -->
+								<button tabindex="8"
+									data-bind="click: openDialogB">#{i18n.getText('CAS004_16')}</button>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<!-- A3_005 -->
+								<div
+									data-bind="ntsFormLabel: {required: true, constraint: 'UserName'}">#{i18n.getText('CAS004_14')}</div>
+							</td>
+							<td colspan="2">
+								<!-- A3_006 -->
+								<input id="username-input" tabindex="9" class="input-lead"
+									data-bind="ntsTextEditor: {
+										value: currentUserName,
+										constraint: 'UserName',
+										required: true,
+										name: '#[CAS004_14]',
+										option: { width: '110px'}
+									}" />
+							</td>
+						</tr>
+						<tr>
+							<td style="padding-top: 25px;">
+								<!-- A3_007 -->
+								<div
+									data-bind="ntsFormLabel: {required: false, constraint: 'MailAddress'}">#{i18n.getText('CAS004_17')}</div>
+							</td>
+							<td colspan="2" style="padding-top: 25px;">
+								<!-- A3_008  -->
+								<input id="mailaddress-input" tabindex="10" class="input-email"
+									data-bind="ntsTextEditor: {
+										value: currentMailAddress,
+										required: false,
+										name: '#[CAS004_17]',
+										constraint: 'MailAddress',
+										option: { width: '250px'}
+									}" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<!-- A3_009 -->
+								<div
+									data-bind="ntsFormLabel: {required: true, constraint: 'PlainLoginPassword'}">#{i18n.getText('CAS004_18')}</div>
+							</td>
+							<td>
+								<!-- A3_010 -->
+								<input tabindex="11" class="input-lead"
+									data-bind="ntsTextEditor: {
+										value: currentPass,
+										constraint: 'PlainLoginPassword', 
+										required: isChangePass,
+										option: {textmode: 'password', width: '110px'},
+										name: '#[CAS004_18]',
+										enable: isChangePass
+									}" />
+							</td>
+							<td>
+							<!-- A3_015 --><div data-bind="ntsCheckBox: {checked: isChangePass}, visible: isDisplay"
+								class="checkbox-item">#{i18n.getText('CAS004_27')}</div>
+							</td></tr>
+						<tr>
+							<td>
+								<!-- A3_011 -->
+								<div
+									data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CAS004_19')}</div>
+							</td>
+							<td colspan="2">
+								<!-- A3_012 -->
+								<div tabindex="12" data-bind="ntsDatePicker: {required: true, value: currentPeriod, dateFormat: 'date', valueFormat: 'YYYY/MM/DD', name: '#[CAS004_19]'}"></div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3" style="padding-left: 5px;">
+								<!-- A3_013 -->
+								<div tabindex="13"
+									data-bind="ntsCheckBox: {checked: isSpecial}">#{i18n.getText('CAS004_20')}</div>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="3" style="padding-left: 5px;">
+								<!-- A3_014 -->
+								<div tabindex="14"
+									data-bind="ntsCheckBox: {checked: isMultiCom}">#{i18n.getText('CAS004_21')}</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

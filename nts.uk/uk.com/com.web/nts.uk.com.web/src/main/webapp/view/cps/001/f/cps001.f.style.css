@@ -1,0 +1,24 @@
+#contents-area {
+	height: auto !important;
+}
+
+.uploadfile {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+#functions-area button {
+	min-width: 65px;
+	float: right;
+	margin-right: 19px;
+}
+
+.nts-fileupload-container .browser-button {
+	float: left;
+	margin-right: 5px;
+	width: 70px;
+}
+
+#contents-area{
+	margin-left: 20px;
+}

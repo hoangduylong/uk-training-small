@@ -1,0 +1,30 @@
+.view-cli .float-left {
+  float: left;
+}
+
+.view-cli .float-right {
+  float: right;
+}
+
+@media only screen and (max-width: 800px) {
+  .view-cli .model-component {
+    position: absolute;
+  }
+}
+
+.model-component {
+  margin-left: 40px;
+}
+
+.list-component > .caret-right.caret-background.bg-green {
+  width: 200px;
+  padding: 30px 10px 30px 20px;
+}
+
+.ntsSearchBox {
+  width: 380px;
+}
+
+#item-list tbody tr td div {
+  text-align: center;
+}

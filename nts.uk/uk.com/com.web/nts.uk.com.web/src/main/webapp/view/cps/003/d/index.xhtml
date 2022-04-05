@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script type='text/javascript'>
+				var dialogSize = {
+					width: 500,
+					height: 590
+				};
+			</script>
+			
+			<com:scriptfile path="cm/grid.js" />
+			<com:stylefile path="cps003.d.style.css" />
+			<com:scriptfile path="cps003.d.service.js" />
+			<com:scriptfile path="cps003.d.vm.js" />
+			<com:scriptfile path="cps003.d.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area"
+				data-bind="let: { 
+						text: nts.uk.resource.getText
+					}">
+				<div class="valign-center control-group">
+					<div data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CPS003_54')}</div>
+					<label class="ntsControl limited-label" data-bind="text: $vm.ctgName"></label>
+				</div>
+				<div class="main form-group">
+					<div data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CPS003_55')}</div>
+					<div data-bind="grid4d: {
+							key: 'id',
+							selecteds: $vm.selecteds,
+							dataSources: $vm.dataSources
+						}">
+					</div>
+					<div style="clear:both"></div>
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<button data-bind="click: $vm.pushData.bind($vm)" class="proceed x-large">#{i18n.getText('CPS003_60')}</button>
+				<button data-bind="click: $vm.close.bind($vm)">#{i18n.getText('CPS003_61')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

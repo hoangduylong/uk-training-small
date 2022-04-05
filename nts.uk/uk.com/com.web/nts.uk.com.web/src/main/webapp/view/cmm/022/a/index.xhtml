@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:ValidatorScript>
+				nts.uk.ctx.bs.employee.dom.groupcommonmaster.CommonMasterName
+				nts.uk.ctx.bs.employee.dom.groupcommonmaster.CommonMasterCode
+			</com:ValidatorScript>
+			<com:stylefile path="cmm022.a.style.css" />
+			<com:scriptfile path="cmm022.a.start.js" />
+			<com:scriptfile path="cmm022.a.service.js" />
+			<com:scriptfile path="cmm022.a.vm.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="functions-area">
+				<!-- A1_1 -->
+				<button tabindex="1"
+					data-bind="click: newItem,enable:masterLength()">#{i18n.getText('CMM022_A1_1')}</button>
+				<!-- A1_2 -->
+				<button tabindex="1" class="proceed"
+					data-bind="click: saveData,enable:masterLength()">#{i18n.getText('CMM022_A1_2')}</button>
+				<!-- A1_3 -->
+				<button tabindex="1"
+					data-bind="click: openDialogB,enable:masterLength()">#{i18n.getText('CMM022_A1_3')}</button>
+				<!-- A1_4 -->
+				<button tabindex="1"
+					data-bind="click: openDialogC,enable:masterLength()">#{i18n.getText('CMM022_A1_4')}</button>
+				<!-- A1_5 -->
+				<button tabindex="1"
+					data-bind="click: exportExcel,enable:masterLength()">#{i18n.getText('CMM022_A1_5')}</button>
+
+			</div>
+			<div id="contents-area" class="fixed-flex-layout">
+			<!-- A221 -->
+				<div class="column-1 ">
+					<!-- A221_1 -->
+					<div id="common-master_arena"
+						data-bind="ntsPanel:{width: '280px', direction: 'right', showIcon: true, visible: true}">
+						<div class="div_line">
+							<!-- A221_2 -->
+							<div style="width: 280px"
+								data-bind="ntsSearchBox: { searchMode: 'filter', targetKey: 'commonMasterId', comId: 'master-list', 
+							items: commonMasters , selectedKey: 'commonMasterId', fields: ['commonMasterCode', 'commonMasterName'], mode: 'igGrid'}" />
+						</div>
+
+						<div class="div_line">
+							<!-- A221_3 -->
+
+							<table id="master-list"
+								data-bind="ntsGridList: {
+                                height: 250 ,
+								dataSource: commonMasters ,
+								primaryKey: 'commonMasterId' ,
+								columns: [
+							                { headerText: '', key: 'commonMasterId', width: 0 , hidden: true },
+							                { headerText: '#{i18n.getText('CMM022_A221_6')}', key: 'commonMasterName', width: 260 }, 
+							            ] ,
+								multiple: false ,
+								value: selectedCommonMaster().commonMasterId ,
+								rows: 10
+							}"></table>
+						</div>
+					</div>
+
+				</div>
+				<!-- A222 -->
+				<div class="column-2">
+				<!-- A222_1 -->
+					<div class="div_line">
+						<div data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CMM022_A222_1')}</div>
+						<!-- A222_2 -->
+						<label data-bind="text:selectedCommonMaster().commonMasterName"></label>
+					</div>
+					<!-- A222_3 -->
+					<div class="div_line">#{i18n.getText('CMM022_A222_3')}</div>
+					<div class="div_line caret-right caret-background">
+					<!-- A222_4 -->
+						<table id="master-item-list"
+							data-bind="ntsGridList: {
+                                height: 250 ,
+								dataSource: commonMasterItems ,
+								primaryKey: 'commonMasterItemId' ,
+								columns: [
+							                { headerText: 'コード', key: 'commonMasterItemId', width: 0 , hidden: true },
+							                { headerText: '#{i18n.getText('CMM022_A222_7')}', key: 'commonMasterItemCode', width: 80 }, 
+							                { headerText: '#{i18n.getText('CMM022_A222_8')}', key: 'commonMasterItemName', width: 180 }, 
+							            ] ,
+								multiple: false ,
+								value: selectedCommonMasterItem().commonMasterItemId ,
+								rows: 15
+							}"></table>
+					</div>
+
+
+				</div>
+				<!-- A223 -->
+				<div class="column-3">
+					<div class="div_line">
+					<!-- A223_1 -->
+						<div
+							data-bind="ntsFormLabel: {required: true ,constraint:['CommonMasterCode','CommonMasterName']}">#{i18n.getText('CMM022_A223_1')}</div>
+					</div>
+					<div class="div_line pl-15">
+						<!-- A223_2 -->
+						<input id="A223_2"
+							data-bind="ntsTextEditor: {
+											value: selectedCommonMasterItem().commonMasterItemCode ,
+											required: true,
+											name:'#[CMM022_A223_2]',
+											constraint:'CommonMasterCode',
+											option:{ width:'20px'},
+											enable:masterLength()
+											}" />
+						<!-- A223_3 -->
+						<input
+						id="A223_3"
+							data-bind="ntsTextEditor: {
+											value: selectedCommonMasterItem().commonMasterItemName ,
+											name: '#[CMM022_A223_3]',
+											required: true,
+											constraint:'CommonMasterName',
+											option:{ width: '150px' },
+											enable:masterLength()
+											}" />
+					</div>
+					<div class="div_line">
+					<!-- A223_4 -->
+						<div data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CMM022_A223_4')}</div>
+					</div>
+					<div class="div_line pl-15">
+					<!-- A223_5 -->
+						<div
+							data-bind="ntsDatePicker: { required: true , value: selectedCommonMasterItem().usageStartDate , name:'#[CMM022_A223_5]' ,enable:masterLength() }"></div>
+						<!-- A223_6 -->
+						#{i18n.getText('CMM022_A223_6')}
+						<!-- A223_7 -->
+						<div
+							data-bind="ntsDatePicker: { required: true, value: selectedCommonMasterItem().usageEndDate ,name:'#[CMM022_A223_7]',enable:masterLength() }"></div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

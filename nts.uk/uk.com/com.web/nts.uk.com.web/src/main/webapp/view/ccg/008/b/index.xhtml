@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 250, height: 300 };</script>
+			<com:stylefile path="ccg008.b.style.css" />
+			<com:scriptfile path="ccg008.b.start.js" />
+			<com:scriptfile path="ccg008.b.vm.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="content-area" class="body">
+				<div class="functions-area-content">
+					<div data-bind="css: {plus_1: check }"></div>
+					<!-- B1_001: Button トップページの設定 -->
+					<div data-bind="if: checkTopPage">
+						<button tabindex="1" id="btn_toppage" class="btn"
+							data-bind="click: openTopPageSet">#{i18n.getText('CCG008_2')}</button>
+					</div>
+					<br />
+					<!-- B1_002: Button マイページの設定 -->
+					<div data-bind="if: checkMyPage">
+						<button tabindex="2" id="btn_mypage" class="btn"
+							data-bind="if: checkMyPage, click: openMyPageSet">#{i18n.getText('CCG008_5')}</button>
+					</div>
+				</div>
+				<div id="functions-area-bottom">
+					<!-- B1_003: Button 閉じる -->
+					<button tabindex="3" id="btn_close" class="large"
+						data-bind="click: closeDialog">#{i18n.getText('CCG008_6')}</button>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

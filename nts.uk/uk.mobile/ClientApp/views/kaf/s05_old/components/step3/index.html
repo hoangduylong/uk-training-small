@@ -1,0 +1,266 @@
+<div class="kaf00503">
+    <div class="accordion border-bottom" v-if="kafs05ModelStep3.indicationOvertimeFlg">
+        <div class="card">
+            <div class="card-header">
+                <button class="btn btn-link" type="button">
+                    {{'KAFS05_41' | i18n}}
+                </button>
+            </div>
+            <div class="collapse">
+                <div class="card-body">
+                    <table class="table table-36">
+                        <thead class="thead-light">
+                            <tr>
+                                <th scope="col">{{'KAFS05_42' | i18n}}</th>
+                                <th scope="col">{{'KAFS05_43' | i18n}}</th>
+                                <th scope="col">{{'KAFS05_44' | i18n}}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(item, i) of kafs05ModelStep3.overtimeWork">
+                                <td :class="item.color">{{item.yearMonth | yearmonth}}</td>
+                                <td :class="item.color">{{item.limitTime | timedr}}</td>
+                                <td :class="item.color">{{item.actualTime | timedr}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="border border-warning rounded p-1 mt-2 alarm-message" role="alert" 
+            v-if="(kafs05ModelStep3.beforeAppStatus && kafs05ModelStep3.preExcessDisplaySetting == 1) ||
+                hasPreAppError ||
+                (kafs05ModelStep3.actualStatus == 3 && kafs05ModelStep3.performanceExcessAtr == 1) ||
+                (hasActualError && kafs05ModelStep3.performanceExcessAtr == 1)" style="display:block;">
+            <div v-if="kafs05ModelStep3.beforeAppStatus && kafs05ModelStep3.preExcessDisplaySetting == 1" style="display:flex;">
+                <fa-font icon="exclamation-triangle" class="text-danger m-2" />
+                <span style="align-self:center">{{ 'Msg_1557' | i18n($dt(kafs05ModelStep3.appDate)) }}</span>
+            </div>
+            <div v-if="hasPreAppError" style="display:flex;">
+                <fa-font icon="exclamation-triangle" class="text-danger m-2" />
+                <span style="align-self:center">{{ 'Msg_1559' | i18n }}</span>    
+            </div>
+            <div v-if="kafs05ModelStep3.actualStatus == 3 && kafs05ModelStep3.performanceExcessAtr == 1" style="display:flex;">
+                <fa-font icon="exclamation-triangle" class="text-danger m-2" />
+                <span style="align-self:center">{{ 'Msg_1556' | i18n($dt(kafs05ModelStep3.appDate)) }}</span>    
+            </div>
+            <div v-if="hasActualError && kafs05ModelStep3.performanceExcessAtr == 1" style="display:flex;">
+                <fa-font icon="exclamation-triangle" class="text-danger m-2" />
+                <span style="align-self:center">{{ 'Msg_1558' | i18n }}</span>    
+            </div>           
+        </div>
+        <div v-if="kafs05ModelStep3.actualStatus == 3 && kafs05ModelStep3.performanceExcessAtr == 2" class="border border-danger rounded p-1 mt-2 error-message" role="alert" style="display:flex;">
+            <fa-font icon="exclamation-circle" class="text-danger m-2" />
+            <span style="align-self:center">{{ 'Msg_1556' | i18n($dt(kafs05ModelStep3.appDate)) }}</span>
+        </div>
+    </div>
+    <div class="input-container">
+        <div class="card card-label" v-if="!kafs05ModelStep3.isCreate">
+            <div class="card-header">
+                <span>{{'KAFS05_81' | i18n}}</span>
+            </div>
+            <div class="card-body">
+                <div class="confirm-item mb-2">
+                    <span>{{kafs05ModelStep3.employeeName}}</span>
+                    <span
+                        v-if="null != kafs05ModelStep3.enteredPersonName && kafs05ModelStep3.enteredPersonName != kafs05ModelStep3.employeeName"
+                        class="small-header"></BR>(代行者：{{kafs05ModelStep3.enteredPersonName}})</span>
+                </div>
+            </div>
+            <div class="card card-label">
+                <div class="card-header">
+                    <span>{{'KAFS05_82' | i18n}}</span>
+                </div>
+                <div class="card-body">
+                    <div class="confirm-item mb-2" v-if="kafs05ModelStep3.prePostSelected == 0">
+                        <span>{{kafs05ModelStep3.appDate | date}}&nbsp;{{'KAF009_9' | i18n}}</span></div>
+                    <div class="confirm-item mb-2" v-if="kafs05ModelStep3.prePostSelected == 1">
+                        <span>{{kafs05ModelStep3.appDate | date}}&nbsp;{{'KAF009_10' | i18n}}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-label" v-if="kafs05ModelStep3.displayPrePostFlg && kafs05ModelStep3.isCreate">
+            <div class="card-header">
+                <span>{{'KAFS05_61' | i18n}}</span>
+                <span class="badge badge-warning">必須</span>
+            </div>
+            <div class="card-body">
+                <div class="confirm-item mb-2" v-if="kafs05ModelStep3.prePostSelected == 0">
+                    <span>{{'KAF009_9' | i18n}}</span></div>
+                <div class="confirm-item mb-2" v-if="kafs05ModelStep3.prePostSelected == 1">
+                    <span>{{'KAF009_10' | i18n}}</span></div>
+            </div>
+        </div>
+        <div class="card card-label" v-if="kafs05ModelStep3.isCreate">
+            <div class="card-header">
+                <span>{{'KAFS05_62' | i18n}}</span>
+                <span class="badge badge-warning">必須</span>
+            </div>
+            <div class="card-body">
+                <div class="confirm-item mb-2"><span>{{kafs05ModelStep3.appDate | date}}</span></div>
+            </div>
+        </div>
+        <div class="card card-label" v-if="kafs05ModelStep3.displayCaculationTime">
+            <div class="card-header">
+                <span>{{'KAFS05_63' | i18n}}</span>
+                <span class="badge badge-warning">必須</span>
+            </div>
+            <div class="card-body">
+                <span class="small-header">{{'KAFS05_64' | i18n}}</span>
+                <div class="confirm-item">
+                    <span class="badge badge-secondary">{{kafs05ModelStep3.workTypeCd}}</span>
+                    <span>{{kafs05ModelStep3.workTypeName}}</span>
+                </div>
+                <span class="small-header">{{'KAFS05_65' | i18n}}</span>
+                <div class="confirm-item mb-2">
+                    <span class="badge badge-secondary">{{kafs05ModelStep3.siftCD}}</span>
+                    <span>{{kafs05ModelStep3.siftName}}</span>
+                    <span class="ml-2">{{kafs05ModelStep3.selectedWorkTime}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="card card-label" v-show="kafs05ModelStep3.displayCaculationTime">
+            <div class="card-header">
+                <span>{{'KAFS05_66' | i18n}}</span>
+                <span class="badge badge-warning">必須</span>
+            </div>
+            <div class="card-body">
+                <div class="confirm-item mb-2" v-if="null != kafs05ModelStep3.workTimeInput.start">
+                    <span>{{kafs05ModelStep3.workTimeInput.start | timewd}}～{{kafs05ModelStep3.workTimeInput.end | timewd}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="card card-label" v-show="kafs05ModelStep3.displayCaculationTime && kafs05ModelStep3.restTimeDisFlg">
+            <div class="card-header">
+                <span>{{'KAFS05_68' | i18n}}</span>
+                <span class="badge badge-info">任意</span>
+            </div>
+            <div class="card-body">
+                <div class="mb-2" v-for="(item, i) of kafs05ModelStep3.restTime">
+                    <span class="small-header">{{'KAFS05_69' | i18n(item.frameNo.toString())}}</span>
+                    <div class="confirm-item" v-if="null != item.restTimeInput.start">
+                        <span>{{item.restTimeInput.start | timewd}}～{{item.restTimeInput.end | timewd}}</span></div>
+                    <div class="confirm-item" v-if="null == item.restTimeInput.start">
+                        <span>{{'KAFS05_54' | i18n}}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-label">
+            <div class="card-header">
+                <span>{{'KAFS05_70' | i18n}}</span>
+                <span class="badge badge-warning">必須</span>
+            </div>
+            <div class="card-body">
+                <div class="mb-2" v-for="(item, i) of kafs05ModelStep3.overtimeHours">
+                    <div class="row">
+                        <div class="col-4">
+                            <span class="small-header-framename">{{item.frameName | i18n}}</span>
+                        </div>
+                        <div class="col-8">
+                            <span v-if="null != item.applicationTime">{{item.applicationTime | timedr}}</span>
+                            <span v-if="null == item.applicationTime">{{'KAFS05_54' | i18n}}</span>
+                        </div>
+                    </div>
+                    <div class="row confirm-item" v-show="kafs05ModelStep3.prePostSelected == 1">
+                        <div class="col-4 uk-text-excess-time-none font-time" v-show="!item.preAppExceedState">
+                            <span class="far fa-clock"
+                                v-if="null != item.preAppTime">事前[{{item.preAppTime | timedr}}]</span>
+                            <span class="far fa-clock" v-if="null == item.preAppTime">事前[--:--]</span>
+                        </div>
+                        <div class="col-4 uk-text-excess-time-alarm font-time" v-show="item.preAppExceedState">
+                            <span class="far fa-clock"
+                                v-if="null != item.preAppTime">事前[{{item.preAppTime | timedr}}]</span>
+                            <span class="far fa-clock" v-if="null == item.preAppTime">事前[--:--]</span>
+                        </div>
+                        <div class="col-8 uk-text-excess-time-none font-time" v-show="item.actualExceedState == 0">
+                            <span class="far fa-clock"
+                                v-if="null != item.caculationTime">実績[{{item.caculationTime | timedr}}]</span>
+                            <span class="far fa-clock" v-if="null == item.caculationTime">実績[--:--]</span>
+                        </div>
+                        <div class="col-8 uk-text-excess-time-alarm font-time" v-show="item.actualExceedState == 3">
+                            <span class="far fa-clock"
+                                v-if="null != item.caculationTime">実績[{{item.caculationTime | timedr}}]</span>
+                            <span class="far fa-clock" v-if="null == item.caculationTime">実績[--:--]</span>
+                        </div>
+                        <div class="col-8 uk-text-excess-time-error font-time" v-show="item.actualExceedState == 4">
+                            <span class="far fa-clock"
+                                v-if="null != item.caculationTime">実績[{{item.caculationTime | timedr}}]</span>
+                            <span class="far fa-clock" v-if="null == item.caculationTime">実績[--:--]</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-label" v-show="kafs05ModelStep3.displayBonusTime && kafs05ModelStep3.bonusTimes.length != 0">
+            <div class="card-header">
+                <span>{{'KAFS05_74' | i18n}}</span>
+                <span class="badge badge-info">任意</span>
+            </div>
+            <div class="card-body">
+                <div class="mb-2" v-for="(item, i) of kafs05ModelStep3.bonusTimes">
+                    <div class="row">
+                        <div class="col-4">
+                            <span class="small-header">{{item.frameName | i18n}}</span>
+                        </div>
+                        <div class="col-4">
+                            <span v-if="null != item.applicationTime">{{item.applicationTime | timedr}}</span>
+                            <span v-if="null == item.applicationTime">{{'KAFS05_54' | i18n}}</span>
+                        </div>
+                        <div class="col-4" v-show="kafs05ModelStep3.prePostSelected == 1">
+                            <div v-show="!item.preAppExceedState">
+                                <span class="far fa-clock uk-text-excess-time-none font-time"
+                                    v-if="null != item.preAppTime">事前[{{item.preAppTime | timedr}}]</span>
+                                <span class="far fa-clock uk-text-excess-time-none font-time" v-if="null == item.preAppTime">事前[--:--]</span>
+                            </div>
+                            <div v-show="item.preAppExceedState">
+                                <span class="far fa-clock uk-text-excess-time-alarm font-time"
+                                    v-if="null != item.preAppTime">事前[{{item.preAppTime | timedr}}]</span>
+                                <span class="far fa-clock uk-text-excess-time-error font-time" v-if="null == item.preAppTime">事前[--:--]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card card-label"
+            v-show="kafs05ModelStep3.typicalReasonDisplayFlg || kafs05ModelStep3.displayAppReasonContentFlg">
+            <div class="card-header">
+                <span>{{'KAFS05_75' | i18n}}</span>
+                <span class="badge badge-warning" v-if="kafs05ModelStep3.requiredReason">必須</span>
+                <span class="badge badge-info" v-if="!kafs05ModelStep3.requiredReason">任意</span>
+            </div>
+            <div class="card-body">
+                <div class="confirm-item mb-2 reason-confirm">
+                    <span v-if="appReason != null && appReason != ''" v-html='appReason'></span>
+                    <span v-if="appReason == null || appReason == ''">{{'KAFS05_54' | i18n}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="card card-label"
+            v-show="(kafs05ModelStep3.displayDivergenceReasonForm || kafs05ModelStep3.displayDivergenceReasonInput) && kafs05ModelStep3.prePostSelected == 1">
+            <div class="card-header">
+                <span>{{'KAFS05_78' | i18n}}</span>
+                <span class="badge badge-info">任意</span>
+            </div>
+            <div class="card-body">
+                <div class="confirm-item reason-confirm">
+                    <span v-if="divergenceReason != null && divergenceReason != ''" v-html='divergenceReason'></span>
+                    <span v-if="divergenceReason == null || divergenceReason == ''">{{'KAFS05_54' | i18n}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="card card-label">
+            <div class="card-body">
+                <button v-if="kafs05ModelStep3.isCreate" type="button" class="btn btn-primary btn-block"
+                    v-on:click="registerClick">{{'KAFS05_11' | i18n}}</button>
+                <button v-if="!kafs05ModelStep3.isCreate" type="button" class="btn btn-primary btn-block"
+                    v-on:click="registerClick">{{'KAFS05_18' | i18n}}</button>
+
+                <button type="button" class="btn btn-secondary btn-block btn-sm"
+                    v-on:click="$emit('backToStep2',kafs05ModelStep3)">{{'KAFS05_12' | i18n}}</button>
+            </div>
+        </div>
+    </div>
+</div>

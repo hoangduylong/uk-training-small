@@ -1,0 +1,191 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+      <script>
+        var dialogSize = { width: 480, height: 650 };
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cdl010.a.css" />
+			<com:scriptfile path="cdl010.vm.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area" style="padding: 5px 10px;">
+        <div id="content-cdl010">
+          <table>
+            <colgroup>
+              <col width="185px"/>
+              <col width="auto"/>
+            </colgroup>
+            <thead>
+              <tr>
+                <!-- A1_1 氏名 -->
+                <td class="bolder">#{i18n.getText('CDL010_2')}</td>
+                <!-- A1_2 -->
+                <td class="bolder" data-bind="text: detailData().businessName"></td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <!-- A13_1 雇用名 -->
+                <td>#{i18n.getText('CDL010_15')}</td>
+                <!-- A13_2 -->
+                <td data-bind="text: detailData().employmentName"></td>
+              </tr>
+
+              <tr>
+                <!-- A14_1 職場名 -->
+                <td>#{i18n.getText('CDL010_16')}</td>
+                <!-- A14_2 -->
+                <td data-bind="text: detailData().workplaceName"></td>
+              </tr>
+
+              <tr>
+                <!-- A15_1 分類名 -->
+                <td>#{i18n.getText('CDL010_17')}</td>
+                <!-- A15_2 -->
+                <td data-bind="text: detailData().classificationName"></td>
+              </tr>
+
+              <tr>
+                <!-- A16_1 職位名 -->
+                <td>#{i18n.getText('CDL010_18')}</td>
+                <!-- A16_2 -->
+                <td data-bind="text: detailData().jobTitleName"></td>
+              </tr>
+
+              <!-- 項目制御 ※1 -->
+              <com:ko-if bind="!_.isEmpty(detailData().contactInformation.companyMobilePhoneNumber)">
+                <tr>
+                  <!-- A2_1 携帯電話（会社用）-->
+                  <td>#{i18n.getText('CDL010_12')}</td>
+                  <!-- A2_2 -->
+                  <td data-bind="text: detailData().contactInformation.companyMobilePhoneNumber"></td>
+                </tr>
+              </com:ko-if>
+
+              <!-- 項目制御 ※2 -->
+              <com:ko-if bind="!_.isEmpty(detailData().contactInformation.personalMobilePhoneNumber)">
+                <tr>
+                  <!-- A3_1 携帯電話（個人用） -->
+                  <td>#{i18n.getText('CDL010_3')}</td>
+                  <!-- A3_2 -->
+                  <td data-bind="text: detailData().contactInformation.personalMobilePhoneNumber"></td>
+                </tr>
+              </com:ko-if>
+
+              <!-- 項目制御 ※3 -->
+              <com:ko-if bind="!_.isEmpty(detailData().contactInformation.emergencyNumber1)">
+                <tr>
+                  <!-- A4_1 緊急電話番号1 -->
+                  <td>#{i18n.getText('CDL010_4')}</td>
+                  <!-- A4_2 -->
+                  <td data-bind="text: detailData().contactInformation.emergencyNumber1"></td>
+                </tr>
+              </com:ko-if>
+
+              <!-- 項目制御 ※4 -->
+              <com:ko-if bind="!_.isEmpty(detailData().contactInformation.emergencyNumber2)">
+                <tr>
+                  <!-- A5_1 緊急電話番号2 -->
+                  <td>#{i18n.getText('CDL010_5')}</td>
+                  <!-- A5_2 -->
+                  <td data-bind="text: detailData().contactInformation.emergencyNumber2"></td>
+                </tr>
+              </com:ko-if>
+
+              <!-- 項目制御 ※5 -->
+              <com:ko-if bind="!_.isEmpty(detailData().contactInformation.seatDialIn)">
+                <tr>
+                  <!-- A6_1 ダイヤルイン番 -->
+                  <td>#{i18n.getText('CDL010_6')}</td>
+                  <!-- A6_2 -->
+                  <td data-bind="text: detailData().contactInformation.seatDialIn"></td>
+                </tr>
+              </com:ko-if>
+
+              <!-- 項目制御 ※6 -->
+              <com:ko-if bind="!_.isEmpty(detailData().contactInformation.seatExtensionNumber)">
+                <tr>
+                  <!-- A7_1 内線番号 -->
+                  <td>#{i18n.getText('CDL010_7')}</td>
+                  <!-- A7_2 -->
+                  <td data-bind="text: detailData().contactInformation.seatExtensionNumber"></td>
+                </tr>
+              </com:ko-if>
+
+              <!-- 項目制御 ※7 -->
+              <com:ko-if bind="!_.isEmpty(detailData().contactInformation.companyEmailAddress)">
+                <tr>
+                  <!-- A8_1 会社メールアドレス -->
+                  <td>#{i18n.getText('CDL010_8')}</td>
+                  <!-- A8_2 -->
+                  <td data-bind="html: detailData().contactInformation.companyEmailAddress"></td>
+                </tr>
+              </com:ko-if>
+
+              <!-- 項目制御 ※8 -->
+              <com:ko-if bind="!_.isEmpty(detailData().contactInformation.companyMobileEmailAddress)">
+                <tr>
+                  <!-- A9_1 会社携帯メールアドレ -->
+                  <td>#{i18n.getText('CDL010_9')}</td>
+                  <!-- A9_2 -->
+                  <td data-bind="html: detailData().contactInformation.companyMobileEmailAddress"></td>
+                </tr>
+              </com:ko-if>
+
+              <!-- 項目制御 ※9 -->
+              <com:ko-if bind="!_.isEmpty(detailData().contactInformation.personalEmailAddress)">
+                <tr>
+                  <!-- A10_1 個人メールアドレス -->
+                  <td>#{i18n.getText('CDL010_10')}</td>
+                  <!-- A10_2 -->
+                  <td data-bind="html: detailData().contactInformation.personalEmailAddress"></td>
+                </tr>
+              </com:ko-if>
+
+              <!-- 項目制御 ※10 -->
+              <com:ko-if bind="!_.isEmpty(detailData().contactInformation.personalMobileEmailAddress)">
+                <tr>
+                  <!-- A11_1 個人携帯メールアド -->
+                  <td>#{i18n.getText('CDL010_11')}</td>
+                  <!-- A11_2 -->
+                  <td data-bind="html: detailData().contactInformation.personalMobileEmailAddress"></td>
+                </tr>
+              </com:ko-if>
+            </tbody>
+          </table>
+          <!-- A12 -->
+          <table>
+            <colgroup>
+              <col width="185px"/>
+              <col width="auto"/>
+            </colgroup>
+            <tbody data-bind="foreach: otherContact">
+              <!-- 項目制御 ※11 -->
+              <tr data-bind="if: !_.isNull($data) &amp;&amp; !_.isEmpty($data.contactAddress)">
+                <td data-bind="text: $vm.$i18n('CDL010_14', [contactName])"></td>
+                <td data-bind="text: contactAddress"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+			</div>
+
+			<div id="functions-area-bottom" style="height: 50px !important;">
+        <!-- A0 -->
+				<button data-bind="click: closeDialog">#{i18n.getText('CDL010_13')}</button>
+			</div>
+
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,23 @@
+#master-wrapper {
+	overflow: hidden;	
+}
+
+.left-content {
+	vertical-align: top;	
+}
+
+.right-content {
+	padding-left: 30px;
+}
+
+.h-left-panel {
+	border-radius: 7px;	
+}
+
+.column-1 {
+	width: 130px;
+}
+
+#job-grid-up-down {
+	margin-left: 5px;	
+}

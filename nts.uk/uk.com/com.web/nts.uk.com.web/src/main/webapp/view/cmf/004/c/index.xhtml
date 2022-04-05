@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 400, height: 270 };</script>
+			<com:ValidatorScript>
+                    nts.uk.ctx.sys.assist.dom.storage.FileCompressionPassword
+            </com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="cmf004.c.vm.js" />
+      <com:scriptfile path="cmf004.c.start.js" />
+      <com:scriptfile path="cmf004.c.service.js" />
+			<com:stylefile path="cmf004.c.style.css" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="contents-area" class="dialog-content">
+				<div class="div-table">
+					<div class="div-table-row-1"></div>
+					<div class="div-table-row">
+						<div class="div-table-col">
+							<div style="vertical-align: middle" data-bind="ntsFormLabel: {}"
+								id="C1_1" class="label-left inner">#{i18n.getText('CMF004_50')}</div>
+						</div>
+						<div class="div-table-col-big">
+							<div class="flex valign-center fixed-height outer "
+								style="height: 37px;">
+								<div
+									style="display: inline; width: 200px; word-wrap: break-word;"
+									data-bind="text: fileName" id="C1_2" class="label-left cell">
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="div-table-row-1"></div>
+					<div class="div-table-row">
+						<div class="div-table-col">
+							<div data-bind="ntsFormLabel: {}" id="C1_3">#{i18n.getText('CMF004_51')}</div>
+						</div>
+						<div class="flex valign-center fixed-height outer"
+							style="height: 37px;">
+							<div class="inner">
+								<input tabindex="1" id="C1_4"
+									data-bind="ntsTextEditor: { 
+									name: '#[CMF003_73]', 
+									value: password, 
+									constraint: 'FileCompressionPassword',
+									option: {textmode: 'password',width: '180px'},
+									enable: true, readonly: false }" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+      <div id="functions-area-bottom">
+        <button tabindex="2" id="C1_6" class="small"
+          data-bind="click: cancelProcessing">#{i18n.getText('CMF004_54')}</button>
+        <button tabindex="3" id="C1_5" class="large proceed"
+          data-bind="click: processing, enable: $root.errors.isEmpty">#{i18n.getText('CMF004_53')}</button>
+      </div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

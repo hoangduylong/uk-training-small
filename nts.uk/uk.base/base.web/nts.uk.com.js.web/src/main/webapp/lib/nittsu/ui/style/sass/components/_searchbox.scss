@@ -1,0 +1,67 @@
+.nts-searchbbox-wrapper{
+	margin-bottom: 15px;
+	white-space: nowrap;
+	position: relative;
+	
+	// input.ntsSearchBox {
+	//     box-sizing: border-box;
+	//     border: 1px solid #999;
+	//     border-radius: 3px;
+	//     font-size: 14px;
+	//     background-image: url('http://localhost:8080/nts.uk.com.js.web/lib/nittsu/ui/style/stylesheets/images/icons/numbered/1.png');
+	//     background-position: right;
+	//     background-repeat: no-repeat;
+	//     padding: 6px 30px 6px 15px;
+	//     vertical-align: middle;
+	//     transition: width 0.4s ease-in-out; 
+	// }
+	
+	// input.ntsSearchBox:focus {
+    //     box-shadow: 0 0 1px 1px #0096f2;
+	//     outline: none;
+	// }
+	
+	button.search-btn,
+	button.clear-btn {
+		vertical-align: middle;
+		margin-left: 5px;
+		min-width: 80px;
+		padding: 3px;
+	}
+	
+	 
+    button.clear-icon {
+		background-image: url("images/icons/numbered/225.png");
+		background-repeat: no-repeat;
+		background-size: contain;
+		margin-left: 5px;
+		width: 31px;
+		height: 31px;
+		border-style: none;
+		background-color: transparent;
+    }
+  
+	.input-wrapper {
+		position: relative;
+	}
+  
+	#search-icon {
+		background-color: #30cc40;
+		position: absolute;
+		right: 5px;
+		top: 3px;
+		border-radius: 2px;
+		background-image: url("images/icons/numbered/1.png");
+		background-size: contain;
+		width: 25px;
+		height: 25px;
+	}
+
+	div.input-wrapper {
+		display: inline-block;
+	}
+	
+	div{
+	  vertical-align: middle !important;
+	}
+}

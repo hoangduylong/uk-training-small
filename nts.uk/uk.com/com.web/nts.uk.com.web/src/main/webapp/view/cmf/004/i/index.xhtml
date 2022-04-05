@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component">
+<body>
+<ui:composition template="/master/dialog.xhtml">
+    <ui:define name="htmlHead">
+        <script>var dialogSize = {
+            width: 660,
+            height: 420
+        };
+        </script>
+        <com:scriptfile set="IGNITE"/>
+        <com:scriptfile path="cmf004.i.service.js"/>
+        <com:scriptfile path="cmf004.i.vm.js"/>
+        <com:scriptfile path="cmf004.i.start.js"/>
+        <com:stylefile path="cmf004.i.style.css"/>
+
+    </ui:define>
+
+    <ui:define name="content">
+        <div id="contents-area" class="dialog-contents">
+            <div class="content-container">
+                <label class="label" id="I1_1">#{i18n.getText('CMF004_200')}</label>
+                <table id="I2_1">
+                    <tr>
+                        <td id="I2_2" class="bg-yellow" width='150px'><label>#{i18n.getText('CMF004_201')}</label></td>
+                        <td><label id="I2_5" data-bind="text : elapsedTime"/></td>
+                    </tr>
+                    <tr>
+                        <td id="I2_3" class="bg-yellow" width='150px'><label>#{i18n.getText('CMF004_202')}</label></td>
+                        <td width='400px'>
+                            <label id="I2_6" data-bind="text : statusProcess"/>
+                            <label id="I2_7" data-bind="text : numberCategory"/>/<label data-bind="text : numberTotalCategory"/> カテゴリ
+                            <label id="I2_8" data-bind="text : employeeProcess"/>
+                            <label id="I2_9" data-bind="text : datetimeProcess"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="I2_4" class="bg-yellow" width='150px'><label>#{i18n.getText('CMF004_203')}</label></td>
+                        <td width='400px'><label id="I2_10" data-bind="text : numberError"/>件</td>
+                    </tr>
+                </table>
+                <label class="label" id="I3_1">#{i18n.getText('CMF004_204')}</label>
+                <table id="I4_1">
+                    <tr>
+                        <td id="I4_2" class="bg-yellow" width='150px'>
+                            <label>#{i18n.getText('CMF004_205')}</label>
+                        </td>
+                        <td width='400px'>
+                            <label id="I4_4" data-bind="text : recoverySourceCode"/>
+                            <label id="I4_5" data-bind="text : recoverySourceName"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="I4_3" class="bg-yellow" width='150px'>
+                            <label>#{i18n.getText('CMF004_206')}</label>
+                        </td>
+                        <td width='400px'>
+                            <label id="I4_6" data-bind="text : recoveryFile"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!-- I5_1 -->
+        <div id="functions-area-bottom">
+          <com:ko-if bind="!isEnding()">
+            <button id="I5_1" class="large" data-bind="click : breakFollow" tabindex="1">#{i18n.getText('CMF004_207')}</button>
+          </com:ko-if>
+          <com:ko-if bind="isEnding()">
+            <button id="I5_2" class="large" data-bind="click : close" tabindex="2">#{i18n.getText('CMF004_208')}</button>
+          </com:ko-if>
+        </div>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

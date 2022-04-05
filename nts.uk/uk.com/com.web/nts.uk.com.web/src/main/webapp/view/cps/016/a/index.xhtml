@@ -1,0 +1,187 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+<!-- 			<script> 
+ 				var dialogSize = { width: 1290, height: 800 };
+				
+ 			</script> -->
+			<com:ValidatorScript>
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selectionitem.primitive.SelectionItemName
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selectionitem.primitive.IntegrationCode
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selectionitem.primitive.Memo
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selectionitem.primitive.format.SelectionCodeLength
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selectionitem.primitive.format.SelectionNameLength
+					nts.uk.ctx.pereg.dom.person.setting.selectionitem.selectionitem.primitive.format.SelectionExternalCDLength					
+
+			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps016.a.style.css" />
+			<com:scriptfile path="cps016.a.service.js" />
+			<com:scriptfile path="cps016.a.vm.js" />
+			<com:scriptfile path="cps016.a.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<button id="A_BTN_NEW"
+					data-bind="click : registerDataSelectioItem, enable: checkCreate()==false"
+					tabindex="1">#{i18n.getText('CPS016_1')}</button>
+				<button id="A_BTN_REGISTER" class="proceed"
+					data-bind="click : addDataSelectioItem, enable: $root.errors.isEmpty"
+					tabindex="2">#{i18n.getText('CPS016_2')}</button>
+				<button id="A_BTN_COPPY" 
+					data-bind="click: masterCorrLog, visible: isMaCoLog" tabindex="3">マスタ修正ログ</button>
+				<button id="A_BTN_DELETE" class="danger"
+					data-bind="click : removeDataSelectioItem, enable: checkCreate()==false &amp;&amp; $root.errors.isEmpty"
+					tabindex="4">#{i18n.getText('CPS016_3')}</button>
+
+				<button class="goout" id="A_BTN_JUMP"
+					data-bind="click:OpenCPS017, enable: checkCreate()==false"
+					tabindex="5">#{i18n.getText('CPS016_23')}</button>
+
+				<button tabindex="6" id="A_BTN_CPS016_4"
+					data-bind="click: closeDialog, visible: isDialog ">#{i18n.getText('CPS016_4')}</button>
+				
+				<button id="print-button" tabindex="6" data-bind="click: exportExcel">#{i18n.getText('KMK007_4')}</button>
+				
+			</div>
+
+			<div id="contents-area">
+				<div id="left-content"
+					class="relative bg-green caret-right caret-background">
+					<i class="icon icon-searchbox"></i>
+					<div class="cf">
+						<div style="float: left">
+							<div style="width: 395px" tabindex="7"
+								data-bind="ntsSearchBox: {       
+   									searchMode: 'highlight',       
+   									targetKey: 'selectionItemId',        
+   									comId: 'single-list',       
+   									items: listItems,        
+   									selected: perInfoSelectionItem().selectionItemId,       
+   									selectedKey: 'selectionItemId',
+   									placeHolder: '名称で検索…',
+									searchText: '検索',        
+   									fields: ['selectionItemName'],        
+   									mode: 'igGrid'       
+   									}" />
+							<table id="single-list" tabindex="8"
+								data-bind="ntsGridList: {
+									height: 355,
+									options: listItems,
+									primaryKey: 'selectionItemId',
+									columns: [
+						                { headerText: '', key: 'selectionItemId', width: 20 ,hidden:true},
+						                { headerText: '#{i18n.getText('CPS016_7')}', key: 'selectionItemName', width: 340, formatter: _.escape }
+						            ],
+									multiple: false,
+									value: perInfoSelectionItem().selectionItemId}">
+							</table>
+						</div>
+					</div>
+				</div>
+				<div id="right-content" data-bind="with: perInfoSelectionItem">
+					<div id="right-content" class="form-group">
+						<div class="row">
+							<div class="coll"
+								data-bind="ntsFormLabel: {  constraint: 'SelectionItemName',required: true }">#{i18n.getText('CPS016_8')}</div>
+							<input id='selectionItemName' tabindex="9" style="width: 320px;"
+								data-bind="ntsTextEditor: {
+									name: '#[CPS016_10]',
+									value: selectionItemName,
+									constraint: 'SelectionItemName',
+									option: '',
+									required: true,
+									enable: true,
+									readonly: false}" />
+						</div>
+
+						<div class="row" >
+							<div class="coll" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CPS016_11')}</div>
+							<div class="cf" tabindex="10"
+								data-bind="ntsSwitchButton: {
+											options: $parents[0].rulesFirst,
+											optionsValue: 'id',
+											optionsText: 'name',
+											value: characterType,
+											enable: $parents[0].checkCreate }">
+							</div>
+						</div>
+
+						<div class="row">
+							<div class="coll"
+								data-bind="ntsFormLabel: {constraint: 'SelectionCodeLength', required: true }">#{i18n.getText('CPS016_13')}</div>
+							<input style="width: 20px;" tabindex="11"
+								data-bind="ntsNumberEditor :{
+									name: '#[CPS016_14]',
+									value: codeLength,
+									constraint: 'SelectionCodeLength',
+									option: '',
+									required: true,
+									enable: $parents[0].checkCreate,
+									readonly: false}" />
+						</div>
+
+						<div class="row" >
+							<div class="coll"
+								data-bind="ntsFormLabel: {constraint: 'SelectionNameLength', required: true }">#{i18n.getText('CPS016_15')}</div>
+							<input style="width: 20px;" tabindex="12"
+								data-bind="ntsNumberEditor : {
+									name: '#[CPS016_15]',
+									value: nameLength,
+									constraint: 'SelectionNameLength',
+									option: '',
+									required: true,
+									enable: $parents[0].checkCreate,
+									readonly: false}" />
+						</div>
+
+						<div class="row">
+							<div class="coll"
+								data-bind="ntsFormLabel: {constraint: 'SelectionExternalCDLength', required: true }">#{i18n.getText('CPS016_17')}</div>
+							<input style="width: 20px;" tabindex="13"
+								data-bind="ntsNumberEditor : {
+									name: '#[CPS016_18]',
+									value: extraCodeLength,
+									constraint: 'SelectionExternalCDLength',
+									option: '',
+									required: true,
+									enable: $parents[0].checkCreate,
+									readonly: false}" />
+						</div>
+
+						<div class="row">
+							<div class="coll"
+								data-bind="ntsFormLabel: {constraint: 'IntegrationCode',  required: false }">#{i18n.getText('CPS016_19')}</div>
+							<input style="width: 20px;" tabindex="14"
+								data-bind="ntsTextEditor: {
+									name: '#[CPS016_20]',
+									value: integrationCode,
+									constraint: 'IntegrationCode',
+									option: '',
+									required: false,
+									enable: true,
+									readonly: false}" />
+						</div>
+
+						<div class="row">
+							<div class="coll"
+								data-bind="ntsFormLabel: {constraint: 'Memo', required: false }">
+								<label>#{i18n.getText('CPS016_21')}</label>
+							</div>
+							<textarea style="width: 330px; height: 80px;" tabindex="15"
+								data-bind="ntsMultilineEditor: { name: '#[CPS016_22]',value: memo , constraint: 'Memo',required: false}" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

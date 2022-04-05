@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="cli003.a.vm.js" />
+			<com:scriptfile path="cli003.a.start.js" />
+			<com:stylefile path="cli003.a.style.css" />
+		
+		</ui:define>
+
+		<ui:define name="content">
+			 <div id="functions-area">
+				<label class="navigation-label"></label>
+			</div>
+			<div id="contents-area">
+				<div class="container">
+					<div>
+						<div id="titel_a">
+				   				<p>#{i18n.getText('CLI003_1')}</p>		
+				         </div>
+						<div class="image-left">
+							<button id="buttonToScreen-b" class="to-screen-b"
+							data-bind="click : func_Screen_b" tabindex="1"></button>
+							<button id="buttonToScreen-g" class="to-screen-g"
+								data-bind="click : func_Screen_g" tabindex="2"></button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

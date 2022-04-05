@@ -1,0 +1,97 @@
+div.ntsLabel,
+label.ntsLabel,
+div.form-label,
+label.form-label {
+	outline: none;
+	position: relative;
+	display: inline-block;
+	padding-right: 8px;
+
+	& > span.text {
+		color: #808080;
+		line-height: 32px;
+		display: inline-block;
+		font-size: 11px;
+		font-weight: 500;
+
+		&::after {
+			content: "*";
+			top: -3px;
+			color: #f00;
+			display: none;
+			position: absolute;
+		}
+	}
+
+	& > svg {
+		display: none;
+		margin-left: 16px;
+	}
+
+	&.required {
+		& > span.text {
+			position: relative;
+
+			&::after {
+				display: inline;
+			}
+		}
+	}
+
+	&.has-constraint {
+		& > svg {
+			display: inline;
+		}
+	}
+}
+
+body {
+	& > div.constraint {
+		position: fixed;
+		white-space: nowrap;
+		background-color: #fbfcff;
+		border: 1px solid #dcdde4;
+		border-radius: 2px;
+		z-index: 9;
+		box-sizing: border-box;
+
+		& > span {
+			line-height: 24px;
+			padding: 0 10px;
+			display: block;
+			position: relative;
+
+			&::after {
+				content: "";
+				display: block;
+				width: 8px;
+				height: 8px;
+				background-color: #fbfcff;
+				border: 1px solid #dcdde4;
+				transform: rotate(45deg);
+				position: absolute;
+				left: calc(50% - 8px);
+			}
+		}
+
+		&.below {
+			& > span {
+				&::after {
+					border-right: 0;
+					border-bottom: 0;
+					top: -5px;
+				}
+			}
+		}
+
+		&:not(.below) {
+			& > span {
+				&::after {
+					border-top: 0;
+					border-left: 0;
+					bottom: -5px;
+				}
+			}
+		}
+	}
+}

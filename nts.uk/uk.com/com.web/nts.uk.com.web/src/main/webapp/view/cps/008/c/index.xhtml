@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script type='text/javascript'>
+				var dialogSize = {
+					width : 500,
+					height : 255
+				};
+			</script>
+			<com:ValidatorScript>
+					nts.uk.ctx.pereg.dom.person.layout.LayoutCode
+					nts.uk.ctx.pereg.dom.person.layout.LayoutName
+			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps008.c.style.css" />
+			<com:scriptfile path="cps008.c.service.js" />
+			<com:scriptfile path="cps008.c.vm.js" />
+			<com:scriptfile path="cps008.c.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div data-bind="with: layout">
+					<table class="table_content">
+						<colgroup>
+							<col width="100px" />
+							<col width="120px" />
+							<col width="260px" />
+						</colgroup>
+						<tr>
+							<td class="row_1">
+								<div>#{i18n.getText('CPS008_32')}</div>
+							</td>
+							<td class="row_1">
+								<div data-bind="ntsFormLabel: {}">
+									#{i18n.getText('CPS008_33')}</div>
+							</td>
+							<td class="row_1"><span data-bind="text: code"></span> <span
+								style="margin-left: 24px" data-bind="text: name"></span></td>
+						</tr>
+						<tr>
+							<td class="row_2">
+								<div>#{i18n.getText('CPS008_34')}</div>
+							</td>
+							<td class="row_2">
+								<div
+									data-bind="ntsFormLabel: {constraint: ['LayoutCode','LayoutName'], required: true}">
+									#{i18n.getText('CPS008_35')}</div>
+							</td>
+							<td class="row_2">
+								<div>
+									<div class="input_002 input_code">
+										<input id="C_INP_CODE" style="width: 80px"
+											data-bind="ntsTextEditor: {
+											name: '#[CPS008_12]',
+											value: newCode,
+											constraint: 'LayoutCode',
+											required:true,
+											enable: true}" />
+									</div>
+									<div class="input_002 input_name">
+										<input id="C_INP_NAME" style="width: 180px"
+											data-bind="ntsTextEditor: {
+											name: '#[CPS008_13]',
+											value: newName,
+											constraint: 'LayoutName',
+											required:true,
+											enable: true
+											}" />
+									</div>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+
+				<div style="margin-left: -10px"
+					data-bind="ntsCheckBox: { checked: overrideMode, enable: true, text: '#{i18n.getText('CPS008_43')}' , style: 'warnpanel'}"></div>
+
+				<div style="margin-top: 10px">
+					<button class="x-large proceed" id="BTN_DECIDE"
+						data-bind="click : coppyBtn">#{i18n.getText('CPS008_36')}</button>
+					<button id="BTN_CANCEL" data-bind="click : close">#{i18n.getText('CPS008_37')}</button>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

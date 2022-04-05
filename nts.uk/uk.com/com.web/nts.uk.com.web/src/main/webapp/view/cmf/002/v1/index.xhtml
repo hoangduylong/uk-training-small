@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 385, height: 540 };</script>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="../share/model.js" />
+			<com:scriptfile path="cmf002.v1.vm.js" />
+			<com:scriptfile path="cmf002.v1.start.js" />
+			<com:scriptfile path="cmf002.v1.service.js" />
+			<com:stylefile path="cmf002.v1.style.css" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div class="contents-area dialog-content">
+				<div id="V21" class="dialog-title"
+					data-bind="ntsFormLabel: {required : true }">#{i18n.getText('CMF002_269')}</div>
+				<div id="V3" class="table-contents-area">
+					<div id="V3_1" tabindex="1"
+						data-bind="ntsPanel:{width: '280px', height: '300px', direction: 'none', showIcon: true, visible: true}">
+						<div
+							data-bind="ntsSearchBox: {
+							searchMode: 'highlight', 
+							targetKey: 'categoryId', 
+							comId: 'V3_2', 
+							items: listCategoryItem, 
+							selected: selectedCategoryCode,  
+							selectedKey: 'categoryId', 
+							fields: ['categoryName'], 
+							mode: 'igGrid'}" 
+							/>
+
+						<table id="V3_2" class = "auto-increment"
+							data-bind="ntsGridList: {
+								height: 300,
+								width: 280,
+
+								name:'#{i18n.getText('CMF002_353')}',
+								options: listCategoryItem,
+		                        optionsValue: selectedCategoryCode,
+								primaryKey: 'categoryId',
+									columns: [
+					                { headerText: '#{i18n.getText('CMF002_271')}', key: 'categoryName', width: 180, formatter: _.escape },
+					                { headerText: '#{i18n.getText('CMF002_271')}', key: 'categoryId', hidden: true  }
+					            ],
+								multiple: false,
+								value: currentCode
+							}">
+						</table>
+					</div>
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<button id="V20_1" class="x-large proceed " tabindex="2"
+					data-bind="click: selectCategoryItem">#{i18n.getText('CMF002_272')}</button>
+				<button id="V20_2" class="large" tabindex="3"
+					data-bind="click: cancelSelectCategoryItem">#{i18n.getText('CMF002_273')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

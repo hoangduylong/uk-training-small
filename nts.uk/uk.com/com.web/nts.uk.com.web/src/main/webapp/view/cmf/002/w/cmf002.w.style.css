@@ -1,0 +1,20 @@
+.cmf002-w-content {
+  margin: 20px;
+}
+.cmf002-w-main-btn {
+  min-width: 120px !important;
+}
+.cmf002-w-switch-btn .nts-switch-button {
+  min-width: 80px;
+}
+.cmf002-w-input {
+  width: 50px;
+}
+.div-line {
+	margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+.column-label {
+	width: 100px;
+}

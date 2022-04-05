@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+  <ui:composition template="/master/dialog.xhtml">
+    <ui:define name="htmlHead">
+      <script> var dialogSize = { width: 630, height: 600, }; </script>
+      <com:scriptfile set="IGNITE" />
+      <com:scriptfile path="cmm048.e.vm.js" />
+      <com:stylefile path="cmm048.e.style.css" />
+      <com:scriptfile path="/lib/generic/cropper/cropper.js" of="/nts.uk.com.js.web" />
+      <com:stylefile path="/lib/generic/cropper/cropper.css" of="/nts.uk.com.js.web" />
+    </ui:define>
+    <ui:define name="content">
+      <div id="contents-area">
+        <label id="E1">#{i18n.getText('CMM048_100')}</label>
+        <div id="upload" data-bind="ntsImageEditor: {
+          editable: true, 
+          accept: ['.bmp', '.png', '.jpg', '.jpeg'] ,
+          height: 250,
+          freeResize : false,
+          resizeRatio : 1,
+        }" />
+      </div>
+      <div id="functions-area-bottom">
+        <button id="E6" class="x-large proceed" tabindex="5" data-bind="click: upload">
+          #{i18n.getText('CMM048_102')}
+        </button>
+        <button id="E7" class="normal" tabindex="6" data-bind="click: closeDialog">
+          #{i18n.getText('CMM048_103')}
+        </button>
+      </div>
+    </ui:define>
+  </ui:composition>
+</body>
+</html>

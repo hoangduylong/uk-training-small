@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:com="http://xmlns.jcp.org/jsf/component"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+  <body>
+    <ui:composition template="../../../../master/dialog.xhtml">
+      <ui:define name="htmlHead">
+        <script>
+          var dialogSize = {
+            width: 1200,
+            height: 550,
+          };
+        </script>
+        <com:scriptfile set="IGNITE" />
+        <com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web" />
+
+        <com:stylefile path="cmm024.f.main.css" />
+        <com:scriptfile path="../a/cmm024.a.common.js" />
+        <com:scriptfile path="cmm024.f.vm.js" />
+      </ui:define>
+      <ui:define name="content">
+        <div id="contents-area" class="cmm024-f">
+          <div class="row">
+            <div class="col-left">
+              <div id="tree-grid"></div>
+            </div>
+            <div class="col-right">
+              <div class="row row-title">
+                <div class="col-50 left">
+                  <div data-bind="ntsFormLabel: {}">
+                    #{i18n.getText('CMM024_53')}
+                  </div>
+                </div>
+                <div class="col-50 right">
+                  <div data-bind="ntsFormLabel: {}">
+                    #{i18n.getText('CMM024_54')}
+                  </div>
+                </div>
+              </div>
+              <div class="swap-list">
+                <div
+                  id="swap-list"
+                  class="ntsSwapList"
+                  data-bind="ntsSwapList: {
+                            showSearchBox: { showLeft : true, showRight: false},
+                            height: 330,
+                            dataSource: itemsSwap,
+                            disableMoveButton: false,
+                            primaryKey: 'employeeCode',
+                            columns: columns,
+                            value: currentCodeListSwap,
+                            searchMode: 'filter',
+                            searchCriterion: ['employeeCode'],
+                            draggable: false,
+                            multipleDrag: { left: true, right: false },
+                            innerDrag: { left: false, right: false },
+                            outerDrag: { left: false, right: false }
+                        }"
+                ></div>
+                <!-- Updown Button -->
+                <div
+                  id="up-down"
+                  data-bind="ntsUpDown: {
+                    targetSource: currentCodeListSwap,
+                    primaryKey: 'code',
+                    comId: '#swap-list',
+                    type: 'swap',
+                    swapTarget: 'right'
+                }"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="functions-area-bottom" class="btn-click">
+          <button
+            tabindex="4"
+            data-bind="click: proceed"
+            class="proceed large"
+          >
+            #{i18n.getText('CMM024_28')}
+          </button>
+          <button tabindex="5" data-bind="click: cancel">
+            #{i18n.getText('CMM024_29')}
+          </button>
+        </div>
+      </ui:define>
+    </ui:composition>
+  </body>
+</html>

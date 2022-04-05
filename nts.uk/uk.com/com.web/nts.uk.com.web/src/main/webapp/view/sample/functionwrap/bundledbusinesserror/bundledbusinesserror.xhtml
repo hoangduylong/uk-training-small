@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 300, height: 200 };</script>
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+            </ui:define>
+            
+            <ui:define name="content">
+            	<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>BundledBusinessException Guide</h1>
+						
+						<h2>This page will show guide for implement and show BundledBusinessException.</h2>
+						
+						<h3>Below are steps for it:</h3>
+						<ul>
+							<li><h4>Initiate BundledBusinessException object</h4></li>
+							<li><h4>Add exception</h4></li>
+							<li><h4>Throw BundledBusinessException object</h4></li>
+							<li><h4>Show dialog</h4></li>
+						</ul>
+						
+						<h3>Below are sample:</h3>
+						
+						<div class="feature-box">
+							<div class="header"><h3>In Java code</h3></div>
+							<div class="content">
+<pre><![CDATA[@Path("ctx/basic/test")
+@Produces("application/json")
+public class EraWebServices extends WebService {
+
+	@POST
+	@Path("throwerror")
+	public void testBundledBusiness(){
+		BundledBusinessException exceptions = BundledBusinessException.newInstance();
+		for (int i = 0; i < 20; i++) {
+			exceptions.addMessage("Error Test " + i);
+		}
+		
+		exceptions.throwExceptions();
+	}
+}]]></pre>
+							</div>
+						</div>
+						
+						<div class="feature-box">
+							<div class="header"><h3>In Typescript code</h3></div>
+							<div class="content">
+<pre><![CDATA[nts.uk.request.ajax("com", "ctx/basic/test/throwerror").done(() => {
+    console.log('DONE!!');
+}).fail(function(res){
+    nts.uk.ui.dialog.bundledErrors(res); 
+});
+]]></pre>
+							</div>
+						</div>
+
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

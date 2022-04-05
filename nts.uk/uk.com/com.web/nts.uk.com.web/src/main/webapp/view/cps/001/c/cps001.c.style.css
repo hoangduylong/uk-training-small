@@ -1,0 +1,74 @@
+#functions-area div.ntsControl:nth-child(1) {
+	margin-left: 70px;
+}
+
+#contents-area {
+	padding: 25px;
+}
+
+#contents-area>.left-area, #contents-area>.right-area {
+	float: left;
+}
+
+#contents-area>.left-area {
+	width: 350px;
+}
+
+#contents-area>.right-area {
+	padding-left: 45px;
+	padding-top: 15px;
+}
+
+#contents-area>.left-area>div {
+	padding: 15px;
+}
+
+#contents-area .nts-searchbbox-wrapper {
+	width: 100% !important;
+	box-sizing: border-box;
+}
+
+.nts-searchbbox-wrapper div.input-wrapper {
+	max-width: 198px;
+}
+
+#contents-area .form-group {
+	margin-bottom: 25px;
+}
+
+#contents-area .form-group .form-label {
+	min-width: 100px;
+}
+
+.ui-iggrid .ui-iggrid-tablebody .ui-state-hover, .ui-iggrid .ui-iggrid-tablebody .ui-state-active,
+	.ui-iggrid .ui-iggrid-tablebody td {
+	border-top: none;
+	border-right: none;
+	border-left: none;
+	line-height: 22px;
+}
+
+.ui-iggrid table tr th.ui-iggrid-header {
+	border-right: none;
+	border-left: none;	
+}
+
+
+.ntsControl .nts-input {
+	width: 115px !important;
+}
+
+.reasonLable{
+	vertical-align: top;
+}
+
+.reason {
+    display: inline-block;
+    max-width: 300px;
+    margin-top: 8px;
+}
+
+#A_INP_NAME {
+	text-overflow: ellipsis;
+	width: 260px !important;
+}	

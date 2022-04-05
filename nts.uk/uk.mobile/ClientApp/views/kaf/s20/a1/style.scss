@@ -1,0 +1,25 @@
+.kafs20a1 {
+    label{
+        color: red
+    }
+}
+.icon-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+}
+.name{
+    display: block;
+    height: 25px;
+}
+.btn{
+    color: black
+}
+.btn-wrap-text{
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

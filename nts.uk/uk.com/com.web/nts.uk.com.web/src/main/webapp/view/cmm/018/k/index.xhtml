@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 1100, height: 570 };</script>
+			<com:stylefile path="/view/ccg/share/style.css" of="/nts.uk.com.web" />
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.service.js"
+				of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.vm.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="../shr/cmm018.shr.vmbase.js" />
+			<com:scriptfile path="cmm018.k.service.js" />
+			<com:scriptfile path="cmm018.k.vm.js" />
+			<com:scriptfile path="cmm018.k.start.js" />
+			<com:stylefile path="cmm018.k.main.css" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area" style="margin-left: 5px">
+				<div class="contentHeader">
+					<!--K1_1-->
+					<div class="titleAppType" data-bind="ntsFormLabel: {required: false }">#{i18n.getText('CMM018_47')}</div>
+					<!--K1_2-->
+					<label id="appType" data-bind="text: appType"></label>
+					<!--K1_3-->
+					<div id="typeSetting" tabindex="1"
+						 data-bind="ntsSwitchButton: {
+									options: typeSetting,
+									optionsValue: 'code',
+									optionsText: 'name',
+									value: selectTypeSet,
+									name: '#[CMM018_11]',
+									enable: true }"></div>
+				</div>
+
+				<!-- Tree List WORKPLACE -->
+				<div style="display: inline-flex;" data-bind="if: enableListWp">
+					<!--K1_6 職場リスト-->
+					<div class="leftExtend" >
+						<div id="tree-grid" style="width: 330px"></div>
+					</div>
+					<!-- LIST APPROVER -->
+					<div class="settingApprover">
+						<!--K2_1-->
+						<div class="titleSelect" data-bind="ntsFormLabel: {required: false, text: k2_1 }"></div>
+						<!--選択された承認者 -->
+						<!--K2_14-->
+
+						<div class="approverSelect k2-14" data-bind="ntsFormLabel: {required: false, text: k2_2 }, visible: selectTypeSet() == 0"></div>
+						<div class="approverSelect" style="margin-left: 70px" data-bind="ntsFormLabel: {required: false, text: k2_2 }, visible: selectTypeSet() != 0"></div>
+						<br />
+						<!-- List Approver -->
+						<!-- TH SETTING CA NHAN -->
+						<div class="top-8" data-bind="if: selectTypeSet() == 0">
+						<div style="display: inline-flex;margin-top: 13px">
+							<div id="swap-list"
+								data-bind="ntsSwapList: { 
+											showSearchBox: { showLeft : true, showRight: false},
+											height: 325,
+											dataSource: employeeList,
+											disableMoveButton: false,
+											primaryKey: 'code',
+											columns: columns,
+											value: approverList,
+											searchMode: 'filter',
+											searchCriterion: ['code','name'],
+											draggable: true,
+											multipleDrag: { left: true, right: false },
+											innerDrag: { left: false, right: true },
+											outerDrag: { left: true, right: true },
+											itemsLimit: { right: 5}
+										}"></div>
+							<div id="up-down" tabindex="4"
+								data-bind="ntsUpDown: {
+										targetSource: approverList,
+										primaryKey: 'code',
+										comId: '#swap-list',
+										type: 'swap',
+										swapTarget: 'right'
+									}"></div>
+						</div>
+						<br />
+						<!-- Setting chon 1ng hoac toan bo -->
+						<div style="display: flex; float: right; margin-right: 134px; margin-top: -100px; margin-bottom: 5px">
+							<!--K2_10-->
+							<div class="titleSelected"
+								data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CMM018_27')}</div>
+							<!--K2_11-->
+							<div tabindex="6" data-bind="ntsSwitchButton: {
+												options: formSetting,
+												optionsValue: 'code',
+												optionsText: 'name',
+												name: '#[CMM018_27]',
+												value: selectFormSet,
+												enable: true }"></div>
+						</div>
+						<!-- Setting ng quan trong -->
+						<div style="float: right; margin-right: 100px; margin-top: -40px; margin-bottom: 5px">
+							<!--K2_20-->
+							<div style="vertical-align: top;"
+								data-bind="ntsFormLabel: {required: false }">#{i18n.getText('CMM018_64')}</div>
+							<!--K2_21 確定者の選択-->
+							<div id="combo-box"
+								data-bind="ntsComboBox: {options: itemListCbb,
+														optionsValue: 'id',
+														visibleItemsCount: 5,
+														value: selectedCbbCode,
+														optionsText: 'name',
+														editable: false,
+														dropDownAttachedToBody: true,
+														enable: cbbEnable,
+														columns: [
+															{ prop: 'name', length: 10 },
+														]}"></div>
+	
+						</div>
+					</div>
+						<!-- TH SETTING PHONG BAN CHI DINH -->		
+						<div class="top-16" data-bind="if: selectTypeSet() == 2">
+							<div style="display: inline-flex;margin-top: 5px;">
+							<div  style="margin-top: 15px;">
+								<table id="lst-spec-L" data-bind="ntsGridList: {								
+									dataSource: lstSpec1,
+									primaryKey: 'code',
+									columns: columns3,
+									multiple: false,
+									value: selectSpec1,
+									rows: 12
+								}"></table>
+							</div>
+							<div style="width: 75px; margin-top: 100px; margin-left: 10px">
+								<div>
+								<button class="swap-btn" data-bind="click: nextItem"><i class="img-icon icon-next label"></i></button>
+								</div>
+								<div style="margin-top: 10px">
+								<button class="swap-btn" data-bind="click: prevItem"><i class="img-icon icon-prev label"></i></button>
+								</div>
+							</div>
+							<div  style="margin-top: 15px; margin-left: 10px;">
+								<table id="lst-spec-R" data-bind="ntsGridList: {								
+									dataSource: lstSpec2,
+									primaryKey: 'code',
+									columns: columns3,
+									multiple: false,
+									value: selectSpec2,
+									rows: 8
+								}"></table>
+								<!-- Setting chon 1ng hoac toan bo -->
+								<div style="margin-top: 65px; display: flex">
+								<!--K2_10-->
+								<div class="titleSelected"
+									data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CMM018_27')}</div>
+								<!--K2_11-->
+								<div tabindex="6" data-bind="ntsSwitchButton: {
+													options: formSetting,
+													optionsValue: 'code',
+													optionsText: 'name',
+													name: '#[CMM018_27]',
+													value: selectFormSetS,
+													enable: true }"></div>
+							</div>
+							</div>	
+							</div>
+						</div>
+					</div>
+					</div>
+					
+				<!-- TH GROUP -->
+				<div data-bind="if: selectTypeSet() == 1" style="display: flex; margin-top: -10px">
+					<!-- List ten group -->
+					<div>
+						<!--K2_1-->
+						<div class="titleSelect" data-bind="ntsFormLabel: {required: false }"
+									style="margin-bottom: 10px">#{i18n.getText('CMM018_110')}</div>
+						<table id="lst-group-L1" data-bind="ntsGridList: {								
+												dataSource: lstGroup,
+												primaryKey: 'code',
+												columns: columns2,
+												multiple: false,
+												value: selectG,
+												rows: 12
+												}">
+						</table>
+					</div>
+					<div id="prev-next-button">
+						<div>
+							<button class="swap-btn" data-bind="click: nextItem"><i class="img-icon icon-next label"></i></button>
+						</div>
+						<div style="margin-top: 10px">
+							<button class="swap-btn" data-bind="click: prevItem"><i class="img-icon icon-prev label"></i></button>
+						</div>
+					</div>
+					<!-- List da chon -->
+
+					<div id="selected-approver" style="margin-left: 23px;">
+						<!--選択された承認者 -->
+						<!--K2_14-->
+						<div data-bind="ntsFormLabel: {required: false }" style="display: block;">#{i18n.getText('CMM018_111')}</div>
+						<div data-bind="ntsFormLabel: {required: false }">#{i18n.getText('CMM018_102')}</div>
+							<div style="margin-top: 10px">
+								<table id="lst-group-R1" data-bind="ntsGridList: {
+									height: 50,
+									dataSource: lstGroup1,
+									primaryKey: 'code',
+									columns: columns2,
+									multiple: false,
+									value: selectG1,
+									rows: 1
+								}"></table></div>
+							<div data-bind="ntsFormLabel: {required: false }" style="margin-top: 20px;">#{i18n.getText('CMM018_103')}</div>
+							<div  style="margin-top: 10px;">
+								<table id="lst-group-R2" data-bind="ntsGridList: {								
+									dataSource: lstGroup2,
+									primaryKey: 'code',
+									columns: columns2,
+									multiple: false,
+									value: selectG1,
+									rows: 4
+								}"></table>
+							</div>
+							<!-- Setting chon 1ng hoac toan bo -->
+							<div style="margin-top: 15px; display: flex">
+							<!--K2_10-->
+							<div class="titleSelected"
+								data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CMM018_27')}</div>
+							<!--K2_11-->
+							<div tabindex="6"
+								data-bind="ntsSwitchButton: {
+												options: formSetting,
+												optionsValue: 'code',
+												optionsText: 'name',
+												name: '#[CMM018_27]',
+												value: selectFormSetG,
+												enable: true }"></div>
+						</div>
+					</div>
+					<div id="swap-up-down1" data-bind="ntsUpDown: {
+									targetSource: lstGroup2,
+									primaryKey: 'code',
+									comId: '#lst-group-R2',
+									type: 'grid'
+								}"
+							style="margin-top: 108px;margin-left: 5px;"></div>
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<!-- K2_22 -->
+				<button id="execution" tabindex="9" class="proceed x-large"
+					data-bind="click: submitClickButton, enable: $root.errors.isEmpty">#{i18n.getText('CMM018_44')}</button>
+				<!-- K2_23 -->
+				<button id="cancel" tabindex="10" data-bind="click: closeDialog">#{i18n.getText('CMM018_45')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

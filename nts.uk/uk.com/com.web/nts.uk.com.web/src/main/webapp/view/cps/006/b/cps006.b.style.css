@@ -1,0 +1,79 @@
+@import url("base.css");
+
+.line_col_1 {
+	width: 150px;
+	float: left;
+}
+
+.line_col_2 {
+	width: 300px;
+	float: left;
+}
+
+.national_string {
+	margin-right: 10px;
+	float: left;
+}
+
+.line_col_1_sel {
+	width: 150px;
+	float: left;
+}
+
+.line_col_2_sel {
+	width: 350px;
+	float: left;
+}
+
+#content-left {
+	padding: 15px;
+	width: 350px !important;
+	height: 450px !important;
+}
+
+#checked {
+	margin-bottom: 5px !important;
+}
+
+.div_grid {
+	float: left;
+	clear: both;
+	width: 100%;
+}
+
+#content-right {
+	margin-left: 20px;
+	float: left;
+	width: 630px;
+}
+
+.line_col_2>span {
+	line-height: 37px;
+}
+
+.national_string>span {
+	line-height: 37px;
+}
+
+#content_main {
+	width: 1050px;
+}
+
+#B1_3 tr>td:NTH-CHILD(2) {
+	text-align: center;
+}
+
+#B_3 {
+	margin-left: 130px !important;
+}
+
+#B2_44{
+	margin-left: -95px;
+}
+.currency:after {
+	content: '¥';
+}
+
+input.ntsSearchBox.nts-editor.ntsSearchBox_Component{
+	width: 215px !important;
+}

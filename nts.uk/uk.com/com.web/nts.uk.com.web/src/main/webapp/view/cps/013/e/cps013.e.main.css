@@ -1,0 +1,61 @@
+table.info-table {border-collapse: collapse; min-width:550px;}
+table.info-table td {border: 1px solid #CCC; padding:2px 7px;}
+table.info-table td.fix-width {width: 150px; background:#CFF1A5; padding:2px;}
+
+.process-name {display:inline-block; width: 150px;}
+.process-count {display:inline-block; width: 80px;}
+.process-error {display:inline-block; width: 60px;}
+
+.setting-info {display:inline-block; margin-bottom: 3px;}
+
+.log-selection {min-height: 35px;}
+
+.place-holder {width: 762px;  background-color: #F3F3F3;}
+
+.disable-button {background-color:#bebebe;}
+
+.process-status {
+    width: 55px;
+}
+
+#contents-area{
+	margin-left: 15px;
+	overflow: hidden;
+}
+
+div#contents-area {
+	overflow: hidden;
+}
+
+.htm {
+	overflow: hidden;
+}
+
+.open-dialog-i{
+    position: absolute;
+    margin-top: -17px;
+    font-size: 75% !important;
+    height: 20px !important;
+}
+
+.buttonCancel{
+	float : right;
+	margin-right: 25px;
+}
+.buttoncloseDialogNoError{
+	float : right;
+	margin-right: 25px;
+}
+
+.jumpButton{
+	display: inline-block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 270px;
+} 
+
+#master-wrapper div#contents-area {
+    overflow-y: hidden;
+}
+

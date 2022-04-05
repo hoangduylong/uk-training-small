@@ -1,0 +1,47 @@
+#left-content {  float: left; margin-top: -15px ; margin-left: 25px; }
+#right-content {margin-left:30px; float: left; margin-top: 11px; width: 703px;}
+#A5_3{ margin-left: 10px; margin-right: 10px;}
+#A5_14{ width : 35px; margin-left: -35px; margin-top: 75px;}
+#A5_15{ margin-left: -108px; margin-top: 35px;}
+#A5_13{ margin-left: -7px; margin-top: 47px; width : 80px;}
+#A5_7{margin-left: -160px ; float: left; margin-top: 5px;}
+#A5_9{margin-left: 50px ; float: left; margin-top: 5px; width : 30px; margin-right: 10px;}
+.ntsSearchBox.nts-editor.ntsSearchBox_Component {width: 186px !important ; margin-left:30px;}
+#A5_2{width: 230px !important;}
+
+
+.dot {
+  /* height: 250px;
+  width: 250px;
+  border-radius: 50%;
+  display: inline-block;
+  border:1px solid lightblue;  */
+      display: block;
+    position: relative;
+    top: 0px;
+    left: 120px;
+    background: #fff;
+    width: 30.5em;
+    height: 30.5em;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: thin;
+    border-color: #bfbfbf;
+    margin: 0em;
+}
+
+#radius {
+     height: 215px;
+    width: 0px;
+    border: 1px solid #bfbfbf;
+    left: 50%;
+    position: absolute;
+}
+
+#grid2_container{
+	height: 317px !important;
+}
+
+.tab-content-1 {
+  margin-bottom: 5px;
+}

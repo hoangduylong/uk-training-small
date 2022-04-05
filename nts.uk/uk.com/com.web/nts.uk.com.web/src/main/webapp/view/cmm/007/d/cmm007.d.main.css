@@ -1,0 +1,17 @@
+.plan_year_holiday {
+	width: 960px;
+	margin-top: 40px;
+}
+
+.plan_year_holiday>p {
+	margin-left: 35px;
+	margin-bottom: 40px;
+}
+
+.plan_year_holiday>.table_content {
+	margin-left: 55px;
+}
+
+.plan_year_holiday>.table_content td {
+	padding-bottom: 20px;
+}

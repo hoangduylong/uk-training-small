@@ -1,0 +1,71 @@
+.kdw003a {
+    .mgrid-disable{
+        background-color: #CCC;
+        color: #333;
+    }
+    .mgrid-lock{
+        background-color: #CCC;
+    }
+    .mgrid-reflect{
+        background-color: #BFEA60;
+    }
+    .mgrid-manual-edit-other{
+        background-color: #CEE6FF;
+    }
+    .mgrid-manual-edit-target{
+        background-color: #94B7FE;
+    }
+    .mgrid-calc{
+        background-color: #F69164;
+    }
+    .mgrid-alarm{
+        background-color: #F6F636;
+    }
+    .mgrid-error{
+        background-color: #FD4D4D;
+    }
+    .mgrid-hide{
+        display: none;
+    }
+    .color-sunday {
+        color: #FF2D2D !important;
+    }   
+    .color-saturday {
+        color: #0086EA !important;
+    }
+    .button-active {
+        font-weight: bold;
+    }
+    .button-deactive {
+        font-weight: bold;
+        color: #CCC;
+    }
+    .table-custom {
+        th {
+            vertical-align: middle;
+        }
+        td {
+            vertical-align: middle;
+            //height: 42px;
+        }
+    }
+    .currency-symbol {
+        span:before {
+            content: '\00a5';
+            top: 6px;
+            color: #999;
+            padding-right: 4px;
+        }       
+    }
+    .crop-text {
+        -webkit-line-clamp: 2;
+        text-overflow: ellipsis;
+        word-wrap: break-word;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+    }
+    .row-style {
+        text-align: right;
+    }
+}

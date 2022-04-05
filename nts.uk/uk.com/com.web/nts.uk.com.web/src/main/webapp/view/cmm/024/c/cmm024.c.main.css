@@ -1,0 +1,27 @@
+.cmm024-c {
+    padding: 2rem !important;
+}
+
+.cmm024-c .row {
+    display: flex;
+    align-items: center;
+    margin: 7px 0;
+}
+.cmm024-c .row:last-child {
+    align-items: flex-start;
+}
+.cmm024-c .row .col-left {
+    width: 150px;
+}
+.cmm024-c .row .col-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+.cmm024-c .row .col-right .ntsRadioBox {
+    display: block;
+    margin: 5px 0;
+}
+.cmm024-c .end-date-label label {
+    padding-left: 15px;
+}

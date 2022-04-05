@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:com="http://xmlns.jcp.org/jsf/component">
+
+<body>
+    <ui:composition>
+        <!-- H:データ復旧サマリ-->
+        <div class="contentH fixed-flex-layout" data-bind="with: dataRecoverySummary">
+            <div class="fixed-flex-layout-left">
+                <!--E3_1 保存設定読込ラベル-->
+                <div class="div-line" style="margin: 0 0 20px 0;">
+                    <!--H3_1 処理説明-->
+                    <label>#{i18n.getText('CMF004_170')}</label>
+                </div>
+                <div class="div-line">
+                    <!--H3_2 復旧元ファイルラベル -->
+                    <div class="div-column-1" data-bind="ntsFormLabel: {}" style="width: 100px">#{i18n.getText('CMF004_171')}</div>
+                    <!--H3_3 復旧ファイル-->
+                    <span class="limited-label" style="width:400px;" data-bind="text: $vm.recoverySourceFile" />
+                </div>
+                <div class="div-line">
+                    <!--H3_4 コード名称ラベル-->
+                    <div class="div-column-1" data-bind="ntsFormLabel: {}" style="width: 100px">#{i18n.getText('CMF004_172')}</div>
+                    <!--H3_5 コード-->
+                    <label data-bind="text: $vm.recoverySourceCode" />
+                    <!--H3_6 保存セット名称-->
+                    <label data-bind="text: $vm.recoverySourceName" />
+                </div>
+                <div class="div-line">
+                    <!--H3_7 補足説明ラベル-->
+                    <div class="div-column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_83')}</div>
+                    <!--H3_8 補足説明-->
+                    <label data-bind="text: $vm.supplementaryExplanation" />
+                </div>
+                <div class="div-line">
+                    <!--H3_9 テーブル設定状況-->
+                    <div data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_174')}</div>
+                </div>
+                <div class="div-line flex">
+                    <!--H4_1 カテゴリ一覧-->
+                    <table id="H4_1">
+                        <colgroup>
+                            <col width="30px" />
+                            <col width="120px" />
+                            <col width="70px" />
+                            <col width="100px" />
+                            <col width="100px" />
+                            <col width="90px" />
+                            <col width="100px" />
+                        </colgroup>
+                        <thead>
+                            <tr>
+                                <th class="ui-widget-header" />
+                                <th class="ui-widget-header">#{i18n.getText('CMF004_180')}</th>
+                                <th class="ui-widget-header">#{i18n.getText('CMF004_470')}</th>
+                                <th class="ui-widget-header">#{i18n.getText('CMF004_181')}</th>
+                                <th class="ui-widget-header">#{i18n.getText('CMF004_182')}</th>
+                                <th class="ui-widget-header">#{i18n.getText('CMF004_183')}</th>
+                                <th class="ui-widget-header">#{i18n.getText('CMF004_184')}</th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: recoveryCategoryList">
+                            <tr>
+                                <td class="halign-right row-number"><label data-bind="text: rowNumber" /></td>
+                                <td><label class="limited-label" data-bind="text: categoryName" /></td>
+                                <td><label class="limited-label" data-bind="text: $vm.getSystemType(systemType())"></label></td>
+                                <td><label class="limited-label"
+                                        data-bind="text: $vm.getTextRecovery(recoveryPeriod)" /></td>
+                                <td class="halign-center"><label data-bind="text: startOfPeriod" /></td>
+                                <td class="halign-center"><label data-bind="text: endOfPeriod" /></td>
+                                <td><label class="limited-label" data-bind="text: recoveryMethod" /></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <!--H6_1 復旧方法-->
+                    <div class="div-column-screenH" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_185')}</div>
+                    <!--H6_2 復旧方法説明1-->
+                    <label data-bind="text: $vm.recoveryMethodDescription1" />
+                </div>
+                <div class="div-line">
+                    <!--H6_3 復旧方法説明2-->
+                    <div style="margin-left: 95px; width: 503px">
+                        <span class="limited-label" data-bind="text: $vm.recoveryMethodDescription2"></span>
+                    </div>
+                </div>
+                <div>
+                    <div class="flex div-line">
+                        <!--H11_1 復旧する期間設定-->
+                        <div id="H11_1" class="div-column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_466')}</div>
+                        <!--H11_2 日次-->
+                        <label id="H11_2" class="flex valign-center">#{i18n.getText('CMF004_467')}</label>
+                        <div class="ntsControl">
+                            <!--H11_2_1 日次期間入力-->
+                            <div id="H11_2_1" class="valign-center" data-bind="ntsDateRangePicker: { 
+                                enable: false, 
+                                value: $vm.dateValue().dateRange, 
+                                maxRange: 'none',
+                                name: '#[CMF003_37]'}"/>
+                        </div>
+                    </div>
+                    <div class="flex div-line">
+                        <div class="div-column-1"></div>
+                        <!--H11_3 月次-->
+                        <label id="H11_3" class="flex valign-center">#{i18n.getText('CMF004_468')}</label>
+                        <div class="ntsControl">
+                            <!--H11_3_1 月次期間入力-->
+                            <div id="H11_3_1" class="valign-center" data-bind="ntsDateRangePicker: { 
+                                enable: false,
+                                value: $vm.dateValue().monthRange, 
+                                type: 'yearmonth',
+                                maxRange: 'none',
+                                name: '#[CMF003_38]'}"/>
+                        </div>
+                    </div>
+                    <div class="flex div-line">
+                        <div class="div-column-1"></div>
+                        <!--H11_4 年次-->
+                        <label id="H11_4" class="flex valign-center">#{i18n.getText('CMF004_469')}</label>
+                        <div class="ntsControl">
+                            <!--H11_4_1 年次期間入力-->
+                            <div id="H11_4_1" class="valign-center" data-bind="ntsDateRangePicker: { 
+                                enable: false,
+                                value: $vm.dateValue().yearRange, 
+                                type: 'year',
+                                jumpUnit: 'year',
+                                maxRange: 'none',
+                                name: '#[CMF003_39]' }"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex div-line">
+                    <!--H8_1 復旧前に保存(ラベル)-->
+                    <div id="H8_1" class="div-column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_471')}</div>
+                    <!--E8_2 復旧前に保存-->
+                    <div id="H8_2" class="cf cmf002-w-switch-btn" data-bind="ntsSwitchButton: {
+                        name: '#[CM004_471]',
+                        options: $vm.switchRules(),
+                        optionsValue: 'code',
+                        optionsText: 'name',
+                        value: $vm.selectedRuleCode,
+                        enable: false }"></div>
+                </div>
+            </div>
+            <div class="fixed-flex-layout-right">
+                <div class="div-line" style="margin-top: 20px;">
+                    <!--H6_4 復旧対象ラベル-->
+                    <div data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_190')}</div>
+                </div>
+                <div class="div-line">
+                    <!--H7_1 復旧対象社員一覧-->
+                    <div id="kcp005component1" style="margin-top: 20px;" />
+                </div>
+            </div>
+        </div>
+        <div class="halign-center" style="width: 760px;">
+            <!--H9_1 対象社員選択へ-->
+            <button class="large"
+                data-bind="click: backToPreviousScreen">#{i18n.getText('CMF004_191')}</button>
+            <!--H9_2 データ復旧-->
+            <!--         <button id="H9_2" class="x-large proceed" data-bind="click: restoreData_click, enable: buton_I_enable &amp;&amp; selectedEmployeeCodeScreenH().length != 0">#{i18n.getText('CMF004_192')}</button> -->
+
+            <com:ko-if bind="buton_I_enable() &amp;&amp; buttonProceed()">
+                <button id="H9_2" class="x-large proceed"
+                    data-bind="click: restoreData_click">#{i18n.getText('CMF004_192')}</button>
+            </com:ko-if>
+            <com:ko-if bind="!buton_I_enable() | !buttonProceed()">
+                <button id="H9_2" class="x-large proceed"
+                    data-bind="enable: false">#{i18n.getText('CMF004_192')}</button>
+            </com:ko-if>
+        </div>
+    </ui:composition>
+</body>
+
+</html>

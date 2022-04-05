@@ -1,0 +1,35 @@
+.col-3 {
+	width: 33.3333333333%;
+	float: left;
+	box-sizing: border-box;
+	padding: 10px;
+}
+
+#title-pop-up {
+	color: red;
+}
+
+#pop-up-element {
+	width: 400px;
+}
+
+.label-new {
+	float: right;
+	display: block;
+	height: 100%;
+	margin-right: 5px;
+	color: #fff;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.label-new:before {
+	display: inline-block;
+	height: 16px;
+	line-height: 16px;
+	padding: 0 5px;
+	border-radius: 5px;
+	box-sizing: border-box;
+	background: #5cb85c;
+	content: 'New';
+}

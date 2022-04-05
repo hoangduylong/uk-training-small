@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<div class="sidebar-content-header">
+		<span class="title">#{i18n.getText('CCG018_2')}</span>
+		<a id="B1-4" class="goback" data-bind="click: jumpToCcg015 ,ntsLinkButton: { }">#{i18n.getText('CCG018_50')}</a>
+		<button tabindex="1" id="B1_5" class="proceed"
+			data-bind="click: save, enable: isEmpty">#{i18n.getText('CCG018_17')}</button>
+		<button tabindex="2" id="B1_6" data-bind="click: copy, enable: isEnable">#{i18n.getText('CCG018_32')}</button>
+		<button tabindex="3" id="B1_7" class="danger"
+			data-bind="click: removeData, enable: isEnable">#{i18n.getText('CCG018_31')}</button>
+		<!-- <a tabindex="-1" id="B1_7" href="#"
+			data-bind="click: jumpToCcg015 ,ntsLinkButton: { }"><img
+			id="link-icon"
+			src="data:image/png;base64,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" /><span>#{i18n.getText('CCG018_19')}</span></a> -->
+	</div>
+
+	<div id="contents-area" class="fixed-flex-layout">
+		<div class="fixed-flex-layout-left">
+			<div id="ccgcomponent"></div>
+			<div id="sample-component"></div>
+		</div>
+		<div class="fixed-flex-layout-right">
+			<div>
+				<div id="B3_12" data-bind="ntsFormLabel: {}">#{i18n.getText('CCG018_38')}</div>
+				<span id="B3_13" data-bind="text: employeeCode"></span> <span
+					id="B3_14" data-bind="text: employeeName"></span>
+			</div>
+
+			<div>
+				<table class = "tableb" id="table-1">
+					<thead>
+						<tr>
+							<th id="B5_H1" class="tbl-thb" style="width:110px; padding: 0 5px;">#{i18n.getText('CCG018_46')}</th>
+							<th id="B5_H3" class="tbl-thb" style="width:190px; padding: 0 5px;">#{i18n.getText('CCG018_22')}</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class = "tbl-tdb">
+								<div id="B5_D1" tabindex="5" class="combo-box"
+									style="width: 100%"
+									data-bind="ntsComboBox: {
+										name: '#[CCG018_46]',
+										options: comboItemsAsTopPage,
+										optionsValue: 'code',
+										value: selectedItemAsTopPage,
+										visibleItemsCount: 5,
+										optionsText: 'name',
+										editable: false,
+										enable: true,
+										dropDownAttachedToBody: true,
+										columns: [
+											{ prop: 'name', length: 10 },
+										]}"></div>
+							</td>
+							<td class = "tbl-tdb">
+								<div id="B5_D3" tabindex="7" class="combo-box"
+								style="width: 100%"
+								data-bind="ntsComboBox: {
+									name: '#[CCG018_46]',
+									options: comboItemsAfterLogin,
+									optionsValue: 'uniqueCode',
+									value: selectedItemAfterLogin,
+									visibleItemsCount: 5,
+									optionsText: 'name',
+									editable: false,
+									enable: true,
+									dropDownAttachedToBody: true,
+									columns: [
+										{ prop: 'name', length: 10 },
+									]}"></div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+</ui:composition>

@@ -1,0 +1,118 @@
+#functions-area-bottom {
+}
+.radio-box-group {
+  width: 100px;
+}
+.radio-box-group > .ntsRadioBox {
+  margin-top: 10px;
+}
+.flex {
+  display: flex;
+}
+#C1_2 {
+  width: 440px;
+  overflow-y: scroll;
+  resize: none;
+}
+.left {
+  float: left;
+}
+.w-p-15 {
+  width: 15%;
+}
+.ml-15 {
+  margin-left: 15px;
+}
+.w-p-60 {
+  width: 60%;
+}
+.clear-both {
+  clear: both;
+}
+.mt-15 {
+  margin-top: 15px;
+}
+.w-p-85 {
+  width: 85%;
+}
+.ml-5 {
+  margin-left: 5px;
+}
+.ml-20 {
+  margin-left: 20px;
+}
+.mt-5 {
+  margin-top: 5px;
+}
+.mt-10 {
+  margin-top: 10px;
+}
+.w-300 {
+  width: 300px;
+}
+.pl-25 {
+  padding-left: 25px;
+}
+.pr-25 {
+  padding-right: 25px;
+}
+.ml-60 {
+  margin-left: 60px !important;
+}
+.ml-p-15 {
+  margin-left: 15%;
+}
+.right {
+  float: right;
+}
+.mr-60 {
+  margin-right: 60px;
+}
+.ml-13 {
+  margin-left: 13px;
+}
+.flex-nowrap {
+  display: flex;
+  white-space: nowrap;
+}
+.pt-5 {
+  padding-top: 5px;
+}
+.pt-10 {
+  padding-top: 10px;
+}
+.pr-15 {
+  padding-right: 15px;
+}
+.w-100p {
+  width: 100% !important;
+}
+.editor-wrapped > .ntsControl {
+  display: flex !important;
+  width: 100%;
+}
+.pl-10 {
+  padding-left: 10px;
+}
+.content-table tr td {
+  padding-bottom: 10px;
+}
+.table-input .nts-editor-wrapped {
+  width: 100%;
+}
+.table-input .nts-editor-wrapped input {
+  width: calc(100% - 65px);
+  margin-left: 40px;
+}
+#C2_3_2,
+#C2_3_3 {
+  position: absolute;
+}
+.radiobox {
+  display: grid;
+}
+.radiobox label {
+  height: 40px;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}

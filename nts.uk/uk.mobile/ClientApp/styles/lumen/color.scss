@@ -1,0 +1,249 @@
+$uk-hover-colors: (
+    hover: #F2F2F2,
+    danger-hover: #FEC0AD,
+    process-hover: #79E68B,
+);
+
+$uk-bg-colors: (
+    green: #E0F59E,
+    yellow: #F7EFD4,
+    active: #00B050,
+    link-button: #E0F59E,
+    checkbox: #2FCC71,
+    radio: #97D155,
+    danger: #FED3C6,
+    process: #A4EEB0,
+    disable: #D9D9D9,
+    daily-alter-self: #94B7FE,
+    daily-alter-other: #030303,
+    daily-reflect-application: #92F29B,
+    daily-error: #FEC6C6,
+    daily-alarm: #E3F385,
+    daily-calculated:#E4C9FF,
+    schedule-saturday: #8BD8FF,
+    schedule-sunday: #FABF8F,
+    schedule-support: #FEDFE6,
+    schedule-no-empl-insurance: #EF7F7F,
+    schedule-no-health-insurance: #ACFE2F,
+    schedule-no-empl-health-insurance: #FEA400,
+    schedule-fixed: #ECCEFB,
+    schedule-uncorrectable: #DDDDD2,
+    schedule-work-by-dow: #FFFF69,
+    schedule-specific-date: #FFC0CB,
+    schedule-that-day: #FFFF00,
+    schedule-focus: #FFFFCC,
+    choice-row: #CEE6FF,
+    calendar-ym-set: #BFEA60,
+    workink-result-excess: #FFFF00,
+    pre-application-excess: #FFC0CB,
+    application-approved:#BFEA60,
+    application-reflected: #CEE6FF,
+    unapproved-application: #FFFFFF,
+    remanded-application: #FD4D4D,
+    canceled-application: #F6F636,
+    weekdays: #D9D9D9,
+    pasted: #F8CBAD,
+    updating-cell: #FFD966,
+    selecting: #BDD7EE,
+    added-row:#AFEEEE,
+    actual-superior-unverified: #FF7F27,
+    error-actual: #FF7F27
+);
+
+$uk-fg-colors: (
+    proceed: #00B050,
+    info: #BFEA60,
+    danger: #C12017,
+    active: #97D155,
+    required: #FFD966,
+    disabled: #AAAAAA,
+    link-button: #0D86D1,
+    working-day: #31859C,
+    non-working-day: #FF3B3B,
+    attendance: #0000FF,
+    holiday: #FF0000,
+    daily-holiday: #FF2D2D,
+    daily-extra-holiday: #0086EA,
+    schedule-performance: #92D050,
+    schedule-error: #FF0000,
+    schedule-saturday: #0000FF,
+    schedule-sunday: #FF0000,
+    half-day-work: #FF7F27,
+    operation-case-character:#FF0000,
+    working-schedule: #00CC00,
+    sunday: #FF2D2D,
+    saturday: #0086EA,
+    weekdays: #404040,
+    excess-time-none: #29339b,
+    excess-time-alarm: #d38013,
+    excess-time-error: #f92f2f
+);
+
+$uk-colors: (
+    teal: #5DA797,
+    sea-green: #8fcb9b,
+    olive: #c3d69b,
+    remark: #c3d69b,
+    light-olive: #dcedc8,
+    headline: #dcedc8,
+    accordion: #dcedc8,
+    reflect: #e4f2c9,
+    stripped: #eef9e3,
+    quote: #555555,
+    dark-gray: #666666,
+    sub-label: #666666,
+    over-time: #666666,
+    gray: #999999,
+    light-gray: #cccccc,
+    lighten-gray: #e0e0e0,
+    white-smoke: #eeeeee,
+    silver: #f9f9f9,
+    white: #ffffff,
+    orange: #ffcc88,
+    papaya-whip: #ffedc8,
+    approval: #ffedc8,
+    yellow: #fac002,
+    light-yellow: #ffee66,
+    khaki: #f9f0ac,
+    saddle-brow: #804800,
+    rosy-brown: #963d40,
+    red: #ff0000,
+    sunday: #ff0000,
+    crimson: #dc474b,
+    light-coral:#ffd8da,
+    dark-salmon: #f2dcdb,
+    blue:#0000ff,
+    statuday:#0000ff,
+    medium-blue:#29339b,
+    steel-blue:#5c73a5,
+    royal-blue:#4f81bd,
+    sky-blue:#6cc0e5,
+    light-blue:#93cddd,
+    powder-blue:#d7f2ff,
+    alice-blue:#c6d9f1
+);
+
+$uk-status-color: (
+    reflected : (#333, #c3d69b, #e4f2c9),
+    approved : (#333, #93cddd, #d7f2ff),
+    //processing : (#fff, transparent, #fddd9b),
+    denial : (#DC474B, #999, #eeeeee),
+    return : (#333, #ffcc88, #f9f0ac),
+    cancel : (#333, #999, #eeeeee),
+    unapproved : (#DC474B, #999, #fff)
+);
+
+@each $color-name, $hex-value in $uk-bg-colors {
+    .uk-bg-#{$color-name} {        
+        background-color: #{$hex-value} !important;
+        &.uk-color-swatch {
+            &:before {
+                content: '#{$hex-value}';
+                float: right;
+                font-family: monospace;
+                text-transform: uppercase;
+                position: absolute;
+                top: 0px;
+                right: 3px;
+            }
+        }
+    }
+    .uk-bg-#{$color-name}:hover {        
+        background-color: lighten($color: $hex-value, $amount: 10%) !important;
+    }
+}
+
+@each $color-name, $hex-value in $uk-hover-colors {
+    .uk-bg-#{$color-name}:hover {        
+        background-color: #{$hex-value} !important;
+    }    
+}
+
+@each $color-name, $hex-value in $uk-fg-colors {
+    .uk-text-#{$color-name} {        
+        color: #{$hex-value} !important;
+        &.uk-color-swatch {
+            &:before {
+                content: '#{$hex-value}';
+                float: right;
+                font-family: monospace;
+                text-transform: uppercase;
+                position: absolute;
+                top: 0px;
+                right: 3px;
+            }
+        }
+    }    
+}
+
+@each $color-name, $hex-value in $uk-colors {
+    .uk-text-#{$color-name} {
+        color: #{$hex-value} !important;
+        &.uk-color-swatch {
+            &:before {
+                content: '#{$hex-value}';
+                float: right;
+                font-family: monospace;
+                text-transform: uppercase;
+                position: absolute;
+                top: 0px;
+                right: 3px;
+            }
+        }
+    }
+
+    .uk-bg-#{$color-name} {        
+        background-color: #{$hex-value} !important;
+        &.uk-color-swatch {
+            &:before {
+                content: '#{$hex-value}';
+                float: right;
+                font-family: monospace;
+                text-transform: uppercase;
+                position: absolute;
+                top: 0px;
+                right: 3px;
+            }
+        }
+    }
+
+    .uk-border-#{$color-name} {
+        border-color: #{$hex-value} !important;
+        &.uk-color-swatch {
+            &:before {
+                content: '#{$hex-value}';
+                float: right;
+                font-family: monospace;
+                text-transform: uppercase;
+                position: absolute;
+                top: 0px;
+                right: 3px;
+            }
+        }
+    }
+}
+
+@each $class-name, $color-pallet in $uk-status-color {
+    $fg-color: nth($list: $color-pallet, $n: 1);
+    $bd-color: nth($list: $color-pallet, $n: 2);
+    $bg-color: nth($list: $color-pallet, $n: 3);
+
+    .apply-#{$class-name},
+    .uk-apply-#{$class-name} {
+        color: $fg-color !important;
+        border: 1px solid $bd-color;
+        border-color: $bd-color !important;
+        background-color: $bg-color !important;
+        text-align: center;
+        display: inline-block;
+        border-radius: 0.25rem;
+
+        &:hover,
+        &:focus {
+            color: $fg-color !important;
+            border: 1px solid $bd-color;
+            border-color: $bd-color !important;
+            background-color: $bg-color !important;            
+        }
+    }
+}

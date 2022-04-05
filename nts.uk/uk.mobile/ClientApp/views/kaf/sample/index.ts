@@ -1,0 +1,2 @@
+import './multi';
+import './single';

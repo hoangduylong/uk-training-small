@@ -1,0 +1,14 @@
+.labelFirst {
+	padding-left: 20px;
+	margin-top: 10px;
+}
+.labelSecond {
+	padding-left: 20px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.checkBox {
+	display: inline-block; 
+	margin-top: 10px; 
+	margin-left: 70px; 
+}

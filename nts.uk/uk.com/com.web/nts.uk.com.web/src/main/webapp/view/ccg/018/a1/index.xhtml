@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<div class="sidebar-content-header">
+		<span class="title">#{i18n.getText('CCG018_45')}</span>
+		<a id="A1-4" class="goback" data-bind="click: jumpToCcg015 ,ntsLinkButton: { }">#{i18n.getText('CCG018_50')}</a>
+		<button tabindex="1" id="A1-5" class="proceed"
+			data-bind="click: save, enable: isNotEmpty">#{i18n.getText('CCG018_3')}</button>
+	</div>
+
+	<div id="contents-area">
+		<div id="A2-4">
+			<!-- <table class="table1" tabindex="-1">
+				<thead>
+					<tr>
+						<th id="A2_H1" class="tbl-th">#{i18n.getText('CCG018_8')}</th>
+						<th id="A2_H2" class="tbl-th">#{i18n.getText('CCG018_9')}</th>
+						<th id="A2_H3" class="tbl-th">#{i18n.getText('CCG018_11')}</th>
+						<th id="A2_H4" class="tbl-th">
+							#{i18n.getText('CCG018_51')}
+							<button id="A3_1" data-bind="click: showNote">?</button>
+						</th>
+						<th id="A2_H5" class="tbl-th" data-bind="visible: isVisible">#{i18n.getText('CCG018_10')}</th>
+					</tr>
+				</thead>
+				<tbody style="max-height:397px !important; height: fit-content;" data-bind="foreach: lisTopPageRoleSet, style: {'width': isVisible()? '797px':'733px'}">
+					<tr>
+						<td id="A2_D1" class="tbl-td" data-bind="text: roleSetCode"></td>
+						<td id="A2_D2" class="tbl-td" data-bind="text: name"></td>
+						<td id="A2_D3" class="tbl-td" data-bind="visible: $parent.isVisible">
+							<div tabindex="3" class="combo-box"
+								data-bind="
+								class: {isFocus: $index === 0},
+								ntsComboBox: {
+									options: $parent.comboItemsAsTopPage,
+									optionsValue: 'code',
+									value: topMenuCode,
+									optionsText: 'name',
+									editable: false,
+									enable: true,
+									visibleItemsCount: 5,
+									dropDownAttachedToBody: true,
+									columns: [
+										{ prop: 'name', length: 10 },
+									]}"></div>
+						</td>
+						<td class="tbl-td">
+							<div id="A2_D4" tabindex="4" class="combo-box combo-box-switch-date"
+								data-bind="ntsComboBox: {
+									options: $parent.listSwitchDate,
+									optionsValue: 'value',
+									optionsText: 'text',
+									value: switchingDate,
+									visibleItemsCount: 5,
+									editable: false,
+									enable: true,
+									dropDownAttachedToBody: true,
+									columns: [
+										{ prop: 'text', length: 10 },
+									]}"></div>
+						</td>
+						<td class="tbl-td">
+							<div tabindex="5" id="combo-box"
+								data-bind="ntsComboBox: {
+									options: $parent.comboItemsAfterLogin,
+									optionsValue: 'uniqueCode',
+									value: uniqueCode,
+									optionsText: 'name',
+									editable: false,
+									enable: true,
+									visibleItemsCount: 5,
+									dropDownAttachedToBody: true,
+									columns: [
+										{ prop: 'name', length: 10 },
+									]}"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table> -->
+			<div id="grid2-wrapper" style="width: fit-content;">
+				<table id="grid2"></table>
+			</div>
+		</div>
+	</div>
+
+</ui:composition>

@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 650, height: 570 };</script>
+			<com:ValidatorScript>
+					nts.uk.ctx.exio.dom.exo.dataformat.init.DataFormatNullReplacement
+	            	nts.uk.ctx.exio.dom.exo.dataformat.init.DataTypeFixedValue
+            </com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="../share/model.js" />
+			<com:scriptfile path="cmf002.k.vm.js" />
+			<com:scriptfile path="cmf002.k.start.js" />
+			<com:stylefile path="cmf002.k.style.css" />
+			<com:scriptfile path="cmf002.k.service.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area" class="dialog-content">
+				<!-- K1: タイトル -->
+				<div id="K1" class="label label-big dialog-title">#{i18n.getText('CMF002_178')}</div>
+				<div class="div-table" data-bind="with: dateDataFormatSetting">
+					<div class="div-table-row">
+						<!-- K2: 形式選択(ラベル) -->
+						<div id="K2" class="div-table-col-standard"
+							data-bind="ntsFormLabel: {required : false }">#{i18n.getText('CMF002_179')}
+						</div>
+						<div class="div-table-col-standard custom-radio">
+							<!-- K2_1: 形式選択 -->
+							<div id="K2_1" class="row-group"
+								data-bind="ntsRadioBoxGroup: {
+								name:'#{i18n.getText('CMF002_179')}',
+								value: formatSelection,
+								options: $vm.formatSelectionItems,
+								enable: $vm.enable(),
+								optionsValue: 'code',
+								optionsText: 'name'}">
+							</div>
+						</div>
+					</div>
+					<div class="div-table-row">
+						<!-- K3: NULL値置き換え(ラベル) -->
+						<div id="K3" class="div-table-col-standard"
+							data-bind="ntsFormLabel: {required : false}">#{i18n.getText('CMF002_157')}
+						</div>
+						<div class="div-table-col-standard custom-radio">
+							<!-- K3_1: NULL値置き換え -->
+							<div id="K3_1" class="row-group"
+								data-bind="ntsRadioBoxGroup: {
+								name:'#{i18n.getText('CMF002_157')}',
+								value: nullValueSubstitution,
+								options: $vm.nullValueReplacementItems,
+								enable: $vm.enable(),
+								optionsValue: 'code',
+								optionsText: 'name'}">
+							</div>
+						</div>
+						<div class="div-table-col-medium">
+							<!-- K3_2: NULL値置き換え値 -->
+							<input id="K3_2"
+								data-bind="ntsTextEditor: {
+									value: valueOfNullValueSubs,
+									name:'#{i18n.getText('CMF002_158')}',
+									constraint: 'DataFormatNullReplacement',
+									required: false,
+									option : {width : '273px'},
+									enable: $vm.enableReplacedValueEditor()}" />
+						</div>
+					</div>
+					<div class="div-table-row">
+						<!-- K4: 固定値(ラベル) -->
+						<div id="K4" class="div-table-col-standard"
+							data-bind="ntsFormLabel: {required : false}">#{i18n.getText('CMF002_159')}
+						</div>
+						<div class="div-table-col-standard custom-radio">
+							<!-- K4_1: 固定値 -->
+							<div id="K4_1" class="row-group"
+								data-bind="ntsRadioBoxGroup: {
+								name:'#{i18n.getText('CMF002_159')}',
+								value: fixedValue,
+								options: $vm.fixedValueItems,
+								enable: $vm.enableFixedValue(),
+								optionsValue: 'code',
+								optionsText: 'name'}">
+							</div>
+						</div>
+						<div class="div-table-col-medium">
+							<!-- K4_2: 固定値の値 -->
+							<input id="K4_2"
+								data-bind="ntsTextEditor: {
+									value: valueOfFixedValue,
+									name:'#{i18n.getText('CMF002_160')}',
+									constraint: 'DataTypeFixedValue',
+									required: false,
+									option : {width : '273px'},
+									enable: $vm.enableFixedValueEditor()}" />
+						</div>
+					</div>
+				</div>
+
+			</div>
+			<div id="functions-area-bottom">
+				<!-- K20_1: 設定 -->
+				<button id="K20_1" class="x-large proceed "
+					data-bind="click: selectDateDataFormatSetting, enable: !enableRegister()">#{i18n.getText('CMF002_161')}</button>
+				<!-- K20_2: キャンセル -->
+				<button id="K20_2" class="large"
+					data-bind="click: cancelSelectDateDataFormatSetting">#{i18n.getText('CMF002_162')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

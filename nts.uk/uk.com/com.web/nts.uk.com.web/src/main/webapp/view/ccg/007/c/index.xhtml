@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/freelayout.xhtml">
+		<ui:define name="htmlHead">
+			<com:stylefile path="ccg007.c.style.css" />
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="ccg007.c.start.js" />
+			<com:scriptfile path="ccg007.c.service.js" />
+			<com:scriptfile path="ccg007.c.vm.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div style="background-color: lightblue;" id="contents-area">
+				<div style="position: relative; top: 30%; margin: 0 auto auto 40%; display: none"
+						data-bind = "visible: displayLogin">
+					<table>
+						<tr>
+							<td class="pad_5" colspan="4"
+								style="padding-bottom: 30px; padding-left: 40px"><img
+								src="kin.gif" /></td>
+						</tr>
+						<tr>
+							<td colspan="2" class="pad_5"><div
+									data-bind="text: '#{i18n.getText('CCG007_7')}'"></div></td>
+							<td colspan="2" class="pad_5"><div
+									data-bind="text: '#{i18n.getText('CCG007_8')}'"></div></td>
+						</tr>
+						<tr>
+							<td><img alt="" src="71.png" /></td>
+							<td class="pad_5"><div>
+									<input tabindex="1" id="company-code-inp"
+										data-bind="ntsTextEditor: {
+										name: '#{i18n.getText('CCG007_7')}',
+										value: companyCode,
+										required: false,
+										option: {textmode: 'text',width: '50px'},
+										enable: true,
+										readonly: false,
+										enterkey: submitLogin}" />
+								</div></td>
+							<td><img alt="" src="26.png" /></td>
+							<td class="pad_5"><div>
+									<input tabindex="2" id ="employee-code-inp"
+										data-bind="ntsTextEditor: {
+										name: '#{i18n.getText('CCG007_8')}',
+										value: employeeCode,
+										option: {textmode: 'text',width: '100px'},
+										required: false,
+										enable: true,
+										readonly: false,
+										enterkey: submitLogin}" />
+								</div></td>
+						</tr>
+						<tr>
+							<td colspan="4" class="pad_5"><div
+									data-bind="text: '#{i18n.getText('CCG007_2')}'"></div></td>
+						</tr>
+						<tr>
+							<td><img alt="" src="72.png" /></td>
+							<td colspan="3" class="pad_5"><div>
+									<input autocomplete="new-password" tabindex="3" id="password-input"
+										data-bind="ntsTextEditor: {
+										name: '#{i18n.getText('CCG007_2')}',
+										value: password,
+										required: false,
+										option: {textmode: 'password',width: '230px'},
+										enable: true,
+										readonly: false,
+										enterkey: submitLogin}" />
+								</div></td>
+						</tr>
+						<tr>
+							<td class="pad_5 align_right"><div tabindex="4"
+									data-bind="ntsCheckBox: { checked: isSaveLoginInfo }"></div></td>
+							<td colspan="3" class="pad_5"><label
+								data-bind="text: '#{i18n.getText('CCG007_5')}'"></label></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td colspan="3" class="pad_5"><button tabindex="5"
+									id="search-btn" data-bind="click: submitLogin"
+									class=" full_width proceed large">
+									<div data-bind="text: '#{i18n.getText('CCG007_3')}'"></div>
+								</button></td>
+						</tr>
+						<tr>
+							<td colspan="4" class="pad_5 align_center"><a tabindex="6"
+								data-bind="text: '#{i18n.getText('CCG007_6')}', click: OpenDialogG"
+								class="hyperlink"></a></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

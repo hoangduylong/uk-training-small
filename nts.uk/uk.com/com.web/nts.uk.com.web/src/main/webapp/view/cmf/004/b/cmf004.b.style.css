@@ -1,0 +1,125 @@
+#data-recovery-wizard {
+	width: 1253px;
+	height: 760px;
+}
+
+#data-recovery-wizard>.content {
+    width: 850px;
+	background: none;
+	overflow: visible;
+}
+
+#data-recovery-wizard .div-line {
+	margin-bottom: 7px;
+}
+
+#data-recovery-wizard .current {
+	padding-top: 0;
+}
+
+#data-recovery-wizard .div-column-1 {
+	width: 120px;
+}
+
+#data-recovery-wizard .div-column-screenH {
+	width: 91px;
+}
+
+
+#data-recovery-wizard .div-column-2 {
+	width: 155px;
+}
+
+#data-recovery-wizard>.steps {
+	width: 210px;
+}
+
+#data-recovery-wizard .push-left { 
+	margin-left: 90px;
+}
+
+#data-recovery-wizard .nts-fixed-body-wrapper {
+	background-color: #F3F3F3;
+}
+
+#H4_1 tr {
+	height: 28px;
+}
+
+#H4_1 table {
+	height: 140px;
+}
+
+#E4_1 tr {
+    height: 28px;
+}
+
+#F4_1 tbody>tr{
+	height: 32px;
+}
+
+.row-number {
+	background-color: #CFF1A5;
+}
+
+#file-upload .browser-button {
+	background-color: #A4EEB0;
+	margin-left: 60px;
+}
+
+#data-recovery-wizard .caret-background.caret-right:after {
+	border-width: 0;
+}
+
+.nts-wizard > .content > .body {
+	padding: 0;
+}
+
+.fixed-flex-layout > .fixed-flex-layout-left {
+	margin-right: 15px;
+}
+
+#kcp005component{ 
+	width: 460px;
+}
+.ntsDatepicker{
+	width:88px !important;
+}
+.contents-area{
+	padding: 5px !important;
+}
+#data-recovery-wizard > .content > .body {
+ padding-top: 0;
+ left: 0px !important;
+}
+
+#data-recovery-wizard .step {
+  height: 110px !important;
+}
+
+.employeeList {
+	border: 1px solid #ccc !important;
+	border-radius: 5px;
+	margin: 0px 0px 0px 90px;
+	padding: 20px;
+	width: 600px;
+	float: right;
+	margin-bottom: 20px;
+}
+
+.compressGrid td {
+	padding-right: 10px;
+	height: 40px;
+}
+
+.contentG {
+	margin-left: 100px !important;
+}
+
+.contentG div.form-label, .contentH div.form-label {
+  padding-right: 0px !important;
+}
+
+.contentG .flex.div-line > label, .contentH .flex.div-line > label {
+  margin-right: 10px;
+}

@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:com="http://xmlns.jcp.org/jsf/component"
+  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+  <ui:composition template="../../../../master/base.xhtml">
+
+    <!-- head -->
+    <ui:define name="htmlHead">
+      <com:stylefile path="ccg034.a.style.css" />
+      <com:scriptfile path="ccg034.a.vm.js" />
+      <com:scriptfile set="IGNITE" />
+
+      <com:ValidatorScript>
+        nts.uk.ctx.sys.portal.dom.toppagepart.TopPagePartCode
+        nts.uk.ctx.sys.portal.dom.toppagepart.TopPagePartName
+      </com:ValidatorScript>
+    </ui:define>
+
+    <!-- content -->
+    <ui:define name="content">
+      <!-- Header -->
+      <div id="functions-area">
+        <div class="container">
+          <a class="goback" data-bind="ntsLinkButton: { jump: '/view/ccg/015/a/index.xhtml' }">#{i18n.getText('CCG034_15')}</a>
+          <button id="A1_2" tabindex="1" data-bind="i18n: 'CCG034_16', enable: !isNewMode(), click: changeToNewMode"></button>
+          <button id="A1_3" tabindex="2" class="proceed" data-bind="i18n: 'CCG034_17', click: register"></button>
+          <button id="A1_4" tabindex="3" data-bind="i18n: 'CCG034_18', enable: !isNewMode(), click: openDialogC"></button>
+          <button id="A1_5" tabindex="4" class="danger" data-bind="i18n: 'CCG034_19', enable: !isNewMode(), click: deleteFlowMenu"></button>
+        </div>
+      </div>
+      <!-- Content -->
+      <div id="contents-area">
+        <div class="container">
+          <div class="left-content">
+            <!-- A2_1 検索パネル -->
+            <div id="A2_1" data-bind="ntsPanel: {  height: '300px', direction: 'right', showIcon: true, visible: true }">
+              <!-- A2_2 検索 -->
+              <div id="A2_2" data-bind="ntsSearchBox: {
+                searchMode: 'highlight',
+                targetKey: 'flowMenuCode',
+                comId: 'A3',
+                items: flowMenuList,
+                selected: selectedFlowMenuId,
+                selectedKey: 'flowMenuCode',
+                mode: 'igGrid',
+                fields: ['flowMenuCode', 'flowMenuName']
+              }"></div>
+              <!-- A3 フローメニュー一覧 -->
+              <table id="A3" data-bind="ntsGridList: {
+                name: '#[CCG034_20]',
+                options: flowMenuList,
+                optionsValue: 'flowMenuCode',
+                columns: flowMenuColumns,
+                multiple: false,
+                value: selectedFlowMenuId,
+                primaryKey: 'flowMenuCode',
+                rows: 10
+              }" tabindex="5"></table>
+            </div>
+          </div>
+          <div class="right-content">
+            <div class="div-line">
+              <div id="A4_1" class="column-label" data-bind="ntsFormLabel: { required: true, constraint: constraints }">
+                #{i18n.getText('CCG034_23')}</div>
+              <input id="A4_2" tabindex="6" class="input-code" data-bind="ntsTextEditor: {
+                name: '#[CCG034_21]',
+                required: true,
+                enable: isNewMode,
+                value: toppagePartCode,
+                constraint: 'TopPagePartCode'}" />
+              <input id="A4_3" tabindex="7" data-bind="ntsTextEditor: {
+                name: '#[CCG034_22]',
+                required: true,
+                value: toppagePartName,
+                constraint: 'TopPagePartName'}" />
+            </div>
+            <div class="div-line">
+              <div id="A5_1" class="column-label" data-bind="ntsFormLabel: { required: false }">
+                #{i18n.getText('CCG034_24')}</div>
+              <button id="A5_2" tabindex="8" data-bind="i18n: 'CCG034_25', enable: !isNewMode(), click: openDialogD"></button>
+            </div>
+            <div class="div-line">
+              <div id="A5_3" class="label margin-left-200">#{i18n.getText('CCG034_129')}</div>
+            </div>
+            <div class="div-line">
+              <button id="A6_1" tabindex="9" data-bind="i18n: 'CCG034_39', click: openDialogB, enable: enablePreview"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ui:define>
+  </ui:composition>
+</body>
+
+</html>

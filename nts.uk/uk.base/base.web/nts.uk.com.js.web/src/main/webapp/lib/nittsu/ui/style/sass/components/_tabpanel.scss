@@ -1,0 +1,169 @@
+.tabs-panel {
+	&.no-content {
+		width: auto;
+		display: inline-block;
+	}
+
+	&.has-content {
+		width: 100%;
+		overflow: hidden;
+	}
+
+	&.vertical,
+	&.vertical-link,
+	&.horizontal {
+		&>.tabs-list {
+			box-sizing: border-box;
+			background-color: #F1FDFB;
+			padding: 15px;
+			overflow: hidden;
+
+			label {
+				padding: 0;
+				border-radius: 2px;
+				display: inline-block;
+				background-color: #ffffff;
+
+				&>input {
+					&+span {
+						position: relative;
+						display: inline-block;
+						padding: 5px 10px;
+
+						&:not(.button) {
+							border-radius: 2px;
+							box-sizing: border-box;
+							border: 1px solid transparent;
+							background-color: transparent;
+						}
+
+						&::before,
+						&::after {
+							content: none;
+						}
+					}
+
+					&:checked {
+						&+span {
+							z-index: 5;
+							background-color: #c0f5ec;
+							box-shadow: 0px 8px 12px rgba(199, 255, 241, 0.6);
+
+							&:after {
+								content: '';
+								position: absolute;
+								width: 16px;
+								height: 2px;
+								top: auto;
+								bottom: -1px;
+								border-radius: 0;
+								left: calc(50%  - 8px);
+								background-color: #44E08C;
+							}
+						}
+
+						&:not(:disabled) {
+							&+span {
+								color: #000;
+							}
+						}
+					}
+
+					&:focus,
+					&:active {
+						&:not(:disabled) {
+							&+span {
+								z-index: 9;
+								border-color: $focused_color;
+								box-shadow: 0 0 0 2px lighten($color: $focused_color, $amount: 30);
+							}
+						}
+					}
+
+					&:not(:checked) {
+						&:not(:disabled) {
+							&+span {
+								color: #4e4e4e;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		&>.tabs-content {
+			padding: 10px;
+			box-sizing: border-box;
+			border: 1px dashed #EAE8F2;
+		}
+	}
+	
+	&.vertical,
+	&.vertical-link {
+		&>.tabs-list {	
+			float: left;		
+			width:  224px;
+
+			label { 
+				display: block;
+
+				&:not(:first-child) {
+					margin-top: 5px;
+				}
+
+				&>input {
+					&+span {
+						display: block;
+					}
+				}
+			}
+		}
+		
+		&>.tabs-content {
+			margin-left: 224px;
+			overflow: hidden auto;
+
+			&::after {
+				content: '';
+				clear: both;
+			}
+		}
+	}
+	
+	&.vertical-link {
+		&>.tabs-list {
+			label {
+				&>input {
+					&+span {
+						&>svg {
+							&:first-child {
+								margin-top: 20px;
+							}
+						}
+					}
+
+					&:checked {
+						&+span {
+							&::after {
+								content: none;
+							}
+						}
+					}
+
+					&:disabled {
+						&+span {
+							&:hover,
+							&:focus,
+							&:active {
+								color: #d7d7d7 !important;
+								box-shadow: none;
+								border-color: #EAE8F2;
+								background-color: #fff !important;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

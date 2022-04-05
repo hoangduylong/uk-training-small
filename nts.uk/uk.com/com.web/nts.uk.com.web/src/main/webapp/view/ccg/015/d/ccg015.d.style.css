@@ -1,0 +1,139 @@
+/* css width */
+.w-100 {
+  width: 100%;
+}
+
+.w-350 {
+  width: 350px;
+}
+
+.w-550 {
+  width: 550px;
+}
+
+.w_100_layout {
+  width: calc(100% - 20px);
+}
+
+/* margin css */
+.ml-20 {
+  margin-left: 20px;
+}
+
+.ml-25 {
+  margin-left: 25px;
+}
+
+.mt-5 {
+  margin-top: 5px;
+}
+
+.mt-10 {
+  margin-top: 10px;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-30 {
+  margin-top: 30px;
+}
+
+.mt-40 {
+  margin-top: 40px;
+}
+
+/* padding css */
+.pt-10 {
+  padding-top: 10px;
+}
+
+.pb-10 {
+  padding-bottom: 10px;
+}
+
+.pl-20 {
+  padding-left: 20px;
+}
+
+.pt-20 {
+  padding-top: 20px;
+}
+
+.pr-20 {
+  padding-right: 20px;
+}
+
+.fix_items_center {
+  display: flex;
+  align-items: center;
+}
+
+.text_bold {
+  font-weight: bold;
+}
+
+.width_left_content {
+  width: 327px;
+}
+
+.contents_left {
+  width: 400px;
+  display: block;
+}
+
+.fix_width_text_area {
+  width: inherit;
+  height: 120px;
+}
+
+.nts-editor-wrapped {
+  width: 100%;
+}
+
+.fix_button_url {
+  width: 372px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.iframe_fix {
+  width: 100%;
+  height: 100%;
+}
+
+.fl-right {
+  float: right;
+}
+
+.table_fix {
+  width: calc(100% - 40px);
+  margin: 0 20px;
+}
+
+.contents_right {
+  height: 445px;
+  width: 535px;
+  float: left;
+  overflow: auto;
+  top: -35px;
+}
+
+.fix_height {
+  height: 5px;
+}
+
+.fix_row {
+  display: block;
+}
+
+.input-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#D6 {
+  margin-top:  -50px;
+}

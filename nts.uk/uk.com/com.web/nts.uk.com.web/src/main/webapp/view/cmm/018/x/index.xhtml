@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:stylefile path="cmm018.x.main.css" />
+			<com:scriptfile path="cmm018.x.vm.js" />
+
+		</ui:define>
+		<ui:define name="content">
+			<div id="functions-area">
+				<!-- X1 -->
+				<button id='btnM' data-bind="click: openDialogM">#{i18n.getText('CMM018_13')}</button>
+			</div>
+			<div id="contents-area">
+						<!-- X2 -->
+						<div data-bind="css: ko.toJS(systemAtr) == 0 ? 'panelFirst' : 'panelFirstJinji'" class="panel">
+							<!-- X2_1 -->
+							<div class="panel panel-gray-bg textTitlePanel">
+								#{i18n.getText('CMM018_115')}
+							</div>
+							<!-- X2_2 -->
+							<button data-bind="click: openDialogQ" class="large btnInPanel">#{i18n.getText('CMM018_116')}</button>
+							<!-- X2_3 -->
+							<div data-bind="visible: ko.toJS(systemAtr) == 0" class="label textFormat">#{i18n.getText('CMM018_117', [i18n.getText('Com_Workplace')])}</div>
+							<div data-bind="visible: ko.toJS(systemAtr) == 1" class="label textFormat">#{i18n.getText('CMM018_117', [i18n.getText('Com_Department')])}</div>
+							
+							
+							<div data-bind="visible: ko.toJS(systemAtr) == 0">
+								<!-- X2_4 -->
+								<button data-bind="click: jumpToCmm013H" class="large btnInPanel">#{i18n.getText('CMM018_118')}</button>
+								<!-- X2_5 -->
+								<div class="label textFormat">#{i18n.getText('CMM018_119')}</div>
+							</div>	
+						</div>
+					   <!-- X3 -->
+					   <div class="panel panelSecond">
+							<!-- X3_1 -->
+							<div class="panel panel-gray-bg textTitlePanel">
+								#{i18n.getText('CMM018_122')}
+							</div>
+							<!-- X3_2 -->
+							<button data-bind="click: jumpToA"  class="large caret-right btnInPanel">#{i18n.getText('CMM018_121')}</button>
+							<!-- X3_3 -->
+							<div data-bind="visible: ko.toJS(systemAtr) == 0" class="label textFormat2">#{i18n.getText('CMM018_120', [i18n.getText('Com_Workplace')])}</div>
+							<div data-bind="visible: ko.toJS(systemAtr) == 1" class="label textFormat2">#{i18n.getText('CMM018_120', [i18n.getText('Com_Department')])}</div>
+						</div>
+				
+			</div>	
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

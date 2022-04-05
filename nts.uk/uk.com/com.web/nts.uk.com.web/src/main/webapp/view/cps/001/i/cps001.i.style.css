@@ -1,0 +1,27 @@
+#tbl{
+	margin:10px auto;
+}
+#tblDetail td{padding: 5px 0px;}
+
+#subContent input{ width: 70px !important;}
+
+#subContent td.tdTxt{
+	padding: 0px 40px; 
+}
+#subContent table>tbody>tr>td:nth-child(1){
+	width: 115px;
+}
+.formularStyle{
+	font-weight: bold; 
+	padding: 10px !important;
+}
+
+.ui-iggrid-header{
+	white-space: unset !important;
+}
+
+.ui-iggrid-header.ui-widget-header{
+	word-wrap: break-word;
+	white-space: pre-wrap;
+	word-break: normal;
+}

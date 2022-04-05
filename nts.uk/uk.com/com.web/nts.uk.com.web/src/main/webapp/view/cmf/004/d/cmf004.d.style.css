@@ -1,0 +1,38 @@
+.contents-area{
+	width: 300px;
+	height: 450px;
+	margin-left: 20px;
+}
+
+.div-table {
+  display: table;         
+  width: 450px; 
+  border: 0,
+  background-color: #eee;          
+  border-spacing: 5px; 
+}
+.div-table-row {
+  display: table-row;
+  width: 500px;
+  height:37px;
+  clear: both;
+}
+.div-table-row-1 {
+  display: table-row;
+  width: 250px;
+  height:10px;
+  clear: both;
+}
+.div-table-col {
+  float: left;
+  width: 150px; 
+  margin-top :auto;
+  display: table-column;
+}
+.div-table-col-big {
+  float: left; 
+  margin-top :auto;
+  display: table-column;         
+  width: 200px;   
+  height: 37px;
+}

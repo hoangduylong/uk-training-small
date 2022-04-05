@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component">
+<body>
+<ui:composition>
+    <!-- F:データ復旧期間変更 -->
+    <div class="contentF" data-bind="with: changeDataRecoveryPeriod">
+        <div class="div-line" style="margin-top: 20px;">
+            <!--F3_1 復旧元ファイルラベル-->
+            <div class="div-column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_110')}</div>
+            <!--F3_2 復旧ファイル-->
+            <label data-bind="text: $vm.recoverySourceFile"/>
+        </div>
+        <div class="div-line">
+            <!--F3_3 コード名称ラベル-->
+            <div class="div-column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_111')}</div>
+            <!--F3_4 コード-->
+            <label data-bind="text: $vm.recoverySourceCode"/>
+            <!--F3_5 保存名称-->
+            <label data-bind="text: $vm.recoverySourceName"/>
+        </div>
+        <div class="div-line">
+            <!--F3_6 補足説明ラベル-->
+            <div class="div-column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_112')}</div>
+            <!--F3_7 補足説明-->
+            <label data-bind="text: $vm.supplementaryExplanation"/>
+        </div>
+        <div class="div-line flex">
+            <!--F4_1 カテゴリ一覧-->
+            <table id="F4_1">
+                <colgroup>
+                    <col width="30px"/>
+                    <col width="70px"/>
+                    <col width="180px"/>
+                    <col width="85px"/>
+                    <col width="115px"/>
+                    <col width="115px"/>
+                    <col width="96px"/>
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th class="ui-widget-header"/>
+                        <th class="ui-widget-header">#{i18n.getText('CMF004_113')}</th>
+                        <th class="ui-widget-header">#{i18n.getText('CMF004_114')}</th>
+                        <!-- TODO: Resource -->
+                        <th class="ui-widget-header"></th>
+                        <th class="ui-widget-header">#{i18n.getText('CMF004_115')}</th>
+                        <th class="ui-widget-header">#{i18n.getText('CMF004_116')}</th>
+                        <th class="ui-widget-header">#{i18n.getText('CMF004_117')}</th>
+                        <th class="ui-widget-header">#{i18n.getText('CMF004_118')}</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: changeDataCategoryList">
+                    <tr id="F5_5" data-bind="attr: { 'data-id': rowNumber }">
+                        <td class="halign-right row-number"><label data-bind="text: rowNumber"/></td>
+                        <td class="halign-center">
+                            <div data-bind="ntsCheckBox: { checked: isRecover, enable: false }"/>
+                        </td>
+                        <td><span class="limited-label" data-bind="text: categoryName"/></td>
+                    	<td><span class="limited-label" data-bind="text: $vm.getTextRecovery(recoveryPeriod)"/></td> 
+                        <com:ko-if bind="recoveryPeriod() == nts.uk.com.view.cmf004.b.viewmodel.PeriodEnum.FULLTIME">
+                        	<td><span class="limited-label" data-bind="text: startOfPeriod"/></td>
+                        	<td><span class="limited-label" data-bind="text: endOfPeriod"/></td>
+                        </com:ko-if>
+                        <com:ko-if bind="recoveryPeriod() == nts.uk.com.view.cmf004.b.viewmodel.PeriodEnum.DAY">
+                            <td class="halign-center date-period start-date">
+                                <div data-bind="ntsDatePicker: {name: '#[CMF004_119]', value: startOfPeriod, dateFormat: 'YYYY/MM/DD', required: true, enable: isEnablePeriod}"
+                                     tabindex="2"/>
+                            </td>
+                            <td class="halign-center date-period end-date">
+                                <div data-bind="ntsDatePicker: {name: '#[CMF004_120]', value: endOfPeriod, dateFormat: 'YYYY/MM/DD', required: true, enable: isEnablePeriod}"
+                                     tabindex="3"/>
+                            </td>
+                        </com:ko-if>
+                        <com:ko-if bind="recoveryPeriod() == nts.uk.com.view.cmf004.b.viewmodel.PeriodEnum.MONTH">
+                            <td class="halign-center date-period start-date">
+                                <div data-bind="ntsDatePicker: {name: '#[CMF004_119]', value: startOfPeriod, dateFormat: 'yearmonth', valueFormat: 'YYYYMM', required: true, enable: isEnablePeriod}"
+                                     tabindex="2"/>
+                            </td>
+                            <td class="halign-center date-period end-date">
+                                <div data-bind="ntsDatePicker: {name: '#[CMF004_120]', value: endOfPeriod, dateFormat: 'yearmonth', valueFormat: 'YYYYMM', required: true, enable: isEnablePeriod}"
+                                     tabindex="3"/>
+                            </td>
+                        </com:ko-if>
+                        <com:ko-if bind="recoveryPeriod() == nts.uk.com.view.cmf004.b.viewmodel.PeriodEnum.YEAR">
+                            <td class="halign-center date-period start-date">
+                                <div data-bind="ntsDatePicker: {name: '#[CMF004_119]', value: startOfPeriod, dateFormat: 'YYYY', valueFormat: 'YYYY', required: true, enable: isEnablePeriod}"
+                                     tabindex="2"/>
+                            </td>
+                            <td class="halign-center date-period end-date">
+                                <div data-bind="ntsDatePicker: {name: '#[CMF004_120]', value: endOfPeriod,  dateFormat: 'YYYY', valueFormat: 'YYYY', required: true, enable: isEnablePeriod}"
+                                     tabindex="3"/>
+                            </td>
+                        </com:ko-if>
+
+                        <td><label data-bind="text: recoveryMethod"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="halign-center" style="width: 760px; margin-top: 250px;">
+        <!--F6_1 復旧内容表示へ-->
+        <button class="large" data-bind="click: backToPreviousScreen"
+                tabindex="4">#{i18n.getText('CMF004_121')}</button>
+        <!--F6_2 次へボタン-->
+        <button class="x-large proceed" data-bind="click: nextToScreenG"
+                tabindex="5">#{i18n.getText('CMF004_122')}</button>
+    </div>
+</ui:composition>
+</body>
+</html>

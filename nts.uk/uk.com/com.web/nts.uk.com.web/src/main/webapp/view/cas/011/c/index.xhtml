@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+                var dialogSize = {
+                    width : 500,
+                    height : 320
+                };
+            </script>
+
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cas011.c.style.css" />
+			<com:scriptfile path="cas011.c.service.js" />
+			<com:scriptfile path="cas011.c.vm.js" />
+			<com:scriptfile path="cas011.c.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div class="form-group">
+					<!-- C1-001 : Default role set-->
+					<table>
+						<colgroup>
+							<col width="120px" />
+							<col width="*" />
+						</colgroup>
+						<tr class="row">
+							<td class="pad_left_5px" style="width: 160px">
+								<div data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CAS011_30')}</div>
+							</td>
+							<td class="pad_left_5px">
+								<!-- C1-002 : Role Set list-->
+								<div id="combo-box" tabindex="1"
+									data-bind="ntsComboBox: {
+                                                name:'#[CAS011_31]',
+                                                options: listDefaultRoleSets,
+                                                optionsValue: 'roleSetCd',
+                                                visibleItemsCount: 5,
+                                                value: currentDefaultRoleSet().roleSetCd,
+                                                optionsText: 'roleSetName',
+                                                editable: false,
+                                                enable: true,
+                                                columns: [
+                                                    { prop: 'roleSetCd', length: 4 },
+                                                    { prop: 'roleSetName', length: 30 },
+                                                ]}">
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			
+			<div id="functions-area-bottom">
+				<!-- C1-003 : Decision-->
+				<button id="btnDecision" class="proceed x-large" tabindex="2"
+					style="padding-right: 18px; width: 115px"
+					data-bind="click : addDefaultRoleSet, enable: currentDefaultRoleSet().roleSetCd">#{i18n.getText('CAS011_32')}</button>
+				<!-- C1-004 : Cancel-->
+				<button id="btnCancel" class="large" tabindex="3"
+					style="padding-left: 18px;" data-bind="click: closeDialog">#{i18n.getText('CAS011_33')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

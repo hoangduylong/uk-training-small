@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:com="http://xmlns.jcp.org/jsf/component"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+	<body>
+		<ui:composition template="../../../master/base.xhtml">
+			<ui:define name="htmlHead">
+				<script>var dialogSize = { width: 300, height: 200 };</script>
+				<com:stylefile path="../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile set="IGNITE" />
+				<com:scriptfile path="../catalog/catalog.js" />
+			</ui:define>
+			<ui:define name="content">				
+				<div id="functions-area"></div>
+				<div id="contents-area" class="cf">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Reset default value</h1>
+						<article>
+							<p>Reset default value for text editor, combobox, switch buttons. When a control is disabled, its value is reset to default value.</p>
+							<h2>Implement</h2>
+							<p>Use the following method to set default value for controls:</p>
+							<pre><![CDATA[nts.uk.util.value.reset($(controls), defaultValue);]]></pre>
+							<h4>Description</h4>
+							<pre>- $(controls)            : JQuery object of controls that you want to set default value for.</pre>
+							<pre>- defaultValue(optional) : Default value to be set; if this value is undefined, default value is the current value of the control.</pre>
+							<h4>Example</h4>
+							<p>We have a text editor on a page.</p>
+							<pre><![CDATA[<input id="text-1" data-bind="ntsTextEditor: { name: '#[FND_L_SEARCH_RELEASE]', value: value, constraint: constraint,... }" />]]></pre>
+							<p>Its current display value is "text". To set this value as default value for this text editor, call reset() method.</p>
+							<pre><![CDATA[nts.uk.util.value.reset($("#text-1"));]]></pre>
+							<p>After calling the above method, whenever this text editor is disabled, its value'll be reset to "text".</p>
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+					</div>
+				</div>
+			</ui:define>
+		</ui:composition>
+   	</body>
+</html>

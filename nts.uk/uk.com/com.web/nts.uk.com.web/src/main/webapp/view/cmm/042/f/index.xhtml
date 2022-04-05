@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script type='text/javascript'>
+				var dialogSize = {
+					width : 355,
+					height : 630
+				};
+			</script>
+			<com:ValidatorScript>
+					nts.uk.ctx.bs.employee.dom.employee.mgndata.RemoveReason
+			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cmm042.f.style.css" />
+			<com:scriptfile path="cmm042.f.service.js" />
+			<com:scriptfile path="cmm042.f.vm.js" />
+			<com:scriptfile path="cmm042.f.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div id="left-content" >
+					<div class="cf">
+						<div style="float: left ; margin-left: 15px">
+							<table id="multi-list"
+								data-bind="ntsGridList: {
+									height: 535,
+									options: modems,
+									optionsValue: 'id',
+									rows: 20,
+									columns: [
+						                { headerText: '', key: 'id', width: 0, hidden: true },
+						                { headerText: '#{i18n.getText('CPS008_9')}', key: 'code', width: 0, hidden: true },
+						                { headerText: 'モデム機種名', key: 'name', width: 290, hidden: false, formatter: _.escape }
+						            ],
+									multiple: false,
+									value: modem().id}">
+							</table>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			<div id="functions-area-bottom" >
+				<button style=" margin-top: 10px " class="proceed large" data-bind="click: pushDataToEScreen">了解</button>
+				<button style=" margin-top: 10px " class=" large" data-bind="click: close">取消</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

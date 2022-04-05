@@ -1,0 +1,30 @@
+button#E1_3 {
+  left: 55px;
+}
+
+input#E5_1,
+input#E5_3 {
+  width: 55px;
+}
+
+textarea#E6 {
+  resize: none;
+}
+
+div#content-area {
+  padding-left: 20px;
+  padding-top: 10px;
+  padding-right: 20px;
+}
+
+table#ccg005-e-layout tr td {
+  padding: 5px;
+}
+
+td#blank-space {
+  width: 135px;
+}
+
+td#center {
+  text-align: center;
+}

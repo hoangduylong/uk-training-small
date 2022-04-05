@@ -1,0 +1,19 @@
+.bottomStype {
+	margin-top: 20px;
+	text-align: center;
+}
+
+.input_002 {
+	display: inline-block;
+}
+
+.table_content td {
+	border: 10px solid transparent;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
+#contents-area {
+	height: auto !important;
+}

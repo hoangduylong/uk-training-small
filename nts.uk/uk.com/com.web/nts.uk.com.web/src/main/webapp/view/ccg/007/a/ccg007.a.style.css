@@ -1,0 +1,43 @@
+#contents-area, #functions-area-bottom {
+	background-color: rgb(235, 255, 235);
+}
+
+#contents-area {
+	height: calc(100vh - 85px) !important;
+}
+
+#functions-area-bottom {
+	height: 85px;
+	padding: 0 !important;
+}
+
+#functions-area-bottom-label {
+	padding: 0px 10px 5px 10px; 
+	text-align: left; 
+	line-height: 0.6em; 
+	height: 2em;
+}
+
+#login-btn {
+	margin-top: 3px;
+}
+
+.w230 {
+	width: 230px;
+}
+
+.w100 {
+	width: 100px;
+}
+
+.p10 {
+	padding: 10px;
+}
+
+.m-l-10 {
+	margin-left: 10px;
+}
+
+.pre-wrap {
+	white-space: pre-wrap;
+}

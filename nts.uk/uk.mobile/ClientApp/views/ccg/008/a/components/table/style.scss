@@ -1,0 +1,198 @@
+.nts-ccgs008-table{
+    $table-padding: 0.3rem 0.1rem 0.3rem 0.1rem;
+    td{
+        white-space: nowrap;
+    }
+    tbody{
+        overflow-y: auto;    /* Trigger vertical scroll    */
+        overflow-x: hidden;  /* Hide the horizontal scroll */
+    }
+    .search-box{
+        padding: 0 0 5px 0;
+    }
+    th,td {
+        padding: 0;
+    }
+}
+#fountainG{
+	position:relative;
+	width:72px;
+	height:9px;
+	margin:auto;
+}
+
+.fountainG{
+	position:absolute;
+	top:0;
+	background-color:rgb(93,167,151);
+	width:9px;
+	height:9px;
+	animation-name:bounce_fountainG;
+		-o-animation-name:bounce_fountainG;
+		-ms-animation-name:bounce_fountainG;
+		-webkit-animation-name:bounce_fountainG;
+		-moz-animation-name:bounce_fountainG;
+	animation-duration:0.775s;
+		-o-animation-duration:0.775s;
+		-ms-animation-duration:0.775s;
+		-webkit-animation-duration:0.775s;
+		-moz-animation-duration:0.775s;
+	animation-iteration-count:infinite;
+		-o-animation-iteration-count:infinite;
+		-ms-animation-iteration-count:infinite;
+		-webkit-animation-iteration-count:infinite;
+		-moz-animation-iteration-count:infinite;
+	animation-direction:normal;
+		-o-animation-direction:normal;
+		-ms-animation-direction:normal;
+		-webkit-animation-direction:normal;
+		-moz-animation-direction:normal;
+	transform:scale(.3);
+		-o-transform:scale(.3);
+		-ms-transform:scale(.3);
+		-webkit-transform:scale(.3);
+		-moz-transform:scale(.3);
+	border-radius:6px;
+		-o-border-radius:6px;
+		-ms-border-radius:6px;
+		-webkit-border-radius:6px;
+		-moz-border-radius:6px;
+}
+
+#fountainG_1{
+	left:0;
+	animation-delay:0.316s;
+		-o-animation-delay:0.316s;
+		-ms-animation-delay:0.316s;
+		-webkit-animation-delay:0.316s;
+		-moz-animation-delay:0.316s;
+}
+
+#fountainG_2{
+	left:9px;
+	animation-delay:0.3925s;
+		-o-animation-delay:0.3925s;
+		-ms-animation-delay:0.3925s;
+		-webkit-animation-delay:0.3925s;
+		-moz-animation-delay:0.3925s;
+}
+
+#fountainG_3{
+	left:18px;
+	animation-delay:0.469s;
+		-o-animation-delay:0.469s;
+		-ms-animation-delay:0.469s;
+		-webkit-animation-delay:0.469s;
+		-moz-animation-delay:0.469s;
+}
+
+#fountainG_4{
+	left:27px;
+	animation-delay:0.5455s;
+		-o-animation-delay:0.5455s;
+		-ms-animation-delay:0.5455s;
+		-webkit-animation-delay:0.5455s;
+		-moz-animation-delay:0.5455s;
+}
+
+#fountainG_5{
+	left:36px;
+	animation-delay:0.622s;
+		-o-animation-delay:0.622s;
+		-ms-animation-delay:0.622s;
+		-webkit-animation-delay:0.622s;
+		-moz-animation-delay:0.622s;
+}
+
+#fountainG_6{
+	left:45px;
+	animation-delay:0.6985s;
+		-o-animation-delay:0.6985s;
+		-ms-animation-delay:0.6985s;
+		-webkit-animation-delay:0.6985s;
+		-moz-animation-delay:0.6985s;
+}
+
+#fountainG_7{
+	left:54px;
+	animation-delay:0.775s;
+		-o-animation-delay:0.775s;
+		-ms-animation-delay:0.775s;
+		-webkit-animation-delay:0.775s;
+		-moz-animation-delay:0.775s;
+}
+
+#fountainG_8{
+	left:63px;
+	animation-delay:0.8615s;
+		-o-animation-delay:0.8615s;
+		-ms-animation-delay:0.8615s;
+		-webkit-animation-delay:0.8615s;
+		-moz-animation-delay:0.8615s;
+}
+
+
+
+@keyframes bounce_fountainG{
+	0%{
+	transform:scale(1);
+		background-color:rgb(93,167,151);
+	}
+
+	100%{
+	transform:scale(.3);
+		background-color:rgba(255,255,255,0.92);
+	}
+}
+
+@-o-keyframes bounce_fountainG{
+	0%{
+	-o-transform:scale(1);
+		background-color:rgb(93,167,151);
+	}
+
+	100%{
+	-o-transform:scale(.3);
+		background-color:rgba(255,255,255,0.92);
+	}
+}
+
+@-ms-keyframes bounce_fountainG{
+	0%{
+	-ms-transform:scale(1);
+		background-color:rgb(93,167,151);
+	}
+
+	100%{
+	-ms-transform:scale(.3);
+		background-color:rgba(255,255,255,0.92);
+	}
+}
+
+@-webkit-keyframes bounce_fountainG{
+	0%{
+	-webkit-transform:scale(1);
+		background-color:rgb(93,167,151);
+	}
+
+	100%{
+	-webkit-transform:scale(.3);
+		background-color:rgba(255,255,255,0.92);
+	}
+}
+
+@-moz-keyframes bounce_fountainG{
+	0%{
+	-moz-transform:scale(1);
+		background-color:rgb(93,167,151);
+	}
+
+	100%{
+	-moz-transform:scale(.3);
+		background-color:rgba(255,255,255,0.92);
+	}
+}
+
+.tbody-border {
+	border-bottom: 1px solid #dee2e6;   
+}

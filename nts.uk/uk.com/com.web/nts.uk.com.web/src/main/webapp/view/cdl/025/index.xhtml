@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body style="overflow: hidden;">
+	<ui:composition template="../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 390, height: 600 };</script>
+			<com:stylefile path="cdl025.a.main.css" />
+
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="../../ccg/025/component/component.css" />
+			<com:scriptfile path="../../ccg/025/component/component.service.js" />
+			<com:scriptfile path="../../ccg/025/component/component.vm.js" />
+			<com:scriptfile path="cdl025.a.vm.js" />
+			<com:scriptfile path="cdl025.a.service.js" />
+			<com:scriptfile path="cdl025.a.start.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="contents-area">
+				<div data-bind="with: component"
+					style="margin-top: 20px; margin-left: 20px;">
+					<ui:include src="../../ccg/025/component/index.xhtml" />
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<button class="x-large proceed" data-bind="click: decision">#{i18n.getText('CDL025_3')}</button>
+				<button data-bind="click: cancel">#{i18n.getText('CDL025_4')}</button>
+			</div>
+		</ui:define>
+
+
+
+	</ui:composition>
+</body>
+</html>

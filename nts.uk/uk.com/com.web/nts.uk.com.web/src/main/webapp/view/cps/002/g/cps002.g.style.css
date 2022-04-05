@@ -1,0 +1,41 @@
+input.txtEmpCodeFirstChar {
+	width: 100px;
+	height: 25px;
+	border-radius: 3px;
+	border: 1px solid gray;
+}
+
+.tblContent {
+	margin: auto;
+}
+
+.tblContent td {
+	padding: 5px 0px;
+}
+
+.tblContent td:first-child {
+	vertical-align: top;
+}
+
+#empInitGroup .radio-wrapper:not(:first-child), #initCardNoGroup .radio-wrapper:not(:first-child){
+	width: 90%;
+	margin-top: 5px;
+}
+
+#empCodeLetter {
+	position: absolute;
+	left: 80px;
+	top: 12px;
+}
+
+#cardNoLetter {
+	position: absolute;
+	left: 80px;
+	top: 12px;
+}
+
+#empInitGroup, #initCardNoGroup {
+	padding-top: 10px;
+	margin-top: -5px;
+}
+

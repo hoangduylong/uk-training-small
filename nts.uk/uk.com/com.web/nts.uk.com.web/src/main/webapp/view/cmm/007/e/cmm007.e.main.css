@@ -1,0 +1,17 @@
+.right-col-panel {
+	padding-left: 200px;
+}
+
+.main-table-e {
+	display: flex;
+	padding-top: 40px;
+}
+
+#tabpanel-4 .main-content {
+	min-width: 1100px;
+}
+
+.main-content table>tbody>tr>td:NTH-CHILD(2) {
+	padding-left: 30px !important;
+	padding-right: 10px;
+}

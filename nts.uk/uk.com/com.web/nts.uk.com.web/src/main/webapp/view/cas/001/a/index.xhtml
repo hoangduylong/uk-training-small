@@ -1,0 +1,326 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="cas001.a.start.js" />
+			<com:ValidatorScript>
+				nts.uk.ctx.pereg.dom.roles.RoleName
+			</com:ValidatorScript>
+			<com:stylefile path="/view/ccg/025/component/component.css" />
+			<com:scriptfile path="/view/ccg/025/component/component.service.js" />
+			<com:scriptfile path="/view/ccg/025/component/component.vm.js" />
+			<com:stylefile path="cas001.a.style.css" />
+			<com:scriptfile
+				path="/lib/generic/igniteui/js/extensions/infragistics.datasource.knockoutjs.js"
+				of="/nts.uk.com.js.web" />
+			<com:scriptfile
+				path="/lib/generic/igniteui/js/extensions/infragistics.ui.grid.knockout-extensions.js"
+				of="/nts.uk.com.js.web" />
+			<com:scriptfile path="cas001.a.service.js" />
+			<com:scriptfile path="cas001.a.vm.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<div class="container">
+					<a tabindex="1" class="goback" id="A1_001"
+						data-bind="ntsLinkButton: { jump: '/view/cps/018/a/index.xhtml' }, visible: $vm.isFromCPS018">#{i18n.getText('CAS001_100')}</a>
+					<!-- <button id="A1_001">#{i18n.getText('CAS001_2')}</button> -->
+					<button tabindex="2" id="A1_002" class="proceed" data-bind="click:saveData">#{i18n.getText('CAS001_3')}</button>
+					<button tabindex="3" id="A1_003"
+						data-bind="click:openCModal,enable:(personRoleList().length > 1)">#{i18n.getText('CAS001_4')}</button>
+					<!-- 	<button id="A1_004" class="danger">#{i18n.getText('CAS001_5')}</button> -->
+					<button id="print-button" tabindex="2" data-bind="click: exportExcel, visible:hasPermission()" style="width: 130px;">#{i18n.getText('KMK007_4')}</button>
+					
+					<div tabindex="4" class="float-right">
+						<a  id="A1_005" class="goout "
+							data-bind="ntsLinkButton: { jump: '/view/cps/001/a/index.xhtml' }">#{i18n.getText('CAS001_6')}</a>
+					</div>
+				</div>
+			</div>
+			<div id="contents-area" class="cf">
+				<div id="content">
+					<div id="content-left"
+						class="bg-green caret-right caret-background">
+						<div  data-bind='with:component'>
+							<div id="pannel-top"
+								data-bind="ntsPanel:{width: '220px', direction: '', showIcon: false, visible: true}">
+								<ui:include src="/view/ccg/025/component/index.xhtml" />
+							</div>
+						</div>
+
+						<span id="A2_001Caret" class="caret-bottom outline"></span>
+						<div id="left-bottom">
+							<div style="width: 270px" id="A2_007" tabindex="6" data-bind="ntsSearchBox: {
+								searchMode: 'highlight',
+								targetKey: 'categoryId',
+							 	comId: 'A2_008',
+							 	items: roleCategoryList,
+							 	selected: currentCategoryId,
+							 	selectedKey: 'categoryId',
+							 	fields: ['categoryName'],
+							 	mode: 'igGrid',
+							 	placeHolder: '#{i18n.getText('CAS001_76')}'}" />
+							<table  tabindex="7" id="A2_008" data-bind="ntsGridList: {	
+								dataSource: roleCategoryList ,
+								primaryKey: 'categoryId' ,
+								columns: ctgColumns ,
+								multiple: false,
+								columnResize: true,
+								value: currentCategoryId ,
+								rows:10 }">
+							</table>
+						</div>
+					</div>
+					<div id="content-right">
+						<div id="roleConfigArea" data-bind="with:currentRole">
+
+							<div class="div_line" style="margin-top: 0px;">
+								<div class="line_col_1 ">
+									<div class="float_left display_block fix-width-lable"
+										data-bind="ntsFormLabel: { required:true }">#{i18n.getText('CAS001_12')}</div>
+									<div>
+										<p class="ellipsis" id="A3_002"
+											data-bind="text:roleCode +' ' +roleName"></p>
+									</div>
+								</div>
+								<div class="line_col_2" data-bind="with:$parent">
+									<button  tabindex="8"  id="A3_004" data-bind="click:openDModal">#{i18n.getText('CAS001_13')}</button>
+								</div>
+							</div>
+							<!-- 	category area -->
+							<div id="category_config_arena" data-bind="with:currentCategory">
+								<div class="div_line" style = "border-top: 1px solid #CCC ; padding-top : 10px">
+									<div class="line_col_1">
+										<div id="A4_001" class="float_left display_block fix-width-lable"
+											data-bind="ntsFormLabel: { required:true }">#{i18n.getText('CAS001_21')}</div>
+										<div>
+											<p id="A4_002" class="padding_left_20 ellipsis "
+												data-bind="text:categoryName"></p>
+										</div>
+									</div>
+									<div class="line_col_2">
+										<div id="A4_003" class="float_left display_block fix-width-lable"
+											data-bind="ntsFormLabel: {}">#{i18n.getText('CAS001_22')}</div>
+										<div>
+											<p id="A4_004" class="padding_left_20 ellipsis"
+												data-bind="text:$parents[1].genCategoryTypeText()"></p>
+										</div>
+									</div>
+								</div>
+								<div class="div_line">
+									<div id="file_permission_settings_cover">
+										<div data-bind="ntsAccordion: {active:0 }">
+											<h3>#{i18n.getText('CAS001_23')}</h3>
+											<div>
+												<div id="file_permission_settings">
+													<div class="flex valign-center">
+														<span id="A4_007" class="cas001-label">#{i18n.getText('CAS001_24')}</span>
+														<div id="A4_008" class="cf margin_left_10"
+															data-bind="ntsSwitchButton: {
+															options:  $parents[1].roundingRules,
+															optionsValue: 'code',
+															optionsText: 'name',
+															value: $parents[1].allowOtherRef ,
+															enable: true }" tabindex="9" ></div>
+														</div>
+													<div class="flex valign-center">
+														<span id="A4_009">#{i18n.getText('CAS001_26')} </span>
+														<div  id="A4_010" class="cf margin_left_10"
+															data-bind="ntsSwitchButton: {
+															options:  $parents[1].roundingRules,
+															optionsValue: 'code',
+															optionsText: 'name',
+															value: $parents[1].allowPersonRef ,
+															enable: true }" tabindex="10" ></div>
+													</div>
+												</div>
+												<div id="auth_group_table">
+													<com:ko-if bind="categoryType === 2">
+														<table id="multi_auth_table" class="auth_table">
+															<tr>
+																<th></th>
+																<th style="width: 150px;">#{i18n.getText('CAS001_40')}</th>
+																<th style="width: 150px;">#{i18n.getText('CAS001_41')}</th>
+															</tr>
+															<tr>
+																<th>#{i18n.getText('CAS001_30')}</th>
+																<td>
+																	<div id="A4_033" class="cf"
+																		data-bind="ntsSwitchButton: {
+																		options:  $parents[1].roundingRules,
+																		optionsValue: 'code',
+																		optionsText: 'name',
+																		value: otherAllowAddMulti ,
+																		enable: $parents[1].switchModeAllowOtherRef }" tabindex="13"></div>
+																</td>
+																<td>
+																	<div id="A4_034" class="cf"
+																			data-bind="ntsSwitchButton: {
+																			options:  $parents[1].roundingRules,
+																			optionsValue: 'code',
+																			optionsText: 'name',
+																			value: otherAllowDelMulti ,
+																			enable: $parents[1].switchModeAllowOtherRef }" tabindex="14"></div>
+																</td>
+
+															</tr>
+															<tr>
+																<th>#{i18n.getText('CAS001_31')}</th>
+																<td>
+																	<div id="A4_035" class="cf"
+																		data-bind="ntsSwitchButton: {
+																		options:  $parents[1].roundingRules,
+																		optionsValue: 'code',
+																		optionsText: 'name',
+																		value: selfAllowAddMulti ,
+																		enable: $parents[1].switchModeAllowPersonRef }" tabindex="15"></div>
+																</td>
+																<td>
+																	<div id="A4_036" class="cf"
+																		data-bind="ntsSwitchButton: {
+																		options:  $parents[1].roundingRules,
+																		optionsValue: 'code',
+																		optionsText: 'name',
+																		value: selfAllowDelMulti ,
+																		enable: $parents[1].switchModeAllowPersonRef }" tabindex="16"></div>
+																</td>
+
+															</tr>
+														</table>
+													</com:ko-if>
+													<com:ko-if
+														bind="categoryType &gt; 2 &amp;&amp; categoryType &lt; 7">
+														<table id="history_auth_table" class="auth_table">
+															<tr>
+																<th></th>
+																<th style="width: 150px;">#{i18n.getText('CAS001_32')}</th>
+																<th style="width: 150px;">#{i18n.getText('CAS001_33')}</th>
+																<th style="width: 150px;">#{i18n.getText('CAS001_34')}</th>
+																<th style="width: 150px;">#{i18n.getText('CAS001_35')}</th>
+															</tr>
+															<tr>
+																<th>#{i18n.getText('CAS001_30')}</th>
+																<td>
+																	<div id="A4_020" class="cf"
+																		data-bind="ntsSwitchButton: {
+																		options:  $parents[1].roundingRules,
+																		optionsValue: 'code',
+																		optionsText: 'name',
+																		value: otherAllowAddHis ,
+																		enable: $parents[1].switchModeAllowOtherRef }" tabindex="13" ></div>
+																</td>
+																<td>
+																	<div id="A4_021" class="cf"
+																		data-bind="ntsSwitchButton: {
+																		options:  $parents[1].roundingRules,
+																		optionsValue: 'code',
+																		optionsText: 'name',
+																		value:  otherAllowDelHis,
+																		enable: $parents[1].switchModeAllowOtherRef }" tabindex="14"></div>
+																</td>
+																<td>
+																<div id="A4_022"
+																		data-bind="ntsComboBox: {
+																		options: $parents[1].itemListCbb,
+																		optionsValue: 'code',
+																		value: otherFutureHisAuth ,
+																		optionsText: 'name',
+																		editable: false,
+																		enable: $parents[1].allowOtherRef()===1 ,
+																		columns: [
+																			{ prop: 'name', length: 5 },
+																		],
+																		dropDownAttachedToBody:true}" tabindex="15"></div>
+																</td>
+																<td>
+																	<div id="A4_023"
+																		data-bind="ntsComboBox: {
+																		options: $parents[1].itemListCbb,
+																		optionsValue: 'code',
+																		value: otherPastHisAuth ,
+																		optionsText: 'name',
+																		editable: false,
+																		enable: $parents[1].allowOtherRef()===1 ,
+																		columns: [
+																			{ prop: 'name', length: 5 },
+																		],
+																		dropDownAttachedToBody:true}"  tabindex="16"></div>
+																</td>
+															</tr>
+															<tr>
+																<th>#{i18n.getText('CAS001_31')}</th>
+																<td>
+																	<div id="A4_024" class="cf"
+																			data-bind="ntsSwitchButton: {
+																			options:  $parents[1].roundingRules,
+																			optionsValue: 'code',
+																			optionsText: 'name',
+																			value:  selfAllowAddHis,
+																			enable: $parents[1].switchModeAllowPersonRef }" tabindex="17"></div>
+																</td>
+																<td>
+																	<div id="A4_025" class="cf"
+																		data-bind="ntsSwitchButton: {
+																		options:  $parents[1].roundingRules,
+																		optionsValue: 'code',
+																		optionsText: 'name',
+																		value: selfAllowDelHis ,
+																		enable: $parents[1].switchModeAllowPersonRef }" tabindex="18"></div>
+																</td>
+																<td>
+																	<div id="A4_026"
+																		data-bind="ntsComboBox: {
+																		options: $parents[1].itemListCbb,
+																		optionsValue: 'code',
+																		value:  selfFutureHisAuth,
+																		optionsText: 'name',
+																		editable: false,
+																		enable: $parents[1].allowPersonRef() === 1 ,
+																		columns: [
+																			{ prop: 'name', length: 5 },
+																		],
+																		dropDownAttachedToBody:true}" tabindex="19"></div>
+																</td>
+																<td>
+																	<div id="A4_027"
+																		data-bind="ntsComboBox: {
+																		options: $parents[1].itemListCbb,
+																		optionsValue: 'code',
+																		value: selfPastHisAuth ,
+																		optionsText: 'name',
+																		editable: false,
+																		enable: $parents[1].allowPersonRef() === 1  ,
+																		columns: [
+																			{ prop: 'name', length: 5 },
+																		],
+																		dropDownAttachedToBody:true}" tabindex="20"></div>
+																</td>
+															</tr>
+														</table>
+													</com:ko-if>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div id="item_role_table_cover" >
+							<!-- item area -->
+							<table id="item_role_table_body"  >
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:EnumScript>
+				nts.uk.ctx.sys.auth.dom.role.RoleType
+			</com:EnumScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="/view/sample/catalog/catalog.css" />
+			<com:scriptfile path="/view/sample/catalog/start.js" />
+			<com:scriptfile path="/view/sample/catalog/catalog.js" />
+			<com:scriptfile path="start.js" />
+			<com:scriptfile path="main.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area" class="cf">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+					<h1>KDW025 Testing page</h1>
+					<h2>Multi selection</h2>
+					<h3>Multiple: true</h3>
+					<div id="combo-box-multi"
+						data-bind="ntsComboBox: {
+								options: listRoleType,
+								optionsValue: 'value',
+								value: selectRoleTypeMulti,
+								optionsText: 'value',
+								editable: false,
+								enable: true,
+								columns: [
+									{ prop: 'name', length: 10 },
+								]}"></div>
+					<div>
+						<button data-bind="click: openCDL025">Open Dialog</button>
+					</div>
+					<div>
+						<span data-bind="text : currentCodes"></span>
+					</div>
+					<br />
+					<h2>Single selection</h2>
+					<h3>Multiple: false</h3>
+					<div id="combo-box-single"
+						data-bind="ntsComboBox: {
+								options: listRoleType,
+								optionsValue: 'value',
+								value: selectRoleTypeSingle,
+								optionsText: 'value',
+								editable: false,
+								enable: true,
+								columns: [
+									{ prop: 'name', length: 10 },
+								]}"></div>
+					<div>
+						<button data-bind="click: openCDL025Single">Open Dialog</button>
+					</div>
+					<div>
+						<span data-bind="text : ko.toJSON(currentCode)"></span>
+					</div>
+					<article class="cf">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-html">Usage</a></li>
+								<li><a href="#tabs-api">API</a></li>
+							</ol>
+							<div id="tabs-html" class="cf">
+								<h2>Ussage</h2>
+								<pre>
+									<![CDATA[currentCode: KnockoutObservable<string>;
+currentCodes: KnockoutObservableArray<string>;
+
+// Multi selection
+openCDL025() {
+    var self = this;
+    let param = {
+        roleType: 1,
+        multiple: true,
+        currentCode: self.currentCodes()
+    };
+    nts.uk.ui.windows.setShared("paramCdl025", param);
+    nts.uk.ui.windows.sub.modal("/view/cdl/025/index.xhtml").onClosed(() => {
+        let data = nts.uk.ui.windows.getShared("dataCdl025");
+        if (!nts.uk.util.isNullOrUndefined(data))
+            self.currentCodes(data);
+    });
+}
+
+// Single selection
+openCDL025Single() {
+    var self = this;
+    let param = {
+        roleType: 1,
+        multiple: false,
+        currentCode: self.currentCode()
+    };
+    nts.uk.ui.windows.setShared("paramCdl025", param);
+    nts.uk.ui.windows.sub.modal("/view/cdl/025/index.xhtml").onClosed(() => {
+        let data = nts.uk.ui.windows.getShared("dataCdl025");
+        if (!nts.uk.util.isNullOrUndefined(data))
+            self.currentCode(data);
+    });
+}]]>
+								</pre>
+							</div>
+							<div id="tabs-api" class="cf">
+								<h2>Get and Set data</h2>
+								<table class="table">
+									<colgroup>
+										<col width="300px" />
+									</colgroup>
+									<thead>
+										<tr>
+											<th><h4>Name</h4></th>
+											<th><h4>Description</h4></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>nts.uk.ui.windows.setShared("paramCdl025", param)</td>
+											<td><b>Agruments:</b><br /> <i>param:</i> {<br /> <i>roleType:</i>
+												number,<br /> <i>multiple:</i> boolean,<br /> <i>currentCode:</i>
+												any<br /> }</td>
+										</tr>
+										<tr>
+											<td>nts.uk.ui.windows.getShared("dataCdl025", data)</td>
+											<td><b>Agruments:</b><br /> <i>data:</i>
+												KnockoutObservable&lt;string&gt; |
+												KnockoutObservableArray&lt;string&gt;</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

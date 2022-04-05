@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 530, height: 620 };</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cdl008.a.main.css" />
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="cdl008.a.start.js" />
+			<com:scriptfile path="cdl008.a.vm.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="contents-area">
+				<div class="workplaceContent" tabindex="-1">
+					<div class="lableCDL" tabindex="-1">
+						<label data-bind="if: startMode == 0">#{i18n.getText('CDL008_2')}</label>
+						<label data-bind="if: startMode == 1">#{i18n.getText('CDL008_6')}</label>
+					</div>
+					<div id="workplaceList" tabindex="-1"></div>
+					<div id="departmentList" tabindex="-1"></div>
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<button class="proceed x-large" tabindex="2"
+					data-bind="click: selectedWorkplace">#{i18n.getText('CDL008_3')}</button>
+				<button class="large" tabindex="3" data-bind="click: closeWindows">#{i18n.getText('CDL008_4')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

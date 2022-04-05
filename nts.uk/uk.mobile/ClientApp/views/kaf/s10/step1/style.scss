@@ -1,0 +1,76 @@
+.kafs10step1 {
+    .input-container{
+        margin-top: 10px;
+    }
+    .small-header{
+        color: grey;
+        font-size: 3.5vw;
+    }
+    .small-header-framename{
+        color: grey;
+        font-size: 3.25vw;
+    }
+    .font-time{
+        font-size: 12px;
+    }
+    .valid-switchbox{
+        border-color: red;
+        border-radius: 0.25rem;
+        border-width: 1px;
+        padding-top: 0;
+        margin-bottom: 0.1rem !important;
+        display: flex;
+    }
+    .invalid{
+        border-style: solid;
+    }
+    .alarm{
+        background-color: #F6F636;
+        color: #ff0000;
+    }
+    .error{
+        background-color: #FD4D4D;
+        color: #ffffff;
+    }
+    .exception{
+        background-color: #eb9152;
+    }
+    .reason-confirm{
+        white-space: pre-line;
+    }
+    .table-36{
+        margin-bottom: -1rem !important;
+    }
+    .alarm-message{
+        background-color:#fff3cd; 
+        color:#856404; 
+        display:flex; 
+        align-items: center
+    }
+    .error-message{
+        background-color:#f8d7da; 
+        color:#721c24; 
+        display:flex; 
+        align-items: center
+    }
+}
+.topAlarm {
+    background-color: #feee66 !important;
+    margin-bottom: 5px;
+    button {
+        text-align: left;
+        border-radius: 3px !important;
+        color: #d44f12 !important;
+    }
+}
+.topError {
+    background-color: #f8d7da !important;
+    margin-bottom: 5px;
+    button {
+        text-align: left;
+        border-radius: 3px !important;
+    }
+}
+.textSize {
+    font-size: 0.9em;
+}

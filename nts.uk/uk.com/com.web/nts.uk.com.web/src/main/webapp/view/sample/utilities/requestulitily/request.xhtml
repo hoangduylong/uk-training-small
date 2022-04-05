@@ -1,0 +1,140 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 300, height: 200 };</script>
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+            </ui:define>
+            
+            <ui:define name="content">
+            	<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Request ulitily </h1>
+						<h2>In this module have functions for work with request of client. Below is main functions of it.</h2>
+						
+						<div class="feature-box">
+							<div class="header"><h3>ajax</h3></div>
+							<div class="content">
+								<p>Call a webservice from client and return a Deferred. Ajax method receive 3 parameters are path, data, options. Data and options parameters are optional.</p>
+								<pre><![CDATA[//Try to paste this to console
+nts.uk.request.ajax("pr/proto/paymentdatemaster/processing/findall", {data: "12"}).done({function (){ alert("tested")}});
+
+// request to other web app
+// ex) the screen in nts.uk.pr.web to webservice in nts.uk.com.web
+nts.uk.request.ajax("pr", "pr/proto/paymentdatemaster/processing/findall", {data: "12"})]]></pre>
+							</div>
+						</div>
+						
+						<div class="feature-box">
+							<div class="header"><h3>jump</h3></div>
+							<div class="content">
+							<p>Jump to another page. Jump method receive 2 parameters are path and datas.</p>
+							<pre><![CDATA[//Try to paste this to console
+nts.uk.request.jump("view/sample/requestulitily/request.xhtml", {})]]></pre>
+							<p>How to get transferred data:</p>
+							<pre><![CDATA[//This is in start.ts
+__viewContext.ready(function () {
+	
+	this.transferred.ifPresent(data => {
+		console.log(data);
+	});]]></pre>
+							<p>this.transferred is <a href="../optionalutility/optional.xhtml">nts.uk.util.optional</a></p>
+							</div>
+						</div>
+						
+						<div class="feature-box">
+							<div class="header"><h3>resolvePath</h3></div>
+							<div class="content">
+								<p>Convert from relative path to full path</p>
+								<pre><![CDATA[//Try to paste this to console
+nts.uk.request.resolvePath("/view/sample/requestulitily/request.xhtml");
+Result: "http://localhost:8080/nts.uk.com.web/view/sample/requestulitily/request.xhtml"]]></pre>
+							</div>
+						</div>
+						
+						<div class="feature-box">
+							<div class="header"><h3>exportFile</h3></div>
+							<div class="content">
+								<button data-bind="click: exportFile">report: /sample/report/generate</button>
+								<pre><![CDATA[nts.uk.request.exportFile('/sample/report/generate').done(() => {
+    console.log('DONE!!');
+});]]></pre>
+							</div>
+						</div>
+						
+						<div class="feature-box">
+							<div class="header"><h3>Run asynchronous task and cancel</h3></div>
+							<div class="content" data-bind="with: asyncTask">
+								<button data-bind="click: run">run /sample/asynccmd/test</button>
+								<button data-bind="click: cancel">cancel</button>
+								<div>See console. status will be output into console.</div>
+								<div>To implement server-side, see SampleAsyncCmmandWebService.</div>
+							</div>
+						</div>
+						
+						<div class="feature-box">
+							<div class="header"><h3>"file" module</h3></div>
+							<div class="content">
+								<table class="table">
+									<tr>
+										<td>request.file.download(fileId: string): void</td>
+										<td>
+											Downlaod the file specified by <i>fileId</i>.<br/>
+											compatibility alias: <b>request.specials.downloadFile(fileId: string)</b>
+										</td>
+									</tr>
+									<tr>
+										<td>request.file.liveViewUrl(fileId: string): string</td>
+										<td>
+											Return URL to show content of the file specified by <i>fileId</i> into iframe.<br />
+											compatibility alias: <b>request.liveView(fileId: string)</b>
+										</td>
+									</tr>
+									<tr>
+										<td>request.file.liveViewUrl(fileId: string, entryName: string): string</td>
+										<td>
+											Return URL to show content of the file specified by <i>entryName</i> in the pack(zip) specified by <i>fileId</i> into iframe.
+										</td>
+									</tr>
+									<tr>
+										<td>request.file.remove(fileId: string): JQueryPromise&lt;void&gt;</td>
+										<td>
+											Remove the file specified by <i>fileId</i> from FileStorage.<br/>
+											compatibility alias: <b>request.specials.deleteFile(fileId: string)</b>
+										</td>
+									</tr>
+									<tr>
+										<td>request.file.isExist(fileId: string): JQueryPromise&lt;boolean&gt;</td>
+										<td>
+											Check whether the file exists.
+											<pre><![CDATA[nts.uk.request.file.isExist(fileId).done(isExist => {
+	if (isExist) { ... }
+});]]></pre>
+											compatibility alias: <b>request.specials.isFileExist(fileId: string)</b>
+										</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

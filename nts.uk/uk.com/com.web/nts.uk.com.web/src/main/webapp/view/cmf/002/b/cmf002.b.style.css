@@ -1,0 +1,65 @@
+.padding-item {
+	padding: 10px 0 0 10px;
+}
+
+.fixed-flex-layout-left {
+    margin-right: 10px;
+}
+
+.layout-right-column-1 {
+	width: 480px;
+}
+
+.panel.ntsPanel.direction-right {
+	margin-right: 0px;
+}
+
+.div-line {
+	margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.column-1 {
+	width: 170px;
+}
+
+#B1_8 {
+    margin-right: 10px;
+    vertical-align: 12px;
+    padding-bottom: 20px;
+    float: right;
+  	z-index: 1000;
+    top: 107px;
+    position: absolute;
+    right: 0;
+}
+
+#B1_2{
+	margin-left: 200px !important;
+
+}
+.clear {
+	clear: both;
+}
+
+#B5_1{
+	width: 40px !important;
+}
+
+.title-left{
+	margin-left: 10px !important;
+}
+body{
+
+}
+#contents-area {
+    position: relative;
+    padding: 10px;
+    overflow: hidden;
+    overflow-y: auto;
+	overflow-x: auto;
+}
+
+.margin-left-15 {
+    margin-left: 15px;
+}

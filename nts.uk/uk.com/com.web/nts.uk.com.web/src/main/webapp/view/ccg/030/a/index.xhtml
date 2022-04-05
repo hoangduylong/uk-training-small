@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 1150, height: 580 };</script>
+			<com:ValidatorScript>
+					nts.uk.ctx.sys.portal.dom.toppagepart.TopPagePartCode
+					nts.uk.ctx.sys.portal.dom.toppagepart.TopPagePartName
+					nts.uk.ctx.sys.portal.dom.toppagepart.size.Width
+					nts.uk.ctx.sys.portal.dom.toppagepart.size.Height
+				</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="ccg030.a.style.css" />
+			<com:scriptfile path="/view/ccg/common/model.js" />
+			<com:scriptfile path="ccg030.a.start.js" />
+			<com:scriptfile path="ccg030.a.vm.js" />
+			<com:scriptfile path="ccg030.a.service.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area" class="headerStyle">
+				<button class="btnSetting" id="btn_new" data-bind="click: createNewFlowMenu" tabindex="1">#{i18n.getText('CCG030_2')}</button>
+				<button class="proceed btnSetting" id="btnRegistry" data-bind="click: registryFlowMenu, enable: $root.errors.isEmpty" tabindex="2">#{i18n.getText('CCG030_3')}</button>
+				<button class="danger btnSetting" id="btnDelete" data-bind="click: deleteFlowMenu, enable: !isCreate()" tabindex="3">#{i18n.getText('CCG030_5')}</button>
+				<button class="btnSetting" id="btn004" data-bind="click : closeDialog" tabindex="4">#{i18n.getText('CCG030_6')}</button>
+			</div>
+			<div class="container">
+				<div id="contents-area" class="cf">
+					<div id="left-content"
+						class="bg-green caret-right caret-background">
+						<i class="icon icon-searchbox"></i>
+						<div class="search">
+							<div id="searchBox" style="width: 360px;" data-bind="ntsSearchBox: {
+								searchMode: 'filter',
+								name: '#[CCG030_20]',
+								targetKey: 'topPageCode',
+								mode: 'igGrid',
+								comId: 'flow-menu-list',
+								items: listFlowMenu, 
+								selected: selectedFlowMenuCD, 
+								selectedKey: 'topPageCode', 
+								fields: ['topPageCode', 'topPageName']}" />
+						</div>
+						<div class="gridlist">
+							<table id="flow-menu-list"
+								data-bind="ntsGridList: {
+								height: 350,
+								options: listFlowMenu,
+								optionsValue: 'topPageCode',
+								columns: columns,
+								multiple: false,
+								value: selectedFlowMenuCD}">
+							</table>
+						</div>
+					</div>
+					<div id="right-content">
+						<table class="right-layout">
+							<tr data-bind="with: selectedFlowMenu">
+								<td>
+									<div data-bind="ntsFormLabel: { constraint: 'TopPagePartCode',constraint: ['TopPagePartCode','TopPagePartName'], required: true }">#{i18n.getText('CCG030_11')}</div>
+								</td>
+								<td colspan="2"><input id="inpCode"
+									data-bind="ntsTextEditor: { value: topPageCode, constraint: 'TopPagePartCode', required: true, enable: $parent.isCreate, option: {autofill:true, filldirection:'left'}, name: '#[CCG030_21]'}"
+									tabindex="5" /> <input id="inpName"
+									data-bind="ntsTextEditor: { value: topPageName, constraint: 'TopPagePartName', required: true , name: '#[CCG030_22]'}"
+									tabindex="6" /></td>
+							</tr>
+							<tr>
+								<td><div data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CCG030_12')}</div></td>
+								<td class="no-wrap">
+									<div id="file_upload"
+										data-bind="ntsFileUpload:{
+											stereoType: 'flowmenu',
+											immediateUpload: true,
+											filename: selectedFlowMenu().fileName, 
+											accept: ['.zip'],
+											aslink: true,
+											text: 'CCG030_13',
+											required: true,
+											uploadFinished: uploadFinish,
+											onfilenameclick: open030B_Dialog.bind($data) }"></div>
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td></td>
+								<td>
+									<button class="btn-download" data-bind="click: download, enable: enablePreview" tabindex="10" >#{i18n.getText('CCG030_14')}</button>
+								</td>
+								<td></td>
+							</tr>
+							<tr>
+								<td>
+									<button id="preview" data-bind="click : open030B_Dialog, enable: enablePreview" tabindex="13" style="margin-top: 10px;">#{i18n.getText('CCG030_4')}</button></td>
+								<td></td>
+								<td></td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

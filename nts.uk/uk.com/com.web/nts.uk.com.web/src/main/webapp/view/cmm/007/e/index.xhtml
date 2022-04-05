@@ -1,0 +1,521 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition>
+		<div class="sidebar-content-header">
+			<span class="title">#{i18n.getText('CMM007_49')}</span>
+			<!-- E1_1 -->
+			<button class="proceed" tabindex="1"
+				data-bind="click: saveOvertimeWorkFrSetting">#{i18n.getText('CMM007_5')}</button>
+		</div>
+		<div id="contents-area" class="main-content">
+			<div>
+				<!-- E2_1 -->
+				<div>
+					<span class="label">#{i18n.getText('CMM007_50')}</span>
+				</div>
+			</div>
+			<div class="main-table-e fixed-flex-layout" >
+				<div class="fixed-flex-layout-left">
+					<table>
+						<tr>
+							<!-- E3_1 -->
+							<td><div
+									data-bind="ntsFormLabel: { required: true, constraint: 'OvertimeWorkFrameName' }">#{i18n.getText('CMM007_49')}</div></td>
+							<td>
+								<span>#{i18n.getText('CMM007_28')}</span>
+								<!-- E3_3 --> <input id="overtime_work_name1" type="text"
+								tabindex="2"
+								data-bind="ntsTextEditor: {
+												value: mapObj.get(1).overtimeWorkFrName,
+												name: '#[CMM007_51]',
+												enable: checkStatusEnable(mapObj.get(1).overtimeWorkFrNo()),
+												constraint: 'OvertimeWorkFrameName',
+												required: true,
+												option: {width: '130px'}}"></input>
+							</td>
+							<td>
+								<!-- E3_2 -->
+								<div class=" " tabindex="-1"
+									data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: checkStatusEnable(mapObj.get(1).overtimeWorkFrNo()), 
+												enable: true,
+												},
+												click: function (data) { myFunction(mapObj.get(1).overtimeWorkFrNo(), data)}">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<span>#{i18n.getText('CMM007_29')}</span>
+								<!-- E3_5 --> <input id="overtime_work_name2" type="text"
+								tabindex="3"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_52]',
+																										value: mapObj.get(2).overtimeWorkFrName,
+																										enable: checkStatusEnable(mapObj.get(2).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+							<td>
+								<!-- E3_4 -->
+								<div class=" " tabindex="-1"
+									data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: checkStatusEnable(mapObj.get(2).overtimeWorkFrNo()), 
+												enable: true,
+												},
+												click: function (data) { myFunction(mapObj.get(2).overtimeWorkFrNo(), data)}">
+									
+								</div>
+							</td>
+							
+						</tr>
+						<tr>
+							<td></td>
+							
+							<td>
+								<span>#{i18n.getText('CMM007_30')}</span>
+								<!-- E3_7 --> <input id="overtime_work_name3" type="text"
+								tabindex="4"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_53]',
+																										value: mapObj.get(3).overtimeWorkFrName,
+																										enable: checkStatusEnable(mapObj.get(3).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+							<td>
+								<!-- E3_6 -->
+								<div class=" " tabindex="-1"
+									data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: checkStatusEnable(mapObj.get(3).overtimeWorkFrNo()), 
+												enable: true,
+												},
+												click: function (data) { myFunction(mapObj.get(3).overtimeWorkFrNo(), data)}">
+
+									
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<span>#{i18n.getText('CMM007_31')}</span>
+								<!-- E3_9 --> <input id="overtime_work_name4" type="text"
+								tabindex="5"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_54]',
+																										value: mapObj.get(4).overtimeWorkFrName,
+																										enable: checkStatusEnable(mapObj.get(4).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+							<td>
+								<!-- E3_8 -->
+								<div class=" " tabindex="-1"
+									data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: checkStatusEnable(mapObj.get(4).overtimeWorkFrNo()), 
+												enable: true,
+												},
+												click: function (data) { myFunction(mapObj.get(4).overtimeWorkFrNo(), data)}">
+
+
+									
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<span>#{i18n.getText('CMM007_32')}</span>
+								<!-- E3_11 --> <input id="overtime_work_name5" type="text"
+								tabindex="6"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_55]',
+																										value: mapObj.get(5).overtimeWorkFrName,
+																										enable: checkStatusEnable(mapObj.get(5).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+							<td>
+								<!-- E3_10 -->
+								<div class=" " tabindex="-1"
+									data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: checkStatusEnable(mapObj.get(5).overtimeWorkFrNo()), 
+												enable: true,
+												},
+												click: function (data) { myFunction(mapObj.get(5).overtimeWorkFrNo(), data)}">
+
+								</div>
+							</td>
+							
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<span>#{i18n.getText('CMM007_33')}</span>
+								<!-- E3_13 --> <input id="overtime_work_name6" type="text"
+								tabindex="7"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_56]',
+																										value: mapObj.get(6).overtimeWorkFrName,
+																										enable: checkStatusEnable(mapObj.get(6).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+							<td>
+								<!-- E3_12 -->
+								<div class=" " tabindex="-1"
+									data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: checkStatusEnable(mapObj.get(6).overtimeWorkFrNo()), 
+												enable: true,
+												},
+												click: function (data) { myFunction(mapObj.get(6).overtimeWorkFrNo(), data)}">
+
+								</div>
+							</td>
+							
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<span>#{i18n.getText('CMM007_34')}</span>
+								<!-- E3_15 --> <input id="overtime_work_name7" type="text"
+								tabindex="8"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_57]',
+																										value: mapObj.get(7).overtimeWorkFrName,
+																										enable: checkStatusEnable(mapObj.get(7).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+							<td>
+								<!-- E3_14 -->
+								<div class=" " tabindex="-1"
+									data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: checkStatusEnable(mapObj.get(7).overtimeWorkFrNo()), 
+												enable: true,
+												},
+												click: function (data) { myFunction(mapObj.get(7).overtimeWorkFrNo(), data)}">
+
+								</div>
+							</td>
+							
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<span>#{i18n.getText('CMM007_35')}</span>
+								<!-- E3_17 --> <input id="overtime_work_name8" type="text"
+								tabindex="9"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_58]',
+																										value: mapObj.get(8).overtimeWorkFrName,
+																										enable: checkStatusEnable(mapObj.get(8).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+							<td>
+								<!-- E3_16 -->
+								<div class=" " tabindex="-1"
+									data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: checkStatusEnable(mapObj.get(8).overtimeWorkFrNo()), 
+												enable: true,
+												},
+												click: function (data) { myFunction(mapObj.get(8).overtimeWorkFrNo(), data)}">
+
+								</div>
+							</td>
+							
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<span>#{i18n.getText('CMM007_36')}</span>
+								<!-- E3_19 --> <input id="overtime_work_name9" type="text"
+								tabindex="10"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_59]',
+																										value: mapObj.get(9).overtimeWorkFrName,
+																										enable: checkStatusEnable(mapObj.get(9).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+							<td>
+								<!-- E3_18 -->
+								<div class=" " tabindex="-1"
+									data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: checkStatusEnable(mapObj.get(9).overtimeWorkFrNo()), 
+												enable: true,
+												},
+												click: function (data) { myFunction(mapObj.get(9).overtimeWorkFrNo(), data)}">
+
+									
+								</div>
+							</td>
+							
+						</tr>
+						<tr>
+							<td></td>
+							<td style = "padding-left: 21px !important;">
+								<span>#{i18n.getText('CMM007_37')}</span>
+								<!-- E3_21 --> <input id="overtime_work_name10" type="text"
+								tabindex="11"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_60]',
+																										value: mapObj.get(10).overtimeWorkFrName,
+																										enable: checkStatusEnable(mapObj.get(10).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+							<td>
+								<!-- E3_20 -->
+								<div class=" " tabindex="-1"
+									data-bind="ntsSwitchButton: {
+												name: '#[CMM007_103]',
+												options: checkStatusSetOptions,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: checkStatusEnable(mapObj.get(10).overtimeWorkFrNo()), 
+												enable: true,
+												},
+												click: function (data) { myFunction(mapObj.get(10).overtimeWorkFrNo(), data)}">
+								</div>
+							</td>
+						</tr>
+
+					</table>
+				</div>
+
+				<div class="right-col-panel fixed-flex-layout-right">
+					<table>
+						<tr>
+							<!-- F3_1 -->
+							<td><div
+									data-bind="ntsFormLabel: { required: true, constraint: 'OvertimeWorkFrameName' }">#{i18n.getText('CMM007_61')}</div></td>
+							<td>
+								<!-- F3_2 --> <span>#{i18n.getText('CMM007_28')}</span>
+							</td>
+							<td>
+								<!-- F3_3 --> <input id="tranfer_work_name1" type="text"
+								tabindex="12"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_63]',
+																										value: mapObj.get(1).transferFrName,
+																										enable: checkStatusEnable(mapObj.get(1).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<!-- F3_4 --> <span>#{i18n.getText('CMM007_29')}</span>
+							</td>
+							<td>
+								<!-- F3_5 --> <input id="tranfer_work_name2" type="text"
+								tabindex="13"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_64]',
+																										value: mapObj.get(2).transferFrName,
+																										enable: checkStatusEnable(mapObj.get(2).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<!-- F3_6 --> <span>#{i18n.getText('CMM007_30')}</span>
+							</td>
+							<td>
+								<!-- F3_7 --> <input id="tranfer_work_name3" type="text"
+								tabindex="14"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_65]',
+																										value: mapObj.get(3).transferFrName,
+																										enable: checkStatusEnable(mapObj.get(3).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<!-- F3_8 --> <span>#{i18n.getText('CMM007_31')}</span>
+							</td>
+							<td>
+								<!-- F3_9 --> <input id="tranfer_work_name4" type="text"
+								tabindex="15"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_66]',
+																										value: mapObj.get(4).transferFrName,
+																										enable: checkStatusEnable(mapObj.get(4).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<!-- F3_10 --> <span>#{i18n.getText('CMM007_32')}</span>
+							</td>
+							<td>
+								<!-- F3_11 --> <input id="tranfer_work_name5" type="text"
+								tabindex="16"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_67]',
+																										value: mapObj.get(5).transferFrName,
+																										enable: checkStatusEnable(mapObj.get(5).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<!-- F3_12 --> <span>#{i18n.getText('CMM007_33')}</span>
+							</td>
+							<td>
+								<!-- F3_13 --> <input id="tranfer_work_name6" type="text"
+								tabindex="17"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_68]',
+																										value: mapObj.get(6).transferFrName,
+																										enable: checkStatusEnable(mapObj.get(6).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<!-- F3_14 --> <span>#{i18n.getText('CMM007_34')}</span>
+							</td>
+							<td>
+								<!-- F3_15 --> <input id="tranfer_work_name7" type="text"
+								tabindex="18"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_69]',
+																										value: mapObj.get(7).transferFrName,
+																										enable: checkStatusEnable(mapObj.get(7).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<!-- F3_16 --> <span>#{i18n.getText('CMM007_35')}</span>
+							</td>
+							<td>
+								<!-- F3_17 --> <input id="tranfer_work_name8" type="text"
+								tabindex="19"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_70]',
+																										value: mapObj.get(8).transferFrName,
+																										enable: checkStatusEnable(mapObj.get(8).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<!-- F3_18 --> <span>#{i18n.getText('CMM007_36')}</span>
+							</td>
+							<td>
+								<!-- F3_19 --> <input id="tranfer_work_name9" type="text"
+								tabindex="20"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_71]',
+																										value: mapObj.get(9).transferFrName,
+																										enable: checkStatusEnable(mapObj.get(9).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<!-- F3_20 --> <span>#{i18n.getText('CMM007_37')}</span>
+							</td>
+							<td>
+								<!-- F3_21 --> <input id="tranfer_work_name10" type="text"
+								tabindex="21"
+								data-bind="ntsTextEditor: { 
+																										name: '#[CMM007_72]',
+																										value: mapObj.get(10).transferFrName,
+																										enable: checkStatusEnable(mapObj.get(10).overtimeWorkFrNo()),
+																										constraint: 'OvertimeWorkFrameName',
+																										required: true,
+																										option: {width: '130px'}}"></input>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,101 @@
+.row_2_3_4 {
+	margin-right: 12px;
+}
+
+div.label {
+	width: 100%;
+}
+
+.label {
+	display: inline-block;
+	box-sizing: border-box;
+}
+
+.form-label lable {
+	text-align: justify;
+}
+
+#table_content {
+	margin-left: 20px;
+}
+
+.title_content {
+	margin: 15px;
+	font-size: 1.4em;
+}
+
+.col_left {
+	width: 120px;
+}
+
+.col_center {
+	width: 50px;
+}
+
+input {
+	height: 20px;
+}
+
+#tbl_devision {
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.col_center_dv {
+	width: 100px;
+}
+
+.col_right_dv {
+	width: 40px;
+}
+
+#master-wrapper {
+	overflow: hidden;
+}
+
+.div-table {
+	display: table;
+	border: 0, background-color: #eee;
+	border-spacing: 5px;
+	margin-left: 30px;
+	margin-top: 15px;
+}
+
+.div-table-row {
+	clear: both;
+	height: 40px;
+}
+
+.div-table-row-small {
+	display: table-row;
+	clear: both;
+}
+
+.div-table-col-small {
+	float: left;
+	display: table-column;
+}
+
+.div-table-col-standard {
+	float: left;
+	display: table-column;
+}
+
+.div-table-col-big {
+	float: left;
+	display: table-column;
+}
+
+.div-table-col-big-big {
+	float: left;
+	display: table-column;
+}
+
+.div-table-col-medium {
+	float: left;
+	display: table-column;
+}
+
+.div-table-row.flex > div:first-child {
+  width: 120px;
+}

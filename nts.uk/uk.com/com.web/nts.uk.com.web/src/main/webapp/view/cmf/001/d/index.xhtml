@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+			xmlns:ui="http://java.sun.com/jsf/facelets"
+			xmlns:com="http://xmlns.jcp.org/jsf/component"
+			xmlns:h="http://xmlns.jcp.org/jsf/html">
+	<body>
+		<ui:composition template="../../../../master/dialog.xhtml">
+			<ui:define name="htmlHead">
+				<script> var dialogSize = { width : 350, height : 450 };</script>
+				<com:scriptfile set="IGNITE" />
+				<com:stylefile path="cmf001.d.css" />
+				<com:scriptfile path="cmf001.d.vm.js" />
+				
+			</ui:define>
+			<ui:define name="content">
+				<div id="contents-area">
+					<div class="select">
+						<table id="item-select" data-bind="ntsGridList: {
+							height: 300,
+							options: selectablItemList,
+							optionsValue: 'itemNo',
+							columns: listColumns,
+							multiple: true,
+							value: selectingItems
+						}"></table>
+					</div>
+				</div>
+				<div id="functions-area-bottom">
+					<button class="proceed x-large" data-bind="click: decide" tabindex="2">決定</button>
+					<button data-bind="click: cancel" tabindex="3">キャンセル</button>
+				</div>
+			</ui:define>
+		</ui:composition>
+	</body>
+</html>

@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+
+			<com:ValidatorScript>
+				nts.uk.ctx.bs.employee.dom.jobtitle.sequence.SequenceCode
+				nts.uk.ctx.bs.employee.dom.jobtitle.sequence.SequenceName
+			</com:ValidatorScript>
+
+			<script>
+				var dialogSize = {
+					width : 800,
+					height : 500
+				};
+			</script>
+
+			<com:scriptfile set="IGNITE" />
+
+			<com:stylefile path="style.css" />
+			<com:scriptfile path="../_base/cmm013.base.js" />
+			<com:scriptfile path="cmm013.f.service.js" />
+			<com:scriptfile path="cmm013.f.vm.js" />
+			<com:scriptfile path="cmm013.f.start.js" />
+		</ui:define>
+
+		<!-- PAGE CONTENT -->
+		<ui:define name="content">
+
+			<div id="functions-area">
+				<button tabindex="1"
+					data-bind="click: startCreateMode, enable: enable_button_create_mode"
+					class="btnStyle">#{i18n.getText('CMM013_41')}</button>
+				<button tabindex="2" data-bind="click: save"
+					class="proceed btnStyle">#{i18n.getText('CMM013_42')}</button>
+				<button tabindex="3" data-bind="click: close" class="btnStyle">#{i18n.getText('CMM013_43')}</button>
+				<button tabindex="4"
+					data-bind="click: remove, enable: enable_button_delete"
+					class="danger btnStyle">#{i18n.getText('CMM013_44')}</button>
+			</div>
+
+			<div id="contents-area">
+				<div id="left-content" class="bg-green caret-right caret-background">
+					<div id="list-data">
+						<table id="single-list" tabindex="5"
+							data-bind="ntsGridList: {
+							name: '#[CMM013_45]',
+							width: 220,							
+							height: 340,											
+							dataSource: items,
+							primaryKey: 'sequenceCode',
+							columns: columns,
+							multiple: false,								
+							value: currentCode
+						}"></table>
+					</div>
+
+					<div id="list-data-function">
+						<div id="swap-up-down" tabindex="6"
+							data-bind="ntsUpDown: {
+							targetSource: items,
+							primaryKey: 'sequenceCode',
+							comId: '#single-list',
+							type: 'grid'
+						}"></div>
+					</div>
+
+				</div>
+
+				<div id="right-content">
+					<table class="table_content">
+						<colgroup>
+							<col width="85px" />
+							<col width="*" />
+						</colgroup>
+
+						<tr>
+							<td>
+								<div
+									data-bind="ntsFormLabel: { 
+									constraint: 'SequenceCode', 
+									required: true 
+								}">#{i18n.getText('CMM013_48')}</div>
+							</td>
+							<td><input id="sequence-code" tabindex="8"
+								data-bind="ntsTextEditor: {
+									value: sequenceCode,
+									name: '#[CMM013_49]',
+									constraint: 'SequenceCode',
+									option: {
+										width: '30px',
+									},
+									required: true,
+									enable: enable_input_sequence_code
+								}" />
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<div
+									data-bind="ntsFormLabel: { 
+									constraint: 'SequenceName', 
+									required: true 
+								}">#{i18n.getText('CMM013_50')}</div>
+							</td>
+							<td><input id="sequence-name" tabindex="9"
+								data-bind="ntsTextEditor: {
+									value: sequenceName,
+									name: '#[CMM013_51]',
+									constraint: 'SequenceName',
+									option: {
+										width: '150px',
+									},
+									required: true
+								}" />
+							</td>
+						</tr>
+
+					</table>
+				</div>
+			</div>
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

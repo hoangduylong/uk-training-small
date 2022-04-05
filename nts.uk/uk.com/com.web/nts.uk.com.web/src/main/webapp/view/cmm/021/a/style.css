@@ -1,0 +1,122 @@
+.master-list-select {
+	width: 500px;
+	padding: 0px 30px 30px 30px;
+	padding-left: 70px;
+	/* height: 1000px; */
+	float: left;
+}
+
+.icon-78 {
+	background: url('../icon/icon78.png');
+	width: 17.727px;
+	height: 17px;
+	background-size: 17px 17px;
+}
+
+.master-list-select .caret-right.caret-background {
+	height: 580px;
+    width: 527px;
+	border-radius: 10px;
+}
+
+.table-grid-list {
+	padding-left: 23px;
+	margin-right: 15px;
+	width: 500px;
+	height: 600px;
+}
+
+.switch-button {
+	padding-left: 28px;
+	padding-bottom: 18px;
+}
+
+#switch-use {
+	padding-left: 90px;
+}
+
+.nts-switch-button.selected {
+	width: 102px;
+}
+
+.nts-switch-button {
+	width: 102px;
+}
+
+.searchbox {
+	width: 400px;
+	padding-left: 23px;
+}
+
+.show-text-user-id {
+	width: 470px;
+	height: 80px;
+	padding-left: 28px;
+}
+
+.right-content {
+	margin-left: 20px;
+	float: left;
+}
+
+.show-text-user-id table {
+	height: 80px;
+}
+
+.right-content-space-businessName1, .right-content-space-employee-code1,
+	.right-content-space-login1 {
+	width: 100px;
+}
+
+.right-content-space-businessName2, .right-content-space-employee-code2,
+	.right-content-space-login2 {
+	width: 30px;
+}
+
+.right-content-space-businessName3, .right-content-space-employee-code3,
+	.right-content-space-login3 {
+	width: 200px;
+}
+
+.right-content-space-businessName {
+	margin-bottom: 10px;
+}
+
+.right-content-space-login {
+	margin-bottom: 10px;
+}
+
+/*  b screen mode */
+.screen-b-mode {
+	padding-top: 30px;
+	float: left;
+}
+
+.screen-b-mode .padding-scr-b {
+	padding-left: 40px;
+	padding-top: 10px;
+}
+
+.screen-b-mode .padding-botom-scr-b {
+	padding-bottom: 10px;
+}
+
+.screen-b-mode .padding-checkbox {
+	padding-left: 0px;
+}
+
+.ntsCheckBox-label {
+	width: 180px;
+}
+
+.screen-c-mode .padding-checkbox {
+	padding-left: 0px;
+}
+
+/* .screen-c-mode tr td div{ */
+/* 	padding-left: 20px; */
+/* } */
+.screen-c-mode .padding-scr-c {
+	padding-left: 40px;
+	padding-top: 10px;
+}

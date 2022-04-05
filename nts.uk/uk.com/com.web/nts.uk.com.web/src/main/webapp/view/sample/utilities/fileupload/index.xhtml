@@ -1,0 +1,514 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 300, height: 200 };</script>
+			<com:stylefile path="../../catalog/catalog.css" />
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="start.js" />
+			<com:scriptfile path="../../catalog/catalog.js" />
+			<style>
+				#file-review { min-width: 200px; min-height: 150px; border: 2px solid #B1B1B1; padding: 10px;}
+				#file-review > * { vertical-align: top; }
+			</style>
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area"></div>
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+					<h1>File Uploading</h1>
+					<h2>Demo</h2>
+					<div id="file-upload" data-bind="ntsFileUpload:{
+						name: controlName,
+						required: required,
+						filename: filename,
+						accept: accept,
+						text: textId,
+						aslink: asLink,
+						enable: enable,
+						onchange: onchange,
+						onfilenameclick: onfilenameclick,
+						immediateUpload: immediate,
+						stereoType: stereoType,
+						uploadFinished: finished
+					}"></div>
+					<br/>
+					<div>File (stereo) Type: <input data-bind="ntsTextEditor: { value: stereoType, option: { width: '310' } }" /></div>
+					<div data-bind="ntsCheckBox: { checked: required }">Required</div>
+					<div data-bind="ntsCheckBox: { checked: asLink }">As Link</div>
+					<div data-bind="ntsCheckBox: { checked: enable }">Enable</div>
+					<div data-bind="ntsCheckBox: { checked: immediate }">Immediate Upload</div>
+					<div><button data-bind="click: validate">validate</button></div>
+					<div>File ID (when uploaded): <input data-bind="ntsTextEditor: { value: fileId, option: { width: '310' } }" /></div>
+					
+					<br/><br/>
+					<h3>Upload file</h3>
+					<button data-bind="click: upload">Upload</button>
+					<br/><br/>
+					<h3>Download file</h3>
+					<button data-bind="click: download">Download</button>
+					<input data-bind="ntsTextEditor: { value: zipEntry, option: { width: '160' } }" />
+					<br/><br/>
+					<h3>Preview file</h3>
+					<button data-bind="click: preview">Preview</button>
+					<div id="file-review"></div>
+					<br/>
+					<h3>Check file exist</h3>
+					<button data-bind="click: isExist">IsExist</button>
+					<div id="check-exist"></div>
+					<br/>
+					<h3>Get file information</h3>
+					<button data-bind="click: getInfo">Get Info</button>
+					<div data-bind="text: ko.toJSON(fileInfo)"></div>
+					<br/>
+					<h3>Custom without Knockout</h3>
+					<input type="file" id="custom-upload" />
+					<button id="button">Upload</button>
+					<article class="cf">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-html">Usage</a></li>
+								<li><a href="#tabs-custombinding">Custom Binding</a></li>
+								<li><a href="#tabs-methods">Methods</a></li>
+							</ol>
+							<div id="tabs-html" class="cf">
+								<h2>HTML</h2>
+<pre><![CDATA[<!-- File Upload Control -->
+<div id="file-upload" data-bind="ntsFileUpload:{
+	filename: filename,
+	accept: accept,
+	text: textId,
+	aslink: asLink,
+	enable: enable,
+	onchange: onchange,
+	onfilenameclick: onfilenameclick,
+	immediateUpload: immediate,
+	stereoType: stereoType,
+	uploadFinished: finished
+}"></div>
+
+<!-- Upload file -->
+<button data-bind="click: upload">Upload</button>
+
+<!-- Donwload file -->
+<button data-bind="click: download">Upload</button>
+
+<!-- Preview file -->
+<button data-bind="click: preview">Preview</button>
+<div id="file-review"></div>
+
+<!-- Get file information -->
+<button data-bind="click: getInfo">Get Info</button>
+<div data-bind="text: ko.toJSON(fileInfo)"></div>
+
+<!-- Custom without Knockout -->
+<input type="file" id="custom-upload" accept=".xls,.xlsx" />
+<button id="button">Upload</button>]]></pre>
+								<h2>ViewModel</h2>
+<pre><![CDATA[class ScreenModel {
+    stereoType: KnockoutObservable<string>;
+    fileId: KnockoutObservable<string>;
+    filename: KnockoutObservable<string>;
+    fileInfo: KnockoutObservable<any>;
+    textId: KnockoutObservable<string>;
+    accept: KnockoutObservableArray<string>;
+    asLink: KnockoutObservable<boolean>;
+    enable: KnockoutObservable<boolean>;
+    immediate: KnockoutObservable<boolean>;
+    onchange: (filename) => void;
+    onfilenameclick: (filename) => void;
+    
+    constructor() {
+        this.fileId = ko.observable("");
+        this.filename = ko.observable("");
+        this.fileInfo = ko.observable(null);
+        this.accept = ko.observableArray([".png", '.gif', '.jpg', '.jpeg']);
+        this.textId = ko.observable("KMF004_106");
+        this.asLink = ko.observable(true);
+        this.enable = ko.observable(true);
+        this.onchange = (filename) => {
+            console.log(filename);
+        };
+        this.onfilenameclick = (filename) => {
+            alert(filename);
+        };
+    }
+
+    upload() {
+        var self = this;
+        $("#file-upload").ntsFileUpload({ stereoType: "flowmenu" }).done(function(res) {
+            self.fileId(res[0].id);
+        }).fail(function(err) {
+            nts.uk.ui.dialog.alertError(err);
+        });
+    }
+
+    download() {
+        console.log(nts.uk.request.specials.donwloadFile(this.fileId()));
+    }
+    
+    preview() {
+	    var self = this;
+        var liveviewcontainer = $("#file-review");
+        liveviewcontainer.html("");
+        liveviewcontainer.append($("<img/>").attr("src", nts.uk.request.liveView(self.fileId())));
+        liveviewcontainer.append($("<iframe/>").attr("src", nts.uk.request.liveView(self.fileId())));
+    }
+    
+    getInfo() {
+        var self = this;
+        nts.uk.request.ajax("/shr/infra/file/storage/infor/" + this.fileId()).done(function(res) {
+            self.fileInfo(res);
+        });
+    }
+
+    finished(fileInfo: any) {
+        var self = this;
+        self.fileId(fileInfo.id);
+        console.log(fileInfo);
+    }
+
+}]]></pre>
+								<h2>Create own file stereo type</h2>
+								Step 1: Create class implements nts.uk.shr.infra.file.storage.filestereotype.FileStereoTypeDescription<br/>
+								Step 2: Add stereo type name into nts.uk.shr.infra.file.storage.filestereotype.FileStereoTypeDef
+<pre><![CDATA[@Getter
+public class SampleFileStereoType implements FileStereoTypeDescription {
+
+	@Override
+	public String name() {
+		return "samplefile";
+	}
+
+	@Override
+	public List<String> acceptableExtensions() {
+		return Arrays.asList("png", "jpg", "jpeg", "gif");
+	}
+}
+
+final class FileStereoTypeDef {
+	
+	private static Map<String, FileStereoTypeDescription> map = new HashMap<>();
+	static {
+		Arrays.asList(
+				// Add file type descriptions here
+				new SampleFileStereoType(),
+				new SamplePackStereoType(),
+				new FlowMenuStereoType()
+				
+				).stream().forEach(d -> {
+					map.put(d.name(), d);
+				});
+	}
+
+	public static Optional<FileStereoTypeDescription> of(String nameOfFileType) {
+		return Optional.ofNullable(map.get(nameOfFileType));
+	}
+}]]></pre>
+							<h2>Get uploaded file content as inputstream</h2>
+<pre><![CDATA[@Inject FileStorage fileStorage;
+public Optional<InputStream> getFileContent(String fileId){
+	return this.fileStorage.getStream(fileId);
+}
+]]></pre>
+							</div>
+							<div id="tabs-custombinding" class="cf">
+								<h2>Properties</h2>
+								<table class="table">
+									<colgroup>
+										<col width="150px" />
+									</colgroup>
+									<thead>
+										<tr>
+											<th><h4>Name</h4></th>
+											<th><h4>Description</h4></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>filename</td>
+											<td>
+												<b>Type:</b> KnockoutObservable&lt;string&gt;<br/>
+												Name of the file you choose
+											</td>
+										</tr>
+										<tr>
+											<td>accept<br/><i>(optional)</i></td>
+											<td>
+												<b>Type:</b> KnockoutObservableArray&lt;string&gt; | KnockoutObservable&lt;string&gt; | string[] | string<br/>
+												<b>Default:</b> ""<br/>
+												List of file extensions user can choose
+											</td>
+										</tr>
+										<tr>
+											<td>stereoType<br/><i>(optional)</i></td>
+											<td>
+												<b>Type:</b> KnockoutObservable&lt;string&gt; | string<br/>
+												Name of file stereo type
+											</td>
+										</tr>
+										<tr>
+											<td>immediateUpload<br/><i>(optional)</i></td>
+											<td>
+												<b>Type:</b> KnockoutObservable&lt;boolean&gt; | boolean<br/>
+												<b>Default:</b> false<br/>
+												If this is true, selected file will be uploaded automatically and immediately when the file is selected by user.<br />
+											</td>
+										</tr>
+										<tr>
+											<td>uploadFinished<br/><i>(optional)</i></td>
+											<td>
+												<b>Type:</b> function (fileInfo) {}<br/>
+												<b>Default:</b> $.noop<br/>
+												If immediateUpload is true, this function will be called when uploading is finished.<br />
+											</td>
+										</tr>
+										<tr>
+											<td>aslink<br/><i>(optional)</i></td>
+											<td>
+												<b>Type:</b> KnockoutObservable&lt;boolean&gt; | boolean<br/>
+												<b>Default:</b> false<br/>
+												Determine the label display file name will be show as hyperlink or readonly-input
+											</td>
+										</tr>
+										<tr>
+											<td>text<br/><i>(optional)</i></td>
+											<td>
+												<b>Type:</b> KnockoutObservable&lt;string&gt; | string<br/>
+												<b>Default:</b> "ファイルアップロード"<br/>
+												The <b>TextId</b> to show in choose file button. Like "KMF004_106"
+											</td>
+										</tr>
+										<tr>
+											<td>enable<br/><i>(optional)</i></td>
+											<td>
+												<b>Type:</b> KnockoutObservable&lt;boolean&gt; | boolean<br/>
+												<b>Default:</b> true<br/>
+												Set enable/disable for choose file button
+											</td>
+										</tr>
+										<tr>
+											<td>onchange<br/><i>(optional)</i></td>
+											<td>
+												<b>Type:</b> function<br/>
+												<b>Default:</b> function(filename) {}<br/>
+												Triggered after file has been selected. Event if you select same file or doesn't select this will be trigger
+											</td>
+										</tr>
+										<tr>
+											<td>onfilenameclick<br/><i>(optional)</i></td>
+											<td>
+												<b>Type:</b> function<br/>
+												<b>Default:</b> function(filename) {}<br/>
+												Triggered when user click file name label
+											</td>
+										</tr>
+										<tr>
+											<td>maxSize<br/><i>(optional) (NEW) </i></td>
+											<td>
+												<b>Type:</b> number<br/>
+												maximum of file size can be uploaded.
+												Unit: Megabyte (MB)
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<div id="tabs-methods" class="cf">
+								<article>
+									<h2>JQuery Extensions</h2>
+									<b>Module:</b> nts.uk.ui.jqueryExtentions.ntsFileUpload<br/>
+									<b>File:</b> /lib/nittsu/ui/jquery-ext/fileupload-jquery-ext.ts<br/>
+								</article>
+								<h2>Methods</h2>
+								<table class="table">
+									<colgroup>
+										<col width="150px" />
+									</colgroup>
+									<thead>
+										<tr>
+											<th><h4>Name</h4></th>
+											<th><h4>Description</h4></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>ntsFileUpload(option: FileUploadOption)</td>
+											<td>
+												Upload file with control selected by Jquery selector. If there are multi file input, this will upload first file input only<br/>
+												<b>Agruments:</b><br/>
+												<i>option: FileUploadOption</i> The option when you upload
+												<div class="catalog-accordion">
+													<a href="#">FileUploadOption</a>
+													<table class="table">
+														<colgroup>
+															<col width="220px" />
+														</colgroup>
+														<thead>
+															<tr>
+																<th><h4>Properties</h4></th>
+																<th><h4>Description</h4></th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>stereoType</td>
+																<td><b>Type:</b> string<br />
+																	The stereo type you want to check. This will be created in server by implements *FileStereo*
+																</td>
+															</tr>
+															<tr>
+																<td>onSuccess(res: FileInfo[])<br/><i>(optional)</i></td>
+																<td>
+																	<b>Type:</b> function<br/>
+																	<b>res: FileInfo[]</b> List of FileInfo class have various file information<br/>
+																	The callback function when upload success
+																</td>
+															</tr>
+															<tr>
+																<td>onFail(res)<br/><i>(optional)</i></td>
+																<td><b>Type:</b> function<br/>
+																	The callback function when upload fail
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+<pre><![CDATA[$("#file-upload").ntsFileUpload({ stereoType: "flowmenu" }).done(function(res) {
+    self.fileId(res[0].id);
+}).fail(function(err) {
+    nts.uk.ui.dialog.alertError(err);
+});]]></pre>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<hr/>
+								<article>
+									<h2>Function Wrap</h2>
+									<b>Module:</b> nts.uk.request<br/>
+									<b>File:</b> /lib/nittsu/request.ts<br/>
+								</article>
+								<h2>Methods</h2>
+								<table class="table">
+									<colgroup>
+										<col width="150px" />
+									</colgroup>
+									<thead>
+										<tr>
+											<th><h4>Name</h4></th>
+											<th><h4>Description</h4></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>specials.donwloadFile(fileId)</td>
+											<td>
+												Download file with given id<br/>
+												<b>Return:</b> JQueryPromise<br/>
+												<b>Agruments:</b><br/>
+												<i>fileId: string</i> The file id you want to download
+												<pre><![CDATA[nts.uk.request.specials.donwloadFile(this.fileId());]]></pre>		
+											</td>
+										</tr>
+										<tr>
+											<td>liveView(fileId)</td>
+											<td>
+												Return file location in storage<br/>
+												<b>Return:</b> string<br/>
+												<b>Agruments:</b><br/>
+												<i>fileId: string</i> The file id you want to view
+												<pre><![CDATA[nts.uk.request.liveView(this.fileId());]]></pre>		
+											</td>
+										</tr>
+										<tr>
+											<td>ajax("/shr/infra/file/storage/infor/" + fileId)</td>
+											<td>
+												Get file information<br/>
+												<b>Return:</b> FileInfo<br/>
+												<b>Agruments:</b><br/>
+												<i>fileId: string</i> The file id you want to get information
+<pre><![CDATA[nts.uk.request.ajax("/shr/infra/file/storage/infor/" + this.fileId())
+.done(function(res) {
+    console.log(res);
+});
+]]></pre>
+												<div class="catalog-accordion">
+													<a href="#">FileInfo</a>
+													<table class="table">
+														<colgroup>
+															<col width="150px" />
+														</colgroup>
+														<thead>
+															<tr>
+																<th><h4>Properties</h4></th>
+																<th><h4>Description</h4></th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>id</td>
+																<td><b>Type:</b> string<br />
+																	Id of file
+																</td>
+															</tr>
+															<tr>
+																<td>originalName</td>
+																<td><b>Type:</b> string<br />
+																	The original name of the file
+																</td>
+															</tr>
+															<tr>
+																<td>fileType</td>
+																<td><b>Type:</b> string<br />
+																	The stereo of the file
+																</td>
+															</tr>
+															<tr>
+																<td>mimeType</td>
+																<td><b>Type:</b> string<br />
+																	The mine type of the file
+																</td>
+															</tr>
+															<tr>
+																<td>originalSize</td>
+																<td><b>Type:</b> number<br />
+																	The size in bytes of file
+																</td>
+															</tr>
+															<tr>
+																<td>storedAt</td>
+																<td><b>Type:</b> string<br />
+																	The ISO string of date when file is stored 
+																</td>
+															</tr>
+															<tr>
+																<td>temporary</td>
+																<td><b>Type:</b> boolean<br />
+																	Is this file is temporary or not
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

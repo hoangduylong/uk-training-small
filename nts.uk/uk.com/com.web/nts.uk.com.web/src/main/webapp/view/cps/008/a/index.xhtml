@@ -1,0 +1,139 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:ValidatorScript>
+					nts.uk.ctx.pereg.dom.person.layout.LayoutCode
+					nts.uk.ctx.pereg.dom.person.layout.LayoutName
+			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="/view/cps/shr/layout-control-validation.js" />
+			<com:scriptfile path="/view/cps/shr/layout-control-ko-ext.js" />
+			<com:stylefile path="cps008.a.style.css" />
+			<com:scriptfile path="cps008.a.service.js" />
+			<com:scriptfile path="cps008.a.vm.js" />
+			<com:scriptfile path="cps008.a.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<a tabindex="1" class="goback" 
+					data-bind="ntsLinkButton: { jump: '/view/cps/018/a/index.xhtml' }, visible: $vm.isFromCPS018">#{i18n.getText('CPS008_52')}</a>
+				<button tabindex="2" id="A_BTN_NEW" data-bind="click : createNewLayout">#{i18n.getText('CPS008_3')}</button>
+				<button tabindex="3" id="A_BTN_REGISTER" class="proceed"
+					data-bind="click: saveDataLayout, enable: enaBtnSave()">#{i18n.getText('CPS008_4')}</button>
+				<button tabindex="4" id="A_BTN_COPPY"
+					data-bind="click: copyDataLayout, enable: enaBtnCoppy()">#{i18n.getText('CPS008_5')}</button>
+				<button tabindex="5" id="A_BTN_DELETE" class="danger"
+					data-bind="click: removeDataLayout, enable: enaBtnDel()">#{i18n.getText('CPS008_6')}</button>
+					
+				<button id="print-button" data-bind="click: exportExcel">#{i18n.getText('KMK007_4')}</button> 
+				
+				<a tabindex="6" class="goout" id="A_BTN_JUMP"
+					data-bind="ntsLinkButton:  { jump: '../../007/a/index.xhtml' }, style: { marginLeft: $vm.isFromCPS018() ? '353px' : '475px' }">#{i18n.getText('CPS008_7')}</a>
+					
+				 
+			</div>
+			<div id="contents-area">
+				<div id="left-content"
+					class="relative bg-green caret-right caret-background">
+					<i class="icon icon-searchbox"></i>
+					<div class="cf">
+						<div style="float: left">
+							<div style="width: 300px" tabindex="7"
+								data-bind="ntsSearchBox: {
+									searchMode :'highlight',
+									targetKey: 'id', 
+									mode: 'igGrid',
+									comId: 'multi-list',
+									items: layouts, 
+									selected: 'id',
+									selectedKey: 'id', 
+									fields: ['name', 'code'] }" />
+							<table id="multi-list" tabindex="8"
+								data-bind="ntsGridList: {
+									height: window.screen.height - 400,
+									options: layouts,
+									optionsValue: 'id',
+									columns: [
+						                { headerText: '', key: 'id', width: 0, hidden: true },
+						                { headerText: '#{i18n.getText('CPS008_9')}', key: 'code', width: 60, hidden: false },
+						                { headerText: '#{i18n.getText('CPS008_10')}', key: 'name', width: 220, hidden: false, formatter: _.escape }
+						            ],
+									multiple: false,
+									value: layout().id}">
+							</table>
+						</div>
+					</div>
+				</div>
+				<div id="right-content" data-bind="with: layout">
+					<div id="right-content"
+						data-bind="let: { LAYOUT_ACTION: {
+						        INSERT: 0,
+						        UPDATE: 1,
+						        COPY: 2,
+						        OVERRIDE: 3,
+						        REMOVE: 4
+						    } }">
+						<table class="table_content">
+							<colgroup>
+								<col width="220px" />
+								<col width="*" />
+							</colgroup>
+							<tr>
+								<td class="row_1">
+									<div
+										data-bind="ntsFormLabel: { constraint: ['LayoutCode','LayoutName'] , required: true }">
+										#{i18n.getText('CPS008_11')}</div>
+								</td>
+								<td class="valign-center">
+									<div>
+										<div class="input_002 input_code">
+											<input id="A_INP_CODE" style="width: 80px" tabindex="9"
+												data-bind="ntsTextEditor: {
+															value: code,
+															name: '#[CPS008_12]',
+															constraint: 'LayoutCode',
+															required:true,
+															enable: $parent.layout().id() == undefined }" />
+										</div>
+
+										<div class="input_002 input_name">
+											<input id="A_INP_NAME" style="width: 180px" tabindex="10"
+												data-bind="ntsTextEditor: {
+															value: name,
+															name: '#[CPS008_13]',
+															constraint: 'LayoutName',
+															required:true,
+															enable: true
+											}" />
+										</div>
+									</div>
+								</td>
+							</tr>
+						</table>
+						<div>
+							<button class="x-large" tabindex="11"
+								data-bind="click: $parent.showDialogB.bind($parent), enable: !!id()">#{i18n.getText('CPS008_42')}</button>
+						</div>
+						<com:ko tag="if" bind="action() == LAYOUT_ACTION.INSERT">
+							<div class="nosetarea">#{i18n.getText('CPS008_44')}</div>
+						</com:ko>
+						<div style="padding-top: 10px"
+							data-bind="ntsLayoutControl: { 
+								data: classifications,
+								editAble: false,
+								outData: outData
+							}"></div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+
+			<com:stylefile path="cps007.a.style.css" />
+			<com:scriptfile path="/view/cps/shr/layout-control-validation.js" />
+			<com:scriptfile path="/view/cps/shr/layout-control-ko-ext.js" />
+			<com:scriptfile path="cps007.a.service.js" />
+			<com:scriptfile path="cps007.a.vm.js" />
+			<com:scriptfile path="cps007.a.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<a tabindex="1" class="goback" 
+					data-bind="ntsLinkButton: { jump: '/view/cps/018/a/index.xhtml' }, visible: $vm.isFromCPS018">#{i18n.getText('CPS007_27')}</a>
+				<button type="button" class="proceed" id="A_BTN_REGISTER"
+					data-bind="click: saveData">#{i18n.getText('CPS007_3')}</button>
+				<button id="print-button" data-bind="click: exportExcel">#{i18n.getText('KMK007_4')}</button> 
+				<a class="goout"
+					data-bind="ntsLinkButton: { jump: '../../008/a/index.xhtml' }, style: { marginLeft: $vm.isFromCPS018() ? '648px' : '770px' }">#{i18n.getText('CPS007_4')}</a>
+			</div>
+			<div id="contents-area" class="cf" data-bind="with: layout">
+				<div
+					data-bind="ntsLayoutControl: { 
+					data: itemsClassification,
+					editAble: editable,
+					outData: outData }"></div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

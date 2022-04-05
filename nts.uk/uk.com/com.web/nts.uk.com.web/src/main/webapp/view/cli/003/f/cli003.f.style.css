@@ -1,0 +1,72 @@
+.contentF {
+	margin-left: 20px;
+	display: inline-block;
+	height: calc(100% - 25px);
+	width :965px;
+}
+
+#F2 {
+	width: 100%;
+	height: 90%;
+	
+}
+#F2_2 {
+	height:20px;
+	font-size :14px;
+	width: 450px;
+}
+
+#F3_1 {
+	width: 150px;
+	margin-top: 2px;
+}
+
+#bottom-button {
+	text-align: center;
+}
+#igGridLog {
+	white-space: nowrap;
+}
+
+#igGridLog_tooltips.ui-tooltip {
+	border: none;
+	background: none;
+	box-shadow: none;
+	width: auto !important;
+	max-width: 800px !important;
+}
+
+#igGridLog_tooltips.ui-tooltip .ui-tooltip-content {
+	white-space: nowrap;
+	background: #ffc;
+	border: solid 1px #b85;
+	padding: 5px;
+	width: auto !important;
+	max-width: 800px !important;
+}
+
+.ui-iggrid-header.ui-widget-header{
+	overflow :hidden;
+	text-overflow : ellipsis;
+}
+
+.ui-iggrid-headertext{
+	font-weight: normal;
+	text-overflow : ellipsis;
+}
+
+.default-overflow{
+	overflow :auto hidden !important;
+}
+
+div#tab-2.ui-tabs-panel.ui-corner-bottom.ui-widget-content{
+	/* height: 340px !important; */
+	
+	max-height:	calc(100% - 120px) !important;
+}
+div#tab-3.ui-tabs-panel.ui-corner-bottom.ui-widget-content{
+	max-height: calc(100% - 120px) !important;
+} 
+#igGridLog_hscroller_container {
+	display: block !important;
+}

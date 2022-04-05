@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:com="http://xmlns.jcp.org/jsf/component"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+	<body>
+		<ui:composition template="../../../../master/base.xhtml">
+			<ui:define name="htmlHead">
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+			</ui:define>
+			<ui:define name="content">				
+				<div id="functions-area"></div>
+				<div id="contents-area" class="cf">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Password hash generator</h1>
+						<div>
+							<table>
+								<tr>
+									<td>password:</td>
+									<td><input type="text" data-bind="value: password" style="width: 400px;"/></td>
+								</tr>
+								<tr>
+									<td>salt:</td>
+									<td><input type="text" data-bind="value: salt" style="width: 400px;"/></td>
+								</tr>
+							</table>
+							<button data-bind="click: generate">generate hash</button>：　<span data-bind="text: hash" style="height: 30px;"></span>
+							<hr />
+							
+							<button data-bind="click:bulkGenerate">Bulk generate</button>
+							<span data-bind="text: bulkProgress"></span>/<span data-bind="text: bulkTotalSize"></span>
+							<br />
+							<textarea data-bind="value: bulkSource" style="width: 800px; height: 400px; font-family: Consolas"></textarea>
+							
+						</div>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+					</div>
+				</div>
+			</ui:define>
+		</ui:composition>
+   	</body>
+</html>

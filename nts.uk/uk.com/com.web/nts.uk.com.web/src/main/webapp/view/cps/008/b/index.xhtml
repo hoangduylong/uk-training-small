@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script type='text/javascript'>
+				var dialogSize = {
+					width : 1280,
+					height : 752
+				};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps008.b.style.css" />
+			<com:scriptfile path="/view/cps/shr/layout-control-validation.js" />
+			<com:scriptfile path="/view/cps/shr/layout-control-ko-ext.js" />
+			<com:scriptfile path="cps008.b.service.js" />
+			<com:scriptfile path="cps008.b.vm.js" />
+			<com:scriptfile path="cps008.b.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area" data-bind="with: layout">
+				<div
+					data-bind="ntsLayoutControl: {
+									 data: itemsClassification,
+									 editAble: true, 
+									 callback: nts.uk.ui.windows.close }"></div>
+			</div>
+			<div id="functions-area-bottom">
+				<button class="proceed x-large" data-bind="click: pushData">#{i18n.getText('CPS008_39')}</button>
+				<button data-bind="click: close">#{i18n.getText('CPS008_40')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

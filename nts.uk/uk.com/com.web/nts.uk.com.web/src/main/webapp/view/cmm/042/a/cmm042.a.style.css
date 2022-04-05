@@ -1,0 +1,201 @@
+#functions-area button ~ .ntsControl {
+	margin-left: 15px;
+}
+
+#functions-area button+.ntsControl {
+	margin-left: 645px;
+}
+
+#functions-area, #contents-area {
+	min-width: 1260px;
+}
+
+@media ( min-width : 1260px) {
+	#functions-area, #contents-area {
+		
+	}
+}
+
+#A_BTN_REGISTER {
+	margin-left: 22px;
+}
+
+#A_BTN_REMOVE {
+	margin-left: 22px;
+}
+
+#A_BTN_SHOWDIALOGB {
+	margin-left: -6px;
+}
+
+#contents-area {
+	overflow-x: auto;
+	overflow-y: auto;
+}
+
+.valign-center {
+	vertical-align: middle !important;
+}
+
+.divHeader {
+	margin: 5px;
+}
+
+#left-content {
+	margin-left: 10px;
+	margin-top: 12px;
+	padding: 20px;
+	float: left;
+	min-height: 585px;
+	width: 20%;
+}
+
+button.search-btn {
+	/* margin: 5px; */
+	margin-left: 23px;
+	width: 77px;
+}
+
+#right-content {
+	margin-left: 30px;
+	margin-top: 14px;
+	float: left;
+	min-height: 600px;
+	width: 65%;
+	position: relative;
+}
+
+.table_content td {
+	border: 10px solid transparent;
+	border-top: none;
+	border-left: none;
+	border-right: none;
+}
+
+.sub_table {
+	width: 97px;
+	height: 376px;
+	background: #F3F3F3;
+	margin-top: 62px;
+	border: 5px solid white;
+	border-left: none;
+}
+
+.clear-btn {
+	visibility: hidden;
+}
+
+div#left-content.relative.bg-green.caret-right.caret-background {
+	width: 300px;
+}
+
+i.icon.icon-searchbox {
+	top: 8px;
+}
+
+.layout-control .drag-panel {
+	height: 500px !important;
+}
+
+.nosetarea {
+	width: 810px;
+	height: 500px;
+	display: flex;
+	top: 100px;
+	position: absolute;
+	align-items: center;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+}
+
+.input_row1 {
+	display: inline-block;
+}
+
+.row2 {
+	margin-top: 15px;
+}
+
+.row3 {
+	margin-top: 15px;
+}
+
+.row4 {
+	margin-top: 15px;
+}
+.row5 {
+	margin-top: 15px;
+}
+
+.row6 {
+	margin-top: 15px;
+}
+
+.row7 {
+	margin-top: 15px;
+}
+
+.row8 {
+	margin-top: 15px;
+}
+
+.row9 {
+	margin-top: 15px;
+}
+
+.row10 {
+	margin-top: 15px;
+}
+
+.row11 {
+	margin-top: 15px;
+}
+
+.row12 {
+	margin-top: 15px;
+}
+
+.component_row1{
+	display: inline-block;
+}
+
+.component_row2{
+	display: inline-block;
+}
+
+.component_row3{
+	display: inline-block;
+}
+.component_row4{
+	display: inline-block;
+}
+
+.component_row5{
+	display: inline-block;
+}
+
+.component_row6{
+	display: inline-block;
+}
+
+.component_row7{
+	display: inline-block;
+}
+.component_row8{
+	display: inline-block;
+}
+.component_row9{
+	display: inline-block;
+}
+.component_row10{
+	display: inline-block;
+}
+
+.component_row11{
+	display: inline-block;
+}
+
+.component_row12{
+	display: inline-block;
+}

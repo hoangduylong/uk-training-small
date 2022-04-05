@@ -1,0 +1,79 @@
+.nts-fixed-table  {
+	
+	table.fixed-table {
+		width: 100%;
+		table-layout: fixed;
+		border-collapse: separate;
+		
+		> tbody > tr > td,
+		> tbody > tr > th,
+		> thead > tr > td,
+		> thead > tr > th {
+			white-space: nowrap;
+			overflow: hidden;
+			border: solid 1px #CCC;
+			border-top: 0;
+			border-right: 0;
+		}
+
+		> tbody > tr:first-child > td,
+		> tbody > tr:first-child > th,
+		> thead > tr:first-child > td,
+		> thead > tr:first-child > th {
+			border-top: solid 1px #CCC;
+		}
+		
+		> tbody > tr:hover > td,
+		> tbody > tr:hover > th {
+			background-color: #C5F1F7;
+		}
+		
+		tbody  td:last-child {
+		    border-right: 0px;
+		}
+		thead  th:last-child {
+		    border-right: 0px;
+		}
+		
+	}
+	
+	.nts-fixed-header-container {
+		overflow: hidden;
+ 	 	border-right: 1px #CCC solid;
+ 	 	border-left: 1px #CCC solid;
+ 	 	
+		thead  th:first-child {
+		    border-left: 0px !important;
+		}
+	}
+	
+	.nts-fixed-header-wrapper {
+		margin-left: -1px;
+	}
+	.scroll-header {
+		box-sizing: border-box;
+ 	}   
+	
+	.nts-fixed-body-container {
+		overflow: auto;
+		float: left;
+		border: 1px solid #CCC;
+		border-top: 0px;
+	}
+	
+	.nts-fixed-header{
+		display: inline-block;
+	}
+	
+	.scroll-header{
+		background-color: #EDE9ED;
+	}
+	
+	.nts-fixed-body-wrapper {
+		margin: -1px 0 0 -2px;    
+		border-left: 1px solid;
+	}
+	.body-no-record{
+		margin-left: 0px;
+	}
+}

@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "es6",
+    "sourceMap": true,
+    "skipDefaultLibCheck": true,
+    "experimentalDecorators": true,
+    "strict": false,
+    "types": [
+      "es6-promise",
+      "webpack-env"
+    ],
+    "baseUrl": "ClientApp",
+    "paths": {
+      "@app": [
+        "@app/*"
+      ],
+      "views": [
+        "views/*"
+      ],
+      "@views": [
+        "views/*"
+      ]
+    }
+  },
+  "include": [
+    "ClientApp/**/*"
+  ],
+  "exclude": [
+    "bin",
+    "node_modules"
+  ]
+}

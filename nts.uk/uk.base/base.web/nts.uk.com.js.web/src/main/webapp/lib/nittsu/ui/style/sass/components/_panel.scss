@@ -1,0 +1,24 @@
+.panel {
+	$margin: 50px;
+	
+	padding: 10px;
+	position: relative;
+	
+	&.panel-frame {
+		border: 2px solid $frame_border_color;
+		border-radius: 7px;
+	}
+	&.panel-gray-bg {
+		background-color: #E7E6E6;
+	}
+	&.ntsPanel {
+		background-color: $green_background_color;
+		border-radius: 7px;
+		padding: 20px;
+		box-sizing: border-box;
+		&.direction-top{margin-top: $margin;}
+		&.direction-bottom{margin-bottom: $margin;}
+		&.direction-right{margin-right: $margin;}
+		&.direction-left{margin-left: $margin;}
+	}
+}

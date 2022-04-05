@@ -1,0 +1,154 @@
+.contents-area {
+    padding: 10px;
+}
+
+.contents-area .company-name {
+    padding-left: 10px;
+}
+
+.contents-area .panel-content {
+    display: flex;
+    margin-top: 10px;
+}
+
+.contents-area .panel-content .panel-left {
+    width: 270px;
+    min-width: 270px;
+    margin-right: 35px;
+    padding: 20px;
+}
+
+.contents-area .panel-content .panel-left .ntsGrid {
+    margin-top: 20px;
+}
+
+.contents-area .panel-content .right {
+    float: right;
+    margin-right: 18px;
+}
+
+.contents-area .panel-content .panel-right .noted {
+    max-width: 670px;
+    width: 100%;
+    line-height: 22px;
+    margin-bottom: 10px;
+    white-space: pre-line;
+}
+
+.contents-area .panel-content .panel-right .approver-employee-panel {
+    display: flex;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.approver-employee-panel .panel-box {
+    min-height: 150px;
+    width: 300px;
+    display: flex;
+}
+
+.approver-employee-panel .panel-box .panel-info {
+    flex: 1;
+}
+
+.approver-employee-panel .panel-box .panel-info .form-label {
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.approver-employee-panel .panel-box .panel-info .form-label label {
+    line-height: normal;
+    white-space: normal;
+    display: block;
+}
+
+.approver-employee-panel .panel-box .employee-lists {
+    line-height: 24px;
+    width: 70%;
+    padding-top: 8px;
+}
+
+.approver-employee-panel .panel-box .employee-lists .ntsControl {
+    display: block;
+}
+
+.contents-area .panel-content .panel-right .panel-title {
+    padding-left: 10px;
+}
+
+.contents-area .panel-content .panel-right .panel-title .form-label {
+    width: 110px;
+}
+
+.contents-area .panel-content .bnt-move {
+    border: 0;
+    box-shadow: none;
+    height: 60px;
+    width: auto;
+    margin: 0 15px;
+    background: transparent !important;
+}
+
+.contents-area .panel-content .bnt-move .caret-inline:after {
+    border-width: 25px 15px;
+    color: #97D155;
+}
+
+.approver-employee-panel .panel-box .employee-lists .link-button {
+    background: transparent;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 100%;
+    line-height: 20px;
+}
+
+.approver-employee-panel .panel-box .employee-lists .link-button:hover,
+.approver-employee-panel .panel-box .employee-lists .hyperlink:hover {
+    color: #000;
+}
+
+.contents-area .employee-lists .link-button.link-setting {
+    text-align: right;
+}
+
+.workplace table#wkp_view {
+    margin-left: 0;
+    margin-top: 0;
+}
+.workplace table#wkp_view .over_text {
+    overflow: hidden;
+}
+.contents-area .employee-lists .not-allow-setting {
+    color: #B1B1B1 !important;
+    cursor: default;
+}
+
+/* fixed in small screen < 1366px */
+.fix1366.contents-area .approver-employee-panel .panel-box .employee-lists {   
+    width: calc(70% + 15px);
+}
+.fix1366.contents-area .approver-employee-panel .panel-box {
+    width: 380px;
+}
+
+.fix1280.contents-area .approver-employee-panel .panel-box {
+    width: 335px;
+}
+
+.fix1280.contents-area .panel-content .panel-right .approver-employee-panel {
+    margin-top: 10px;
+}
+
+.fix1280.contents-area .employee-lists .link-button {
+    padding: inherit;
+}
+
+.fix1280.contents-area .panel-content .panel-right .panel-title .form-label {
+    width: 100px;
+}
+
+.link-button {
+    color: #06c !important;
+}

@@ -1,0 +1,37 @@
+[
+   {
+      "date": "03/12",
+      "wkTypeCd":"PT",
+      "wkTimeCd":"08:00",
+      "startWorkTime":120,
+      "endWorkTime":180
+   },
+   {
+      "date":"03/12",
+      "wkTypeCd":"PT",
+      "wkTimeCd":"09:00",
+      "startWorkTime":120,
+      "endWorkTime":180
+   },
+   {
+      "date":"03/17",
+      "wkTypeCd":"FT",
+      "wkTimeCd":"10:00",
+      "startWorkTime":120,
+      "endWorkTime":180
+   },
+   {
+      "date":"03/18",
+      "wkTypeCd":"FT",
+      "wkTimeCd":"11:00",
+      "startWorkTime":120,
+      "endWorkTime":180
+   },
+   {
+      "date":"03/12",
+      "wkTypeCd":"PT",
+      "wkTimeCd":"16:00",
+      "startWorkTime":120,
+      "endWorkTime":180
+   }
+]

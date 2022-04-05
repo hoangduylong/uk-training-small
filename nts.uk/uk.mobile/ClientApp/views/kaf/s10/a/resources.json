@@ -1,0 +1,12 @@
+{
+    "jp": {
+        "kafs10step1": "#{KAFS10_31}",
+        "kafs10step2": "#{KAFS10_31}",
+        "kafs10step3": "#{KAFS10_31}"
+    },
+    "vi": {
+        "kafs10step1": "#{KAFS10_31}",
+        "kafs10step2": "#{KAFS10_31}",
+        "kafs10step3": "#{KAFS10_31}"
+    }
+}

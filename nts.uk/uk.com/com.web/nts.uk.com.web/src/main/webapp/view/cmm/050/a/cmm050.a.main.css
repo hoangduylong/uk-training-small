@@ -1,0 +1,32 @@
+.setting-zone {
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.flex.valign-center {
+  margin-bottom: 10px;
+}
+
+.setting-label {
+  width: 200px;
+}
+
+.address-input {
+  width: 800px !important;
+}
+
+.port-input {
+  width: 100px !important;
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
+#A8_1 {
+  padding-right: 5px;
+}
+
+#A4_2 {
+  width: 300px !important;
+}

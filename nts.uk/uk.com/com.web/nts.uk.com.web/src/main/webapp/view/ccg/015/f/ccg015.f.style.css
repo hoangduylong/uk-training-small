@@ -1,0 +1,73 @@
+.contents_layout_ccg015 {
+  display: inline-flex;
+  width: 100%;
+  height: 100%;
+}
+
+.contents_2 {
+  padding: 5px 5px 0px 0px;
+  min-width: 458px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.contents_3 {
+  padding: 5px 5px 0px 0px;
+  min-width: 458px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.widget_contents {
+  width: 446px;
+}
+
+.contents_1 {
+  padding: 5px 5px 5px 5px;
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+#resizable {
+  width: calc(100% - 22px);
+  height: calc(100vh - 100px);
+  margin: 10px 10px 0px 10px;
+}
+
+.scroll_resize {
+  overflow: auto !important;
+}
+
+.h_100 {
+  overflow: scroll;
+  height: 100%;
+}
+
+.iframe_fix {
+  width: 100%;
+}
+
+#F1-frame {
+  position: absolute;
+}
+
+.contents_layout ::after {
+  content: "";
+  display: block;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.contents_layout_ccg015 .ui-resizable-s  {
+  display: none !important;
+}
+
+.contents_layout_ccg015 .widget-content.ui-resizable,
+.contents_layout_ccg015 .widget-content.ui-resizable>div {
+  padding-bottom: 0;
+}

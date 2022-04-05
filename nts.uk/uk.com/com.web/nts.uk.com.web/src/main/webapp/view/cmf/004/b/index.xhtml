@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component">
+
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+      <com:ValidatorScript>
+        nts.uk.ctx.sys.assist.dom.storage.Explanation
+        nts.uk.ctx.sys.assist.dom.storage.FileCompressionPassword
+			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<!-- KCP005 -->
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<!-- CMF004 -->
+			<com:stylefile path="/view/ccg/share/style.css" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.service.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.vm.js" of="/nts.uk.com.web" />
+			<!-- CCG001 -->
+			<com:scriptfile path="cmf004.b.service.js" />
+			<com:scriptfile path="cmf004.b.start.js" />
+			<com:scriptfile path="cmf004.b.vm.js" />
+			<com:stylefile path="cmf004.b.style.css" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="functions-area">
+				<!--B1_1 操作選択に戻る-->
+				<a id="B1_1" class="goback"
+					data-bind="ntsLinkButton: { jump: '../a/index.xhtml' }">#{i18n.getText('CMF004_20')}</a>
+			</div>
+			<div id="contents-area">
+				<div id="data-recovery-wizard" data-bind="ntsWizard: {active: activeStep, steps: stepList, theme: 'yellow'}"
+					class="cf">
+					<!--B2_2 ウィザード開始-->
+					<div id="B2_2" class="header">
+						<div class="image" data-icon="../resource/データ保存アイコン.jpg" />
+						<div class="content">#{i18n.getText('CMF004_132')}</div>
+					</div>
+					<div class="steps">
+						<!--B2_3 ステップ1-->
+						<div id="B2_3" class="step-1">
+							<span>#{i18n.getText('CMF004_133')}</span><br />
+							<div style="display: table; width: 100%">
+								<div style="display:table-cell;">└
+								</div>
+								<div style="display: table-cell;">
+									<span>#{i18n.getText('CMF004_134')}</span>
+								</div>
+							</div>
+						</div>
+						<!--B2_5 ステップ2-->
+						<div id="B2_5" class="step-2">#{i18n.getText('CMF004_135')}</div>
+						<!--B2_6 ステップ3-->
+						<div id="B2_6" class="step-3">#{i18n.getText('CMF004_478')}</div>
+						<!--B2_8 ウィザード終了-->
+						<div id="B2_8" class="end step-4">#{i18n.getText('CMF004_138')}</div>
+					</div>
+					<div class="contents">
+						<div class="step-1">
+							<ui:include src="b.xhtml" />
+						</div>
+						<div class="step-2">
+							<ui:include src="e.xhtml" />
+						</div>
+						<!-- <div class="step-3">
+							<ui:include src="f.xhtml" />
+						</div> -->
+						<div class="step-3">
+							<ui:include src="g.xhtml" />
+						</div>
+						<div class="step-4">
+							<ui:include src="h.xhtml" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+
+</html>

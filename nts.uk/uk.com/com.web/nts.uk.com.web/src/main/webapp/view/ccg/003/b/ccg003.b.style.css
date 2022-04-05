@@ -1,0 +1,91 @@
+#expand-example {
+  width: 460px;
+  margin: auto;
+}
+.row-inline {
+  display: inline-flex;
+}
+.pl-10 {
+  padding-left: 10px !important;
+}
+.pr-10 {
+  padding-right: 10px !important;
+}
+.auto-margin {
+  margin: auto;
+}
+table th {
+  border: 1px groove;
+}
+.h-30 {
+  height: 30px;
+}
+.border {
+  border: 1px groove;
+}
+.align-center {
+  text-align: center;
+}
+.w-percent-25 {
+  width: 25%;
+}
+.w-300 {
+  width: 300px;
+}
+.margin-date-picker {
+  margin: 10px 0px 15px 10px;
+  position: relative;
+  height: 32px;
+}
+
+.footer-content {
+  width: 460px;
+  margin-top: 10px;
+}
+.pl-15 {
+  padding-left: 15px;
+}
+.pr-15 {
+  padding-right: 15px;
+}
+.ml-10 {
+  margin-left: 10px;
+}
+.left {
+  float: left;
+}
+.right {
+  float: right;
+}
+.mr-20 {
+  margin-right: 20px;
+}
+.table-overflow {
+  overflow-y: scroll;
+  height: 185px;
+  width: 100%;
+}
+.wp-100 {
+  width: 100%;
+}
+.border-groove {
+  border: 1px groove;
+}
+.blue-link {
+  cursor: pointer;
+  color: rgb(37, 37, 238) !important;
+  text-decoration: underline;
+}
+.blue-link:hover {
+  cursor: pointer;
+  color: rgb(0, 0, 255) !important;
+}
+#B3 {
+  position: absolute;
+  top: 3px;
+  right: 20px;
+}
+#B2_2 {
+  position: absolute;
+  left: 0;
+}

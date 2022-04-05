@@ -1,0 +1,14 @@
+{
+    "jp": {
+        "name1": "#{KDWS03_1}",
+        "name2": "#{KDWS03_2}",
+        "name3": "#{KDWS03_3}",
+        "name4": "#{KDWS03_4}"
+    },
+    "vi": {
+        "name1": "#{KDWS03_1}",
+        "name2": "#{KDWS03_2}",
+        "name3": "#{KDWS03_3}",
+        "name4": "#{KDWS03_4}"
+    }
+}

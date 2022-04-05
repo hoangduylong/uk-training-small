@@ -1,0 +1,120 @@
+.float-right {
+	float: right !important;
+}
+
+.display_flex {
+	display: flex;
+}
+
+#contents-area {
+	padding: 20px 0px 0px 20px;
+}
+
+.float_left {
+	float: left !important;
+}
+
+#content-left {
+	float: left;
+	padding: 5px;
+}
+
+.div_line {
+	margin-top: 10px;
+	float: left;
+	clear: both;
+	width: 100%;
+}
+
+.toggle_div {
+	background-color: #F2F2F2;
+	margin-top: 10px;
+	border-radius: 5px;
+	float: left;
+	padding: 10px 20px 10px 10px;
+}
+
+.expand_symbol {
+	display: inline-block;
+	float: right;
+	line-height: 37px;
+}
+
+hr {
+	clear: both;
+}
+
+.contents-header {
+	margin-left: 149px !important;
+}
+
+.contents-header td {
+	border: 1px solid #CCC;
+	text-align: left;
+	height: 15px;
+	padding: 0px 0px;
+	font-weight: bold;
+}
+
+thead {
+	background-color: #CFF1A5 !important;
+}
+
+#COL_1 {
+	width: 100px !important;
+}
+
+#COL_2 {
+	width: 200px !important;
+}
+
+#code {
+	width: 100px !important;
+	border-left: none;
+}
+
+#name {
+	width: 200px !important;
+	border-right: none;
+}
+
+.contents-data  td {
+	border: 1px solid #CCC;
+	text-align: left;
+	min-height: 16px !important;
+	max-height: 16px !important;
+}
+
+.contents-data  tr {
+	min-height: 16px !important;
+	max-height: 16px !important;
+}
+
+table.contents-data thead, table.contents-data tbody {
+	display: block !important;
+}
+
+.table-container {
+	color: #000;
+	position: relative;
+	border: 1px solid #ccc;
+	width: 301px !important;
+	margin-left: 149px !important;
+	border-top: none;
+}
+
+.table-container>div {
+	overflow-y: auto;
+	overflow-x: hidden;
+	height: 190px !important;
+}
+
+.table-container>div table {
+	width: 301px !important;
+	border-collapse: collapse;
+}
+
+td {
+	padding: 0px !important;
+	border: 1px solid #ccc;
+}

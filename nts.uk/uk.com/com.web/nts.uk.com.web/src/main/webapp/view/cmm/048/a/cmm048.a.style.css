@@ -1,0 +1,262 @@
+/* custom tab label start */
+.ui-widget.ui-tabs > .ui-tabs-panel {
+  border: none !important;
+  padding-top: 0 !important;
+}
+
+.ui-widget.ui-tabs.vertical > .ui-tabs-nav > li {
+  border: none !important;
+  border-radius: 6px !important;
+  background-color: white;
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+.ui-widget.ui-tabs > .ui-tabs-nav > li.ui-tabs-active {
+  border: 1px solid rgba(184, 209, 255, 0.424) !important;
+  background-color: rgba(157, 202, 240, 0.233) !important;
+}
+
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+  color: black !important;
+}
+
+.ui-widget.ui-tabs > .ui-tabs-nav > li > a {
+  padding: 5px 40px 5px 5px !important;
+}
+/* custom tab label end */
+
+/* tab title start */
+.tab-icon {
+  height: 15px;
+  width: auto;
+  margin-bottom: -2px;
+  padding-right: 5px;
+}
+/* tab title end */
+
+/* right table content start */
+.public-status {
+  text-align: left;
+}
+
+.profile-title,
+.password-title,
+.language-title,
+.notification-title {
+  font-weight: bold;
+  vertical-align: text-top;
+}
+
+.profile-information,
+.password-information,
+.language-information,
+.notification-information {
+  padding-left: 20px;
+  padding-right: 40px;
+  /* vertical-align: text-top; */
+}
+
+.label-main {
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 33px;
+}
+
+.tab-profile td,
+.pw,
+.tab-language td,
+.tab-notification td {
+  padding-top: 14px;
+  padding-bottom: 10px;
+}
+
+/* right table content end */
+/* Avatar handle start */
+.avatar-container {
+  position: relative;
+  width: 104px;
+}
+
+.avatar-container .avatar {
+  display: block;
+  max-height: 100px;
+  max-width: 100px;
+  min-height: 100px;
+  min-width: 100px;
+  border-radius: 50%;
+}
+
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.5); /* Black see-through */
+  transition: 0.5s ease;
+  opacity: 0;
+  text-align: center;
+  max-height: 50px;
+  max-width: 104px;
+  min-height: 50px;
+  min-width: 104px;
+  border-bottom-left-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+
+.avatar-container:hover .overlay {
+  opacity: 1;
+}
+
+#camera-hover {
+  height: 35px;
+  width: auto;
+  padding-top: 10px;
+}
+
+#A4_1_no_avatar {
+  background-color: #eeeeee;
+  font-size: 30px;
+  color: blue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid;
+  border-color: #333688;
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  #A4_1_no_avatar {
+    background-color: #eeeeee;
+    font-size: 30px;
+    color: blue;
+    border: 2px solid;
+    border-color: #333688;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+}
+/* Avatar handle end */
+
+/* password-policy start*/
+.password-policy {
+  background-color: #dddddd;
+  padding: 5px;
+  height: auto;
+  max-height: 175px !important;
+  min-height: 130px !important;
+  width: 390px;
+}
+
+.pp-context {
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgb(167, 167, 167);
+}
+
+.pp-table td {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.pp-title {
+  vertical-align: text-top;
+  padding-right: 3px;
+}
+/* password-policy end*/
+
+/* tab1 start*/
+.no-cb,
+.cb {
+  padding-left: 30px;
+}
+/* tab1 end */
+
+/* tab2 start*/
+h6#B6_5 {
+  padding-top: 2px;
+}
+/* tab2 end */
+
+/* tab3 start*/
+.add-new-anniversary {
+  display: inline-block;
+  padding-top: 20px;
+  padding-left: 100px;
+}
+
+#C2_1 {
+  padding-top: 27px;
+}
+
+#C2_5 {
+  padding-right: 10px;
+}
+#C2_7 {
+  padding-left: 10px;
+}
+
+#C3_1 {
+  height: 15px;
+  width: auto;
+  margin-left: 30px;
+}
+
+#C3_2 {
+  height: 15px;
+  width: auto;
+  padding-right: 10px;
+}
+textarea {
+  resize: none;
+}
+
+table.tab-notification {
+  float: left;
+}
+
+th#blank-space {
+  padding-top: 40px;
+}
+
+td#delete-icon {
+  padding-top: 23px;
+}
+button#add-btn-content {
+  box-shadow: none !important;
+  border: none !important;
+}
+/* tab3 end*/
+
+/* tab4 start*/
+td#D2_2 {
+  padding-top: 5px !important;
+}
+
+td#D2_1 {
+  padding-bottom: 25px;
+}
+
+.container {
+  display: inline-flex;
+}
+
+#tab-panel div.tabs-list {
+  margin-left: 30px;
+}
+#tab-panel div.tabs-content {
+  margin-left: 254px;
+}
+/* tab4 end*/
+/*113842*/
+@media only screen and (max-width: 1280px) {
+  #button-setting {
+    margin-left: 77vw;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  #button-setting {
+    margin-left: 1000px;
+  }
+}

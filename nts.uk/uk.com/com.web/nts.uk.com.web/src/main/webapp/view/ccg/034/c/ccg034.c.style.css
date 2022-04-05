@@ -1,0 +1,18 @@
+.div-line {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  display: flex;
+}
+.column-label {
+  width: 120px;
+}
+.column-value {
+  width: 120px;
+  margin-right: 10px;
+}
+#C1_1 {
+  font-size: 1.5rem;
+}
+#C2_3_1 {
+  margin-right: 30px;
+}

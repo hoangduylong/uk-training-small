@@ -1,0 +1,668 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<com:ValidatorScript>
+				nts.uk.ctx.pereg.dom.person.info.item.ItemName
+				nts.uk.ctx.pereg.dom.person.info.stringitem.StringItemLength
+				nts.uk.ctx.pereg.dom.person.info.numericitem.DecimalPart
+				nts.uk.ctx.pereg.dom.person.info.numericitem.IntegerPart
+				nts.uk.ctx.pereg.dom.person.info.numericitem.NumericItemMin
+				nts.uk.ctx.pereg.dom.person.info.numericitem.NumericItemMax
+				nts.uk.ctx.pereg.dom.person.info.timeitem.TimeItemMin
+				nts.uk.ctx.pereg.dom.person.info.timeitem.TimeItemMax
+				nts.uk.shr.com.time.TimeWithDayAttr
+			</com:ValidatorScript>
+			<script>var dialogSize = { width: 1100, height: 590 };</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps005.b.main.css" />
+			<com:scriptfile path="cps005.b.start.js" />
+			<com:scriptfile path="cps005.b.vm.js" />
+			<com:scriptfile path="cps005.b.service.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<com:ko tag="let" bind="{$vm: $data}">
+			<div id="functions-area">
+				<div id="functions-area-content" data-bind="let: { cItemData: $vm.currentItemData() }">
+					<button tabindex="1" data-bind="click : $vm.register, enable: $vm.currentCtg.isAdd">#{i18n.getText('CPS005_10')}</button>
+					<button tabindex="2" class="proceed"
+						data-bind="click: $vm.addUpdateData, enable: $vm.isEnableButtonProceed()">#{i18n.getText('CPS005_11')}</button>
+					<button tabindex="3" class="danger"
+						data-bind="click: $vm.removeData, enable: cItemData.isEnableButtonDelete()">#{i18n.getText('CPS005_58')}</button>
+					<button tabindex="4" data-bind="click: $vm.closedDialog">#{i18n.getText('CPS005_14')}</button>
+				</div>
+			</div>
+
+			<div id="contents-area" data-bind="with: currentItemData">
+				<div class="contents-area-left">
+					<div data-bind="ntsPanel:{
+								width: '300px', 
+								height: '430px', 
+								direction: 'right', 
+								showIcon: false, 
+								visible: true
+							}">
+						<div tabindex="5" style="width: 300px"
+							data-bind="ntsSearchBox: {
+									searchMode: 'highlight',
+									targetKey: 'id', 
+									mode: 'igGrid',
+									comId: 'item-info-list', 
+									items: personInfoItemList, 
+									selectedKey: 'id', 
+									placeHolder:'名称で検索…',
+									fields: ['itemName']}" />
+						<table id="item-info-list"
+							data-bind="ntsGridList: {								
+								height: 370,
+								name: '#[CPS005_28]',
+								dataSource: personInfoItemList,
+								primaryKey: 'id',
+								columns: [
+									 { headerText: '', key: 'id', hidden: true },
+                					 { headerText: '#{i18n.getText('CPS005_13')}', key: 'itemName', width: 283 }, 
+								],
+								multiple: false,
+								value: perInfoItemSelectCode
+							}">
+						</table>
+					</div>
+				</div>
+				<div class="contents-area-right" data-bind="let: { cItemData: $vm.currentItemData(), cItem: $vm.currentItemData().currentItemSelected() }">
+					<div data-bind="with: currentItemSelected">
+						<!-- Start perInfoItem selection is not fixed -->
+						<div data-bind="visible: fixedAtr() == 0">
+							<div
+								class="valign-center control-group control-group-margin-custom">
+								<div
+									data-bind="ntsFormLabel: { constraint: ['ItemName'], required: true }"
+									class="margin-right-FormLabel">
+									#{i18n.getText('CPS005_13')}
+								</div>
+								<input tabindex="6" id="item-name-control"
+									data-bind="ntsTextEditor: {
+										name: '#[CPS005_13]',
+										value: itemName,
+										constraint: 'ItemName',
+										option: {
+							            	textmode: 'text',
+							            	placeholder: '',
+							            	width: '250px',
+							            	textalign: 'left'
+							            },
+										required: true,
+										enable: true,
+										readonly: false,
+										immediate: false}" />
+							</div>
+
+							<div data-bind="visible: itemType() == 2  &amp; dataType() !==10">
+								<div
+									class="valign-center control-group control-group-margin-custom">
+									<div data-bind="ntsFormLabel: { required: true }"
+										class="margin-right-FormLabel">
+										#{i18n.getText('CPS005_15')}
+									</div>
+									<div tabindex="7" id="combo-box"
+										data-bind="ntsComboBox: {
+										name: '#[CPS005_15]',
+										options: cItemData.dataTypeEnumFilter,
+										optionsValue: 'value',
+										visibleItemsCount: cItemData.dataTypeEnumFilter.length,
+										value: dataType,
+										optionsText: 'localizedName',
+										editable: false,
+										enable: enable,
+										columns: [
+											{ prop: 'localizedName', length: 10 },
+										]}">
+									</div>
+								</div>
+
+								<!-- Start dataTypeEnum is selected value 1 - 文字列(String) -->
+								<div id="data-type-value-string"
+									data-bind="with: stringItem, visible: dataType() == 1">
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: { required: true }"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_16')}
+										</div>
+										<div tabindex="8" id="combo-box"
+											data-bind="ntsComboBox: {
+											name: '#[CPS005_16]',
+											options: cItemData.stringItemTypeEnumFilter,
+											optionsValue: 'value',
+											visibleItemsCount: 5,
+											value: stringItemType,
+											optionsText: 'localizedName',
+											editable: false,
+											enable: cItem.enable,
+											dropDownAttachedToBody:true,
+											columns: [
+												{ prop: 'localizedName', length: 10 },
+											]}">
+										</div>
+									</div>
+
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div
+											data-bind="ntsFormLabel: { constraint: ['StringItemLength'], required: true }"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_17')}
+										</div>
+										<input id="stringItemLength" tabindex="9"
+											data-bind="ntsNumberEditor: {
+												name: '#[CPS005_17]',
+												value: stringItemLength,
+												constraint: 'StringItemLength',
+												option: new nts.uk.ui.option.NumberEditorOption({
+									            	width: '175px',
+									            	placeholder: '',
+									            	textalign: 'left'
+									            }),
+												required: true,
+												enable: cItem.enable,
+												readonly: false,
+												immediate: false}" />
+									</div>
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: { required: true }"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_8')}
+										</div>
+										<div tabindex="10" class="custom-btn"
+											data-bind="ntsSwitchButton: {
+											name: '#[CPS005_8]',
+											options: cItemData.stringItemDataTypeEnum,
+											optionsValue: 'value',
+											optionsText: 'localizedName',
+											value: stringItemDataType,
+											enable: cItem.enable }">
+										</div>
+										<button tabindex="11"
+											data-bind="ntsHelpButton: {image: '../image/data-type.png', position: 'right top', enable: true }">?</button>
+									</div>
+								</div>
+								<!-- End dataTypeEnum is selected value 1 - 文字列(String) -->
+
+
+								<!-- Start dataType is selected value 2 - 数値(Numeric) -->
+								<div id="data-type-value-numeric" data-bind="with: numericItem, visible: dataType() == 2">
+									<div class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: { required: true }"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_18')}
+										</div>
+										<div tabindex="12" class="custom-btn"
+											data-bind="ntsSwitchButton: {
+											name: '#[CPS005_18]',
+											options: cItemData.numericItemAmountAtrEnum,
+											optionsValue: 'code',
+											optionsText: 'name',
+											value: numericItemAmount,
+											enable: cItem.enable  }">
+										</div>
+									</div>
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: { required: true }"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_19')}
+										</div>
+										<div tabindex="13" class="custom-btn"
+											data-bind="ntsSwitchButton: {
+											name: '#[CPS005_19]',
+											options: cItemData.numericItemMinusAtrEnum,
+											optionsValue: 'code',
+											optionsText: 'name',
+											value: numericItemMinus,
+											enable: cItem.enable }">
+										</div>
+									</div>
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div
+											data-bind="ntsFormLabel: { constraint: ['IntegerPart'], required: true }"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_20')}
+										</div>
+										<input id="integerPart" tabindex="14"
+											data-bind="ntsNumberEditor: {
+												name: '#[CPS005_20]',
+												value: integerPart,
+												constraint: 'IntegerPart',
+												option: new nts.uk.ui.option.NumberEditorOption({
+									            	placeholder: '',
+									            	width: '175px',
+									            	textalign: 'left'
+									            }),
+												required: true,
+												enable: cItem.enable,
+												readonly: false}" />
+									</div>
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div
+											data-bind="ntsFormLabel: { constraint: ['DecimalPart'], required: false }"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_21')}
+										</div>
+										<input id="decimalPart" tabindex="15"
+											data-bind="ntsNumberEditor: {
+												name: '#[CPS005_21]',
+												nameid: 'decimalPart',
+												value: decimalPart,
+												constraint: 'DecimalPart',
+												option: new nts.uk.ui.option.NumberEditorOption({
+									            	placeholder: '',
+									            	width: '175px',
+									            	textalign: 'left'
+									            }),
+												required: false,
+												enable: cItem.enable,
+												readonly: false,
+												immediate: false}" />
+									</div>
+									<div class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: {}"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_35')}
+										</div>
+										<input id="numericItemMin"
+											data-bind="ntsNumberEditor: {
+												name: '#[CPS005_38]',
+												value: numericItemMin,
+												constraint: 'NumericItemMin',
+												option: ko.computed(function() {
+													return !ko.toJS(numericItemAmount) ? new nts.uk.ui.option.NumberEditorOption({
+														decimallength: ko.computed(function() { let dp = ko.toJS(decimalPart); return dp > 5 ? 5 : dp; }),
+										            	mantissaMaxLength: ko.computed(function() { let dp = ko.toJS(decimalPart); return dp > 5 ? 5 : dp; }),
+										            	width: '70px',
+										            	textalign: 'left'
+										            }) : new nts.uk.ui.option.CurrencyEditorOption({
+														grouplength: 3,
+										            	decimallength: ko.computed(function() { let dp = ko.toJS(decimalPart); return dp > 5 ? 5 : dp; }),
+										            	mantissaMaxLength: ko.computed(function() { let dp = ko.toJS(decimalPart); return dp > 5 ? 5 : dp; }),
+										            	width: '80px',
+										            	textalign: 'left',
+										            	currencyformat: ko.computed(function() { return !ko.toJS(numericItemAmount) ? null: 'JPY'; }),
+										            	currencyposition: ko.computed(function() { return !ko.toJS(numericItemAmount) ? null:'right'; })
+										            });										            
+									            }),
+												required: false,
+												enable: cItem.enable,
+												readonly: false}" tabindex="16" />
+										<span class="label">～</span>
+										<input id="numericItemMax"
+											data-bind="ntsNumberEditor: {
+												name: '#[CPS005_39]',
+												value: numericItemMax,
+												constraint: 'NumericItemMax',
+												option: ko.computed(function() {
+													return !ko.toJS(numericItemAmount) ? new nts.uk.ui.option.NumberEditorOption({
+														decimallength: ko.computed(function() { let dp = ko.toJS(decimalPart); return dp > 5 ? 5 : dp; }),
+										            	mantissaMaxLength: ko.computed(function() { let dp = ko.toJS(decimalPart); return dp > 5 ? 5 : dp; }),
+										            	width: '70px',
+										            	textalign: 'left'
+										            }) : new nts.uk.ui.option.CurrencyEditorOption({
+														grouplength: 3,
+										            	decimallength: ko.computed(function() { let dp = ko.toJS(decimalPart); return dp > 5 ? 5 : dp; }),
+										            	mantissaMaxLength: ko.computed(function() { let dp = ko.toJS(decimalPart); return dp > 5 ? 5 : dp; }),
+										            	width: '80px',
+										            	textalign: 'left',
+										            	currencyformat: ko.computed(function() { return !ko.toJS(numericItemAmount) ? null: 'JPY'; }),
+										            	currencyposition: ko.computed(function() { return !ko.toJS(numericItemAmount) ? null:'right'; })
+										            });										            
+									            }),
+												required: false,
+												enable: cItem.enable,
+												readonly: false}" tabindex="17" />
+									</div>
+								</div>
+								<!-- End dataType is selected value 2 - 数値(Numeric) -->
+
+
+								<!-- Start dataType is selected value 3 - 日付(Date) -->
+								<div id="data-type-value-date"
+									data-bind="with: dateItem, visible: dataType() == 3">
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: {required: true}"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_24')}
+										</div>
+										<div tabindex="16" class="custom-btn"
+											data-bind="ntsSwitchButton: {
+											name: '#[CPS005_24]',
+											options: $parents[1].dateItemTypeEnum,
+											optionsValue: 'value',
+											optionsText: 'localizedName',
+											value: dateItemType,
+											enable: cItem.enable }">
+										</div>
+									</div>
+								</div>
+								<!-- End dataType is selected value 3 - 日付(Date) -->
+
+								<!-- Start dataType is selected value 4 - 時間(Time) -->
+								<div id="data-type-value-time"
+									data-bind="with: timeItem, visible: dataType() == 4">
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: {required: true, constraint: 'TimeItemMin'}"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_29')}
+										</div>
+										<input id="timeItemMin" 
+											data-bind="ntsTimeEditor: {
+												name: '#[CPS005_30]',
+												value: timeItemMin,
+												constraint: 'TimeItemMin',
+												inputFormat: 'time', 
+										 		mode: 'time', 
+										 		option: {
+								                    width: '80px',
+								                    placeholder: '00:00'
+								                },
+												required: true,
+												enable: cItem.enable,
+												readonly: false}" tabindex="17"/>
+												
+										<span class="label">～</span> 
+										
+										<input id="timeItemMax"
+											data-bind="ntsTimeEditor: {
+												name: '#[CPS005_31]',
+												value: timeItemMax,
+												constraint: 'TimeItemMax',
+												inputFormat: 'time', 
+										 		mode: 'time',
+										 		option: {
+								                    width: '80px',
+								                    placeholder: '00:00'
+								                },
+												required: true,
+												enable: cItem.enable,
+												readonly: false}" tabindex="18"/>
+									</div>
+								</div>
+								<!-- End dataType is selected value 4 - 時間(Time) -->
+
+
+								<!-- Start dataType is selected value 5 - 時刻(TimePoint) -->
+								<div id="data-type-value-timepoint"
+									data-bind="with: timePointItem, visible: dataType() == 5">
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: {required: true, constraint: 'TimeWithDayAttr'}"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_32')}
+										</div>
+										<input id="timePointItemMin" 
+											data-bind="ntsTimeWithDayEditor: {
+												name: '#[CPS005_33]',
+												value: timePointItemMin,
+												constraint: 'TimeWithDayAttr',
+										 		option: {
+								                    width: '65px',
+								                    placeholder: '00:00',
+								                    timeWithDay: true
+								                },
+												required: true,
+												enable: cItem.enable,
+												readonly: false}" tabindex="19"/>
+												
+										<span class="label">～</span>
+										 
+										<input id="timePointItemMax"
+											data-bind="ntsTimeWithDayEditor: {
+												name: '#[CPS005_34]',
+												value: timePointItemMax,
+												constraint: 'TimeWithDayAttr',									
+										 		option: {
+								                    width: '65px',
+								                    placeholder: '00:00',
+								                    timeWithDay: true
+								                },
+												required: true,
+												enable: cItem.enable,
+												readonly: false}" tabindex="20" />
+									</div>
+								</div>
+								<!-- End dataType is selected value 5 - 時刻(TimePoint) -->
+
+
+								<!-- Start dataType is selected value 6 - 選択(Selection)
+								<com:ko-if bind="(dataType() === 6)"> -->
+								<div id="data-type-value-selection"
+									data-bind="with: selectionItem, visible: ((dataType() == 6)  &amp;&amp; (selectionItem().selectionItemRefType() == 2))">
+									<div>
+										<div
+											class="valign-center control-group control-group-margin-custom">
+											<div data-bind="ntsFormLabel: {required: true}"
+												class="margin-right-FormLabel">
+												#{i18n.getText('CPS005_26')}
+											</div>
+											<div tabindex="21" id="combo-box"
+												data-bind="ntsComboBox: {
+											name: '#[CPS005_26]',
+											options: $parents[1].selectionItemLst,
+											optionsValue: 'selectionItemId',
+											visibleItemsCount: 10,
+											value: selectionItemId,
+											optionsText: 'selectionItemName',
+											dropDownAttachedToBody: true,
+											editable: false,
+											enable: cItem.enable,
+											columns: [
+												{ prop: 'selectionItemName', length: 10 },
+											]}">
+											</div>
+											<button tabindex="22" data-bind="click: settingSelection"
+												style="padding: 0px 20px;">#{i18n.getText('CPS005_49')}</button>
+										</div>
+										<div class="contents-table">
+											<table id="single-list" data-bind="ntsGridList: {rows: 10, dataSource: selectionLst, primaryKey: 'selectionCode', columns: selectionLstColumns, value: selected, multiple: false }"></table>
+										</div>
+									</div>
+								</div>
+								<!-- End dataType is selected value 6 - 選択(Selection) -->
+							</div>
+
+						</div>
+						<!-- End perInfoItem selection is not fixed -->
+
+						<!-- Start perInfoItem selection is fixed -->
+						<div data-bind="visible: fixedAtr() == 1 ">
+							<div
+								class="valign-center control-group control-group-margin-custom">
+								<div data-bind="ntsFormLabel: {}" class="margin-right-FormLabel">
+									#{i18n.getText('CPS005_13')}
+								</div>
+								<span class="label" data-bind="text: itemName"></span>
+							</div>
+
+							<div data-bind="visible: itemType() == 2 &amp; dataTypeFixed() !== 10 &amp; dataTypeFixed() !== 11 &amp; dataTypeFixed() !== 12">
+								<div
+									class="valign-center control-group control-group-margin-custom">
+									<div data-bind="ntsFormLabel: {}"
+										class="margin-right-FormLabel">
+										#{i18n.getText('CPS005_15')}
+									</div>
+									<span class="label" data-bind="text: dataTypeText"></span>
+								</div>
+
+								<!-- Start dataTypeEnum is selected value 1 - 文字列(String) -->
+								<div id="data-type-value-string"
+									data-bind="with: stringItem, visible: dataTypeFixed() == 1">
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: {}"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_16')}
+										</div>
+										<span class="label" data-bind="text: stringItemTypeText"></span>
+									</div>
+
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: {}"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_17')}
+										</div>
+										<span class="label" data-bind="text: stringItemLength"></span>
+									</div>
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: {}"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_8')}
+										</div>
+										<span class="label" data-bind="text: stringItemDataTypeText"></span>
+										<button tabindex="11"
+											data-bind="ntsHelpButton: {image: '../image/data-type.png', position: 'right top', enable: true }">?</button>
+									</div>
+								</div>
+								<!-- End dataTypeEnum is selected value 1 - 文字列(String) -->
+
+								<!-- Start dataType is selected value 2 - 数値(Numeric) -->
+								<div id="data-type-value-numeric"
+									data-bind="with: numericItem, visible: dataTypeFixed() == 2">
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: {}"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_18')}
+										</div>
+										<span class="label" data-bind="text: numericItemAmountText"></span>
+									</div>
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: {}"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_19')}
+										</div>
+										<span class="label" data-bind="text: numericItemMinusText"></span>
+									</div>
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: {}"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_20')}
+										</div>
+										<span class="label" data-bind="text: integerPart"></span>
+									</div>
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: {}"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_21')}
+										</div>
+										<span class="label" data-bind="text: decimalPart"></span>
+									</div>
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: {}"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_35')}
+										</div>
+										<span class="label" data-bind="text: numericItemMin"></span> <span
+											class="label">～</span> <span class="label"
+											data-bind="text: numericItemMax"></span>
+									</div>
+								</div>
+								<!-- End dataType is selected value 2 - 数値(Numeric) -->
+
+								<!-- Start dataType is selected value 3 - 日付(Date) -->
+								<div id="data-type-value-date"
+									data-bind="with: dateItem, visible: dataTypeFixed() == 3">
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: {}"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_24')}
+										</div>
+										<span class="label" data-bind="text: dateItemTypeText"></span>
+									</div>
+								</div>
+								<!-- End dataType is selected value 3 - 日付(Date) -->
+
+								<!-- Start dataType is selected value 4 - 時間(Time) -->
+								<div id="data-type-value-time"
+									data-bind="with: timeItem, visible: dataTypeFixed() == 4">
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: {}"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_29')}
+										</div>
+										<span class="label"
+											data-bind="text: $parents[2].genTextTime(timeItemMin)"></span>
+										<span class="label">～</span> <span class="label"
+											data-bind="text: $parents[2].genTextTime(timeItemMax)"></span>
+									</div>
+								</div>
+								<!-- End dataType is selected value 4 - 時間(Time) -->
+
+
+								<!-- Start dataType is selected value 5 - 時刻(TimePoint) -->
+								<div id="data-type-value-timepoint"
+									data-bind="with: timePointItem, visible: dataTypeFixed() == 5">
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: {}"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_32')}
+										</div>
+										<span class="label"
+											data-bind="text: $parents[2].genTextTime(timePointItemMin)"></span>
+										<span class="label">～</span> <span class="label"
+											data-bind="text: $parents[2].genTextTime(timePointItemMax)"></span>
+									</div>
+								</div>
+								<!-- End dataType is selected value 5 - 時刻(TimePoint) -->
+
+
+								<!-- Start dataType is selected value 6 - 選択(Selection) -->
+
+								<div id="data-type-value-selection"
+									data-bind="with: selectionItem, visible: (dataTypeFixed() == 6 &amp;&amp; (selectionItem().selectionItemRefType() == 2))">
+									<div
+										class="valign-center control-group control-group-margin-custom">
+										<div data-bind="ntsFormLabel: {}"
+											class="margin-right-FormLabel">
+											#{i18n.getText('CPS005_26')}
+										</div>
+										<span style="width: 150px;" class="label"
+											data-bind="text: selectionItemName"></span>
+										<button tabindex="22" data-bind="click: settingSelection"
+											style="padding: 0px 20px; margin-left: 50px;">#{i18n.getText('CPS005_49')}</button>
+									</div>
+									<div class="contents-table">
+										<table id="single-list2" data-bind="ntsGridList: {rows: 10, dataSource: selectionLst, primaryKey: 'selectionCode', columns: selectionLstColumns, value: selected, multiple: false }"></table>
+									</div>
+									</div>
+								<!-- End dataType is selected value 6 - 選択(Selection) -->
+								
+							</div>
+						</div>
+						<!-- End perInfoItem selection is fixed -->
+
+					</div>
+				</div>
+			</div>
+			</com:ko>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component">
+<body>
+<ui:composition>
+    <!-- E:データ内容確認 -->
+    <div class="contentE" data-bind="with: dataContentConfirm">
+        <!--E3_1 保存設定読込ラベル-->
+        <div id="E3_1" style="width: 650px;" class="label warning">#{i18n.getText('CMF004_80')}</div>
+        <div class="div-line">
+            <!--E3_2 復旧元ファイルラベル-->
+            <div id="E3_2" class="div-column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_81')}</div>
+            <!--E3_3 復旧ファイル-->
+            <label id="E3_3" data-bind="text: $vm.recoverySourceFile"/>
+        </div>
+        <div class="div-line">
+            <!--E3_4 コード名称ラベル-->
+            <div id="E3_4" class="div-column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_82')}</div>
+            <!--E3_5 保存セットコード-->
+            <label id="E3_5"  data-bind="text: $vm.recoverySourceCode"/>
+            <!--E3_6 保存セット名称-->
+            <label id="E3_6" data-bind="text: $vm.recoverySourceName"/>
+        </div>
+        <div class="div-line">
+            <!--E3_7 補足説明ラベル-->
+            <div id="E3_7" class="div-column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_83')}</div>
+            <!--E3_8 補足説明-->
+            <label id="E3_8" data-bind="text: $vm.supplementaryExplanation"/>
+        </div>
+        <div class="div-line">
+            <!--E3_9 復旧対象カテゴリ-->
+            <div id="E3_9" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_84')}</div>
+        </div>
+        <div class="div-line flex">
+            <!--E4_1 カテゴリ一覧-->
+            <table tabindex = "1" id="E4_1">
+                <colgroup>
+                    <col width="30px"/>
+                    <col width="70px"/>
+                    <col width="120px"/>
+                    <col width="80px"/>
+                    <col width="100px"/>
+                    <col width="100px"/>
+                    <col width="100px"/>
+                    <col width="100px"/>
+                </colgroup>
+                <thead>
+                <tr>
+                    <th class="ui-widget-header"/>
+                    <th class="ui-widget-header">#{i18n.getText('CMF004_85')}</th>
+                    <th class="ui-widget-header">#{i18n.getText('CMF004_86')}</th>
+                    <th class="ui-widget-header">#{i18n.getText('CMF004_470')}</th>
+                    <th class="ui-widget-header">#{i18n.getText('CMF004_87')}</th>
+                    <th class="ui-widget-header">#{i18n.getText('CMF004_88')}</th>
+                    <th class="ui-widget-header">#{i18n.getText('CMF004_89')}</th>
+                    <th class="ui-widget-header">#{i18n.getText('CMF004_90')}</th>
+                </tr>
+                </thead>
+                <tbody data-bind="foreach: dataContentcategoryList">
+                <tr id="E4_2">
+                    <td class="halign-right row-number"><label data-bind="text: rowNumber"/></td>
+                    <td class="halign-center row-checkbox">
+                        <div tabindex="-1" id="E5_2" data-bind="ntsCheckBox: { checked: isRecover, enable: iscanNotBeOld }"/>
+                    </td>
+                    <td><span class="limited-label" data-bind="text: categoryName"/></td>
+                    <td><span class="limited-label" data-bind="text: $vm.getSystemType(systemType())"></span></td>
+                   	<td><span class="limited-label" data-bind="text: $vm.getTextRecovery(recoveryPeriod)"/></td> 
+                    <td class="halign-center"><label data-bind="text: startOfPeriod"/></td>
+                    <td class="halign-center"><label data-bind="text: endOfPeriod"/></td>
+                    <td><label data-bind="text: recoveryMethod"/></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <div class="div-line flex">
+                <!--E8_1 復旧前に保存(ラベル)-->
+                <div id="E8_1" class="div-column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_471')}</div>
+                <!--E8_2 復旧前に保存-->
+                <div id="E8_2" class="cf cmf002-w-switch-btn" data-bind="ntsSwitchButton: {
+                    name: '#[CM004_471]',
+                    options: $vm.switchRules(),
+                    optionsValue: 'code',
+                    optionsText: 'name',
+                    value: $vm.selectedRuleCode,
+                    required: true,
+                    enable: true }" tabindex="3"></div>
+            </div>
+            <div class="div-line">
+                <table class="compressGrid" style="height: 100%;">
+                    <tr>
+                        <!--E8_3 圧縮パスワ－ド(ラベル)-->
+                        <td style="width: 117px;"><div id="E8_3" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_474')}</div></td>
+                        <!--E8_3_1 圧縮パスワ－ド有無-->
+                        <td class="flex valign-center"><div id="E8_3_1" class="form-B" data-bind="ntsCheckBox: { checked: $vm.checkboxChk, enable: $vm.selectedRuleCode() === 1 }" tabindex="4"></div></td>
+                        <td>#{i18n.getText('CMF004_475')}</td>
+                        <!--E8_3_2 圧縮パスワ－ド-->
+                        <td id="E8_3_2" data-bind="with: $vm.pwdCompressEdt">
+                            <input class="password-input form-B" data-bind="ntsTextEditor: { 
+                                name: '#[CMF004_474]',
+                                value: value, 
+                                enable: $vm.isCheckboxActive(), 
+                                required: $vm.isCheckboxActive,
+                                constraint: 'FileCompressionPassword',
+                                option: { textmode: 'password' } }" tabindex="5" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <!--E8_3_3 パスワード確認(ラベル)-->
+                        <td id="E8_3_3">#{i18n.getText('CMF004_476')}</td>
+                        <!--E8_3_3 パスワード確認-->
+                        <td id="E8_3_4" data-bind="with: $vm.pwdConfirmEdt">
+                            <input class="password-input form-B" data-bind="ntsTextEditor: { 
+                                name: '#[CMF004_476]',
+                                value: value, 
+                                enable: $vm.isCheckboxActive(), 
+                                required: $vm.isCheckboxActive,
+                                constraint: 'FileCompressionPassword',
+                                option: { textmode: 'password' } }" tabindex="6" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="div-line">
+                <!--E8_4 補足説明(ラベル)-->
+                <div id="E8_4" class="div-column-1" data-bind="ntsFormLabel: { constraint: 'Explanation' }">#{i18n.getText('CMF004_477')}</div>
+                <!--E8_5 補足説明-->
+                <input id="E8_5" data-bind="ntsTextEditor: { 
+                  name: '#[CMF004_477]',
+                  value: $vm.explanationValue, 
+                  enable: true, 
+                  constraint: 'Explanation' }" tabindex="7" />
+            </div>
+        </div>
+        <div class="div-line">
+            <!--E7_1 復旧注意事項-->
+            <div style="margin-top:20px; width: 650px;white-space: pre-wrap;" class="label warning">#{i18n.getText('CMF004_96')}</div>
+        </div>
+    </div>
+    <div class="halign-center" style="width: 760px; margin-top: 20px;">
+        <!--E7_2 データ復旧選択へ(Chọn phục hồi data)-->
+        <button tabindex="8" class="large" data-bind="click: backToPreviousScreen">#{i18n.getText('CMF004_97')}</button>
+        <!--E7_3 次へボタン-->
+        <button id="E7_3" tabindex="9" class="x-large proceed" data-bind="click: nextToScreenG, enable: $root.errors.isEmpty">#{i18n.getText('CMF004_98')}</button>
+    </div>
+</ui:composition>
+</body>
+</html>

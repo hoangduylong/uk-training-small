@@ -1,0 +1,11 @@
+<div class="kaf005">
+
+    <step-wizard v-bind:items="['step1', 'step2', 'step3', 'step4']" v-bind:selected="step" />
+
+    <div class="mt-3 mb-3">
+        <kaf005_1 v-if="step == 'step1'" v-on:toStep2="toStep2" v-bind:kafs05ModelStep1="kafs05Model"></kaf005_1>
+        <kaf005_2 v-if="step == 'step2'" v-on:toStep3="toStep3" v-on:backToStep1="backToStep1" v-bind:kafs05ModelStep2="kafs05Model"></kaf005_2>
+        <kaf005_3 v-if="step == 'step3'" v-on:toStep4="toStep4" v-on:backToStep2="backToStep2" v-bind:kafs05ModelStep3="kafs05Model"></kaf005_3>
+        <kaf005_4 v-if="step == 'step4'" v-bind:kafs05ModelStep4="kafs05Model" v-on:backToStep1="backToStep1"></kaf005_4>
+    </div>
+</div>

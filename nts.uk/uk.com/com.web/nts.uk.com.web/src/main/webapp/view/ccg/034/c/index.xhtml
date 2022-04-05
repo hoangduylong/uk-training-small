@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:com="http://xmlns.jcp.org/jsf/component"
+  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+  <ui:composition template="../../../../master/dialog.xhtml">
+
+    <!-- head -->
+    <ui:define name="htmlHead">
+      <script>
+        var dialogSize = { width: 600, height: 310 };
+      </script>
+      <com:ValidatorScript>
+        nts.uk.ctx.sys.portal.dom.toppagepart.TopPagePartCode
+        nts.uk.ctx.sys.portal.dom.toppagepart.TopPagePartName
+      </com:ValidatorScript>
+      <com:stylefile path="ccg034.c.style.css" />
+      <com:scriptfile path="../share/model.js" />
+      <com:scriptfile path="ccg034.c.vm.js" />
+      <com:scriptfile set="IGNITE" />
+    </ui:define>
+
+    <!-- content -->
+    <ui:define name="content">
+      <div id="contents-area">
+        <div class="div-line">
+          <!-- C1_1 フローメニューの複写 -->
+          <label id="C1_1" data-bind="i18n: 'CCG034_27'"></label>
+        </div>
+        <div class="div-line flex valign-center">
+          <!-- C2_1 コピー元情報： -->
+          <label id="C2_1" class="column-label" data-bind="i18n: 'CCG034_28'"></label>
+          <!-- C2_2 コード/名称 -->
+          <div id="C2_2" class="column-label" data-bind="ntsFormLabel: {}">#{i18n.getText('CCG034_31')}</div>
+          <!-- C2_3 元設定名 -->
+          <div id="C2_3" data-bind="with: flowMenu">
+            <label id="C2_3_1" data-bind="text: flowMenuCode"></label>
+            <label id="C2_3_2" data-bind="text: flowMenuName"></label>
+          </div>
+        </div>
+        <div class="div-line flex valign-center">
+          <!-- C3_1 コピー先情報： -->
+          <label id="C3_1" class="column-label" data-bind="i18n: 'CCG034_30'"></label>
+          <!-- C3_2 コード/名称 -->
+          <div id="C3_2" class="column-label" data-bind="ntsFormLabel: { required: true, constraint: 'TopPagePartCode' }">#{i18n.getText('CCG034_31')}</div>
+          <!-- C3_3 コード -->
+          <input id="C3_3" class="column-value" data-bind="ntsTextEditor: {
+            name: '#[CCG034_32]',
+            value: flowMenuCode,
+            constraint: 'TopPagePartCode',
+            required: true,
+            option: { width: '35px' }
+          }" tabindex="1" />
+          <!-- C3_4 名称 -->
+          <input id="C3_4" class="column-value" data-bind="ntsTextEditor: {
+            name: '#[CCG034_33]',
+            value: flowMenuName,
+            constraint: 'TopPagePartName',
+            required: true,
+            option: { width: '150px' }
+          }" tabindex="2" />
+        </div>
+        <div class="div-line">
+          <div class="column-label"></div>
+          <!-- C4_1 上書きチェック -->
+          <div id="C4_1" data-bind="ntsCheckBox: { checked: isChecked, style: 'warnpanel' }" tabindex="3">#{i18n.getText('CCG034_34')}</div>
+        </div>
+      </div>
+      <div id="functions-area-bottom">
+        <!-- C20_1 決定 -->
+        <button class="x-large proceed" tabindex="4" data-bind="click: duplicate">#{i18n.getText('CCG034_35')}</button>
+        <!-- C20_2 閉じる -->
+        <button class="large" tabindex="5" data-bind="click: function(data) { closeDialog(null) }">#{i18n.getText('CCG034_36')}</button>
+      </div>
+    </ui:define>
+  </ui:composition>
+</body>
+</html>

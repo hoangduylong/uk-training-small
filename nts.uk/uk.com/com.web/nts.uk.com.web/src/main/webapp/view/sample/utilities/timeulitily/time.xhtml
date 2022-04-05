@@ -1,0 +1,295 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 300, height: 200 };</script>
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+            </ui:define>
+            
+            <ui:define name="content">
+            	<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Time ulitily </h1>
+						<p>In this module have functions for work with time, date in javascript. Below is main functions of it.</p>
+						
+						<div class="feature-box important">
+							<div class="header"><h3>today</h3></div>
+							<div class="content">
+						<p>This method will return a moment object of general date today.</p>
+						<p><b>Always use this method for get current date in client.</b></p>
+						<pre><![CDATA[//Try to paste this to console
+nts.uk.time.today();
+Result: Moment {_isAMomentObject: true, _i: "2019/01/29", _f: "yyyy/MM/dd", _isUTC: true, _pf: {…}, …}]]></pre></div></div>
+
+						<div class="feature-box important">
+							<div class="header"><h3>now</h3></div>
+							<div class="content">
+						<p>This method will return a moment object of general date time now.</p>
+						<p><b>Always use this method for get current date time in client.</b></p>
+						<pre><![CDATA[//Try to paste this to console
+nts.uk.time.now();
+Result: Moment {_isAMomentObject: true, _i: "2019-01-29T10:18:19.838Z", _f: "YYYY-MM-DDTHH:mm:ss.SSSSZ", _tzm: 0, _isUTC: true, …}]]></pre></div></div>
+
+						<h2>Formatting</h2>
+						<p>There is newest API to format date and time: <b>nts.uk.time.format.byId</b></p>
+						<p>This method supports Format ID (writtin in OVD).</p>
+						<p>すみませんが、まだ全てのFormatIDをサポートできていません。がんばります＞＜</p>
+						
+						<div class="feature-box">
+							<div class="header">format.byId</div>
+							<div class="content">
+								<p>Parameter: (formatId: string, value: any)</p>
+								<p>
+									Supported cases:<br/>
+									<table class="matrix">
+										<tbody>
+											<tr>
+												<th>Format ID</th>
+												<th>Value</th>
+												<th>Examples</th>
+											</tr>
+											<tr>
+												<td>Clock_Short_HM</td>
+												<td>number</td>
+												<td>10 -> "0:10"<br />-10 -> "-23:50"</td>
+											</tr>
+											<tr>
+												<td>ClockDay_Short_HM</td>
+												<td>number</td>
+												<td>10 -> "当日0:10"<br/>-10 -> "前日23:50"</td>
+											</tr>
+											<tr>
+												<td>Time_Short_HM</td>
+												<td>number</td>
+												<td>10 -> "0:10"<br/>-10 -> "-0:10"</td>
+											</tr>
+										</tbody>
+									</table>
+									
+									<pre><![CDATA[nts.uk.time.format.byId("Clock_Short_HM", -10);
+Result: "-23:50"]]></pre>
+									<hr />
+									Not Supported yet:<br/>
+									<table class="matrix">
+										<tbody>
+											<tr>
+												<th>Format ID</th>
+												<th>Value</th>
+												<th>Examples</th>
+											</tr>
+											<tr>
+												<td>Short_YMD</td>
+												<td>Date, moment, number</td>
+												<td>2017/4/20</td>
+											</tr>
+											<tr>
+												<td>Short_YMDW</td>
+												<td>Date, moment, number</td>
+												<td>2017/4/20(木)</td>
+											</tr>
+											<tr>
+												<td>Short_YM</td>
+												<td>Date, moment, number</td>
+												<td>2017/4</td>
+											</tr>
+											<tr>
+												<td>Short_MD</td>
+												<td>Date, moment, number</td>
+												<td>4/20</td>
+											</tr>
+											<tr>
+												<td>Short_D</td>
+												<td>Date, moment, number</td>
+												<td>20</td>
+											</tr>
+											<tr>
+												<td>Short_W</td>
+												<td>Date, moment, number</td>
+												<td>木</td>
+											</tr>
+											<tr>
+												<td>Short_MDW</td>
+												<td>Date, moment, number</td>
+												<td>4/20(木)</td>
+											</tr>
+											<tr>
+												<td>Long_YMD</td>
+												<td>Date, moment, number</td>
+												<td>2017年4月20日</td>
+											</tr>
+											<tr>
+												<td>Long_YMDW</td>
+												<td>Date, moment, number</td>
+												<td>2017年4月20日(木)</td>
+											</tr>
+											<tr>
+												<td>Long_YM</td>
+												<td>Date, moment, number</td>
+												<td>2017年4月</td>
+											</tr>
+											<tr>
+												<td>Long_MD</td>
+												<td>Date, moment, number</td>
+												<td>4月20日</td>
+											</tr>
+											<tr>
+												<td>Long_F</td>
+												<td>Date, moment, number</td>
+												<td>2017年度</td>
+											</tr>
+											<tr>
+												<td>Long_JMD</td>
+												<td>Date, moment, number</td>
+												<td>平成29年4月20日</td>
+											</tr>
+											<tr>
+												<td>Long_JM</td>
+												<td>Date, moment, number</td>
+												<td>平成29年4月</td>
+											</tr>
+										</tbody>
+									</table>
+								</p>
+							</div>
+						</div>
+						
+						<div class="feature-box">
+							<div class="header"><h3>formatYearMonth</h3></div>
+							<div class="content">
+						<p>Parameter: (seconds: number, formatOption: string)</p>
+						<p>This method will receive a number as parameter. And convert it into year month formay (yyyy/MM).</p>
+						<pre><![CDATA[//Try to paste this to console
+nts.uk.time.formatYearMonth(199901);
+Result: "1999/01"]]></pre></div></div>
+
+						<div class="feature-box"><div class="header">
+						<h3>formatSeconds</h3></div><div class="content">
+						<p>Parameter: (seconds: number, formatOption: string)</p>
+						<p>Convert input number according to format</p>
+						<pre><![CDATA[//Try to paste this to console
+nts.uk.time.formatSeconds(1600);
+Result: "0:26:40"]]></pre></div></div>
+
+						<div class="feature-box"><div class="header">
+						<h3>formatDate</h3></div><div class="content">
+						<p>Parameter: (date: Date, format: any)</p>
+						<p>Format date value according to format inputed.</p>
+						<pre><![CDATA[//Try to paste this to console
+nts.uk.time.formatDate(new Date("1999/02/11"), "yyyy-MM-dd hh:mm:ss.SSS");
+Result: result.format() -> "1999-02-11 00:00:00/000"]]></pre></div></div>
+						
+
+                        <div class="feature-box"><div class="header">
+                            <h3>dateInJapanEmpire</h3></div><div class="content">
+                            <p>Parameter: value (string or number)</p>
+                            <p>Format: ["YYYYMMDD", "YYYY/M/D", "YYYY-M-D"]</p>
+                            <p>Description: Convert input to Japan calendar's format. Object which the method return is a <b>JapanDate</b> Object. 
+                            It has empire, year, month and date properties. You can use it by set, get and toString methods.</p>
+                            <pre><![CDATA[//Try to paste this to console
+nts.uk.time.dateInJapanEmpire("20190101").toString();　//"平成31年1月1日"
+nts.uk.time.dateInJapanEmpire("2019-03-01").toString();　//"平成31年3月1日 "
+nts.uk.time.dateInJapanEmpire("2019/06/01").toString();　//"令和1年6月１日"
+]]></pre></div></div>
+
+                        <div class="feature-box"><div class="header">
+                            <h3>yearmonthInJapanEmpire</h3></div><div class="content">
+                            <p>Parameter: value (string or number)</p>
+                            <p>Format: ["YYYYMM", "YYYY/M", "YYYY-M", "YYYYMMDD", "YYYY/M/D", "YYYY-M-D"]</p>
+                            <p>Description: Convert input to Japan calendar's format. Object which the method return is a <b>JapanYearMonth</b> Object. 
+                            It has empire, year and month properties. You can use it by set, get and toString methods.</p>
+                            <pre><![CDATA[//Try to paste this to console
+nts.uk.time.yearmonthInJapanEmpire("2019-03").toString();　//"平成31年3月 "
+nts.uk.time.yearmonthInJapanEmpire("2019/06/01").toString();　//"令和1年6月 "
+]]></pre></div></div>
+
+						<div class="feature-box"><div class="header">
+                        <h3>yearInJapanEmpire</h3></div><div class="content">
+                        <p>Parameter: value (string or number)</p>
+                        <p>Format: ["YYYY", "YYYYMM", "YYYY/M", "YYYY-M", "YYYYMMDD", "YYYY/M/D", "YYYY-M-D"]</p>
+                        <p>Description: Convert input to Japan calendar's format. Object which the method return is a <b>JapanYear</b> Object. 
+                        It has empire and year properties. You can use it by set, get and toString methods.</p>
+                        <pre><![CDATA[//Try to paste this to console
+nts.uk.time.yearInJapanEmpire(2019).toString();　//"令和1年 "
+nts.uk.time.yearInJapanEmpire("2019-03").toString();　//"平成31年 "
+nts.uk.time.yearInJapanEmpire("2019/06/01").toString();　//"令和1年 "
+]]></pre></div></div>
+                        
+                        
+
+                        
+						
+						<hr />
+						
+						<h2>Parsing</h2>
+						
+						
+						<div class="feature-box"><div class="header">
+						<h3>parseTime</h3></div><div class="content">
+						<p>Parameter: (time: string or number, isMinutes: boolean (optional))</p>
+						<p>Parse input value into time format (h:mm). Parameters consist input value and is input value minute?
+						Return value is ResultParseTime</p>
+						<pre><![CDATA[//Try to paste this to console
+nts.uk.time.parseTime(123.1243, false);
+Result: result.format() ->"1:23"
+nts.uk.time.parseTime(1123.1243);
+Result: result.format() ->"11:23"
+nts.uk.time.parseTime("11:2");
+Result: result.format() ->"11:02"
+nts.uk.time.parseTime(90, true);
+Result: result.format() ->"1:30"]]></pre></div></div>
+
+						<div class="feature-box"><div class="header">
+						<h3>parseYearMonth</h3></div><div class="content">
+						<p>Parameter: (value: string or number)</p>
+						<p>Parse input value into year month format (yyyy/MM). Return value is ResultParseYearMonth</p>
+						<pre><![CDATA[//Try to paste this to console
+nts.uk.time.parseYearMonth(199902);
+Result: result.format() ->"1999/02"
+nts.uk.time.parseYearMonth("1999/02");
+Result: result.format() ->"1999/02"]]></pre></div></div>
+
+						<div class="feature-box"><div class="header">
+						<h3>parseTimeOfTheDay</h3></div><div class="content">
+						<p>Parameter: (value: string or number)</p>
+						<p>Parse input value into time of day format (hh:mm). Return value is ResultParseTimeOfTheDay</p>
+						<pre><![CDATA[//Try to paste this to console
+nts.uk.time.parseTimeOfTheDay(199902);
+Result: result.format() -> fail
+nts.uk.time.parseTimeOfTheDay(1902);
+Result: result.format() -> "19:02"
+nts.uk.time.parseTimeOfTheDay(9902);
+Result: result.format() -> fail
+nts.uk.time.parseTimeOfTheDay("19:02");
+Result: result.format() -> "19:02"]]></pre></div></div>
+						
+						<div class="feature-box"><div class="header">
+						<h3>parseYearMonthDate</h3></div><div class="content">
+						<p>Parameter: (value: string or number)</p>
+						<p>Parse input value into date format (yyyy/MM/dd). Return value is ResultParseYearMonthDate</p>
+						<pre><![CDATA[//Try to paste this to console
+nts.uk.time.parseYearMonthDate(19990211);
+Result: result.format() -> "1999/02/11"
+nts.uk.time.parseYearMonthDate("1999/02/11");
+Result: result.format() -> "1999/02/11"]]></pre></div></div>
+
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

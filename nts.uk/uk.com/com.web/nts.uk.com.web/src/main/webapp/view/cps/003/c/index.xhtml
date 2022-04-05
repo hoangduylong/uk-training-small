@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script type='text/javascript'>
+				var dialogSize = {
+					width : 1000,
+					height : 740
+				};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps003.c.style.css" />
+			<com:scriptfile path="cps003.c.service.js" />
+			<com:scriptfile path="cps003.c.vm.js" />
+			<com:scriptfile path="cps003.c.start.js" />
+			<com:scriptfile path="../a/control.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<button class="proceed" data-bind="click: register">#{i18n.getText('CPS003_46')}</button>
+				<button data-bind="click: checkError">#{i18n.getText('CPS003_47')}</button>
+				<button id="close" data-bind="click: close">#{i18n.getText('CPS003_48')}</button>
+			</div>
+
+			<div id="contents-area">
+				<div id="grid"></div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

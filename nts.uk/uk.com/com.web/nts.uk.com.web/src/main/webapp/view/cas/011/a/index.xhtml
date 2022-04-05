@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+<ui:composition template="../../../../master/dialog.xhtml">
+    <ui:define name="htmlHead">
+        <com:ValidatorScript>
+            nts.uk.ctx.sys.auth.dom.roleset.RoleSetCode
+            nts.uk.ctx.sys.auth.dom.roleset.RoleSetName
+        </com:ValidatorScript>
+        <com:scriptfile set="IGNITE"/>
+        <com:stylefile path="cas011.a.main.css"/>
+        <com:scriptfile path="cas011.a.vm.js"/>
+    </ui:define>
+    <ui:define name="content">
+        <div id="functions-area">
+            <button id="A1_001"
+                    data-bind="click: settingCreateMode">#{i18n.getText('CAS011_4')}</button>
+            <button id="A1_002" class="proceed"
+                    data-bind="click: saveRoleSet, enable: $root.errors.isEmpty">#{i18n.getText('CAS011_5')}</button>
+            <button id="A1_003" class="danger"
+                    data-bind="click: deleteRoleSet,
+                        enable: !isNewMode()">#{i18n.getText('CAS011_6')}</button>
+        </div>
+        <div id="contents-area" >
+            <div class="container">
+                <div id="left-content"  class="fixed-flex-layout-left">
+                    <!--A2_001 -->
+                    <div>
+                        <table id="role_set_grid"
+                               data-bind="ntsGridList: {
+	                                            name:'#[CAS011_8]',
+	                                            width: 340,
+	                                            rows: 18,
+	                                            options: listRoleSets,
+	                                            optionsValue: selectedRoleSetCd,
+	                                            primaryKey: 'roleSetCd',
+	                                            columns: gridColumns,
+	                                            multiple: false,
+	                                            value: selectedRoleSetCd,
+	                                            showNumbering:false,
+	                                            selectFirstIfNull: false,
+	                                            enable: true}">
+                        </table>
+                    </div>
+                </div>
+
+                <div id="right-content" class="fixed-flex-layout-right">
+
+                    <table>
+                        <colgroup>
+                            <col width="125px"/>
+                            <col width="*"/>
+                            <col width="*"/>
+                        </colgroup>
+                        <tr class="row">
+                            <td style="width: 125px;">
+                                <!-- A3_1 -->
+                                <div
+                                        data-bind="ntsFormLabel: {required: true,constraint: ['RoleSetCode', 'RoleSetName'] }">#{i18n.getText('CAS011_11')}</div>
+                            </td>
+                            <td class="pad_left_5px">
+                                <div data-bind="with: currentRoleSet" style="display: inline-flex">
+                                    <!-- A3_2: Rose Set Code -->
+                                    <input class="code nts-input" id="inpRoleSetCd"
+                                           data-bind="ntsTextEditor:{
+                                            name: '#[CAS011_12]',
+                                            value: roleSetCd,
+                                            required: true,
+                                            constraint: 'RoleSetCode',
+                                            enable: $parent.isNewMode()}"/>
+                                    <!-- A3_3: Rose Set Name -->
+                                    <input class="name nts-input" id="inpRoleSetName"
+                                           data-bind="ntsTextEditor:{
+                                               name: '#[CAS011_13]',
+                                               value: roleSetName,
+                                               required: true,
+                                               constraint: 'RoleSetName',
+                                               enable: true}"/>
+
+                                </div>
+                            </td>
+                            <td>
+                                <!-- A3_4 -->
+                                <div id = "defaultRoleSet" data-bind="ntsCheckBox: {enable: enableCheckDefault(), checked: currentRoleSet().defaultRoleSet}"
+                                     class="checkbox-item">#{i18n.getText('CAS011_45')}</div>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>
+                                <!--A4_1-->
+                                <div data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CAS011_14')}</div>
+                            </td>
+
+                            <td class="pad_left_5px">
+                                <div id = "employmentRoleId" class="nts-input lab_txt_width" data-bind="ntsComboBox: {
+										options: dataA41,
+										optionsValue: 'id',
+										optionsText: 'display',
+										value: currentRoleSet().employmentRoleId,
+										visibleItemsCount: 10,
+										selectFirstIfNull: true,}">
+
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>
+                                <!--A5_1-->
+                                <div data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CAS011_18')}</div>
+                            </td>
+                            <td class="pad_left_5px">
+                                <div  id = "personInfRoleId" class="nts-input lab_txt_width" data-bind="ntsComboBox: {
+										options: dataA51,
+										optionsValue: 'id',
+										optionsText: 'display',
+										value: currentRoleSet().personInfRoleId,
+										visibleItemsCount: 10,
+										selectFirstIfNull: true,}">
+
+                                </div>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <table>
+                        <colgroup>
+                            <col width="125px"/>
+                            <col width="310px"/>
+                            <col width="200px"/>
+                        </colgroup>
+                        <tr class="row">
+                            <td>
+                                <div data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CAS011_48')}</div>
+                            </td>
+                            <td class="pad_left_5px">
+                                <div  data-bind="ntsFormLabel: {required: false}">#{i18n.getText('CAS011_24')}</div>
+                            </td>
+                            <td  class="pad_left_40px">
+                                <div  data-bind="ntsFormLabel: {required: false}">#{i18n.getText('CAS011_25')}</div>
+                            </td>
+                        </tr>
+                        <tr class="row">
+                            <td>
+                            </td>
+                            <td class="pad_left_5px">
+                                <div id="swap-list"
+                                     data-bind="ntsSwapList: {
+                            name: '#[CAS011_24]',
+                            height: 276,
+                            width: 258,
+                            dataSource: listWebMenus,
+                            disableMoveButton: false,
+                            primaryKey: 'webMenuCode',
+                            value: currentRoleSet().webMenus,
+                            columns: swapColumns,
+                            draggable: true,
+                            enableRowNumbering: false,
+                            multipleDrag: { left: true, right: false },
+                            innerDrag: { left: false, right: true },
+                            outerDrag: { left: true, right: true }},
+                            itemsLimit: { right: 10}">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                </div>
+
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

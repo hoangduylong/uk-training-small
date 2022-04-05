@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 570, height: 320 };</script>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="../shr/cmm018.shr.servicebase.js" />
+			<com:scriptfile path="../shr/cmm018.shr.vmbase.js" />
+			<com:scriptfile path="cmm018.j.vm.js" />
+			<com:scriptfile path="cmm018.j.start.js" />
+			<com:stylefile path="cmm018.j.main.css" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="contents-area">
+				<div>
+					<!-- J1_1: Label -->
+					<div class="label">#{i18n.getText('CMM018_52')}</div>
+				</div>
+				<div class="table">
+					<div data-bind="if: dataSource.mode">
+						<div class="cell column1">
+							<!-- J1_2: Label 設定対象 -->
+							<div data-bind="ntsFormLabel: { required: false, text: 'CMM018_47' }"></div>
+						</div>
+						<div class="cell">
+							<!-- J1_3: 設定対象 -->
+							<label data-bind="text: item"></label>
+						</div>
+					</div>
+				</div>
+				<div class="table">
+					<div class="cell column1">
+						<!-- J1_4: Label 編集方法の選択 -->
+						<div data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CMM018_53')}</div>
+					</div>
+					<div class="cell">
+						<div id="radioBox">
+							<!-- J1_5(J1_6 + J1_7): Radio 編集方法 -->
+							<div
+								data-bind="ntsRadioBoxGroup: {
+									name: '#[CMM018_53]',
+									options: itemList,
+									optionsValue: 'code',
+									optionsText: 'name',
+									value: selectedId,
+									enable: true}"></div>
+						</div>
+						<div id="dateTime-input">
+							<!-- J1_8: Label 期間 -->
+							<div
+								data-bind="ntsFormLabel: {}, css: { 'form-label-delete': !isUpdate(), 'form-label-update': isUpdate }">#{i18n.getText('CMM018_22')}</div>
+							<div class="dateTime-input">
+								<!-- J1_9: StartDate (開始年月日) -->
+								<div id="startDateInput"
+									data-bind="ntsDatePicker: {
+										name: '#[CMM018_48]',
+										value: newStartDate,
+										dateFormat: 'YYYY/MM/DD',
+										valueFormat: 'YYYY/MM/DD',
+										required: true,
+										enable: isUpdate }" />
+							</div>
+							<label class="endDate">#{i18n.getText('CMM018_93')}</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<!-- J1_11: Button 決定 -->
+				<button class="x-large proceed center-e"
+					data-bind="click: registration, enable: $root.errors.isEmpty">#{i18n.getText('CMM018_44')}</button>
+				<!-- J2_12: Button キャンセル -->
+				<button class="ui-dialog-titlebar-close"
+					data-bind="click: closeDialog">#{i18n.getText('CMM018_45')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

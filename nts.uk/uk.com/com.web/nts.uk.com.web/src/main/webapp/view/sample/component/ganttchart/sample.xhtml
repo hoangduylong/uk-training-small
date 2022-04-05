@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/masterpage.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 300, height: 200 };</script> 
+            	<style>
+            		.nts-ganttchart {
+            			border: 1px solid #000;
+            		}
+            	</style>          	
+            	<com:scriptfile set="IGNITE" />
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+				<com:ValidatorScript>
+					nts.uk.shr.com.time.TimeWithDayAttr
+					nts.uk.ctx.at.shared.dom.worktype.WorkTypeCode
+				</com:ValidatorScript>
+            </ui:define>
+            
+            <ui:define name="content">
+				<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Gantt Chart</h1>
+						<!-- <div id="gc" style="position: absolute; border: 1px solid #000; width: 1000px; height: 400px; overflow: scroll;"></div> -->
+						<div id="combo-box"
+							data-bind="ntsComboBox: {
+												name: '',
+												options: itemList,
+												optionsValue: 'code',
+												optionsText: 'name',
+												visibleItemsCount: 4,
+												value: selectedCode,
+												editable: false,
+												enable: true,
+												required: false,
+												selectFirstIfNull: true,
+												columns: [
+														{ prop: 'name', length: 10 },
+													]}"></div>
+						<div id="mode"
+							data-bind="ntsComboBox: {
+											name: '',
+											options: modes,
+											optionsValue: 'code',
+											optionsText: 'name',
+											visibleItemsCount: 3,
+											value: selectedMode,
+											editable: false,
+											enable: true,
+											required: false,
+											columns: [{ prop: 'name', length: 10 }]
+							}"></div>
+						<button data-bind="click: replace">Replace</button>
+						<button data-bind="click: chart1">Chart1</button>
+						<button data-bind="click: chart2">Chart2</button>
+						<div id="extable" style="height: 400px;"></div>
+						<article class="cf" style="margin-top: 400px;">
+							<div class="tabs">
+								<ol>
+									<li><a href="#tabs-usage">Usage</a></li>
+									<li><a href="#tabs-api">API</a></li>
+								</ol>
+								<div id="tabs-usage" class="cf">
+									
+								</div>
+								<div id="tabs-api" class="cf">
+									
+								</div>
+							</div>
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

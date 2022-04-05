@@ -1,0 +1,9 @@
+.table {
+    &.uk-table-striped {
+        tbody {
+            tr:nth-of-type(odd) {
+                background-color: map-get($map: $uk-colors, $key: stripped);
+            }
+        }
+    }
+}

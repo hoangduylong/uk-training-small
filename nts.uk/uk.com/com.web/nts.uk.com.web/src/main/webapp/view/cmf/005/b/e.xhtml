@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition>
+		<!-- E 削除設定サマリ-->
+		<div class="contentE">
+			<table>
+				<tr>
+					<td style="width: 50%">
+						<div class="fixed-flex-layout-left" style="padding-top: 20px; width:470px; padding-left: 20px">
+							<div class="label" id = "E3">#{i18n.getText('CMF005_55')}</div>
+						
+						<div class="valign-center control-group">
+							<div id = "E4_1" class="labelE" 
+							data-bind="ntsFormLabel: {}">#{i18n.getText('CMF005_20')}
+							</div>
+							<span id = "E4_2"></span>
+						</div>
+						
+						<div class="valign-center control-group">
+							<div id = "E5_1" class="labelE"
+							data-bind="ntsFormLabel: {}">#{i18n.getText('CMF005_39')}
+							</div>
+							<span id = "E5_2"></span>
+						</div>
+						
+						<div class="flex">
+							<div style="width: 44%;">
+								<div id = "E6_1" class="labelE" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF005_47')}
+								</div>
+							</div>
+							<div style="width: 56%;">
+								<div id = "E6_2_1" class="labelE" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF005_23')}
+								</div>
+								<span id = "E6_2_2"></span>
+							</div>
+						</div>
+						
+						<div class="valign-center control-group" style="margin-top:20px;">
+								<table id="E6_3" data-bind="ntsGridList: {
+									name:'#[CMF005_144]',								
+									height: 400,
+									width:470,
+									dataSource: listDataCategory,
+									primaryKey: 'categoryId',
+									columns: listColumnHeader,
+									multiple: false,
+									value: currentCategory,
+									rows: 5
+								}"></table>
+							</div>
+							
+							<div class="valign-center control-group">
+								<div id="E7_1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF005_27')}</div>
+								<span id="E7_2_1" class="timeLabel">#{i18n.getText('CMF005_28')}</span>
+								<div id="E7_2_2" class="datePickerTemp" style="display:inline-block;" data-bind="ntsDateRangePicker: { 
+									required: false, enable: false, name: '#[CMF005_29]', 
+									showNextPrevious: false, value: dateValue}"/>
+							</div>
+							<div class="valign-center control-group other">
+								<div class="space"></div>
+								<span id="E7_3_1" class="timeLabel">#{i18n.getText('CMF005_30')}</span>
+								<div id="E7_3_2" class="datePickerTemp" style="display:inline-block;" data-bind="ntsDateRangePicker: { 
+									required: false, enable: false, name: '#[CMF005_31]',
+									showNextPrevious: false, value: monthValue, type: 'yearmonth'}"/>
+							</div>
+							<div class="valign-center control-group other">
+								<div class="space"></div>
+								<span id="E7_4_1" class="timeLabel">#{i18n.getText('CMF005_32')}</span>
+								<div id="E7_4_2" class="datePickerTemp" style="display:inline-block;" data-bind="ntsDateRangePicker: {
+									required: false, enable: false, name: '#[CMF005_33]',
+									showNextPrevious: false, value: yearValue, type: 'year'}"/>
+							</div>
+							<div class="valign-center control-group">
+								<div id="E8_1" class="labelE" data-bind="ntsFormLabel: {}">削除前に保存</div>
+								<div id="E8_2" class="cf" data-bind="ntsSwitchButton: {
+									options: saveBeforDeleteOption, optionsValue: 'code', optionsText: 'name',
+									value: isSaveBeforeDeleteFlg, enable: false }"></div>
+							</div>
+							<div class="valign-center control-group">
+								<div id="E9_1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF005_37')}</div>
+								<div id="E9_2_1" data-bind="ntsCheckBox: { checked: isExistCompressPasswordFlg, enable: false }">
+									#{i18n.getText('CMF005_38')}
+								</div>
+								<input id="E9_2_2"
+													data-bind="ntsTextEditor: {
+														name: '#[CMF005_37]',
+														value: passwordForCompressFile,
+														required: false,
+														option: {textmode: 'password',width: '95px'},
+														enable: false,
+														readonly: false
+														}" />
+														
+							</div>
+						</div>
+					</td>
+					<td style="width: 50%">
+						<!-- left area -->
+						<div class="fixed-flex-layout-right" style="padding-top: 20px; padding-left: 40px;">
+							<div style="float: left; width: 30%;">
+								<div id="E11_1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF005_50')}</div>
+							</div>
+							<div style="float: left; width: 70%; padding-bottom: 20px;">
+								<!-- E11_2_1 -->
+								<!-- E11_2_2 -->
+								<div data-bind="ntsRadioBoxGroup: {options: itemTitleAtr,
+																		optionsValue: 'value',
+																		optionsText: 'titleAtrName',
+																		value: selectedTitleAtr,	
+																		enable: false }">
+								</div>
+							</div>
+							<!-- List employee -->
+							<div class="valign-center control-group">
+								<table id="E12" data-bind="ntsGridList: {								
+									height: 2020,
+									dataSource: employeeDeletionList,
+									primaryKey: 'name',
+									columns: columnEmployees,
+									multiple: false,
+									value: employeeDeletionList,
+									rows: 20,
+									enable: false
+								}"></table>
+							</div>
+							<!-- List employee -->
+							
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<!-- button -->
+						<div class="valign-center control-group button-bottom-area" style="margin-top: 39px;">
+							<button id="E20_1" class="large" tabindex="1" data-bind="click: previousD">#{i18n.getText('CMF005_58')}</button>
+							<button id="E20_2" class="x-large danger" tabindex="2" data-bind="click: saveManualSetting, timeClick: 2000">#{i18n.getText('CMF005_59')}</button>	
+						</div>
+						<!-- button -->
+					</td>
+				</tr>
+			</table>
+		</div>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+
+			<com:ValidatorScript>
+				nts.uk.ctx.bs.employee.dom.jobtitle.info.JobTitleCode
+				nts.uk.ctx.bs.employee.dom.jobtitle.info.JobTitleName
+			</com:ValidatorScript>
+
+			<com:scriptfile set="IGNITE" />
+
+			<com:stylefile path="style.css" />
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="../_base/cmm013.base.js" />
+			<com:scriptfile path="cmm013.a.service.js" />
+			<com:scriptfile path="cmm013.a.vm.js" />
+			<com:scriptfile path="cmm013.a.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+
+			<div id="functions-area">
+				<button tabindex="1"
+					data-bind="click: startCreateMode, enable: enable_button_create_mode"
+					class="btnStyle">#{i18n.getText('CMM013_1')}</button>
+				<button tabindex="2" data-bind="click: saveJobTitle"
+					class="proceed btnStyle">#{i18n.getText('CMM013_2')}</button>
+				<button tabindex="3"
+					data-bind="click: openDeleteDialog, enable: enable_button_delete"
+					class="danger btnStyle">#{i18n.getText('CMM013_3')}</button>
+				<button tabindex="5" data-bind="click: openSequenceManageDialog"
+					class="btnStyle">#{i18n.getText('CMM013_4')}</button>
+				<button  tabindex="5" id="print-button" data-bind="click: opencdl028Dialog">#{i18n.getText('KMK007_4')}</button>
+				<button data-bind="click: openHScreen">#{i18n.getText('CMM013_69')}</button> 
+			</div>
+
+			<div id="contents-area">
+				<div id="left-content">
+					<div id="job-title-items-list"></div>
+				</div>
+
+				<div id="right-content">
+
+					<table class="table_content">
+						<colgroup>
+							<col width="85px" />
+							<col width="270px" />
+							<col width="*" />
+						</colgroup>
+
+						<tr>
+							<td style="vertical-align: top;">
+								<div data-bind="ntsFormLabel: {}">#{i18n.getText('CMM013_5')}</div>
+							</td>
+							<td data-bind="with: jobTitleHistoryModel">
+								<div id="list-box" tabindex="7"
+									data-bind="ntsListBox: {
+									name: '#[CMM013_6]',
+									options: listJobTitleHistory,
+									optionsValue: 'historyId',
+									optionsText: 'textDisplay',
+									multiple: false,
+									value: selectedHistoryId,
+									rows: 4,
+									columns: [
+										{ key: 'textDisplay', length: 15 }
+									]}">
+								</div>
+							</td>
+							<td style="vertical-align: top;">
+								<div>
+									<button tabindex="8"
+										data-bind="click: openAddHistoryDialog, enable: enable_button_add_history"
+										class="history-button">#{i18n.getText('CMM013_7')}</button>
+								</div>
+								<div>
+									<button tabindex="9"
+										data-bind="click: openUpdateHistoryDialog, enable: enable_button_update_history"
+										class="history-button">#{i18n.getText('CMM013_8')}</button>
+								</div>
+								<div>
+									<button tabindex="10"
+										data-bind="click: removeHistory, enable: enable_button_delete_history"
+										class="history-button danger">#{i18n.getText('CMM013_9')}</button>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<div
+									data-bind="ntsFormLabel: { 
+									constraint: 'JobTitleCode', 
+									required: true 
+								}">#{i18n.getText('CMM013_10')}</div>
+							</td>
+							<td><input id="job-title-code" tabindex="11"
+								data-bind="ntsTextEditor: {
+									value: jobTitleCode,
+									name: '#[CMM013_11]',
+									constraint: 'JobTitleCode',
+									option: {
+										width: '100px',
+									},
+									required: true,
+									enable: enable_input_job_title_code
+								}" />
+							</td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<td>
+								<div
+									data-bind="ntsFormLabel: { 
+									constraint: 'JobTitleName',
+									required: true									
+								}">#{i18n.getText('CMM013_12')}</div>
+							</td>
+							<td><input id="job-title-name" tabindex="12"
+								data-bind="ntsTextEditor: {
+									value: jobTitleName,
+									name: '#[CMM013_13]',
+									constraint: 'JobTitleName',
+									option: {
+										width: '200px',
+									},
+									required: true
+								}" />
+							</td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<td></td>
+							<td>
+								<div tabindex="13"
+									data-bind="ntsCheckBox: {
+									checked: jobTitleIsManager
+								}">#{i18n.getText('CMM013_52')}</div>
+							</td>
+							<td></td>
+						</tr>
+
+						<tr>
+							<td>
+								<div data-bind="ntsFormLabel: {}">#{i18n.getText('CMM013_14')}</div>
+							</td>
+							<td>
+								<button tabindex="14" data-bind="click: checkSequenceList"
+									class="btnStyle">#{i18n.getText('CMM013_15')}</button> <span
+								class="label" data-bind="text: sequenceCode"></span> <span
+								class="label" data-bind="text: sequenceName"></span>
+							</td>
+							<td></td>
+						</tr>
+
+					</table>
+
+
+				</div>
+			</div>
+
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="../cdl024.vm.js" />
+			<com:scriptfile path="../cdl024.service.js" />
+			<com:scriptfile path="test.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area"></div>
+			<div id="contents-area">
+				<div id="list-box"
+					data-bind="ntsListBox: {
+					options: items,
+					optionsValue: 'code',
+					optionsText: 'code',
+					multiple: true,
+					value: selectedItems,
+					rows: 5,
+					columns: [
+						{ key: 'code', length: 10 }
+					]}"></div>
+				<button data-bind="click: openDialog">Open CDL024</button>
+			</div>
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

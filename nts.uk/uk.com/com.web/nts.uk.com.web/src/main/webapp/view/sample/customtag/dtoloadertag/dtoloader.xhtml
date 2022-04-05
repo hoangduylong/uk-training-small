@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<com:scriptfile set="IGNITE" />
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+				
+				<com:dtoloader>
+					sample1 nts.uk.shr.sample.dtoloader.SampleDTOLoader
+					sample2 nts.uk.shr.sample.dtoloader.SampleDTOLoader
+				</com:dtoloader>
+            </ui:define>
+            
+            <ui:define name="content">
+            	<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>DTO Loader</h1>
+						<h2>Overview</h2>
+						<p>
+							When you want to load some data on initlializing screen, you can use DTOLoader.<br />
+							DTOLoader provides a way to load Java object onto client script code without using Ajax.<br />
+						</p>
+						<article class="cf">
+							<div class="tabs">
+								<ol>
+									<li><a href="#tabs-html">HTML</a></li>
+									<li><a href="#tabs-script">Script</a></li>
+									<li><a href="#tabs-java">Java</a></li>
+								</ol>
+								<div id="tabs-html" class="cf">
+									<h2>HTML</h2>
+									<h3>Format</h3>
+									<pre><![CDATA[<com:dtoloader>
+	{JS object name you like} {FQN of DTOLoader interface you want to use}
+</com:dtoloader>]]></pre>
+									<h3>Sample</h3>
+<pre><![CDATA[<com:dtoloader>
+	sample1 nts.uk.shr.sample.dtoloader.SampleDTOLoader
+	sample2 nts.uk.shr.sample.dtoloader.SampleDTOLoader
+</com:dtoloader>]]></pre>
+								</div>
+								<div id="tabs-script" class="cf">
+									<h2>TypeScript</h2>
+<pre><![CDATA[__viewContext.ready(function () {
+
+    console.log(this.env.dtos.sample1);
+    // {
+    //   number: 100,
+    //   string: "hello",
+    //   bool: true
+    // }
+    
+    console.log(this.env.dtos.sample2);
+    
+});]]></pre>
+								</div>
+								<div id="tabs-java" class="cf">
+									<h2>Java</h2>
+									<h3>DTO class</h3>
+<pre><![CDATA[@Value
+public class SampleDTO {
+	private final int number;
+	private final String string;
+	private final boolean bool;
+}}]]></pre>
+
+									<h3>loader interface to be written in com:dtoloader tag</h3>
+<pre><![CDATA[// loader interface to be written in com:dtoloader tag
+public interface SampleDTOLoader extends DTOLoader<SampleDTO> {
+	// no methods
+}]]></pre>
+
+									<h3>loader implementation</h3>
+<pre><![CDATA[@Stateless
+public class SampleFinder implements SampleDTOLoader {
+
+	@Inject
+	private SampleRepository repository;
+	
+	// method for finder 
+	public Optional<SampleDTO> find() {
+		Return this.repository.find(AppContexts.user().userId());
+	}
+
+	// method for DTOLoader
+	@Override
+	public SampleDTO load() {
+		return this.find().get();
+	}
+
+}]]></pre>
+								</div>
+							</div>
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

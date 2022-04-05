@@ -1,0 +1,186 @@
+#titleModule {
+	float: right;
+	margin-right: 10px;
+	padding-bottom: 20px;
+}
+
+#ex_accept_wizard {
+	width: 1300px;
+	height: 480px;
+}
+
+#ex_accept_wizard>.steps {
+	width: 250px;
+	height: 640px;
+}
+
+#ex_accept_wizard>.content {
+	width: 1040px;
+	height: 590px;
+	background: none;
+	margin-left: 5px;
+	margin-right: 0px;
+}
+#ex_accept_wizard > .content > .body {
+	padding-top: 0;
+}
+#ex_accept_wizard, #ex_accept_wizard .content {
+	overflow: visible;
+}
+#contents-area {
+	overflow: auto;
+}
+
+.box-list {
+  width: 70%;
+}
+
+.contentAll {
+	display: flex;
+}
+
+.contentL {
+	float: left;
+	width: 40%;
+}
+
+.contentR {
+	float: right;
+	width: 55%;
+}
+
+.tableContentL {
+	border-spacing: 10px;
+	border-collapse: separate;
+}
+
+#B3_3 {
+  margin-top: 10px;
+}
+
+#B3_5{
+	margin-left: 27px;
+}
+
+#B5_2_1 {
+	margin-left: 200px;
+}
+
+#B5_2_2 {
+	margin-top: 8px;
+	margin-left: 5px;
+}
+
+#B8_3_1 {
+	margin-left: 33px;
+}
+#B8_3_2 {
+	margin-top: 5px;
+}
+
+.flex {
+	margin-left: 0px;
+	margin-top: 10px;
+}
+
+
+.fixed-flex-layout-right-screenD{
+	float: right;
+	width: 55%;
+}
+
+.button-bottom-area {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.top-right-panel{
+	float: right;
+    margin-right: 120px;	
+}
+
+.selectionEmployee {
+	border: 1px solid #ccc !important;
+	border-radius: 5px;
+	margin: 0px 30px 0px 90px;
+	float: right;
+	margin-bottom: 20px;
+}
+
+
+.bot-right-panel{
+	float: right;
+    margin-right: 335px;
+}
+
+
+.fixed-flex-layout-left {
+	width: 350px;
+}
+
+.fixed-flex-layout-right{
+	float: right;
+	margin-right: 30px;
+}
+
+.contentE {
+	display: flex;
+}
+
+#E3 {
+	margin-bottom: 15px;
+	font-size: 18px;
+}
+
+.category {
+	margin-bottom: 10px;
+	padding-left: 0px;
+}
+
+
+.labelE {
+	margin-right: 5px;
+	width: 100px;
+}
+
+#E3_39, #E3_36, #E3_32, #E7_1 {
+	width: 135px;
+}
+
+#E3_37 {
+    padding-right: 20px;
+    padding-left: 5px;
+}
+
+.space {
+	width: 122px;
+    height: 10px;
+    display: inline-block;
+}
+
+.other .space {
+	width: 135px;
+}
+
+.timeLabel {
+	margin-right: 20px;
+}
+#component-ccg001{
+top: 150px;
+}
+
+#B20_2 {
+  margin-left: 220px;
+}
+
+#B3_3 {
+  padding-left: 20px;
+}
+
+#B3_3_2 {
+  width: 310px;
+}
+
+.contentR #fixed-flex-layout-right .flex .form-label {
+  width: 100px;
+}

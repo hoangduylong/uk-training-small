@@ -1,0 +1,52 @@
+table {
+	border-collapse: collapse;
+}
+
+table, th, td {
+	border: 1px solid black;
+}
+
+.columnLeft {
+	background-color: #CCFF99;
+	width: 130px;
+}
+
+.columnRight {
+	width: 300px;
+}
+
+.labeLeft {
+	margin-left: 10px;
+}
+
+.labeRight {
+	margin-left: 10px;
+}
+
+#F2 {
+	margin-top: 30px;
+	margin-left: 20px;
+	font-size: 25px;
+}
+
+#F3 {
+	margin-top: 30px;
+	font-size: 23px;
+}
+
+#tableTwo {
+	margin-top: 20px;
+}
+
+#bodyScreen {
+	margin-left: 50px;
+	margin-bottom: 20px;
+}
+
+#F10_1 {
+	margin-top: 10px;
+}
+
+#F10_2 {
+	margin-top: 10px;
+}

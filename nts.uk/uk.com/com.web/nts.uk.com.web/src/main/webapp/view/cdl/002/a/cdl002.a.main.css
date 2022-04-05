@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+.employeeContent {
+	margin-top: 10px;
+	position: absolute;
+}
+
+.lableCDL {
+	margin-left: 20px;
+}
+
+#combo-box {
+	max-width: 190px;
+}
+
+.clear-btn.ntsSearchBox_Component {
+	vertical-align: middle!important;
+}

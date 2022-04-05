@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script type='text/javascript'>
+				var dialogSize = {
+					width: 400,
+					height: 560
+				};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cdl022.a.style.css" />
+			<com:scriptfile path="sort-list-control-ko-ext.js" />
+			<com:scriptfile path="cdl022.a.vm.js" />
+			<com:scriptfile path="cdl022.a.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div>#{i18n.getText('CDL022_6')}</div>
+				<div
+					data-bind="ntsSortList: {
+							rows: 14,
+							options: sorts,
+							optionsValue: 'id',
+							optionsText: 'name'
+						}"></div>
+			</div>
+			<div id="functions-area-bottom">
+				<button class="proceed x-large" data-bind="click: pushData">#{i18n.getText('CDL022_2')}</button>
+				<button data-bind="click: close">#{i18n.getText('CDL022_3')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

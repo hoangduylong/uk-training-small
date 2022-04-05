@@ -1,0 +1,33 @@
+#table {
+	margin-top: 20px;
+	margin-left: 30px;
+}
+
+#gridlist {
+	margin-left: 30px;
+	margin-top: 10px;
+}
+
+#caret-bottom {
+	margin-left: 170px;
+	margin-top: 5px;
+}
+
+#search {
+	margin-bottom: 5px;
+}
+
+.ui-iggrid.ui-widget.ui-helper-clearfix.ui-corner-all.nts-gridlist {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	height: 324px !important;
+	width: 430px !important;
+}
+
+div#master-wrapper {
+	overflow: hidden !important;
+}
+
+#combo-box {
+	margin-top: 5px;
+}

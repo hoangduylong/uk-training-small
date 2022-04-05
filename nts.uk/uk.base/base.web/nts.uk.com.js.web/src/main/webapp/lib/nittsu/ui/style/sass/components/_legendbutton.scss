@@ -1,0 +1,23 @@
+.nts-legendbutton-panel {
+	position: absolute;
+	padding: 10px;
+	background-color: #fff;
+	border: solid 2px #aaa;
+	
+	.legend-item {
+		margin-bottom: 8px;
+		
+		&:last-child {
+			margin-bottom: 0;
+		}
+		
+		.legend-item-symbol {
+			display: inline-block;
+		}
+		
+		.legend-item-label {
+			display: inline-block;
+			margin-left: 6px;
+		}
+	}
+}

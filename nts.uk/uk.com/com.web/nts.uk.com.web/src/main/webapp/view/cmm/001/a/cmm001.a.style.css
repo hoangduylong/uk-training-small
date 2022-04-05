@@ -1,0 +1,325 @@
+@CHARSET "UTF-8";
+
+.outer {
+	outline: 1px solid #FF6138;
+}
+
+#functions-area {
+	height: 50px !important;
+}
+
+#reset {
+	width: 100px;
+}
+
+#register {
+	width: 100px;
+}
+
+#setting {
+	width: 200px;
+}
+
+#masterLog {
+	width: 150px;
+}
+
+#companyCode {
+	width: 50px;
+}
+
+#combo-box {
+	width: 70px;
+}
+
+#ntsleft {
+	margin-left: 15px;
+	height: 500px;
+}
+
+.group-button-1 {
+	margin-left: 30px;
+	margin-top: 10px;
+}
+
+.div-table {
+	margin-left: 20px;
+}
+
+.ntsCheckbox-left {
+	margin-left: 225px;
+	margin-top: 10px;
+}
+
+.bg-yellow {
+	width: 230px;
+	height: 30px;
+	margin-top: 4px;
+	margin-left: 250px
+}
+
+.form-label {
+	margin-bottom: 5px;
+}
+
+.ntsCheckBox-right {
+	margin-left: 5px;
+}
+
+.flex {
+	margin-left: 0px;
+	margin-top: 5px;
+}
+
+.fixed-button-checkbox {
+	width: 25px;
+	height: 25px;
+	margin-left: 20px;
+}
+
+.th-col2 {
+	/* width: 400px; */
+	border: none;
+	height: 30px;
+}
+
+.th-col1 {
+	width: 150px;
+	border: none;
+	height: 30px;
+}
+
+/* .th-col3 {
+	width: 200px;
+	border: none;
+	height: 30px;
+} */
+
+.th-col-sub {
+	width: 150px;
+}
+
+ui-widget-header {
+	margin-top: 30px;
+}
+
+input.ntsSearchBox {
+	width: 165px;
+}
+
+/* button.search-btn {
+	width: 90px;
+} */
+.flex-box {
+	display: flex;
+	align-items: center;
+}
+
+#codeName {
+	width: 200px;
+}
+
+#companyCode {
+	margin-bottom: 0px !important;
+}
+
+#companyName {
+	width: 360px !important;
+	/* margin-left: -50px !important; */
+}
+
+#companyNameKana {
+	width: 450px !important;
+	margin-bottom: 10px;
+	/* margin-left: -50px !important; */ 
+}
+
+#companyNameAbb {
+	/* width: 360px !important; */
+	margin-top: -20px;
+	/* margin-left: -50px !important; */
+}
+
+#presidentName {
+	width: 250px;
+}
+
+#presidentJobTitle {
+	width: 250px;
+}
+
+.input-table {
+	height: 30px;
+	border-radius: 3px;
+	border: 1px solid #cdd0c9;
+}
+
+#postal {
+	margin-left: 80px;
+	width: 70px;
+}
+
+#address1 {
+	margin-left: 80px;
+	width: 180px !important;
+	margin-bottom: 10px !important;
+}
+
+#address2 {
+	margin-left: 80px;
+	width: 180px !important;
+	margin-bottom: 10px !important;
+}
+
+#addressKana1 {
+	margin-left: 80px;
+	width: 180px !important;
+	margin-bottom: 10px !important;
+}
+
+#addressKana2 {
+	margin-left: 80px;
+	width: 180px !important;
+	margin-bottom: 10px !important;
+}
+
+#LBLAddress1 {
+	height: 40px;
+	line-height: 30px;
+}
+
+#LBLAddress2 {
+	height: 40px;
+	line-height: 30px;
+}
+
+#LBLAddressKana1 {
+	line-height: 30px;
+	height: 40px;
+}
+
+#LBLAddressKana2 {
+	height: 40px;
+	line-height: 30px;
+}
+
+#help {
+	margin-left: 10px;
+	margin-top: 6px;
+	height: 25px;
+}
+
+body>div:nth-child(4) {
+	height: 0px;
+	top: 0px;
+	left: 0px;
+	width: 0px;
+}
+
+#termBeginMon {
+	width: 80px !important;
+	margin-top: 5px !important;
+	/* margin-left: -70px; */
+}
+
+#contents-area>div.nts-right-content>div.table.fixed-height {
+	margin-top: 0px !important;
+}
+
+.labelRed {
+	font-weight: bold !important;
+	color: red !important;
+}
+
+.border_none {
+	border: none !important;
+}
+
+.left20 {
+	margin-left: 20px;
+	margin-top: -12px;
+}
+
+#colum1 {
+	width: 120px;
+	margin-left: -50px;
+}
+
+#searchZipCode {
+	/* margin-left: -80px; */
+}
+
+#checkbtn {
+	height: 25px;
+}
+
+#corporateMyNumber {
+	/* margin-left: -40px; */
+	width: 115px;
+}
+
+#presidentName {
+	/* margin-left: -40px; */
+}
+
+#presidentJobTitle {
+	/* margin-left: -40px; */
+}
+
+#codeNameLb {
+	margin-top: -8px;
+}
+
+.ntsCheckBox-label {
+	width: 142px;
+}
+
+#checked2 {
+  display: inline-block !important;
+}
+
+#checked2 .ntsCheckBox-label {
+	width: 175px;
+	vertical-align: middle;
+}
+
+#faxNo {
+	margin-left: 30px;
+}
+
+.cf1 {
+	/* margin-left: -70px; */
+}
+
+#switchhelpbtn {
+	margin-left: 10px;
+	height: 27px;
+	z-index: 100px !important;
+}
+
+.tab-content-1, .tab-content-2, .tab-content-3 {
+	width: 510px;
+	height: 370px;
+	overflow: auto;
+}
+
+.tab-content-1.disappear, .tab-content-2.disappear, .tab-content-3.disappear {
+	overflow: hidden !important;
+}
+
+#telephoneNo{
+	margin-left: 80px;
+}
+
+.tab-content-3 .th-col3 {
+	width: 100px;
+}
+
+@media only screen and (max-width: 1280px) and (max-height: 768px) {
+	#contents-area {
+		height: calc(100vh - 130px) !important;
+	}
+  .tab-content-1, .tab-content-2, .tab-content-3 {
+		height: 270px;
+	}
+}

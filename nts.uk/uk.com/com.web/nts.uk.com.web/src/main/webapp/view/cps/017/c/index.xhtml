@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = {
+					width : 420,
+					height : 400
+				};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps017.c.style.css" />
+			<com:scriptfile path="cps017.c.service.js" />
+			<com:scriptfile path="cps017.c.vm.js" />
+			<com:scriptfile path="cps017.c.start.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="contents-area" style="width: 380px">
+				<div class="form-group">
+					<div class="row">
+						<!-- C1_1: label 新たに作成する履歴の、作成情報を入力してください。 -->
+						<div class="collll">#{i18n.getText('CPS017_35')}</div>
+					</div>
+					<br />
+					<div class="row">
+						<!-- C1_2: label 名称 -->
+						<div class="coll" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CPS017_43')}</div>
+						<!-- C1_4: 選択項目名称 -->
+						<span class="label" data-bind="text: selectionName"></span>
+					</div>
+					<br />
+					<div class="row">
+						<!-- C1_5: label 期間 -->
+						<div class="coll" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CPS017_37')}</div>
+						<!-- C1_6: 履歴開始日 -->
+						<div id="start-date-sel"
+							data-bind="ntsDatePicker: {
+										name: '#[CPS017_38]',
+										value: startDate, 
+										required: true,
+										dateFormat: 'YYYY/MM/DD'
+										}"></div>
+						<!-- C1_7: label 履歴終了日 -->
+						～ <span id="label-date">#{i18n.getText('CPS017_48')}</span>
+					</div>
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<!-- C2_1: button 決定 -->
+				<button id="A_BTN_REGISTER" class="proceed x-large"
+					data-bind="click : addHistory, enable: $root.errors.isEmpty">#{i18n.getText('CPS017_40')}</button>
+				<!-- C2_2: button キャンセル -->
+				<button id="A_BTN_COPPY" data-bind="click: closeDialog">#{i18n.getText('CPS017_41')}</button>
+			</div>
+			
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

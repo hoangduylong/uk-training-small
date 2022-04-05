@@ -1,0 +1,16 @@
+.cssI {
+	background:
+		url('/nts.uk.com.web/view/ccg/025/component/icon78.png');
+	width: 18px;
+	height: 18px;
+	background-size: 20px 20px;
+}
+
+.cssDiv {
+	text-align: center;
+	max-height: 18px;
+}
+
+.caret-background.caret-right:after{
+	/* margin-left: 20px */
+}

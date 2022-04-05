@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition>
+		<div class="contentALL">
+
+			<!-- <div class="fixed-flex-layout-right-screenD"> -->
+			<table>
+				<tr>
+					<td style="width: 50%">
+						<div id="ccgcomponent"></div>
+					</td>
+					<td class="flex valign-center" style="margin-bottom: 10px;">
+						<div style="float: left; width: 30%;margin-left: 90px">
+							<!-- D4_1 -->
+							<div data-bind="ntsFormLabel: {required : true}">#{i18n.getText('CMF005_50')}</div>
+						</div>
+						<div style="float: left; width: 50%;">
+							<!-- D6_2 -->
+							<label id="D6_2">#{i18n.getText('CMF005_52')}</label>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td>
+						<!-- List employee -->
+						<div id="D5" tabindex="2" class="selectionEmployee">
+							<div id="employeeSearch"></div>
+						</div> <!-- List employee -->
+					</td>
+				</tr>
+				<tr>
+				<td></td>
+					<td >
+						<div class="valign-center control-group button-bottom-area">
+							<button id="D20_1" class="large" tabindex="3" data-bind="click: previousB">#{i18n.getText('CMF005_53')}</button>
+              <button id="D20_3" class="x-large danger" tabindex="2" data-bind="click: gotoscreenF,
+                      enable: (selectedTitleAtr() ==1? employeeList().length > 0: true) &amp;&amp; $root.errors.isEmpty &amp;&amp; buttonEnable">
+                      #{i18n.getText('CMF005_59')}</button>	
+						</div>
+					</td>
+				</tr>
+			</table>
+
+
+			
+		</div>
+		<!-- </div> -->
+
+	</ui:composition>
+</body>
+</html>

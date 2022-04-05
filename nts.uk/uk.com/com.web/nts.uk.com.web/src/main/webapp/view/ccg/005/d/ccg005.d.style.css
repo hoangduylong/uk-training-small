@@ -1,0 +1,64 @@
+.contents-area {
+  padding-top: 10px;
+  padding-bottom: 15px;
+}
+
+.label-1 {
+  float: left;
+}
+
+.label-2 {
+  float: left;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.combo-box {
+  margin-left: 20px;
+  margin-top: -5px;
+}
+
+.label-4 {
+  margin-left: 10px;
+  margin-top: 0px;
+}
+
+#combo-box {
+  width: 80px;
+}
+
+.nts-toggle-dropdown {
+  left: 15px !important;
+}
+.label-3 {
+  float: left !important;
+  margin-top: 30px;
+  display: inline-flex;
+}
+.button-head {
+  height: 60px;
+}
+.text {
+  margin-left: 20px;
+}
+.table-left {
+  float: left;
+  margin-left: 20px;
+}
+.content-right {
+  float: left;
+  margin-left: 20px;
+}
+
+button#D1_4 {
+  float: right;
+  margin-right: 25px;
+}
+
+.D5_2_switch_btn .nts-switch-button {
+  width: 80px;
+}
+.D5_2_switch_btn span {
+  width: 75px;
+  text-align: center;
+}

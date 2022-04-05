@@ -1,0 +1,195 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+<ui:composition template="../../../master/base.xhtml">
+    <ui:define name="htmlHead">
+        <com:scriptfile set="IGNITE" />
+        <com:stylefile path="../../sample/catalog/catalog.css" />
+        <com:scriptfile path="../../sample/catalog/catalog.js" />
+        <com:scriptfile path="/view/kcp/016/kcp016.js" of="/nts.uk.com.web"/>
+        <com:scriptfile path="kcp016.test.vm.js" />
+
+        <style>
+            .ntsRadioBox { display: block; }
+        </style>
+    </ui:define>
+    <ui:define name="content">
+        <div id="contents-area">
+            <div id="side-menu" class="cf"/>
+            <div id="content" class="cf">
+                <h1>KCP016 アラームチェックリスト</h1>
+                <div id="overview" class="fixed-flex-layout">
+                    <div class="fixed-flex-layout-left">
+                        <div class="control-group valign-center">
+                            <div data-bind="ntsFormLabel: {}">Multiple Select:</div>
+                            <div data-bind="ntsCheckBox: { checked: multiple }"/>
+                        </div>
+                        <div class="control-group valign-center">
+                            <div data-bind="ntsFormLabel: {}">Show No Selection Item:</div>
+                            <div data-bind="ntsCheckBox: { checked: showNoSelectionItem, enable: !multiple() }"/>
+                        </div>
+                        <div class="control-group valign-center">
+                            <div data-bind="ntsFormLabel: {}">On Dialog:</div>
+                            <div data-bind="ntsCheckBox: { checked: onDialog }"/>
+                        </div>
+                        <div class="control-group valign-center">
+                            <div data-bind="ntsFormLabel: {}">Select Type:</div>
+                            <div data-bind="ntsRadioBoxGroup: {
+                                    options: selectTypes,
+                                    optionsValue: 'value',
+                                    optionsText: 'name',
+                                    value: selectType,
+                                    enable: true}"/>
+                        </div>
+                        <div class="control-group valign-center">
+                            <div data-bind="ntsFormLabel: {}">Visible Rows:</div>
+                            <input data-bind="ntsNumberEditor: {value: rows}" />
+                        </div>
+                        <div data-bind="if: multiple" class="control-group valign-center">
+                            <div data-bind="ntsFormLabel: {}">Selected Codes: 02, 04, 06</div>
+                        </div>
+                        <div data-bind="ifnot: multiple" class="control-group valign-center">
+                            <div data-bind="ntsFormLabel: {}">Selected Code: 02</div>
+                        </div>
+                    </div>
+                    <div class="fixed-flex-layout-right">
+                        <div data-bind="component: {
+                            name: componentName,
+                            params: {
+                                multiple: multiple(),
+                                showNoSelectionItem: showNoSelectionItem(),
+                                onDialog: onDialog(),
+                                selectType: selectType(),
+                                rows: rows(),
+                                selectedValue: value
+                            }
+                        }"/>
+                    </div>
+                </div>
+                <article class="cf" style="margin-top: 10px;">
+                    <div class="tabs">
+                        <ol>
+                            <li><a href="#tabs-html">HTML Binding</a></li>
+                            <li><a href="#tabs-viewmodel">ViewModel</a></li>
+                        </ol>
+                        <!-- BEGIN TAB HTML -->
+                        <div id="tabs-html" class="cf">
+                            <h2>HTML</h2>
+                            <p>Using Ignite library so you must include following line in <i>&lt;ui:define name="htmlHead"&gt;</i></p>
+                            <pre>
+                <![CDATA[<ui:define name="htmlHead">
+                    <com:scriptfile set="IGNITE" />
+                    <com:scriptfile path="/view/kcp/016/kcp016.js" of="/nts.uk.com.web"/>
+                </ui:define>]]>
+                            </pre>
+                            <p>Create a div tag to bind component with name kcp016-component</p>
+                            <pre>
+                <![CDATA[<div data-bind="component: {
+                    name: 'kcp016-component',
+                    params: {
+                        multiple: multiple,
+                        onDialog: onDialog,
+                        selectType: selectType,
+                        selectedValue: value
+                    }
+                }"/>]]>
+                            </pre>
+                            <pre>
+                <![CDATA[<div data-bind="component: {
+                    name: 'kcp016-component',
+                    params: {
+                        multiple: true,
+                        onDialog: false,
+                        selectType: 2,
+                        selectedValue: value
+                    }
+                }"/>]]>
+                            </pre>
+                        </div>
+                        <div id="tabs-viewmodel" class="cf">
+                            <h2>TypeScript</h2>
+                            <h3>ViewModel</h3>
+                            <pre>
+                <![CDATA[class ViewModel {
+                    multiple: KnockoutObservable<boolean>;
+                    onDialog: KnockoutObservable<boolean>;
+                    selectType: KnockoutObservable<number>;
+                    value: any;
+
+                    constructor() {
+                        vm.multiple = ko.observable(true);
+                        vm.onDialog = ko.observable(false);
+                        vm.selectType = ko.observable(1);
+                        vm.value = ko.observableArray([]); // ko.observable(null) if multiple = false
+                    }
+                }]]>
+                            </pre>
+                            <h2>API</h2>
+                            <table style="width: 700px">
+                                <thead>
+                                    <tr>
+                                        <td style="text-align: center;"><h4>Method</h4></td>
+                                        <td style="text-align: center;"><h4>Description</h4></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>onDialog (optional)</td>
+                                        <td>
+                                            <b>Type:</b> boolean<br />
+                                            <b>Default:</b> false<br />
+                                            <label><i>Description:</i> Show/hide background panel</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>selectType (optional)</td>
+                                        <td>
+                                            <b>Type:</b> number<br />
+                                            <b>Default:</b> 4 (No select)<br />
+                                            <label><i>Description:</i> Initial Selection Mode:</label><br/>
+                                            <ul>
+                                                <li>1: select by selectedValue</li>
+                                                <li>2: select All</li>
+                                                <li>3: select First item in the list</li>
+                                                <li>4: select None</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>multiple (optional)</td>
+                                        <td>
+                                            <b>Type:</b> boolean<br />
+                                            <b>Default:</b> false<br />
+                                            <label><i>Description:</i> Enable/disable multiple selection</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>rows (optional)</td>
+                                        <td>
+                                            <b>Type:</b> number<br />
+                                            <b>Default:</b> 10<br />
+                                            <label><i>Description:</i> visible rows on grid list</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>selectedValue</td>
+                                        <td>
+                                            <b>Type:</b> KnockoutObservable&lt;string&gt; (single select) | KnockoutObservableArray&lt;string&gt; (multiple select)<br />
+                                            <label><i>Description:</i> Selected Value(s)</label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
+</body>
+</html>

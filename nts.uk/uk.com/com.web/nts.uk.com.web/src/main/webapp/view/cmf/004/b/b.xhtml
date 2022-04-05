@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component">
+<body>
+	<ui:composition>
+		<!--B: データ復旧選択 -->
+		<div class="contentB" data-bind="with: dataRecoverySelection">
+			<div class="div-line">
+				<!--B3_1 アップロード指定-->
+				<div id="B3_1"
+					data-bind="ntsRadioButton: {checked: selectedUploadCls, 
+												enable: true, 
+												option: $vm.options()[0], 
+												optionValue: 'value', 
+												optionText: 'text',
+												group: 'effectDigitCls' }" tabindex="1"/>
+			</div>
+			<div class="div-line">
+				<!--B3_2 アップロードボタン-->
+				<div id="file-upload" class="div-line proceed" tabindex="2"
+					 style="display: inline-block;"
+					 data-bind="ntsFileUpload:{
+													stereoType: 'zipfile',
+													name: '#[CMF004_31]', 
+													text: '#{i18n.getText('CMF004_31')}',
+													filename: $vm.fileName,
+													accept: ['.zip'],			
+													aslink: true,
+													enable: selectedUploadCls() == 1,
+													required: true,
+													immediateUpload: true,
+													uploadFinished: function(fileInfo){$vm.finished(fileInfo)}}">
+				</div>
+			</div>
+			<div class="div-line" style="margin-bottom: 20px;">
+				<!--B4_1 保存ファイル指定-->
+				<div
+					data-bind="ntsRadioButton: {checked: selectedUploadCls, 
+																	enable: true, 
+																	option: $vm.options()[1], 
+																	optionValue: 'value', 
+																	optionText: 'text',
+																	group: 'effectDigitCls'} " tabindex="3"/>
+			</div>
+
+			<div class="div-line flex" style="margin-left: 22px;margin-bottom: 25px;">
+				<!--B4_3 実行期間-->
+				<div data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_33')}</div>
+				<!--B4_4-->
+				<div class="ntsControl">
+					<div id="daterangepicker_b4_3"
+						data-bind="ntsDateRangePicker: {required: false,
+																enable: selectedUploadCls() == 2,
+																name: '#[CMF004_34]',
+																showNextPrevious: false,
+																value: executePeriodInput,
+																required: true,
+																maxRange: 'none'}"
+						tabindex="4" />
+				</div>
+				<!--B4_7-->
+					<div class="large flex" style="margin-left: 10px;">
+						<button tabindex = "5" data-bind="click: function(){$vm.searchDataRecovery()}, enable: selectedUploadCls() == 2">#{i18n.getText('CMF004_45')}</button>
+					</div>
+			</div>
+
+			<div class="div-line">
+				<!--B4_2 カテゴリパネル-->
+				<div style="width: 100%;max-height: 70px;"
+					data-bind="ntsPanel:{width: '100%', height: '80px', direction: 'none', showIcon: true, visible: true}">
+					<div class="flex">
+						<!--B4_5 コード保存セット検索-->
+						<div data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_35')}</div>
+						<!--B4_6 絞り込み検索-->
+						<div style="width: 340px"
+							data-bind="ntsSearchBox: {searchMode: 'filter',
+													targetKey: 'storeProcessingId',
+													comId: 'B5_1',
+													items: recoveryFileList,
+													selected: selectedRecoveryFile,
+													selectedKey: 'storeProcessingId',
+													enable: selectedUploadCls() == 2,
+													fields: ['saveSetCode','saveSetName'],
+													mode: 'igGrid'}"
+							tabindex="6" />
+					</div>
+				</div>
+			</div>
+			<div class="div-line">
+				<!--B5_1 復旧ファイル一覧-->
+				<table id="B5_1"
+					data-bind="ntsGridList: {
+										options: recoveryFileList,
+										optionsValue: selectedRecoveryFile,
+										primaryKey: 'storeProcessingId',
+										columns: [
+													{headerText: '', key: 'storeProcessingId', width: 40, hidden: true},
+													{headerText: '', key: 'saveSetCode', width: 40},
+													{headerText: '#{i18n.getText('CMF004_37')}', key: 'saveSetName', width: 120},
+													{headerText: '#{i18n.getText('CMF004_38')}', key: 'supplementaryExplanation', width: 150},
+													{headerText: '#{i18n.getText('CMF004_39')}', key: 'storageStartDate', width: 180},
+													{headerText: '#{i18n.getText('CMF004_40')}', key: 'executeCategory', width: 80},
+													{headerText: '#{i18n.getText('CMF004_41')}', key: 'targetNumber', width: 70},
+													{headerText: '#{i18n.getText('CMF004_42')}', key: 'saveFileName', width: 200}
+												],
+										multiple: false,
+										value: selectedRecoveryFile,
+										rows: 10,
+										enable: selectedUploadCls() == 2}"/>
+			</div>
+			<div class="halign-center" style="width: 760px; margin-top: 20px;">
+				<!--B7_1 処理を選びなおすボタン-->
+				<button class="large" tabindex="7" data-bind="click: function(){$vm.backToScreenA() }" >#{i18n.getText('CMF004_43')}</button>
+				<!--B7_2 次へボタン-->
+				<button class="x-large proceed" data-bind="click: function(){$vm.nextToScreenE()}, enable: selectedRecoveryFile() &amp;&amp; selectedUploadCls() == 2" tabindex="8">#{i18n.getText('CMF004_44')}</button>
+			</div>
+		</div>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,54 @@
+.cmm024-f {
+    padding: 2rem !important;
+}
+
+.cmm024-f .row {
+    display: flex;
+    align-items: center;
+    margin: 7px 0;
+}
+
+.cmm024-f .row:last-child {
+    align-items: flex-start;
+}
+
+.cmm024-f .row .col-left {
+    flex: 1;
+    -ms-flex: inherit;
+}
+
+.cmm024-f .row .col-right {
+    flex: 2;
+}
+
+.cmm024-f .row .col-50 {
+    flex: 1;
+}
+
+.cmm024-f .row .col-50.right .form-label {
+    margin-left: 45px;
+}
+
+.cmm024-f .row-title {
+    margin-bottom: 15px;
+}
+
+.cmm024-f .ntsSwapList .ntsMoveDataArea .move-button {
+    width: 50px;
+}
+
+.cmm024-f #nts-component-tree {
+    padding: 0 20px 0 0 !important;
+}
+
+.cmm024-f .ntsSwapList .ntsSearchArea {
+    height: 35px !important;
+}
+.cmm024-f .row .col-right .swap-list {
+    display: flex;
+    align-items: center;
+}
+
+.cmm024-f .row .col-right #up-down {
+    margin-left: 10px;
+}

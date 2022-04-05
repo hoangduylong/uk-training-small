@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:com="http://xmlns.jcp.org/jsf/component"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+>
+  <body>
+    <ui:composition template="../../../../master/dialog.xhtml">
+      <ui:define name="htmlHead">
+        <script>
+          var dialogSize = { width: 380, height: 380 };
+        </script>
+        <com:ValidatorScript>
+          nts.uk.shr.com.time.AttendanceClock
+          nts.uk.ctx.office.dom.goout.GoOutReason
+        </com:ValidatorScript>
+        <com:scriptfile set="IGNITE" />
+        <com:stylefile path="ccg005.e.style.css" />
+        <com:scriptfile path="ccg005.e.vm.js" />
+      </ui:define>
+      <ui:define name="content">
+        <div id="functions-area">
+          <button id="E1_1" class="proceed" tabindex="1" data-bind="i18n: 'CCG005_2', click: saveGoOut" />
+          <button id="E1_2" class="danger" tabindex="2" data-bind="i18n: 'CCG005_9', click: deleteGoOut, enable: enableDeleteBtn" />
+          <button id="E1_3" class="normal" tabindex="3" data-bind="i18n: 'CCG005_3', click: closeDialog" />
+        </div>
+        <div id="content-area">
+          <table id="ccg005-e-layout">
+            <tr>
+              <td colspan="4">
+                <label id="E2_1" data-bind="text: goOutDate" />
+              </td>
+            </tr>
+            <tr>
+              <td colspan="4">
+                <com:ko-if bind="disableBusinessName()">
+                  <label id="E3" data-bind="text: businessName" />
+                </com:ko-if>
+              </td>
+            </tr>
+            <tr>
+              <td id="center">
+                <label id="E4_1" data-bind="i18n: 'CCG005_18'"/>
+              </td>
+              <td></td>
+              <td id="center">
+                <label id="E4_2" data-bind="i18n: 'CCG005_19'"/>
+              </td>
+              <td id="blank-space"></td>
+            </tr>
+            <tr>
+              <td style="padding-top: 0px;">
+                <input
+                  id="E5_1"
+                  tabindex="4"
+                  data-bind="ntsTimeEditor: {
+                                name: '#[CCG005_18]',
+                                value: goOutTime,
+                                constraint:'AttendanceClock',
+                                inputFormat: 'time', 
+                                mode: 'time',
+                                required: true,
+                                enable: true,
+                                immediate: false,
+                                option: {
+                                  textalign: 'center'
+                                }
+                              }"
+                />
+              </td>
+              <td style="padding-top: 0px;">
+                <label id="E5_2" data-bind="i18n: 'CCG005_33'"/>
+              </td>
+              <td style="padding-top: 0px;">
+                <input
+                  id="E5_3"
+                  tabindex="5"
+                  data-bind="ntsTimeEditor: {
+                                    name: '#[CCG005_19]',
+                                    value: comebackTime,
+                                    constraint:'AttendanceClock',
+                                    inputFormat: 'time', 
+                                    mode: 'time',
+                                    required: true,
+                                    enable: true,
+                                    immediate: false,
+                                    option: {
+                                      textalign: 'center'
+                                    }
+                                  }"
+                />
+              </td>
+              <td id="blank-space"></td>
+            </tr>
+            <tr>
+              <td colspan="4">
+                <textarea
+                  id="E6"
+                  tabindex="6"
+                  rows="6"
+                  data-bind="ntsTextEditor: {
+                                name: '#[CCG005_20]',
+                                constraint: 'GoOutReason',
+                                value: goOutReason,
+                                required: true,
+                                option: {
+                                  textmode: 'text',
+                                  placeholder: '#{i18n.getText('CCG005_21')}',
+                                  width: '309px',
+                                  textalign: 'left'
+                                }
+                              }"
+                />
+              </td>
+            </tr>
+          </table>
+        </div>
+      </ui:define>
+    </ui:composition>
+  </body>
+</html>

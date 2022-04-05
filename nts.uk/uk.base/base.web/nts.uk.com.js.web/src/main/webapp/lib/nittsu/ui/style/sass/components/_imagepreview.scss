@@ -1,0 +1,62 @@
+.image-holder {
+	width: 600px;
+	height: 600px;
+}
+.image-preview {
+	width: 100%;
+	height: 100%;
+	border: none !important;
+	display: none;
+}
+.inline-container{
+	float: left;
+	padding: 5px 10px;
+}
+.info-label{
+	display: block;
+}
+.checkbox-holder{
+	padding: 10px 10px;
+}
+.crop-icon{
+	border: 1px red solid;
+    height: 15px;
+    width: 25px;
+}
+.crop-description {
+	padding: 5px 5px;
+}
+.mouse-icon{
+    height: 15px;
+    width: 15px;
+    background-image: url("../images/mouse-128.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 5px 5px;
+}
+.mouse-description-text{
+    padding: 5px 0px;
+}
+.cropper-line{
+ 	background-color: red !important;
+}
+.cropper-point {
+    background-color: red !important;
+}
+.cropper-crop-box{
+    outline-color: rgba(255, 0, 0, 0.75) !important;
+    outline: 1px solid red !important;
+}
+.image-upload-icon {
+  	background-image: url("images/icons/upload-icon.png");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.container-no-upload-background{
+	background-color: rgb(242, 242, 242);
+    border-radius: 20px;
+}
+.image-preview-container {
+	padding: 5px;
+    border: 1px solid #CCC;
+}

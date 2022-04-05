@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = {
+					width : 620,
+					height : 700
+				};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="/view/kcp/011/test2/main.css" />
+			<com:stylefile path="/view/kcp/011/main.css" />
+			<com:scriptfile path="/view/kcp/011/kcp.011.vm.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="test.service.js" />
+			<com:scriptfile path="test.start.js" />
+			<com:scriptfile path="test.vm.js" />
+		</ui:define>
+	
+		<ui:define name="content">
+			<div id="contents-area">
+			 	<workplace-group params="options: options"> </workplace-group>
+			</div>
+			<div id="functions-area-bottom" class="btn-click">
+				<button tabindex="5" data-bind="click: cancel" id="A10_2">#{i18n.getText('CDL028_7')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

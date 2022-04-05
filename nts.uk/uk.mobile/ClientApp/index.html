@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="theme-color" content="#5DA797" class="next-head">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>UK Mobile</title>
+    <base href="/nts.uk.mobile.web" />
+    <link rel="shortcut icon" href="/nts.uk.mobile.web/dist/favicon.ico?v=0000000000000">
+    <link rel="stylesheet" href="/nts.uk.mobile.web/dist/vendor.css?v=0000000000000" />
+    <link rel="stylesheet" href="/nts.uk.mobile.web/dist/bundles.css?v=0000000000000" />
+</head>
+
+<body>
+    <div id="app_uk_mobile">
+        <nav-bar v-if="ready"></nav-bar>
+        <template v-else></template>
+        <div class="wrapper">
+            <side-bar v-if="ready"></side-bar>
+            <template v-else></template>
+            <div class="container-fluid px-3">
+                <template v-if="ready">
+                    <router-view />
+                </template>
+                <template v-else></template>
+            </div>
+        </div>
+    </div>
+    <script src="/nts.uk.mobile.web/dist/vendor.js?v=0000000000000" type="text/javascript"></script>
+    <script src="/nts.uk.mobile.web/dist/bundles.js?v=0000000000000" type="text/javascript"></script>
+</body>
+
+</html>

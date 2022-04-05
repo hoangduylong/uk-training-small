@@ -1,0 +1,15 @@
+#contents-area{
+	overflow-y: hidden !important;
+}
+#roleCode {
+	width: 50px !important;
+	margin-left: 10px;
+}
+
+#roleName {
+	width: 273px !important;
+}
+
+#registration {
+	margin-top: 0px !important;
+}

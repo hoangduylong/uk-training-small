@@ -1,0 +1,315 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 300, height: 200 };</script>
+
+			<com:stylefile path="../../catalog/catalog.css" />
+			<com:scriptfile path="start.js" />
+			<com:scriptfile path="../../catalog/catalog.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area"></div>
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+					<h1>Dialog</h1>
+					
+					<article class="cf">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-noti-sample">Notification Samples</a></li>
+								<li><a href="#tabs-noti-api">Notification API</a></li>
+								<li><a href="#tabs-conf-sample">Confirm Samples</a></li>
+								<li><a href="#tabs-conf-api">Confirm API</a></li>
+							</ol>
+							<div id="tabs-noti-sample" class="cf">
+					
+								<button data-bind="click: info">info: 情報ダイアログ</button>
+								<pre><![CDATA[nts.uk.ui.dialog.info({ messageId: "Msg_15" });]]></pre>
+							
+								<button data-bind="click: caution">caution: 警告ダイアログ</button>
+								<pre><![CDATA[nts.uk.ui.dialog.caution({ messageId: "Msg_983" }).then(() => {
+    alert("OK");
+});]]></pre>
+							
+								<button data-bind="click: error">error: エラーダイアログ</button>
+								<pre><![CDATA[nts.uk.ui.dialog.error({ messageId: "Msg_59", messageParams: ["X", "Y"] });]]></pre>
+
+							</div>
+							
+							<div id="tabs-noti-api" class="cf">
+								<article>
+									<h2>Information</h2>
+									<b>Module:</b> nts.uk.ui.dialog<br /> <b>File:</b>
+									/lib/nittsu/ui/ui.ts<br />
+								</article>
+								<br />
+								<article>
+									<h2>Methods</h2>
+									<table class="table">
+										<colgroup>
+											<col width="350px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Name</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>info(<a href="#noti-message" class="link">Message</a>)</td>
+												<td>
+													<b>Return:</b> <a href="#noti-dialog-handler" class="link">Dialog handler</a><br/>
+													<b>Agruments:</b><br />
+													<i>message: <a href="#noti-message" class="link">Message</a></i>
+												</td>
+											</tr>
+											<tr>
+												<td>caution(<a href="#noti-message" class="link">Message</a>)</td>
+												<td>
+													<b>Return:</b> <a href="#noti-dialog-handler" class="link">Dialog handler</a><br/>
+													<b>Agruments:</b><br />
+													<i>message: <a href="#noti-message" class="link">Message</a></i>
+												</td>
+											</tr>
+											<tr>
+												<td>error(<a href="#noti-message" class="link">Message</a>)</td>
+												<td>
+													<b>Return:</b> <a href="#noti-dialog-handler" class="link">Dialog handler</a><br/>
+													<b>Agruments:</b><br />
+													<i>message: <a href="#noti-message" class="link">Message</a></i>
+													<hr />
+													There are aliases of this method for compatibility:
+													<ul>
+														<li>nts.uk.ui.dialog.alert</li>
+														<li>nts.uk.ui.dialog.alertError</li>
+													</ul>
+												</td>
+											</tr>					
+										</tbody>
+									</table>
+									
+									<h2 id="noti-message">Message</h2>
+									<table class="table">
+										<colgroup>
+											<col width="150px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Name</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>messageId</td>
+												<td>
+													<b>Type:</b> String<br/>
+													Resource ID of message to be shown
+												</td>
+											</tr>
+											<tr>
+												<td>messageParams (optional)</td>
+												<td>
+													<b>Type:</b> string[]<br/>
+													List params for the messge. Ex: "This {0} is {1}"<br />
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									
+									<h2 id="noti-dialog-handler">Dialog handler</h2>
+									<table class="table">
+										<colgroup>
+											<col width="150px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Name</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>then</td>
+												<td>
+													<b>Type:</b> function()<br/>
+													<b>Return:</b> void<br/>
+													Handler after user close dialog
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</article>
+							</div>
+							
+							<div id="tabs-conf-sample" class="cf">
+
+								<button data-bind="click: confirmDanger">confirmDanger: 危険確認ダイアログ</button>
+								<pre><![CDATA[nts.uk.ui.dialog.confirmDanger({ messageId: "Msg_386", messageParams: ["ABC"] }).ifYes(() => {
+    alert("YES!");
+});]]></pre>
+								
+								<button data-bind="click: confirmProceed">confirmProceed: 実行確認ダイアログ</button>
+								<pre><![CDATA[nts.uk.ui.dialog.confirmProceed({ messageId: "Msg_749" }).ifYes(() => {
+    alert("YES!");
+}).ifNo(() => {
+    alert("NO!");
+});]]></pre>
+								
+								<button data-bind="click: confirmFull">confirm: 確認ダイアログ</button>
+								<pre><![CDATA[nts.uk.ui.dialog.confirm("Use all confirm handlers").ifYes(() => {
+    alert("YES!");
+}).ifNo(() => {
+    alert("NO!");
+}).then(() => {
+    alert("You choiced anything");
+});]]></pre>
+							</div>
+							
+							<div id="tabs-conf-api" class="cf">
+								<article>
+									<h2>Information</h2>
+									<b>Module:</b> nts.uk.ui.dialog<br /> <b>File:</b>
+									/lib/nittsu/ui/ui.ts<br />
+								</article>
+								<br />
+								<article>
+									<h2>Methods</h2>
+									<table class="table">
+										<colgroup>
+											<col width="350px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Name</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>confirmDanger(<a href="#conf-message" class="link">Message</a>)</td>
+												<td>
+													<b>Return:</b> <a href="#conf-dialog-handler" class="link">Confirm Dialog handler</a><br/>
+													<b>Agruments:</b><br />
+													<i>message: <a href="#conf-message" class="link">Message</a></i>
+												</td>
+											</tr>
+											<tr>
+												<td>confirmProceed(<a href="#conf-message" class="link">Message</a>)</td>
+												<td>
+													<b>Return:</b> <a href="#conf-dialog-handler" class="link">Confirm Dialog handler</a><br/>
+													<b>Agruments:</b><br />
+													<i>message: <a href="#conf-message" class="link">Message</a></i>
+												</td>
+											</tr>
+											<tr>
+												<td>confirm(<a href="#conf-message" class="link">Message</a>)</td>
+												<td>
+													<b>Return:</b> <a href="#conf-dialog-handler" class="link">Confirm Dialog handler</a><br/>
+													<b>Agruments:</b><br />
+													<i>message: <a href="#conf-message" class="link">Message</a></i>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									
+									<h2 id="conf-message">Message</h2>
+									<table class="table">
+										<colgroup>
+											<col width="150px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Name</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>messageId</td>
+												<td>
+													<b>Type:</b> String<br/>
+													Resource ID of message to be shown
+												</td>
+											</tr>
+											<tr>
+												<td>messageParams (optional)</td>
+												<td>
+													<b>Type:</b> string[]<br/>
+													List params for the messge. Ex: "This {0} is {1}"<br />
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									
+									<h2 id="conf-dialog-handler">Confirm Dialog handler</h2>
+									<table class="table">
+										<colgroup>
+											<col width="150px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Name</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>ifYes</td>
+												<td>
+													<b>Type:</b> function()<br/>
+													<b>Return:</b> Confirm handler<br/>
+													Handler after user press Yes button
+												</td>
+											</tr>
+											<tr>
+												<td>ifNo</td>
+												<td>
+													<b>Type:</b> function()<br/>
+													<b>Return:</b> Confirm handler<br/>
+													Handler after user press No button
+												</td>
+											</tr>
+											<tr>
+												<td>ifCancel</td>
+												<td>
+													<b>Type:</b> function()<br/>
+													<b>Return:</b> Confirm handler<br/>
+													Handler after user press Cancel button
+												</td>
+											</tr>
+											<tr>
+												<td>then</td>
+												<td>
+													<b>Type:</b> function()<br/>
+													<b>Return:</b> Confirm handler<br/>
+													Handler after user close dialog
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</article>
+							</div>
+						</div>
+					</article>
+					<div class="footer cf">
+						<button class="previous large">Previous</button>
+						<button class="next proceed large">Next</button>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

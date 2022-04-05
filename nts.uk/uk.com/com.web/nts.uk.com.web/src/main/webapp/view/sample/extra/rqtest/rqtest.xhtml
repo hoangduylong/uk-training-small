@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:com="http://xmlns.jcp.org/jsf/component"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+	<body>
+		<ui:composition template="../../../../master/base.xhtml">
+			<ui:define name="htmlHead">
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+				<com:scriptfile path="start.js" />
+			</ui:define>
+			<ui:define name="content">
+				<div id="functions-area"></div>
+				<div id="contents-area" class="cf">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>RQ test tool</h1>
+						<table style="width:1300px;">
+							<tr>
+								<td class="row_label">class name</td>
+								<td colspan="2"><input type="text" id="pubclass" data-bind="value: pubclass" style="width:600px;"/></td>
+							</tr>
+							<tr>
+								<td class="row_label">method name</td>
+								<td colspan="2"><input type="text" id="method" data-bind="value: method" style="width:300px;"/></td>
+							</tr>
+							<tr>
+								<td class="row_label">params</td>
+								<td>
+									<textarea id="params" class="params" wrap="auto" spellcheck="false" data-bind="value: params">[]</textarea><br />
+									<button data-bind="click: clear">clear</button>
+								</td>
+								<td>
+									<table style="width:600px;" id="paramTable">
+										<thead>
+											<tr>
+												<th></th>
+												<th>種類</th>
+												<th>値</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr valign="middle">
+												<td><button data-bind="click: add_bol">add</button></td>
+												<td><div class="type_select">bool</div></td>
+												<td><input type="checkbox" id="bool_value" data-bind="checked: bool_value"/></td>
+											</tr>
+											<tr valign="middle">
+												<td><button data-bind="click: add_num">add</button></td>
+												<td><div class="type_select">int</div></td>
+												<td><input type="text" id="num_value" class="param_value" data-bind="value: num_value"/></td>
+											</tr>
+											<tr valign="middle">
+												<td><button data-bind="click: add_str">add</button></td>
+												<td><div class="type_select">string</div></td>
+												<td><input type="text" id="str_value" class="param_value" data-bind="value: str_value"/></td>
+											</tr>
+											<tr valign="middle">
+												<td><button data-bind="click: add_dt">add</button></td>
+												<td><div class="type_select">date</div><div style="color:#8f8f8f;float: left;">ex)yyyymmdd</div></td>
+												<td><input type="text" id="date_value" class="param_value" data-bind="value: date_value"/></td>
+											</tr>
+											<tr valign="middle">
+												<td><button data-bind="click: add_prd">add</button></td>
+												<td><div class="type_select">period</div><div style="color:#8f8f8f;float: left;">ex)yyyymmdd</div></td>
+												<td>
+													<input type="text" id="period_str" class="param_value" data-bind="value: period_str"/>
+													～
+													<input type="text" id="period_end" class="param_value" data-bind="value: period_end"/>
+												</td>
+											</tr>
+											<tr valign="middle">
+												<td><button data-bind="click: add_lst">add</button></td>
+												<td><div class="type_select">list</div><div style="color:#8f8f8f;float: left;">[,]区切り</div></td>
+												<td><textarea id="list_value" style="resize: both; height:32px; width:300px;" wrap="auto" data-bind="value: list_value"></textarea></td>
+											</tr>
+										</tbody>
+									</table>
+								</td>
+							</tr>
+						</table><br />
+						<button data-bind="click: run">実行 run</button>
+						<br />
+						<hr />
+						<textarea id="result" style="font-size:80%; width:800px; height:200px;" wrap="off" data-bind="value: result"></textarea>
+					</div>
+				</div>
+			</ui:define>
+		</ui:composition>
+   	</body>
+</html>

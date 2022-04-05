@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:com="http://xmlns.jcp.org/jsf/component"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+	<body>
+		<ui:composition template="../../../../master/base.xhtml">
+			<ui:define name="htmlHead">
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+			</ui:define>
+			<ui:define name="content">				
+				<div id="functions-area"></div>
+				<div id="contents-area" class="cf">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Setting Diagnosis Tool</h1>
+						<div>
+							<h2>Performance Log</h2>
+							<table>
+								<tr>
+									<td>Threshold milliseconds to log SLOW REQUEST:</td>
+									<td><input type="text" data-bind="value: slowrequest" style="width: 100px;"/></td>
+								</tr>
+								<tr>
+									<td>Threshold milliseconds to log SLOW QUERY:</td>
+									<td><input type="text" data-bind="value: slowquery" style="width: 100px;"/></td>
+								</tr>
+							</table>
+							<button data-bind="click: update">Update</button>
+							
+						</div>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+					</div>
+				</div>
+			</ui:define>
+		</ui:composition>
+   	</body>
+</html>

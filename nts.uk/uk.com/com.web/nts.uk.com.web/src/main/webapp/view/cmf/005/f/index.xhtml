@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				    var dialogSize = {
+				        width : 500,
+				        height : 400
+				    };
+            </script>
+            <com:scriptfile path="../share/model.js" />
+            <com:scriptfile path="cmf005.f.service.js" />
+			<com:scriptfile path="cmf005.f.vm.js" />
+			<com:scriptfile path="cmf005.f.start.js" />
+			<com:stylefile path="cmf005.f.style.css" />
+
+		</ui:define>
+
+		<ui:define name="content">
+			<!--F2-->
+			<label id="F2">#{i18n.getText('CMF005_2')}</label>
+			<div id="bodyScreen">
+				<table>
+					<tr>
+						<td class="columnLeft"><label class ="labeLeft">#{i18n.getText('CMF005_60')}</label></td>
+						<td class="columnRight"><label class="labeRight" data-bind="text: timeOver()" /></td>
+					</tr>
+					<tr>
+						<td class="columnLeft"><label class ="labeLeft">#{i18n.getText('CMF005_61')}</label></td>
+						<td>
+							<label class="labeRight" data-bind="text: status" />
+							<label class="labeRight" data-bind="text: categoryPercentProcess" />
+							<label>#{i18n.getText('CMF005_62')}</label>
+						</td>
+					</tr>
+					<tr>
+						<td class="columnLeft"><label class ="labeLeft">#{i18n.getText('CMF005_63')}</label></td>
+						<td><label class="labeRight" data-bind="text: errorCount"/></td>
+					</tr>
+				</table>
+
+				<div id="tableTwo">
+					<label id="F3">#{i18n.getText('CMF005_65')}</label>
+					<table>
+						<tr>
+							<td class="columnLeft"><label class ="labeLeft" >#{i18n.getText('CMF005_66')}</label></td>
+							<td class="columnRight"><label class="labeRight" data-bind="text: deleteSetName" /></td>
+						</tr>
+						<tr>
+							<td class="columnLeft"><label class ="labeLeft">#{i18n.getText('CMF005_67')}</label></td>
+							<td><label class="labeRight" data-bind="text: saveBeforDelete" /></td>
+						</tr>
+						<tr>
+							<td class="columnLeft" rowspan="3"><label class ="labeLeft">#{i18n.getText('CMF005_68')}</label></td>
+							<td>
+								<label class="labeRight">#{i18n.getText('CMF005_69')}</label>
+								<label data-bind="text: dateStartValue" />
+								<com:ko-if bind="enableDate()">
+									<label>#{i18n.getText('CMF005_72')}</label>
+								</com:ko-if>
+								<label data-bind="text: dateEndValue" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="labeRight">#{i18n.getText('CMF005_70')}</label>
+								<label data-bind="text: monthStartValue" />
+								<com:ko-if bind="enableMonth()">
+									<label>#{i18n.getText('CMF005_72')}</label>
+								</com:ko-if>
+								<label data-bind="text: monthEndValue" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<label class="labeRight">#{i18n.getText('CMF005_71')}</label>
+								<label data-bind="text: yearStartValue" />
+								<com:ko-if bind="enableYear()">
+									<label>#{i18n.getText('CMF005_72')}</label>
+								</com:ko-if>
+								<label data-bind="text: yearEndValue" />
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<hr />
+			<center>
+				<com:ko-if bind="(dialogMode() == 'deleting')">
+ 						<button id="F10_1" data-bind="click : interrupt" class="large">#{i18n.getText('CMF005_73')}</button> 
+ 				</com:ko-if>
+ 				<com:ko-if bind="(dialogMode() !== 'deleting')">
+	 					<button id="F10_2" data-bind="click : closePopup" class="large">#{i18n.getText('CMF005_74')}</button> 
+				</com:ko-if>
+			</center>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

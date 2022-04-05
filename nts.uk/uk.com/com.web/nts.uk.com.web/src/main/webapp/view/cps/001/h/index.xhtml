@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script type='text/javascript'>
+				var dialogSize = {
+					width: 680,
+					height: 738
+				};
+			</script>
+			<com:ValidatorScript>
+					nts.uk.ctx.at.shared.dom.remainingnumber.reserveleave.empinfo.grantremainingdata.daynumber.ReserveLeaveGrantDayNumber
+					nts.uk.ctx.at.shared.dom.remainingnumber.reserveleave.empinfo.grantremainingdata.daynumber.ReserveLeaveUsedDayNumber
+					nts.uk.ctx.at.shared.dom.remainingnumber.reserveleave.empinfo.grantremainingdata.daynumber.ReserveLeaveOverLimitDayNumber
+					nts.uk.ctx.at.shared.dom.remainingnumber.reserveleave.empinfo.grantremainingdata.daynumber.ReserveLeaveRemainingDayNumber
+					
+			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps001.h.style.css" />
+			<com:scriptfile path="cps001.h.service.js" />
+			<com:scriptfile path="cps001.h.vm.js" />
+			<com:scriptfile path="cps001.h.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<button type="button" class="" data-bind="click: newmode, enable: enableRemoveBtn" tabindex="1">#{i18n.getText('CPS001_108')}</button>
+				<button type="button" class="proceed" tabindex="2" data-bind="click: register">#{i18n.getText('CPS001_109')}</button>
+				<button type="button" class="danger" tabindex="3" data-bind="enable: enableRemoveBtn, click: remove">#{i18n.getText('CPS001_110')}</button>
+				<button type="button" class="" data-bind="click: close" tabindex="4">#{i18n.getText('CPS001_111')}</button>
+			</div>
+			<div id="contents-area">
+				
+				<div class='ckb' data-bind="ntsCheckBox: { checked: ckbAll }" tabindex="5">#{i18n.getText('CPS001_125')}</div>
+				
+				<div id="tbl">
+			 		<table id="single-list" tabindex="6" data-bind="ntsGridList: {								
+						height: 350,
+						dataSource: items,
+						primaryKey: 'id',
+						columns: columns,
+						multiple: false,
+						value: currentItem,
+		 				rows:10
+						}"></table>
+				</div>
+				<div class='detailContent' data-bind="let:{gd: ko.toJS(nameGrantDate), dl: ko.toJS(nameDeadline), lmd: ko.toJS(nameOverLimitDays)}">
+					<table data-bind="with: resvLeaGrantRemNum">
+						<tr>
+							<td data-itemCode="IS00398 grantDate" class="test"><div data-bind="ntsFormLabel: {required: true }">1</div></td>
+							<td><div id="grantDate" tabindex='7' data-bind="ntsDatePicker: {name: gd, value: grantDate,required: true,   dateFormat: 'YYYY/MM/DD'}"></div></td>
+						</tr>
+						<tr>
+							<td data-itemCode="IS00399 deadline"><div data-bind="ntsFormLabel: {required: true }">2</div></td>
+							<td><div id="deadline" tabindex='8' data-bind="ntsDatePicker: {name : dl, value: deadline, required: true, dateFormat: 'YYYY/MM/DD'}"></div></td>
+						</tr>
+						<tr>
+							<td data-itemCode="IS00400"><div data-bind="ntsFormLabel: {required: true }">3</div></td>
+							<td><div tabindex='9' class="cf" data-bind="ntsSwitchButton: {
+										options: [
+							                 { code: 1, name: '使用可能'},
+							                 { code: 0, name: '期限切れ'}
+							             ],
+										optionsValue: 'code',
+										optionsText: 'name',
+										value: expirationStatus,
+										required: true,
+										enable: true }"></div></td>
+										
+						</tr>
+						<tr>
+							<td style=" vertical-align: top !important;" data-itemCode="IS00401"><div data-bind="ntsFormLabel: {required: true }">4</div></td>
+							<td>
+								<table>
+									<tr>
+										<td colspan='3' style='font-weight: bold;padding: 10px;'>#{i18n.getText('CPS001_114')}</td>
+									</tr>
+									<tr>
+										<td><div data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CPS001_115')}</div></td>
+										<td class='paddingTd'><input class="realTxt" id="grantDays" tabindex='10' data-bind="ntsNumberEditor: {
+											name: '#{i18n.getText('CPS001_115')}',
+		                                    value: grantDays,
+		                                    constraint: 'ReserveLeaveGrantDayNumber',
+		                                    option: {
+			                                    decimallength: 1
+		                                    },
+		                                    enable: true, 
+		                                    required: true,
+		                                    }"/></td>
+									</tr>
+									<tr>
+										<td><div data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CPS001_116')}</div></td>
+										<td class='paddingTd'><input class="realTxt" id="useDays" tabindex='11' data-bind="ntsNumberEditor: {
+											name: '#{i18n.getText('CPS001_116')}',
+		                                    value: useDays,
+		                                    constraint:'ReserveLeaveUsedDayNumber',
+		                                    option: {
+			                                    decimallength: 1
+		                                    },
+		                                    enable: true, 
+		                                    required: true,
+		                                    }"/></td>
+										<td class='paddingTd' data-itemCode="IS00406 overLimitDays">
+										<span>5</span><span><input class="realTxt" id="overLimitDays" tabindex='12' data-bind="ntsNumberEditor: {
+											name: lmd,
+		                                    value: overLimitDays,
+		                                    constraint:'ReserveLeaveOverLimitDayNumber',
+		                                    option: {
+			                                    decimallength: 1
+		                                    },
+		                                    enable: true, 
+		                                    required: true,
+		                                    }"/></span></td>
+									</tr>
+									<tr>
+										<td><div data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CPS001_117')}</div></td>
+										<td class='paddingTd'><input class="realTxt" id="remainingDays" tabindex='13' data-bind="ntsNumberEditor: {
+											name: '#{i18n.getText('CPS001_117')}',
+		                                    value: remainingDays,
+		                                    constraint: 'ReserveLeaveRemainingDayNumber',
+		                                    option: {
+			                                    decimallength: 1
+		                                    },
+		                                    enable: true, 
+		                                    required: true,
+		                                    }"/></td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table> 
+				</div>
+			</div>
+			
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,113 @@
+﻿<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/sidebar.xhtml">
+		<ui:define name="sidebar-head">
+			<script>var dialogSize = { width: 800, height: 600 };</script>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="ccg022.a.service.js" />
+			<com:scriptfile path="ccg022.a.vm.js" />
+			<com:scriptfile path="ccg022.a.start.js" />
+			<com:stylefile path="ccg022.a.main.css" />
+			<com:ValidatorScript>
+				nts.uk.ctx.sys.gateway.dom.stopbycompany.StopMessage
+			</com:ValidatorScript>
+		</ui:define>
+
+		<ui:define name="sidebar">
+			<ul class="navigator">
+				<li><a data-id="0" href="#tabpanel-1" role="tab-navigator"
+					data-bind="click:findSystem,css:{active:isSystemSelected()==1}">#{i18n.getText('CCG022_10')}</a></li>
+				<li><a
+					data-bind="click: findCompany,css:{active:isSystemSelected()==0}"
+					data-id="1">#{i18n.getText('CCG022_11')}</a></li>
+			</ul>
+		</ui:define>
+
+		<ui:define name="sidebar-content">
+			<div id="tabpanel-1" role="tabpanel">
+				<div class="sidebar-content-header">
+					<!-- A1_2 A1_3 -->
+					<span class="title" data-bind="text:title">#{i18n.getText('CCG022_10')}</span>
+					<!-- A1_4 -->
+					<button class="proceed"
+						data-bind="click:saveData,enable: $root.errors.isEmpty">#{i18n.getText('CCG022_12')}</button>
+				</div>
+				<div class="contents-area">
+					<div id="group-mode"
+						data-bind="ntsRadioBoxGroup: {
+											options: systemMode ,
+											optionsValue: 'id',
+											optionsText: 'name',
+											value: selectedSystemMode }"></div>
+
+					<div id="starting-group" class="info-group">
+						<div class="div_line">
+							<!-- A2_2 -->
+							<label class="text_line" style="margin-top: 3px;" data-bind="html:infoLbl1"></label>
+							<!-- A2_3 -->
+							<label class="text_line" data-bind="html:infoLbl2"></label>
+						</div>
+
+					</div>
+					<div id="in-progress-group" class="info-group">
+						<!-- A3_2 -->
+						<div class="div_line">
+							<div
+								data-bind="ntsFormLabel: { constraint: 'StopMessage' , required: true }">#{i18n.getText('CCG022_15')}</div>
+
+						</div>
+						<!-- A3_3 -->
+						<div class="div_line">
+							<textarea id="in_progress_message_txt" style="height: 76px"
+								data-bind="ntsMultilineEditor: { value: stopMessage, 
+																name: '#[CCG022_20]', 
+																constraint: 'StopMessage', 
+																option: { width: '500px'},
+																enable:selectedSystemMode()==2,
+																required:selectedSystemMode()==2,
+																immediateValidate :true
+																}"></textarea>
+						</div>
+					</div>
+					<div id="stop-group" class="info-group">
+						<div class="div_line">
+							<div id="system-mode"
+								data-bind="ntsRadioBoxGroup: {
+											options: stopMode ,
+											optionsValue: 'id',
+											optionsText: 'name',
+											value: selectedStopMode,
+											enable:isSelectedStop
+											 }"></div>
+
+						</div>
+
+						<!-- A4_4 -->
+						<div class="div_line">
+							<div
+								data-bind="ntsFormLabel: { constraint: 'StopMessage' , required: true }">#{i18n.getText('CCG022_24')}</div>
+						</div>
+						<!-- A4_5 -->
+						<div class="div_line">
+							<textarea id="stop_message_txt" style="height: 76px"
+								data-bind="ntsMultilineEditor: { value: usageStopMessage, 
+																name: '#[CCG022_25]', 
+																constraint: 'StopMessage', 
+																option: { width: '500px'},
+																enable:selectedSystemMode()==3,
+																required:selectedSystemMode()==3,
+																immediateValidate :true
+																}"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

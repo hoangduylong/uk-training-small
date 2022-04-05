@@ -1,0 +1,219 @@
+@import url("base.css");
+
+#content {
+	width: 1200px;
+	margin-bottom: 20px;
+}
+
+#A1_004 {
+	margin-left: 15px !important;
+}
+
+#A1_001 {
+	margin-left: 25px !important;
+}
+
+#functions-area button {
+	width: 70px;
+}
+
+#content-left {
+	width: 310px;
+	height: 593px;
+}
+
+#content-right {
+	margin-left: 30px;
+	float: left;
+	width: 850px;
+}
+
+#content-right #roleConfigArea .fix-width-lable{
+	min-width: 130px;
+}
+
+#A2_001_container {
+	margin-left: 15px;
+}
+
+#content-left>.caret-bottom:after {
+	color: #97d155;
+	font-size: 20px;
+	border-right: 1.7em solid transparent;
+	border-left: 1.6em solid transparent;
+	margin-left: 0.6em;
+}
+
+#A3_003 {
+	margin-left: 10px;
+}
+
+#content-left>.caret-bottom {
+	margin-left: 113px;
+	font-size: 20px;
+}
+
+#content-left>.caret-bottom:before {
+	border-right: 2.2em solid transparent;
+	border-left: 2.2em solid transparent;
+	color: #C8EECF;
+}
+.auth_table {
+	border-collapse: separate;
+	border-radius: 2px;
+	padding: 5px 5px;
+}
+
+.auth_table td, .auth_table th {
+	border: 1px solid #CCC;
+	height: 1.6em;
+}
+
+.auth_table td {
+	background: white;
+	height: 34px;
+}
+
+.auth_table th {
+	color: #000;
+	background-color: #CFF1A5;
+	padding: 0 2px;
+	font-weight: bold;
+}
+
+#file_permission_settings .radio-wrapper span, .auth_table .radio-wrapper span
+{
+	width: 50px;
+	text-align: center;
+}
+
+#padding_left_20 {
+	padding-left: 20px;
+}
+
+#file_permission_settings_cover {
+	width: 835px;
+}
+
+#file_permission_settings {
+	padding: 10px 20px 10px 4px;
+	display: flex;
+	border-radius: 5px;
+	background-color: white;
+	margin: 10px 0px 0px 10px;
+	float: left;
+	width: 690px;
+}
+
+#file_permission_settings>div {
+	flex: 1;
+}
+
+.margin_left_10 {
+	margin-left: 10px;
+}
+
+#history_auth_table .ui-igcombo {
+	width: 120px;
+	min-width: 0px !important;
+}
+
+#auth_group_table {
+	margin-left: 10px;
+}
+
+.selected_all_auth {
+	display: block;
+}
+
+#selected_all_caret {
+	font-size: 20px;
+	margin: 5px 0px 0px 60px;
+}
+
+#selected_all_caret:after {
+	color: #97d155;
+	font-size: 20px;
+	border-right: 1.7em solid transparent;
+	border-left: 1.6em solid transparent;
+	margin-left: 0.6em;
+}
+
+#selected_all_caret:before {
+	border-right: 2.2em solid transparent;
+	border-left: 2.2em solid transparent;
+}
+
+.ntsgrid-alarm1 {
+	background-color: #FAEC82;
+}
+
+#item_role_table_cover {
+	width: 830px;
+	position: relative;
+	clear: both;
+	margin-top: 15px;
+	margin-bottom: 40px;
+	float: left;
+}
+
+#role_auth_cover {
+	width: 603px;
+}
+
+/* #A3_004 {
+	width: 120px;
+} */
+
+#item_role_table_body_container {
+	margin-top: 5px !important;
+}
+
+#item_role_table_body_container  .radio-wrapper span {
+	width: 72px;
+	text-align: center;
+}
+
+#item_role_table_body_container .nts-switch-button {
+	width: 72px;
+	text-align: center;
+}
+
+#A2_008_headers_v, #A2_008_virtualContainer td:LAST-CHILD,
+	#A2_008_setting {
+	overflow: visible !important;
+}
+
+#A2_012 {
+	height: 25px;
+}
+
+#A2_001_virtualContainer {
+	height: initial !important;
+}
+
+#A2_008 tr>td:NTH-CHILD(2) {
+	text-align: center;
+}
+
+#item_role_table_body tr>td:NTH-CHILD(2) {
+	text-align: center;
+}
+
+.line_col_1 {
+	width: 480px;
+	float: left;
+}
+
+.line_col_2 {
+	width: 200px;
+	float: left;
+}
+
+#item_role_table_body_virtualContainer {
+	border: 1px solid #999;
+}
+
+#left-bottom .input-wrapper input {
+	width: 207px !important;
+}

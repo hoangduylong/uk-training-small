@@ -1,0 +1,19 @@
+.tab-outline {
+	margin: 20px;
+}
+
+.tab-block {
+	margin: 20px;
+}
+
+.tab-rows {
+	margin-top: 20px;
+	width: 100%;
+	display: flex;
+    align-items: center;
+}
+
+.tab-inline-item {
+	padding: 0px 10px 0px 10px;
+	display: inline-block;
+}

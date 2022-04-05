@@ -1,0 +1,44 @@
+.cmm024-d {
+    padding: 2rem !important;
+}
+
+.cmm024-d .row {
+    display: flex;
+    align-items: center;
+    margin: 7px 0;
+}
+
+.cmm024-d .row:last-child {
+    align-items: flex-start;
+}
+
+.cmm024-d .row .col-left {
+    width: 150px;
+}
+
+.cmm024-d .row .col-right {
+    flex: 1;
+}
+
+.cmm024-d .row .col-right .ntsRadioBox {
+    display: block;
+    margin: 5px 0;
+}
+
+.cmm024-d .row .col-right .row-radios {
+    display: inline-block;
+}
+
+.cmm024-d .row .col-right .row-radios span.label {
+    padding-left: 15px;
+}
+
+.cmm024-d .row .col-right .row-date {
+    display: flex;
+    align-items: center;
+    margin-left: 21px;
+    margin-top: 10px;
+}
+.cmm024-d .end-date-label label {
+    padding-left: 15px;
+}

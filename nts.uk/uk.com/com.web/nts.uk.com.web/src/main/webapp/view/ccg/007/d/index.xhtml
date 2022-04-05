@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:stylefile path="ccg007.d.style.css" />
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="ccg007.d.service.js" />
+			<com:scriptfile path="ccg007.d.vm.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div class="ccg007" id="contents-area">
+				<div class="login-form" data-bind="visible: displayLogin">
+					<table>
+						<tr>
+							<td></td>
+							<td class="align_center">
+								<img src="kin.gif" />
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<div tabindex="1" data-bind="ntsComboBox: {
+										width: '100%',
+										name: '#{i18n.getText('CCG007_7')}',
+										options: $vm.companyList,
+										value: $vm.selectedCompanyCode,
+										optionsValue: 'companyCode',
+										optionsText: 'companyName',
+										visibleItemsCount: 5,
+										required: true,
+										editable: false,
+										enable: true,
+										columns: [
+											{ prop: 'companyCode', length: 5 },
+											{ prop: 'companyName', length: 11},
+										]}"></div>
+							</td>
+						</tr>
+						<tr>
+							<td data-bind="i18n: 'CCG007_8'"></td>
+							<td>
+								<input tabindex="2" data-bind="ntsTextEditor: {
+										name: $vm.$i18n('CCG007_8'),
+										value: employeeCode,
+										enterkey: $vm.submitLogin,
+										option: { textmode: 'text' }
+									}" />
+							</td>
+						</tr>
+						<tr>
+							<td data-bind="i18n: 'CCG007_2'"></td>
+							<td>
+								<input tabindex="3" autocomplete="new-password" data-bind="ntsTextEditor: {
+										name: $vm.$i18n('CCG007_2'),
+										value: $vm.password,
+										enterkey: $vm.submitLogin,
+										option: { textmode: 'password' }
+									}" />
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<label tabindex="4" data-bind="ntsCheckBox: {
+										checked: $vm.isSaveLoginInfo,
+										text: 'CCG007_5'
+									}"></label>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>
+								<button tabindex="5" id="login-btn" data-bind="i18n: 'CCG007_3', click: $vm.submitLogin"
+									class="full_width proceed large">
+								</button>
+							</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td class="align_center">
+								<a tabindex="6" data-bind="
+										i18n: 'CCG007_6',
+										click: $vm.OpenDialogG
+									" class="hyperlink"></a>
+							</td>
+						</tr>
+						<!-- <tr>
+							<td></td>
+							<td class="pad_5" style="padding-left: 10px"><button tabindex="5" id="login-btn"
+									data-bind="click: SamlLogin" class="full_width proceed large">
+									<div data-bind="SAML認証"></div>
+								</button></td>
+						</tr> -->
+
+					</table>
+				</div>
+			</div>
+			<div id="ver" style="position: fixed; right: 10px; bottom: 10px; color: red;"></div>
+		</ui:define>
+	</ui:composition>
+</body>
+
+</html>

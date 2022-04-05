@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">	
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { 
+					width: 600, 
+					height: 430 
+			};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="cmf005.k.service.js" />
+      <com:scriptfile path="cmf005.k.vm.js" />
+      <com:scriptfile path="cmf005.k.start.js" />
+			<com:stylefile path="cmf005.k.style.css" />
+			
+		</ui:define>
+
+		<ui:define name="content">
+			<div class="contents-area dialog-contents">
+				<label id="K1_1">#{i18n.getText('CMF003_180')}</label>
+				
+				<table id="K1_2">
+					<tr >
+						<td id="K1_3" class="bg-yellow" width='150px'>
+							<label>#{i18n.getText('CMF003_181')}</label>
+						</td>
+						<td id="K1_6" width='400px'>
+							<label data-bind="text : timeOver()"></label>
+						</td>
+					</tr>
+					<tr >
+						<td id="K1_4" class="bg-yellow" width='150px' >
+							<label>#{i18n.getText('CMF003_182')}</label>
+						</td>
+						<td id="K1_7" width='400px'>
+							<label data-bind="text : status"></label>
+							<label style="padding-left: 20px;" data-bind="text : categoryCount"></label>
+							<label>/</label>
+							<label data-bind="text : categoryTotalCount"></label>
+							<label>#{i18n.getText('CMF003_30')}</label>
+						</td>
+					</tr>
+					<tr >
+						<td id="K1_5" class="bg-yellow" width='150px'>
+							<label>#{i18n.getText('CMF003_183')}</label>
+						</td>
+						<td id="K1_8" width='400px'>
+							<label data-bind="text : errorText"></label>
+						</td>
+					</tr>
+				</table>
+				
+				<label id="K2_1">#{i18n.getText('CMF003_184')}</label>
+				
+				<table id="K2_2">
+					<tr >
+						<td id="K2_3" class="bg-yellow" width='150px' >
+							<label>#{i18n.getText('CMF003_185')}</label>
+						</td>
+						<td id="K2_5" width='400px'>
+							<label data-bind="text : dataSaveSetName"></label>
+						</td>
+					</tr>
+					<tr >
+						<td id="K2_4" class="bg-yellow" width='150px' rowspan="3" >
+							<label>#{i18n.getText('CMF003_186')}</label>
+						</td>
+						<td id="K2_6" width='400px'>
+							<label>#{i18n.getText('CMF003_34')}</label>
+							<label style="padding-right: 5px;">: </label>
+							<label data-bind="text : dayStartValue"></label>
+							<com:ko-if bind="!((dayStartValue == '') &amp;&amp; (dayEndValue == ''))">
+								<label>~</label>
+							</com:ko-if>
+							<label data-bind="text : dayEndValue"></label>
+						</td>
+					</tr>
+					<tr >
+						<td id="K2_7" width='400px'>
+							<label>#{i18n.getText('CMF003_35')}</label>
+							<label style="padding-right: 5px;">: </label>
+							<label data-bind="text : monthStartValue"></label>
+							<com:ko-if bind="!((monthStartValue == '') &amp;&amp; (monthEndValue == ''))">
+								<label>~</label>
+							</com:ko-if>
+							<label data-bind="text : monthEndValue"></label>
+						</td>
+					</tr>
+					<tr >
+						<td id="K2_8" width='400px'>
+							<label>#{i18n.getText('CMF003_36')}</label>
+							<label style="padding-right: 5px;">: </label> 
+							<label data-bind="text : yearStartValue"></label>
+							<com:ko-if bind="!((yearStartValue == '') &amp;&amp; (yearEndValue == ''))">
+								<label>~</label>
+							</com:ko-if>
+							<label data-bind="text : yearEndValue"></label>
+						</td>
+					</tr>
+				</table>
+				
+				<!-- F3 -->
+				<div class ="button">
+					<com:ko-if bind="dialogMode() == 'saving'">
+ 						<button id="F3_1" class="large" data-bind="click : interrupt" tabindex="1">#{i18n.getText('CMF003_187')}</button> 
+ 					</com:ko-if>
+ 					<com:ko-if bind="(dialogMode() !== 'saving')">
+	 					<button id="F3_2" class="large" data-bind="click : download, enable: ((dialogMode() == 'done') &amp;&amp; (!isDownloaded()))" tabindex="2">#{i18n.getText('CMF003_188')}</button>
+	 					<button id="F3_3" class="large" data-bind="click : close" tabindex="3">#{i18n.getText('CMF003_189')}</button> 
+					</com:ko-if>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

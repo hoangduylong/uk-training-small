@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:ValidatorScript>
+				nts.uk.ctx.pereg.dom.person.info.category.CategoryName
+			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps005.a.main.css" />
+			<com:scriptfile path="cps005.a.start.js" />
+			<com:scriptfile path="cps005.a.vm.js" />
+			<com:scriptfile path="cps005.a.service.js" />
+		</ui:define>
+
+		<ui:define name="content">
+
+			<div id="functions-area">
+				<div id="functions-area-content">
+					<button tabindex="1" data-bind="click : register">#{i18n.getText('CPS005_1')}</button>
+					<button class="proceed" tabindex="2"
+						data-bind="click : addUpdateData, enable: isEnableButtonProceedA()">#{i18n.getText('CPS005_2')}</button>
+				</div>
+			</div>
+			<div id="contents-area">
+				<div id="content" data-bind="with: currentData">
+					<div id="contents-area-right">
+						<div
+							data-bind="ntsPanel:{
+									width: '300px', 
+									height: (window.screen.height - 350) >= 505 ? 505 : (window.screen.height - 350), 
+									direction: 'right', 
+									showIcon: false, 
+									visible: true}">
+							<div tabindex="3" style="width: 300px"
+								data-bind="ntsSearchBox: {
+									searchMode: 'highlight',
+									targetKey: 'id', 
+									mode: 'igGrid',
+									comId: 'category-list-items', 
+									items: categoryList, 
+									selectedKey: 'id', 
+									placeHolder:'名称で検索…', 
+									fields: ['categoryName']}" />
+							<table id="category-list-items"
+								data-bind="ntsGridList: {								
+								rows: rowCategoryItems,
+								name: '#[CPS005_27]',
+								dataSource: categoryList,
+								primaryKey: 'id',
+								columns: [
+									 { headerText: '', key: 'id',  hidden: true },
+                					 { headerText: '#{i18n.getText('CPS005_4')}', key: 'categoryName', width: 283, formatter: _.escape }, 
+								],
+								multiple: false,
+								value: perInfoCtgSelectCode
+							}">
+							</table>
+						</div>
+					</div>
+					<div id="contents-area-left">
+						<div data-bind="with: currentCtgSelected">
+							<!-- perInfoCategory selection is not fixed  -->
+							<div data-bind="visible: !fixedIsSelected() ">
+								<div
+									class="valign-center control-group control-group-margin-custom">
+									<div
+										data-bind="ntsFormLabel: { constraint: ['CategoryName'], required: true }"
+										class="margin-right-FormLabel">
+										#{i18n.getText('CPS005_4')}
+									</div>
+									<input tabindex="4" id="category-name-control"
+										data-bind="ntsTextEditor: { name: '#[CPS005_4]', value: perInfoCtgName, constraint: 'CategoryName',
+												option: {
+									            	textmode: 'text',
+									            	placeholder: '',
+									            	width: '250px',
+									            	textalign: 'left'
+									            },
+												required: true,
+												enable: true,
+												readonly: false,
+												immediate: false}" />
+								</div>
+
+								<div class="valign-center control-group control-group-margin-custom" data-bind="visible: !$parent.isHisTypeUpdateModel()">
+									<div data-bind="ntsFormLabel: { required: true }" class="margin-right-FormLabel">
+										#{i18n.getText('CPS005_5')}
+									</div>
+									<div tabindex="5" class="custom-btn"
+										data-bind="ntsSwitchButton: {
+										name: '#[CPS005_5]',
+										options: $parent.historyClassification,
+										optionsValue: 'code',
+										optionsText: 'name',
+										value: historyClassSelected }">
+									</div>
+								</div>
+								
+								<div class="valign-center control-group control-group-margin-custom" data-bind="visible: $parent.isHisTypeUpdateModel()">
+									<div data-bind="ntsFormLabel: {}" class="margin-right-FormLabel">
+										#{i18n.getText('CPS005_5')}
+									</div>
+									<span class="label" data-bind="text: historyClassSelectedText"></span>
+								</div>
+
+								<!-- mapping CategoryType enum value = 3 or 4 or 5 . But using enum HistoryType to display -->
+								<div class="valign-center control-group control-group-margin-custom custom-img-1" data-bind="visible: historyTypesDisplay()">
+									<div data-bind="ntsFormLabel: { required: true }" class="margin-right-FormLabel">
+										#{i18n.getText('CPS005_6')}
+									</div>
+									<div tabindex="6" class="custom-btn"
+										data-bind="ntsSwitchButton: {
+										name: '#[CPS005_6]',
+										options: $parent.historyTypes,
+										optionsValue: 'value',
+										optionsText: 'localizedName',
+										value: historyTypesSelected,
+										enable: isChangeAbleCtgType }">
+									</div>
+									<button tabindex="7" data-bind="ntsHelpButton: {image: '../image/history_type.png', position: 'right top-103', enable: true }">?</button>
+								</div>
+
+								<!-- mapping CategoryType enum value = 1 or 2 -->
+								<div class="valign-center control-group control-group-margin-custom custom-img-2" data-bind="visible: !historyTypesDisplay()">
+								
+									<div data-bind="ntsFormLabel: { required: true }" class="margin-right-FormLabel">
+										#{i18n.getText('CPS005_7')}
+									</div>
+									
+									<div tabindex="8" class="custom-btn"
+										data-bind="ntsSwitchButton: {
+										name: '#[CPS005_7]',
+										options: $parent.singleMultipleType,
+										optionsValue: 'value',
+										optionsText: 'name',
+										value: singleMulTypeSelected,
+										enable: isChangeAbleCtgType }">
+									</div>
+									
+									<button tabindex="9" data-bind="ntsHelpButton: {image: '../image/singe_multi.png', position: 'right top', enable: true }">?</button>
+								</div>
+								
+							</div>
+
+							<!-- perInfoCategory selection is fixed  -->
+							<div data-bind="visible: fixedIsSelected() ">
+								<div class="valign-center control-group control-group-margin-custom">
+									<div data-bind="ntsFormLabel: { required: false }" class="margin-right-FormLabel">
+										#{i18n.getText('CPS005_4')}
+									</div>
+									<span class="label" data-bind="text: perInfoCtgName">Demo</span>
+								</div>
+
+								<div class="valign-center control-group control-group-margin-custom">
+									<div data-bind="ntsFormLabel: { required: false }" class="margin-right-FormLabel">
+										#{i18n.getText('CPS005_5')}
+									</div>
+									<span class="label" data-bind="text: historyFixedName "></span>
+								</div>
+
+								<!-- mapping CategoryType enum value = 3 or 4 or 5 . But using enum HistoryType to display -->
+								<div class="valign-center control-group control-group-margin-custom custom-img-1" data-bind="visible: historyTypesDisplay()">
+									<div data-bind="ntsFormLabel: { required: false }" class="margin-right-FormLabel">
+										#{i18n.getText('CPS005_6')}
+									</div>
+									<span class="label" data-bind="text: categoryTypeName "></span>
+									<button tabindex="10" data-bind="ntsHelpButton: {image: '../image/history_type.png', position: 'right top-103', enable: true }">?</button>
+								</div>
+
+								<!-- mapping CategoryType enum value = 1 or 2 -->
+								<div class="valign-center control-group control-group-margin-custom custom-img-2" data-bind="visible: !historyTypesDisplay()">
+									<div data-bind="ntsFormLabel: { required: false }" class="margin-right-FormLabel">
+										#{i18n.getText('CPS005_7')}
+									</div>
+									<span class="label" data-bind="text: categoryTypeName "></span>
+									<button tabindex="11" data-bind="ntsHelpButton: {image: '../image/singe_multi.png', position: 'right top', enable: true }">?</button>
+								</div>
+								
+							</div>
+						</div>
+						
+						<div>
+							<div class="valign-center control-group" id="group-item-setting">
+								<button tabindex="12" id="item-setting-button" data-bind="click: $parents[0].openDialogB.bind($parents[0]), enable: isEnableButtonOpenDialog()">#{i18n.getText('CPS005_9')}</button>
+								<table id="item-info-list"
+									data-bind="ntsGridList: {								
+									height: 230,
+									name: '#[CPS005_28]',
+									dataSource: currentCtgSelected().itemNameList,
+									primaryKey: 'itemName',
+									columns: [
+	                					 { headerText: '#{i18n.getText('CPS005_13')}', key: 'itemName', width: 280 }, 
+									],
+									value: ko.observable(),
+									multiple: false,
+									enable: false,
+								}">
+								</table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

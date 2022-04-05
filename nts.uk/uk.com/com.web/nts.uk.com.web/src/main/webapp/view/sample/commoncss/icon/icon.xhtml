@@ -1,0 +1,214 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 300, height: 200 };</script>
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:stylefile path="icon.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+				
+            </ui:define>
+            
+            <ui:define name="content">
+				<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Color</h1>
+						<article>
+							<h2>CSS Icon</h2>
+							<table class="table">
+								<colgroup>
+									<col width="210px" />
+									<col width="350px" />
+									<col width="*" />
+									<col width="*" />
+								</colgroup>
+								<thead>
+									<tr>
+										<th><h4>Name</h4></th>
+										<th><h4>Description</h4></th>
+										<th><h4>Demo</h4></th>
+										<th><h4>Using</h4></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Close</td>
+										<td>
+											Width: 16px<br/>
+											Heigth: 16px<br/>
+										</td>
+										<td><i class="icon icon-close"></i></td>
+										<td><pre><![CDATA[<i class="icon icon-close"></i>]]></pre></td>
+									</tr>
+									<tr>
+										<td>Dot</td>
+										<td>
+											Width: 16px<br/>
+											Heigth: 16px<br/>
+										</td>
+										<td><i class="icon icon-dot"></i></td>
+										<td><pre><![CDATA[<i class="icon icon-dot"></i>]]></pre></td>
+									</tr>
+									<tr>
+										<td>Search</td>
+										<td>
+											Width: 16px<br/>
+											Heigth: 16px<br/>
+										</td>
+										<td><i class="icon icon-search"></i></td>
+										<td><pre><![CDATA[<i class="icon icon-search"></i>]]></pre></td>
+									</tr>
+									<tr>
+										<td>SearchBox</td>
+										<td>
+											Width: 16px<br/>
+											Heigth: 16px<br/>
+											Don't use this alone. Must use inside a panel
+										</td>
+										<td><span class="relative label bg-green" style="height: 50px; width: 100px; margin: 20px 20px 0;"><i class="icon icon-searchbox"></i></span></td>
+										<td><pre><![CDATA[<i class="icon icon-searchbox"></i>
+<span class="relative label bg-green">
+	<i class="icon icon-searchbox"></i>
+</span>]]></pre></td>
+									</tr>
+								</tbody>
+							</table>
+						</article>
+						<article>
+							<h2>Image Icon</h2>
+							<table class="table">
+								<colgroup>
+									<col width="210px" />
+									<col width="350px" />
+									<col width="*" />
+									<col width="*" />
+								</colgroup>
+								<thead>
+									<tr>
+										<th><h4>Name</h4></th>
+										<th><h4>Description</h4></th>
+										<th><h4>Demo</h4></th>
+										<th><h4>Using</h4></th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Arrow Up</td>
+										<td>
+											Width: 24px<br/>
+											Heigth: 24px<br/>
+										</td>
+										<td>
+											<i class="img-icon icon-arrow-up"></i>
+											<button><i class="img-icon icon-arrow-up"></i></button>
+										</td>
+										<td><pre><![CDATA[<button><i class="img-icon icon-arrow-up"></i></button>]]></pre></td>
+									</tr>
+									<tr>
+										<td>Arrow Down</td>
+										<td>
+											Width: 24px<br/>
+											Heigth: 24px<br/>
+										</td>
+										<td>
+											<i class="img-icon icon-arrow-down"></i>
+											<button><i class="img-icon icon-arrow-down"></i></button>
+										</td>
+										<td><pre><![CDATA[<button><i class="img-icon icon-arrow-down"></i></button>]]></pre></td>
+									</tr>
+									<tr>
+										<td>Dơnload</td>
+										<td>
+											Width: 17px<br/>
+											Heigth: 16px<br/>
+										</td>
+										<td>
+											<i class="img-icon icon-download"></i>
+											<button>ダウンロード <i class="img-icon icon-download"></i></button>
+											<button class="proceed">Download <i class="img-icon icon-download"></i></button>
+										</td>
+										<td><pre><![CDATA[<button>ダウンロード <i class="img-icon icon-download"></i></button>]]></pre></td>
+									</tr>
+									<tr>
+										<td>Filter</td>
+										<td>
+											Width: 30px<br/>
+											Heigth: 28px<br/>
+										</td>
+										<td>
+											<i class="img-icon icon-filter label"></i>
+											<button class="auto-height"><i class="img-icon icon-filter label"></i></button>
+										</td>
+										<td><pre><![CDATA[<i class="img-icon icon-filter"></i>]]></pre></td>
+									</tr>
+									<tr>
+										<td>Next</td>
+										<td>
+											Width: 32px<br/>
+											Heigth: 26px<br/>
+										</td>
+										<td>
+											<i class="img-icon icon-next label"></i>
+											<button class="auto-height" style="width:75px;"><i class="img-icon icon-next label"></i></button>
+										</td>
+										<td><pre><![CDATA[<i class="img-icon icon-next"></i>]]></pre></td>
+									</tr>
+									<tr>
+										<td>Previous</td>
+										<td>
+											Width: 32px<br/>
+											Heigth: 26px<br/>
+										</td>
+										<td>
+											<i class="img-icon icon-prev label"></i>
+											<button class="auto-height" style="width:75px;"><i class="img-icon icon-prev label"></i></button>
+										</td>
+										<td><pre><![CDATA[<i class="img-icon icon-prev"></i>]]></pre></td>
+									</tr>
+									<tr>
+										<td>Next All</td>
+										<td>
+											Width: 52px<br/>
+											Heigth: 26px<br/>
+										</td>
+										<td>
+											<i class="img-icon icon-next-all label"></i>
+											<button class="auto-height" style="width:75px;"><i class="img-icon icon-next-all label"></i></button>
+										</td>
+										<td><pre><![CDATA[<i class="img-icon icon-next-all"></i>]]></pre></td>
+									</tr>
+									<tr>
+										<td>Previous All</td>
+										<td>
+											Width: 52px<br/>
+											Heigth: 26px<br/>
+										</td>
+										<td>
+											<i class="img-icon icon-prev-all label"></i>
+											<button class="auto-height" style="width:75px;"><i class="img-icon icon-prev-all label"></i></button>
+										</td>
+										<td><pre><![CDATA[<i class="img-icon icon-prev-all"></i>]]></pre></td>
+									</tr>
+								</tbody>
+							</table>
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

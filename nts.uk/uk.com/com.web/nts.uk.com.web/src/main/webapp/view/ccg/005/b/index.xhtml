@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<script>var dialogSize = { width: 535, height: 400 };</script>
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<com:ValidatorScript>
+				nts.uk.ctx.at.function.dom.attendancerecord.item.ItemName
+			</com:ValidatorScript>
+			<com:stylefile path="ccg005.b.style.css" />
+			<com:scriptfile path="ccg005.b.vm.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div class="contents-area" id="functions-area">
+        <div class="button-head">
+          <button id="A8_1" tabindex="7" class="large proceed" style="margin-left: 25px;" data-bind="click: onClickSave">#{i18n.getText('CCG005_2')}</button>
+          <button id="A8_2" tabindex="8" class="large" data-bind="click: onClickCancel" style="float: right; margin-right: 25px;">#{i18n.getText('CCG005_3')}</button>
+        </div>
+        <div class="text">
+          <span style="font-size: larger;">#{i18n.getText('CCG005_4')}</span>
+        </div>
+        <div style="margin-top: 15px; position: relative; height: 250px;">
+          <div class="table-ccg005-b table-left">
+            <table id="single-list" data-bind="ntsGridList: {
+              width: 240,
+              height: 240,
+              options: lstRole,
+              optionsValue: 'name',
+              primaryKey: 'roleId',
+              columns: columns,
+              multiple: false,
+              value: selectedRole
+            }"></table>
+          </div>
+  
+          <div class="table-ccg005-b table-right">
+            <table id="grid"></table>
+          </div>
+        </div>
+			</div>
+		</ui:define>
+
+	</ui:composition>
+
+</body>
+
+</html>

@@ -1,0 +1,9 @@
+#table-permission {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#table-permission .description {
+	display: inline-block;
+	white-space: nowrap;
+}

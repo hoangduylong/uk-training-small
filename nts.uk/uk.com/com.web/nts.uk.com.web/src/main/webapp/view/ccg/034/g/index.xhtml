@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:com="http://xmlns.jcp.org/jsf/component"
+  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+  <ui:composition template="../../../../master/dialog.xhtml">
+
+    <!-- head -->
+    <ui:define name="htmlHead">
+      <script>
+        var dialogSize = { width: 700, height: 375 };
+      </script>
+      <com:ValidatorScript>
+        nts.uk.ctx.sys.portal.dom.toppagepart.createflowmenu.DisplayName
+        nts.uk.ctx.sys.portal.dom.toppagepart.createflowmenu.FontSize
+        nts.uk.ctx.sys.portal.dom.toppagepart.createflowmenu.URL
+      </com:ValidatorScript>
+      <com:stylefile path="ccg034.g.style.css" />
+      <com:scriptfile path="ccg034.g.vm.js" />
+      <com:scriptfile path="/view/ccg/034/share/model.js" />
+      <com:scriptfile set="IGNITE" />
+    </ui:define>
+
+    <!-- content -->
+    <ui:define name="content">
+      <div id="contents-area">
+        <div class="div-line flex valign-center">
+          <!-- G1_1 メニュー表示名称(ラベル) -->
+          <div id="G1_1" class="column-label" data-bind="ntsFormLabel: { constraint: 'DisplayName' }">${i18n.getText('CCG034_88')}</div>
+          <!-- G1_2 メニュー表示名称 -->
+          <input id="G1_2" class="column-value" data-bind="ntsTextEditor: {
+            name: '#[CCG034_88]',
+            value: linkName,
+            constraint: 'DisplayName',
+            required: false,
+            enable: true
+          }" tabindex="1" />
+        </div>
+        <div class="div-line flex valign-center">
+          <!-- G2_1 メニュー表示名称(ラベル) -->
+          <div id="G2_1" class="column-label" data-bind="ntsFormLabel: { required: true, constraint: 'URL' }">${i18n.getText('CCG034_89')}</div>
+          <!-- G2_2 メニュー表示名称 -->
+          <input id="G2_2" class="column-value" data-bind="ntsTextEditor: {
+            name: '#[CCG034_89]',
+            value: url,
+            constraint: 'URL',
+            required: true,
+            enable: true,
+            option: { width: '470px' }
+          }" tabindex="2" />
+        </div>
+        <div class="div-line flex valign-center">
+          <!-- G3_1 文字サイズ(ラベル) -->
+          <div id="G3_1" class="column-label" data-bind="ntsFormLabel: { required: true, constraint: 'FontSize' }">${i18n.getText('CCG034_90')}
+          </div>
+          <!-- G3_2 文字サイズ -->
+          <div class="column-value">
+            <input id="G3_2" class="column-value" data-bind="ntsNumberEditor: {
+              name: '#[CCG034_90]',
+              value: fontSize,
+              constraint: 'FontSize',
+              required: true,
+              enable: true,
+              option: { width: '20px' }
+            }" tabindex="3"></input>
+          </div>
+          <!-- G3_3 太字指定 -->
+          <div id="G3_3" class="column-value" data-bind="ntsCheckBox: { checked: isBold, enable: true, text: $vm.$i18n('CCG034_53')}" tabindex="4"></div>
+        </div>
+        <div class="div-line">
+          <!-- G4_1 文字位置(ラベル) -->
+          <div id="G4_1" class="column-label" data-bind="ntsFormLabel: {  }">${i18n.getText('CCG034_91')}</div>
+          <!-- G4_2 左右位置 -->
+          <div id="G4_2" class="column-value" data-bind="ntsRadioBoxGroup: {
+           name: '#[CCG034_92]',
+           options: horizontalAlignList,
+           optionsValue: 'code',
+           optionsText: 'name',
+           value: horizontalAlign,
+           enable: true
+          }" tabindex="5"></div>
+          <!-- G4_3 左右位置 -->
+          <div id="G4_3" class="column-value" data-bind="ntsRadioBoxGroup: {
+            name: '#[CCG034_96]',
+            options: verticalAlignList,
+            optionsValue: 'code',
+            optionsText: 'name',
+            value: verticalAlign,
+            enable: true
+           }" tabindex="6"></div>
+        </div>
+      </div>
+      <div id="functions-area-bottom">
+        <!-- G20_1 決定 -->
+        <button class="large proceed" tabindex="7" data-bind="click: updatePartDataAndCloseDialog">#{i18n.getText('CCG034_100')}</button>
+        <!-- G20_2 閉じる -->
+        <button class="large" tabindex="8" data-bind="click: closeDialog">#{i18n.getText('CCG034_101')}</button>
+      </div>
+    </ui:define>
+  </ui:composition>
+</body>
+
+</html>

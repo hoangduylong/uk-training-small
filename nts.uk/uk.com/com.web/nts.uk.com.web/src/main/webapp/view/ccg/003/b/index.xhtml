@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+  <ui:composition template="../../../../master/dialog.xhtml">
+    <ui:define name="htmlHead">
+      <script>var dialogSize = { width: 515, height: 360 };</script>
+      <com:scriptfile set="IGNITE" />
+      <com:stylefile path="ccg003.b.style.css" />
+      <com:scriptfile path="ccg003.b.vm.js" />
+    </ui:define>
+
+    <ui:define name="content">
+      <div id="contents-area">
+        <table id="expand-example">
+          <thead>
+            <!-- B1 お知らせ内容 -->
+            <tr class="bg-green border">
+              <td class="align-center" style="width: 100px;">
+                  <!-- B2_1 表示期間(ラベル) -->
+                  <span id="B2_1" class="auto-margin">#{i18n.getText('CCG003_11')}</span>
+              </td>
+              <td class="align-center">
+                <div class="margin-date-picker">
+                  <!-- B2_2 表示期間 -->
+                  <div id="B2_2" tabindex="1" class="ml-10" data-bind="ntsDateRangePicker: {
+                    required: true,
+                    enable: true,
+                    name: $i18n('CCG003_11'),
+                    showNextPrevious: false,
+                    value: dateValue,
+                    maxRange: 'oneYear'}"
+                  ></div>
+                  <!-- B3 検索 -->
+                  <button id="B3" tabindex="2" class="small pl-10 pr-10" data-bind="click: onClickSearch">#{i18n.getText('CCG003_12')}</button>
+                </div>
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-groove">
+              <td colspan="2">
+                <div class="table-overflow">
+                  <table class="wp-100">
+                    <tbody>
+                      <!-- B4 メッセージ一覧 -->
+                      <com:ko-foreach bind="itemList">
+                        <tr class="h-30">
+                          <!-- B4_1 表示期間 -->
+                          <th class="pl-10">
+                            <span data-bind="text: ymDisplay"></span>
+                          </th>
+                          <!-- B4_2 メッセージ内容 -->
+                          <th class="pl-10">
+                            <a class="blue-link w-300" style="display: inline-block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"
+                              data-bind="text: content, click: $vm.onClickTargetLink.bind($vm, $data)"></a>
+                          </th>
+                        </tr>
+                      </com:ko-foreach>
+                    </tbody>
+                  </table>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div id="functions-area-bottom" style="border: none !important;">
+        <div style="height: 30px; margin-left: 12px; margin-right: 25px;">
+          <!-- B20_1 新規 -->
+          <button tabindex="4" id="B20_1" class="pl-15 pr-15 left" data-bind="click: openScreenCInNewMode">#{i18n.getText('CCG003_13')}</button>
+          <!-- B20_3 閉じる -->
+          <button tabindex="5" id="B20_3" class="right" style="min-width: 50px !important;" data-bind="click: closeDialog">#{i18n.getText('CCG003_14')}</button>
+        </div>
+      </div>
+    </ui:define>
+  </ui:composition>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:com="http://xmlns.jcp.org/jsf/component">
+
+<body>
+  <ui:composition template="../../../../master/base.xhtml">
+    <ui:define name="htmlHead">
+      <com:scriptfile set="IGNITE" />
+      <com:scriptfile path="cmf004.j.vm.js" />
+      <com:scriptfile path="cmf004.j.service.js" />
+      <com:stylefile path="cmf004.j.style.css" />
+    </ui:define>
+
+    <ui:define name="content">
+      <div id="functions-area">
+        <!--J1_1 操作選択に戻る-->
+        <a id="J1_1" class="goback"
+          data-bind="ntsLinkButton: { jump: '../a/index.xhtml' }">#{i18n.getText('CMF004_20')}</a>
+      </div>
+      <div id="contents-area">
+        <div class="content">
+          <div class="div-line">
+            <!-- J2_1 画面タイトル -->
+            <label id="J2_1">#{i18n.getText('CMF004_222')}</label>
+          </div>
+          <div class="div-line">
+            <!-- J2_2 カテゴリパネル -->
+            <div id="J2_2" data-bind="ntsPanel: {height: '200px', direction: 'none', showIcon: true }"
+              class="search-panel">
+              <div class="flex">
+                <!-- J2_3 実行期間 -->
+                <div id="J2_3" class="div-column-1 flex" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_223')}
+                </div>
+                <div class="ntsControl">
+                  <!-- J2_4 検索期間入力 -->
+                  <div id="J2_4" class="flex valign-center div-column-2" data-bind="ntsDateRangePicker: { 
+                      name: '#[CMF004_224]',
+                      enable: true, 
+                      type: 'fullDate',
+                      value: dateValue,
+                    }" tabindex="1">
+                  </div>
+                </div>
+              </div>
+              <div class="flex save-set-grid">
+                <!-- J2_5 保存セット -->
+                <div id="J2_5" class="div-column-1 flex" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF004_225')}
+                </div>
+                <div>
+                  <!-- J3_1 保存セット一覧 -->
+                  <table id="J3" data-bind="ntsGridList: {
+                    height: 130,
+                    dataSource: $vm.searchItems,
+                    primaryKey: 'rowNumber',
+                    columns: $vm.columnHeaders,
+                    multiple: false,
+                    value: $vm.searchValue,
+                    rows: 5
+                  }" style="float: right;">
+
+                  </table>
+                </div>
+                <!-- J5_1 検索ボタン -->
+                <button id="J5_1" class="large div-column-3 valign-bottom search-button"
+                  data-bind="click: startFindData, enable: searchValue" tabindex="2">#{i18n.getText('CMF004_229')}</button>
+              </div>
+            </div>
+          </div>
+          <div class="div-line">
+            <div class="compact-grid">
+              <!-- J6_1 保存結果一覧(list kết quả save) -->
+              <div id="J6"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ui:define>
+  </ui:composition>
+</body>
+
+</html>

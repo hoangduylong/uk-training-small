@@ -1,0 +1,166 @@
+/*****************************
+  Overwrite JQueryUI
+*****************************/
+.ui-widget,
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+	font-family: $font_family;
+}
+
+/*****************************
+  Helper Class
+*****************************/
+.hidden {display: none !important;}
+.invisible {visibility: hidden !important;}
+.relative {position: relative !important;}
+.absolute {position: absolute !important;}
+.pull-left {float: left;}
+.pull-right {float: right;}
+.control-group.valign-center > * { vertical-align: middle; }
+.control-group.valign-top > * { vertical-align: top; }
+.control-group.valign-bottom > * { vertical-align: bottom; }
+.halign-left { text-align: left; }
+.halign-right { text-align: right; }
+.halign-center { text-align: center; }
+.bg-green { background-color: $green_background_color; }
+.bg-yellow { background-color: $yellow_background_color; }
+.color-proceed { color:$activated_color; }
+.color-danger { color:$red_warning_color; }
+.container {
+	width: 1200px;
+	&:before, &:after {content: " "; display: table;}
+	&:after {clear:both;}
+}
+.flex {
+	display:flex;
+	.item{ flex:1; }
+	&.valign-center{ align-items: center; }
+}
+.table {
+	display: table;
+	.cell {
+		display: table-cell;
+		&.valign-center { vertical-align: middle; }
+		&.valign-bottom { vertical-align: bottom; }
+		&.valign-top { vertical-align: top; }
+	}
+}
+.disappear {
+	position: absolute !important;
+	visibility: hidden !important;
+	top: -99999px !important;
+	left: -99999px !important;
+	overflow: hidden !important;
+}
+
+/*****************************
+  ntsControl
+*****************************/
+.control-group { margin-bottom: 10px; }
+.ntsControl { display: inline-block; }
+
+/*****************************
+  NtsPopupPanel
+*****************************/
+div.popup-panel {
+	position: absolute;
+	background-color: #fff;
+	border: solid 1px #aaa;
+	@include box-shadow(1px 1px 5px 1px #888);
+	padding: 5px;
+}
+
+/*****************************
+  NtsError
+*****************************/
+.ntsControl.error {
+	.nts-editor, .ntsDatepicker, .sp-replacer {
+		border-color:#ff6666;
+	}
+}
+
+.ui-igcombo.error {
+	border-color:#ff6666;
+}
+.checkbox-wrapper.error {
+	border: 1px solid #ff6666;
+}
+.multicheckbox-wrapper.error {
+	border: 1px solid #ff6666;
+}
+/*****************************
+  ErrorNotifier
+*****************************/
+#func-notifier-errors {
+	position: absolute;
+	display: none;
+	z-index: 10005;
+	
+	@include border-radius(5px);
+	padding: 1px 17px 3px 17px;
+	font-weight: bold;
+	border: solid 1px #eaa;
+	
+	background-color: #ffdddd;
+	color: #dd3a3a;
+	cursor: pointer;
+
+	&:hover {
+		background-color: #ffcccc;
+		color: #cc2222;
+		border-color: #cc2222;
+	}
+	
+	&.shown {
+		display: inline-block;
+	}
+}
+
+
+/*****************************
+  Label
+*****************************/
+.label {
+	display: inline-block;
+	box-sizing: border-box;
+	
+	&.warning {
+		padding: 15px 10px;
+		font-size: 1.2rem;
+		background-color: $yellow_background_color;
+		color: $red_warning_color;
+	}
+	
+	&.with-image {
+		padding: 5px 10px 5px 5px;
+		border-radius: 5px;
+		background-color: $green_background_color;
+		color: $activated_color;
+		
+		.image {
+			vertical-align: middle;
+			margin-right: 10px;
+		}
+	}
+}
+div.label {
+	width: 100%;
+}
+.pre {
+    white-space: pre-wrap;
+}
+
+*.unselectable {
+   -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+
+   /*
+     Introduced in IE 10.
+     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+   */
+   -ms-user-select: none;
+   user-select: none;
+}

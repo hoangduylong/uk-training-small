@@ -1,0 +1,22 @@
+.control-label {
+  overflow: hidden;
+  padding-left: unset;
+  max-height: 35px;
+  line-height: 35px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  border-left: unset;
+}
+
+#bottom-label {
+  white-space: pre-wrap;
+  line-height: initial;
+}
+
+.m-t-10 {
+  margin-top: 10px;
+}
+
+.mt-2i {
+  margin-top: 2rem !important;
+}

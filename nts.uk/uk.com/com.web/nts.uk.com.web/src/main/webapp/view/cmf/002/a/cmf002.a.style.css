@@ -1,0 +1,46 @@
+.title-left {
+	margin-left: 20px;
+	vertical-align: 20px;
+}
+
+.title-right {
+	margin-right: 10px;
+	vertical-align: 12px;
+	padding-bottom: 20px;
+	float: right;	
+}
+
+.image-left{
+	float: left;
+	margin-right: 20px;
+}
+.clear {
+	clear: both;
+}
+
+.import-creation {
+	background-image: url("../resource/外部出力A1.jpg");
+	background-size: 100%;
+	height: 254px;
+	width: 264px;
+	background-repeat: no-repeat;
+	margin-left: 20px;
+}
+
+.setting-creation {
+	background-image: url("../resource/外部出力A2.jpg");
+	background-size: 100%;
+	height: 254px;
+	width: 274px;
+	background-repeat: no-repeat;
+	margin-left: 20px;
+}
+
+.history-reference {
+	background-image: url("../resource/外部出力A3.jpg");
+	background-size: 100%;
+	width: 320px;
+	height: 110px;
+	background-repeat: no-repeat;
+	margin-left: 20px;
+}

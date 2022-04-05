@@ -1,0 +1,6 @@
+#contents-area .cf{padding: 10px 0 10px 40px;}
+#contents-area{padding-top:25px;}
+#contents-area .cf .left{float:left; width:160px;}
+#contents-area .cf .right{float:left;}
+#contents-area .cf .right input, #contents-area .cf .right #text{width: 615px!important;}
+#contents-area .cf .right #wording{width: 650px; margin-top: 10px;}

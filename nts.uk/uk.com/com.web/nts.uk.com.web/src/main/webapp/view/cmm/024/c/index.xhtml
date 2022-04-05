@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+    <ui:composition template="../../../../master/dialog.xhtml">
+        <ui:define name="htmlHead">
+            <script>
+                var dialogSize = {
+                    width: 540,
+                    height: 350
+                };
+            </script>
+            <com:scriptfile set="IGNITE" />
+            <com:stylefile path="cmm024.c.main.css" />
+            <com:scriptfile path="../a/cmm024.a.common.js" />
+            <com:scriptfile path="cmm024.c.vm.js" />
+        </ui:define>
+        <ui:define name="content">
+            <div id="contents-area" class="cmm024-c">
+                <div class="title">#{i18n.getText('CMM024_20')}</div>
+                <div class="row">
+                    <div class="col-left" data-bind="ntsFormLabel: { required: true}">#{i18n.getText('CMM024_21')}</div>
+                    <div class="col-right">
+                        <div class="date-col">
+                            <div tabindex="1" data-bind="ntsDatePicker: {
+                            value: newStartDate,
+                            required: true,
+                            dateFormat: 'YYYY/MM/DD',
+							valueFormat: 'YYYY/MM/DD',
+                            startDate: beginStartDate,
+                            enable: true,
+                            name: '#{i18n.getText('CMM024_22')}'}"></div>
+                        </div>
+                        <div class="date-col end-date-label">
+                            <label data-bind="text: '#{i18n.getText('CMM024_23')}' "></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-left" data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CMM024_24')}</div>
+                    <div class="col-right">
+                        <div tabindex="2" data-bind="ntsRadioBoxGroup: {
+                                    options: registrationHistory,
+                                    optionsValue: 'id',
+                                    optionsText: 'name',
+                                    value: registrationHistoryType,
+                                    required: true,
+                                    enable: true,
+                                    name: '#{i18n.getText('CMM024_25')}'}"></div>
+                    </div>
+                </div>
+            </div>
+            <div id="functions-area-bottom" class="btn-click">
+                <button tabindex="4" data-bind="click: proceed, enable: $root.errors.isEmpty"
+                    class="proceed large">#{i18n.getText('CMM024_28')}</button>
+                <button tabindex="5" data-bind="click: cancel">#{i18n.getText('CMM024_29')}</button>
+            </div>
+        </ui:define>
+    </ui:composition>
+</body>
+
+</html>

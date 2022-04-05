@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+				<com:stylefile path="../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../catalog/catalog.js" />
+            </ui:define>
+            
+            <ui:define name="content">
+				<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Limited label</h1>
+						<article>
+							<h2>"limited-label" class</h2>
+							<p>We limit length of text that user can input, but we can not control "physical length" of shown texts on screen.
+							For example:</p>
+							
+							<div style="border: solid 1px #888; padding: 10px; margin: 10px;">
+								<div>1234567890</div>
+								<div>WWWWWWWWWW</div>
+							</div>
+							
+							<p>So when you write code to show texts that is input by user, use "limited-label":
+							</p>
+							
+<pre><![CDATA[<!-- When width is specified by itself -->
+<span class="limited-label" style="width: 100px;">WWWWWWWWWW</span>
+
+<!-- When it is wrapped by container that has specified width -->
+<div id="wrapper" style="width: 100px;">
+    <span class="limited-label">WWWWWWWWWW</span>
+</div>]]></pre>
+							<div class="feature-box">
+								<div class="content">
+									<div class="label" style="margin-bottom: 15px; font-weight: bold;">Demo limited-label</div>
+									<div class="control-group valign-center">
+										<div style="border: solid 1px #aaa; padding: 10px; margin: 10px;">
+											<div><span class="limited-label" style="width: 100px;">1234567890</span></div>
+											<div><span class="limited-label" style="width: 100px;">WWWWWWWWWW</span></div>
+										</div>
+										If text is limited, all text is shown when mouse over.
+										<hr />
+										
+										If the texts is wrapped by any frames:
+										<div style="border: solid 1px #aaa; padding: 10px; margin: 10px; width: 100px;">
+											<span class="limited-label">1234567890</span>
+										</div>
+										<div style="border: solid 1px #aaa; padding: 10px; margin: 10px; width: 100px;">
+											<span class="limited-label">WWWWWWWWWW</span>
+										</div>
+										<input type="text" class="limited-label" readonly="readonly" style="width: 100px;" value="WWWWWWWWWW"/>
+										<br/>
+										Actually ".limited-label" has default CSS: "width: 100%".
+									</div>
+								</div>
+							</div>
+						</article>
+						
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

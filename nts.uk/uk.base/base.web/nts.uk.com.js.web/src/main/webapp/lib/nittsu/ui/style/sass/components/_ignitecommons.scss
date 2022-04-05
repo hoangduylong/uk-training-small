@@ -1,0 +1,85 @@
+@mixin iggridstyle {
+	table {
+		tr {
+			&, &.ui-state-focus, &.ui-ig-altrecord.ui-state-focus {
+				th.ui-widget-header {
+					color: $font_color;
+					background-color: #CFF1A5;
+				}
+			}
+			
+			td, th {
+			    font: {
+			        size: $normal_font_size;
+			        family: $font_family_monospace;
+			    }
+			    
+			    &, &.ui-iggrid-header, &.ui-state-hover, &.ui-state-active, &.ui-state-focus, &.ui-state-active.ui-state-focus {
+			    	padding: 0 2px;
+			    	border: 1px solid #CCC;
+			    }
+			}
+		}
+		thead tr {
+			background-color: #CFF1A5;
+		}
+		tr{
+			background-color: #FFFFFF;
+		}
+		.ui-ig-altrecord {
+			background-color: #FFFFFF;
+		}
+		
+		.ui-igcheckbox-normal{
+			position: relative !important;
+		}
+		.ui-igcheckbox-normal-on{
+			position: absolute !important;
+		}
+		
+		.ui-iggrid-indicatorcontainer {
+		    margin-top: calc(1em - 8px);
+		}
+		
+		.ui-iggrid-hiding-indicator, .ui-iggrid-hiding-hiddencolumnindicator {
+			display: none;
+		}
+	}
+}
+
+@mixin iggridrowselector {
+	table tr {
+		
+		.ui-state-highlight {
+			border-color: #CCC;
+			color: inherit;
+			background-color: inherit;
+			
+		}
+		
+		.ui-state-active {
+			font-weight: 700;
+			color: #30CC40;
+			background: linear-gradient(0deg, rgba(68, 224, 140, 0.1), rgba(68, 224, 140, 0.1)), #FFFFFF;
+			box-shadow: 0px 8px 10px rgba(22, 154, 28, 0.1);
+		}
+		
+		&, &.ui-state-focus, &.ui-ig-altrecord.ui-state-focus {
+			td, th {
+				&.ui-state-hover {
+					color: #30CC40;
+					background: linear-gradient(0deg, rgba(68, 224, 140, 0.1), rgba(68, 224, 140, 0.1)), #FFFFFF;			
+				}
+			}
+				
+			.ui-state-active .ui-icon {
+				background-image: url(../images/ui-icons_444444_256x240.png);
+			}
+		}	
+	}
+}
+
+.ui-iggrid-table {
+	/* for IE */
+	background-color: #F3F3F3 !important;
+}

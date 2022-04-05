@@ -1,0 +1,32 @@
+.div-line {
+  margin-left: 20px;
+  margin-bottom: 20px;
+  display: flex;
+}
+.column-label {
+  width: 150px;
+}
+.column-value {
+  width: 120px;
+}
+.size-zone {
+  margin-left: 180px;
+}
+#H2_2 .filenamelabel {
+  display: inline !important;
+}
+#H2_2 .nts-editor-wrapped {
+  display: none !important;
+}
+#H2_3 {
+  margin-left: 50px;
+}
+.radio-wrapper .ntsRadioBox {
+  margin: 3px 0px;
+}
+.div-line:last-child {
+  margin-bottom: 0px !important;
+}
+#H2_4, #H4_3 {
+  width: 140px;
+}

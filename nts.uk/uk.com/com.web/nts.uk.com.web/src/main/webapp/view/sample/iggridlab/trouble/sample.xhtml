@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:com="http://xmlns.jcp.org/jsf/component"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<body>
+		
+		<ui:composition template="../../../../master/base.xhtml">
+			<ui:define name="htmlHead">
+				<script>var dialogSize = { width: 300, height: 200 };</script>
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile set="IGNITE" />
+				<com:scriptfile path="/lib/generic/igniteui/js/extensions/infragistics.datasource.knockoutjs.js"  of="/nts.uk.com.js.web"/>
+				<com:scriptfile path="/lib/generic/igniteui/js/extensions/infragistics.ui.grid.knockout-extensions.js"  of="/nts.uk.com.js.web"/>
+				<!-- <com:scriptfile path="../../catalog/catalog.js" /> -->		
+				<com:scriptfile path="start.js" />
+				<style>
+					
+					table td, th {
+						border: 1px solid black;
+					}
+				    table th {
+				    	background-color:greenyellow;
+				        text-align: center;
+				    }
+				    table td {
+				    	vertical-align: top;
+				        
+				    }
+				    
+				    table {
+				    	width: auto;
+				    }
+				    
+				    #container{
+				    	width: 1600px;
+					    overflow-x: auto;
+				    }
+								
+				</style>
+			</ui:define>
+			
+			<ui:define name="content">
+				<div id="functions-area"></div>
+				<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Ignite Ui: Trouble shooting</h1>
+						<article class="cf">
+							
+							<div id="trouble" class="cf">
+								<h2>Trouble shooting</h2>
+								<div id="container">
+									<table>
+										<colgroup>
+											<col width="30px" />
+											<col width="300px"/>
+											<col width="300px"/>
+											<col width="900px"/>
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h2>No</h2></th>
+												<th><h2>Descriptions</h2></th>
+												<th><h2>Resolve</h2></th>
+												<th><h2>Sample</h2></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>No 1</td>
+												<td>When create grid in dialog with javascript code, If the javascript code almost does nothing, process is very fast, before the dialog is opened, the grid has a some calculation logics that is incorrect.</td>
+												<td>
+													Use _.defer in __viewContext.ready. Sample (From KAL001): <br/>
+		  <pre>__viewContext.ready(function() {
+		        let param =  nts.uk.ui.windows.getShared("extractedAlarmData");
+		        let screenModel = new viewmodel.ScreenModel(param);
+		
+		        _.defer(function (){
+		            screenModel.startPage().done(function() {
+		                __viewContext.bind(screenModel);            
+		                $("#grid").igGrid("option", "dataSource", extractedAlarmData);
+		//            screenModel.dataSource= extractedAlarmData;
+		            });
+		        });
+		    });</pre>
+												</td>
+												<td>
+													<IMG alt="No 1" src="no1.png" />
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+					</div>
+		   		</div>
+			</ui:define>
+		</ui:composition>
+   	</body>
+</html>

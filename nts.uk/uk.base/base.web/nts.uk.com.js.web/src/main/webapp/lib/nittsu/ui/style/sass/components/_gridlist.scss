@@ -1,0 +1,197 @@
+@import "_ignitecommons.scss";
+
+.ui-iggrid {
+	@include iggridstyle();
+	@include iggridrowselector();
+		
+	cursor: default;
+}
+
+.nts-gridlist {
+	 /* overflow: hidden; */
+	.ui-icon-triangle-1-e {
+		display : none;
+	}
+
+	&.ui-iggrid {
+		outline: none;
+		border-radius: 2px;
+		border: 1px solid #EAE8F2 !important;
+		//border-top: 3px solid #CFF1A5 !important;
+		// conflict with set option size of igGrid
+		// height: auto !important;
+
+		&:focus {
+			border-color: $focused_color !important;
+			box-shadow: 0 0 0 2px lighten($color: $focused_color, $amount: 30);			
+		}
+
+		table {
+			&.ui-iggrid-headertable {
+				//line-height: 1.6;
+			}
+			
+			.ui-iggrid-tablebody {
+				td {
+					height: 21px;
+				}	
+			}
+		
+			th,
+			th.ui-iggrid-header {
+				padding: 0;
+				outline: none;
+				border: 1px solid transparent;				
+			}
+
+			col[data-role="rs"] {
+				min-width: 25px;
+			}
+
+			th.ui-widget-header {
+				//padding: 5px 0;
+				color: #4A4A58;
+				text-align: center;
+				background-color: transparent;
+				position: relative;
+				box-sizing: border-box;
+
+				&:not(:last-child) {
+					&::after {
+						content: '';
+						display: block;
+						top: calc(50% - 8px);
+						right: 0px;
+						width: 1px;
+						height: 16px;
+						position: absolute;
+						border-right: 1px solid #EAE8F2;
+					}
+				}
+			}
+
+			th,
+			td {
+				.ui-igcheckbox-normal {
+					cursor: pointer;
+					outline: none;
+					width: 20px;
+					height: 20px;
+					box-sizing: border-box;
+					display: block;
+					background: transparent;
+					border-radius: 2px;
+					border: 2px solid #30CC40;
+					margin-right: 2px;
+
+					&:focus {
+						border-color: #30CC40 !important;
+						box-shadow: 0 0 0 2px lighten($color: #30CC40, $amount: 30);								
+					}
+
+					&::after {
+						top: 4px;
+						left: 3px;
+						width: 11px;
+						height: 6px;
+						transform: rotate(-59deg);
+						box-sizing: border-box;
+						position: absolute;
+						border: 2px solid #fff;
+						border-top: none;
+						border-right: none;
+					}
+
+					&[data-chk="on"] {
+						background-color: #30CC40;
+						&::after {
+							content: '';
+						}
+					}
+
+					&[data-chk="off"] {
+						background-color: transparent;
+					}
+
+					.ui-icon {
+						display: none;
+					}
+				}
+			}
+
+			div.ui-widget-header {
+				width: 100% !important;
+				border-bottom: 1px solid #EAE8F2 !important;
+			}
+
+			.ui-iggrid-record {
+				tr,
+				th,
+				td {
+					padding: 0;
+					outline: none;
+					border: 1px solid transparent;
+					box-sizing: border-box;
+
+					&:not(.ui-iggrid-rowselector-class) {
+						//padding: 7px 5px;
+					}
+				}
+
+				th,
+				td {
+					position: relative;
+
+					&:not(:last-child) {
+						&::after {
+							content: '';
+							display: block;
+							top: calc(50% - 8px);
+							right: 0px;
+							width: 1px;
+							height: 16px;
+							position: absolute;
+							border-right: 1px solid #EAE8F2;
+						}
+					}
+				}
+
+				.ui-state-hover {
+					color: #30CC40;
+					background: linear-gradient(0deg, rgba(68, 224, 140, 0.1), rgba(68, 224, 140, 0.1)), #FFFFFF;					
+				}
+
+				.ui-state-active {
+					font-weight: 700;
+					color: #30CC40;
+					background: linear-gradient(0deg, rgba(68, 224, 140, 0.1), rgba(68, 224, 140, 0.1)), #FFFFFF;
+					box-shadow: 0px 8px 10px rgba(22, 154, 28, 0.1);
+				}
+			}
+
+			.row-disable {
+				background-color: #CCC;
+			}
+
+			// div[id$=_scrollContainer] {
+			//	 width: 17px !important;
+			// }
+		}
+	}
+}
+
+.ui-iggrid .nts-gridlist tbody td {
+   white-space: pre; 
+}
+
+.ui-iggrid-tooltip {
+  /* max-width: 500px !important; */
+  display: table;
+  max-width: none !important;
+}
+
+
+/* fix for header column width not map with column width in body */
+.ui-iggrid-headertable {
+  max-width: 100% !important;
+}

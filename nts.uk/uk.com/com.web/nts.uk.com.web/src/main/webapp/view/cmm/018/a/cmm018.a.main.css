@@ -1,0 +1,301 @@
+.contents-area {
+	
+}
+
+.contents-area-tabpanel-3 {
+	
+}
+
+.dateControlBtn {
+	width: 80px;
+	margin-top: 10px;
+}
+
+.dateControlBtn:FIRST-CHILD {
+	margin-left: 10px;
+}
+
+.dateControlBtn:LAST-CHILD {
+	margin-left: 40px;
+}
+
+#sidebar-area {
+	width: 60px;
+}
+
+#left-contents {
+	width: 260px;
+}
+
+.contents-header td {
+	padding: 5px 3px;
+}
+
+.contents-header {
+	width: 920px;
+}
+
+.td-first-bg {
+	background-color: #E0F59E !important;
+}
+
+table.contents-header td.name {
+	width: 100px;
+}
+
+table.contents-header td.button_phase {
+	text-align: center;
+	padding: 5px 5px;
+}
+
+table.contents-header td.base-date {
+	width: 150px;
+}
+
+table.contents-header td.allow-pay {
+	width: 45px;
+	text-align: center;
+}
+
+table.contents-header thead tr th {
+	text-align: center;
+}
+
+.modeB {
+	color: #000;
+	font-weight: bold;
+	background-color: #CFF1A5;
+	padding: 0 2px;
+	border: 1px solid #CCC;
+}
+
+.fixName {
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.overflow-visible {
+	overflow: visible !important;
+}
+.aaa{
+	 text-overflow: clip !important;
+}
+#grid_matome_virtualContainer {
+	border:1px solid #dddddd
+}
+.button-delete {
+	background-image: url(../images/137.png);
+	width:32px;
+	height:32px;
+}
+.text-format{
+	white-space: nowrap;
+}
+
+table#grid_matome tbody td {
+	white-space: nowrap;
+	font-size: 14px;
+	font-style: Meiryo;
+}
+.approver{
+	height: calc(100% - 23px);
+}
+.from {
+	height: 23px;
+}
+
+/* COLUMN APPNAME */
+.nts-grid-wrapper table tr td.ui-state-hover.appNameBgColor {
+	background-color: #CFF1A5;
+}
+.appNameBgColor {
+	background-color: #CFF1A5;
+}
+/* PHASE SETTING */
+table#grid_matome tr td.ui-state-hover.phaseBgColor {
+	background-color: #C5F1F7;
+}
+table#grid_matomeC tr td.ui-state-hover.phaseBgColor {
+	background-color: #C5F1F7;
+}
+table#grid_matomeE tr td.ui-state-hover.phaseBgColor {
+	background-color: #C5F1F7;
+}
+.phaseBgColor{
+	background-color: #C5F1F7;
+}
+/* PHASE NOT SETTING */
+table#grid_matome tr td.ui-state-hover.phaseBgColorNot {
+	background-color: white;
+}
+table#grid_matomeC tr td.ui-state-hover.phaseBgColorNot {
+	background-color: white;
+}
+table#grid_matomeE tr td.ui-state-hover.phaseBgColorNot {
+	background-color: white;
+}
+.phaseBgColorNot{
+	background-color: white;
+}
+/* APPROVER */
+.approver-line {
+	margin: 3px;
+	width: max-content;
+}
+table #grid_matome_headers thead tr th {
+	text-align: center;
+}
+table #grid_matome tbody tr td:LAST-CHILD {
+	text-align: center;
+}
+.td-delete {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+table#grid_matome_headers_fixed thead tr th{
+	text-align: center;
+}
+.shyuugyo_left {
+	height: 350px;
+}
+.shyuugyo_right {
+	margin-left: 350px;
+}
+.jinji_left {
+	height: 250px;
+}
+.jinji_right {
+	margin-left: 20px;
+}
+.jinji_right1{
+	
+}
+
+.sidebar-content {
+    overflow: unset !important;
+}
+
+.master-content {
+	overflow: auto !important;
+}
+
+#grid_matomeB_virtualContainer {
+	border:1px solid #dddddd
+}
+table#grid_matomeB tbody td {
+	white-space: nowrap;
+	font-size: 14px;
+	font-style: Meiryo;
+}
+table #grid_matomeB_headers thead tr th {
+	text-align: center;
+}
+table #grid_matomeB tbody tr td:LAST-CHILD {
+	text-align: center;
+}
+table#grid_matomeB_headers_fixed thead tr th{
+	text-align: center;
+}
+
+#grid_matomeC_virtualContainer {
+	border:1px solid #dddddd
+}
+table#grid_matomeC tbody td {
+	white-space: nowrap;
+	font-size: 14px;
+	font-style: Meiryo;
+}
+table #grid_matomeC_headers thead tr th {
+	text-align: center;
+}
+table #grid_matomeC tbody tr td:LAST-CHILD {
+	text-align: center;
+}
+table#grid_matomeC_headers_fixed thead tr th{
+	text-align: center;
+}
+
+#grid_matomeD_virtualContainer {
+	border:1px solid #dddddd
+}
+table#grid_matomeD tbody td {
+	white-space: nowrap;
+	font-size: 14px;
+	font-style: Meiryo;
+}
+table #grid_matomeD_headers thead tr th {
+	text-align: center;
+}
+table #grid_matomeD tbody tr td:LAST-CHILD {
+	text-align: center;
+}
+table#grid_matomeD_headers_fixed thead tr th{
+	text-align: center;
+}
+
+#grid_matomeE_virtualContainer {
+	border:1px solid #dddddd
+}
+table#grid_matomeE tbody td {
+	white-space: nowrap;
+	font-size: 14px;
+	font-style: Meiryo;
+}
+table #grid_matomeE_headers thead tr th {
+	text-align: center;
+}
+table #grid_matomeE tbody tr td:LAST-CHILD {
+	text-align: center;
+}
+table#grid_matomeE_headers_fixed thead tr th{
+	text-align: center;
+}
+
+#grid_matomeF_virtualContainer {
+	border:1px solid #dddddd
+}
+table#grid_matomeF tbody td {
+	white-space: nowrap;
+	font-size: 14px;
+	font-style: Meiryo;
+}
+table #grid_matomeF_headers thead tr th {
+	text-align: center;
+}
+table #grid_matomeF tbody tr td:LAST-CHILD {
+	text-align: center;
+}
+table#grid_matomeF_headers_fixed thead tr th{
+	text-align: center;
+}
+
+.switch-mode {
+	width: fit-content;
+	position: relative;
+	bottom: 17px;
+	float: right;
+}
+
+.switch-mode-e {
+	width: fit-content;
+	position: relative;
+	bottom: 17px;
+	float: right;
+}
+
+.hyperlink > span {
+	color: #06c;
+}
+
+.matome-table {
+	margin-top: -5px;
+	margin-left: 20px;
+	display: table;
+}
+
+.matome-table-e {
+	margin-top: -10px;
+	margin-left: 20px;
+	display: table;
+}
+

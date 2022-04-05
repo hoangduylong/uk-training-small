@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+
+			<script>
+				var dialogSize = {
+					width : 300,
+					height : 500
+				};
+			</script>
+
+			<com:scriptfile set="IGNITE" />
+
+			<com:stylefile path="style.css" />
+			<com:scriptfile path="../_base/cmm013.base.js" />
+			<com:scriptfile path="cmm013.c.service.js" />
+			<com:scriptfile path="cmm013.c.vm.js" />
+			<com:scriptfile path="cmm013.c.start.js" />
+		</ui:define>
+
+		<!-- PAGE CONTENT -->
+		<ui:define name="content">
+			<div id="contents-area">
+				<div class="header-text">#{i18n.getText('CMM013_21')}</div>
+
+				<table id="single-list" tabindex="1"
+					data-bind="ntsGridList: {	
+					name: '#[CMM013_22]',
+					width: 260,					
+					height: 330,
+					dataSource: items,
+					primaryKey: 'sequenceCode',
+					columns: columns,
+					multiple: false,
+					value: currentCode
+				}"></table>
+
+			</div>
+
+			<div id="functions-area-bottom">
+				<button class="x-large proceed" tabindex="2"
+					data-bind="click: selectSequence">#{i18n.getText('CMM013_25')}</button>
+				<button class="large" tabindex="3" data-bind="click: close">#{i18n.getText('CMM013_26')}</button>
+			</div>
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

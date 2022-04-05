@@ -1,0 +1,12 @@
+{
+    "jp": {
+        "documentscontrolstext-search-box": "Text Search Box",
+        "manual-search": "手動検索",
+        "auto-search": "自動検索"
+    },
+    "vi": {
+        "documentscontrolstext-search-box": "Text Search Box",
+        "manual-search": "Manual Search",
+        "auto-search": "Automatic Search"
+    }
+}

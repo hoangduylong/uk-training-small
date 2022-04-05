@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:ValidatorScript>
+					nts.uk.ctx.bs.employee.dom.classification.ClassificationCode
+					nts.uk.ctx.bs.employee.dom.classification.ClassificationName
+					nts.uk.shr.com.primitive.Memo
+			</com:ValidatorScript>
+
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+
+			<com:stylefile path="cmm014.a.main.css" />
+			<com:scriptfile path="cmm014.a.service.js" />
+			<com:scriptfile path="cmm014.a.vm.js" />
+			<com:scriptfile path="cmm014.a.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+
+			<div id="functions-area" class="divHeader">
+				<button id="A_BTN_001" data-bind="click: clearData" tabindex="1"
+					class="btnStyle">#{i18n.getText('CMM014_1')}</button>
+				<button id="A_BTN_002" tabindex="2"
+					data-bind="click: createClassification , enable: true"
+					class="proceed btnStyle">#{i18n.getText('CMM014_2')}</button>
+				<!-- <button id="A_BTN_003" tabindex="3">#{i18n.getText('CMM014_3')}</button> -->
+				<button id="A_BTN_004" tabindex="3"
+					data-bind="click: deleteClassification , enable: enableDelete"
+					class="danger btnStyle">#{i18n.getText('CMM014_4')}</button>
+				<button tabindex="4" id="print-button" data-bind="click: exportExcel">#{i18n.getText('KMK007_4')}</button> 
+
+			</div>
+
+			<div id="contents-area" class="fixed-flex-layout">
+				<div id="left-content" class="fixed-flex-layout-left">
+					<div id="clf-component"></div>
+				</div>
+
+				<div id="right-content" class="fixed-flex-layout-right">
+					<table class="table_content" data-bind="with: classificationModel">
+						<colgroup>
+							<col width="120px" />
+							<col width="*" />
+						</colgroup>
+
+						<tr>
+							<td class="row_1">
+								<div
+									data-bind="ntsFormLabel: { constraint: ['ClassificationCode', 'ClassificationName'], required: true }">
+									#{i18n.getText('CMM014_5')}</div>
+
+
+							</td>
+							<td class="valign-center">
+								<div>
+									<div class="input_002">
+										<input id="clfCode" tabindex="5"
+											data-bind="ntsTextEditor: {
+											name: '#[CMM014_6]',
+                                            value: classificationCode,
+                                            constraint: 'ClassificationCode',
+                                            required: true,
+                                            enable: isEnableCode}" />
+									</div>
+
+									<div class="input_002">
+										<input id="clfName" tabindex="6"
+											data-bind="ntsTextEditor: {
+												name: '#[CMM014_7]',
+	                                            value: classificationName,
+	                                            required: true,
+	                                            constraint: 'ClassificationName'}" />
+									</div>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<div
+									style="margin-bottom: 140px;"
+									data-bind="ntsFormLabel: {constraint: 'Memo'}">
+									#{i18n.getText('CMM014_8')}
+								</div>
+							</td>
+							<td class="valign-center">
+								<div>
+									<textarea id="memo" tabindex="7"
+										style="margin-top: 20px; width: 446px; height: 180px; white-space: pre-wrap;"
+										data-bind="ntsMultilineEditor: {
+											name: '#[CMM014_8]',
+											value: memo,
+											constraint: 'Memo'
+											}" />
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

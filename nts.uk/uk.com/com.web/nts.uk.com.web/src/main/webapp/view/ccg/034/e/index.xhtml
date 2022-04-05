@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:com="http://xmlns.jcp.org/jsf/component"
+  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+  <ui:composition template="../../../../master/dialog.xhtml">
+
+    <!-- head -->
+    <ui:define name="htmlHead">
+      <script>
+        var dialogSize = { width: 700, height: 430 };
+      </script>
+      <com:stylefile path="ccg034.e.style.css" />
+      <com:scriptfile path="ccg034.e.vm.js" />
+      <com:scriptfile set="IGNITE" />
+      <com:ValidatorScript>
+        nts.uk.ctx.sys.portal.dom.toppagepart.createflowmenu.LabelContent
+        nts.uk.ctx.sys.portal.dom.toppagepart.createflowmenu.FontSize
+      </com:ValidatorScript>
+    </ui:define>
+
+    <!-- content -->
+    <ui:define name="content">
+      <div id="contents-area">
+        <!-- E1 -->
+        <div class="div-line">
+          <!-- E1_1 -->
+          <div id="E1_1" class="column-label" data-bind="ntsFormLabel: {
+            required: false,
+            constraint: 'LabelContent',
+          }">#{i18n.getText('CCG034_51')}</div>
+          <!-- E1_2 -->
+          <textarea id="E1_2" tabindex="1" rows="4" data-bind="ntsMultilineEditor: {
+            name: '#[CCG034_51]',
+            value: labelContentValue,
+            constraint: 'LabelContent',
+            option: { width: '450px' }
+          }" />
+          </div>
+        <!-- E2 -->
+        <div class="div-line align-center">
+          <!-- E2_1 -->
+          <div id="E2_1" class="column-label" data-bind="ntsFormLabel: {
+            required: true,
+            constraint: 'FontSize',
+          }">#{i18n.getText('CCG034_52')}</div>
+          <!-- E2_2 -->
+          <div class="column-value">
+            <input id="E2_2" tabindex="2" data-bind="ntsNumberEditor: {
+              name: '#[CCG034_52]',
+              value: fontSizeValue,
+              constraint: 'FontSize',
+              required: true,
+              option: { width: '20px' }
+            }" />
+          </div>
+          <!-- E2_3 -->
+          <div class="column-value">
+            <div id="E2_3" tabindex="3" data-bind="ntsCheckBox: { checked: isBoldValue, text: $vm.$i18n('CCG034_53') }"></div>
+          </div>
+        </div>
+        <!-- E3 -->
+        <div class="div-line">
+          <!-- E3_1 -->
+          <div id="E3_1" class="column-label" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CCG034_54')}</div>
+          <!-- E3_2 -->
+          <div class="column-value">
+            <div id="E3_2" tabindex="4" data-bind="ntsRadioBoxGroup: {
+              name: '#[CCG034_55]',
+              options: listHorizontalPosition,
+              optionsValue: 'code',
+              optionsText: 'name',
+              value: selectedHorizontalPosition,
+              required: true,
+            }"></div>
+          </div>
+          <div class="column-value">
+            <div id="E3_3" tabindex="5" data-bind="ntsRadioBoxGroup: {
+              name: '#[CCG034_59]',
+              options: listVerticalPosition,
+              optionsValue: 'code',
+              optionsText: 'name',
+              value: selectedVerticalPosition,
+              required: true,
+            }"></div>
+          </div>
+        </div>
+        <!-- E4 -->
+        <div class="div-line align-center">
+          <!-- E4_1 -->
+          <div id="E4_1" class="column-label" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CCG034_63')}</div>
+          <!-- E4_2 -->
+          <div class="column-value">
+            <span id="E4_2">#{i18n.getText('CCG034_64')}</span>
+            <div id="E4_3" tabindex="6" data-bind="ntsColorPicker: {
+              name: '#[CCG034_64]',
+              value: textColorValue,
+              required: true,
+              width: 50,
+            }"></div>
+          </div>
+          <!-- E4_3 -->
+          <div class="column-value">
+            <span id="E4_4">#{i18n.getText('CCG034_65')}</span>
+            <div id="E4_5" tabindex="7" data-bind="ntsColorPicker: {
+              name: '#[CCG034_65]',
+              value: backgroundColorValue,
+              required: true,
+              width: 50,
+            }"></div>
+          </div>
+        </div>
+      </div>
+      <div id="functions-area-bottom">
+        <button class="large proceed" tabindex="8" data-bind="click: updatePartDataAndCloseDialog">#{i18n.getText('CCG034_66')}</button>
+				<button class="large" tabindex="9" data-bind="click: closeDialog">#{i18n.getText('CCG034_67')}</button>
+      </div>
+    </ui:define>
+  </ui:composition>
+</body>
+
+</html>

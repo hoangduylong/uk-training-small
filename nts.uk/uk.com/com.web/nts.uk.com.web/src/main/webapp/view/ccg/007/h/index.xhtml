@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/freelayout.xhtml">
+		<ui:define name="htmlHead">
+			<com:ValidatorScript>
+					nts.uk.ctx.sys.gateway.dom.login.password.userpassword.PlainLoginPassword
+   				</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="ccg007.h.service.js" />
+			<com:scriptfile path="ccg007.h.vm.js" />
+			<com:scriptfile path="ccg007.h.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area" style="padding-top: 30px; padding-bottom: 30px; margin-left: 5%">
+				<button class="x-large proceed" tabindex="4"
+					data-bind="click: submit">#{i18n.getText('CCG007_19')}</button>
+			</div>
+			<div id="contents-area" class="cf">
+				<div style="top: 30%; margin: 0 auto auto 5%;">
+				<div style="margin-bottom: 10px; margin-left: 10px; margin-top: 10px;">#{i18n.getText('CCG007_29')}</div>
+				<div style="margin-bottom: 10px; margin-left: 10px; margin-top: 10px;">#{i18n.getText('CCG007_30')}</div>
+				
+				<table style="margin-top: 20px; margin-left: 10px;">
+					<tr>
+						<td style="padding-right: 30px; padding-bottom: 15px;">
+							<div data-bind="ntsFormLabel: {required: false}">
+								<label data-bind="text: '#{i18n.getText('CCG007_14')}'"><br /></label>
+							</div>
+						</td>
+						<td style="padding-bottom: 15px;"><div data-bind="text: userName"></div></td>
+					</tr>
+					<tr>
+						<td style="padding-right: 30px; padding-bottom: 15px;">
+							<div data-bind="ntsFormLabel: { constraint: 'RawPassword', required: true }">
+								<label data-bind="text: '#{i18n.getText('CCG007_16')}'"><br /></label></div>
+						</td>
+						<td style="padding-bottom: 15px;"><div>
+								<input tabindex="1" id="password-input-new"
+									data-bind="ntsTextEditor: {
+										name: '#[CCG007_2]',
+										constraint: 'RawPassword',
+										value: passwordNew,
+										required: true,
+										option: {textmode: 'password',width: '180px'},
+										enable: true,
+										readonly: false
+										}" />
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding-right: 30px; padding-bottom: 15px;">
+							<div data-bind="ntsFormLabel: { constraint: 'RawPassword', required: true }">
+								<label data-bind="text: '#{i18n.getText('CCG007_17')}'"><br /></label></div>
+						</td>
+						<td style="padding-bottom: 15px;"><div>
+								<input tabindex="2" id="password-input-confirm"
+									data-bind="ntsTextEditor: {
+										name: '#[CCG007_2]',
+										constraint: 'RawPassword',
+										value: passwordNewConfirm,
+										required: true,
+										option: {textmode: 'password',width: '180px'},
+										enable: true,
+										readonly: false
+										}" />
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td class="align_center" colspan="2"><a tabindex="3"
+							class="hyperlink" data-bind="text: '#{i18n.getText('CCG007_18')}', click: OpenDialogI"></a></td>
+					</tr>
+				</table>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

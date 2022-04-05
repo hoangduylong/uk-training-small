@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script type='text/javascript'>
+				var dialogSize = {
+					width : 690,
+					height : 700
+				};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			
+			<com:scriptfile path="cm/value-ko-ext.js" />
+			<com:scriptfile path="cm/filter-ko-ext.js" />
+			<com:scriptfile path="cm/validate.js" />
+			<com:stylefile path="cps003.f.style.css" />
+			<com:scriptfile path="cps003.f.service.js" />
+			<com:scriptfile path="cps003.f.vm.js" />
+			<com:scriptfile path="cps003.f.start.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="contents-area"
+				data-bind="let: { 
+						text: nts.uk.resource.getText
+					}">
+				<div class="col-50">
+					<div class="form-group" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CPS003_71')}</div>
+					<div class="form-group" data-bind="ntsSearchBox: {
+                            targetKey: 'id',
+                            comId: 'list_items',
+                            items: $vm.dataSources,
+                            selected: $vm.currentItem.id,
+                            selectedKey: 'id', 
+                            fields: ['name'], 
+                            mode: 'igGrid'
+                        }"></div>
+                    <table data-bind="attr: {
+                                id: 'list_items',
+                                NameID: text('CPS003_72')
+                            }, 
+                            ntsGridList: {
+                                rows: 14,
+                                multiple: false,
+                                columns: [
+                                    { headerText: '', key: 'id', width: 100, hidden: true },
+                                    { headerText: text('CPS003_73'), key: 'name', width: 220, hidden: false }
+                                ],
+                                primaryKey: 'id',
+                                value: $vm.currentItem.id,
+                                dataSource: $vm.dataSources
+                            }"></table>
+				</div>
+				<div class="col-50" data-bind="with: $vm.currentItem">
+					<div class="form-group" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CPS003_74')}</div>
+					<div class="form-group" data-bind="ntsRadioBoxGroup: {
+							options: allOrMatch,
+							optionsValue: 'id',
+							optionsText: 'name',
+							value: applyFor,
+							enable: true 
+						}"></div>
+					<div class="form-group filter-box">
+						<div data-bind="cps003fFilter: { itemData: itemData, value: filter, enable: ko.computed(function(){return ko.toJS(applyFor) != 'all'}) }"></div>
+						<div class="filter-desc">#{i18n.getText('CPS003_79')}</div>
+					</div>
+					<div class="form-group" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CPS003_80')}</div>
+					<div class="form-group change-box">
+						<div data-bind="cps003fValue: { itemData: itemData, value: value, replacer: replacer }"></div>
+						<div class="change-desc" data-bind="style: { marginLeft: itemData().amount ? '35px' : '0', marginTop: itemData().amount ? '-5px' : '0' }">#{i18n.getText('CPS003_82')}</div>
+					</div>
+				</div>
+				<div class="caret caret-bottom"></div>
+				<div class="bottom-text">
+					<div>
+						<!--  -->
+						<span data-bind="text: $vm.currentItem.target"></span>
+						<span>#{i18n.getText('CPS003_92')}</span>
+					</div>
+					<div>
+						<span data-bind="text: $vm.currentItem.name">#{i18n.getText('F2_004')}</span>
+						<span>#{i18n.getText('CPS003_93')}</span>
+						<span data-bind="text: $vm.currentItem.replacer">#{i18n.getText('F2_006')}</span>
+						<span data-bind="text: $vm.currentItem.textView"></span>
+					</div>
+				</div>				
+			</div>
+			<div id="functions-area-bottom">
+				<button class="proceed x-large" data-bind="click: $vm.pushData, , enable: $root.errors.isEmpty()">#{i18n.getText('CPS003_96')}</button>
+				<button data-bind="click: close">#{i18n.getText('CPS003_97')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

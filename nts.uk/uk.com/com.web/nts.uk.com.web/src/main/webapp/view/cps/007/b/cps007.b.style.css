@@ -1,0 +1,21 @@
+#contents-area {
+	height: auto !important;
+	max-height: none !important;
+	max-height: initial !important;
+}
+
+#contents-area .swap-list-updown-contaier>div {
+	display: inline-block;
+}
+
+.form-group {
+	margin-bottom: 15px;
+}
+
+.form-group.two-cols>div:nth-child(2) {
+	margin-left: 140px;
+}
+
+.nts-searchbbox-wrapper {
+	margin-bottom: 0;
+}

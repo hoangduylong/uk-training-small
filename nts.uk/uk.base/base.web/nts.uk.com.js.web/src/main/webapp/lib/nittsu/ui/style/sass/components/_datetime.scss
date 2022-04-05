@@ -1,0 +1,17 @@
+.component-container {
+    display: inline-block;
+}
+
+.time-container {
+    margin-left: 5px;
+}
+
+.datetimepairrange-component {
+    display: inline-block;
+    vertical-align: middle;
+
+    &.seperator {
+        padding: 0 5px;
+        line-height: 32px;
+    }
+}

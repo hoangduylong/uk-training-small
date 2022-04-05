@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<!-- <com:stylefile path="../../sample/catalog/catalog.css" /> -->
+	<com:stylefile path="/view/kcp/009/style.css" of="/nts.uk.com.web" />
+
+	<div data-bind="attr: {id: componentWrapperId}">
+		<div id="function-panel">
+			<table id="employ_view">
+      <tbody class="border-right">
+				<tr id="function-tr">
+					<td id="tbl_left"  class="bg-green border-left employment-tdpad">
+					<button class="btn_show_list" data-bind="text: targetBtnText, attr: {tabindex: tabIndex, id: 'btn_show_list-' + prefix()}"></button>
+						<!-- #{i18n.getText('KCP009_3')} --></td>
+					<td class="bg-green none_border employment-tdpad"><button
+							class="btn_select"
+							data-bind="click: previousEmp, enable: isActivePreviousBtn(), attr: {tabindex: tabIndex, id: 'prev-btn-' + prefix()}">
+							<!-- <span class="caret-left caret-inline"></span> -->
+							◀
+						</button></td>
+					<td class="bg-green border-right employment-tdpad">
+						<button class="btn_select"
+							data-bind="click: nextEmp, enable: isActiveNextBtn(), attr: {tabindex: tabIndex, id: 'next-btn-' + prefix()}">
+							<!-- <span class="caret-right caret-inline"></span> -->
+							▶
+						</button>
+					</td>
+					<td class="none_border em_display employment-tdpad">
+						<div>
+							<span data-bind="text: empDisplayCode"></span>
+						</div>
+					</td>
+					<td class="none_border em_display employment-tdpad">
+						<div class="over_text">
+							<span class="limited-label kcp009-display-content" data-bind="text: empBusinessName"></span>
+						</div>
+					</td>
+					<td class="none_border employment-tdpad" data-bind="visible: isDisplayNumberOfEmployee"><div
+							data="enable: isActivePersonalProfile" class="icon"
+							 data-bind="attr: {tabindex: tabIndex,
+											   id: 'profile-icon-'+ prefix()}"></div></td>
+					<td class="none_border em_display employment-tdpad" data-bind="visible: isDisplayNumberOfEmployee"><div>
+							<span data-bind="text: selectedNumberOfPeople"></span><span>#{i18n.getText('KCP009_1')}</span>
+						</div></td>
+					<td class="border-right employment-tdpad" data-bind="visible: isDisplayNumberOfEmployee"><input type="search"
+						class="search-input"
+						data-bind=" ntsTextEditor: {
+								value: keySearch,
+								name: '#[KCP009_2]',
+								option: {enable: true}
+								}, 
+								attr: {tabindex: tabIndex,
+									id: 'search-input-'+ prefix()
+								}, 
+								valueUpdate: 'afterkeydown'" />
+					</td>
+					<td class="bg-green border-left border-right employment-tdpad wkp_title_text"
+						data-bind="visible: isDisplayOrganizationName,
+									attr: {id: 'wkp_title_text-'+ prefix()}">
+						<div>
+							<span data-bind="text: organizationDesignation"></span>
+						</div>
+					</td>
+					<td class="employment-tdpad border-right wkp_text"
+						data-bind="visible: isDisplayOrganizationName,
+									attr: {id: 'wkp_text-'+ prefix()}">
+						<div style="width: 150px">
+							<span class="limited-label" data-bind="text: organizationName"></span>
+						</div>
+					</td>
+				</tr>
+      </tbody>
+			</table>
+		</div>
+		<div class="items-list" data-bind="attr: {id: 'item-list-'+ prefix()}" style="visibility: hidden;">
+
+			<div
+				data-bind="attr: {id: nts.uk.util.randomId()},
+					ntsListBox: {
+					options: empList,
+					optionsValue: 'id',
+					optionsText: 'code',
+					multiple: false,
+					value: selectedItem,
+					enable: true,
+					name: targetBtnText,
+					rows: 10,
+					columns: [
+						{ key: 'code', length: 4 },
+						{ key: 'businessName', length: 10 }
+					]}"></div>
+		</div>
+
+
+	</div>
+</ui:composition>

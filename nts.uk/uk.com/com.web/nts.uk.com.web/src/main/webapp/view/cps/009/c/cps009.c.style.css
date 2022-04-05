@@ -1,0 +1,32 @@
+#contents-area {
+	height: initial !important;
+}
+
+#codeInput {
+	width: 50px !important;
+}
+
+#roleName {
+	width: 326px !important;
+	margin-left: 5px !important;
+}
+
+#roleCodeOld {
+	width: 50px !important;
+}
+
+#roleNameOld {
+	margin-left: 30px;
+}
+
+#C_001 {
+	width: 100px !important;
+}
+
+#label_code {
+	width: 100px !important;
+}
+
+#copyCheck {
+	margin-top: 10px !important;
+}

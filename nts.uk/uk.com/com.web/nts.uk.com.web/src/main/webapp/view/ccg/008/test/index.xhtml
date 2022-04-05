@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="ccg008.test.start.js" />
+			<com:stylefile path="../../common/common.css" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<button tabindex="1" id="btn_login" class="btn"
+					data-bind="click: loginScreen">Login</button>
+				<hr />
+				<input type="text" id="toppagecode"
+					data-bind="ntsTextEditor: {name: '#[CCG015_42]',value: topPageCode, required: true}"
+					placeholder="Enter Top Page Code" />
+				<button tabindex="2" id="btn_toppage" class="btn"
+					data-bind="click: topPage">Top Page</button>
+				<hr />
+				<button tabindex="3" id="btn_other" class="btn"
+					data-bind="click: otherScreen">Other</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

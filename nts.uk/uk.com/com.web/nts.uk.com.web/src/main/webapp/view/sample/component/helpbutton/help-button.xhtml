@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:com="http://xmlns.jcp.org/jsf/component"
+	  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+	<body>
+		
+		<ui:composition template="../../../../master/base.xhtml">
+			<ui:define name="htmlHead">
+				<script>var dialogSize = { width: 300, height: 200 };</script>
+				
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:stylefile path="help-button.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+			</ui:define>
+			
+			<ui:define name="content">
+				<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Help Button</h1>
+						<h2>Overview</h2>
+						<div class="cf">
+							<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'bottom center', enable: enable }">?</button>
+							<button data-bind="ntsHelpButton: {image: 'test-image2.jpg', position: 'right+200 top-50', enable: enable }">?</button>
+							<button class="inline" data-bind="ntsHelpButton: { position: 'right center', textId: 'KTG027_11', textParams:['{#KTG027_7}', '{#KTG027_8}', '{#KTG027_1}', '{#KTG027_9}'] }, text: '？'">？</button>
+							<button data-bind="ntsHelpButton: {popUpId: 'pop-up-element', position : 'bottom center', enable: true}">?</button>
+						</div>
+						<div data-bind="ntsCheckBox: { checked: enable }">Enable</div>
+						<div id="pop-up-element"> 
+							<h2 id="title-pop-up">Pop-up Element</h2>
+							<p> This pop-up element have a H2 tag and a P tag. You also can add other elements</p>
+						</div>
+						<br/>
+						<article class="cf">
+							<div class="tabs">
+								<ol>
+									<li><a href="#tabs-html">HTML Binding</a></li>
+									<li><a href="#tabs-viewmodel">ViewModel</a></li>
+								</ol>
+								<div id="tabs-html" class="cf">
+									<h2>HTML</h2>
+									<pre><![CDATA[
+Image									
+<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'right top', enable: true }">?</button>
+
+Text
+<button data-bind="ntsHelpButton: {textId: 'KTG027_11', textParams:['{#KTG027_7}', '{#KTG027_8}', '{#KTG027_1}', '{#KTG027_9}'], position: 'right center' }">？</button>
+
+Pop-up Element (New)
+<button data-bind="ntsHelpButton: {popUpId: 'pop-up-element', position : 'bottom center', enable: true}">?</button>
+
+						]]></pre>
+									<h2>API</h2>
+									<table>
+										<colgroup>
+											<col width="200px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Binding</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>image (optional)</td>
+												<td>
+													<b>Type:</b> string<br/>
+													Path to tooltip image
+												</td>
+											</tr>
+											<tr>
+												<td>textId (optional)</td>
+												<td>
+													<b>Type:</b> string<br/>
+													ID of text resource to show instead of image
+												</td>
+											</tr>
+											<tr>
+												<td>textParams (optional)</td>
+												<td>
+													<b>Type:</b> string<br/>
+													textParams for a ID of text resource to show instead of image
+												</td>
+											</tr>
+											<tr>
+												<td>popUpId (optional)
+													<span class="label label-new"></span>
+												</td>
+												<td>
+													<b>Type:</b> string<br/>
+													ID of DIV tag which will be inserted to the help-button content 
+												</td>
+											</tr>
+											<tr>
+												<td>position</td>
+												<td>
+													<b>Type:</b> string<br/>
+													Set position for popover. See below demo for detail options
+												</td>
+											</tr>
+											<tr>
+												<td>enable<br/><i>(optional)</i></td>
+												<td>
+													<b>Type:</b> boolean<br/>
+													<b>Default:</b> true<br/>
+													Set enable/disable for help button
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<br/>
+									<h3>Position demo:</h3>
+									<div class="cf">
+										<div class="col-3">
+											<p>"right top"</p>
+											<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'right top', enable: enable }">?</button>
+										</div>
+										<div class="col-3">
+											<p>"right center"</p>
+											<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'right center', enable: enable }">?</button>
+										</div>
+										<div class="col-3">
+											<p>"right bottom"</p>
+											<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'right bottom', enable: enable }">?</button>
+										</div>
+										<div class="col-3">
+											<p>"left top"</p>
+											<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'left top', enable: enable }">?</button>
+										</div>
+										<div class="col-3">
+											<p>"left center"</p>
+											<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'left center', enable: enable }">?</button>
+										</div>
+										<div class="col-3">
+											<p>"left bottom"</p>
+											<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'left bottom', enable: enable }">?</button>
+										</div>
+										<div class="col-3">
+											<p>"top right"</p>
+											<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'top right', enable: enable }">?</button>
+										</div>
+										<div class="col-3">
+											<p>"top center"</p>
+											<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'top center', enable: enable }">?</button>
+										</div>
+										<div class="col-3">
+											<p>"top left"</p>
+											<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'top left', enable: enable }">?</button>
+										</div>
+										<div class="col-3">
+											<p>"bottom right"</p>
+											<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'bottom right', enable: enable }">?</button>
+										</div>
+										<div class="col-3">
+											<p>"bottom center"</p>
+											<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'bottom center', enable: enable }">?</button>
+										</div>
+										<div class="col-3">
+											<p>"bottom left"</p>
+											<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'bottom left', enable: enable }">?</button>
+										</div>
+									</div>
+									<b>You can add or subtract from it</b>
+									<div class="cf">
+										<div class="col-3">
+											<p>"right+50 top"</p>
+											<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'right+50 top', enable: enable }">?</button>
+										</div>
+										<div class="col-3">
+											<p>"right center-50"</p>
+											<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'right center-50', enable: enable }">?</button>
+										</div>
+										<div class="col-3">
+											<p>"right+50 bottom+50"</p>
+											<button data-bind="ntsHelpButton: {image: 'test-image.png', position: 'right+50 bottom+50', enable: enable }">?</button>
+										</div>
+									</div>								
+								</div>
+								<div id="tabs-viewmodel" class="cf">
+									<h2>TypeScript</h2>
+<pre><![CDATA[export class ScreenModel {
+    enable: KnockoutObservable<boolean>;
+	
+    constructor() {
+        var self = this;
+        self.enable = ko.observable(true);
+    }
+}]]></pre>
+								</div>
+							</div>
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+					</div>
+		   		</div>
+			</ui:define>
+		</ui:composition>
+   	</body>
+</html>

@@ -1,0 +1,36 @@
+#contents-area {
+	height: initial !important;
+}
+
+#contents-area .swap-list-updown-contaier>div {
+	display: inline-block;
+}
+
+.form-group {
+	margin-bottom: 15px;
+}
+
+.form-group.two-cols>div:nth-child(2) {
+	margin-left: 140px;
+}
+
+.nts-searchbbox-wrapper {
+	margin-bottom: 0;
+}
+
+#swap-list-search-area-input {
+	width: 150px !important;
+}
+
+#G1_002{
+	float: right;
+}
+
+#grid2_container{
+	margin-left:10px !important;
+}
+
+#grid2_container .ui-iggrid-results {
+  display: flex;
+  align-items: center;
+}

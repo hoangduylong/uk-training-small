@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+  <ui:composition>
+    <div class="contentB">
+      <div class="fixed-flex-layout-left" style="padding-top: 20px; padding-left: 20px">
+        <!-- B3_2 カテゴリパネル -->
+        <div id="B3_2"
+          data-bind="ntsPanel: { width: '80%', height: '550px', direction: 'right', showIcon: true, visible: true }">
+          <!-- B3_4 検索 -->
+          <div id="B3_4" data-bind="ntsSearchBox: {
+            searchMode: 'highlight',
+            targetKey: 'displayCode',
+            comId: 'B3_6',
+            items: patternList,
+            selected: selectedPatternId,
+            selectedKey: 'displayCode',
+            mode: 'igGrid',
+            fields: ['displayCode', 'patternName']
+          }" tabindex="1"></div>
+          <!-- B3_6 パターン一覧 -->
+          <table id="B3_6" data-bind="ntsGridList: {
+            name: '#[CMF003_22]',
+            options: patternList,
+            optionsValue: 'displayCode',
+            columns: patternColumns,
+            multiple: false,
+            value: selectedPatternId,
+            primaryKey: 'displayCode',
+            rows: 18
+          }" tabindex="2"></table>
+        </div>
+      </div>
+      <div class="fixed-flex-layout-right" style="padding-top: 20px;">
+        <div class="valign-center control-group">
+          <div id="B4_1" data-bind="ntsFormLabel: {required: true, constraint: 'PatternName'}">
+            #{i18n.getText('CMF003_632')}</div>
+          <label id="B4_2" data-bind="text: savedName"></label>
+        </div>
+        <div class="valign-center control-group">
+          <div id="B4_3" data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CMF003_29')}</div>
+        </div>
+        <div class="valign-center control-group" style="padding-top: 5px; padding-bottom: 5px;">
+          <table id="B4_4" tabindex="3" data-bind="ntsGridList: {								
+						height: 400,
+						dataSource: categorys,
+            primaryKey: 'id',
+            optionsValue: 'id',
+						columns: columnCategorys,
+						multiple: false,
+						value: currentCode,
+						rows: 5
+					}"></table>
+        </div>
+        <div class="flex">
+          <div id="B4_12" data-bind="ntsFormLabel: {required: true }">
+            #{i18n.getText('CMF003_33')}</div>
+          <table class="save-period">
+            <tr>
+              <td>
+                <label id="B3_14">#{i18n.getText('CMF003_34')}</label>
+              </td>
+              <td>
+                <div id="B4_16" class="form-B" tabindex="3" data-bind="ntsDateRangePicker: { 
+						required: dayRequired, enable: dayEnable, name: '#[CMF003_37]', 
+						showNextPrevious: true, value: dayValue}" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label id="B3_14">#{i18n.getText('CMF003_35')}</label>
+              </td>
+              <td>
+                <div id="B4_17" class="form-B" tabindex="4" data-bind="ntsDateRangePicker: { 
+						required: monthRequired, enable: monthEnable, name: '#[CMF003_38]',
+						showNextPrevious: true, value: monthValue, type: 'yearmonth'}" />
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <label id="B3_14">#{i18n.getText('CMF003_36')}</label>
+              </td>
+              <td>
+                <div id="B4_18" class="form-B" tabindex="5" data-bind="ntsDateRangePicker: {
+						required: yearRequired, enable: yearEnable, name: '#[CMF003_39]',
+						showNextPrevious: true, value: yearValue, type: 'year', jumpUnit: 'year'}" />
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="flex">
+          <div id="B4_30" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF003_45')}</div>
+          <table class="compressed-password">
+            <tr>
+              <td>
+                <div id="B4_31" class="form-B" tabindex="6" data-bind="ntsCheckBox: { checked: isCompressPass }">
+                  #{i18n.getText('CMF003_46')}</div>
+              </td>
+              <td><input id="B4_32" class="form-B passwordInput" tabindex="7" data-bind="ntsTextEditor: {
+											name: '#[CMF003_73]',
+											value: password,
+											required: isCompressPass, constraint: passwordConstraint,
+											option: {textmode: 'password',width: '230px'},
+											enable: isCompressPass,
+											readonly: false
+											}" />
+              </td>
+            </tr>
+            <tr>
+              <td><span id="B4_33">#{i18n.getText('CMF003_56')}</span></td>
+              <td><input id="B4_41" class="form-B passwordInput" tabindex="8" data-bind="ntsTextEditor: {
+											name: '#[CMF003_74]',
+											value: confirmPassword,
+											required: isCompressPass, constraint: passwordConstraint, 
+											option: {textmode: 'password',width: '230px'},
+											enable: isCompressPass,
+											readonly: false
+											}" />
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="valign-center control-group">
+          <div id="B4_34" data-bind="ntsFormLabel: {constraint: 'Explanation'}">#{i18n.getText('CMF003_47')}</div>
+          <input id="B4_35" tabindex="9" data-bind="ntsTextEditor: {
+											name: '#[CMF003_48]',
+											value: explanation,
+											required: false,
+											constraint: 'Explanation',
+											enable: true,
+											readonly: false
+											}" />
+        </div>
+        <div class="valign-center control-group">
+          <!-- B4_42 対象社員洗選択 -->
+          <div id="B4_42" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF003_87')}</div>
+          <div class="box-list" data-bind="ntsRadioBoxGroup: {
+            options: itemTitleAtr,
+            optionsValue: 'value',
+            optionsText: 'titleAtrName',
+            value: selectedTitleAtr,	
+            enable: true
+          }" tabindex="10"></div>
+        </div>
+        <div class="control-group button-bottom-area">
+          <button id="B5_2" class="proceed x-large" tabindex="12"
+            data-bind="click: nextPageEmployee, text: nextButtonText, enable: buton_E_enable"></button>
+        </div>
+      </div>
+    </div>
+  </ui:composition>
+</body>
+
+</html>

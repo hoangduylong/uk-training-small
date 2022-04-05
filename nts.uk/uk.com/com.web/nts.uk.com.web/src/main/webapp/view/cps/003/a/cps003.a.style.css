@@ -1,0 +1,137 @@
+#contents-area * {
+	font-size: 0.8rem;
+}
+
+#functions-area * {
+    font-size: 0.8rem;
+}
+
+.ccg-lbl-vertical {
+    font-size: 18pt !important;
+}
+
+/*================*/
+
+.data-layout {
+	padding-left: 90px;
+}
+
+.data-layout .form-groups,
+.data-layout .layout-multi-control {
+	position: relative;
+}
+
+.data-layout .form-group {
+	margin-bottom: 5px;
+	z-index: 9999;
+}
+
+.data-layout .form-group>div,
+.data-layout .form-group>label,
+.data-layout .form-group>button{
+	vertical-align: middle;
+	display: inline-block;
+}
+.data-layout .form-group>label {
+	line-height: 37px;
+}
+
+.data-layout .form-group.margin-left {
+	margin-left: 20px;
+}
+
+.data-layout .form-group:not(.margin-left) .fixed-width {
+	width: 125px;
+}
+
+.data-layout .form-group .margin-left {
+	margin-left: 60px;
+}
+
+.data-layout .form-group .ntsRadioBox {
+	margin-right: 20px;
+}
+
+.data-layout .form-group #column-display {
+	margin-left: 30px;
+}
+
+.data-layout .form-group #history-type {
+	margin-right: 20px;
+}
+
+.data-layout .form-group #emp-redisplay {
+	margin-right: 10px;
+}
+
+.data-layout .form-group #batch-change {
+	margin-left: 80px;
+}
+
+.data-layout .form-group #width-save {
+	float: right;
+	margin-right: 30px;
+}
+
+.data-layout .form-group #settings {
+	float: right;
+	margin-right: 30px;
+	width: 30px;
+	background-image: url(icons/setting.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.data-layout .form-groups {
+	/*z-index: 9;*/
+}
+
+.data-layout .form-group.configs-bar {
+	padding-left: 100px;
+	margin-bottom: 0px;
+}
+
+.grid-setting {
+	border: 1px solid #B1B1B1;
+	border-radius: 3px;
+	padding: 3px;
+	margin-right: 30px;
+}
+
+.data-layout .layout-multi-control {
+	z-index: 0;
+	margin-top: -60px;
+}
+
+/*.datepicker-dropdown {
+	z-index: 999;
+}*/
+
+#export-file {
+	margin-left: 100px !important;
+}
+
+td.required {
+	background-color: #FAC002 !important;
+}
+
+td.red-color {
+	color: #FF0000;
+}
+
+tr.blue-color {
+	color: #0000FF;
+}
+
+.nts-help-button-image span {
+	font-size: 0.99rem;
+}
+
+#history-type-lbl {
+  width: 65px !important;
+}
+
+.cf.switchbox-wrappers > label > span {
+  width: 130px;
+  text-align: center;
+}

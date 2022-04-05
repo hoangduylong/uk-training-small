@@ -1,0 +1,38 @@
+.kafs07a {
+
+}
+.textSize {
+    font-size: 0.8em;
+}
+.iconWarn {
+    float:left; 
+    margin-left: 6px;
+    margin-top: 6px;
+    margin-right: 6px;
+}
+.error {
+    background-color:#F8D7DA; 
+    border: 1px solid red; 
+    text-align: center;  
+    display: block;
+    justify-content: center;
+    align-items: left; 
+    padding:0px;
+    height: auto;
+}
+.contentError {
+    text-align: left;
+    padding: 4px; 
+    color:#78252C;
+}
+.btnRegister {
+    margin-bottom: 1em;
+}
+.topError {
+    background-color: #f8d7da !important;
+    margin-bottom: 5px;
+    button {
+        text-align: left;
+        border-radius: 3px !important;
+    }
+}

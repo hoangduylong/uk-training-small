@@ -1,0 +1,40 @@
+#table-header td {
+	padding-bottom: 5px;
+	padding-left: 10px;
+}
+
+.panel.ntsPanel {
+	margin: 10px;
+}
+
+.flex-layout {
+	display: flex; 
+}
+
+#grid-right-label {
+  margin-bottom: 50px;
+}
+
+.grid-layout {
+  display: grid;
+  display: -ms-grid;
+  margin-right: 10px;
+}
+
+.grid-layout > .nts-searchbbox-wrapper {
+  grid-row: 2;
+  -ms-grid-row: 2;
+  height: 50px;
+  margin-bottom: 0px;
+}
+
+.grid-layout > #C8_3_container {
+  grid-row: 3;
+  -ms-grid-row: 3;
+}
+
+@media screen and (min-width:0\0) {
+  #grid-right-label {
+    margin-bottom: 40px !important;
+  }
+}

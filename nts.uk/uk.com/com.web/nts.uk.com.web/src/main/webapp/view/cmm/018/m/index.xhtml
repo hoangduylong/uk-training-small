@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 480, height: 350 };</script>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="../shr/cmm018.shr.servicebase.js" />
+			<com:scriptfile path="../shr/cmm018.shr.vmbase.js" />
+			<com:stylefile path="cmm018.m.main.css" />
+			<com:scriptfile path="cmm018.m.start.js" />
+			<com:scriptfile path="cmm018.m.vm.js" />
+			<com:scriptfile path="cmm018.m.service.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<button id="btnPrint" data-bind="click: printExcel" class="proceed">#{i18n.getText('CMM018_71')}</button>
+				<button id="btnClose" data-bind="click: closeDialog">#{i18n.getText('CMM018_72')}</button>
+			</div>
+			<div id="contents-area">
+				<!-- M1_3 ver10-->
+				<div id="lblTitle" class="label">#{i18n.getText('CMM018_123')}</div>
+				<br />
+
+				<div id="divImage" class="label with-image"
+					style="width: 50% !important">
+					<i class="image image-calendar" /> <span>#{i18n.getText('CMM018_74')}</span>
+					<!-- M1_6 -->
+					<div id="basedate" data-bind="ntsDatePicker: {
+											name: '#{i18n.getText('CMM018_74')}',
+											value: date,
+											dateFormat: 'YYYY/MM/DD'}"></div>
+				</div>
+
+				<div id="checkboxArea">
+					<!-- M1_7 -->
+					<div data-bind="if: sv.isCompany()">
+						<div class="divCheckbox" id="chkCompany"
+							data-bind="ntsCheckBox: { checked: isCompany }">#{i18n.getText('CMM018_75')}</div>					
+					</div>
+					<!-- M1_8 -->
+					<div data-bind ="if: sv.isWorkplace()">
+						<div data-bind="if: sysAtr() == 0">
+							<div class="divCheckbox" id="chkWorkplace"
+								data-bind="ntsCheckBox: { checked: isWorkplace}">#{i18n.getText('CMM018_76', ['#Com_Workplace'])}</div>							
+						</div>
+						<div data-bind="if: sysAtr() == 1">
+							<div class="divCheckbox" id="chkWorkplace"
+								data-bind="ntsCheckBox: { checked: isWorkplace}">#{i18n.getText('CMM018_76', ['#Com_Department'])}</div>
+						</div>
+					</div>
+					
+					<!-- M1_9 -->
+					<div data-bind="if: sv.isPerson()">
+						<div class="divCheckbox" id="chkPerson"
+							data-bind="ntsCheckBox: { checked: isPerson }">#{i18n.getText('CMM018_78')}</div>					
+					</div>
+					<br></br>
+				</div>
+
+			</div>
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

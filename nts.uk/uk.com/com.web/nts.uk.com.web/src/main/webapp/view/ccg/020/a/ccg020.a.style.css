@@ -1,0 +1,191 @@
+#ccg020 {
+  height: 30px;
+  width: 240px;
+  position: relative;
+}
+#message {
+  display: inline-block;
+  position: absolute;
+}
+.blue-link-ccg020 {
+  color: blue;
+}
+.img-ccg020 {
+  width: 20px;
+  position: relative;
+  top: 5px;
+  padding-left: 20px;
+  cursor: pointer;
+}
+#search-bar {
+  display: inline-block;
+  width: 240px;
+}
+#search-bar button.search-btn.caret-bottom.ntsSearchBox_Component {
+  display: none;
+}
+#popup-search-category .ntsRadioBox {
+  display: block;
+  color: black;
+}
+#search-icon {
+  background-color: #127D09;
+  top: 0px;
+  position: absolute;
+  cursor: pointer;
+  top: 2.6px;
+}
+.result-search {
+  display: block !important;
+  line-height: 2;
+  padding-left: 10px;
+  padding-right: 5px;
+  width: 220px;
+}
+#popup-result, #popup-search {
+  min-width: 200px;
+  padding: 0;
+  max-height: calc(100vh - 125px);
+  min-height: 100px;
+  overflow-y: scroll;
+}
+ul#list-box-search {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  cursor: context-menu;
+}
+#list-box {
+  display: grid;
+  color: black;
+}
+.img-timer {
+  width: 30px;
+  background-image: url("/nts.uk.com.js.web/lib/nittsu/ui/style/stylesheets/images/icons/numbered/173.png");
+  background-repeat: no-repeat;
+  display: block;  /* may not need this, but I've found I do */
+}
+.icon-close:hover {
+  background-color:	#F2F2F2;
+  border-radius: 50%;
+}
+.icon.icon-close {
+  height: 30px;
+  width: 14px;
+  opacity: 0.5;
+}
+.result-search-history {
+  height: 25px;
+  margin: auto;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 162px;
+  color: black;
+}
+.result-search-history:hover {
+  background-color: #F2F2F2;
+}
+.text-li {
+  padding-left: 35px;  /* width of the image plus a little extra padding */
+  background-image: url("/nts.uk.com.js.web/lib/nittsu/ui/style/stylesheets/images/icons/numbered/173.png");
+  background-repeat: no-repeat;
+  height: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  background-size: contain;
+  line-height: 20px;
+  width: 110px;
+  z-index: 101;
+}
+.custom-limited-label {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#popup-search-category label.ntsRadioBox {
+  padding: 5px;
+}
+#popup-search-category {
+  width: 150px;
+}
+.hide-class {
+  display: none;
+}
+.ui-dialog .ui-dialog-content.notice-dialog > .text {
+  width: 270px;
+}
+#img-avatar {
+  width: 40px;
+  position: relative;
+  border-radius: 50%;
+  display: inline;
+}
+div#user-image {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+}
+#avatar_id_ccg020 {
+  background-color: #eeeeee;
+  font-size: 15px;
+  color: blue;
+  text-align: center;
+  border: 1px solid #333688;
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
+  border-radius: 50%;
+}
+#header #menu-header #logo-area > #user-info {
+  display: flex;
+}
+#header #menu-header #logo-area > #user-info > #user {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+#header #menu-header #logo-area > #user-info > #company {
+  margin-bottom: 6px;
+}
+#new-notice-msg {
+  position: relative;
+  right: 15px;
+  /* top: -8px; */
+  padding: 0;
+}
+#notice-msg {
+  cursor: pointer;
+}
+#ccg020 #search-input {
+  width: 162px !important;
+  height: 18px;
+  top: 0;
+  position: absolute;
+  left: 30px;
+  border: none !important;
+}
+.ccg002-panel {
+  background: white;
+  width: 30px;
+  height: 30px;
+  position: absolute !important;
+  right: 0;
+  top: 0;
+  padding: 0px !important;
+}
+#ccg002-arrow-icon {
+  right: 5px;
+  top: 3px;
+  background-color: #127D09;
+  border: 1px groove;
+  position: absolute;
+  cursor: pointer;
+}
+#radio-search-category {
+  padding: 0 !important;
+  display: inline-block;
+  white-space: normal;
+}

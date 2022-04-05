@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 450, height: 500 };</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cdl003.a.main.css" />
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="cdl003.a.start.js" />
+			<com:scriptfile path="cdl003.a.vm.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="contents-area">
+				<div class="classificationContent" tabindex="-1">
+					<div class="lableCDL" tabindex="-1">
+						<label>#{i18n.getText('CDL003_1')}</label>
+					</div>
+					<div id="classification" tabindex="-1"></div>
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<button class="proceed x-large" tabindex="2"
+					data-bind="click: selectedClassification">#{i18n.getText('CDL003_2')}</button>
+				<button class="large" tabindex="3" data-bind="click: closeWindows">#{i18n.getText('CDL003_3')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

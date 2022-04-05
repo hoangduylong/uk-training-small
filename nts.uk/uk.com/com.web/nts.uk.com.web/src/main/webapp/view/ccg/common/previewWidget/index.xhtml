@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+
+	<ui:composition template="../../../../master/freelayout.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 985, height: 765 };</script>
+			<com:scriptfile path="/view/ccg/common/model.js" />
+			<com:scriptfile path="/view/ccg/common/positionUtility.js" />
+			<com:scriptfile path="previewWidget.service.js" />
+			<com:scriptfile path="previewWidget.vm.js" />
+			<com:scriptfile path="previewWidget.start.js" />
+			<com:stylefile path="/view/ccg/common/common.css" />
+			<com:stylefile path="previewWidget.style.css" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area" class="cf">
+				<div class="placement-wraper">
+					<div class="placement-container overflow-x overflow-y">
+						<div class="widget-container">
+							<com:ko-if bind="isEmpty">
+								<span class="empty-message">#{i18n.getText("CCG014_15")}</span>
+							</com:ko-if>
+							<com:ko tag="ifnot" bind="isEmpty">
+								<com:ko-foreach bind="placements">
+									<div class="widget-panel preview" data-bind="attr: {id: placementID}, visible: !$parent.isEmpty()" style="display: none;">
+										<!-- External Url -->
+										<com:ko-if bind="isExternalUrl()">
+											<div class="panel-header">
+												<span class="title limited-label" data-bind="text: name"></span>
+											</div>
+											<div class="panel-content">
+												<iframe data-bind="visible: isExternalUrl, attr:{src: url}" />
+											</div>
+										</com:ko-if>
+										<!-- FlowMenu -->
+										<com:ko-if bind="isFlowMenu()">
+											<com:ko bind="topPagePart" tag="with">
+												<ui:include src="/view/ccg/common/flowmenu.xhtml" />
+											</com:ko>
+										</com:ko-if>
+										<!-- Standard Widget-->
+										<com:ko-if bind="isStandardWidget()">
+											<div class="panel-header">
+												<span class="title limited-label" data-bind="text: name"></span>
+											</div>
+											<div class="panel-content">
+												<iframe data-bind="attr:{src: url}" />
+											</div>
+										</com:ko-if>
+										<!-- Optional Widget-->
+										<com:ko-if bind="isOptionalWidget()">
+											<div class="panel-header">
+												<span class="title limited-label" data-bind="text: name"></span>
+											</div>
+											<div class="panel-content">
+												<iframe data-bind="attr:{src: url}" />
+											</div>
+										</com:ko-if>
+									</div>
+								</com:ko-foreach>
+							</com:ko>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:com="http://xmlns.jcp.org/jsf/component" xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+  <ui:composition template="/master/base.xhtml">
+    <ui:define name="htmlHead">
+
+      <com:ValidatorScript>
+        nts.uk.ctx.office.dom.comment.DailyContactComment
+      </com:ValidatorScript>
+
+      <com:scriptfile set="IGNITE" />
+
+      <com:stylefile path="ccg008.a.style.css" />
+      <com:scriptfile path="../../034/share/model.js" />
+      <com:scriptfile path="./ccg008.a.vm.js" />
+
+      <com:scriptfile path="/view/kdp/001/a/kdp001.a.component.js" of="nts.uk.at.web" />
+
+      <com:scriptfile path="/view/ktg/031/a/ktg031.a.component.js"/>
+      <com:scriptfile path="/view/ccg/005/a/ccg005.a.vm.js"/>
+
+      <com:scriptfile path="/view/ktg/001/a/ktg001.a.component.js" of="nts.uk.at.web" />
+      <com:scriptfile path="/view/ktg/005/a/ktg005.a.component.js" of="nts.uk.at.web" />
+      <com:scriptfile path="/view/ktg/004/a/ktg004.a.component.js" of="nts.uk.at.web" />
+      <com:scriptfile path="/view/ktg/027/a/ktg027.a.component.js" of="nts.uk.at.web" />
+      <com:scriptfile path="/view/ktg/026/a/ktg026.a.component.js" of="nts.uk.at.web" />
+      
+      <!-- old widget -->
+      <com:scriptfile path="/view/ktg/031/a/ktg031.a.vm.js" of="nts.uk.at.web" />
+    </ui:define>
+    <ui:define name="content">
+      <div id="contents-area">
+        <div class="widget-home cf" data-bind="css: $vm.classLayoutName">
+          <div class="widget-left" data-bind="widget-group: $vm.widgetLeft"></div>
+          <div class="widget-center" data-bind="widget-frame: $vm.widgetCenter"></div>
+          <div class="widget-right" data-bind="widget-group: $vm.widgetRight"></div>
+        </div>
+      </div>
+    </ui:define>
+  </ui:composition>
+</body>
+
+</html>

@@ -1,0 +1,16 @@
+.ccg034-hyperlink {
+  cursor: default;
+  pointer-events: none;
+  text-decoration: none;
+  color: gray;
+}
+.limited-label-view {
+  z-index: 999;
+}
+#B1_1 {
+  overflow: hidden;
+  outline: 1px solid black;
+  outline-offset: 5px;
+  min-width: 800px;
+  min-height: 600px;
+}

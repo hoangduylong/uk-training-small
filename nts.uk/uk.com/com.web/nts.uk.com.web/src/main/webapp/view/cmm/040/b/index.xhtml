@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 1050, height: 600 };</script>
+			<com:ValidatorScript>
+					nts.uk.shr.com.primitive.PersonId
+				
+				</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cmm040.b.main.css" />
+			<com:scriptfile path="cmm040.b.service.js" />
+			<com:scriptfile path="cmm040.b.vm.js" />
+			<com:scriptfile path="cmm040.b.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<!-- B1_4 -->
+				<button class="large" data-bind="click : newMode">#{i18n.getText('CMM040_3')}</button>
+				<!-- B1_1 -->
+				<button class="proceed large" data-bind ="click : save ,enable: $root.errors.isEmpty">#{i18n.getText('CMM040_4')}</button>
+				<!-- B1_2 -->
+				<button class="danger large" data-bind = "click : deleteData, enable: !isCreate()">#{i18n.getText('CMM040_5')}</button>
+				<!-- B1_3 -->
+				<button class="large" data-bind="click:cancel_Dialog">#{i18n.getText('CMM040_32')}</button>
+			</div>
+			<div id="contents-area">
+				<div id="left-content" class="bg-green caret-right caret-background">
+					<i style = "margin-left: -5px;" class="icon icon-searchbox"></i>
+					<div class="container" style="width: 320px; margin-left: 25px ; margin-top: 25px;"
+						data-bind="ntsSearchBox: {
+								placeHolder: nts.uk.resource.getText('CMM040_41'),
+								searchMode: 'highlight',
+								name: '#[CMM040_41]',
+								targetKey: 'workLocationName',
+							    comId: 'multi-list',
+								items:  workLocationList,
+								selected: selectCode, 
+								selectedKey: 'workLocationName', 
+								fields: ['workLocationName', 'workLocationName'], mode: 'igGrid'}" />
+					<div style = "margin-left: 25px; margin-bottom: 25px;"><table id="multi-list" tabindex="3"
+						data-bind="ntsGridList: {
+						height: 370,
+						options: workLocationList,
+						optionsValue: 'workLocationName',
+						value: selectCode,
+						columns: columns,
+					}"></table></div>
+				</div>
+				<div id="right-content">
+					<div class="row1">
+						<div data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CMM040_35')}</div>
+						<span style = "margin-left: 35px;" data-bind="text: workLocationName"></span>
+					</div>
+					<div class="row2">
+						<div style="float: left;"
+							data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CMM040_36')}</div>
+						<div class="valign-center control-group">
+							<!-- B3_4 -->
+							<input id = "target" class="inputValue"
+								data-bind="ntsNumberEditor: {value: valueB3_4_ipaddress1 }" />
+							<p>.</p>
+							<!-- B3_6 -->
+							<input id ="validateB3_6" class="inputValue"
+								data-bind="ntsNumberEditor: {value: valueB3_6_ipaddress2 }" />
+							<p>.</p>
+							<!-- B3_8 -->
+							<input id ="validateB3_8" class="inputValue"
+								data-bind="ntsNumberEditor: {value: valueB3_8_ipaddress3 }" />
+							<p>.</p>
+							<!-- B3_10 -->
+							<input id ="validateB3_10" class="inputValue"
+								data-bind="ntsNumberEditor: {value: valueB3_10_ipaddress4 }" />
+							<p style = " margin-top: 10px; " >#{i18n.getText('CMM040_38')}</p>
+							<!-- B3_12 -->
+							<input id ="validateB3_12" class="inputValue"
+								data-bind="ntsNumberEditor: {value: valueB3_12 }" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

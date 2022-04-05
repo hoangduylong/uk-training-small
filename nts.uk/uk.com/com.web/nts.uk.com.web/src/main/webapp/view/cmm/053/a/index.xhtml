@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:stylefile path="/view/ccg/share/style.css" of="/nts.uk.com.web" />
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.service.js"
+				of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.vm.js" of="/nts.uk.com.web" />
+			<!-- COMPONENT KCP009 -->
+			<com:scriptfile path="/view/kcp/009/kcp009.js" of="/nts.uk.com.web" />
+			<com:stylefile path="/view/kcp/009/style.css" of="/nts.uk.com.web" />
+			<com:scriptfile path="cmm053.a.start.js" />
+			<com:scriptfile path="cmm053.a.service.js" />
+			<com:scriptfile path="cmm053.a.vm.js" />
+			<com:stylefile path="cmm053.a.main.css" />
+			<com:ValidatorScript>
+				nts.uk.ctx.bs.employee.dom.employeeinfo.EmployeeCode
+			</com:ValidatorScript>
+		</ui:define>
+		<ui:define name="content">
+			<!--A1_1 社員を選びなおす-->
+			<div id="ccgcomponent"></div>
+			<div id="functions-area" data-bind="with: settingManager">
+				<!--A1_2 新規-->
+				<button id="A1_2" data-bind="click: function(){$parent.addSettingManager_click($data)}, enable: $parent.screenMode() == 1" style="margin-left: 50px;" tabindex="1">#{i18n.getText('CMM053_2')}</button>
+				<!--A1_3 登録-->
+				<button id="A1_3" data-bind="enable: $root.errors.isEmpty, click: function(){$parent.regSettingManager_click($data)}" class="proceed" tabindex="2">#{i18n.getText('CMM053_3')}</button>
+				<!--A1_4 削除-->
+				<button id="A1_4" data-bind="click: function(){$parent.delSettingManager_click($data)}, enable: $parent.screenMode() == 1" class="danger" tabindex="3">#{i18n.getText('CMM053_4')}</button>
+				<!--A1_5 過去履歴-->
+				<button id="A1_5" data-bind="click: function(){$parent.openCMM053b($data)}, enable: hasHistory()" tabindex="4">#{i18n.getText('CMM053_5')}</button>
+			</div>
+			<div id="contents-area">
+				<div style="width: 1014px;" class="fixed-flex-layout" data-bind="with: settingManager">
+					<div class="container cf">
+						<div style="width: 980px">
+							<!-- KCP009 -->
+							<div id="emp-component"></div>
+						</div>
+						<div class="div-line" style="margin-left: 65px; margin-top: 30px">
+							<!--A2_1 勤次郎を利用する為に、次の設定をしてください。-->
+							<span id="A2_1" class="label">#{i18n.getText('CMM053_6')}</span>
+						</div>
+						<div class="div-line">
+							<!--A2_2 利用開始日（見出し）-->
+							<div id="A2_2" class="column-1"
+								data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CMM053_7')}</div>
+							<!--A2_3 開始日-->
+							<div id="A2_3"
+								data-bind="ntsDatePicker: {
+													value: startDate,
+													dateFormat: 'YYYY/MM/DD',
+													enable: $parent.screenMode() == 0,
+													required: true,
+													name: '#[CMM053_8]'
+												}"
+								tabindex="5"></div>
+							<!--A2_4 ~-->
+							<span id="A2_4" class="label">～</span>
+							<!--A2_5 完了日-->
+							<span id="A2_5" class="label" data-bind="text: endDate"></span>
+						</div>
+						<div class="div-line flex valign-center">
+							<!--A2_6 所属長を選択してください。-->
+							<div id="A2_6" class="column-1"
+								data-bind="ntsFormLabel: {required: true, constraint: 'EmployeeCode'}">#{i18n.getText('CMM053_11')}</div>
+							<div style="display: inline-block; margin-left: 5px;">
+								<!--A2_7 所属長のコード-->
+								<input id="A2_7" style="width: 110px"
+									data-bind="ntsTextEditor: {
+													value: departmentCode,
+													name: '#[CMM053_12]',
+													required: true,
+													constraint: 'EmployeeCode'
+												}"
+									tabindex="6" />
+								<!--A2_8 所属長の名前-->
+								<span id="A2_8" class="label" style="margin-left: 10px"
+									data-bind="text: departmentName"></span>
+							</div>
+						</div>
+						<div class="div-line flex valign-center" data-bind="if: $vm.displayDailyApprover">
+							<!--A2_9 日別の承認する人（就労先マネージャーなど）を入力してください。-->
+							<div id="A2_9" class="column-1" data-bind="ntsFormLabel: {constraint: 'EmployeeCode'}">#{i18n.getText('CMM053_13')}</div>
+							<!--A2_10 日別の承認する人のコード-->
+							<input id="A2_10" style="width: 110px; margin-left: 5px;"
+								data-bind="ntsTextEditor: {
+													value: dailyApprovalCode,
+													name: '#[CMM053_14]',
+													constraint: 'EmployeeCode'
+												}"
+								tabindex="7" />
+							<!--A2_11 日別の承認する人の名前-->
+							<span id="A2_11" class="label" style="margin-left: 13px;"
+								data-bind="text: dailyApprovalName"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

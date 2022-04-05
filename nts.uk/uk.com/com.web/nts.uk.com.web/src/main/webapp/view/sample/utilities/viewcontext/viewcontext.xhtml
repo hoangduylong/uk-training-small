@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 300, height: 200 };</script>
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+            </ui:define>
+            
+            <ui:define name="content">
+            	<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>View Context </h1>
+						<h2>This module has functions for handling runtime information (session information). The following is the information that can be obtained.</h2>
+						
+						
+						
+						<div class="feature-box">
+							<div class="header"><h3>user</h3></div>
+							<div class="content">
+								<p>You can retrieve information about the user who is logged in.</p>
+<pre><![CDATA[//Try to paste this to console
+__viewContext.user.companyId;
+Result: String(companyId)
+
+__viewContext.user.contractCode;
+Result: String(contractCode)
+
+__viewContext.user.companyCode;
+Result: String(companyCode)
+
+__viewContext.user.employeeId;
+Result: String(employeeId)
+
+__viewContext.user.employeeCode;
+Result: String(employeeCode)
+
+]]></pre>
+							</div>
+						</div>
+						<div class="feature-box">
+							<div class="header"><h3>role</h3></div>
+							<div class="content">
+								<p>You can get the role ID of the specified role type.</p>
+<pre><![CDATA[//Try to paste this to console
+__viewContext.user.role.groupCompanyAdmin;
+Result: String(Group company administrator role ID)
+
+__viewContext.user.role.companyAdmin;
+Result: String(Company administrator role ID)
+
+__viewContext.user.role.systemAdmin;
+Result: String(System administrator role ID)
+
+__viewContext.user.role.attendance;
+Result: String(Attendance role ID)
+
+__viewContext.user.role.payroll;
+Result: String(Payroll role ID)
+
+__viewContext.user.role.personalInfo;
+Result: String(PersonalInfo role ID)
+
+__viewContext.user.role.personnel;
+Result: String(Personnel role ID)
+
+__viewContext.user.role.officeHelper;
+Result: String(Officehelper role ID)
+]]></pre>
+							</div>
+						</div>
+						<div class="feature-box">
+							<div class="header"><h3>role isInCharge</h3></div>
+							<div class="content">
+								<p>Shows whether you are in charge of a role of the specified role type.</p>
+<pre><![CDATA[//Try to paste this to console
+__viewContext.user.role.isInCharge.attendance;
+Result: boolean
+
+__viewContext.user.role.isInCharge.payroll;
+Result: boolean
+
+__viewContext.user.role.isInCharge.personalInfo;
+Result: boolean
+
+__viewContext.user.role.isInCharge.personnel;
+Result: boolean
+]]></pre>
+							</div>
+						</div>
+
+						
+						
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

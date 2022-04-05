@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/base.xhtml">
+	<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="cli003.g.service.js" />
+			<com:scriptfile path="cli003.g.vm.js" />
+			<com:scriptfile path="cli003.g.start.js" />
+			<com:stylefile path="cli003.g.style.css" />
+			<com:ValidatorScript>
+				nts.uk.ctx.sys.log.dom.reference.LogSettingCode
+				nts.uk.ctx.sys.log.dom.reference.LogSettingName
+			</com:ValidatorScript>
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<div class="funcBtn">
+					<table>
+						<tr>
+							<td><a class="goback" data-bind="ntsLinkButton: { jump: '/view/cli/003/a/index.xhtml' }">#{i18n.getText('CLI003_2')}</a></td>
+							<td><button id="G1_1" tabindex="1" data-bind="click: register, enable: enableBtnReg">#{i18n.getText('CLI003_31')}</button></td>
+							<td><button id="G1_2" class="proceed" tabindex="2" data-bind="click: registerLogSetNew, enable: enableBtnRegNew">#{i18n.getText('CLI003_32')}</button></td>
+							<td><button id="G1_3" tabindex="3" data-bind="click: copyLogSet, enable: enableBtnCopy">#{i18n.getText('CLI003_33')}</button></td>
+							<td><button id="G1_4" class="danger" tabindex="4" data-bind="click: deleteLogSet, enable: enableBtnDel">#{i18n.getText('CLI003_34')}</button></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+				<div class="table valign-top control-group">
+					<div class="contentL cell"  data-bind="ntsPanel:{direction: 'right', showIcon: true, visible: true}">
+						<div style="width: 270px" data-bind="ntsSearchBox: {
+							targetKey: 'code', 
+							mode:'igGrid',
+							comId:'G2_1',
+							items: logSets,
+							selected: currentCode,
+							selectedKey: 'code',  
+							fields: ['code','name']}"/>
+						<table id="G2_1" tabindex="5" data-bind="ntsGridList: {						
+							height: 370,
+							dataSource: logSets,
+							primaryKey: 'code',
+							columns: columns,
+							multiple: false,
+							value: currentCode,
+							selectFirstIfNull: true}" />
+					</div>
+					<div class="contentR cell">
+						<div id="G3">
+							<table>
+								<tr>
+									<td><div id="G3_1" data-bind="ntsFormLabel: {constraint: ['LogSettingCode', 'LogSettingName'], required: true}">#{i18n.getText('CLI003_35')}</div></td>
+									<td><input id="G3_2" class="validate_form" tabindex="6"
+										data-bind="ntsTextEditor: {value: inputCode, required: true, constraint: 'LogSettingCode', enable: enableCode, name: '#[CLI003_11]' }" />
+										<input id="G3_3" tabindex="7"
+										data-bind="ntsTextEditor: {value: currentName, required: true, constraint: 'LogSettingName', name:'#[CLI003_12]' }" /></td>
+								</tr>
+								<tr>
+									<td><div id="G3_4" data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CLI003_36')}</div></td>
+									<td>
+										<div id="G3_5"  class="validate_form" tabindex="8" data-bind="ntsComboBox: {
+										options: recordTypeList,
+										optionsValue: 'code',
+										visibleItemsCount: 10,
+										value: recordType,
+										optionsText: 'name',
+										editable: false,
+										enable: enableRecordType,
+										required: true,
+										selectFirstIfNull: false,
+										columns: [	
+											{ prop: 'name', length: 10 },
+										]}"></div>
+									
+									</td>
+								</tr>
+								<tr>
+									<td><div id="G3_10" data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CLI003_71')}</div></td>
+									<td>
+										<div id="G3_11"  class="validate_form" tabindex="8" data-bind="ntsComboBox: {
+										options: systemTypeList,
+										optionsValue: 'code',
+										visibleItemsCount: 10,
+										value: systemType,
+										optionsText: 'name',
+										editable: false,
+										enable: true,
+										required: true,
+										selectFirstIfNull: false,
+										columns: [	
+											{ prop: 'name', length: 10 },
+										]}"></div>
+									
+									</td>
+								</tr>
+								<tr>
+									<td><div id="G3_7" data-bind="ntsFormLabel: {}">#{i18n.getText('CLI003_37')}</div></td>
+									<td>
+										<div id="G3_8_1" tabindex="9" data-bind="ntsComboBox: {
+										options: dataTypeList,
+										optionsValue: 'code',
+										visibleItemsCount: 10,
+										value: dataType,
+										optionsText: 'name',
+										editable: false,
+										enable: enableDataType,
+										required: true,
+										columns: [	
+											{ prop: 'name', length: 10 },
+										]}"></div>
+										
+										<div id="G3_8_2" tabindex="9" data-bind="ntsComboBox: {
+										options: dataTypeListEmpty,
+										optionsValue: 'code',
+										visibleItemsCount: 10,
+										value: dataTypeEmpty,
+										optionsText: 'name',
+										editable: false,
+										enable: enableDataType,
+										required: true,
+										columns: [	
+											{ prop: 'name', length: 10 },
+										]}"></div>
+									</td>
+								</tr>
+							</table>
+						</div>				
+						<div id="G4">
+							<table>
+								<tr>
+									<td>
+										<div id="G4_1" data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CLI003_38')}</div>
+									</td>
+									<td>
+										<div id="labelSwapList" class="flex valign-center">
+											<label id="G4_3">#{i18n.getText('CLI003_39')}</label>
+											<label id="G4_7">#{i18n.getText('CLI003_40')}</label>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td></td>
+									<td>
+										<div id= "G4_2" tabindex ="10" data-bind= "ntsSwapList: {
+											height: 255,
+											dataSource: itemsSwap,
+											disableMoveButton: false,
+											primaryKey: 'code',
+											leftColumns: leftColumns,
+											rightColumns: rightColumns,
+											value: selectedCodeList,
+											afterMoveLeft: afterLeft,
+											enableRowNumbering: false,
+											showNumbering: false,
+											multiple: true}"></div>      
+									</td>
+									<td>
+										<!-- Updown Button -->
+										<div id="up-down"
+											data-bind="ntsUpDown: {
+													targetSource: selectedCodeList,
+													primaryKey: 'code',
+													comId: '#G4_2',
+													type: 'swap',
+													swapTarget: 'right'
+												}"></div>
+									</td>					
+								</tr>
+							</table>
+							<table id="grid2"></table>
+						</div>
+					</div>
+				</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,15 @@
+#contents-area {
+    padding: 20px !important;
+}
+
+#contents-area .label:first-child {
+    margin-bottom: 10px;
+}
+
+.control-group .form-label {
+    width: 150px;
+}
+
+.control-group .label:nth-child(3) {
+    margin-left: 20px;
+}

@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script type='text/javascript'>
+				var dialogSize = {width : 565, height : 440};</script>
+			<com:ValidatorScript>
+			    nts.uk.ctx.exio.dom.exo.dataformat.init.DataTypeFixedValue
+			</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="../share/model.js" />
+			<com:stylefile path="cmf002.n.style.css" />
+			<com:scriptfile path="cmf002.n.vm.js" />
+			<com:scriptfile path="cmf002.n.start.js" />
+			<com:scriptfile path="cmf002.n.service.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="contents-area" data-bind="with: atWorkDataOutputItem">
+				<div>
+					<!-- N1タイトル -->
+					<div class="title_content">#{i18n.getText('CMF002_209')}</div>
+					<div id="table_content">
+						<!-- row1 -->
+						<div class="div-table-row flex valign-center">
+							<div class="div-table-col-standard">
+								<!--N2出力値の設定(ラベル) -->
+								<div data-bind="ntsFormLabel: {required: false}"
+									class="form-label enable">
+									<label>#{i18n.getText('CMF002_210')}</label>
+								</div>
+							</div>
+							<!-- N2_1_1在職時(ラベル) -->
+							<div class="div-table-col-standard">
+								<div
+									style=" margin-right: 12px;">#{i18n.getText('CMF002_211')}</div>
+							</div>
+							<!-- N2_1_2在職時 -->
+							<div class="div-table-col-standard">
+								<input id="N2_1_2" tabindex="1" style="width: 80px;"
+									data-bind="ntsTextEditor: { 
+																 value: atWorkOutput,
+																 constraint: 'DataTypeFixedValue',
+																 option : {width : '260px'},
+															     enable: $vm.enableAtWorkOutput(), 
+															     name: '#[CMF002_211]',
+															     required: false,
+															     optionsText: 'name'}, 
+																 " />
+							</div>
+						</div>
+						<!-- row2 -->
+						<div class="div-table-row flex valign-center">
+							<div class="col_left"></div>
+							<div class="div-table-col-standard">
+								<div class="row_2_3_4">#{i18n.getText('CMF002_212')}</div>
+							</div>
+							<div class="div-table-col-standard">
+								<!-- N2_2_2休職時 -->
+								<input id="N2_2_2" tabindex="2" style="width: 80px;"
+									data-bind="ntsTextEditor: { 
+																 value: absenceOutput,
+															     enable: $vm.enableAbsenceOutput(),
+															     constraint: 'DataTypeFixedValue',
+																 option : {width : '260px'}, 
+															     name: '#[CMF002_212]',
+															     required: false,
+															     optionsText: 'name'}, 
+																 " />
+							</div>
+						</div>
+						<!-- row3 -->
+						<div class="div-table-row flex valign-center">
+							<div class="col_left"></div>
+							<div class="div-table-col-standard">
+								<div class="row_2_3_4">#{i18n.getText('CMF002_213')}</div>
+							</div>
+							<div class="div-table-col-standard">
+								<!-- N2_3_2退職時-->
+								<input id="N2_3_2" tabindex="3" style="width: 80px;"
+									data-bind="ntsTextEditor: {
+																 value: retirementOutput, 
+															     enable: $vm.retirementOutput(),
+															     constraint: 'DataTypeFixedValue',
+																 option : {width : '260px'}, 
+															     name: '#[CMF002_213]',
+															     required: false,
+															     optionsText: 'name'}" />
+							</div>
+						</div>
+						<!-- row4 -->
+						<div class="div-table-row flex valign-center">
+							<div class="col_left"></div>
+							<div class="div-table-col-standard">
+								<div class="row_2_3_4">#{i18n.getText('CMF002_214')}</div>
+							</div>
+							<div class="div-table-col-standard">
+								<!--N2_4_2休業時 -->
+								<input id="N2_4_2" tabindex="4" style="width: 80px;"
+									data-bind="ntsTextEditor: { 
+																 value: closedOutput,
+															     enable: $vm.enableCloseOutput(),
+															     constraint: 'DataTypeFixedValue',
+																 option : {width : '260px'}, 
+															     name: '#[CMF002_214]',
+															     required: false,
+															     optionsText: 'name'}, 
+																 " />
+							</div>
+						</div>
+
+						<!-- table2 -->
+						<div class="div-table-row flex" style = "margin-top: 15px;">
+							<!-- N3固定値(ラベル) -->
+							<div class="div-table-col-standard">
+								<div data-bind="ntsFormLabel: {required: false}"
+									class="form-label enable">
+									<label>#{i18n.getText('CMF002_159')}</label>
+								</div>
+							</div>
+							<!-- N3_1固定値 -->
+							<!-- N3_1_1使用する -->
+							<div class="div-table-col-standard"
+								style="width: 110px;">
+								<div id="N3_1" tabindex="5"
+									data-bind="ntsRadioBoxGroup: {
+									options: $vm.items,
+									optionsValue: 'code',
+									optionsText: 'name',
+									value: fixedValue,
+									enable: true}"></div>
+							</div>
+							<!-- N3_2固定値の値 -->
+							<div class="div-table-col-standard">
+								<input id="N3_2" tabindex="6" style="width: 50px;"
+									data-bind="ntsTextEditor: { 
+																 value: valueOfFixedValue,
+															     enable: true,
+															     option : {width : '260px'}, 
+															     name: '#[CMF002_160]',
+															     required: false,
+															     constraint: 'DataTypeFixedValue',
+															     enable: $vm.enableFixedValue(),
+															     optionsText: 'name'} 
+																 " />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<!-- N20_1設定 -->
+				<button class="proceed x-large" tabindex="7" data-bind="click: saveSetting, enable: $root.errors.isEmpty">#{i18n.getText('CMF002_161')}</button>
+				<!-- N20_2キャンセル -->
+				<button id="BTN_CLOSE" tabindex="8" class="large"
+					data-bind="click: cancelSetting">#{i18n.getText('CMF002_162')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

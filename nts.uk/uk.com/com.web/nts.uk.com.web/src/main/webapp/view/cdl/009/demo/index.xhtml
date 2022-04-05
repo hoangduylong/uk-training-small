@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="../../../sample/catalog/catalog.css" />
+			<com:scriptfile path="../../../sample/catalog/catalog.js" />
+			<com:scriptfile path="cdl009.parent.vm.js" />
+			<com:scriptfile path="cdl009.parent.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content">
+					<h1>CDL009所属社員選択ダイアログ Demo Main SCR To Test</h1>
+					<hr />
+					<h2>Overview</h2>
+					<h4 style="margin-top: 30px; margin-bottom: 10px; font-size: 17px">Parameters:</h4>
+					
+					<table>
+						<col width="150"></col>
+						<col width="200"></col>
+						<tr>
+							<td>選択モード:</td>
+							<td><div class="cf"
+									data-bind="ntsSwitchButton: {
+												options: selectionOption,
+												optionsValue: 'code',
+												optionsText: 'name',
+												value: selectedOption,
+												enable: true }"></div></td>
+						</tr>
+						<tr>
+							<td>対象区分:</td>
+							<td><div id="target-classification"
+								data-bind="ntsRadioBoxGroup: {
+											options: targetList,
+											optionsValue: 'code',
+											optionsText: 'name',
+											value: selectedTarget,
+											enable: true}"></div></td>
+						</tr>
+						<tr>
+								<td>基準日:</td>
+								<td><div data-bind="ntsDatePicker: {value: baseDate, dateFormat: 'YYYY/MM/DD'}"></div>
+								</td>
+						</tr>
+						
+						<tr>
+							<td>
+								<p>選択済項目:</p>
+								<p data-bind="text: selectedIds()"></p>
+							</td>
+							<td>
+								<input data-bind="ntsTextEditor: {value: inputWorkplaceIds, option: {width: '500'}}" />
+							</td>
+						</tr>
+					</table>
+
+					<div>
+						<p>
+							<b>Selected Employee:</b>
+						</p>
+						<p data-bind="text: getSelectedEmp()"></p>
+						<br></br>
+					</div>
+
+					<button style="margin-top: 10px;" data-bind="click: openDialog">Open
+						CDL009 dialog</button>
+						
+					<h2 style="margin-top: 50px;">Guide</h2>
+					<pre>
+						<![CDATA[
+// Open Dialog CDL009
+      private openDialog() {
+          let self = this;
+          // Set Param
+          setShared('CDL009Params', {
+              // isMultiSelect For Employee List Kcp005 (選択モード)
+              isMultiple: self.isMultiSelect(),
+              // For Workplace List Kcp004 (選択済項目)
+              selectedIds: self.selectedIds(),
+              // For Workplace List Kcp004 (基準日)
+              baseDate: self.baseDate(),
+              // Workplace or Department(対象区分)
+              target: self.target(),
+              // first item selected or not(対象区分)
+              selectFirst: self.selectFirst()
+          }, true);
+
+          nts.uk.ui.windows.sub.modal("/view/cdl/009/a/index.xhtml").onClosed(function() {
+              var isCancel = getShared('CDL009Cancel');
+              if (isCancel) {
+                  return;
+              }
+              var output = getShared('CDL009Output');
+              if (self.isMultiSelect()) {
+                  self.selectedEmps(output);
+              } else {
+                  self.selectedEmployeeId(output);
+              }
+              
+          });
+      }
+					]]>
+					</pre>
+				</div> 
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

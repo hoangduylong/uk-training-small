@@ -1,0 +1,44 @@
+.div-line {
+  margin-left: 20px;
+  margin-bottom: 10px;
+  display: flex;
+}
+.column-label {
+  width: 150px;
+}
+.radio-button {
+  margin-left: 30px;
+}
+.choose-button {
+  margin-left: 55px;
+  width: 150px;
+}
+.size-zone {
+  margin: 10px 50px 0px 75px !important;
+}
+.pic-preview, .pic-choose {
+  width: 60px;
+  height: 60px;
+  border: 1px solid black;
+}
+.pic-preview {
+  margin-left: 100px;
+}
+.preview-line {
+  height: 60px;
+  min-height: 60px;
+  margin-bottom: 0px !important;
+}
+#I2_2_1 .nts-input {
+  display: none;
+}
+#I2_2_3 {
+  margin-left: 115px;
+}
+#I2_4 {
+  height: 125px;
+  overflow: auto;
+}
+.radio-wrapper .ntsRadioBox {
+  margin: 3px 0px;
+}

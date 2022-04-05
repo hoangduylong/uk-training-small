@@ -1,0 +1,399 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:ValidatorScript>
+					nts.uk.ctx.pereg.dom.person.setting.init.ValueSettingCode
+					nts.uk.ctx.pereg.dom.person.setting.init.ValueSettingName
+			</com:ValidatorScript>
+			<com:stylefile path="cps009.a.style.css" />
+			
+			<com:scriptfile path="cps009.a.service.js" />
+			<com:scriptfile path="layout-control-ko-ext.js" />
+			<com:scriptfile path="validate.js" />
+			<com:scriptfile path="cps009.a.start.js" />
+			<com:scriptfile path="cps009.a.vm.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<!-- A1_006: button 目次へ戻る -->
+				<a tabindex="1" class="goback" 
+					data-bind="ntsLinkButton: { jump: '/view/cps/018/a/index.xhtml' }, visible: $vm.isFromCPS018">#{i18n.getText('CPS009_47')}</a>
+				<!-- A1_001: button 新規 -->
+				<button id="A1_001" tabindex="2" data-bind="click: openDDialog, enable: $root.errors.isEmpty()">#{i18n.getText('CPS009_3')}</button>
+				<!-- A1_002: button 登録 -->
+				<button id="A1_002" class="proceed" data-bind="click: update, enable: $root.errors.isEmpty() &amp; initValSettingLst().length > 0"  tabindex="3">#{i18n.getText('CPS009_4')}</button>
+				<!-- A1_003: button 複製 -->
+				<button id="A1_003" data-bind="click: openCDialog, enable: initValSettingLst().length > 0" tabindex="4">#{i18n.getText('CPS009_5')}</button>
+				<!-- A1_004: button 削除 -->
+				<button id="A1_004" class="danger"
+					data-bind="click: deleteInitValue, enable: initValSettingLst().length > 0" tabindex="5">#{i18n.getText('CPS009_6')}</button>
+
+				<button id="closeBtn" style="visibility: hidden;"
+					data-bind="click: closeDialog" tabindex="3">#{i18n.getText('CPS016_4')}</button>
+				<!--Export Excel-->
+				<button tabindex="4"
+					data-bind="click : exportExcel,  enable: false">#{i18n.getText('CPS009_39')}</button>
+				<!-- A1_005: link label 個人情報定義へ -->
+				<a class='goout link-button'
+						data-bind="ntsLinkButton: {jump: '/view/cps/002/a/index.xhtml' }, style: { 'margin-left': _.size(currentCategory().itemList()) &lt; 15 ? ($vm.isFromCPS018() ? '358px' : '480px') : ($vm.isFromCPS018() ? '376px' : '498px')}"
+						tabindex="6">#{i18n.getText('CPS009_7')}</a>
+			</div>
+			<div id="contents-area" class="cf">
+				<div id="content" class="table">
+					<!-- A2_001: 選択パネル -->
+					<div class="cell" style="vertical-align: top">
+						<div id="content-left"
+							data-bind="ntsPanel:{width: '260px', height: '407px',direction: 'right', showIcon: false, visible: true}">
+							<!-- A2_002: gridList 初期値設定一覧 -->
+							<table id="category_grid"
+								data-bind="ntsGridList: {
+								name: '#[CPS009_9]',	
+								dataSource: initValSettingLst ,
+								primaryKey: 'settingId' ,
+								columns: settingColums ,
+								multiple: false,
+								columnResize: false,
+								value: initSettingId,
+								rows: 12 }"
+								tabindex="7">
+							</table>
+						</div>
+					</div>
+					<div id="content-right" class="cell">
+						<div
+							data-bind="template: { afterRender: function(){ $('#ctgName').focus();}}">
+							<!-- A3_001: label コード/名称 -->
+							<div
+								data-bind="ntsFormLabel: {required: true, constraint: ['ValueSettingCode' , 'ValueSettingName']}"
+								class='distane'>
+								<label>#{i18n.getText('CPS009_12')}</label>
+							</div>
+							<!-- A3_002: コード -->
+							<input id="ctgCode" data-bind="ntsTextEditor: {
+								name: '#[CPS009_13]',
+								value: currentCategory().settingCode ,
+								constraint: 'ValueSettingCode',
+								enable: false,
+								immediate: false}"
+								tabindex="8"></input>
+
+							<!-- A3_003: 名称 -->
+							<input id="ctgName"
+								data-bind="ntsTextEditor: {
+								name: '#[CPS009_14]',
+								value: currentCategory().settingName ,
+								constraint: 'ValueSettingName',
+								enable: initValSettingLst().length > 0,
+								immediate: false,
+								required: true}"
+								tabindex="9"></input>
+						</div>
+
+						<div id='sub-content-right' class="table">
+							<div id="search_his" class='flex valign-center'>
+								<!-- A3_004: カテゴリー検索
+ -->
+								<div id="search" tabindex="10"
+									data-bind="ntsSearchBox: {
+									name: '#[CPS009_17]',
+									searchMode: 'highlight',
+									targetKey: 'perInfoCtgId',
+									mode: 'igGrid', 
+									comId: 'item_grid',
+									items: currentCategory().ctgList ,  
+									selectedKey: 'perInfoCtgId',
+									fields: ['categoryName'],
+									placeHolder:'名称で検索・・・'}" />
+								<div id="history" class="flex valign-center" data-bind="style: { 'margin-left': _.size(currentCategory().itemList()) &lt; 15 ? '345px' : '357px'}">
+									<!-- A3_012: Label: 基準日ラベル -->
+									<label> #{i18n.getText('CPS009_19')}</label>
+									<!-- A3_13: button ヘルプボタン -->
+									<button id="A3_13" class="small"
+										data-bind="ntsHelpButton: {image: 'helpcps0091.png',position: 'bottom center',enable: true }"
+										tabindex="12">?</button>
+									<!-- A3_014: 履歴参照基準日(History reference date) -->
+									<div id="date1"
+										data-bind="ntsDatePicker: {
+											name: '#[CPS009_19]',
+											value: baseDate, 
+											required: true,
+											dateFormat: 'YYYY/MM/DD'}"
+										tabindex="13"></div>
+									<!-- A3_15: button 適用 -->
+									<button id="A3_15" data-bind="click: historyFilter"
+										tabindex="14">#{i18n.getText('CPS009_20')}</button>
+								</div>
+							</div>
+							<div class="valign-top control-group">
+							<div id='sub-left' class="cell">
+								<!-- A3_005: list カテゴリ一覧 -->
+								<table id="item_grid"
+									data-bind="ntsGridList: {	
+									dataSource: currentCategory().ctgList ,
+									primaryKey: 'perInfoCtgId' ,
+									columns: currentCategory().ctgColums ,
+									multiple: false,
+									columnResize: false,
+									value: currentItemId,
+									rows: 8 }"
+									tabindex="11">
+								</table>
+								<div style="margin-top: 10px;">
+									<!-- A3_011: label 済マーク説明 -->
+									<span>#{i18n.getText('CPS009_18')}</span>
+								</div>
+							</div>
+							<div id='sub-center' class="cell">
+								<span class="caret-background caret-right direction-right"
+									style="margin-top: 135px;"></span>
+							</div>
+							<div id='sub-right' class="cell" tabindex="15">
+								<!-- A3_016: table 項目初期値設定表 -->
+								<table class="contents-header">
+									<thead>
+										<tr>
+											<!-- A3_017: header 項目名 -->
+											<td id="COL_1">#{i18n.getText('CPS009_21')}</td>
+											<td id="COL_2">
+												<!-- A3_018: button 一括設定ボタン -->
+												<button id="A2_012" class="small"
+													data-bind=" click: openBDialog" tabindex="16">#{i18n.getText('CPS009_22')}
+												</button> <!-- A3_019: help button -->
+												<button id="help" class="small"
+													data-bind="ntsHelpButton: {image: 'helpcps0092.png',position: 'right top', enable: true }"
+													tabindex="17">?</button>
+											</td>
+											<!-- A3_020: header 値 -->
+											<td id="COL_3">#{i18n.getText('CPS009_23')}</td>
+										</tr>
+									</thead>
+									<tbody data-bind="foreach: currentCategory().itemList()">
+										<tr>
+											<td class="input-units-1" data-bind="css:{ requiredCell: isRequired(), notrequiredCell:!isRequired()}">
+											<span class="months-input limited-label" data-bind='text: itemName,attr: {
+							                                    id: perInfoItemDefId, 
+							                                    nameid: perInfoItemDefId,
+							                                    title: itemName,
+							                                    "data-title": itemName,
+							                                    "data-code": itemCode,
+							                                    "data-category": ctgCode,
+	                                							"data-required": isRequired' />
+											</td>
+											
+											<td class="input-units-2">
+												<div id="combo-box" data-bind="ntsComboBox: {
+															options: listComboItem,
+															optionsValue: 'code',
+															value: selectedRuleCode,
+															optionsText: 'name',
+															editable: false,
+															visibleItemsCount: 5,
+															enable: disableCombox,
+															dropDownAttachedToBody:true,
+															columns: [
+																{ prop: 'name', length: 10 },
+															]}">
+												</div>
+											</td>
+	
+											<com:ko-if
+												bind="[0, 1, 3, 4, 5, 6, 7, 8, undefined].indexOf(selectedRuleCode()) > -1">
+												<td id="notdata"><span></span></td>
+											</com:ko-if>
+	
+											<com:ko-if bind="(selectedRuleCode() === 2 )">
+												<td class="input-units-3">
+													<!-- String  --> 
+													<com:ko-if bind="(dataType() === 1)">
+															<com:ko-if bind="(fixedItem === true)">
+																<input class="sub-input-units"
+																	data-bind="ntsTextEditor: {
+																	name:  itemName ,
+																	value: stringValue , 
+																	constraint: itemCode,
+																	required: false},
+																	attr: { id: perInfoItemDefId, NameID: itemName }" />
+															</com:ko-if>
+	
+															<com:ko-if bind="(fixedItem === false)">
+																<input class="sub-input-units"
+																	data-bind="ntsTextEditor: {
+																	name:  itemName ,
+																	value: stringValue , 
+																	constraint: itemCode,
+																	required: false},
+																	attr: { id: perInfoItemDefId, NameID: itemName }" />
+															</com:ko-if>
+													</com:ko-if> 
+													
+													<!--  date  -->
+													 <com:ko-if bind="(dataType() === 3)">
+														<!--  date thuộc kiểu ngày tháng năm   -->
+														<com:ko-if bind="(dateType === 1)">
+																<div  class="sub-input-units"
+																	data-bind="ntsDatePicker: {
+																	 name:  itemName,
+																	 value: dateValue, 
+																	 dateFormat: 'YYYY/MM/DD',
+																	 valueFormat: 'YYYY/MM/DD',
+																	 required: false
+																	 }, attr: {  id: perInfoItemDefId, NameID: itemName }">
+																</div>
+														</com:ko-if>
+	
+														<!-- date thuộc kiểu tháng năm   -->
+														<com:ko-if bind="(dateType === 2)">
+																<div class="sub-input-units"
+																	data-bind="ntsDatePicker: {
+				                   									name:  itemName,
+				                   									value: dateValue, 
+				                   									dateFormat: 'YYYY/MM', 
+				                   									valueFormat: 'YYYY/MM',
+				                   									required: false
+				                   									}, attr: { id: perInfoItemDefId, NameID: itemName }">
+																</div>
+														</com:ko-if>
+	
+														<!-- date thuộc kiểu  năm  	 -->
+														<com:ko-if bind="(dateType === 3)">
+																<div class="sub-input-units"
+																	data-bind="ntsDatePicker: {
+																	name:  itemName,
+																	value: dateValue, 
+																	dateFormat: 'YYYY', 
+																	valueFormat: 'YYYY',
+																	required: false},
+																	attr: { id: perInfoItemDefId, NameID: itemName }">
+																</div>
+														</com:ko-if>
+													</com:ko-if> 
+													<!-- timeitem   --> 
+													<com:ko-if bind="(dataType() === 4)">
+															<input class="sub-input-units"
+																data-bind="ntsTimeEditor: {
+																	name: itemName,
+																	value: dateWithDay,
+																	constraint: itemCode,
+																	inputFormat: 'time', 
+															 		mode: 'time',
+																	required: false,
+																	enable: true,
+																	readonly: false},attr: { id: perInfoItemDefId, NameID: itemName }" />
+													</com:ko-if> 
+													<!-- 	 timepoint   --> 
+													<com:ko-if bind="(dataType() === 5)">
+															<input class="sub-input-units"
+																data-bind="ntsTimeWithDayEditor: { 
+																	name: itemName, 
+																	constraint: itemCode, 
+																	value: dateWithDay, 
+																	enable: enableControl, 
+																	readonly: false,
+																	required: false },
+																	attr: { id: perInfoItemDefId, NameID: itemName }" />
+													</com:ko-if> 
+													<!--   list box  --> 
+													<com:ko-if bind="(dataType() === 6)">
+														<div
+															data-bind="ntsComboBox: {
+																	options: selection,
+																	optionsValue: 'optionValue',
+																	visibleItemsCount: 5,
+																	value: selectedCode,
+																	optionsText: 'optionText',
+																	editable: false,
+																	enable: true,
+																	dropDownAttachedToBody:true,
+																	selectFirstIfNull: false,
+																	required: false,
+																	columns: [
+																		{ prop: 'optionText', length: 10 },
+																	]},
+																	attr: { id: perInfoItemDefId, NameID: itemName }">
+														</div>
+													</com:ko-if> 
+													<!-- number   --> 
+													<com:ko-if bind="(dataType() === 2)">
+														<com:ko-if
+															bind=" ((numbericItem.numberDecimalPart === 0) &amp; (numbericItem.numberIntegerPart !== 0)) ">
+																<div data-bind="with: numbereditor">
+																	<input class="sub-input-units"  data-bind="ntsNumberEditor: { 
+																		name: $parent.itemName,
+																 		value: value,
+																		constraint: $parent.itemCode,
+																		option: option,
+																		enable: enable,
+																		readonly: readonly,
+																		required: false},
+																		attr: { id: $parent.perInfoItemDefId, NameID: $parent.itemName }" />
+																</div>
+														</com:ko-if>
+	
+														<com:ko-if
+															bind=" ((numbericItem.numberDecimalPart !== 0)) ">
+																<div data-bind="with: numbereditor">
+																	<input class="sub-input-units" data-bind="ntsNumberEditor: { 
+				 														name: $parent.itemName,
+				 														value: value,
+																		constraint: $parent.itemCode,
+																		option: option,
+																		enable: enable,
+																		readonly: readonly,
+																		immediate: false,
+																		required: false},
+																		attr: { id: $parent.perInfoItemDefId, NameID: $parent.itemName }" />
+																</div>
+														</com:ko-if>
+													</com:ko-if>
+													 
+													<com:ko-if bind="(dataType() === 7)">
+														<div
+															data-bind="ntsRadioBoxGroup: {
+																options: selection,
+																optionsValue: 'optionValue',
+																optionsText: 'optionText',
+																value: selectedCode,
+																enable: true},
+																attr: { id: perInfoItemDefId, NameID: itemName }"></div>
+													</com:ko-if> 
+													
+													<com:ko-if bind="(dataType() === 8)">
+														<div class=" flex valign-center">
+														<button  data-bind='click: button, attr: {
+							                                    id: perInfoItemDefId, 
+							                                    nameid: itemName,
+							                                    title: itemName,
+							                                    "data-title": itemName,
+							                                    "data-code": itemCode,
+							                                    "data-category": ctgCode,
+	                                							"data-required": false,
+	                                							"data-defv": selectionName}'>#{i18n.getText('CPS009_37')}</button>
+														<span class="caret-right caret-inline"></span>
+														<span class="limited-label selectionName" data-bind="text: selectionName"></span>
+														</div>
+														
+													</com:ko-if>
+												</td>
+											</com:ko-if>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

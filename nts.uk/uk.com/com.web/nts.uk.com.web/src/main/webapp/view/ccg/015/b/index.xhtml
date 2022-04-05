@@ -1,0 +1,205 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:com="http://xmlns.jcp.org/jsf/component"
+  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+  <ui:composition template="../../../../master/base.xhtml">
+    <ui:define name="htmlHead">
+      <com:ValidatorScript>
+        nts.uk.ctx.sys.portal.dom.toppage.TopPageCode
+        nts.uk.ctx.sys.portal.dom.toppage.TopPageName
+      </com:ValidatorScript>
+      <com:scriptfile set="IGNITE" />
+      <com:stylefile path="ccg015.b.style.css" />
+      <com:scriptfile path="ccg015.b.vm.js" />
+    </ui:define>
+
+    <ui:define name="content">
+      <div id="functions-area" class="divHeader">
+        <div class="float_left">
+          <!-- B1_1 -->
+          <a class="goback" id="B1_1" data-bind="ntsLinkButton: { jump: '/view/ccg/015/a/index.xhtml' }">#{i18n.getText('CCG015_56')}</a>
+          <!-- B1_2 -->
+          <button tabindex="5" data-bind="click: newTopPage, enable: !isDisableNewBtn()" id="btn_new" class="btnStyle">#{i18n.getText('CCG015_4')}</button>
+          <!-- B1_3 -->
+          <button tabindex="6" data-bind="click: saveTopPage ,enable: $root.errors.isEmpty" class="proceed btnStyle"
+            id="btn_save">#{i18n.getText('CCG015_5')}</button>
+          <!-- B1_4 -->
+          <button tabindex="7" data-bind=" click: copyTopPage ,enable: !isNewMode()" id="btn_printing" class="btnStyle">#{i18n.getText('CCG015_6')}</button>
+          <!-- B1_5 -->
+          <button tabindex="10" data-bind="click: removeTopPage,enable: !isNewMode()" class="danger btnStyle"
+            id="btn_delete">#{i18n.getText('CCG015_7')}</button>
+        </div>
+      </div>
+      <div id="contents-area" data-bind="visible: true" style="display: none">
+        <table style="margin: 20px 0px 0px 20px">
+          <tr>
+            <td id="contents-left">
+              <div data-bind="ntsPanel:{width: '327px', height: '390px', direction: 'right', showIcon: true}">
+                <div id="box-search" tabindex="12" data-bind="ntsSearchBox: {searchMode: 'filter',targetKey: 'code', comId: 'single-list',
+									items: listTopPage, selected: toppageSelectedCode, selectedKey: 'code', fields: ['name', 'code'], mode: 'igGrid'}" />
+                <table id="single-list" data-bind="ntsGridList: {
+										height: 340,
+										options: listTopPage,
+										optionsValue: 'code',
+										columns: columns,
+										multiple: false,
+										value: toppageSelectedCode
+									}"></table>
+              </div>
+            </td>
+            <td id="contents-right" class="w-100 pl-30">
+              <table id="tableRight table_data" class="w-100">
+                <tr data-bind="with: topPageModel" class="w-100">
+                  <td class="contentsRL">
+                    <div id="lbl_code_name" style="text-align: right;" data-bind="ntsFormLabel: {constraint : ['TopPageCode','TopPageName'],required: true}">
+                      #{i18n.getText('CCG015_13')}
+                    </div>
+                  </td>
+                  <td class="contentsRR pad-left-20">
+                    <div class="inline-row">
+                      <input tabindex="2" id="inp_code" class="nts-input tr40 save-error" data-bind="ntsTextEditor: {
+                          name: '#[CCG015_42]',
+                          value: topPageCode,
+                          enable: $parent.isNewMode(),
+                          required:true,
+                          constraint: 'TopPageCode'}" />
+                      <input tabindex="3" id="inp_name" class="nts-input save-error ml-20" data-bind="ntsTextEditor: {
+                          name: '#[CCG015_43]',
+                          value: topPageName,
+                          enable: true,
+                          required: true,
+                          constraint: 'TopPageName'}" />
+                    </div>
+                  </td>
+                  <td class="pad-left-20">
+                  </td>
+                </tr>
+                <tr class="fix-margin"></tr>
+                <tr class="w-100">
+                  <td>
+                    <!-- B5_1 -->
+                    <div id="B5_1" data-bind="ntsFormLabel: {required: true}" style="text-align: right;">
+                      #{i18n.getText('CCG015_57')}
+                    </div>
+                  </td>
+                  <!-- B5_2 -->
+                  <td class="inline-row w-100 pad-left-20" id="B5_2">
+                    <div class="inline-row">
+                      <!-- B5_2_1 -->
+                      <div id="B5_2_1" class="cell" tabIndex="-1" data-bind="ntsRadioButton: {
+                        option: itemList()[0],
+                        optionValue: 'code',
+                        optionText: 'name',
+                        checked: selectedId,
+                        group: 'enumOption'}">
+                      </div>
+                      <!-- B5_3_1 -->
+                      <img src="../resource/CCG015_1.png" alt="" width="90" height="50" id="B5_3_1" />
+                    </div>
+                    <div class="inline-row ml-20">
+                      <!-- B5_2_2 -->
+                      <div id="B5_2_2" class="cell" tabIndex="-1" data-bind="ntsRadioButton: {
+                        option: itemList()[1],
+                        optionValue: 'code',
+                        optionText: 'name',
+                        checked: selectedId,
+                        group: 'enumOption'}">
+                      </div>
+                      <!-- B5_3_2 -->
+                      <img src="../resource/CCG015_2.png" alt="" width="90" height="50" id="B5_3_2" />
+                    </div>
+                    <div class="inline-row ml-20">
+                      <!-- B5_2_3 -->
+                      <div id="B5_2_3" class="cell" tabIndex="-1" data-bind="ntsRadioButton: {
+                        option: itemList()[2],
+                        optionValue: 'code',
+                        optionText: 'name',
+                        checked: selectedId,
+                        group: 'enumOption'}">
+                      </div>
+                      <!-- B5_3_3 -->
+                      <img src="../resource/CCG015_3.png" alt="" width="90" height="50" id="B5_3_3" />
+                    </div>
+                    <div class="inline-row ml-20">
+                      <!-- B5_2_4 -->
+                      <div id="B5_2_4" class="cell" tabIndex="-1" data-bind="ntsRadioButton: {
+                        option: itemList()[3],
+                        optionValue: 'code',
+                        optionText: 'name',
+                        checked: selectedId,
+                        group: 'enumOption'}">
+                      </div>
+                      <!-- B5_3_4 -->
+                      <img src="../resource/CCG015_4.png" alt="" width="90" height="50" id="B5_3_4" />
+                    </div>
+                  </td>
+                </tr>
+                <tr class="fix-margin"></tr>
+                <tr class="w-100">
+                  <td>
+                    <!-- B6_1 -->
+                    <div id="B6_1" data-bind="ntsFormLabel: {}">
+                      #{i18n.getText('CCG015_58')}
+                    </div>
+                  </td>
+                  <td class="inline-row w-100 pad-left-20">
+                    <div class="inline-row">
+                      <com:ko-if bind="isVisiableButton1()">
+                        <!-- B6_2 -->
+                        <button class="button-fix" id="B6_2" data-bind="click: openDialogButton1, disable: isDisableButton">
+                          <i data-bind="ntsIcon: { no: 176, width: 20, height: 20 }" class="plus-icon mr-5"></i>
+                          <label id="btn-1" data-bind="text: button1Text"></label>
+                        </button>
+                      </com:ko-if>
+                      <com:ko-if bind="isVisiableButton2()">
+                        <!-- B6_3 -->
+                        <button class="ml-20 button-fix" id="B6_3" data-bind="click: openDialogButton2, disable: isDisableButton">
+                          <i data-bind="ntsIcon: { no: 176, width: 20, height: 20 }" class="plus-icon mr-5"></i>
+                          <label id="btn-2" data-bind="text: button2Text"></label>
+                        </button>
+                      </com:ko-if>
+                      <com:ko-if bind="isVisiableButton3()">
+                        <!-- B6_4 -->
+                        <button class="ml-20 button-fix" id="B6_4" data-bind="click: openDialogButton3, disable: isDisableButton">
+                          <i data-bind="ntsIcon: { no: 176, width: 20, height: 20 }" class="plus-icon mr-5"></i>
+                          <label id="btn-3">#{i18n.getText('CCG015_61')}</label>
+                        </button>
+                      </com:ko-if>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="fix-margin"></tr>
+                <tr>
+                  <td>
+                    <!-- B7 -->
+                    <span class="size08" id="B7">#{i18n.getText('CCG015_26')}</span>
+                  </td>
+                  <td class="inline-row w-100 pad-left-20">
+                    <div class="inline-row">
+                      <!-- B7_1 -->
+                      <span class="fix-span-62" id="B7_1" data-bind="text: text1"></span>
+                      <!-- B7_2 -->
+                      <span class="fix-span-62 ml-20" id="B7_2" data-bind="text: text2"></span>
+                      <!-- B7_3 -->
+                      <span class="fix-span-62 ml-20" id="B7_3" data-bind="text: text3"></span>
+                    </div>
+                  </td>
+                </tr>
+                <tr class="fix-margin"></tr>
+                <tr>
+                  <td>
+                    <button class="ml-15 size100" data-bind="click: openDialogCCG015F, disable: isDisableButton">#{i18n.getText('CCG015_63')}</button>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </ui:define>
+  </ui:composition>
+</body>
+
+</html>

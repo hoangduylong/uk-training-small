@@ -1,0 +1,21 @@
+@CHARSET "UTF-8";
+
+.fixed-flex-layout-right .form-label {
+	width: 135px;
+}
+
+.caret-background.caret-bottom:after {
+    left: 180px;
+}
+
+.panel.ntsPanel.direction-bottom {
+    margin-bottom: 30px;
+}
+
+div.valign-center.control-group {
+	width: 750px;
+}
+
+#A4_1 {
+  height: 350px !important;
+}

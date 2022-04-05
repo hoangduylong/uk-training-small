@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 360, height: 600 };</script>
+			<com:ValidatorScript>
+					nts.uk.ctx.sys.portal.dom.webmenu.MenuBarName
+				</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="ccg013.b.style.css" />
+			<com:scriptfile path="/view/ccg/013/base/base.js"
+				of="/nts.uk.com.web" />
+			<com:scriptfile path="ccg013.b.start.js" />
+			<com:scriptfile path="ccg013.b.service.js" />
+			<com:scriptfile path="ccg013.b.vm.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<span>#{i18n.getText('CCG013_17')}</span>
+				<table class="control">
+					<tr>
+						<td><div data-bind="ntsFormLabel: { constraint: 'MenuBarName', required: true }" class="ccg013-nowrap">#{i18n.getText('CCG013_18')}</div></td>
+						<td style="padding-right: 0;"><input id="B1_3" class="menu-bar-name"
+							data-bind="ntsTextEditor: {name: '#[CCG013_18]',value: nameMenuBar, constraint: 'MenuBarName', required: true, option: {width: '160px'} }, hasFocus: true" /></td>
+            <td></td>
+					</tr>
+					<tr>
+						<td><div data-bind="ntsFormLabel: {  required: true }">#{i18n.getText('CCG013_20')}</div></td>
+						<td style="width: 195px; padding-right: 0;">
+              <div
+								data-bind="ntsRadioBoxGroup: {
+										options: itemRadioAtcClass,
+										optionsValue: 'value',
+										optionsText: 'localizedName',
+										value: selectedRadioAtcClass,
+										enable: true}">
+							</div>
+						</td>
+            <td>
+              <button data-bind="ntsHelpButton: {image: 'CCG013_002.png', position: 'bottom center-135', enable: true }">?</button>
+            </td>
+					</tr>
+				</table>
+
+				<div id="list">
+					<div class="system selec">
+						<div data-bind="ntsFormLabel: {}" class="ccg013-nowrap" style="padding-right: 11px;">#{i18n.getText('CCG013_24')}</div>
+						<div id="system selection"
+							data-bind="ntsComboBox: {
+									options: listSystemSelect,
+									value: selectedCodeSystemSelect,
+									optionsValue: 'value',
+									optionsText: 'localizedName',
+									enable: selectedRadioAtcClass()==1,
+									}"></div>
+						<!--  	<div data-bind="text: selectedCode"></div> -->
+					</div>
+					<span class="caret-bottom outline"></span>
+					<div class="content-search">
+						<div style="width: 300px; margin-bottom: 10px;"
+						data-bind="ntsSearchBox: {
+							searchMode: 'filter',
+							targetKey: 'uniqueCode',
+							comId: 'multi-list',
+							items: listStandardMenu,
+							selected: selectedStandardMenuKey,
+							selectedKey: 'uniqueCode',
+							fields: ['displayOrder', 'displayName'],
+							mode: 'igGrid',
+							enable: selectedRadioAtcClass()==1}" />
+						<table id="multi-list"
+									data-bind="ntsGridList: {
+										height: 210,
+										width: 300,
+										options: listStandardMenu,
+										optionsValue: 'uniqueCode',
+										columns: columns,
+										value: selectedStandardMenuKey,
+										enable: selectedRadioAtcClass()==1
+									}"></table>
+					</div>
+				</div>
+			</div>
+
+			<div id="functions-area-bottom">
+				<button class=" x-large proceed" data-bind="click : submit">#{i18n.getText('CCG013_28')}</button>
+				<button data-bind="click : cancel_Dialog">#{i18n.getText('CCG013_29')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

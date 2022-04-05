@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = {
+					width : 550,
+					height :660
+				};
+			</script>
+			<com:ValidatorScript>
+					nts.uk.ctx.pereg.dom.roles.RoleCode
+					nts.uk.ctx.pereg.dom.roles.RoleName
+				</com:ValidatorScript>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile
+				path="/lib/generic/igniteui/js/extensions/infragistics.datasource.knockoutjs.js"
+				of="/nts.uk.com.js.web" />
+			<com:scriptfile
+				path="/lib/generic/igniteui/js/extensions/infragistics.ui.grid.knockout-extensions.js"
+				of="/nts.uk.com.js.web" />
+			<com:stylefile path="cas001.d.style.css" />
+			<com:scriptfile path="cas001.d.service.js" />
+			<com:scriptfile path="cas001.d.start.js" />
+			<com:scriptfile path="cas001.d.vm.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area" class="cas-001-d-content">
+				<div id='role'>
+					<div data-bind="with: currentRole">
+						<div data-bind="ntsFormLabel:{ required:true}" class='distane'>
+							<label id="codeName">#{i18n.getText('CAS001_12')}</label>
+						</div>
+						<label id="roleCode" data-bind="text: roleCode"></label> <label
+							id="roleName" data-bind="text: roleName"></label>
+					</div>
+					<div data-bind="ntsFormLabel: {}" class='distane'>
+						<label id="codeName">#{i18n.getText('CAS001_57')}</label>
+					</div>
+				</div>
+				<div id='category' class="bg-green caret-background">
+					<i class="icon icon-searchbox"></i>
+					<div style="margin-left: 25px;">
+						<div id="search" tabindex="1" style="width: 420px;"
+							data-bind="ntsSearchBox: {
+						searchMode: 'highlight',
+						targetKey: 'categoryId',
+						mode: 'igGrid', 
+						comId: 'grid',
+						items: categoryList ,  
+						selectedKey: 'categoryId',
+						fields: ['categoryName'],
+						placeHolder:'#{i18n.getText('CAS001_76')}'}" />
+					</div>
+					<table id="grid">
+					</table>
+
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<button id="registration" class="proceed x-large"
+					data-bind='click:creatCategory' tabindex="6">#{i18n.getText('CAS001_61')}</button>
+				<button id="delete" data-bind='click: closeDialog' tabindex="7">#{i18n.getText('CAS001_62')}</button>
+
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

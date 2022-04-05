@@ -1,0 +1,47 @@
+#description {
+  padding-top: 10px;
+  padding-left: 15px;
+}
+
+#avatar-zone {
+  padding-left: 40px;
+  padding-top: 10px;
+}
+
+#functions-area-bottom {
+  border-top: none !important;
+  height: 50px;
+}
+
+#E2_5 {
+  display: inline-block;
+  height: 32px;
+  width: 70px;
+  border-radius: 6px;
+  margin-left: 120px;
+}
+
+#E2_5:hover {
+  background-color: rgb(245, 245, 245);
+}
+
+#E2_6 {
+  float: right;
+  margin-right: 40px;
+}
+
+#E2_8 {
+  float: left;
+  margin-left: 40px !important;
+}
+
+#E2_9 {
+  float: right;
+  margin-right: 40px;
+}
+
+#img-btn-snap {
+  height: 25px;
+  width: auto;
+  padding-top: 3px;
+}

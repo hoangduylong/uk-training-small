@@ -1,0 +1,64 @@
+#contents-area {
+	overflow: auto;
+	margin-left: 20px;
+}
+.contentR {
+	width: 900px;
+	padding-left: 20px;
+}
+.contentR-grid-table {
+	margin-left: 20px;
+}
+
+.table {
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+#bottom #title {
+	padding-right: 70px;
+}
+
+#B2_9 {
+	margin-left: 20px;
+}
+
+.table2 {
+	margin-left: 35px;
+	margin-bottom: 13px;
+}
+
+.inline{
+	display: inline-flex;
+}
+.contentR-grid-table td{
+	padding: 0 20px 6px 0;
+}
+
+#B1-panel {
+	margin: 10px 0 10px 0;
+}
+
+#B7-td {
+	text-align: right;
+}
+#B7{
+	margin-right: -55px;
+}
+
+.nts-switch-button, #B4_3, #B6_3{
+	width: 110px;
+}
+
+.time-editor, .ntsDatepicker {
+	text-align: center !important;
+    width: 85px !important;
+}
+
+#B3_2, #B4_2, #B4_3, #B5_2, #B6_2, #B6_3{
+	margin-left: 50px;
+}
+
+#B4_4, #B6_4 {
+	margin-left: 20px;
+}

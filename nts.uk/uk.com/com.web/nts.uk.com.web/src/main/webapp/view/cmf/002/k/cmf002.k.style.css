@@ -1,0 +1,36 @@
+.div-table {
+  display: table;         
+  width: 470px; 
+  border: 0,
+  background-color: #eee;          
+  border-spacing: 5px; 
+  margin-left: 10px; 
+  margin-top: 15px;
+}
+.div-table-row {
+  display: table-row;
+  width: 450px;
+  clear: both;
+}
+.div-table-col-standard {
+  float: left; 
+  display: table-column;         
+  width: 140px;
+}
+.div-table-col-medium {
+  float: left; 
+  display: table-column;    
+  width: 140px;     
+}
+.row-group{
+	display: table-row;
+}
+.label-big {
+	font-size: 1.4rem;
+}
+.ntsRadioBox {
+	margin-bottom: 7px;
+}
+.custom-radio {
+	margin-top: -7px;
+}

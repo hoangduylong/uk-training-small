@@ -1,0 +1,34 @@
+.markdown-content {
+    pre {
+        padding: 15px;
+        border-radius: 7px;
+        border: 1px solid #ccc;
+        background-color: #ddd;
+    }
+    
+    blockquote {
+        border-left: .25em solid #dfe2e5;
+        color: #6a737d;
+        padding: 0 1em;
+        text-align: justify;
+    }
+
+    table:not(.table) {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #222;
+        th,
+        td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+        thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+        }
+        tbody+tbody {
+            border-top: 2px solid #dee2e6;
+        }
+    }
+}

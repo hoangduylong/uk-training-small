@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+
+	<ui:composition template="../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 300, height: 200 };</script>
+
+			<com:stylefile path="../catalog/catalog.css" />
+			<com:scriptfile path="controls.js" />
+			<com:scriptfile path="../catalog/catalog.js" />
+			<style>
+			#control-list th {
+				font-weight: bold;
+			}
+			#control-list td {
+				font-weight: normal;
+				vertical-align: top;
+			}
+			#control-list td .api {
+				font-size: 1.1rem;
+				font-family: Consolas;
+			}
+			</style>
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area"></div>
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+
+					<h1>Control List</h1>
+
+					<table id="control-list" class="table" style="width: 1200px;">
+						<thead>
+							<tr>
+								<th rowspan="2" style="width: 170px;">Name in design (JPN)</th>
+								<th rowspan="2">Name of component</th>
+								<th colspan="2" style="width: 200px;">Property in design (JPN)</th>
+								<th rowspan="2" style="width: 250px;">Name of API, Option</th>
+								<th rowspan="2" style="width: 300px;">Remarks</th>
+							</tr>
+							<tr>
+								<th>name</th>
+								<th style="width: 100px;">value</th>
+							</tr>
+						</thead>
+						<tbody>
+							<com:ko-foreach bind="controls">
+								<tr>
+									<td data-bind="attr: {rowspan: properties.length}">
+										<span data-bind="text: nameInDesign"></span>
+									</td>
+									<td data-bind="attr: {rowspan: properties.length}">
+										<a class="api pre link" data-bind="text: nameInCode, attr: {href: pathToDocument}"></a>
+								 	</td>
+								 	<td data-bind="with: firstProperty()"><span data-bind="text: nameInDesign"></span></td>
+								 	<td data-bind="with: firstProperty()"><span data-bind="text: valueInDesign"></span></td>
+								 	<td data-bind="with: firstProperty()"><span class="api pre" data-bind="text: api"></span></td>
+									<td data-bind="attr: {rowspan: properties.length}">
+										<span data-bind="text: remarks"></span>
+									</td>
+								</tr>
+								<com:ko-foreach bind="propertiesAfterSecond()">
+									<tr>
+										<td><span data-bind="text: nameInDesign"></span></td>
+										<td><span data-bind="text: valueInDesign"></span></td>
+										<td><span class="api pre" data-bind="text: api"></span></td>
+									</tr>
+								</com:ko-foreach>
+							</com:ko-foreach>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

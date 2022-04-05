@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 300, height: 200 };</script>
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+            </ui:define>
+            
+            <ui:define name="content">
+            	<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>LinkButton</h1>
+						<h2>Overview</h2>
+						<article>
+							<h3>HyperLink Style</h3>
+							<a class="hyperlink" href="#">アイコン無し、ただのリンク</a>
+							<br/><br/>
+							<h3>Default Style</h3>
+		            		<a data-bind="ntsLinkButton: { jump: 'linkbutton.xhtml' }">振込元銀行の登録へ</a>
+		            		<a class="test" data-bind="ntsLinkButton: { action: doSomething}, text: linkText"></a>
+		            		<br/><br/>
+							<h3>Go out Style</h3>
+		            		<a class="goout" data-bind="ntsLinkButton: { jump: 'linkbutton.xhtml' }">振込元銀行の登録へ</a>
+		            		<br/><br/>
+							<h3>Go back Style</h3>
+		            		<a class="goback" data-bind="ntsLinkButton: { jump: 'linkbutton.xhtml' }">振込元銀行の登録へ</a>
+						</article>
+						<article class="cf">
+							<div class="tabs">
+								<ol>
+									<li><a href="#tabs-html">HTML Binding</a></li>
+									<li><a href="#tabs-api">API</a></li>
+								</ol>
+								<div id="tabs-html" class="cf">
+									<h2>HTML</h2>
+<pre><![CDATA[<!-- Hyperlink -->
+<a class="hyperlink" href="#">アイコン無し、ただのリンク</a>
+
+<!-- Default -->
+<a data-bind="ntsLinkButton: { jump: 'linkbutton.xhtml' }">振込元銀行の登録へ</a>
+
+<!-- Binding action -->
+<a class="test" data-bind="ntsLinkButton: { action: doSomething.bind($data, '❤') }, text: linkText"></a>
+
+<!-- Go out Style -->
+<a class="goout" data-bind="ntsLinkButton: { jump: 'linkbutton.xhtml' }">振込元銀行の登録へ</a>
+
+<!-- Go back Style -->
+<a class="goback" data-bind="ntsLinkButton: { jump: 'linkbutton.xhtml' }">振込元銀行の登録へ</a>
+]]></pre>
+									<h2>Viewmodel</h2>
+<pre><![CDATA[class ScreenModel {
+    linkText: KnockoutObservable<string>;
+    
+    constructor() {
+        var self = this;
+        self.linkText = ko.observable("振込元銀行の登録へ");
+    }
+    
+    doSomething(s: string) {
+        var self = this;
+        self.linkText(self.linkText() + s);
+    }
+}]]></pre>
+								</div>
+								<div id="tabs-api" class="cf">
+									<h2>Properties</h2>
+									<table class="table">
+										<colgroup>
+											<col width="200px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Name</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>jump</td>
+												<td>
+													<b>Type:</b> string | KnockoutObservable&lt;string&gt;<br/>
+													URL link button navigate to
+												</td>
+											</tr>
+											<tr>
+												<td>action</td>
+												<td>
+													<b>Type:</b> function<br/>
+													Action to do something. If <b>action</b> is defined then <b>jump</b> will be ignored
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

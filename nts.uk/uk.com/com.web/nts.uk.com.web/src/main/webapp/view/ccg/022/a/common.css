@@ -1,0 +1,53 @@
+.float-right {
+	float: right !important;
+}
+
+.display_flex {
+	display: flex;
+}
+
+.float_left {
+	float: left !important;
+}
+
+#content-left {
+	float: left;
+	padding: 5px;
+}
+
+.div_line {
+	margin-top: 10px;
+	float: left;
+	clear: both;
+	width: 100%;
+}
+
+.toggle_div {
+	background-color: #F2F2F2;
+	margin-top: 10px;
+	border-radius: 5px;
+	float: left;
+	padding: 10px 20px 10px 10px;
+}
+
+hr {
+	clear: both;
+}
+
+#message-area {
+	padding: 10px;
+}
+
+.div_line>* {
+	float: left;
+}
+
+.text_line {
+	line-height: 25px;
+	display: flex;
+	clear: both;
+}
+
+.bold {
+	font-weight: bold;
+}

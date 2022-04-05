@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<script>
+				var dialogSize = { width: 900, height: 700 };
+			</script>
+			<com:stylefile path="ccg027.a.style.css" />
+			<com:scriptfile path="ccg027.a.service.js" />
+			<com:scriptfile path="ccg027.a.start.js" />
+			<com:scriptfile path="ccg027.a.vm.js" />
+		</ui:define>
+
+		<ui:define name="content">
+
+			<div id="contents-area">
+				<div class="cf" data-bind="visible: sendingAddressChecks">
+					<div class="left">
+						<div data-bind="ntsFormLabel: {constraint: 'MailAddress'}">#{i18n.getText('CCG027_12')}</div>
+					</div>
+					<div class="right">
+						<input id="senderAddress" data-bind="ntsTextEditor: {value: senderAddress, enable: sendingAddressEnable, constraint: 'MailAddress', name: '#[CCG027_13]'}" />
+					</div>
+				</div>
+				<div class="cf" data-bind="visible: SetCC">
+					<div class="left">
+						<div data-bind="ntsFormLabel: {}">#{i18n.getText('CCG027_4')}</div>
+					</div>
+					<div class="right">
+						<input id="mailAddressCC" data-bind="ntsTextEditor: {value: mailAddressCC, name: '#[CCG027_5]'}" />
+						<div id="wording"><span>#{i18n.getText('CCG027_14')}</span></div>
+					</div>
+				</div>
+				<div class="cf" data-bind="visible: SetBCC">
+					<div class="left">
+						<div data-bind="ntsFormLabel: {}">#{i18n.getText('CCG027_6')}</div>
+					</div>
+					<div class="right">
+						<input  id="mailAddressBCC" data-bind="ntsTextEditor: {value: mailAddressBCC, name: '#[CCG027_7]'}" />
+						<div id="wording"><span>#{i18n.getText('CCG027_14')}</span></div>
+					</div>
+				</div>
+				<div class="cf" data-bind="visible: SetReply">
+					<div class="left">
+						<div data-bind="ntsFormLabel: {constraint: 'MailAddress'}">#{i18n.getText('CCG027_8')}</div>
+					</div>
+					<div class="right">
+						<input  id="mailRely"  data-bind="ntsTextEditor: {value: mailRely, constraint: 'MailAddress', name: '#[CCG027_9]'}" />
+					</div>
+				</div>
+				<div class="cf" data-bind="visible: SetSubject">
+					<div class="left">
+						<div data-bind="ntsFormLabel: {constraint: 'Subject'}">#{i18n.getText('CCG027_10')}</div>
+					</div>
+					<div class="right">
+						<input id="subject" data-bind="ntsTextEditor: {value: subject, constraint: 'Subject', name: '#[CCG027_10]'}" />
+					</div>
+				</div>
+				<div class="cf" data-bind="visible: SetBody">
+					<div class="left">
+						<div data-bind="ntsFormLabel: { constraint: 'Content'}">#{i18n.getText('CCG027_11')}</div>
+					</div>
+					<div class="right">
+						<textarea rows="10" cols="63" id="text"  data-bind="ntsMultilineEditor: { value: text, constraint: 'Content', name: '#[CCG027_11]'}" />
+						<div id="wording"><span data-bind="text:wording"></span></div>
+					</div>
+				</div>
+			</div>
+			<div id="functions-area-bottom">
+				<button class="proceed x-large" data-bind="click: decision, enable: $root.errors.isEmpty()">#{i18n.getText('CCG027_2')}</button>
+				<button data-bind="click: cancel_Dialog">#{i18n.getText('CCG027_3')}</button>
+			</div>
+			<script>
+				__viewContext.primitiveValueConstraints.MailAddress = {
+						valueType: 'String',
+						maxLength: 256,
+						charType: 'AnyHalfWidth',
+					};
+				__viewContext.primitiveValueConstraints.Subject = {
+					valueType: 'String',
+					maxLength: 100,
+				};
+				__viewContext.primitiveValueConstraints.Content = {
+					valueType: 'String',
+					maxLength: 1000,
+				};
+			</script>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

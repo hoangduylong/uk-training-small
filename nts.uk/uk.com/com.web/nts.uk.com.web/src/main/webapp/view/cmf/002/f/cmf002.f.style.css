@@ -1,0 +1,38 @@
+.div-line {
+	margin-bottom: 5px;
+}
+
+.container {
+	margin-left: 10px;
+}
+
+.column-1 {
+	width: 100px;
+}
+
+.ellipsis {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	line-height: 37px;
+}
+
+#F4 {
+	margin-top: 48px;
+}
+
+#F5 {
+	margin-left: 15px;
+}
+
+.arrow-item {
+	width: 60px;
+	margin: 0 10px 0 10px;
+}
+#master-wrapper {
+	overflow: hidden;
+}
+
+.arrow-item button {
+  margin-bottom: 10px;
+}

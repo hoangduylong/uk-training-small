@@ -1,0 +1,69 @@
+body {
+	overflow-x: hidden;
+}
+
+.column1 {
+	width: 150px;
+}
+
+.ntsControl {
+	margin-top: 10px;
+	display: block !important;
+}
+
+.form-label:FIRST-CHILD {
+	vertical-align: middle;
+}
+
+.radio-wrapper {
+	display: block;
+}
+
+.dateTime-input {
+	display: inline-block;
+}
+
+.label:FIRST-CHILD {
+	margin-top: 5px;
+	font-size: large;
+}
+
+.table {
+	margin-top: 5px;
+}
+
+.column1>div {
+	margin-left: 10px;
+}
+
+#dateTime-input {
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+#dateTime-input>label:NTH-CHILD(3) {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+.isUpdate {
+	color: black;
+}
+
+.isDelete {
+	color: #999999;
+}
+
+.form-label-update {
+	color: black;
+	border-color: #97D155 !important;
+}
+
+.form-label-delete {
+	color: #999999;
+	border-color: #999999 !important;
+}
+
+.datepicker-container {
+	top: 45px !important;
+}

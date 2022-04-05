@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:com="http://xmlns.jcp.org/jsf/component"
+  xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<head>
+</head>
+
+<body>
+  <ui:composition template="../../../../master/dialog.xhtml">
+    <ui:define name="htmlHead">
+      <com:scriptfile set="IGNITE" />
+      <com:stylefile path="ccg015.e.style.css" />
+      <com:scriptfile path="ccg015.e.vm.js" />
+      <com:scriptfile path="/view/kdp/001/a/kdp001.a.component.js" of="nts.uk.at.web" />
+      <com:scriptfile path="/view/ktg/027/a/ktg027.a.component.js" of="nts.uk.at.web" />
+      <com:scriptfile path="/view/ktg/026/a/ktg026.a.component.js" of="nts.uk.at.web" />
+      <com:scriptfile path="/view/ktg/001/a/ktg001.a.component.js" of="nts.uk.at.web" />
+      <com:scriptfile path="/view/ktg/005/a/ktg005.a.component.js" of="nts.uk.at.web" />
+      <com:scriptfile path="/view/ktg/004/a/ktg004.a.component.js" of="nts.uk.at.web" />
+      <com:scriptfile path="/view/ccg/005/a/ccg005.a.vm.js"/>
+      
+      <com:scriptfile path="/view/ktg/031/a/ktg031.a.component.js"/>
+      
+      <script>var dialogSize = { width: 800, height: 620 };</script>
+    </ui:define>
+    <ui:define name="content">
+      <div class="ccg015-e-content" id="functions-area">
+        <div class="float-left">
+          <!-- E1_1 -->
+          <button class="proceed" id="E1_1" data-bind="click: saveData">#{i18n.getText('CCG015_72')}</button>
+          <!-- E1_2 -->
+          <button class="ml-20" id="E1_2" data-bind="click: close">#{i18n.getText('CCG015_73')}</button>
+        </div>
+      </div>
+      <div class="main-area">
+        <div class="header-area">
+          <div class="header-label">
+            <!-- E2_1 -->
+            <div id="E2_1" data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CCG015_74')}</div>
+            <!-- E2_2 -->
+            <label id="E2_2" class="ml-20">#{i18n.getText('CCG015_75')}</label>
+          </div>
+          <label class="layout-label">#{i18n.getText('CCG015_85')}</label>
+        </div>
+
+        <div class="contents-area">
+          <div id="menu-item-container">
+            <div id="0" class="menu-creation-option">
+              <span class="label">#{i18n.getText('CCG015_76')}</span>
+            </div>
+            <div id="1" class="menu-creation-option">
+              <span class="label">#{i18n.getText('CCG015_77')}</span>
+            </div>
+            <div id="2" class="menu-creation-option">
+              <span class="label">#{i18n.getText('CCG015_78')}</span>
+            </div>
+            <div id="3" class="menu-creation-option">
+              <span class="label">#{i18n.getText('CCG015_79')}</span>
+            </div>
+            <div id="4" class="menu-creation-option">
+              <span class="label">#{i18n.getText('CCG015_80')}</span>
+            </div>
+            <div id="5" class="menu-creation-option">
+              <span class="label">#{i18n.getText('CCG015_81')}</span>
+            </div>
+            <div id="6" class="menu-creation-option">
+              <span class="label">#{i18n.getText('CCG015_82')}</span>
+            </div>
+            <div id="7" class="menu-creation-option">
+              <span class="label">#{i18n.getText('CCG015_83')}</span>
+            </div>
+            <div class="menu-note">
+              <label>#{i18n.getText('CCG015_84')}</label>
+            </div>
+          </div>
+          <div class="arrow-container">
+            <div class="arrow"></div>
+          </div>
+          <div class="menu-creation-layout-container" id="menu-creation-layout-container">
+            <div id="menu-creation-layout" data-bind="ntsSortable: {data: itemList}">
+              <div class="menu-creation-item-container" data-bind="attr: { id: itemType }">
+                <div class="menu-creation-item" data-bind="attr: { 'id': itemType }">
+                  <div class="widget-setting bg-green">
+                    <i data-bind="ntsIcon: { no: 177, width: 15, height: 15 }, click: function() { $vm.removeItem(itemType); }"></i>
+                    <com:ko tag="if" bind="isShowSetting">
+                      <i data-bind="ntsIcon: { no: 172, width: 15, height: 15 }, click: function() { $vm.onClickSetting(itemType); }"></i>
+                    </com:ko>
+                  </div>
+                  <div class="iframe-wrap">
+                    <com:ko tag="if" bind="isComponent()">
+                      <com:ko tag="if" bind="isKTG026()">
+                        <div data-bind="widget: 'ktg-026-a'"></div>
+                      </com:ko>
+                      <com:ko tag="if" bind="isKTG027()">
+                        <div data-bind="widget: 'ktg-027-a'"></div>
+                      </com:ko>
+                      <com:ko tag="if" bind="isKTG031()">
+                        <div data-bind="widget: 'ktg031-component'"></div>
+                      </com:ko>
+                      <com:ko tag="if" bind="isCCG005()">
+                        <div data-bind="widget: 'ccg005-component'"></div>
+                      </com:ko>
+                      <com:ko tag="if" bind="isKDP001()">
+                        <div data-bind="widget: 'kdp-001-a'"></div>
+                      </com:ko>
+                      <com:ko tag="if" bind ="$vm.isRenderKTG001()">
+                        <com:ko tag="if" bind="isKTG001()">
+                          <div data-bind="widget: 'ktg-001-a'"></div>
+                        </com:ko>
+                      </com:ko>
+                      <com:ko tag="if" bind ="$vm.isRenderKTG005()">
+                        <com:ko tag="if" bind="isKTG005()">
+                          <div data-bind="widget: 'ktg-005-a'"></div>
+                        </com:ko>
+                      </com:ko>
+                      <com:ko tag="if" bind ="$vm.isRenderKTG004()">
+                        <com:ko tag="if" bind="isKTG004()">
+                          <div data-bind="widget: 'ktg-004-a'"></div>
+                        </com:ko>
+                      </com:ko>
+                    </com:ko>
+                    <com:ko tag="ifnot" bind="isComponent()">
+                        <iframe class="widget-frame" data-bind="attr:{ src: url }" />
+                    </com:ko>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ui:define>
+  </ui:composition>
+</body>
+
+</html>

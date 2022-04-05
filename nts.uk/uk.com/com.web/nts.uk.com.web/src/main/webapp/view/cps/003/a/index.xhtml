@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+
+			<com:stylefile path="/view/ccg/share/style.css" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.service.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.vm.js" of="/nts.uk.com.web" />
+			
+			<com:scriptfile path="cm/setting.js" />
+			<com:stylefile path="cps003.a.style.css" />
+			<com:scriptfile path="cps003.a.service.js" />
+			<com:scriptfile path="cps003.a.vm.js" />
+			<com:scriptfile path="cps003.a.start.js" />
+			<com:scriptfile path="control.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<a tabindex="1" class="goback" 
+					data-bind="ntsLinkButton: { jump: '/view/cps/018/a/index.xhtml' }, visible: $vm.isFromCPS018">#{i18n.getText('CPS003_134')}</a>
+				<button type="button" class="proceed" data-bind="click: $vm.register, enable: employees().length > 0 &amp;&amp; !hasError()" tabindex="1">#{i18n.getText('CPS003_7')}</button>
+				<button type="button" data-bind="click: $vm.checkError, enable: employees().length > 0 &amp;&amp; !isCS00100()" tabindex="2">#{i18n.getText('CPS003_8')}</button>
+				<button id="export-file" type="button" data-bind="click: exportFile, enable: employees().length > 0 &amp;&amp; !hasError() &amp;&amp; !isCS00100()" tabindex="3">#{i18n.getText('CPS003_9')}</button>
+				<button type="button" data-bind="click: openBDialog, enable: !hasError() &amp;&amp; !isCS00100()" tabindex="3">#{i18n.getText('CPS003_10')}</button>
+			</div>
+			<div id="contents-area" class="cf"
+				data-bind="let: {
+						text: nts.uk.resource.getText
+					}">
+				<div id="ccgcomponent" tabindex="6"></div>
+				<div class="data-layout">
+					<div class="form-groups">
+						<div class="form-group">
+							<div class="fixed-width" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CPS003_12')}</div>
+							<div id="base-date" data-bind="ntsDatePicker: { value: $vm.baseDate, required: true, dateFormat: 'YYYY/MM/DD', name: '#[CPS003_12]', enable: baseDateEnable }"></div>
+						</div>
+						<div class="form-group">
+							<div class="fixed-width" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CPS003_13')}</div>
+							<div id="combo-box" data-bind="ntsComboBox: {
+								name: 'A2_003',
+								value: $vm.category.catId,
+								options: $vm.category.items,
+                                optionsText: 'categoryName',
+                                optionsValue: 'id',
+                                visibleItemsCount: 10,
+                                dropDownAttachedToBody: true,
+                                columns: [
+                                    /*{ prop: 'categoryCode', toggle: 'hidden', length: 20 },*/
+                                    { prop: 'categoryName', length: 14}
+                                ]}"></div>
+								<button id="column-display" data-bind="text: '#{i18n.getText('CPS003_14')}', click: $vm.settingColumns.bind($vm)"></button>
+								<div id="history-type-lbl" class="fixed-width margin-left" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CPS003_15')}</div>
+								<label id="history-type" data-bind="text: $vm.histType"></label>
+								<button data-bind="ntsHelpButton: {textId: 'CPS003_16', position: 'right center' }">?</button>
+						</div>
+						<div class="grid-setting">
+							<div class="form-group margin-left">
+								<div class="fixed-width" data-bind="ntsFormLabel: { required: true }">#{i18n.getText('CPS003_17')}</div>
+								<button data-bind="ntsHelpButton: {textId: 'CPS003_18', position: 'right center'}">?</button>
+								<div class="cf" data-bind="ntsSwitchButton: {
+									name: 'A2_012',
+									options: [{id: 1, name: '#{i18n.getText('CPS003_19')}'}, {id: 2, name: '#{i18n.getText('CPS003_20')}'}],
+									optionsValue: 'id',
+									optionsText: 'name',
+									value: $vm.updateMode,
+									required: true,
+									enable: updateModeEnable }"></div>
+							</div>
+							<div class="form-group configs-bar">
+								<button id="emp-redisplay" data-bind="text: '#{i18n.getText('CPS003_21')}', click: redisplayEmp, enable: employees().length > 0"></button>
+								<button data-bind="ntsHelpButton: {textId: 'CPS003_22', position: 'right center'}">?</button>
+								<button id="batch-change" data-bind="text: '#{i18n.getText('CPS003_23')}', click: $vm.settingBatchs.bind($vm), enable: employees().length > 0"></button>
+								<button id="settings" data-bind="cps003Setting: $vm.settings.matrixDisplay"></button>
+								<button id="width-save" data-bind="text: '#{i18n.getText('CPS003_24')}', click: $vm.saveWidth"></button>
+							</div>
+						</div>
+						<div class="form-group">
+							<div id="grid"></div>
+						</div>
+					</div>
+				</div>
+				<div class="table"></div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,38 @@
+@import url("base.css");
+
+#content {
+	width: 1200px;
+	margin-bottom: 20px;
+}
+
+#single-list_container{
+	margin: 10px 0px !important;
+}
+td{padding:5px 0px;}
+.verTop{
+	vertical-align: top;
+}
+.resize_Edittor{
+	width: 70px !important;
+}
+.formularStyle{
+	font-weight: bold;
+	padding: 5px 0px 0px 0px;
+}
+
+#subContent td.tdTxt{
+	padding: 0px 40px; 
+}
+
+#subContent table>tbody>tr>td:nth-child(1){
+	width: 70px;
+}
+
+th.ui-iggrid-header{
+	white-space: unset !important;
+}
+.ui-iggrid-header.ui-widget-header{
+	word-wrap: break-word;
+	white-space: pre-wrap;
+	word-break: normal;
+}

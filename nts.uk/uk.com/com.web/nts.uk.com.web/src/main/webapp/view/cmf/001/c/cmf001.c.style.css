@@ -1,0 +1,72 @@
+body.ko-cloak {
+  display: none;
+}
+
+#contents-area div.icon-configured {
+	height: 20px;
+	text-align: center;
+}
+
+#contents-area div.icon-configured > span {
+	background-size: 20px 20px;
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+}
+
+#contents-area .inline {
+  display: inline-block;
+}
+
+#contents-area .label.inline {
+  width: 150px;
+}
+
+#contents-area .ui-igcombo-wrapper {
+	top: 10px;
+	margin-top: -10px;
+}
+
+#contents-area .switchbox-wrappers label span {
+	min-width: 80px;
+	text-align: center;
+}
+
+#items td:nth-child(2){
+	text-align: center;
+}
+
+#item-def,
+#select-mapping {
+	margin-bottom: 30px;
+}
+
+#select-mapping {
+	line-height: 32px;
+}
+
+#revising {
+	margin-top: 20px;
+	margin-left: 30px;
+}
+
+#revising .row {
+	margin-bottom: 15px;
+}
+
+#padding-length {
+	width: 30px;
+}
+
+#code-convert {
+	margin-left: 40px;
+}
+
+#code-convert .inline {
+	vertical-align: top;
+}
+
+#code-convert textarea {
+	width: 400px;
+	height: 80px;
+}

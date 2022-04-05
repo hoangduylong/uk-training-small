@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition>
+		<!-- Q 出力社員選択 -->
+		<div id="com-ccg001" tabindex="2"></div>
+		<div id="content-q">
+			<div class="panel panel-frame" style="margin-bottom: 20px;">
+				<table>
+					<tr data-bind="if: show61DatePeriod " >
+						<td >
+							<div data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CMF002_223')}</div>
+						</td>
+						<td data-bind="if: show61DatePeriod">
+							<!--P6_1 実行期間-->
+							<div id="P6_1_DatePeriod" tabindex="3"
+								 data-bind="ntsDateRangePicker: {
+												required: true,
+												enable : false,
+												value: periodDateValue }" />
+						</td>
+					</tr>
+					<!--2-->
+					<tr data-bind="if: show61YmPeriod ">
+						<td >
+							<div data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CMF002_223')}</div>
+						</td>
+						<!--NOT_USE-->
+
+						<td data-bind="if: show61YmPeriod">
+							<div tabindex="3"
+								 data-bind="ntsDateRangePicker: {
+													enable : false,
+													type: 'yearmonth',
+													value: periodDateValue}">
+							</div>
+						</td>
+					</tr>
+					<!--3-->
+					<tr data-bind="if: show61Date">
+						<td >
+							<div data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CMF002_223')}</div>
+						</td>
+
+						<td data-bind="if: show61Date">
+							<div id="P6_1_YmPeriod" tabindex="3"
+								 data-bind="ntsDatePicker: {
+													value: date61,
+													dateFormat: 'date',
+													valueFormat: 'YYYY/MM/DD',
+													enable : false
+													}">
+							</div>
+						</td>
+					</tr>
+					<!--4-->
+					<tr data-bind="if: show81DatePeriod ">
+						<td >
+							<div data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CMF002_223')}</div>
+						</td>
+
+						<td data-bind="if: show81DatePeriod">
+							<div id="P8_1_DatePeriod" tabindex="3"
+								 data-bind="ntsDateRangePicker: {
+												required: true,
+												enable : false,
+												value: periodDateValue}" />
+						</td>
+					</tr>
+					<!--5-->
+					<tr data-bind="if: show81YmPeriod">
+						<td >
+							<div data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CMF002_223')}</div>
+						</td>
+						<td data-bind="if: show81YmPeriod">
+							<div tabindex="3"
+								 data-bind="ntsDateRangePicker: {
+								 					type: 'yearmonth',
+													enable : false,
+													value: periodDateValue}">
+							</div>
+						</td>
+					</tr>
+					<tr>
+						<td style="padding-top: 5px">
+
+							<div data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CMF002_78')}</div>
+						</td>
+						<td>
+							<div class="label" style="margin-left: 10px">
+								<span data-bind="text: conditionSettingName"></span>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!--kcp005 -->
+			<div id="component-items-list" style="margin-bottom: 10px;"
+				tabindex="18"></div>
+			<!--Q20_1 ←処理日の選択へ戻る-->
+			<div>
+				<button tabindex="3" class="large" style="margin-left: 50px;"
+					data-bind="click: previous">#{i18n.getText('CMF002_227')}</button>
+				<!--Q20_2 次へ→-->
+				<button tabindex="19" class="proceed x-large"
+					style="margin-left: 10px;" data-bind="click: nextToScreenR">#{i18n.getText('CMF002_228')}</button>
+			</div>
+		</div>
+	</ui:composition>
+</body>
+</html>

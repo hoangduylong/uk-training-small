@@ -1,0 +1,56 @@
+@CHARSET "UTF-8";
+
+.contentSchedule {
+	margin-left: 20px;
+}
+
+.labelFirstBold {
+	font-weight: bold;
+}
+
+.tableSchedule {
+	margin-top: 10px;
+}
+
+.tableSchedule td {
+	border: solid grey 1px;
+}
+
+.titleScheduleSetting {
+	width: 200px;
+}
+
+.valueScheduleSetting {
+	width: 350px;
+}
+
+.buttonErrorOutput {
+	margin-top: 15px;
+	float: right;
+	margin-right: 15px;
+}
+
+.tableErrorLog {
+	margin-top: 60px;
+}
+
+.executionStateTime {
+	margin-left: 25px;
+}
+
+.errorCount {
+	margin-left: 50px;
+}
+
+ul.countdown {
+	list-style: none;
+	display: block;
+	margin-left: 25px;
+}
+
+ul.countdown li {
+	display: inline-block;
+}
+#functions-area-bottom {
+	height: 45px;
+}

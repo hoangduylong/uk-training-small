@@ -1,0 +1,42 @@
+#display{
+	height: 115px;
+}
+
+.distance{
+	margin-bottom: 5px;
+	margin-left: 5px;
+}
+
+.margin-right-FormLabel{
+	margin-right: 10px;
+	width: 120px;
+}
+
+#reference-area{
+	border-top: solid 1px #B1B1B1;
+	margin-top: 20px;
+	margin-left: 10px;
+}
+
+#B1{
+	margin-top: 20px;
+}
+
+#reference{
+	margin-top: 20px;
+}
+
+#diplay-size{
+	margin-left: 52px;
+	font-size: 10px;
+}
+#register{
+	margin-top: 10px;
+}
+.nts-help-button-image{
+	width: 303px !important;
+}
+
+.contents-area {
+  padding-bottom: 0px !important;
+}

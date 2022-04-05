@@ -1,0 +1,16 @@
+// Options
+//$web-font-path: '' !default;
+//$enable-rounded: false !default;
+//$enable-shadows: false !default;
+
+$primary: #4285f4 !default;
+$info: #33b5e5 !default;
+//$secondary: #a6c !default;
+$success: #00c851 !default;
+$danger: #ff3547 !default;
+$warning: #fb3 !default;
+
+$default: #2bbbad !default;
+
+$bg-menu-color: map-get($map: $uk-colors, $key: teal);
+$color-required: #FFD966;

@@ -1,0 +1,89 @@
+.form-group {
+	margin-bottom: 5px;
+}
+
+#contents-area .drag-panel {
+	display:inline-block;
+	vertical-align: top;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	width: 600px;
+	height: 600px;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+#contents-area .drag-panel>div {
+	max-height: 94%;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	padding-right: 10px;
+	box-sizing: border-box;
+}
+
+#contents-area .drag-panel .item-classification {
+	padding: 3px;
+	position: relative;
+	box-sizing: border-box;
+	background-color: #fff;
+	border: 1px dashed transparent;
+}
+
+#contents-area .drag-panel .item-classification.ui-sortable-placeholder
+	{
+	border: 1px dashed #ddd;
+	visibility: visible !important;
+}
+
+#contents-area .drag-panel .item-classification.ui-sortable-helper{
+	cursor: pointer;
+}
+
+#contents-area .drag-panel .item-classification:hover,
+	#contents-area .drag-panel .item-classification.selected {
+	background-color: #eee;
+	border: 1px dashed #aaa;
+}
+
+#contents-area .drag-panel .item-classification>*:not(hr) {
+	vertical-align: top;
+	display: inline-block;
+}
+#contents-area .drag-panel .item-classification>hr {
+    padding: 0;
+	margin: 6px 0;
+    margin-right: 20px;
+}
+
+#contents-area .drag-panel .item-classification textarea.nts-editor {
+	width: 280px;
+	height: 70px;
+}
+
+#contents-area .drag-panel .item-classification .form-label {
+	width: 100px;
+}
+
+#contents-area .drag-panel .item-classification>.close-btn {
+	display: none;
+}
+
+#contents-area .drag-panel .item-classification>.close-btn:hover
+	{
+	color: #f00;
+}
+
+#contents-area .drag-panel .item-classification:hover>.close-btn
+	{
+	position: absolute;
+	top: 0;
+	right: 5px;
+	display: block;
+	right: 5px;
+	display: block;
+	cursor: pointer;
+}
+
+.string, .boolean, .number {
+	color: #f00;
+}

@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 300, height: 200 };</script>
+            	<com:scriptfile set="IGNITE" />
+				<com:ValidatorScript>
+					nts.uk.shr.com.primitive.PersonId
+					nts.arc.time.YearMonth
+					nts.uk.shr.com.primitive.sample.ResidenceCode
+   				</com:ValidatorScript>
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="viewmodel.js" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+            </ui:define>
+            
+            <ui:define name="content">
+            	<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Import Setting Form</h1>
+						<h2>Overview</h2>
+						<div class="control-group valign-center">
+							<div tabindex="2" data-bind="ntsCharsetSetting: {value: charset, enable: enable}"></div>
+							<div data-bind="ntsCheckBox: { checked: enable }">Enable</div>
+						</div>
+						<div><b>Value:</b> <span data-bind="text: charset"></span></div>
+						<article class="cf">
+							<div class="tabs">
+								<ol>
+									<li><a href="#tabs-usage">Usage</a></li>
+									<li><a href="#tabs-api">API</a></li>
+								</ol>
+								<div id="tabs-usage" class="cf">
+									<h2>HTML</h2>
+									<pre><![CDATA[<div tabindex="2" data-bind="ntsCharsetSetting: {value: charset, enable: enable}"></div>]]></pre>
+									<h2>ViewModel</h2>
+<pre><![CDATA[class ScreenModel {
+    charset: any;
+    enable: KnockoutObservable<boolean>;
+    
+    constructor() {
+        var self = this;
+        self.charset = ko.observable(1);
+        self.enable = ko.observable(true);
+    }
+}]]></pre>
+								</div>
+								<div id="tabs-api" class="cf">
+									<article>
+										<h2>Properties</h2>
+										<table class="table">
+											<colgroup>
+												<col width="150px" />
+											</colgroup>
+											<thead>
+												<tr>
+													<th><h4>Name</h4></th>
+													<th><h4>Description</h4></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>value</td>
+													<td>
+														<b>Type:</b> KnockoutObservable&lt;number&gt;<br/>
+														Value of charset base on NtsCharset enum
+													</td>
+												</tr>
+												<tr>
+													<td>enable<br/><i>(optional)</i></td>
+													<td>
+														<b>Type:</b> KnockoutObservable&lt;boolean&gt; | boolean<br/>
+														<b>Default:</b> true<br/>
+														Set enable/disable for accordion.
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</article>
+									<article>
+										<h2>NtsCharset Enum</h2>
+<pre><![CDATA[// Get list enum by
+nts.uk.enums.NtsCharset]]></pre>
+                                        <table class="table">
+                                            <colgroup>
+                                                <col width="150px" />
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th><h4>Name</h4></th>
+                                                    <th><h4>Description</h4></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>UTF-8</td>
+                                                    <td>
+                                                        <i>value</i> 1<br/>
+                                                        <i>fieldName</i> "UTF8"<br/>
+                                                        <i>localizedName</i> "UTF-8"<br/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>UTF-8 BOM</td>
+                                                    <td>
+                                                        <i>value</i> 2<br/>
+                                                        <i>fieldName</i> "UTF8_WITH_BOM"<br/>
+                                                        <i>localizedName</i> "UTF-8 BOM"<br/>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Shift-JIS</td>
+                                                    <td>
+                                                        <i>value</i> 3<br/>
+                                                        <i>fieldName</i> "SHIFT_JIS"<br/>
+                                                        <i>localizedName</i> "Shift-JIS"<br/>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+									</article>
+								</div>
+							</div>
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

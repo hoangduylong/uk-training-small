@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script type='text/javascript'>
+				var dialogSize = {
+					width : 900,
+					height : 630
+				};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps001.f.style.css" />
+			<com:scriptfile path="cps001.f.service.js" />
+			<com:scriptfile path="cps001.f.vm.js" />
+			<com:scriptfile path="cps001.f.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<button id="closebtn" tabindex = "3" type="button" data-bind="click: close">#{i18n.getText('CPS001_51')}</button>
+			</div>
+			<div id="contents-area">
+				<div>#{i18n.getText('CPS001_80')}</div>
+				<div class="uploadfile">
+					<div id="file-upload"
+						data-bind="ntsFileUpload:{
+							filename: filename,
+							accept: accept,
+							text: textId,
+							aslink: asLink,
+							enable: enable,
+							uploadFinished:  uploadFinished,
+							stereoType: stereoType,
+							immediateUpload: true,
+							maxSize: 10
+					}"></div>
+				</div>
+				<table id="grid2"></table>
+			
+				<div>
+					<div style="float: left; margin-left: 30px;" data-bind="text: fileSize"></div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

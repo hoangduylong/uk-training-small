@@ -1,0 +1,35 @@
+#contents-area {
+	overflow: auto;
+	min-height: 230px;
+}
+.navigation-label {
+	float:right;
+	margin-right: 10px;
+	padding-bottom: 20px;
+}
+
+.image-left{
+	padding-top: 5px;
+}
+
+.to-screen-b {
+	background-image: url("../resource/IMG_CLI003_1.png");
+	background-size: 100%;
+	height: 91px;
+	width: 256px;
+	background-repeat: no-repeat;
+	margin-left: 58px;
+}
+
+.to-screen-g {
+	background-image: url("../resource/IMG_CLI003_2.png");
+	background-size: 100%;
+	height: 91px;
+	width: 256px;
+	background-repeat: no-repeat;
+	margin-left: 55px;
+}
+#titel_a {
+	margin: 20px;
+}
+

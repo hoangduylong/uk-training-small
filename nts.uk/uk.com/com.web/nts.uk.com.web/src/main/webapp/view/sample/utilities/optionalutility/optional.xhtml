@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+            </ui:define>
+            
+            <ui:define name="content">
+            	<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Optional ulitily</h1>
+						<h2>nts.uk.util.optional is imitation of Optional class of Java.</h2>
+						
+						<div class="feature-box">
+							<div class="header"><h3>of</h3></div>
+							<div class="content">
+								<p>Create an optional object.</p>
+								<pre><![CDATA[// opt1 has a value 'a'
+let opt1 = nts.uk.util.optional.of('a');
+
+// these are empty
+let opt2 = nts.uk.util.optional.of(null);
+let opt3 = nts.uk.util.optional.of(undefined);]]></pre>
+							</div>
+						</div>
+						
+						<div class="feature-box">
+							<div class="header"><h3>empty</h3></div>
+							<div class="content">
+							<p>Create an empty optional object.</p>
+							<pre><![CDATA[// These are equivalent.
+let opt1 = nts.uk.util.optional.empty();
+let opt2 = nts.uk.util.optional.of(null);
+let opt3 = nts.uk.util.optional.of(undefined);]]></pre>
+							</div>
+						</div>
+						
+						<div class="feature-box">
+							<div class="header"><h3>ifPresent</h3></div>
+							<div class="content">
+								<p>ifPrsent method is a most basic way to take value out from optional.</p>
+								<pre><![CDATA[let opt1 = nts.uk.util.optional.of('a');
+opt1.ifPresent(value => {
+	console.log(value); // 'a'
+});]]></pre>
+							</div>
+						</div>
+						
+						<div class="feature-box">
+							<div class="header"><h3>isPresent</h3></div>
+							<div class="content">
+								<pre><![CDATA[let opt1 = nts.uk.util.optional.of('a');
+let b1 = opt1.isPresent(); // true
+
+let opt2 = nts.uk.util.optional.empty();
+let b2 = opt2.isPresent(); // false
+]]></pre>
+							</div>
+						</div>
+						
+						<div class="feature-box">
+							<div class="header"><h3>for complex requirement</h3></div>
+							<div class="content">
+								<pre><![CDATA[let opt1 = nts.uk.util.optional.of('{"a":10}');
+
+let result = opt1.map(v => JSON.parse(v))
+	.orElse({a: -1});
+
+console.log(result.a); // 10 or -1
+]]></pre>
+							</div>
+						</div>
+
+
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

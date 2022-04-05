@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="cmf005.i.service.js" />
+      <com:scriptfile path="cmf005.i.vm.js" />
+      <com:stylefile path="cmf005.i.style.css" />
+		</ui:define>
+
+    <ui:define name="content">
+      <div id="functions-area">
+        <!--I1_1 操作選択に戻る-->
+        <a id="I1_1" class="goback"
+          data-bind="ntsLinkButton: { jump: '../a/index.xhtml' }">#{i18n.getText('CMF005_9')}</a>
+      </div>
+      <div id="contents-area">
+        <div class="content">
+          <div class="div-line">
+            <!-- I3 削除セット選択(パネル) -->
+            <div id="I3" data-bind="ntsPanel: {height: '160px', direction: 'none', showIcon: true }"
+              class="search-panel">
+              <div class="flex">
+                <!-- I3_1 実行期間(ラベル) -->
+                <div id="I2_3" class="div-column-1 flex" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF005_124')}
+                </div>
+                <div class="ntsControl">
+                  <!-- I3_1_1 実行期間 -->
+                  <div id="I3_1_1" class="flex valign-center div-column-2" data-bind="ntsDateRangePicker: { 
+                      name: '#[CMF005_124]',
+                      enable: true, 
+                      type: 'fullDate',
+                      value: dateValue,
+                    }" tabindex="1">
+                  </div>
+                </div>
+              </div>
+              <div class="flex save-set-grid">
+                <!-- I3_2 削除セット -->
+                <div id="I3_2" class="div-column-1 flex" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF005_125')}
+                </div>
+                <div>
+                  <!-- I3_3 削除セット一覧 -->
+                  <table id="I3_3" data-bind="ntsGridList: {
+                    name: '#[CMF005_143]',
+                    height: 130,
+                    dataSource: $vm.searchItems,
+                    primaryKey: 'rowNumber',
+                    columns: $vm.columnHeaders,
+                    multiple: false,
+                    value: $vm.searchValue,
+                    rows: 5
+                  }" style="float: right;">
+
+                  </table>
+                </div>
+                <!-- I4 検索 -->
+                <button id="I4" class="large div-column-3 valign-bottom search-button"
+                  data-bind="click: startFindData, enable: searchValue" tabindex="2">#{i18n.getText('CMF005_126')}</button>
+              </div>
+            </div>
+          </div>
+          <div class="div-line">
+            <div class="compact-grid">
+              <!-- I5 削除セット一覧 -->
+              <div id="I5" tabindex="3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ui:define>
+	</ui:composition>
+</body>
+</html>

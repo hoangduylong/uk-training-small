@@ -1,0 +1,92 @@
+.dialog-title {
+	font-size: 1.4em;
+	margin-top: 10px;
+}
+
+.div-table {
+	display: table;
+    width: 610px;
+    border: 0;
+    border-spacing: 5px;
+    margin-left: 10px;
+    margin-top: 15px;
+}
+
+.div-table-row {
+	display: table-row;
+	width: 800px;
+	height: 40px;
+	clear: both;
+}
+
+.div-table-row .ntsRadioBox:first-child{
+	margin: 5px 0 7px 0;
+}
+
+.div-table-row-small {
+	display: table-row;
+	width: 600px;
+	height: 20px;
+	clear: both;
+}
+
+.div-table-col-small {
+	float: left;
+	display: table-column;
+	width: 80px;
+}
+
+.div-table-col-standard {
+	float: left;
+	display: table-column;
+}
+
+.div-table-col-standard button {
+	width: 80px;
+}
+
+.div-table-col-big {
+	float: left;
+	display: table-column;
+	width: 200px;
+}
+
+.div-table-col-big-big {
+	float: left;
+    display: table-column;
+    width: 235px;
+    margin-left: 10px;
+}
+
+.div-table-col-medium {
+	float: left;
+	display: table-column;
+	width: 130px;
+}
+
+.radio-group {
+	margin-top: 15px;
+}
+
+.vertical-align-center {
+	display: inline;
+	margin-top: 10px;
+}
+
+.label-vertical-align-center {
+	display: inline;
+	position: relative;
+	top: -10px;
+}
+
+.cell-label {
+	display: inline;
+}
+
+.div-inline {
+	display: inline;
+}
+
+.switchbox-wrappers {
+	display: inline-flex !important;
+}

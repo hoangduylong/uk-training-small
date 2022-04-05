@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<!-- library for ccg029 -->
+			<com:stylefile path="ccg029.a.style.css" />
+			<com:scriptfile path="ccg029.a.vm.js" />
+			
+			<!-- library for test screen -->
+			<com:scriptfile path="test.ccg029.a.vm.js" />
+			<com:scriptfile path="ccg029.a.start.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="functions-area">
+				<button class="btnSetting" id="btn_new" tabindex="1">Sample</button>
+			</div>
+			<div style="height: 700px;">
+				<search-employee-modal params="input: input, callback: seletedEmployee"></search-employee-modal>	
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

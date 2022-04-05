@@ -1,0 +1,16 @@
+#btn_close {
+	margin-top: 15px;
+}
+
+.btn {
+	margin-left: 50px;
+	width: 150px !important;
+	height: 50px;
+	margin-top: 20px;
+}
+
+.plus_1 {
+	min-height: 10px;
+	height: 60px;
+	width: 150px;
+}

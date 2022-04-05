@@ -1,0 +1,17 @@
+.dialog-content{
+	width:300px; 
+	height:430px;
+	margin-left:30px;
+}
+.dialog-title{
+	margin-top:15px; 
+}
+.table-contents-area {
+	margin-top: 10px; 
+	margin-right:auto
+}
+
+.auto-increment th[role="rowheader"] {
+ text-align: right !important;
+ background-color: #CFF1A5;
+}

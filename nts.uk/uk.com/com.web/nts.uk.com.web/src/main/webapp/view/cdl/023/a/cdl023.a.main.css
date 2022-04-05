@@ -1,0 +1,7 @@
+td:not (.td-hr ) {
+	padding-top: 15px;
+}
+
+.caret-bottom.outline:after {
+	margin-left: 4px !important;
+}

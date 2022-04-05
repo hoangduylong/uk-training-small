@@ -1,0 +1,104 @@
+@charset "utf-8";
+
+* {
+	box-sizing: border-box;
+}
+
+#content {
+	height: 100%;	
+}
+
+.preview {
+	float: left;
+	width: 50%;
+	height: 100%;
+	border: 1px solid #CCC;
+}
+
+.preview .window {
+	width: 100%;
+	height: 80%;
+}
+
+.preview .window #select-div:after {
+    content: '▼';
+    font: normal normal normal 19px/1 consolas;
+    left: 664px;
+    height: 33px;
+    padding: 14px 0px 0px 14px;
+    border-left: 1px solid #ccc;
+    position: absolute;
+    pointer-events: none;
+}
+
+.preview .window select {
+	position: absolute;
+	left: 339px;
+	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #efefef;
+    border: none;
+    border-radius: 3px;
+    padding: 14px 39px 15px 10px;
+    font-size: 1em;
+}
+
+.preview .window select::-ms-expand {
+    display: none;
+}
+
+.preview .validator {
+	height: 20%;
+}
+
+.code-view {
+	float: left;
+	width: 50%;
+	height: 100%;
+	/*border: 1px solid #CCC;*/
+}
+
+.view-area {
+	float: left;
+	width: 100%;
+	height: 50%;
+	border: 1px solid #CCC;
+}
+
+.view-area .title {
+	width: 100%;
+	height: 20px;
+	padding-left: 10px;
+	background: #002240;
+    color: white;
+}
+
+/*.view-area textarea {
+	font-family: consolas;
+	font-size: 11pt;
+	width: 100%;
+	height: 100%;
+	resize: none;
+}*/
+
+.CodeMirror {
+	height: calc(100% - 20px);
+}
+
+.CodeMirror pre {
+	padding: 0 4px !important;
+}
+
+.preview iframe {
+	width: 100%;
+	height: 100%;
+}
+
+#run {
+	position: absolute;
+	top: 20px;
+	height: 46px;	
+}
+
+

@@ -1,0 +1,71 @@
+.dialog-title {
+  margin-top: 10px;
+  font-size: 1.4em;
+} 
+.div-table {
+  display: table;         
+  width: 100%; 
+  border: 0,
+  background-color: #eee;          
+  border-spacing: 5px; 
+  margin-left: 10px; 
+  margin-top: 15px;
+}
+.div-table-row {
+  display: table-row;
+  width: 800px;
+  clear: both;
+}
+.div-table-row-small {
+  display: table-row;
+  width: 600px;
+  height:20px;
+  clear: both;
+}
+.div-table-col-small {
+  float: left; 
+  display: table-column;         
+  width: 80px;   
+}
+.div-table-col-standard {
+  float: left; 
+  display: table-column;         
+  width: 100px;
+}
+.div-table-col-big {
+  float: left; 
+  display: table-column;         
+  width: 200px;   
+}
+.div-table-col-big-big {
+  float: left; 
+  display: table-column;         
+  width: 300px;   
+}
+.div-table-col-medium {
+  float: left; 
+  display: table-column;         
+  width: 130px;   
+}
+.vertical-align-center{
+  display: inline;  
+  margin-top: 10px;
+}
+.label-vertical-align-center{
+  display: inline;
+  position: relative; 
+  top: -10px;
+}
+.cell-label{
+    display: inline;
+} 
+div.form-label{
+	height: 30px;
+}
+#master-wrapper {
+    overflow: hidden;
+}
+
+.div-table-col-standard.radio-group {
+  width: 120px !important;
+}

@@ -1,0 +1,265 @@
+body {
+	-ms-overflow-x: hidden;
+	-ms-overflow-y: hidden;
+}
+
+#contents-area {
+  padding-bottom: 0 !important;
+}
+
+.float-right {
+	float: right !important;
+	margin-right: 55px;
+}
+
+#content-left {
+	width: 288px !important;
+	height: 407px !important;
+	margin-left: 10px !important;
+}
+
+.requiredCell {
+	background-color: #FFC000;
+}
+
+.notrequiredCell {
+	background-color: #C7F391;
+}
+
+#content-right {
+	width: 900px;
+}
+
+#category_grid_container {
+	margin-left: -3px !important;
+}
+
+.distane {
+	margin-bottom: 5px;
+}
+
+#ctgName {
+	width: 200px;
+}
+
+#ctgCode {
+	width: 80px;
+}
+
+button.search-btn, button.clear-btn {
+	width: 40px;
+}
+
+input.ntsSearchBox {
+	width: 160px !important;
+}
+
+#sub-content-right {
+	margin-top: 10px;
+	width: 900px;
+}
+
+#sub-left {
+	width: 265px;
+}
+
+#sub-right {
+	width: 595px;
+	margin-left: 30px;
+}
+
+#sub-right>table>tbody, #sub-right>table>thead {
+	display: block;
+}
+
+#sub-right>table>tbody {
+	overflow-x: hidden;
+}
+
+#sub-center {
+	width: 25px !important;
+}
+
+#sub-center > span.caret-background.caret-right.direction-right {
+	position: absolute;;
+	margin-top: 50px !important;
+	margin-left: 2px !important;
+}
+
+#search_his {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+#history {
+	float: left;
+	margin-left: 375px;
+}
+
+#A2_012 {
+	margin-left: 15px;
+	width: 97px;
+	padding: 0px 0px !important;
+}
+
+#help {
+	margin-left: 5px;
+}
+
+table tr td, table tr th {
+	font-size: 14px;
+	font-family: "DroidSansMono", "Meiryo";
+}
+
+.ui-igcombo-wrapper {
+	display: block;
+	width: initial;
+	width: 249px;
+}
+
+.contents-header {
+	width: 94.5%;
+	border: 1px solid #ccc;
+}
+
+.contents-header tbody tr:first-child td {
+	border-top: none;
+} 
+
+thead {
+	background-color: #CFF1A5;
+}
+
+#COL_1 {
+	min-width: 180px !important;
+	border-left: none;
+    border-top: none;
+}
+
+#COL_2 {
+	min-width: 160px !important;
+	border-top: none;
+}
+
+#COL_3 {
+	min-width: 249px !important;
+	border-right: none;
+	border-top: none;
+}
+
+#combo-box {
+	width: 160px !important;
+} 
+
+.input-units {
+	width: 209px !important;
+}
+
+input.sub-input-units  {
+	border: 1px solid transparent !important;
+}
+
+.input-units-1 {
+	min-width: 179px;
+	max-width: 179px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+.input-units-2 {
+	min-width: 160px;
+	max-width: 160px;
+}
+
+.input-units-3 {
+	min-width: 249px !important;
+	max-width: 249px !important;
+}
+
+ #notdata {
+	min-width: 249px !important;
+	max-width: 249px !important;
+}
+
+.sub-input-units  {
+	width: 249px !important;
+	text-align: right !important;
+}
+
+.ntsDatepicker.nts-input.reset-element.sub-input-units{
+	width: 225px !important;
+}
+.sub-input-units.nts-editor.nts-input{
+	width: 225px !important;
+}
+
+.ntsControl.error input{
+	border-color: #ff6666 !important;
+}
+
+.input.sub-input-units:focus{
+	 border: 1px solid #0096f2;
+     box-shadow: none;
+}
+
+
+th>div {
+	color: #000;
+	border-left: 1px solid #ccc;
+	background-color: #CFF1A5 !important;
+} 
+
+th {
+	height: 0;
+	line-height: 0;
+	padding: 0;
+	border: none;
+	white-space: nowrap;
+	font-weight: bold;
+	background-color: #CFF1A5 !important;
+}
+
+th:first-child div {
+	border: none;
+	background-color: #CFF1A5 !important;
+}
+
+td {
+	padding: 0px !important;
+	border: 1px solid #ccc;
+}
+
+label[for] {
+	line-height: 20px !important;
+	right: -3px !important;
+	margin-top: 1.5px;
+}
+
+#A3_13 {
+	margin-left: 5px !important;
+}
+
+#A3_15 {
+	margin-left: 5px !important;
+}
+
+.caret-background caret-right direction-right {
+	margin-top: 90px !important;
+}
+
+.ui-state-default {
+	border: 1px solid #c5c5c500 !important;;
+}
+
+abbr[title] {
+	text-decoration: none;
+}
+
+#combox1 {
+	width: 225px !important;
+}
+
+.selectionName {
+	width: 180px;
+}

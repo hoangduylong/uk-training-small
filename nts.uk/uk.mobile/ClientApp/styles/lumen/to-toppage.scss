@@ -1,0 +1,20 @@
+.totop {
+    border-radius: 50%; 
+    width: 46px;
+    height: 46px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    text-align: center;
+    background-color: lighten($color: $info, $amount: 15%);
+    cursor: pointer;
+    display: none;
+    &.show {
+        display: block;
+    }
+    .fas {
+        color: $white;
+        font-size: 1.4rem;
+        line-height: 46px;
+    }
+}

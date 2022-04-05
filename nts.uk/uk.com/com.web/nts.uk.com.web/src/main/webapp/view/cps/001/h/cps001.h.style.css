@@ -1,0 +1,21 @@
+.ui-iggrid-header{
+	white-space: unset !important;
+}
+
+.realTxt{
+	width: 55px;
+}
+.ckb{margin: 13px 0px 10px ;}
+.tbl{margin: 5px 0px 25px 0px;}
+.detailContent table td{
+	padding: 5px 0px;
+}
+.paddingTd{
+	padding-left: 30px !important;	
+}
+
+.ui-iggrid-header.ui-widget-header{
+	word-wrap: break-word;
+	white-space: pre-wrap;
+	word-break: normal;
+}

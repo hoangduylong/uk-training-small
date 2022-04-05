@@ -1,0 +1,443 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="../../sample/catalog/catalog.css" />
+			<com:scriptfile path="../../sample/catalog/catalog.js" />
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="kcp005.a.vm.js" />
+			<com:scriptfile path="kcp005.a.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content">
+					<div class="cf">
+						<note class="pull-left" style="width:500px;"> <b>Update
+							2018/07/26</b> <br />
+							- Add property disableSelection <br />
+						</note>
+						<note class="pull-left" style="width:500px;"> <b>Update
+							2018/04/10</b> <br />
+						- Add property showOptionalColumn.<br />
+						</note>
+					</div>
+					<div id="function-area" style="margin: 40px">
+						<h1>KCP005-社員リスト</h1>
+						<h2>(Employee List)</h2>
+						<h2>Overview</h2>
+
+						<div style="margin-left: 10px; padding-top: 10px">
+							<p>
+								<b>Single/Multiple Selection</b>
+							</p>
+							<br></br>
+							<div class="cf"
+								data-bind="ntsSwitchButton: {
+														options: selectionOption,
+														optionsValue: 'code',
+														optionsText: 'name',
+														value: selectedOption,
+														enable: true }"></div>
+						</div>
+						<div style="margin-left: 10px; padding-top: 10px">
+							<div data-bind="ntsCheckBox:{checked: isAlreadySetting}">Show
+								Already Setting</div>
+							<div data-bind="ntsCheckBox:{checked: isDialog}">Show As
+								Dialog</div>
+							<div data-bind="ntsCheckBox:{checked: isShowNoSelectionItem}">Show
+								NoSelection Item</div>
+							<div data-bind="ntsCheckBox:{checked: isShowWorkPlaceName}">Show
+								WorkPlace</div>
+							<div data-bind="ntsCheckBox:{checked: showOptionalColumn}">Show
+								Optional Column</div>
+							<div data-bind="ntsCheckBox:{checked: disableSelection}">Disable Selection</div>
+						</div>
+						<br></br>
+
+						<div style="margin-left: 10px; padding-top: 10px">
+							<p>
+								<b>Selection Type:</b>
+							</p>
+							<br></br>
+							<div id="selection-type"
+								data-bind="ntsRadioBoxGroup: {
+											options: selectionTypeList,
+											optionsValue: 'code',
+											optionsText: 'name',
+											value: selectedType,
+											enable: true}"></div>
+
+						</div>
+
+						<div style="margin-left: 10px; padding-top: 10px">
+							<p>
+								<b>Save/Delete</b>
+							</p>
+							<br></br>
+							<BUTTON id="test-button" data-bind="click: settingSavedItem"
+								style="margin-right: 10px">Copy</BUTTON>
+							<BUTTON id="test-button"
+								data-bind="click: settingSavedItem, enable: hasSelectedEmp()"
+								style="margin-right: 10px">Save</BUTTON>
+							<BUTTON id="test-button"
+								data-bind="click: settingDeletedItem, enable: hasSelectedEmp()"
+								style="margin-right: 10px">Delete</BUTTON>
+						</div>
+									<hr></hr>
+						<br></br>
+						<table style="margin: 30px; width: 100%;">
+							<tr>
+								<td style="width: 640px; border: none">
+									<div style="margin-bottom: 30px; padding-left: 20px">
+										<p style="font-size: 30px">社員リスト</p>
+									</div>
+									<div id="component-items-list"></div>
+								</td>
+								<td style="border: none; padding-top: 100px">
+									<table style="width: 100%;">
+										<tr>
+											<td style="font-size: 20px; font-weight: bold; color: gray;">Selected
+												Codes:</td>
+										</tr>
+										<tr>
+											<td style="margin-right: 30px; width: 500px; color: gray;"><div
+													data-bind="text: getSelectedItemCode()"></div></td>
+										</tr>
+										<tr>
+											<td style="font-size: 20px; font-weight: bold; color: gray;"><button data-bind="click: getSelectedInfo">Get All Selected Record Info</button></td>
+										</tr>
+										<tr>
+											<td style="margin-right: 30px; width: 500px; color: gray;"><div
+													data-bind="text: selectedInfo"></div></td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+						</table>
+							
+					</div>
+
+					<!-- BEGIN DESCRIPTION -->
+					<article class="cf" style="margin-top: 40px;">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-html">HTML Binding</a></li>
+								<li><a href="#tabs-viewmodel">ViewModel</a></li>
+								<li><a href="#tabs-method">Methods</a></li>
+								<li><a href="#tabs-data">Data</a></li>
+							</ol>
+							<!-- BEGIN TAB HTML -->
+							<div id="tabs-html" class="cf">
+								<h2>HTML</h2>
+								<p>
+									Using Ignite library so you must include following line in <i>&lt;ui:define
+										name="htmlHead"&gt;</i>
+								</p>
+								<pre>
+									<![CDATA[<ui:define name="htmlHead">
+		<com:scriptfile set="IGNITE" />
+</ui:define>]]>
+								</pre>
+
+								<p>
+									Import library to use Component, you must include following
+									line in <i>&lt;ui:define name="htmlHead"&gt;</i>
+								</p>
+								<pre>
+									<![CDATA[<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web"/>]]>
+								</pre>
+
+								<p>Create a div tag to bind grid list</p>
+								<pre>
+									<![CDATA[
+									<div id="sample-component"></div>
+									
+									Example:
+									<div id="component-items-list"></div>]]>
+								</pre>
+							</div>
+							<!-- END TAB HTML -->
+
+							<!-- BEGIN VIEWMODEL TAB-->
+							<div id="tabs-viewmodel" class="cf">
+								<h2>TypeScript</h2>
+								<h3>ViewModel</h3>
+								<pre>
+									<![CDATA[
+										export class ScreenModel {
+												listComponentOption: any;
+												selectedCode: KnockoutObservable<string>;
+												multiSelectedCode: KnockoutObservableArray<string>;
+												isShowAlreadySet: KnockoutObservable<boolean>;
+												alreadySettingList: KnockoutObservableArray<UnitAlreadySettingModel>;
+												isDialog: KnockoutObservable<boolean>;
+												isShowNoSelectRow: KnockoutObservable<boolean>;
+												isMultiSelect: KnockoutObservable<boolean>;
+												isShowWorkPlaceName: KnockoutObservable<boolean>;
+												isShowSelectAllButton: KnockoutObservable<boolean>;
+												disableSelection : KnockoutObservable<boolean>;
+												
+												employeeList: KnockoutObservableArray<UnitModel>;
+												
+												
+												constructor() {
+													let self = this;
+													self.baseDate = ko.observable(new Date());
+													self.selectedCode = ko.observable('1');
+													self.multiSelectedCode = ko.observableArray(['0', '1', '4']);
+													self.isShowAlreadySet = ko.observable(false);
+													self.alreadySettingList = ko.observableArray([
+														{code: '1', isAlreadySetting: true},
+														{code: '2', isAlreadySetting: true}
+													]);
+													self.isDialog = ko.observable(false);
+													self.isShowNoSelectRow = ko.observable(false);
+													self.isMultiSelect = ko.observable(false);
+													self.isShowWorkPlaceName = ko.observable(false);
+													self.isShowSelectAllButton = ko.observable(false);
+													self.disableSelection = ko.observable(false);
+													
+													this.employeeList = ko.observableArray<UnitModel>([
+														{ id: '1a', code: '1', name: 'Angela Babykasjgdkajsghdkahskdhaksdhasd', workplaceName: 'HN' },
+										                { id: '2b', code: '2', name: 'Xuan Toc Doaslkdhasklhdlashdhlashdl', workplaceName: 'HN' },
+										                { id: '3c', code: '3', name: 'Park Shin Hye', workplaceName: 'HCM' },
+										                { id: '3d', code: '4', name: 'Vladimir Nabokov', workplaceName: 'HN' }
+														]);
+													self.listComponentOption = {
+														isShowAlreadySet: self.isShowAlreadySet(),
+														isMultiSelect: self.isMultiSelect(),
+														listType: ListType.EMPLOYEE,
+														employeeInputList: self.employeeList,
+														selectType: SelectType.SELECT_BY_SELECTED_CODE,
+														selectedCode: self.selectedCode,
+														isDialog: self.isDialog(),
+														isShowNoSelectRow: self.isShowNoSelectRow(),
+														alreadySettingList: self.alreadySettingList,
+														isShowWorkPlaceName: self.isShowWorkPlaceName(),
+														isShowSelectAllButton: self.isShowSelectAllButton(),
+														disableSelection : self.disableSelection()
+													};
+												}
+										}
+										export class ListType {
+											static EMPLOYMENT = 1;
+											static Classification = 2;
+											static JOB_TITLE = 3;
+											static EMPLOYEE = 4;
+										}
+								
+										export interface UnitModel {
+											id?: string;
+									        code: string;
+									        name?: string;
+									        workplaceName?: string;
+									        isAlreadySetting?: boolean;
+									        optionalColumn?: any;
+										}
+										
+										export class SelectType {
+											static SELECT_BY_SELECTED_CODE = 1;
+											static SELECT_ALL = 2;
+											static SELECT_FIRST_ITEM = 3;
+											static NO_SELECT = 4;
+										}
+										
+										export interface UnitAlreadySettingModel {
+											code: string;
+											isAlreadySetting: boolean;
+										}
+								]]>
+								<div>
+										<b>Note:</b> which property contains '?' is not compulsory</div>
+								</pre>
+								<pre>
+									<![CDATA[
+						<!--It is just called after apply binding done to initialize Component.-->
+						<!--This return JQueryPromise<void>-->
+							 $('#sample-component').ntsListComponent(listComponentOption);
+							  
+							 Example:
+							 $('#component-items-list').ntsListComponent(self.listComponentOption);
+								]]>
+								</pre>
+								<h2>API</h2>
+								<table style="width: 700px">
+									<thead>
+										<td style="text-align: center;"><h4>Binding</h4></td>
+										<td style="text-align: center;"><h4>Description</h4></td>
+									</thead>
+
+									<tr>
+										<td>isShowAlreadySet</td>
+										<td><b>Type:</b> boolean<br /> <label>Show/hide
+												column "Already Setting"</label></td>
+									</tr>
+									<tr>
+										<td><lable>alreadySettingList</lable> <br /> <lable>
+											<i>(optional)</i></lable></td>
+										<td><b>Type:</b> Array[UnitAlreadySettingModel]<br /> <b>Default:</b><i>
+												empty</i><br /> <pre>
+												<![CDATA[ UnitAlreadySettingModel {
+    code: string;
+    isAlreadySetting: boolean;
+}]]>
+											</pre></td>
+									</tr>
+									<tr>
+										<td>isMultiSelect</td>
+										<td><b>Type:</b> boolean<br /> <label>Enable/disable
+												multiple selection</label></td>
+									</tr>
+									<tr>
+										<td><lable>listType</lable> <br /> <lable>
+											<i>(optional)</i></lable></td>
+										<td><b>Type:</b> number<br /> <b>Default:</b> 4<br /> <pre>
+												<![CDATA[ListType {
+	static EMPLOYMENT = 1; // 雇用
+	static Classification = 2; // 分類
+	static JOB_TITLE = 3; // 職位
+	static EMPLOYEE = 4; // 職場
+}]]>
+											</pre></td>
+									</tr>
+									<tr>
+										<td><lable>selectType</lable> <br /> <lable>
+											<i>(optional)</i></lable></td>
+										<td><b>Type:</b> number<br /> <b>Default:</b> 1<br /> <pre>
+												<![CDATA[ SelectType {
+    static SELECT_BY_SELECTED_CODE = 1;
+    static SELECT_ALL = 2;
+    static SELECT_FIRST_ITEM = 3;
+    static NO_SELECT = 4;
+}]]>
+											</pre></td>
+									</tr>
+									<tr>
+										<td>selectedCode</td>
+										<td><b>Type:</b> string | Array[string] <br /> <label>Selected
+												code in grid list</label></td>
+									</tr>
+
+									<tr>
+										<td>isDialog</td>
+										<td><b>Type:</b> boolean<br /> <label>Show
+												component as a dialog. Set false if using as embedded
+												component (Show/Hide Search Box Icon)</label></td>
+									</tr>
+									<tr>
+										<td>isShowNoSelectRow</td>
+										<td><b>Type:</b> boolean<br /> <label>Show/Hide
+												NoSelection Item at First in grid list</label></td>
+									</tr>
+									<tr>
+										<td>isShowWorkPlaceName</td>
+										<td><b>Type:</b> boolean<br /> <label>Show/Hide
+												Workplace collumn</label></td>
+									</tr>
+									<tr>
+										<td>disableSelection</td>
+										<td><b>Type:</b> boolean<br /> <label>Select all
+												and disable selection</label></td>
+									</tr>
+									<tr>
+										<td>isShowSelectAllButton</td>
+										<td><b>Type:</b> boolean<br /> <label>Show/Hide
+												SelectAll Button</label></td>
+									</tr>
+									<tr>
+										<td><lable>maxRows</lable> <br /></td>
+										<td><b>Type:</b> number<br /> <b>Default:</b><i> 12</i><br />
+										</td>
+									</tr>
+									<tr>
+										<td><lable>tabindex</lable> <br /></td>
+										<td><b>Type:</b> number<br /> <b>Default:</b><i> If
+												not set, tabindex will same as spec of KCPs.</i><br /></td>
+									</tr>
+								</table>
+							</div>
+							<!-- END VIEWMODEL TAB-->
+
+							<!-- BEGIN METHOD TAB-->
+							<div id="tabs-method" class="cf">
+								<table>
+									<thead>
+										<td style="text-align: center;"><h4>Method</h4></td>
+										<td style="text-align: center;"><h4>Description</h4></td>
+									</thead>
+									<tr>
+										<td>$('#sample-component').ntsListComponent(listComponentOption);
+											<br></br>
+										<br></br> <b>Example:</b><br></br>
+											$('#component-items-list').ntsListComponent(listComponentOption);
+										</td>
+										<td>
+											<div>
+												<b>Reload Component</b>
+											</div>
+											<div>
+												<i>Description:</i> listComponentOption is initialized.
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>$('#sample-component').ntsListComponentApi("getSelectedRecords");</td>
+										<td><i>Description:</i> Get full information in data source of selected rows</td>
+									</tr>
+									<tr>
+										<td>$('#sample-component').getDataList(); <br></br> <br></br>
+											<b>Example:</b><br></br>
+											$('#component-items-list').getDataList();
+										</td>
+										<td>
+											<div>
+												<b>Type:</b> Array[UnitModel]
+											</div>
+											<div>
+												<b>Description:</b> Get Employee List.
+											</div> <pre>
+												<![CDATA[
+UnitModel {
+        code: string;
+        name?: string;
+        workplaceName?: string,
+        isAlreadySetting?: boolean;
+    }
+]]>
+											</pre>
+										</td>
+									</tr>
+									<tr>
+										<td>$('#sample-component').focusComponent(); <br></br> <br></br>
+											<b>Example:</b><br></br>
+											$('#component-items-list').focusComponent();
+										</td>
+										<td><b>Focus on</b></td>
+									</tr>
+								</table>
+							</div>
+							<!-- END METHOD TAB -->
+							<!-- BEGIN TABS DATA -->
+							<div id="tabs-data" class="cf">
+								<pre data-bind="text: jsonData">
+									<![CDATA[]]>
+								</pre>
+							</div>
+							<!-- END TABS DATA -->
+						</div>
+					</article>
+					<!-- END DESCRIPTION -->
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

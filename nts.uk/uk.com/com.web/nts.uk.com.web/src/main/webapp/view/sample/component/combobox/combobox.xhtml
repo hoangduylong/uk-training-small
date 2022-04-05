@@ -1,0 +1,306 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+
+			<com:stylefile path="../../catalog/catalog.css" />
+			<com:scriptfile path="../../catalog/catalog.js" />
+			<com:scriptfile path="start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area"></div>
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+					<h1>ComboBox</h1>
+					<h2>Overview</h2>
+					<div class="status">
+						<span data-bind="ntsCheckBox: { checked: isEnable }">Enable</span>
+						<span data-bind="ntsCheckBox: { checked: isEditable }">Editable</span>
+						<span data-bind="ntsCheckBox: { checked: isRequired }">isRequired</span>
+						<span data-bind="ntsCheckBox: { checked: selectFirstIfNull }">selectFirstIfNull</span>
+					</div>
+					<div class="control-group valign-center">
+						<div id="combo-box"
+							data-bind="ntsComboBox: {
+												name: 'Sample List',
+												options: itemList,
+												optionsValue: 'code',
+												visibleItemsCount: 5,
+												value: selectedCode,
+												optionsText: 'name',
+												editable: isEditable,
+												enable: isEnable,
+												required: isRequired,
+												nullText: 'Bypassed value',
+												selectFirstIfNull: selectFirstIfNull,
+												columns: [
+														{ prop: 'code', length: 4 },
+														{ prop: 'name', length: 10 },
+													]}"></div>
+
+						<div>
+							Your selected code: <input type="text"
+								data-bind="value:selectedCode" style="width: 50px;" />
+							<button data-bind="click: validate">validate</button>
+							<button data-bind="click: function() { selectFirstIfNull(false); selectedCode(undefined); }">clear
+								value</button>
+						</div>
+					</div>
+
+					<h2>Set width 300px:</h2>
+					<div class="control-group valign-center">
+						<div id="combo-box2"
+							data-bind="ntsComboBox: {
+												width: '300px',
+												options: itemList,
+ 												optionsValue: 'code',
+ 												visibleItemsCount: 5,
+ 												value: ko.observable(2),
+ 												optionsText: 'name',
+ 												editable: isEditable,
+ 												enable: isEnable,
+												required: isRequired,
+ 												columns: [
+ 														{ prop: 'code', length: 4 },
+ 														{ prop: 'name', length: 10 },
+ 													]}"></div>
+					</div>
+
+					<h2>Expand width (auto):</h2>
+					<div class="control-group valign-center">
+						<div id="combo-box2"
+							data-bind="ntsComboBox: {
+												width: 'auto',
+												options: itemList,
+ 												optionsValue: 'code',
+ 												visibleItemsCount: 5,
+ 												value: selectedCode2,
+ 												optionsText: 'name',
+ 												editable: isEditable,
+ 												enable: isEnable,
+												required: isRequired,
+ 												columns: [
+ 														{ prop: 'code', length: 4 },
+ 														{ prop: 'name', length: 10 },
+ 													]}"></div>
+					</div>
+
+					<h2>Attach dropdown to body:</h2>
+					<div class="control-group valign-center">
+						<div id="combo-box2"
+							data-bind="ntsComboBox: {
+												options: itemList,
+ 												optionsValue: 'code',
+ 												visibleItemsCount: 5,
+ 												value: ko.observable(5),
+ 												optionsText: 'name',
+ 												editable: false,
+ 												enable: isEnable,
+												required: false,
+												selectFirstIfNull: false,
+												dropDownAttachedToBody: true,
+ 												columns: [
+ 														{ prop: 'code', length: 4 },
+ 														{ prop: 'name', length: 10 },
+ 													]}"></div>
+					</div>
+
+					<article class="cf">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-html">HTML Binding</a></li>
+								<li><a href="#tabs-viewmodel">API</a></li>
+							</ol>
+							<div id="tabs-html" class="cf">
+								<h2>HTML</h2>
+								<p>
+									Using Ignite library so you must include following line in <i>&lt;ui:define
+										name="htmlHead"&gt;</i>
+								</p>
+								<pre>
+									<![CDATA[<ui:define name="htmlHead">
+	<com:scriptfile set="IGNITE" />
+</ui:define>]]>
+								</pre>
+								<pre>
+									<![CDATA[<div id="combo-box" data-bind="ntsComboBox: {
+	name: 'Sample List',
+	options: itemListCbb1,
+	optionsValue: 'code',
+	visibleItemsCount: 5,
+	value: selectedCode,
+	optionsText: 'name',
+	editable: isEditable,
+	enable: isEnable,
+	required: isRequired,
+	selectFirstIfNull: selectFirstIfNull,
+	columns: [
+		{ prop: 'code', length: 4 },
+		{ prop: 'name', length: 10 },
+	]}"></div>]]>
+								</pre>
+
+
+								<h3>Expand width when dropped down (deprecate)</h3>
+								<h4>
+									<small>Combobox will be auto expand width of dropdown
+										by length or max length of column</small>
+								</h4>
+								<pre>
+									<![CDATA[<div id="combo-box2" data-bind="ntsComboBox: {
+	...
+	columns: [
+		{ prop: 'code', length: 4 },
+		{ prop: 'name', length: 10, lengthDropDown: 20 },
+	]}"></div>]]>
+								</pre>
+								<h2>TypeScript</h2>
+								<pre>
+									<![CDATA[class ScreenModel {
+    itemList: KnockoutObservableArray<ItemModel>;
+    selectedCode: KnockoutObservable<string>;
+    isEnable: KnockoutObservable<boolean>;
+    isEditable: KnockoutObservable<boolean>;
+
+    /**
+     * Constructor.
+     */
+    constructor() {
+        var self = this;
+        self.itemList = ko.observableArray([
+            new ItemModel('1', '基本給'),
+            new ItemModel('2', '役職手当'),
+            new ItemModel('3', '基本給ながい文字列ながい文字列ながい文字列')
+        ]);
+
+        self.selectedCode = ko.observable('1');
+        self.isEnable = ko.observable(true);
+        self.isEditable = ko.observable(true);
+    }
+
+    setDefault() {
+        var self = this;
+        nts.uk.util.value.reset($("#combo-box, #A_SEL_001"), self.defaultValue() !== '' ? self.defaultValue() : undefined);
+    }
+
+};
+
+class ItemModel {
+    code: string;
+    name: string;
+
+    constructor(code: string, name: string) {
+        this.code = code;
+        this.name = name;
+    }
+}]]>
+								</pre>
+							</div>
+							<div id="tabs-viewmodel" class="cf">
+								<h2>API</h2>
+								<table class="table">
+									<colgroup>
+										<col width="200px" />
+									</colgroup>
+									<thead>
+										<tr>
+											<th><h4>Name</h4></th>
+											<th><h4>Description</h4></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>width<i>(optional/new)</i></td>
+											<td><b>Type:</b> string | number<br />Width of
+												container contain combobox</td>
+										</tr>
+										<tr>
+											<td>options</td>
+											<td><b>Type:</b> array&lt;any&gt;<br /> List data to
+												generate ComboBox</td>
+										</tr>
+										<tr>
+											<td>optionsValue</td>
+											<td><b>Type:</b> string<br /> Field in data will be set
+												as ComboBox value</td>
+										</tr>
+										<tr>
+											<td>optionsText</td>
+											<td><b>Type:</b> string<br /> Field in data will be set
+												as ComboBox text</td>
+										</tr>
+										<tr>
+											<td>value</td>
+											<td><b>Type:</b> any<br /> Current selected value</td>
+										</tr>
+										<tr>
+											<td>nullText<i>(optional)</i></td>
+											<td><b>Type:</b> string | KnockoutObservable&lt;string&gt;<br /> Text show when bypassed value.</td>
+										</tr>
+										<tr>
+											<td>editable<i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /> <b>Default:</b> false<br />
+												True is ComboBox. Can enter value for this control.<br />
+												False is DropDownList. Can select item only.</td>
+										</tr>
+										<tr>
+											<td>enable<i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /> <b>Default:</b> true<br />
+												Set enable/disable.</td>
+										</tr>
+										<tr>
+											<td>required<i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /> <b>Default:</b> false<br />
+												Set required or not.</td>
+										</tr>
+										<tr>
+											<td>selectFirstIfNull<i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /> <b>Default:</b> true<br />
+												If true (default), first item will be selected when value is
+												null or undefined or "".</td>
+										</tr>
+										<tr>
+											<td>columns<br /> <i>(optional)</i></td>
+											<td><b>Type:</b> array&lt;column&gt;<br /> Array of
+												column object will be displayed in drop down part.<br /> <i>prop:</i>
+												field name of data<br /> <i>length:</i> length of character
+												for this field <br /> <i>lengthDropDown:</i> (deprecate)
+												length of character when ComboBox is dropped down<br /></td>
+										</tr>
+										<tr>
+											<td>visibleItemsCount<br /> <i>(optional)</i></td>
+											<td><b>Type:</b> number<br /> Max visible item. If
+												over, scroll is displayed. Default: 5</td>
+										</tr>
+										<tr>
+											<td>dropDownAttachedToBody<br /> <i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /> <b>Default:</b> false<br />
+												If set to true, the container of the drop-down list is
+												appended to the body.<br /> If set to false, it is appended
+												to the parent element of the combo.</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</article>
+					<div class="footer cf">
+						<button class="previous large">Previous</button>
+						<button class="next proceed large">Next</button>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

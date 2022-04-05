@@ -1,0 +1,31 @@
+<div id="search-bar" class="cf">
+  <i id="search-icon" data-bind="ntsIcon: { no: 19, width: 30, height: 30 }, click: openPopupSearchCategory" class="img-icon"></i>
+  <input id="search" autocomplete="off" data-bind="ntsTextEditor: {
+    value: valueSearch,
+    enterkey: submit,
+    constraint: 'SearchContent',
+    option: ko.mapping.fromJS(new nts.uk.ui.option.TextEditorOption({
+      textmode: 'text',
+      width: '162px',
+      placeholder: searchPlaceholder
+    }))
+  },
+  click: eventClickSearch" />
+  <div id="popup-search-category">
+    <div id="radio-search-category" data-bind="ntsRadioBoxGroup: {
+      options: searchCategoryList,
+      optionsValue: 'id',
+      optionsText: 'name',
+      value: searchCategory,
+      enable: true
+      }" class="ntsControl radio-wrapper reset-element" tabindex="0">
+    </div>
+  </div>
+  <div id="popup-result"></div>
+  <div id="popup-search"></div>
+</div>
+<div id="message" class="cf">
+  <i class="img" id="warning-msg" data-bind="ntsIcon: { no: 163, width: 20, height: 20 }, click: addEventClickWarningBtn, visible: isDisplayWarningMsg"></i>
+  <i class="img" id="notice-msg" data-bind="ntsIcon: { no: 164, width: 20, height: 20 }, click: addEventClickNoticeBtn"></i>
+  <i class="img" id="new-notice-msg" data-bind="ntsIcon: { no: 165, width: 10, height: 10 }, visible: isDisplayNewNotice"></i>
+</div>

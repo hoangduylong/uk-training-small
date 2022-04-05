@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = {
+					width : 610,
+					height : 250
+				};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cmm001.f.main.css" />
+			<!-- <com:scriptfile path="../a/ksu007.a.service.js" />
+			<com:scriptfile path="../a/ksu007.a.vm.js" /> -->
+			<com:scriptfile path="cmm001.f.start.js" />
+			<com:scriptfile path="cmm001.f.service.js" />
+			<com:scriptfile path="cmm001.f.vm.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="contents-area" tabindex="-1">
+				<div class="contentSchedule" tabindex="-1">
+					<label tabindex="-1" class="labelFirstBold">#{i18n.getText('CMM001_52')}</label>
+					
+					<table class="tableSchedule" tabindex="-1">
+						<tr tabindex="-1">
+							<td class="bg-green titleScheduleSetting" >#{i18n.getText('CMM001_53')}</td>
+							<td class="valueScheduleSetting">
+								<!--  <span class="executionStateTime" data-bind="text: moment(executionStartDate()).format('YYYY/MM/DD HH:mm:ss')"></span> -->
+								<span class="executionStateTime" data-bind="text: executionStartDate()"></span>
+							</td>
+						</tr>
+						<tr tabindex="-1">
+							<td class="bg-green titleScheduleSetting">#{i18n.getText('CMM001_54')}</td>
+							<td class="valueScheduleSetting" ><ul class="countdown">
+								<!-- <li><span class="days">00</span>
+									<p class="days_ref">days</p></li>
+								<li class="seperator">.</li> -->
+								<li><span class="hours">00</span>
+									<!-- <p class="hours_ref">hours</p> --></li>
+								<li class="seperator">:</li>
+								<li><span class="minutes">00</span>
+									<!-- <p class="minutes_ref">minutes</p> --></li>
+								<li class="seperator">:</li>
+								<li><span class="seconds">00</span>
+									<!-- <p class="seconds_ref">seconds</p> --></li>
+							</ul></td>
+						</tr>
+						<tr tabindex="-1">
+							<td class="bg-green titleScheduleSetting" >#{i18n.getText('CMM001_55')}</td>
+							<td class="valueScheduleSetting">
+								<span class="executionStateTime" data-bind="text: executionState"></span>
+								<span data-bind="text: executionTotal"></span>
+								<!-- <span>#{i18n.getText('CMM001_66')}</span> -->
+							</td>
+						</tr>
+						<tr tabindex="-1">
+							<td class="bg-green titleScheduleSetting" >#{i18n.getText('CMM001_56')}</td>
+							<td class="valueScheduleSetting">
+								<span class="executionStateTime" data-bind="text: executionError"></span>
+							</td>
+						</tr>
+					</table>
+					<com:ko tag="if" bind="isError()">
+						<div class="buttonErrorOutput cf">
+							<button tabindex="1" id="error" data-bind ="click: exportFileError">#{i18n.getText('CMM001_58')}</button>
+						</div>
+						<div class="tableErrorLog cf">
+							<table id="tableShowError" data-bind="ntsGridList: {								
+								height: 350,
+								width: 552,
+								dataSource: errorLogs,
+								primaryKey: 'categoryName',
+								columns: columns,
+								multiple: false,
+								value: currentCode,
+								rows: 10
+							}"></table>
+						</div>
+					</com:ko>
+					
+				</div>
+				
+			</div>
+			<div id="functions-area-bottom">
+				<com:ko tag="if" bind="isFinish()">
+					<button tabindex="2" class="large" id="cancel"
+						data-bind="click: cancelDialog">#{i18n.getText('CMM001_59')}</button>
+				</com:ko>
+				<com:ko tag="if" bind="!isFinish()">
+					<button tabindex="1" class="large" id="interrupt"
+						data-bind="click: stopExecution">#{i18n.getText('CMM001_57')}</button>
+				</com:ko>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,52 @@
+.ntsSwapArea{
+	display: table;
+}
+.ntsSwapList-container{
+	display: inline-block;
+}
+.ntsSwapList{
+	
+}
+.ntsSearchButton{
+	margin-left: 10px;
+}
+.move-forward{
+	margin-bottom: 5px;
+}
+.ntsSwapComponent{
+	display: table-cell;
+}
+
+.ntsMoveDataArea{
+	height: 100%; 
+	vertical-align: middle;
+	width: 75px;
+	text-align: center; 
+}
+.ntsMoveDataArea .move-button {
+	width: 75px;
+	margin: 10px 0px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.ntsSearchArea div{
+	display: inline-block;
+}
+
+#swap-search-icon {
+	background-color: #30cc40;
+	position: absolute;
+	right: 5px;
+	top: 3px;
+	border-radius: 2px;
+	background-image: url('images/icons/numbered/1.png'); 
+	background-size: contain;
+	width: 25px;
+	height: 25px;
+}
+
+.ntsSearchTextContainer {
+	position: relative;
+}

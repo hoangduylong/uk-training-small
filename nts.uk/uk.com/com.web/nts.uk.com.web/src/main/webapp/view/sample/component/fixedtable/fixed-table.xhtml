@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 300, height: 200 };</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="../../catalog/catalog.css" />
+			<com:scriptfile path="../../catalog/catalog.js" />
+			<com:scriptfile path="start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area"></div>
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+					<h1>Fixed Table</h1>
+					<h2>Overview</h2>
+					<button data-bind="click: addItem">Add</button>
+					<button data-bind="click: removeItem">Delete</button>
+					<table id="fixed-table">
+						<colgroup>
+							<col width="120px"/>
+							<col width="100px"/>
+							<col width="100px"/>
+							<col width="110px"/>
+							<col width="100px"/>
+							<col width="220px"/>
+							<col width="100px"/>
+							<col width="100px"/>
+							<col width="100px"/>
+							<col width="150px"/>
+						</colgroup>
+						<thead>
+							<tr>
+								<th class="ui-widget-header" colspan="2">依頼者</th>
+								<th class="ui-widget-header" rowspan="2">所属職場コード</th>
+								<th class="ui-widget-header" rowspan="2">所属職場名</th>
+								<th class="ui-widget-header" rowspan="2">職位</th>
+								<th class="ui-widget-header" rowspan="2">代行開始日</th>
+								<th class="ui-widget-header" rowspan="2">代行終了日</th>
+								<th class="ui-widget-header" rowspan="2">代行対象</th>
+								<th class="ui-widget-header" colspan="2">代行者</th>
+							</tr>
+							<tr>
+								<th class="ui-widget-header">ID</th>
+								<th class="ui-widget-header">Name</th>
+								<th class="ui-widget-header">ID</th>
+								<th class="ui-widget-header">Name</th>
+							</tr>
+						</thead>
+						<tbody data-bind="foreach: itemList">
+							<tr>
+								<td><div data-bind="ntsFormLabel: {}">レイアウトコード</div></td>
+								<td><div data-bind="ntsCheckBox: {checked: enable}">Enable</div></td>
+								<td><span data-bind="text: enable"></span></td>
+								<td><input data-bind="ntsTextEditor: {value: text, option: {width: '80px'}}" /></td>
+								<td><span data-bind="text: text"></span></td>
+								<td><div id="combo-box" data-bind="ntsComboBox: {options: itemList,
+										optionsValue: 'code',
+										visibleItemsCount: 5,
+										value: selectedCode,
+										optionsText: 'name',
+										columns: [
+												{ prop: 'name', length: 4 },
+											]}"></div></td>
+								<td>2017/08/08</td>
+								<td>就業承認</td>
+								<td>000000000001</td>
+								<td>HoangNK</td>
+							</tr>
+						</tbody>
+					</table>
+					<article class="cf">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-usage">Usage</a></li>
+								<li><a href="#tabs-api">API</a></li>
+							</ol>
+							<div id="tabs-usage" class="cf">
+								<article>
+									Table width will be defined by total &lt;col&gt; width in &lt;colgroup&gt;
+								</article>
+								<h2>HTML</h2>
+<pre><![CDATA[<table id="fixed-table">
+	<colgroup>
+		<col width="100px"/>
+		<col width="100px"/>
+		<col width="100px"/>
+		<col width="100px"/>
+		<col width="100px"/>
+		<col width="100px"/>
+		<col width="100px"/>
+		<col width="100px"/>
+		<col width="100px"/>
+		<col width="150px"/>
+	</colgroup>
+	<thead>
+		<tr>
+			<th class="ui-widget-header" colspan="2">依頼者</th>
+			<th class="ui-widget-header" rowspan="2">所属職場コード</th>
+			<th class="ui-widget-header" rowspan="2">所属職場名</th>
+			<th class="ui-widget-header" rowspan="2">職位</th>
+			<th class="ui-widget-header" rowspan="2">代行開始日</th>
+			<th class="ui-widget-header" rowspan="2">代行終了日</th>
+			<th class="ui-widget-header" rowspan="2">代行対象</th>
+			<th class="ui-widget-header" colspan="2">代行者</th>
+		</tr>
+		<tr>
+			<th class="ui-widget-header">ID</th>
+			<th class="ui-widget-header">Name</th>
+			<th class="ui-widget-header">ID</th>
+			<th class="ui-widget-header">Name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><div data-bind="ntsFormLabel: {}">レイアウトコード</div></td>
+			<td><div data-bind="ntsCheckBox: {checked: enable}">Enable</div></td>
+			<td><span data-bind="text: enable"></span></td>
+			<td>1234567890AE</td>
+			<td></td>
+			<td>2017/08/08</td>
+			<td>2017/08/08</td>
+			<td>就業承認</td>
+			<td>000000000001</td>
+			<td>HoangNK</td>
+		</tr>
+	</tbody>
+</table>]]></pre>
+								<h2>TypeScript</h2>
+<pre><![CDATA[// Init Fixed Table
+$("#fixed-table").ntsFixedTable({ height: 300, width: 600 });
+]]></pre>
+							</div>
+							<div id="tabs-api" class="cf">
+								<article>
+									<h2>Information</h2>
+									<b>Module:</b> nts.uk.ui.jqueryExtentions.ntsFixedTable<br/>
+									<b>File:</b> nts.uk.com.js.web/src/main/webapp/lib/nittsu/ui/jquery-ext/fixed-table-jquery-ext.ts<br/>
+								</article>
+								<article>
+									<h2>JQuery Extension</h2>
+									<table class="table">
+										<colgroup>
+											<col width="400px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Name</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>
+													$(".selector").ntsFixedTable(option?)
+												</td>
+												<td>
+													Initializes fixed table on selected tables
+													<b>Arguments:</b><br/>
+													<i>option: FixedTableOption</i> Option for fixed table
+													<div class="catalog-accordion">
+														<a href="#">FixedTableOption</a>
+														<table class="table">
+															<colgroup>
+																<col width="150px" />
+															</colgroup>
+															<thead>
+																<tr>
+																	<th><h4>Name</h4></th>
+																	<th><h4>Description</h4></th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>height<br/><i>(optional)</i></td>
+																	<td>
+																		<b>Type:</b> number | string<br/>
+																		<b>Default:</b> "auto"<br/>
+																		Set height for fixed table
+																	</td>
+																</tr>
+																<tr>
+																	<td>autoResize<br/><i>(optional)</i></td>
+																	<td>
+																		<b>Type:</b> boolean <br/>
+																		<b>Default:</b> "false"<br/>
+																		Auto resize fixed table
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													$(".selector").ntsFixedTable("init", option?)
+												</td>
+												<td>
+													Initializes fixed table on selected tables
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</article>
+							</div>
+						</div>
+					</article>
+					<div class="footer cf">
+						<button class="previous large">Previous</button>
+						<button class="next proceed large">Next</button>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

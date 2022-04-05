@@ -1,0 +1,12 @@
+.ntsMonthDays_Container {
+  position: relative;
+  vertical-align: middle;
+
+  &>.ui-igcombo-wrapper {
+    vertical-align: middle;
+  }
+
+  &>.ntsLabel {
+    vertical-align: middle;
+  }
+}

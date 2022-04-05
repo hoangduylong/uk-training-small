@@ -1,0 +1,82 @@
+$editor-border-color: #cfd4da;
+
+.ntsControl {
+	input.nts-input,
+	input.nts-editor,
+	textarea.nts-input {
+		&:not([type=radio]),
+		&:not([type=checkbox]) {
+			outline: none;
+			border: 1px solid $editor-border-color;
+			padding: 6px 10px;
+			font-family: $font_family_monospace;
+			border-radius: 3px;
+			overflow: visible;
+			font-size: 13px;
+			
+			&:focus {
+				border-color: $focused_color;
+				box-shadow: 0 0 0 2px lighten($color: $focused_color, $amount: 30);
+			}
+		
+			&.enterkey {
+				background-image: url('images/icons/enter_mark.png');
+				background-position: right;
+				background-repeat: no-repeat;
+			}
+		}
+	}
+
+	input.nts-editor::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+		color: #bbbbbb;
+	}
+	input.nts-editor:-ms-input-placeholder { /* Internet Explorer 10-11 */
+		color: #bbbbbb;
+	}	
+	input.nts-editor::-ms-input-placeholder { /* Microsoft Edge */
+		color: #bbbbbb;
+	}
+
+	&.error {
+		input.nts-input,
+		textarea.nts-input {				
+			border-color: #ff6666;
+
+			&:focus,
+			&:active {			
+				border-color: #ff6666;
+				box-shadow: 0 0 0 2px lighten($color: #ff6666, $amount: 15);
+			}
+		}
+	}
+	
+	/* Extra Symbol */
+	&.symbol {
+		position: relative;
+		
+		&:after {
+			position: absolute;
+			content: attr(data-content);
+			top: 6px;
+			color:#999;
+		}
+		
+		&.symbol-left {
+			.nts-input { padding-left: 20px; }
+			
+			&:after {
+				left: 5px;
+				text-align: left;
+			}
+		}
+		
+		&.symbol-right {
+			.nts-input { padding-right: 20px; }
+		
+			&:after {
+				right: 5px;
+				text-align: right;
+			}		
+		}
+	}
+}

@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:stylefile path="../../catalog/catalog.css" />
+			<com:scriptfile path="../../catalog/catalog.js" />
+			<com:scriptfile path="start.js" />
+			<style>
+			.table-convert td:nth-child(2) {
+			    font-weight: bold;
+			    vertical-align: top;
+			}
+			</style>
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area"></div>
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+					<h1>Moment JS</h1>
+					<h2>Overview</h2>
+					<p>A library for parse, validate, manipulate, and display dates and times in JavaScript.</p>
+					<h3>You should use this instead of Javascript's Date!</h3>
+					<article class="cf">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-call">Example</a></li>
+								<li><a href="#tabs-api">Document</a></li>
+							</ol>
+							<div id="tabs-call" class="cf">
+								<h2>Server and Client convert DateTime</h2>
+								<table class="table table-convert">
+									<colgroup>
+										<col width="150px" />
+										<col width="150px" />
+										<col width="*" />
+									</colgroup>
+									<thead>
+										<tr>
+											<th><h4>Server</h4></th>
+											<th><h4>Client</h4></th>
+											<th><h4>Demo</h4></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>GeneralDate</td>
+											<td>ISOString</td>
+											<td>
+<pre><![CDATA[GeneralDate.ymd(2000,01,13) => "2000/01/13" // Server to Client
+"2000-01-13T00:00:00.000Z" => GeneralDate(2000,01,13) // Client to Server]]></pre>
+											</td>
+										</tr>
+										<tr>
+											<td>GeneralDateTime</td>
+											<td>ISOString</td>
+											<td>
+<pre><![CDATA[GeneralDateTime.ymdhms(2000,01,13,12,00,00) => "2000-01-13T12:00:00.000Z" // Server to Client
+"2000-01-13T12:00:00.000Z" => GeneralDateTime(2000,01,13,12,00,00) // Client to Server]]></pre>
+											</td>
+										</tr>
+										<tr>
+											<td>YearMoneth</td>
+											<td>Number</td>
+											<td>
+<pre><![CDATA[// Domain -> DTO
+YearMonth.of(2000,01) => 200001
+// DTO -> Client
+200001 => 200001
+// Client -> DTO
+200001 => 200001]]></pre>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+								<h2>How to use MomentJS</h2>
+								<h3>First rule: Always use <span class="color">moment.utc()</span></h3>
+								<h4>GeneralDate example</h4>
+<pre><![CDATA[// Convert GeneralDate to momentJS
+var startDate = moment.utc("2000/01/13", "YYYY/MM/DD");
+startDate.add(1, "M"); // Add 1 month
+// When send it to server
+startDate.toISOString(); // "2000-02-13T00:00:00.000Z"]]></pre>
+								<h4>GeneralDateTime example</h4>
+<pre><![CDATA[// Convert GeneralDateTime to momentJS
+var startDate = moment.utc("2000-01-13T12:00:00.000Z"); // ISOString doesn't need input format
+startDate.add(1, "d"); // Add 1 day
+// When send it to server
+startDate.toISOString(); // "2000-01-14T00:00:00.000Z"]]></pre>
+								<h4>YearMonth example</h4>
+<pre><![CDATA[// Working with YearMonth and momentJS
+var startDate = moment.utc("200001", "YYYYMM"); // Convert String
+var startDate = moment.utc(200001, "YYYYMM"); // Or Number
+startDate.add(1, "y"); // Add 1 year
+// When send it to server
+startDate.format("YYYYMM"); // "200201"]]></pre>
+								<h4>Display</h4>
+<pre><![CDATA[// Customize format
+moment.utc().fomat("YYYY/MM/DD"); // => "2017/11/05"
+
+// Get difference between 2 moment
+var a = moment([2008, 0, 29]);
+var b = moment([2007, 0, 28]);
+a.diff(b, 'days', true); // => 336
+
+// Get days in month
+moment("2012-02", "YYYY-MM").daysInMonth() // 29
+moment("2012-01", "YYYY-MM").daysInMonth() // 31]]></pre>
+							</div>
+							<div id="tabs-api" class="cf">
+								<article>
+									<h2>Information</h2>
+									<a class="color" href="http://momentjs.com/docs">MomentJS document</a>
+								</article>
+							</div>
+						</div>
+					</article>
+					<div class="footer cf">
+						<button class="previous large">Previous</button>
+						<button class="next proceed large">Next</button>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

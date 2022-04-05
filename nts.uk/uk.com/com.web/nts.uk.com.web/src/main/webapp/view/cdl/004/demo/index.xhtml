@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<head>
+</head>
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="../../../sample/catalog/catalog.css" />
+			<com:scriptfile path="../../../sample/catalog/catalog.js" />
+			<com:stylefile path="cdl004.parent.main.css" />
+			<com:scriptfile path="cdl004.parent.start.js" />
+			<com:scriptfile path="cdl004.parent.vm.js" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+					<div id="functions-area">
+						<button class="large" data-bind="click: openDialogCDL004">CDL004</button>
+					</div>
+					<div id="contents-area">
+						<table>
+							<tr>
+								<td>基準日</td>
+								<td
+									data-bind="ntsDatePicker: {dateFormat: 'YYYY/MM/DD', value: baseDate, required: true}">
+								</td>
+							</tr>
+							<tr>
+								<td>分類コード:</td>
+								<td><input class="inputSelectCode"
+									data-bind="ntsTextEditor: {
+								value: canSelectJobtitleCodes,
+								required: false,
+								enable: true,
+								readonly: false}" /></td>
+							</tr>
+							<tr>
+								<td>選択モード:</td>
+								<td><div data-bind="ntsCheckBox: { checked: selectMode }"></div></td>
+							</tr>
+
+							<tr>
+								<td>未選択表示:</td>
+								<td><div
+										data-bind="ntsCheckBox: { checked: showNoSelection }"></div></td>
+							</tr>
+							<tr>
+								<td>Show Base Date:</td>
+								<td><div
+										data-bind="ntsCheckBox: { checked: isShowBaseDate  }"></div></td>
+							</tr>
+						</table>
+
+						<br />
+						<div style="font-weight: bold">Returned Data:</div>
+						<div>Selected Job Title Codes:</div>
+						<span data-bind="text: selectJobtitleCodes"></span>
+
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

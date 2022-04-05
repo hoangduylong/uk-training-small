@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<script type='text/javascript'>
+				var dialogSize = {
+						width : 620,
+						height : 700
+				};
+			</script>
+			<com:scriptfile path="/lib/generic/cropper/cropper.js"
+				of="/nts.uk.com.js.web" />
+			<com:stylefile path="/lib/generic/cropper/cropper.css"
+				of="/nts.uk.com.js.web" />
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps001.e.style.css" />
+			<com:scriptfile path="cps001.e.service.js" />
+			<com:scriptfile path="cps001.e.vm.js" />
+			<com:scriptfile path="cps001.e.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div>#{i18n.getText('CPS001_78')}</div>
+				<div id="test"
+					data-bind="ntsImageEditor: {
+					editable: false,
+					 width:600, 
+					 height: 500,
+					 resizeRatio: 0.75,
+					 accept: ['.png','.jpg','.jpeg', '.bmp','.gif'],
+					 maxSize: 10}"></div>
+			</div>
+			<div id="functions-area-bottom">
+				<button class="proceed x-large"
+					data-bind="click: upload, enable: enaBtnSave">#{i18n.getText('CPS001_87')}</button>
+				<button class="" data-bind="click: close">#{i18n.getText('CPS001_73')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

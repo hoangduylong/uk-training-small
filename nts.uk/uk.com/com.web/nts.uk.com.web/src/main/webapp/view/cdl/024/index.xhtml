@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = {
+					width : 460,
+					height : 600
+				};
+			</script>
+
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cdl024.main.css" />
+			<com:scriptfile path="cdl024.start.js" />
+			<com:scriptfile path="cdl024.vm.js" />
+			<com:scriptfile path="cdl024.service.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+
+				<div id="label1" class="label">#{i18n.getText('CDL024_6')}</div>
+				<div style='clear: both'></div>
+				<div id="filterArea">
+					<div style="width: 400px"
+						data-bind="ntsSearchBox: {searchMode: 'filter',targetKey: 'code', comId: 'multi-list', 
+						items: items, selected: currentCodeList, selectedKey: 'code', fields: ['name', 'code'], mode: 'igGrid'}"></div>
+
+					<table id="multi-list"></table>
+				</div>
+			</div>
+
+			<div id="functions-area-bottom">
+				<button  class="proceed x-large" data-bind="click: sendAttribute">#{i18n.getText('CDL024_4')}</button>
+				<button data-bind="click: closeDialog">#{i18n.getText('CDL024_5')}</button>
+			</div>
+
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

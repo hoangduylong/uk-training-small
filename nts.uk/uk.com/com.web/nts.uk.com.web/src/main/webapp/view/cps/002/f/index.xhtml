@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+
+			<script type='text/javascript'>
+				var dialogSize = {
+					width : 700,
+					height : 630
+				};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="cps002.f.style.css" />
+			<com:scriptfile path="cps002.f.service.js" />
+			<com:scriptfile path="cps002.f.vm.js" />
+			<com:scriptfile path="cps002.f.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<button type="button" class="proceed btnLeft"
+					data-bind="click: register" tabindex ="1">#{i18n.getText('CPS002_64')}</button>
+				<button type="button" class="btnRight" data-bind="click: close"
+					style="float: right" tabindex ="2">#{i18n.getText('CPS002_65')}</button>
+				<div style="clear: both"></div>
+			</div>
+			<div id="contents-area" class="cf coverBlock">
+				<table class="cover">
+					<tr>
+						<td>
+							<div class="caret-right caret-background">
+								<i class="icon icon-searchbox"></i>
+								<div class="leftCover">
+									<div data-bind="ntsFormLabel: {}">#{i18n.getText('CPS002_66')}</div>
+
+									<div style="width: 210px" id="searchCtg"
+										data-bind="ntsSearchBox: {searchMode: 'highlight',targetKey: 'id', comId: 'singleList', 
+	items: lstCategory, selected: selectedCtgId , selectedKey: 'id', fields: ['categoryName'], mode: 'igGrid',placeHolder:'名称で検索…'}" tabindex ="3"/>
+									<!-- <div>
+										<input type="text" placeholder="名称で検索…" data-bind="value: txtSearch" class="txtSearch"/>
+										<button type="button" class="caret-bottom caret-inline" data-bind="click: searchByName">検索</button>
+									</div>	 -->
+									<div class="blockTblCover">
+										<table id="singleList"
+											data-bind="ntsGridList:{
+											height: 350,
+											dataSource: lstCategory,
+											primaryKey: 'id',
+											columns: columns,
+											multiple: false,
+											value: selectedCtgId
+										}" tabindex="4">
+										</table>
+									</div>
+								</div>
+							</div>
+						</td>
+						<td class="leftGrid">
+							<div data-bind="ntsFormLabel: { }" class="leftFormLabel">#{i18n.getText('CPS002_72')}</div>
+							<div>
+								<table id="multiList"
+									data-bind="ntsGridList: {
+									height: 400,
+									dataSource: lstPerInfoItemDef,
+									columns: columnPerInfoItemDef,
+									primaryKey: 'id',
+									multiple: true,
+									value: checkedIds
+								}" tabindex="5">
+								</table>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

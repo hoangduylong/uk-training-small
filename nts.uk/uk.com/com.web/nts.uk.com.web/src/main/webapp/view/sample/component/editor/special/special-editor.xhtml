@@ -1,0 +1,257 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 800, height: 800 };</script>
+            	
+				<com:ValidatorScript>
+                    nts.uk.ctx.at.record.dom.stamp.card.stampcard.StampNumber
+   				</com:ValidatorScript>
+				<com:stylefile path="../../../catalog/catalog.css" />
+				<com:scriptfile path="special-editor.js" />
+				<com:scriptfile path="../../../catalog/catalog.js" />
+            </ui:define>
+            
+            <ui:define name="content">
+            	<div id="functions-area">
+          		</div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>TextEditor for special values</h1>
+						<h2>Overview</h2>
+						
+						<span data-bind="ntsCheckBox: {checked: required}">Required</span>
+						
+						<h3>StampNumber (カードNO)</h3>
+						<div class="control-group valign-center">
+							<div data-bind="ntsFormLabel: { constraint: 'StampNumber' }">StampNumber</div>
+							<input data-bind="ntsTextEditor: {
+								name: 'カードNO',
+								value: stampNumber,
+								constraint: 'StampNumber',
+								required: required }" />
+						</div>
+						
+						<article class="cf">
+							<div class="tabs">
+								<ol>
+									<li><a href="#tabs-html-text">TextEditor Binding</a></li>
+									<li><a href="#tabs-api">API</a></li>
+								</ol>
+								<div id="tabs-html-text" class="cf">
+									<h2>HTML</h2>
+<pre><![CDATA[<!-- Simple -->
+<input data-bind="ntsTextEditor: {value: simpleValue}" />
+
+<!-- Full Options -->
+<div data-bind="with: texteditor">
+	<input data-bind="ntsTextEditor: {
+		value: value,
+		constraint: constraint,
+		option: option,
+		required: required,
+		enable: enable,
+		readonly: readonly,
+		enterkey: submit}" />
+</div>]]></pre>
+									<h2>ViewModel</h2>
+<pre><![CDATA[class ScreenModel {
+	texteditor: any;
+	simpleValue: KnockoutObservable<string>;
+    
+    constructor() {
+        var self = this;              
+        self.simpleValue = ko.observable("123");    
+        self.texteditor = {
+            value: ko.observable(''),
+            constraint: 'ResidenceCode',
+            option: ko.mapping.fromJS(new nts.uk.ui.option.TextEditorOption({
+            	textmode: "text",
+            	placeholder: "Placeholder for text editor",
+            	width: "100px",
+            	textalign: "left"
+            })),
+            required: ko.observable(true),
+            enable: ko.observable(true),
+            readonly: ko.observable(false)
+        };
+    }
+}]]></pre>
+								</div>
+								<div id="tabs-api" class="cf">
+									<h2>Properties</h2>
+									<table class="table">
+										<colgroup>
+											<col width="150px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Name</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>value</td>
+												<td>
+													<b>Type:</b> KnockoutObservable&lt;string&gt;<br/>
+												</td>
+											</tr>
+											<tr>
+												<td>constraint<br/><i>(optional)</i></td>
+												<td>
+													<b>Type:</b> string<br/>
+													Validate constraint for editor
+												</td>
+											</tr>
+											<tr>
+												<td>required<br/><i>(optional)</i></td>
+												<td>
+													<b>Type:</b> KnockoutObservable&lt;boolean&gt; | boolean<br/>
+													<b>Default:</b> false<br/>
+													Set required for editor
+												</td>
+											</tr>
+											<tr>
+												<td>enable<br/><i>(optional)</i></td>
+												<td>
+													<b>Type:</b> KnockoutObservable&lt;boolean&gt; | boolean<br/>
+													<b>Default:</b> true<br/>
+													Set enable/disable for editor
+												</td>
+											</tr>
+											<tr>
+												<td>readonly<br/><i>(optional)</i></td>
+												<td>
+													<b>Type:</b> KnockoutObservable&lt;boolean&gt; | boolean<br/>
+													<b>Default:</b> false<br/>
+													Set readonly for editor
+												</td>
+											</tr>
+											<tr>
+												<td>enterkey<br/><i>(optional)</i></td>
+												<td>
+													<b>Type:</b> (JQueryEventObject) => void<br/>
+													<b>Default:</b> undefined<br/>
+													Set function called when enter key is down. If set any function, "enter mark" is shown in editor, 
+												</td>
+											</tr>
+											<tr>
+												<td>immediate<br/><i>(optional)</i></td>
+												<td>
+													Obsolete. Don't use this anymore<br/>
+													<b>Type:</b> boolean<br/>
+													<b>Default:</b> false<br/>
+													Set update event trigger immediate for editor.<br/>
+												</td>
+											</tr>
+											<tr>
+												<td>option<br/><i>(optional)</i></td>
+												<td>
+													<b>Type:</b> TextEditorOption<br/>
+													<b>Default:</b> TextEditorOption<br/>
+													<b>Members:</b><br/>
+													<div class="catalog-accordion">
+														<a href="#texteditoroption">TextEditorOption</a>
+														<table class="table">
+															<colgroup>
+																<col width="150px" />
+															</colgroup>
+															<thead>
+																<tr>
+																	<th><h4>Name</h4></th>
+																	<th><h4>Description</h4></th>
+																</tr>
+															</thead>
+															<tbody>
+																<tr>
+																	<td>autofill<br/><i>(optional)</i></td>
+																	<td>
+																		<b>Type:</b> KnockoutObservable&lt;boolean&gt; | string<br/>
+																		<b>Default:</b>false<br/>
+																		Turn on the auto-fill for textbox
+																	</td>
+																</tr>
+																<tr>
+																	<td>filldirection<br/><i>(optional)</i></td>
+																	<td>
+																		<b>Type:</b> KnockoutObservable&lt;string&gt; | string<br/>
+																		<b>Default:</b>right<br/>
+																		<b>Members:</b><br/>
+																		<i>left</i>: Blank fill to left side<br/>
+																		<i>right</i>: Blank fill to right side
+																	</td>
+																</tr>
+																<tr>
+																	<td>fillcharacter<br/><i>(optional)</i></td>
+																	<td>
+																		<b>Type:</b> KnockoutObservable&lt;string&gt; | string<br/>
+																		<b>Default:</b> "0"<br/>
+																		Fill blank space with charater(s)
+																	</td>
+																</tr>
+																<tr>
+																	<td>textmode<br/><i>(optional)</i></td>
+																	<td>
+																		<b>Type:</b> KnockoutObservable&lt;string&gt; | string<br/>
+																		<b>Default:</b> "text"<br/>
+																		<b>Members:</b><br/>
+																		<i>text</i>: Single line text editor type text<br/>
+																		<i>password</i>: Single line text editor type password
+																	</td>
+																</tr>
+																<tr>
+																	<td>placeholder<br/><i>(optional)</i></td>
+																	<td>
+																		<b>Type:</b> KnockoutObservable&lt;string&gt; |string<br/>
+																		<b>Default:</b> ""<br/>
+																		Hint text for the control
+																	</td>
+																</tr>
+																<tr>
+																	<td>width<br/><i>(optional)</i></td>
+																	<td>
+																		<b>Type:</b> KnockoutObservable&lt;string&gt; | string<br/>
+																		<b>Default:</b> ""<br/>
+																		Set width for the control
+																	</td>
+																</tr>
+																<tr>
+																	<td>textalign<br/><i>(optional)</i></td>
+																	<td>
+																		<b>Type:</b> KnockoutObservable&lt;string&gt; | string<br/>
+																		<b>Default:</b> "left"<br/>
+																		<b>Members:</b><br/>
+																		<i>left</i>: Align text to left<br/>
+																		<i>right</i>: Align text to right<br/>
+																		<i>center</i>: Align text to center
+																	</td>
+																</tr>
+															</tbody>
+														</table>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

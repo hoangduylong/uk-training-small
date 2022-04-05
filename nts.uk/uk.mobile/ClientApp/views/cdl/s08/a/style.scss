@@ -1,0 +1,29 @@
+.cdl008a {
+    
+}
+.decision {
+    width: 100%;
+    background-color: #4f81bd;
+    color: #fff;
+    border: none;
+    line-height: 2.5em;
+    font-size: 1.2em;
+}
+.select {
+    margin-top: auto;
+    margin-bottom: auto;
+    top: calc(50% - 18px) !important;
+}
+.none{
+    height: 42px;
+    padding-top: 10px !important;
+}
+.list-group-item:first-child{
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+}
+.list-group-item:last-child {
+    margin-bottom: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    border-bottom-left-radius: 0px !important;
+}

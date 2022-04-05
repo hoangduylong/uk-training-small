@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>var dialogSize = { width: 600, height: 250 };</script>
+			<com:ValidatorScript>
+					nts.uk.shr.com.primitive.PersonId
+				</com:ValidatorScript>
+			<com:stylefile path="cps013.e.main.css" />
+			<com:scriptfile path="cps013.e.start.js" />
+			<com:scriptfile path="cps013.e.service.js" />
+			<com:scriptfile path="cps013.e.vm.js" />
+			<com:scriptfile set="IGNITE" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div class="control-group cf">
+					<table class="info-table">
+						<tr>
+							<!-- B1_002 -->
+							<td class="fix-width">#{i18n.getText('CPS013_36')}</td>
+							<td><span data-bind="text: startTime"></span></td>
+						</tr>
+						<tr>
+							<!-- B1_004 -->
+							<td class="fix-width">#{i18n.getText('CPS013_38')}</td>
+							<td><span data-bind="text: endTime"></span></td>
+						</tr>
+						<tr>
+							<!-- B1_006 -->
+							<td class="fix-width">#{i18n.getText('CPS013_39')}</td>
+							<td><span id="elapseTime"></span></td>
+						</tr>
+						<tr>
+							<!-- B1_008 -->
+							<td class="fix-width" rowspan="4">#{i18n.getText('CPS013_41')}</td>
+							<td><span data-bind="text: numberEmpChecked"></span>
+							   <span data-bind="text: daucach"></span>
+								<span data-bind="text: countEmp"></span>
+							<span class="process-status" data-bind="text: statusCheck"></span>
+								<span class="process-error" data-bind="text: aggCreateHasError"></span>
+							</td>
+							
+						</tr>
+
+
+					</table>
+				</div>
+				<com:ko tag="if" bind="error()">
+					<div class="place-holder" data-bind="visible: showTableResult">
+						<table id="single-list" class="disappear" tabindex="6"
+							data-bind="css: {disappear: !isComplete()},
+							ntsGridList: {
+								dataSource: errorMessageInfo,
+								primaryKey: 'GUID',
+								columns: columns,
+								multiple: false,
+								value: currentCode,
+								showNumbering: false,
+								rowVirtualization: true,
+								rows: 15
+							}"></table>
+					</div>
+				</com:ko>
+				
+			</div>
+			<div id="functions-area-bottom">
+				<div id = "button_area">
+					<com:ko tag="if" bind="isComplete() &amp; error()">
+						<!-- B3_001 -->
+	 					<button id = "button3001" tabindex="1" class="buttonExportCsv" data-bind="click: exportCsv">#{i18n.getText('CPS013_22')}</button>
+						<!-- B3_002 -->
+						<button tabindex="2" class="buttonReCheck" data-bind="click: RecheckTheSameConditions">#{i18n.getText('CPS013_23')}</button>
+						<!-- B3_003 -->
+						<button tabindex="3" class="buttoncloseDialog" data-bind="click: closeDialog">#{i18n.getText('CPS013_24')}</button>
+					</com:ko>
+					<com:ko tag="if" bind="!isComplete()">
+	 					<!-- B3_004 -->
+						<button id = "buttoncancelTask"  tabindex="4" class="buttonCancel" data-bind="click: cancelTask">#{i18n.getText('CPS013_50')}</button>
+					</com:ko>
+					<com:ko tag="if" bind="isComplete() &amp; !error()">
+						<!-- B3_003 -->
+						<button id="btn-f-stop" tabindex="5" class="buttoncloseDialogNoError" data-bind="click: closeDialog">#{i18n.getText('CPS013_24')}</button>
+	 				</com:ko>
+ 				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,36 @@
+#contents-area {
+	padding: 15px 25px;
+	height: auto !important;
+}
+
+#contents-area .form-group {
+	margin-bottom: 25px;
+}
+
+#contents-area .form-group>* {
+	display: inline-block;
+	vertical-align: top;
+	line-height: 37px;
+}
+
+#contents-area .form-group-2 {
+	margin-bottom: 25px;
+}
+
+#contents-area .form-group-2>* {
+	display: inline-block;
+	vertical-align: top;
+}
+
+#contents-area .form-group>.form-label {
+	min-width: 140px;
+}
+
+#contents-area .form-group-2>.form-label {
+	min-width: 140px;
+}
+
+#contents-area .form-group-2 textarea {
+	min-width: 250px;
+	min-height: 120px;
+}

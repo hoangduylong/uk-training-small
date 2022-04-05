@@ -1,0 +1,231 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+
+
+			<script>
+				var dialogSize = {
+					width : 905,
+					height : 780
+				};
+			</script>
+			<com:ValidatorScript>
+					nts.uk.ctx.at.shared.dom.remainingnumber.common.empinfo.grantremainingdata.daynumber.LeaveGrantDayNumber
+					nts.uk.ctx.at.shared.dom.remainingnumber.common.empinfo.grantremainingdata.daynumber.LeaveGrantTime
+					nts.uk.ctx.at.shared.dom.remainingnumber.specialleave.empinfo.grantremainingdata.usenumber.DayNumberOfUse
+					nts.uk.ctx.at.shared.dom.remainingnumber.specialleave.empinfo.grantremainingdata.usenumber.TimeOfUse
+					nts.uk.ctx.at.shared.dom.remainingnumber.specialleave.empinfo.grantremainingdata.usenumber.DayNumberOver
+					nts.uk.ctx.at.shared.dom.remainingnumber.specialleave.empinfo.grantremainingdata.usenumber.TimeOver
+					nts.uk.ctx.at.shared.dom.remainingnumber.specialleave.empinfo.grantremainingdata.remainingnumber.DayNumberOfRemain
+					nts.uk.ctx.at.shared.dom.remainingnumber.specialleave.empinfo.grantremainingdata.remainingnumber.TimeOfRemain
+			</com:ValidatorScript>
+
+			<com:scriptfile set="IGNITE" />
+
+			<com:stylefile path="cps001.i.style.css" />
+			<com:scriptfile path="cps001.i.service.js" />
+			<com:scriptfile path="cps001.i.vm.js" />
+			<com:scriptfile path="cps001.i.start.js" />
+		</ui:define>
+
+		<!-- PAGE CONTENT -->
+		<ui:define name="content">
+
+			<div id="functions-area" class="fixed-flex-layout">
+				<button tabindex="1" data-bind="click: newMode, enable : enbbtnNewmode" class="btnStyle">#{i18n.getText('CPS001_108')}</button>
+				<button tabindex="2" data-bind="click: Save" class="proceed btnStyle">#{i18n.getText('CPS001_109')}</button>
+				<button tabindex="3" data-bind="click: Delete, enable : enbbtnDelete" class="danger btnStyle">#{i18n.getText('CPS001_110')}</button>
+				<button tabindex="4" data-bind="click: closeDialog" class="btnStyle"  >#{i18n.getText('CPS001_111')}</button>
+			</div>
+
+			<div id="contents-area">
+				<div class="grid-container">
+					<div tabindex="5" data-bind="ntsCheckBox: { checked: checked, enable: true}">#{i18n.getText('CPS001_125')}</div>
+					<div tabindex="6" id="tbl"></div>
+
+				</div>
+				<div class='detailContent'>
+					<table id="tblDetail">
+						<!-- Line 1 -->
+						<tr>
+							<td data-itemCode="IS00409 IS00424 IS00439 IS00454 IS00469 IS00484 IS00499 IS00514 IS00529 IS00544 IS00629 IS00644 IS00659 IS00674 IS00689 IS00704 IS00719 IS00734 IS00749 IS00764 grantDate"><div
+									data-bind="ntsFormLabel: {required: true}"></div></td>
+							<td><div tabindex="7" id="idDateGrantInp"
+									data-bind="ntsDatePicker: {name: '付与日', value: dateGrantInp, dateFormat: 'YYYY/MM/DD' , required: true }"></div></td>
+						</tr>
+						<!-- Line 2 -->
+						<tr>
+							<td data-itemCode="IS00410 IS00425 IS00440 IS00455 IS00470 IS00485 IS00500 IS00515 IS00530 IS00545 IS00630 IS00645 IS00660 IS00675 IS00690 IS00705 IS00720 IS00735 IS00750 IS00765 deadlineDate"><div
+									data-bind="ntsFormLabel: {required: true}"></div></td>
+							<td><div tabindex="8" id= "idDeadline"
+									data-bind="ntsDatePicker: {name:  '期限日' , value: deadlineDateInp, dateFormat: 'YYYY/MM/DD' , required: true }"></div></td>
+						</tr>
+						<!-- Line 3 -->
+						<tr>
+							<td data-itemCode="IS00411 IS00426 IS00441 IS00456 IS00471 IS00486 IS00501 IS00516 IS00531 IS00546 IS00631 IS00646 IS00661 IS00676 IS00691 IS00706 IS00721 IS00736 IS00751 IS00766">
+								<div data-bind="ntsFormLabel: {required: true}"></div></td>
+							<td><div tabindex="9" class="cf" data-bind="ntsSwitchButton: {
+															name: 'Sample Switch',
+															options: roundingRules,
+															optionsValue: 'code',
+															optionsText: 'name',
+															value: selectedRuleCode,
+															required: true,
+															enable: true }"></div></td>
+
+						</tr>
+						<!-- Line 4 -->
+						<tr>
+							<td style="vertical-align: top !important;" data-itemCode="IS00412 IS00427 IS00442 IS00457 IS00472 IS00487 IS00502 IS00517 IS00532 IS00547 IS00632 IS00647 IS00662 IS00677 IS00692 IS00707 IS00722 IS00737 IS00752 IS00767">
+									<div data-bind="ntsFormLabel: {required: true}"></div>
+								</td>
+							<td>
+								<table id="subContent">
+									<tr>
+										<td colspan='3' class="formularStyle">#{i18n.getText('CPS001_114')}</td>
+									</tr>
+									<tr>
+										<!-- Line 5-->
+										<td><div data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CPS001_115')}</div></td>
+										<td data-itemCode="IS00414 IS00429 IS00444 IS00459 IS00474 IS00489 IS00504 IS00519 IS00534 IS00549 IS00634 IS00649 IS00664 IS00679 IS00694 IS00709 IS00724 IS00739 IS00754 IS00769 dayNumberOfGrants" class="tdTxt">
+											<div></div></td>
+										<td><input  id = "dayNumberOfGrants" tabindex="10" data-bind="ntsNumberEditor: {
+																	name: nameDayNumberOfGrant,
+																	value: dayNumberOfGrants,
+																	constraint: 'LeaveGrantDayNumber',
+																	required: true,
+																	option: {decimallength: 1},
+																	enable: true,
+																	readonly: false}" /></td>
+										
+										<td>
+											<table>
+												<tr>
+													<td data-itemCode="IS00415 IS00430 IS00445 IS00460 IS00475 IS00490 IS00505 IS00520 IS00535 IS00550 IS00635 IS00650 IS00665 IS00680 IS00695 IS00710 IS00725 IS00740 IS00755 IS00770 grantTime" class="tdTxt"><div></div> </td>
+													<td><input id="grantTime" tabindex="11" data-bind="ntsTimeEditor: {
+																				name: namegrantTime,
+																				value: grantTime,
+																				constraint: 'LeaveGrantTime',
+																				inputFormat: 'time',
+																				mode: 'time',
+																				required: false,
+																				enable: true,
+																				readonly: false,
+																				immediate: false}" /></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<!-- Line 6-->
+									<tr>
+										
+										<td><div data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CPS001_116')}</div></td>
+										<td data-itemCode="IS00417 IS00432 IS00447 IS00462 IS00477 IS00492 IS00507 IS00522 IS00537 IS00552 IS00637 IS00652 IS00667 IS00682 IS00697 IS00712 IS00727 IS00742 IS00757 IS00772 dayNumberOfUse" class="tdTxt"><div></div></td>
+										<td><input id ="dayNumberOfUse" tabindex="12" data-bind="ntsNumberEditor: {
+																	name: nameDayNumberOfUse,
+																	value: dayNumberOfUse,
+																	constraint: 'DayNumberOfUse',
+																	required: true,
+																	option: {decimallength: 1},
+																	enable: true,
+																	readonly: false}" /></td>
+										<td>
+											<table>
+												<tr>
+													<td data-itemCode="IS00418 IS00433 IS00448 IS00463 IS00478 IS00493 IS00508 IS00523 IS00538 IS00553 IS00638 IS00653 IS00668 IS00683 IS00698 IS00713 IS00728 IS00743 IS00758 IS00773 useTime" class="tdTxt"><div></div></td>
+													<td><input id ="useTime" tabindex="13" data-bind="ntsTimeEditor: {
+																				name: nameUseTime,
+																				value: useTime,
+																				constraint: 'TimeOfUse',
+																				inputFormat: 'time',
+																				mode: 'time',
+																				required: false,
+																				enable: true,
+																				readonly: false,
+																				immediate: false}" /></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<!-- Line 7-->
+									<tr>
+									<td></td>
+										<td data-itemCode="IS00419 IS00434 IS00449 IS00464 IS00479 IS00494 IS00509 IS00524 IS00539 IS00554 IS00639 IS00654 IS00669 IS00684 IS00699 IS00714 IS00729 IS00744 IS00759 IS00774 dayNumberOver" class="tdTxt">
+											<div></div> 
+										</td>
+										<td><input id = "dayNumberOver" tabindex="14" data-bind="ntsNumberEditor: {
+																	name: nameDayNumberOver,
+																	value: dayNumberOver,
+																	constraint: 'DayNumberOver',
+																	required: true,
+																	option: {decimallength: 1},
+																	enable: true,
+																	readonly: false}" /></td>
+										<td>
+											<table>
+												<tr>
+													<td data-itemCode="IS00420 IS00435 IS00450 IS00465 IS00480 IS00495 IS00510 IS00525 IS00540 IS00555 IS00640 IS00655 IS00670 IS00685 IS00700 IS00715 IS00730 IS00745 IS00760 IS00775 timeOver" class="tdTxt">
+														<div></div> 
+													</td>
+													<td><input id ="timeOver" tabindex="15" data-bind="ntsTimeEditor: {
+																				name: nameTimeOver,
+																				value: timeOver,
+																				constraint: 'TimeOver',
+																				inputFormat: 'time',
+																				mode: 'time',
+																				required: false,
+																				enable: true,
+																				readonly: false,
+																				immediate: false}" /></td>
+												</tr>
+											</table>
+
+										</td>
+									</tr>
+									<!-- Line 8-->
+									<tr>
+										<td><div data-bind="ntsFormLabel: {required: true }">#{i18n.getText('CPS001_117')}</div></td>
+										<td data-itemCode="IS00422 IS00437 IS00452 IS00467 IS00482 IS00497 IS00512 IS00527 IS00542 IS00557 IS00642 IS00657 IS00672 IS00687 IS00702 IS00717 IS00732 IS00747 IS00762 IS00777 dayNumberOfReam" class="tdTxt"><div></div></td>
+										<td><input id = "dayNumberOfReam" tabindex="16" data-bind="ntsNumberEditor: {
+																	name: nameDayNumberOfRemain,
+																	value: dayNumberOfReam,
+																	constraint: 'DayNumberOfRemain',
+																	required: true,
+																	option: {decimallength: 1},
+																	enable: true,
+																	readonly: false}" /></td>
+										<td>
+											<table>
+												<tr>
+													<td data-itemCode="IS00423 IS00438 IS00453 IS00468 IS00483 IS00498 IS00513 IS00528 IS00543 IS00558 IS00643 IS00658 IS00673 IS00688 IS00703 IS00718 IS00733 IS00748 IS00763 IS00778 timeReam" class="tdTxt"><div></div></td>
+													<td><input id = "timeReam" tabindex="17" data-bind="ntsTimeEditor: {
+																				name: nameTimeReam,
+																				value: timeReam,
+																				constraint: 'TimeOfRemain',
+																				inputFormat: 'time',
+																				mode: 'time',
+																				required: false,
+																				enable: true,
+																				readonly: false,
+																				immediate: false}" /></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+								</table>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="ccg007.f.vm.js" />
+			<com:scriptfile path="ccg007.f.service.js" />
+			<com:scriptfile path="ccg007.f.start.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="contents-area">
+				<div style="margin-bottom: 10px; margin-left: 10px; margin-top: 10px;">#{i18n.getText('CCG007_22')}</div>
+				<div style="margin-bottom: 10px; margin-left: 10px; margin-top: 10px;">#{i18n.getText('CCG007_23')}</div>
+				<div style="margin-bottom: 10px; margin-left: 10px; margin-top: 10px;">#{i18n.getText('CCG007_24')}</div>
+				
+				<table style="margin-top: 20px; margin-left: 50px;">
+					<tr>
+						<td style="padding-right: 30px;">#{i18n.getText('CCG007_4')}</td>
+						<td><div data-bind="text: loginId"></div></td>
+					</tr>
+				</table>
+				
+			</div>
+			<div id="functions-area-bottom">
+				<button class="x-large proceed" tabindex="1" id="subSendMail"
+					data-bind="click: submit">#{i18n.getText('CCG007_26')}</button>
+				<button tabindex="2" data-bind="click: closeDialog">#{i18n.getText('CCG007_20')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

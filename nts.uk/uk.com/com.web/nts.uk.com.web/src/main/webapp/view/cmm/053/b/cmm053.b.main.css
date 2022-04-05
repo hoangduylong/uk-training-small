@@ -1,0 +1,31 @@
+@CHARSET "UTF-8";
+
+.fixed-flex-layout>.fixed-flex-layout-left {
+	margin-right: 0px;
+}
+
+.div-line {
+	margin-bottom: 15px;
+}
+
+.column-1 {
+	width: 140px;
+}
+
+.display-name {
+	margin-left: 10px;
+	display: inline-block;
+}
+
+#B1_1 {
+	height: 230px;
+}
+
+#B1_1_grid_scrollContainer {
+	height: 230px !important;
+}
+
+#B1_1_grid_displayContainer {
+	width: auto !important;
+	height: 230px !important;
+}

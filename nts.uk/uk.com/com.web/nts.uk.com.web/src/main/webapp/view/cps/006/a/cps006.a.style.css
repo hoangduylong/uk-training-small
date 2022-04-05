@@ -1,0 +1,76 @@
+.float-right {
+	float: right !important;
+}
+
+#content {
+	width: 1200px;
+	margin-bottom: 20px;
+}
+
+#content-left {
+	width: 330px;
+	float: left;
+	margin-left: 20px;
+}
+
+#content-right {
+	float: left;
+	width: 800px;
+	margin-left: 10px;
+}
+
+#isAbolition {
+	margin-top: -15px !important;
+	margin-left: -10px;
+}
+
+#search {
+	margin-left: -7px;
+	margin-top: 5px !important;
+}
+
+input.ntsSearchBox.nts-editor.ntsSearchBox_Component{
+	width: 195px !important;
+	margin-left: 2px;
+}
+
+#category_grid_container {
+	margin-left: -5px !important;
+}
+
+/* #item_grid_container {
+	margin-top: 10px !important;
+} */
+
+.distane {
+	margin-bottom: 5px;
+}
+.control-group{
+	margin-bottom: 5px !important;
+}
+
+#ctgName {
+	width: 200px !important;
+}
+
+#col1 {
+	width: 180px;
+    margin-bottom: 10px;
+}
+
+.nts-help-button-image {
+	left: 30px !important;
+}
+
+.custom-img-1, .custom-img-2{
+	display: inline;
+}
+
+.custom-img-1 .nts-help-button-image img {
+	width: 420px;
+}
+
+.custom-img-2 .nts-help-button-image img {
+	width: 340px;
+	height: 400px;
+}

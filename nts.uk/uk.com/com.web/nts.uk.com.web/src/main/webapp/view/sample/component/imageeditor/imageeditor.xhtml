@@ -1,0 +1,232 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 1000, height: 800 };</script>
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+				<com:scriptfile path="/lib/generic/cropper/cropper.js" of="/nts.uk.com.js.web"/>
+				<com:stylefile path="/lib/generic/cropper/cropper.css" of="/nts.uk.com.js.web"/>
+            </ui:define>
+            
+            <ui:define name="content">
+            	<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Image Editor</h1>
+						<div class="cf">
+							<div style="float: left;">
+								<div id="test" data-bind="ntsImageEditor: {editable: true, accept: ['.bmp', '.png', '.jpg', '.jpeg'], maxSize: 10 }"></div>
+							</div>
+							<div style="float: left; padding-left: 50px;">
+								<button data-bind="click: upload">Upload File</button><br/>
+								<button data-bind="click: uploadOriginal">Upload Original File</button><br/>
+								<button data-bind="click: getOriginalImage">Show Original File Uploaded</button><br/>
+								<button data-bind="click: getImage">Show File Uploaded</button><br/>
+								<input data-bind="ntsTextEditor: {value: url}"></input><button data-bind="click: show">Show By URL</button><br/>
+								<button data-bind="click: clear">Clear Crop Area</button><br/>
+								<button data-bind="click: dialog">Open In Dialog</button>
+							</div>
+						</div>
+						<article class="cf">
+							<div class="tabs">
+								<ol>
+									<li><a href="#tabs-html">HTML Binding</a></li>
+									<li><a href="#tabs-viewmodel">ViewModel</a></li>
+									<li><a href="#tabs-methods">Methods</a></li>
+								</ol>
+								<div id="tabs-html" class="cf">
+									<h2>HTML</h2>
+<pre><![CDATA[<div id="test" data-bind="ntsImageEditor: {editable: true, accept: ['.bmp', '.png', '.jpg', '.jpeg'] }, maxSize: 10"></div>]]></pre>
+									<h2>API</h2>
+									<table>
+										<colgroup>
+											<col width="200px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h3>Binding</h3></th>
+												<th><h3>Description</h3></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>editable</td>
+												<td>
+													<b>Type:</b> boolean<br/>
+													Image can croppable if editable = true.
+												</td>
+											</tr>
+											<tr>
+												<td>zoomble</td>
+												<td>
+													<b>Type:</b> boolean<br/>
+													Image can zoomble with mouse wheel if zoomble = true.
+												</td>
+											</tr>
+											<tr>
+												<td>width</td>
+												<td>
+													<b>Type:</b> number<br/>
+													Set width for image preview area.
+												</td>
+											</tr>
+											<tr>
+												<td>height</td>
+												<td>
+													<b>Type:</b> number<br/>
+													Set height for image preview area.
+												</td>
+											</tr>
+											<tr>
+												<td>freeResize</td>
+												<td>
+													<b>Type:</b> boolean<br/>
+													Image can crop free.
+												</td>
+											</tr>
+											<tr>
+												<td>resizeRatio</td>
+												<td>
+													<b>Type:</b> number<br/>
+													if resizeRatio is false, use this properties for resize ratio.<br/>
+													Default: 1 (with ratio as original image).
+												</td>
+											</tr>
+											<tr>
+												<td>accept</td>
+												<td>
+													<b>Type:</b> String array<br/>
+													image type can upload for component.
+													Sample: [".png", ".jpg", ".jpeg"]
+												</td>
+											</tr>
+											<tr>
+												<td>msgIdForUnknownFile</td>
+												<td>
+													<b>Type:</b> String<br/>
+													msg id for error when select unknow type.
+													Default: "Msg_77"
+												</td>
+											</tr>
+											<tr>
+												<td>maxSize(Optional)</td>
+												<td>
+													<b>Type:</b> number<br/>
+													Max size of image can be uploaded. If it's not set, this component will not check. 
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div id="tabs-viewmodel" class="cf">
+									<h2>TypeScript</h2>
+<pre><![CDATA[class ScreenModel {
+        url: KnockoutObservable<string>;
+        uploaded: any
+        
+        constructor(){
+            this.url = ko.observable("");    
+        }
+        
+        upload(){
+            var self = this;
+            nts.uk.ui.block.grayout();
+            $("#test").ntsImageEditor("upload", {stereoType: "image"}).done(function(data){
+                self.uploaded = data;
+                nts.uk.ui.block.clear()
+            });
+        }
+        getImage(){
+            if(!nts.uk.util.isNullOrUndefined(this.uploaded)){
+               $("#test").ntsImageEditor("selectByFileId", this.uploaded.id); 
+            }
+        }
+        show(){ 
+            if(!nts.uk.util.isNullOrEmpty(this.url().trim())){
+               $("#test").ntsImageEditor("showByUrl", this.url()); 
+            }
+        }
+        clear(){
+            $("#test").ntsImageEditor("clear");
+        }
+    }]]></pre>
+								</div>
+								<div id="tabs-methods" class="cf">
+									<table>
+										<colgroup>
+											<col width="500px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h3>Methods</h3></th>
+												<th><h3>Description</h3></th>
+											</tr>
+											<tr>
+												<th><h4>$("#test").ntsImageEditor("upload", {stereoType: "image"}).done( function(data){
+									                
+									            });</h4></th>
+												<th><h4>Upload Image to Server and when done will return a StoredFileInfo object for file information</h4></th>
+											</tr>
+											<tr>
+												<th><h4>$("#test").ntsImageEditor("upload", {stereoType: "uploadOriginal"}).done( function(data){
+									                
+									            });</h4></th>
+												<th><h4>Upload Original Image to Server and when done will return a StoredFileInfo object for file information</h4></th>
+											</tr>
+											<tr>
+												<th><h4>$("#test").ntsImageEditor("selectByFileId", this.uploaded.id); </h4></th>
+												<th><h4>Show a image with a fileID which is uploaded</h4></th>
+											</tr>
+											<tr>
+												<th><h4>$("#test").ntsImageEditor("showByUrl", this.url()); </h4></th>
+												<th><h4>Show a image from a URL in internet</h4></th>
+											</tr>
+											<tr>
+												<th><h4>$("#test").ntsImageEditor("clear");</h4></th>
+												<th><h4>For clear crop area is selected.</h4></th>
+											</tr>
+											<tr>
+												<th><h4>$("#test").ntsImageEditor("getImgStatus");</h4></th>
+												<th><h4>Get image status.</h4></th>
+											</tr>
+										</thead>
+									</table><br/>
+									<table>
+										<colgroup>
+											<col width="500px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h3>Events</h3></th>
+												<th><h3>Description</h3></th>
+											</tr>
+											<tr>
+												<th><h4>self.$root.bind("imgloaded", function(evt, query?: SrcChangeQuery) {
+												});</h4></th>
+												<th><h4>Event is fired when image is loaded</h4></th>
+											</tr>
+										</thead>
+									</table>
+								</div>
+							</div>
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

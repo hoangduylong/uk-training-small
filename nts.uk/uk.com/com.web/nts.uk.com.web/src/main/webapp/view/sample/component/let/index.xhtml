@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="/master/base.xhtml">
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="../../catalog/catalog.css" />
+			<com:scriptfile path="start.js" />
+			<com:scriptfile path="../../catalog/catalog.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area"></div>
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+					<h1>Let control</h1>
+					<span>Quick method for defined variable and use in view</span>
+					<h2>Demo</h2>
+					<table>
+						<tr>
+							<td>Old</td>
+							<td>Let</td>
+						</tr>
+						<tr>
+							<td>
+								<table>
+									<thead>
+										<tr>
+											<th>Child name</th>
+											<th>Parent name</th>
+										</tr>
+									</thead>
+									<tbody
+										data-bind="foreach: { data: model().childrens(), as: 'child' }">
+										<tr>
+											<td data-bind="text: child.name"></td>
+											<td data-bind="text: $parent.model().name"></td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+							<td>
+								<div data-bind="let: { parent: model() }">
+									<table>
+										<thead>
+											<tr>
+												<th>Child name</th>
+												<th>Parent name</th>
+											</tr>
+										</thead>
+										<tbody
+											data-bind="foreach: { data: parent.childrens(), as: 'child' }">
+											<tr>
+												<td data-bind="text: child.name"></td>
+												<td data-bind="text: parent.name"></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</td>
+						</tr>
+					</table>
+					<article class="cf">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-view">View</a></li>
+								<li><a href="#tabs-viewmodel">View Model</a></li>
+								<li><a href="#tabs-api">Using</a></li>
+							</ol>
+							<div id="tabs-view" class="cf">
+								<h3>Old method binding</h3>
+								<pre>
+<![CDATA[<table>
+	<thead>
+		<tr>
+			<th>Child name</th>
+			<th>Parent name</th>
+		</tr>
+	</thead>
+	<tbody
+		data-bind="foreach: { data: model().childrens(), as: 'child' }">
+		<tr>
+			<td data-bind="text: child.name"></td>
+			<td data-bind="text: $parent.model().name"></td>
+		</tr>
+	</tbody>
+</table>]]>
+								</pre>
+								<h3>Let method binding</h3>
+								<pre>
+<![CDATA[<div data-bind="let: { parent: model() }">
+	<table>
+		<thead>
+			<tr>
+				<th>Child name</th>
+				<th>Parent name</th>
+			</tr>
+		</thead>
+		<tbody
+			data-bind="foreach: { data: parent.childrens(), as: 'child' }">
+			<tr>
+				<td data-bind="text: child.name"></td>
+				<td data-bind="text: parent.name"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>]]>
+								</pre>
+							</div>
+							<div id="tabs-viewmodel" class="cf">
+								<pre>
+<![CDATA[__viewContext.ready(() => {
+    let viewModel = {
+        model: ko.observable({
+            id: 1,
+            name: 'Root',
+            childrens: ko.observableArray([{
+                id: 2,
+                name: 'Child first'
+            }, {
+                    id: 3,
+                    name: 'Child second'
+                }])
+        })
+    };
+    
+    __viewContext.bind(viewModel);
+});
+									]]>
+								</pre>
+							</div>
+							<div id="tabs-api">
+								Use in case many parent-children model.
+								<br />
+								Using:
+								<pre>
+<![CDATA[<div data-bind="let: { _obj: model }">Call _obj at here</div>]]>
+								</pre>
+							</div>
+						</div>
+					</article>
+					<div class="footer cf">
+						<button class="previous large">Previous</button>
+						<button class="next proceed large">Next</button>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

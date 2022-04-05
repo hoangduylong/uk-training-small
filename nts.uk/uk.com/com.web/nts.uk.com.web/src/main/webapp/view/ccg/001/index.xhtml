@@ -1,0 +1,554 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../master/base.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = {
+					width : 300,
+					height : 200
+				};
+			</script>
+			<com:stylefile path="../../sample/catalog/catalog.css" />
+			<com:stylefile path="/view/ccg/share/style.css" of="/nts.uk.com.web" />
+			<com:stylefile path="style.css" />
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.service.js"
+				of="/nts.uk.com.web" />
+			<com:scriptfile path="/view/ccg/share/ccg.vm.js" of="/nts.uk.com.web" />
+			<com:scriptfile path="ccg001.a.vm.js" />
+			<com:scriptfile path="ccg001.a.start.js" />
+			<com:scriptfile path="../../sample/catalog/catalog.js" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area"></div>
+			<div id="contents-area">
+				<div id="side-menu" class="cf"></div>
+				<div id="content" class="cf">
+					<div id="com-ccg001"></div>
+					<h1>CCG001 社員範囲選択 （共通部品） Employee range selection</h1>
+					<note style="width:500px; margin-left: 100px">
+						<b>Update 2019/04/26</b> <br />
+						- Add feature for department<br /><br />
+						<b>Update 2018/09/14</b> <br />
+						- Add feature for synchronizing baseDate and period with parent screen<br /><br />
+						<b>Update 2018/08/07</b> <br />
+						- Add tabindex property<br /><br />
+						<b>Important note: </b> <br />
+						- $('#com-ccg001').ntsGroupComponent(ccg001ComponentOption) can't be executed before __viewContext.bind(screenModel). <br />
+						- The component container must be placed right after content-area div and must not have custom style.
+					</note>
+					<div class="table" style="margin-left: 100px; margin-bottom:  30px;">
+					<br/>
+					<button class="large" data-bind="click: reloadCcg001">Reload Component</button>
+					<div style="display: table-row">
+						<div class="cell" style="width: 500px">
+						<h2>Common properties:</h2>
+						<div data-bind="ntsCheckBox:{checked: isSelectAllEmployee}">Show EmployeeList (検索タイプ)</div><br/>
+						<div style="display: flex; padding: 5px;">
+							<div data-bind="ntsFormLabel: {}">SystemType (システム区分):</div>
+							<div data-bind="ntsComboBox: {
+										width: 120,
+										name: '#[CCG001_28]',
+										options: systemTypes,
+										optionsValue: 'value',
+										value: systemType,
+										optionsText: 'name',
+										editable: false,
+										enable: true,
+										columns: [
+											{ prop: 'name', length: 5 },
+										]}"></div>
+						</div>
+						<div data-bind="ntsCheckBox:{checked: employeesDoNotManageSchedules}">Remove Employees Do Not Manage Schedules (スケジュール管理しない社員を取り除く)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: isQuickSearchTab}">Show QuickSearch (クイック検索)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: isAdvancedSearchTab}">Show AdvancedSearch (詳細検索タブ)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: showBaseDate}">Show BaseDate (基準日利用)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: showClosure}">Show Closure (就業締め日利用)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: showAllClosure}">Show All Closure (全締め表示)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: showPeriod}">Show Period (対象期間利用)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: periodFormatYM}">Show period format: YM(対象期間精度)</div><br/>
+						<div style="display: flex; padding: 5px;">
+							<div data-bind="ntsFormLabel: {}">Maximum period range (最長期間):</div>
+							<div data-bind="ntsComboBox: {
+										width: 80,
+										options: periodRanges,
+										optionsValue: 'value',
+										value: maxPeriodRange,
+										optionsText: 'name',
+										editable: false,
+										enable: true,
+										columns: [
+											{ prop: 'name', length: 5 },
+										]}"></div>
+						</div>
+						<div data-bind="ntsCheckBox:{checked: lazyLoad}">Enable lazy load</div><br/>
+						</div>
+						<div class="cell" style="width: 500px">
+							<h2>Required param properties:</h2>
+						<div style="padding-bottom: 5px;">
+							<div data-bind="ntsFormLabel: {}">Base Date:</div> 
+							<div class="ccg-sample-has-error" data-bind="ntsDatePicker: {
+											required: true,
+											dateFormat: 'YYYY/MM/DD',
+											value: baseDate }"></div><br/></div>
+						<com:ko tag="ifnot" bind="periodFormatYM">
+							<div style="padding-bottom: 5px;">
+								<div data-bind="ntsFormLabel: {}">Period start:</div>  
+								<div class="ccg-sample-has-error" data-bind="ntsDatePicker: {
+												required: true,
+												dateFormat: 'YYYY/MM/DD',
+												value: periodStartDate }"></div><br/>
+							</div>
+							<div style="padding-bottom:  5px;">
+								<div data-bind="ntsFormLabel: {}">Period end:</div>  
+								<div class="ccg-sample-has-error" data-bind="ntsDatePicker: {
+												required: true,
+												dateFormat: 'YYYY/MM/DD',
+												value: periodEndDate }"></div><br/>
+							</div>
+						</com:ko>
+						<com:ko tag="if" bind="periodFormatYM">
+							<div style="padding-bottom:  5px;">
+								<div data-bind="ntsFormLabel: {}">Period start:</div>
+								<div class="ccg-sample-has-error" data-bind="ntsDatePicker: {
+												required: true,
+												dateFormat: 'YYYY/MM',
+												value: periodStartDate }"></div><br/>
+							</div>
+							<div style="padding-bottom:  5px;">
+								<div data-bind="ntsFormLabel: {}">Period end:</div>  
+								<div class="ccg-sample-has-error" data-bind="ntsDatePicker: {
+												required: true,
+												dateFormat: 'YYYY/MM',
+												value: periodEndDate }"></div><br/>
+							</div>
+						</com:ko>
+						<div data-bind="ntsCheckBox:{checked: inService}">In service (在職区分)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: leaveOfAbsence}">Leave of absence (休職区分)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: closed}">Close (休業区分)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: retirement}">Retirement (退職区分)</div><br/>
+						</div>
+					</div>
+					<div style="display: table-row">
+					<div class="cell">
+						<h2>Quick search properties:</h2>
+						<div data-bind="ntsCheckBox:{checked: isAllReferableEmployee}">Show AllReferableEmployee (参照可能な社員すべて)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: isOnlyMe}">Show Only me (自分だけ)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: isEmployeeOfDepartment}">Show Employee of department (同じ部門の社員)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: isEmployeeDepartmentFollow}">Show Employee of department follow (同じ部門とその配下の社員)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: isEmployeeOfWorkplace}">Show Employee of workplace (同じ職場の社員)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: isEmployeeWorkplaceFollow}">Show Employee of workplace follow (同じ職場とその配下の社員)</div><br/>
+						</div>
+						<div class="cell">
+						<h2>Advanced search properties:</h2>
+						<div data-bind="ntsCheckBox:{checked: showEmployment}">Show Employment (雇用条件)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: showDepartment}">Show department (部門条件)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: showWorkplace}">Show workplace (職場条件)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: showClassification}">Show classification (分類条件)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: showJobTitle}">Show jobtitle (職位条件)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: showWorktype}">Show worktype (勤種条件)</div><br/>
+						<div data-bind="ntsCheckBox:{checked: isMutipleCheck}">Enable multiple selection (選択モード)</div><br/>
+
+					</div>
+					</div>
+					</div>
+					<hr />
+					<com:ko tag="if" bind="selectedEmployee().length > 0">
+					<div style="margin-left: 100px;">
+						<div class="labelselect">List data returned:</div>
+						<div style="min-height: 30px">
+							<table>
+								<tr>
+									<td><b>EmployeeId</b></td>
+									<td><b>EmployeeCode</b></td>
+									<td><b>EmployeeName</b></td>
+									<td><b>AffiliationName</b></td>
+								</tr>
+								<com:ko-foreach bind="selectedEmployee">
+									<tr>
+										<td data-bind="text: employeeId"></td>
+										<td data-bind="text: employeeCode"></td>
+										<td data-bind="text: employeeName"></td>
+										<td data-bind="text: affiliationName"></td>
+									</tr>
+								</com:ko-foreach>
+							</table>
+						</div>
+					</div>
+					<hr />
+					</com:ko>
+
+					<article class="cf" style="margin-left: 100px">
+						<div class="tabs">
+							<ol>
+								<li><a href="#tabs-html">Usage</a></li>
+								<li><a href="#tabs-viewmodel">API</a></li>
+							</ol>
+							<div id="tabs-html" class="cf">
+								<h2>HTML</h2>
+								<pre>
+<![CDATA[<ui:define name="htmlHead">
+	// Must included in header
+	<com:stylefile path="/view/ccg/share/style.css" of="/nts.uk.com.web" />
+	<com:scriptfile set="IGNITE" />
+	<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+	<com:scriptfile path="/view/kcp/share/tree.js" of="/nts.uk.com.web" />
+	<com:scriptfile path="/view/ccg/share/ccg.service.js" of="/nts.uk.com.web" />
+	<com:scriptfile path="/view/ccg/share/ccg.vm.js" of="/nts.uk.com.web" />
+</ui:define>
+
+<div id="contents-area">
+	<!--The component container must be placed right after content-area div and must not have custom style-->
+	<div id="com-ccg001"></div>
+</div>]]>
+</pre>
+<h2>TypeScript</h2>
+								<pre>
+<![CDATA[// Set component option
+const ccg001ComponentOption: GroupOption = {
+	/** Common properties */
+	systemType: 1,
+	showEmployeeSelection: true,
+	showQuickSearchTab: true,
+	showAdvancedSearchTab: true,
+	showBaseDate: true,
+	showClosure: true,
+	showAllClosure: true,
+	showPeriod: true,
+	periodFormatYM: false,
+	
+	/** Required parameter */
+	baseDate: baseDate,
+	periodStartDate: periodStartDate,
+	periodEndDate: periodEndDate,
+	inService: true,
+	leaveOfAbsence: true,
+	closed: true,
+	retirement: true,
+	
+	/** Quick search tab options */
+	showAllReferableEmployee: true,
+	showOnlyMe: true,
+	showSameDepartment: true,
+	showSameDepartmentAndChild: true,
+	showSameWorkplace: true,
+	showSameWorkplaceAndChild: true,
+	
+	/** Advanced search properties */
+	showEmployment: true,
+	showDepartment: true,
+	showWorkplace: true,
+	showClassification: true,
+	showJobTitle: true,
+	showWorktype: true,
+	isMutipleCheck: true,
+	
+	/**
+	* Self-defined function: Return data from CCG001
+	* @param: data: the data return from CCG001
+	*/
+	returnDataFromCcg001: function(data: Ccg001ReturnedData) {
+	}
+}
+
+// Start component
+$('#com-ccg001').ntsGroupComponent(ccg001ComponentOption); // '#com-ccg-001' is the component container's id
+
+
+// Note: Defining these interfaces are optional
+export interface GroupOption {
+	/** Common properties */
+	showEmployeeSelection?: boolean; // 検索タイプ
+	systemType: number; // システム区分
+	showQuickSearchTab?: boolean; // クイック検索
+	showAdvancedSearchTab?: boolean; // 詳細検索
+	showBaseDate?: boolean; // 基準日利用
+	showClosure?: boolean; // 就業締め日利用
+	showAllClosure?: boolean; // 全締め表示
+	showPeriod?: boolean; // 対象期間利用
+	periodFormatYM?: boolean; // 対象期間精度
+	maxPeriodRange?: string; // 最長期間
+	showSort?: boolean; // 並び順利用
+	nameType?: number; // 氏名の種類
+
+	/** Required parameter */
+	baseDate?: any; // 基準日 KnockoutObservable<string> or string
+	periodStartDate?: any; // 対象期間開始日 KnockoutObservable<string> or string
+	periodEndDate?: any; // 対象期間終了日 KnockoutObservable<string> or string
+	dateRangePickerValue?: KnockoutObservable<any>;
+	inService: boolean; // 在職区分
+	leaveOfAbsence: boolean; // 休職区分
+	closed: boolean; // 休業区分
+	retirement: boolean; // 退職区分
+
+	/** Quick search tab options */
+	showAllReferableEmployee?: boolean; // 参照可能な社員すべて
+	showOnlyMe?: boolean; // 自分だけ
+	showSameDepartment?: boolean; //同じ部門の社員
+	showSameDepartmentAndChild?: boolean; // 同じ部門とその配下の社員
+	showSameWorkplace?: boolean; // 同じ職場の社員
+	showSameWorkplaceAndChild?: boolean; // 同じ職場とその配下の社員
+
+	/** Advanced search properties */
+	showEmployment?: boolean; // 雇用条件
+	showDepartment?: boolean; // 部門条件
+	showWorkplace?: boolean; // 職場条件
+	showClassification?: boolean; // 分類条件
+	showJobTitle?: boolean; // 職位条件
+	showWorktype?: boolean; // 勤種条件
+	isMutipleCheck?: boolean; // 選択モード
+
+	/** Optional properties */
+	isInDialog?: boolean;
+	showOnStart?: boolean;
+	isTab2Lazy?: boolean;
+	tabindex?: number;
+
+	/** Data returned */
+	returnDataFromCcg001: (data: Ccg001ReturnedData) => void;
+}
+export interface EmployeeSearchDto {
+    employeeId: string;
+    employeeCode: string;
+    employeeName: string;
+    affiliationId: string; // departmentId or workplaceId based on system type
+    affiliationName: string; // departmentName or workplaceName based on system type
+}
+export interface Ccg001ReturnedData {
+    baseDate: string; // 基準日
+    closureId?: number; // 締めID
+    periodStart: string; // 対象期間（開始)
+    periodEnd: string; // 対象期間（終了）
+    listEmployee: Array<EmployeeSearchDto>; // 検索結果
+}]]>
+								</pre>
+							</div>
+							<div id="tabs-viewmodel" class="cf">
+								<h2>Component Properties</h2>
+								<table class="table">
+									<colgroup>
+										<col width="200px" />
+									</colgroup>
+									<thead>
+										<tr>
+											<th><h4>Name</h4></th>
+											<th><h4>Description</h4></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>showEmployeeSelection<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = false<br/> Show KCP005</td>
+										</tr>
+										<tr>
+											<td>systemType<br/><i>(optional)</i></td>
+											<td><b>Type:</b> number<br /><b>Default:</b> = 1 (個人情報)<br /> Current system type</td>
+										</tr>
+										<tr>
+											<td>showQuickSearchTab<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = true<br/> Show quick search tab</td>
+										</tr>
+										<tr>
+											<td>showAdvancedSearchTab<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = true<br/> Show advanced search tab</td>
+										</tr>
+										<tr>
+											<td>showBaseDate<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = true<br/> Show reference date</td>
+										</tr>
+										<tr>
+											<td>showClosure<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = false<br/> Show closure selection</td>
+										</tr>
+										<tr>
+											<td>showAllClosure<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = false<br/> Show select all closure option</td>
+										</tr>
+										<tr>
+											<td>showPeriod<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = false<br/> Show search period</td>
+										</tr>
+										<tr>
+											<td>showPeriodYM<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = false<br/> Search period format is year/month(true) or year/month/date(false)</td>
+										</tr>
+										<tr>
+											<td>maxPeriodRange<br/><i>(optional)</i></td>
+											<td><b>Type:</b> string<br /><b>Default:</b> = none (なし)<br /> Maximum period range</td>
+										</tr>
+										<tr>
+											<td>baseDate<br/><i>(required if showBaseDate = true)</i></td>
+											<td><b>Type:</b> KnockoutObservable&lt;string&gt; or string(ISO 8601 Formats)<br />
+											<b>Note:</b> Use KnockoutObservable for synchronized baseDate <br />
+											Search reference date</td>
+										</tr>
+										<tr>
+											<td>dateRangePickerValue<br/><i>(for dateRangePicker)</i></td>
+											<td><b>Type:</b> KnockoutObservable&lt;any&gt;<br />
+											<b>Note:</b> Use KnockoutObservable for synchronized baseDate <br />
+											DateRangePicker value</td>
+										</tr>
+										<tr>
+											<td>periodStartDate<br/><i>(required if showPeriod = true)</i></td>
+											<td><b>Type:</b> KnockoutObservable&lt;string&gt; or string(ISO 8601 Formats)<br />
+											<b>Note:</b> Use KnockoutObservable for synchronized periodStartDate <br />
+											Search start date</td>
+										</tr>
+										<tr>
+											<td>periodEndDate<br/><i>(required if showPeriod = true)</i></td>
+											<td><b>Type:</b> KnockoutObservable&lt;string&gt; or string(ISO 8601 Formats)<br />
+											<b>Note:</b> Use KnockoutObservable for synchronized periodEndDate <br />
+											Search end date</td>
+										</tr>
+										<tr>
+											<td>inService</td>
+											<td><b>Type:</b> boolean<br /> Employee status: inService</td>
+										</tr>
+										<tr>
+											<td>leaveOfAbsence</td>
+											<td><b>Type:</b> boolean<br /> Employee status: leaveOfAbsence</td>
+										</tr>
+										<tr>
+											<td>closed</td>
+											<td><b>Type:</b> boolean<br /> Employee status: closed</td>
+										</tr>
+										<tr>
+											<td>retirement</td>
+											<td><b>Type:</b> boolean<br />Employee status: retirement</td>
+										</tr>
+										<tr>
+											<td>showAllReferableEmployee<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = true<br/>Show button
+												参照可能な社員すべて</td>
+										</tr>
+										<tr>
+											<td>showOnlyMe<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = true<br/> Show button 自分だけ</td>
+										</tr>
+										<tr>
+											<td>showSameDepartment<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = true<br/> Show button
+												同じ部門の社員</td>
+										</tr>
+										<tr>
+											<td>showSameDepartmentAndChild<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = true<br/> Show button
+												同じ部門とその配下の社員</td>
+										</tr>
+										<tr>
+											<td>showSameWorkplace<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = true<br/> Show/ button
+												同じ職場の社員</td>
+										</tr>
+										<tr>
+											<td>showSameWorkplaceAndChild<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = true<br/> Show button
+												同じ職場とその配下の社員</td>
+										</tr>
+										<tr>
+											<td>showEmployment<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = true<br/> Show filter by employment</td>
+										</tr>
+										<tr>
+											<td>showDepartment<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = true<br/> Show filter by department</td>
+										</tr>
+										<tr>
+											<td>showWorkplace<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = true<br/> Show filter by workplace</td>
+										</tr>
+										<tr>
+											<td>showClassification<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = true<br/> Show filter by classification</td>
+										</tr>
+										<tr>
+											<td>showJobTitle<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = true<br/> Show filter by job title</td>
+										</tr>
+										<tr>
+											<td>showWorktype<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = false<br/> Show filter by work type</td>
+										</tr>
+										<tr>
+											<td>isMutipleCheck<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = true<br/> Enable multiple
+												selection in KCP005</td>
+										</tr>
+										<tr>
+											<td>isInDialog<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = false<br/> Set true if use component in a dialog</td>
+										</tr>
+										<tr>
+											<td>showOnStart<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = false<br/>Show component on start if value = true</td>
+										</tr>
+										<tr>
+											<td>isTab2Lazy<br/><i>(optional)</i></td>
+											<td><b>Type:</b> boolean<br /><b>Default:</b> = false<br/>Enable lazyload for tab2</td>
+										</tr>
+										<tr>
+											<td>tabindex<br/><i>(optional)</i></td>
+											<td><b>Type:</b> number<br /><b>Default:</b> = 1<br/>Set tabindex for CCG001</td>
+										</tr>
+										<tr>
+											<td>returnDataFromCcg001</td>
+											<td><b>Type:</b> function<br />
+											<b>Param:</b> output data<br/>Output data function</td>
+										</tr>
+									</tbody>
+								</table>
+								<h2>Component data output</h2>
+								<table class="table">
+									<colgroup>
+										<col width="200px" />
+									</colgroup>
+									<thead>
+										<tr>
+											<th><h4>Name</h4></th>
+											<th><h4>Description</h4></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>baseDate</td>
+											<td><b>Type:</b> string(ISO 8601 Formats)<br /> Search reference date</td>
+										</tr>
+										<tr>
+											<td>closureId</td>
+											<td><b>Type:</b> number<br /> Selected closure id</td>
+										</tr>
+										<tr>
+											<td>periodStart</td>
+											<td><b>Type:</b> string(ISO 8601 Formats)<br /> Period start date</td>
+										</tr>
+										<tr>
+											<td>affiliationId</td>
+											<td><b>Type:</b> string<br /> Workplace/Department Id</td>
+										</tr>
+										<tr>
+											<td>periodEnd</td>
+											<td><b>Type:</b> string(ISO 8601 Formats)<br /> Period end date</td>
+										</tr>
+										<tr>
+											<td>listEmployee</td>
+											<td><b>Type:</b> Array&lt;EmployeeSearchDto&gt;<br /> List employee dto</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</article>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

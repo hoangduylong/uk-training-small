@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/base.xhtml">
+
+		<!-- PAGE CONTENT -->
+		<ui:define name="htmlHead">
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="/view/kcp/share/list.js" of="/nts.uk.com.web" />
+			<com:stylefile path="cmm008.a.main.css" />
+			<com:scriptfile path="cmm008.a.service.js" />
+			<com:scriptfile path="cmm008.a.vm.js" />
+			<com:scriptfile path="cmm008.a.start.js" />
+			<com:ValidatorScript>
+				nts.uk.ctx.bs.employee.dom.employment.EmploymentCode
+				nts.uk.ctx.bs.employee.dom.employment.EmploymentName
+				nts.uk.ctx.bs.employee.dom.employment.EmpExternalCode
+				nts.uk.shr.com.primitive.Memo
+				
+			</com:ValidatorScript>
+		</ui:define>
+
+		<ui:define name="content">
+			<div id="functions-area">
+				<button data-bind="click: clearData" tabindex="1">#{i18n.getText('CMM008_1')}</button>
+				<button class="proceed"
+					data-bind="click: createEmployment, enable: $root.errors.isEmpty"
+					tabindex="2">#{i18n.getText('CMM008_2')}</button>
+				<button class="danger" id="btnDelete"
+					data-bind="click: deleteEmployment, enable: enableDelete()"
+					tabindex="4">#{i18n.getText('CMM008_4')}</button>
+ 				<button  tabindex="5" id="print-button" data-bind="click: exportExcel">#{i18n.getText('KMK007_4')}</button> 
+					
+			</div>
+			
+			<div id="contents-area" class="fixed-flex-layout">
+				<div id="left-content" class="fixed-flex-layout-left">
+					<div id="emp-component" tabindex="-1"></div>
+				</div>
+				<div id="right-contents" data-bind="with: employmentModel" class="fixed-flex-layout-right">
+					<div class="fixed-flex-layout">
+						<div class="td-width fixed-flex-layout-left"
+							data-bind="ntsFormLabel: {required: true, constraint: ['EmploymentCode', 'EmploymentName']}">
+							#{i18n.getText('CMM008_6')}
+						</div>
+						<div style="padding-bottom: 10px" class="fixed-flex-layout-right">
+							<input id="empCode"
+								data-bind="ntsTextEditor: {
+										name: '#[CMM008_7]',
+										value: employmentCode, 
+										constraint: 'EmploymentCode', 
+										option: { width: '35px' },
+										required: true, 
+										enable: isEnableCode()}"
+								tabindex="7" /> 
+								<input id="empName"
+								data-bind="ntsTextEditor: {
+										name: '#[CMM008_8]',
+										value: employmentName, 
+										constraint: 'EmploymentName',
+										option: { width: '150px' },
+										required: true,
+										enable: true}"
+								tabindex="8" />
+						</div>
+					</div>
+
+					<hr id="ruled-line"></hr>
+					<div id="row2">
+						<div class="fixed-flex-layout">
+							<div data-bind="ntsFormLabel: {constraint: ['EmpExternalCode']}" class="width-label fixed-flex-layout-left">
+								#{i18n.getText('CMM008_9')}
+							</div>
+							<div class="fixed-flex-layout-right">
+								<input id="extCode"
+									data-bind="ntsTextEditor: {
+												name: '#[CMM008_9]',
+												value: empExternalCode, 
+												constraint: 'EmpExternalCode',
+												option: { width: '86px' },
+												enable: true}"
+									tabindex="9" />
+							</div>
+						</div>
+						<div class="fixed-flex-layout">
+							<div data-bind="ntsFormLabel: {constraint: ['Memo']}" class="width-label fixed-flex-layout-left">
+								#{i18n.getText('CMM008_10')}
+							</div>
+							<div class="fixed-flex-layout-right">
+								<textarea id="memo" style="overflow-y: auto;width: 446px;height: 180px;" tabindex="10"
+									data-bind="ntsMultilineEditor: { value: memo, name: '#[CMM008_10]', constraint: 'Memo'}" />
+							</div>
+						</div>
+						<div data-bind="visible : true" > 
+						<div class="fixed-flex-layout">
+							<div style="display:none;" data-bind="ntsFormLabel: {}" class="width-label fixed-flex-layout-left">
+								<label data-bind ="text :$parent.commonMasterName"></label>
+							</div>
+							<div style="display:none;" tabindex="10" id="combo-box" data-bind="ntsComboBox: {
+								options: $parent.itemListMatter,
+								optionsValue: 'commonMasterItemId',
+								visibleItemsCount: 5,
+								value: $parent.selectedCodeMaster,
+								optionsText: 'commonMasterItemName',
+								editable: false ,
+								selectFirstIfNull: false ,
+								required: false ,
+								columns: [
+									{ prop: 'commonMasterItemName', length: 10 },
+								]}"></div> 
+								
+								<!-- <div tabindex="11" id = "selectedCode_Reason1Id"  style="width: 170px" 
+									 data-bind="ntsComboBox: {
+												options: listRetirementReason1 ,
+												name: '{#JCM007_A222_20}' ,
+												optionsValue: 'value',
+												value: selectedCode_Reason1 ,
+												optionsText: 'text',
+												enable : enable_listRetirementReason1 ,
+												editable: false ,
+												selectFirstIfNull: false ,
+												required: true ,
+												columns: [
+													{ prop: 'text', length: 15 }
+												]}"></div> -->
+						</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

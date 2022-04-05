@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 300, height: 200 };</script>
+            	<com:scriptfile set="IGNITE" />
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+            </ui:define>
+            
+            <ui:define name="content">
+            	<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Month Days Picker</h1>
+						<h2>Overview</h2>
+						<span tabindex="1" data-bind="ntsCheckBox: { checked: enable }">Enable</span>
+						<div id="monthdays" tabindex="2" data-bind="ntsMonthDays: {name: 'monthday', value: value, enable: enable, required: true}"/>
+						<input tabindex="3" data-bind="ntsNumberEditor: {value: value}"/>
+						<div>
+							<b>Localized:</b> <span data-bind="text: text"></span>
+						</div>
+						<br />					
+						<article class="cf">
+							<div class="tabs">
+								<ol>
+									<li><a href="#tabs-usage">Usage</a></li>
+									<li><a href="#tabs-api">API</a></li>
+								</ol>
+								<div id="tabs-usage" class="cf">
+									<h2>HTML</h2>
+									<pre><![CDATA[<div id="monthdays" data-bind="ntsMonthDays: {value: value, enable: enable}"/>]]></pre>
+									<h2>TypeScript</h2>
+<pre><![CDATA[class ScreenModel {
+    value: KnockoutObservable<string>;
+    text: KnockoutObservable<string>;
+    enable: KnockoutObservable<boolean>;
+    
+    constructor() {
+        var self = this;
+        
+        self.value = ko.observable('');
+        self.text = ko.observable('');
+        self.value.subscribe((newValue) => {
+            self.text(nts.uk.time.formatMonthDayLocalized(newValue));
+        });
+        self.enable = ko.observable(true);
+    }
+}]]></pre>
+								</div>
+								<div id="tabs-api" class="cf">
+									<h2>API</h2>
+									<table class="table">
+										<colgroup>
+											<col width="200px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Binding</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>value</td>
+												<td>
+													<b>Type:</b> KnockoutObservable&lt;int&gt; | int<br/>
+													Value like month*100 + days (example: 101)
+												</td>
+											</tr>
+											<tr>
+												<td>enable</td>
+												<td>
+													<b>Type:</b> KnockoutObservable&lt;boolean&gt; | boolean<br/>
+													Enable/disable component
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

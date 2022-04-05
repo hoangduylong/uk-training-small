@@ -1,0 +1,7 @@
+@import url("../a1/ccg018.a1.main.css");
+
+@import url("../b/ccg018.b.main.css");
+
+.sidebar-html #master-content {
+	height: calc(100% - 94px) !important;
+}

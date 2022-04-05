@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="/master/dialog.xhtml">
+		<ui:define name="htmlHead">
+		<script type='text/javascript'>
+				var dialogSize = {
+					width : 1050,
+					height : 565
+				};
+			</script>
+			<com:scriptfile set="IGNITE" />
+			<com:scriptfile path="../share/model.js" />
+			<com:scriptfile path="cmf002.f.start.js" />
+			<com:scriptfile path="cmf002.f.service.js" />
+			<com:scriptfile path="cmf002.f.vm.js" />
+			<com:stylefile path="cmf002.f.style.css" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="functions-area">
+				<!--F1_1 登録-->
+				<button id="F1_1" data-bind="click: register" class="proceed" tabindex="1">#{i18n.getText('CMF002_110')}</button>
+				<!--F1_2 閉じる-->
+				<button id="F1_2" data-bind="click: closeDialog" tabindex="2">#{i18n.getText('CMF002_111')}</button>
+			</div>
+			<div id="contents-area" class="fixed-flex-layout">
+				<div class="container cf">
+					<div class="flex div-line valign-center">
+						<!--F2 条件コード/名称-->
+						<div id="F2" class="column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_78')}</div>
+						<!--F2_1 条件設定名--> 
+						<span id="F2_1" class="label ellipsis" style = "margin-right: 15px;" data-bind="text: condSetCd"></span>
+						<span id="F2_1" class="label ellipsis" data-bind="text: conditionSetName"></span>
+					</div>
+					<div class="flex div-line valign-center">
+						<!--F3 カテゴリ名(ラベル)--> 
+						<div id="F2" class="column-1" data-bind="ntsFormLabel: {}">#{i18n.getText('CMF002_79')}</div>
+						<!--F3_1 カテゴリ名--> 
+						<span id="F2_1" class="label ellipsis" data-bind="text:categoryName"></span>
+					</div>
+
+					<div class="flex div-line">
+						<!--F4 条件設定選択(パネル)--> 
+						<div id="F4" data-bind="ntsPanel:{width: '255px', height: '275px', direction: 'none', visible: true}">
+							<div class="div-line">
+								<!--F4_1 出力項目(ラベル)-->
+								<span id="F4_1" class="label">#{i18n.getText('CMF002_59')}</span>
+							</div>
+							<div class="div-line">
+								<!--F4_2 出力項目一覧--> 
+								<table id="F4_2"
+									data-bind="ntsGridList: {
+													dataSource: outputItemList,
+													primaryKey: 'outputItemCode',
+													columns: [
+																{headerText: '#{i18n.getText('CMF002_60')}', key: 'outputItemCode', width: 50, formatter: _.escape},
+								                				{headerText: '#{i18n.getText('CMF002_61')}', key: 'outputItemName', width: 170, formatter: _.escape}
+								                			],
+													value: selectedOutputItemCode,
+													multiple: false,
+													rows: 10
+												}"></table>
+							</div>
+						</div>
+						<!--F5 条件設定選択(パネル)--> 
+						<div id="F5" data-bind="ntsPanel:{width: '280px', height: '333px', direction: 'none', showIcon: true, visible: true}">
+							<div class="div-line">
+								<!--F5_1 複数選択可能(ラベル)--> 
+								<span id="F5_1" class="label">#{i18n.getText('CMF002_112')}</span>
+							</div>
+							<div class="div-line">
+								<!--F5_1_1 項目型-->
+								<div id="F5_1_1" style="width: 95px;"
+										data-bind="ntsComboBox: {
+														name: '#{i18n.getText('CMF002_84')}',
+														options: itemTypeItems,
+														optionsValue: 'code',
+														visibleItemsCount: 5,
+														value: selectedItemType,
+														optionsText: 'name',
+														enable: true }"
+										tabindex="3" />
+								<!--F5_2 絞り込み検索-->
+								<div style="width: 175px; float: right;"
+									data-bind="ntsSearchBox: {
+												searchMode: 'highlight',
+												targetKey: 'itemNo',
+												comId: 'F5_3',
+												width: 100,
+												items: categoryItemList,
+												selected: selectedCategoryItemCodeList,
+												fields: ['itemNo', 'itemName'],
+												mode: 'igGrid'
+											}"
+									tabindex="4" />
+							</div>
+							<div class="div-line">
+								<!--F5_3 カテゴリ項目一覧-->
+								<table id="F5_3"
+									data-bind="ntsGridList: {
+													dataSource: categoryItemList,
+													columns: [
+																{headerText: '#{i18n.getText('CMF002_89')}', key: 'itemNo', width: 50, formatter: _.escape},
+								                				{headerText: '#{i18n.getText('CMF002_90')}', key: 'itemName', width: 170, formatter: _.escape}
+								                			],
+													value: selectedCategoryItemCodeList,
+													optionsValue: 'itemNo',
+													multiple: true,
+													width: 270,
+													rows: 10
+												}"></table>
+							</div>
+						</div>
+						<div class="pull-left flex valign-center arrow-item">
+							<div>
+								<button data-bind="click: btnRightClick">
+									<i class="icon icon-button-arrow-right"></i>
+								</button>
+								<button data-bind="click: btnLeftClick">
+									<i class="icon icon-button-arrow-left"></i>
+								</button>
+							</div>
+						</div>
+						<div style="margin-top: 33px;">
+							<div class="div-line">
+								<!--F6 選択項目一覧(ラベル)--> 
+								<div id="F6" data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CMF002_94')}</div>
+							</div>
+							<!--F6_1 選択項目一覧--> 
+							<div class="div-line">
+								<table id="F6_1"
+									data-bind="ntsGridList: {
+													dataSource: selectionItemList,
+													optionsValue: 'id',
+													columns: [
+																{headerText: '', key: 'id', width: 50, formatter: _.escape, hidden: true},
+																{headerText: '#{i18n.getText('CMF002_96')}', key: 'itemNo', width: 50, formatter: _.escape},
+								                				{headerText: '#{i18n.getText('CMF002_97')}', key: 'itemName', width: 170, formatter: _.escape}
+								                			],
+													value: selectedSelectionItemList,
+													multiple: true,
+													rows: 10
+												}"></table>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

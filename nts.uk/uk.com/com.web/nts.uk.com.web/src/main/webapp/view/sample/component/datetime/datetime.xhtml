@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 300, height: 200 };</script>
+            	<com:scriptfile set="IGNITE" />
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+		    <com:ValidatorScript>
+		     nts.uk.shr.com.time.TimeClockWithSeconds
+		    </com:ValidatorScript>
+            </ui:define>
+            
+            <ui:define name="content">
+            	<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Date Time Picker</h1>
+						<h2>Overview</h2>
+						<div data-bind="with: editor">
+							<h2>Date Time Editor</h2>
+							<div data-name="DateTimePair Editor" data-bind="ntsDateTimePairEditor: {value: value, required: required, enable: enable, readonly: readonly}" />
+							binding: <span data-bind="text: value"></span>	
+							<h2>Date Time Range Editor</h2>
+							<div data-name="DateTimePairRange Editor" data-bind="ntsDateTimePairRangeEditor: {
+											value: ko.observable({start: start, end: end}), 
+											required: required, 
+											enable: enable, 
+											readonly: readonly,
+											name: '日の名前',
+											startName: '開始日の名前',
+											endName: '終了日の名前'}" />
+							binding start: <span data-bind="text: start"></span>				
+							binding end: <span data-bind="text: end"></span>	
+						</div>	
+						<article class="cf">
+							<div class="tabs">
+								<ol>
+									<li><a href="#tabs-html">HTML Binding</a></li>
+									<li><a href="#tabs-viewmodel">ViewModel</a></li>
+									<li><a href="#tabs-methods">Methods</a></li>
+								</ol>
+								<div id="tabs-html" class="cf">
+									<h1>Date Time Editor</h1>
+									<h2>HTML</h2>
+<pre><![CDATA[<div data-name="DateTimePair Editor" data-bind="ntsDateTimePairEditor: {value: value, constraint: constraint, option: option, required: required, enable: enable, readonly: readonly}" />]]></pre>
+									<h2>API</h2>
+									<table>
+										<colgroup>
+											<col width="200px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Binding</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>TODO:</td>
+												<td>should add <com:ValidatorScript>
+														     nts.uk.shr.com.time.AttendanceClock
+													    	</com:ValidatorScript> to header
+												</td>
+											</tr>
+											<tr>
+												<td>value</td>
+												<td>
+													<b>Type:</b> object<br/>
+													object value for editor. Format "YYYY/MM/DD H:mm:ss" (example: '2017/02/02 2:02:02')
+												</td>
+											</tr>
+											<tr>
+												<td>enable</td>
+												<td>
+													<b>Type:</b> boolean<br/>
+													enable for date range picker
+												</td>
+											</tr>
+											<tr>
+												<td>rangeUnit</td>
+												<td>
+													<b>Type:</b> string<br/>
+													Unit for validate range. 
+													Availables:  years, quarters, months, weeks, days, hours, minutes, seconds
+													Default: years
+												</td>
+											</tr>
+											<tr>
+												<td>maxRange</td>
+												<td>
+													<b>Type:</b> number<br/>
+													Max range for validate.
+													Default: 0 (not validate)
+												</td>
+											</tr>
+											<tr>
+												<td>name</td>
+												<td>
+													<b>Type:</b> string<br/>
+													name for date range picker
+												</td>
+											</tr>
+											<tr>
+												<td>required</td>
+												<td>
+													<b>Type:</b> boolean<br/>
+													set required for date range picker
+												</td>
+											</tr>
+										</tbody>
+									</table>
+									<h1>Date Time Range Editor</h1>
+									<h2>HTML</h2>
+<pre><![CDATA[<div data-name="DateTimePairRange Editor" data-bind="ntsDateTimePairRangeEditor: {value: ko.observable({start: start, end: end}), constraint: constraint, option: option, required: required, enable: enable, readonly: readonly}" />]]></pre>
+									<h2>API</h2>
+									<table>
+										<colgroup>
+											<col width="200px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Binding</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td>value</td>
+												<td>
+													<b>Type:</b> object<br/>
+													object value for editor. Format {startDate: KnockoutObservable string, endDate: KnockoutObservable string } (example: {startDate: ko.observable('2017/02/02 1:01:01'), endDate: ko.observable('2018/02/02 1:01:01')})
+												</td>
+											</tr>
+											<tr>
+												<td>enable</td>
+												<td>
+													<b>Type:</b> boolean<br/>
+													enable for date range picker
+												</td>
+											</tr>
+											<tr>
+												<td>name (new)</td>
+												<td>
+													<b>Type:</b> string<br/>
+													name for date range picker
+												</td>
+											</tr>
+											<tr>
+												<td>startName (new)</td>
+												<td>
+													<b>Type:</b> string<br/>
+													name of start date
+												</td>
+											</tr>
+											<tr>
+												<td>endName (new)</td>
+												<td>
+													<b>Type:</b> string<br/>
+													name of end date
+												</td>
+											</tr>
+											<tr>
+												<td>required</td>
+												<td>
+													<b>Type:</b> boolean<br/>
+													set required for date range picker
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+								<div id="tabs-viewmodel" class="cf">
+									<h2>TypeScript</h2>
+<pre><![CDATA[__viewContext.ready(function () {
+    class ScreenModel {
+        editor: any;
+        
+        constructor() {
+            var self = this;
+            // YearMonth Editor
+            self.editor = {
+                value: ko.observable(200001),
+                start: ko.observable(200001),
+                end: ko.observable(200001),
+                required: ko.observable(false),
+                enable: ko.observable(true),
+                readonly: ko.observable(false)
+            };
+        }
+    }
+
+    var viewmodel = new ScreenModel();
+    this.bind(viewmodel);    
+});]]></pre>
+								</div>
+								<div id="tabs-methods" class="cf">
+									<table>
+										<colgroup>
+											<col width="350px" />
+										</colgroup>
+										<thead>
+											<tr>
+												<th><h4>Methods</h4></th>
+												<th><h4>Description</h4></th>
+											</tr>
+										</thead>
+									</table>
+								</div>
+							</div>
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

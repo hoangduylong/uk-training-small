@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:com="http://xmlns.jcp.org/jsf/component"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+		
+        <ui:composition template="../../../../master/base.xhtml">
+            <ui:define name="htmlHead">
+            	<script>var dialogSize = { width: 800, height: 800 };</script>
+
+				<com:scriptfile set="IGNITE" />
+				<com:stylefile path="../../catalog/catalog.css" />
+				<com:scriptfile path="start.js" />
+				<com:scriptfile path="../../catalog/catalog.js" />
+				<com:scriptfile path="../../../language/select/languagemasterselect-jquery-ext.js" />
+				<com:stylefile path="../../../language/select/languagemasterselect.css" />
+            </ui:define>
+            
+            <ui:define name="content">
+            	<div id="functions-area"></div>
+            	<div id="contents-area">
+					<div id="side-menu" class="cf"></div>
+					<div id="content" class="cf">
+						<h1>Switch Language Button</h1>
+						<h2>Overview</h2>
+						<p>Switch Language Button is a button which click into it, a dialog for select master language will be displayed.</p>
+						<br/>
+						<button onclick="createButton()" tabindex="2">Create Switch Language Button</button>
+						<div id="switch-language" tabindex="1"/>
+						<br/><br/>
+						<article class="cf">
+							<div class="tabs">
+								<ol>
+									<li><a href="#tabs-call">Usage</a></li>
+									<li><a href="#tabs-api">API</a></li>
+									<li><a href="#tabs-event">Events</a></li>
+								</ol>
+								<div id="tabs-call" class="cf">
+<pre><![CDATA[$("#switch-language").ntsSwitchMasterLanguage();
+    
+$("#switch-language").on( "selectionChanged", function( event, arg1, arg2 ) {
+    alert( event.detail.languageId );
+});]]></pre>
+								</div>
+								<div id="tabs-api" class="cf">
+									<article>
+										<h2>Information</h2>
+										<b>Module:</b> nts.uk.ui.jqueryExtentions.ntsSwitchMasterLanguageButton<br/>
+										<b>File:</b> nts.uk.com.web/webapp/view/language/select/languagemasterselect.css<br/>
+									</article>
+									<article>
+										<h2>Methods</h2>
+										<table class="table">
+											<colgroup>
+												<col width="200px" />
+											</colgroup>
+											<thead>
+												<tr>
+													<th><h4>Name</h4></th>
+													<th><h4>Description</h4></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>ntsSwitchMasterLanguage()</td>
+													<td>
+														Create Switch Master Language Button
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</article>
+								</div>
+								<div id="tabs-event" class="cf">
+									<article>
+										<h2>Information</h2>
+										<b>Module:</b> nts.uk.ui.jqueryExtentions.ntsSwitchMasterLanguageButton<br/>
+										<b>File:</b> nts.uk.com.web/webapp/view/language/select/languagemasterselect.css<br/>
+									</article>
+									<article>
+										<h2>Events</h2>
+										<table class="table">
+											<colgroup>
+												<col width="200px" />
+											</colgroup>
+											<thead>
+												<tr>
+													<th><h4>Name</h4></th>
+													<th><h4>Description</h4></th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>selectionChanged</td>
+													<td>
+														Event is triggerd when master language is selected.
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</article>
+								</div>
+							</div>
+						</article>
+						<div class="footer cf">
+							<button class="previous large">Previous</button>
+							<button class="next proceed large">Next</button>
+						</div>
+            		</div>
+           		</div>
+            </ui:define>
+    	</ui:composition>
+   	</body>
+</html>

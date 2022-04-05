@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<com:ValidatorScript>
+				nts.uk.ctx.sys.portal.dom.toppage.TopPageCode
+				nts.uk.ctx.sys.portal.dom.toppage.TopPageName
+			</com:ValidatorScript>
+			<script>var dialogSize = { width: 800, height: 330 };</script>
+			<com:stylefile path="ccg015.c.style.css" />
+			<com:scriptfile path="ccg015.c.vm.js" />
+			<com:scriptfile set="IGNITE" />
+		</ui:define>
+		<ui:define name="content">
+			<div id="contents-area">
+				<div id="contents-left">
+					<table>
+						<tr>
+							<td>
+								<div id="lbl_code_name" data-bind="ntsFormLabel: {}">#{i18n.getText('CCG015_35')}</div>
+							</td>
+							<td>
+								<div id="lbl_code_name" data-bind="ntsFormLabel: {}">
+									#{i18n.getText('CCG015_13')}
+								</div>
+							</td>
+							<td>
+								<p data-bind="text: parentTopPageCode"></p>
+							</td>
+							<td>
+								<p class="pad_left_20" data-bind="text: parentTopPageName"></p>
+							</td>
+						</tr>
+						<tr>
+							<td class="pad_top_20">
+								<div id="lbl_code_name" data-bind="ntsFormLabel: {}">#{i18n.getText('CCG015_36')}</div>
+							</td>
+							<td class="pad_top_20">
+								<div id="lbl_code_name" data-bind="ntsFormLabel: {constraint : ['TopPageCode','TopPageName'],required: true}">
+									#{i18n.getText('CCG015_13')}
+								</div>
+							</td>
+							<td class="pad_top_20"><input tabindex="2" id="inp-code" class="nts-input save-error" data-bind="ntsTextEditor: {
+								name: '#[CCG015_42]',
+								value: newTopPageCode,
+								required: true,
+								constraint: 'TopPageCode'
+								}" /></td>
+							<td class="pad_top_20 pad_left_20"><input tabindex="3" id="inp-name" class="nts-input save-error" data-bind="ntsTextEditor: {
+								name: '#[CCG015_43]',
+								value: newTopPageName,
+								required: true,
+								constraint: 'TopPageName'
+								}" /></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+
+			<div id="functions-area-bottom" class="bottom_area_style">
+				<div data-bind="ntsCheckBox: { checked: check, enable: true}" style="background-color: #F7EFD4; padding: 10px 25px; margin-bottom: 10px;">
+					#{i18n.getText('CCG015_38')}</div>
+				<br />
+				<button data-bind="click: copyTopPage, enable: $root.errors.isEmpty" class="btn-default proceed x-large copy_btn">#{i18n.getText('CCG015_37')}</button>
+				<button data-bind="click: closeDialog">#{i18n.getText('CCG015_31')}</button>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
+
+</html>
