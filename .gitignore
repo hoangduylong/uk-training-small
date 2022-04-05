@@ -24,7 +24,6 @@ bin/
 **/taskArtifacts*
 
 #ignore all gradle project files
-*.classpath
 *.project
 *.launch
 *.class
