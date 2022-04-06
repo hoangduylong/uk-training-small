@@ -19,35 +19,11 @@ bin/
 #ignore sass-cache folder
 **/.sass-cache*
 
-**/.metadata*
-**/.recommenders*
-**/taskArtifacts*
-
 #ignore all gradle project files
-*.project
-*.launch
 *.class
-*.orig
+
 
 #ignore all js, map file
 **/*.map*
-
-
-
-# add ignore file of mobile project
-**/.vscode/*
-**/node_modules/*
-**/vendor*
-**/bundles*
-**/main-server*
-**/wwwroot/*
-**/.DS_Store
-
-
-*.log
-**/.sass-cache/*
-
-**/obj/*
-**/.vs/*
 
 !binary/
