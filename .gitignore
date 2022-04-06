@@ -30,13 +30,8 @@ bin/
 *.orig
 
 #ignore all js, map file
-**/*.js*
-!**/*.json
+**/*.map*
 
-# except all js, map in base.web
-!**/base.web/**/*.js*
-**/base.web/**/*bundles.js*
-!**/nts.uk.cnv.web/**/*.js*
 
 
 # add ignore file of mobile project
