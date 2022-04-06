@@ -1,0 +1,289 @@
+options { LOOKAHEAD=1; STATIC = false; UNICODE_INPUT = true; }
+PARSER_BEGIN(ExpressionParser)
+package nts.uk.shr.com.fomula;
+ 
+import java.math.RoundingMode;
+import java.math.MathContext;
+import java.math.BigDecimal;
+import java.util.Stack;
+import java.io.StringReader;
+
+public class ExpressionParser {
+     
+    private Stack<BigDecimal> argStack = new Stack<BigDecimal>();
+    private String expression;
+    private int divineScale = 10;
+    private RoundingMode divineRoundMode = RoundingMode.HALF_UP;
+ 
+ 	public ExpressionParser() {
+  	  	this("");
+  	}
+
+  	public ExpressionParser(String in) {
+  	  	this(new StringReader(in));
+ 	  	this.expression = in;
+  	}
+
+	public BigDecimal parse() throws ParseException{
+	  	if(this.expression!= null && !this.expression.trim().isEmpty()) {
+		  	this.ReInit(new StringReader(this.expression));
+	        this.expressionParse();
+	        return argStack.pop();
+      	}
+      	
+      	return BigDecimal.ZERO; 
+	}
+
+	public BigDecimal parse(String in) throws ParseException{
+	  	this.expression = in;
+        return this.parse();
+	}
+
+	public BigDecimal parse(String in, int divineScale, RoundingMode divineRoundMode) throws ParseException{
+	  	this.divineRoundMode = divineRoundMode;
+	  	this.divineScale = divineScale;
+	  	this.expression = in;
+        return this.parse();
+	}
+}
+PARSER_END(ExpressionParser)
+
+SKIP :
+{      " "
+  |    "　"
+  |    "\r"
+  |    "\t" }
+  
+/* SEPERATORS */
+TOKEN :{
+  		< EOL: "\n" > 
+  |    	< SEPERATOR: ( "," | "、" )>
+  |    	< LBRACKET: ( "(" | "（" ) >
+  |    	< RBRACKET: ( ")" | "）" )>
+}
+/* OPERATORS */
+TOKEN : {
+  		< PLUS: ( "+" | "＋") >
+  |    	< MINUS: ( "-" | "－" ) >
+  |    	< MULTIPLY: ( "*" | "×" ) >
+  |    	< DIVIDE: ( "/" | "÷" )>
+  |    	< POWER: ( "^" | "＾" )>
+}
+/* MATH METHODS */
+TOKEN : {
+  		< ROUND: ( "round" | "Round" | "ROUND" | "四捨五入" ) >
+  |    	< FLOOR: ( "floor" | "Floor" | "FLOOR" | "切り捨て" ) >
+  |    	< CEIL: ( "ceil" | "Ceil" | "CEIL" | "切り上げ" ) >
+  |    	< MAX: ( "max" | "Max" | "MAX" | "最大値" ) >
+  |    	< MIN: ( "min" | "Min" | "MIN" | "最小値" ) >
+}
+/* LOGIC METHODS */
+TOKEN : {
+  		< CONDITION: ( "if" | "If" | "IF" | "条件式" ) >
+  |    	< AND: ( "and" | "And" | "AND" | "かつ" ) >
+  |    	< OR: ( "or" | "Or" | "OR" | "または" ) >
+  |    	< LARGER_OR_EQUALS: "≧" >
+  |    	< LESSER_OR_EQUALS: ( "≦" ) >
+  |    	< LARGER: ( "＞" | ">" ) >
+  |    	< LESSER: ( "＜" | "<" ) >
+  |    	< EQUALS: ( "＝" | "=" ) >
+  |    	< NOT_EQUALS: ( "≠" ) >
+}
+/* VALUES */
+TOKEN : {
+   		< CONSTANT: <DECIMAL> >
+  |   	< #DIGIT: ["0" - "9"] >  
+  | 	< #DECIMAL: ( <DIGIT> )+ ( "." ( <DIGIT> )+ )? >
+}
+ 
+private void expressionParse() :
+{}
+{    basicOperate() <EOF> 
+  |  <EOF> 
+}
+ 
+private void basicOperate() :
+{ Token x; }  
+{
+  	advanceOperate() 
+	( 
+        ( x = <PLUS> | x = <MINUS> ) advanceOperate()
+        {
+          	BigDecimal a = argStack.pop();
+          	BigDecimal b = argStack.pop();
+          	if ( x.kind == PLUS ) 
+             	argStack.push(b.add(a));
+        	else
+     			argStack.push(b.subtract(a));
+        }
+    )*
+}
+ 
+private void advanceOperate() :
+{ Token x; }
+{
+  	negativeOrPositive()
+  	( 
+      	( x = <POWER> | x = <MULTIPLY> | x = <DIVIDE> ) negativeOrPositive()
+       	{
+       	  	BigDecimal a = argStack.pop();
+      		BigDecimal b = argStack.pop();
+            if ( x.kind == MULTIPLY )
+           		argStack.push(b.multiply(a, getMathContext()));
+            else if ( x.kind == DIVIDE ) { 
+               	argStack.push(b.divide(a, getMathContext()));
+          	}else if ( x.kind == POWER ) { 
+               	argStack.push(b.pow(a.intValue(), getMathContext()));
+          	}
+       	}
+  	)*
+}
+ 
+private void negativeOrPositive() :
+{}
+{
+	<MINUS> toNumber()
+		{
+	  		BigDecimal a = argStack.pop();
+	    	argStack.push(BigDecimal.ZERO.subtract(a));
+		}
+	| toNumber()  
+}
+ 
+private void toNumber() :
+{}
+{
+  		condition()
+	| 	mathOperate()
+	| 	primaryNumber()
+    |  	expression()
+}
+
+private void expression() :
+{}
+{
+  	<LBRACKET> basicOperate() <RBRACKET>
+}
+
+private void primaryNumber() :
+{ BigDecimal a; }
+{
+  	( <CONSTANT> | <PLUS> <CONSTANT>)
+	    {
+	      	try {
+	      		a = new BigDecimal(token.image);
+	            argStack.push(a);
+	        } catch (NumberFormatException ee) {
+	        argStack.push(BigDecimal.ZERO);}
+	    }
+}
+
+private void mathOperate() :
+{ int i = 0; BigDecimal a, b; }  
+{
+  	<ROUND> <LBRACKET> basicOperate() <RBRACKET>
+		{   a = argStack.pop();
+			BigDecimal rounded = a.setScale(0, RoundingMode.HALF_UP);
+		    argStack.push(rounded);
+		}
+	| <FLOOR> <LBRACKET> basicOperate() <RBRACKET>
+		{   a = argStack.pop();
+			BigDecimal floored = a.setScale(0, RoundingMode.FLOOR);
+		    argStack.push(floored);
+		}
+	| <CEIL> <LBRACKET> basicOperate() <RBRACKET>
+		{   a = argStack.pop();
+			BigDecimal ceiled = a.setScale(0, RoundingMode.CEILING);
+		    argStack.push(ceiled);
+		}
+	| <MAX> <LBRACKET> ( basicOperate() <SEPERATOR> { i++;} basicOperate() ) ( <SEPERATOR> { i++;} basicOperate() )* <RBRACKET>
+		{
+			while (i > 0) {
+				a = argStack.pop();
+				b = argStack.pop();
+				if (a.compareTo(b) >= 0) {
+					argStack.push(a);	
+				} else {
+					argStack.push(b);
+				}
+				i--;
+			}
+		}
+	|   <MIN> <LBRACKET> ( basicOperate() <SEPERATOR> { i++;} basicOperate() ) ( <SEPERATOR> { i++;} basicOperate() )* <RBRACKET>
+		{   
+			while (i > 0) {
+				a = argStack.pop();
+				b = argStack.pop();
+				if (a.compareTo(b) <= 0) {
+					argStack.push(a);	
+				} else {
+					argStack.push(b);
+				}
+				i--;
+			}
+		}
+}
+
+private void condition() :
+{ boolean flag; BigDecimal a, b; }  
+{
+  	<CONDITION> <LBRACKET> flag = logicExpression() <SEPERATOR> basicOperate() { a = argStack.pop(); } <SEPERATOR> basicOperate() { b = argStack.pop(); } <RBRACKET>
+		{   
+		    if(flag) {
+				argStack.push(a);
+		    } else {
+				argStack.push(b);
+		    }
+		}
+}
+
+private boolean logicExpression() :
+{ boolean flag1, flag2, flag3 = true, flag4 = true; BigDecimal a, b; }  
+{
+  	<AND> <LBRACKET> ( flag1 = logicExpression() <SEPERATOR> flag2 = logicExpression() )
+  		( <SEPERATOR> flag3 = logicExpression() { flag4 = flag4 && flag3; })* <RBRACKET>
+		  	{
+				return flag1 && flag2 && flag4;
+		  	}
+	 | 	<OR> <LBRACKET> ( flag1 = logicExpression() <SEPERATOR> flag2 = logicExpression() )
+	 	( <SEPERATOR> flag3 = logicExpression() { flag4 = flag4 || flag3; })* <RBRACKET>
+		  	{
+				return flag1 || flag2 || flag4;
+		  	}
+	 | 	LOOKAHEAD(2147483647)
+	 	basicOperate() { a = argStack.pop(); } <LARGER> basicOperate() { b = argStack.pop(); }
+		 	{
+				return a.compareTo(b) > 0;
+		 	}
+	 |	LOOKAHEAD(2147483647)
+	 	basicOperate() { a = argStack.pop(); } <LESSER> basicOperate() { b = argStack.pop(); }
+		 	{
+				return a.compareTo(b) < 0;
+		 	}
+	 |	LOOKAHEAD(2147483647)
+	 	basicOperate() { a = argStack.pop(); } <EQUALS> basicOperate() { b = argStack.pop(); }
+		 	{
+				return a.compareTo(b) == 0;
+		 	}
+	 |	LOOKAHEAD(2147483647)
+	 	basicOperate() { a = argStack.pop(); } <NOT_EQUALS> basicOperate() { b = argStack.pop(); }
+		 	{
+				return a.compareTo(b) != 0;
+		 	}
+	 | 	LOOKAHEAD(2147483647)
+	 	basicOperate() { a = argStack.pop(); } <LARGER_OR_EQUALS> basicOperate() { b = argStack.pop(); }
+		 	{
+				return a.compareTo(b) >= 0;
+		 	}
+	 | 	LOOKAHEAD(2147483647)
+	 	basicOperate() { a = argStack.pop(); } <LESSER_OR_EQUALS> basicOperate() { b = argStack.pop(); }
+		 	{
+				return a.compareTo(b) <= 0;
+		 	}
+	 
+}
+
+JAVACODE
+private MathContext getMathContext() {
+	return new MathContext(this.divineScale, this.divineRoundMode);
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+	<wb-module deploy-name="nts.uk.ctx.bs.employee.ac">
+		<wb-resource deploy-path="/" source-path="src/main/java"/>
+		<dependent-module deploy-path="../" handle="module:/resource/nts.uk.ctx.bs.employee.app/nts.uk.ctx.bs.employee.app">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="../" handle="module:/resource/nts.uk.ctx.bs.employee.dom/nts.uk.ctx.bs.employee.dom">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="../" handle="module:/resource/nts.uk.ctx.bs.person.pub/nts.uk.ctx.bs.person.pub">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="../" handle="module:/resource/nts.uk.ctx.bs.company.pub/nts.uk.ctx.bs.company.pub">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="../" handle="module:/resource/nts.uk.ctx.sys.auth.pub/nts.uk.ctx.sys.auth.pub">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="../" handle="module:/resource/nts.uk.ctx.bs.person.app/nts.uk.ctx.bs.person.app">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="../" handle="module:/resource/nts.uk.ctx.bs.person.dom/nts.uk.ctx.bs.person.dom">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="../" handle="module:/resource/nts.uk.ctx.sys.log.app/nts.uk.ctx.sys.log.app">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="../" handle="module:/resource/nts.uk.ctx.sys.log.dom/nts.uk.ctx.sys.log.dom">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="../" handle="module:/resource/nts.uk.shr.com/nts.uk.shr.com">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+		<dependent-module deploy-path="../" handle="module:/resource/nts.uk.shr.find/nts.uk.shr.find">
+			<dependency-type>uses</dependency-type>
+		</dependent-module>
+	</wb-module>
+</project-modules>
