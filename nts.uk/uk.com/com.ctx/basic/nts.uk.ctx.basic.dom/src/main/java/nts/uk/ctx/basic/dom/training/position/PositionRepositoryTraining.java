@@ -17,26 +17,30 @@ public interface PositionRepositoryTraining {
 	 * @param positionCode
 	 * @return
 	 */
-	Optional<PositionTraining> find(String positionCode);
+	Optional<PositionTraining> findByPositionCode(String positionCode);
 
 	/**
 	 * Add new position
-	 * @param positionTraining
+	 * @param position
 	 */
-	void add(PositionTraining positionTraining);
+	void add(PositionTraining position);
 
 	/**
 	 * Update position information
-	 * @param positionTraining
+	 * @param position
 	 */
-	void update(PositionTraining positionTraining);
+	void update(PositionTraining position);
 
 	/**
 	 * Remove a position
 	 * @param positionCode
 	 */
 	void remove(String positionCode);
-
+	
+	/**
+	 * Update position's order
+	 */
+	void updateOrder(List<PositionTraining> positionList);
 	
 
 }

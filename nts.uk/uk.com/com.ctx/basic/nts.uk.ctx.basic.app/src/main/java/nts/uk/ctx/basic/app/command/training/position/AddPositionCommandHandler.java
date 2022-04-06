@@ -9,15 +9,15 @@ import javax.transaction.Transactional;
 import nts.arc.layer.app.command.CommandHandler;
 import nts.arc.layer.app.command.CommandHandlerContext;
 
-import nts.uk.ctx.basic.dom.training.position.Position;
-import nts.uk.ctx.basic.dom.training.position.PositionRepository;
+import nts.uk.ctx.basic.dom.training.position.PositionTraining;
+import nts.uk.ctx.basic.dom.training.position.PositionRepositoryTraining;
 
 @Stateless
 @Transactional
 public class AddPositionCommandHandler extends CommandHandler<AddPositionCommand>{
 
 	@Inject
-	private PositionRepository positionRepository;
+	private PositionRepositoryTraining positionRepository;
 	
 	@Override
 	protected void handle(CommandHandlerContext<AddPositionCommand> context) {
@@ -28,13 +28,13 @@ public class AddPositionCommandHandler extends CommandHandler<AddPositionCommand
 		}
 		
 		// check exists position
-		Optional<Position> position = positionRepository.findByPositionCode(command.getPositionCode());
+		Optional<PositionTraining> position = positionRepository.findByPositionCode(command.getPositionCode());
 		if (position.isPresent()) {
 			throw new RuntimeException("This position already exists");
 		}
 		
 		// convert to domain
-		Position domain = Position.toDomain(command.getPositionCode().trim(), 
+		PositionTraining domain = PositionTraining.toDomain(command.getPositionCode().trim(), 
 											command.getPositionName(), 
 											command.getPositionOrder());
 				

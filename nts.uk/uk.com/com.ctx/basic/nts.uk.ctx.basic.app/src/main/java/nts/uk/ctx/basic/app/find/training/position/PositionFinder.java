@@ -8,15 +8,15 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import nts.uk.ctx.basic.app.find.training.position.dto.PositionDto;
-import nts.uk.ctx.basic.dom.training.position.Position;
-import nts.uk.ctx.basic.dom.training.position.PositionRepository;
+import nts.uk.ctx.basic.dom.training.position.PositionTraining;
+import nts.uk.ctx.basic.dom.training.position.PositionRepositoryTraining;
 
 
 @Stateless
 public class PositionFinder {
 	
 	@Inject
-	private PositionRepository positionRepository;
+	private PositionRepositoryTraining positionRepository;
 	/**
 	 * find all position
 	 * @return
@@ -26,7 +26,7 @@ public class PositionFinder {
 		List<PositionDto> result = new ArrayList<>();
 		
 		// get position list
-		List<Position> positionList = this.positionRepository.findAll();
+		List<PositionTraining> positionList = this.positionRepository.findAll();
 
 		positionList.forEach(position -> {
 			// convert domain into Dto
@@ -48,7 +48,7 @@ public class PositionFinder {
 	 * @return
 	 */
 	public PositionDto findByPositionCode(String positionCode) {
-		Optional<Position> position = this.positionRepository.findByPositionCode(positionCode);
+		Optional<PositionTraining> position = this.positionRepository.findByPositionCode(positionCode);
 		
 		if(position.isPresent()) {
 			PositionDto positionDto = new PositionDto(position.get().getPositionCode().v(), 
