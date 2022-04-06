@@ -7,7 +7,7 @@ import java.util.Optional;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import nts.uk.ctx.basic.app.training.position.dto.PositionDto;
+import nts.uk.ctx.basic.app.find.training.position.dto.PositionDto;
 import nts.uk.ctx.basic.dom.training.position.Position;
 import nts.uk.ctx.basic.dom.training.position.PositionRepository;
 

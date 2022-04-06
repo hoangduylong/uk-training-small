@@ -1,4 +1,4 @@
-package nts.uk.ctx.basic.app.training.position.dto;
+package nts.uk.ctx.basic.app.find.training.position.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
