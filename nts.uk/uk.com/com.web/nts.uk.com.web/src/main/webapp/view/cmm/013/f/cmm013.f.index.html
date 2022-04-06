@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Screen F</title>
+
+  <link rel="stylesheet" href="cmm013.f.style.css">
+
+  <canvas id="canvas" width="800px" height="700px"></canvas>
+</head>
+
+<body>
+
+  <script>
+    // draw with canvas
+    var canvas = document.getElementById("canvas");
+    if (canvas.getContext) {
+      var ctx = canvas.getContext('2d');
+
+      // draw line
+      ctx.beginPath();
+      ctx.moveTo(10, 60);
+      ctx.lineTo(800, 60);
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(10, 130);
+      ctx.lineTo(800, 130);
+      ctx.stroke();
+
+      // set green color
+      ctx.fillStyle = 'rgb(217, 250, 141)';
+      // draw rectangle
+      ctx.fillRect(27, 145, 312, 480);
+
+      ctx.fillStyle = 'rgb(255, 255, 255';
+      // draw white rectangle
+      ctx.fillRect(39, 193, 223, 390);
+
+      ctx.fillStyle = 'rgb(217, 250, 141)';
+      // draw triangle
+      ctx.beginPath();
+      ctx.moveTo(338, 185);
+      ctx.lineTo(358, 220);
+      ctx.lineTo(337, 255);
+      ctx.fill();
+
+      // set orange color
+      ctx.fillStyle = 'rgb(255, 188, 112)';
+      // draw the first mini rectangle
+      ctx.fillRect(390, 185, 8, 52);
+      // draw the second mini rectangle
+      ctx.fillRect(390, 250, 8, 52);
+    }
+
+  </script>
+
+  <!-- create button -->
+  <label class="title" style="margin-left: 20px; font-size: 24px;">序列の登録</label>
+  <button class="createNew" data-bind="click: createNewPositionMode" onclick="clearTextbox()">新規</button>
+  <button class="save" data-bind="click: save">登録</button>
+  <button class="close" data-bind="click: close">閉じる</button>
+  <button class="remove" data-bind="click: remove">削除</button><br>
+
+  <!-- create master table -->
+  <table class="masterHead">
+    <tr style="background-color: rgb(154, 255, 140);">
+      <td style="width:27%">コード</td>
+      <td>名称</td>
+    </tr>
+  </table>
+
+  <div class="master">
+    <table id="masterTable" style="width: 100%; border-collapse: collapse;">
+      <tbody data-bind="foreach: positionList">
+        <tr>
+          <td style="width:29%">01</td>
+          <td>役員</td>
+        </tr>
+        <tr>
+          <td>02</td>
+          <td>本部長格</td>
+        </tr>
+        <tr>
+          <td>03</td>
+          <td>部長格</td>
+        </tr>
+        <tr>
+          <td>04</td>
+          <td>次長格</td>
+        </tr>
+        <tr>
+          <td>05</td>
+          <td>課長格</td>
+        </tr>
+        <tr>
+          <td>06</td>
+          <td>係長格</td>
+        </tr>
+        <tr>
+          <td>07</td>
+          <td>主任格</td>
+        </tr>
+        <tr>
+          <td>08</td>
+          <td>一般Ⅱ</td>
+        </tr>
+        <tr>
+          <td>09</td>
+          <td>一般Ⅰ</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>パート・アルバイト</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>その他</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>役員</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td>役員</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td>役員</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td>役員</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td>役員</td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td>役員</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- create button to move row up and down -->
+  <button onclick="moveRowUp()" class="upbutton">🠕</button>
+  <button onclick="moveRowDown()" class="downbutton">🠗</button>
+
+  <!-- label code - position and text box -->
+  <label class="codeLabel">コード<br><label style="color: gray;">(半角英数2文字)</label></label><br>
+  <label class="positionLabel">名称<br><label style="color: gray;">(全角10文字)</label></label>
+  <input type="text" id="code" class="code" maxlength="10">
+  <input type="text" id="position" class="position" maxlength="15">
+
+  <!-- <script src="index.js"></script> -->
+  <script>
+    
+    // master table
+    var index
+
+    function selectedRow() {
+      let masterTable = document.getElementById("masterTable")
+
+      for (let i = 0; i < masterTable.rows.length; i++) {
+        masterTable.rows[i].onclick = function () {
+          if (typeof index !== "undefined") {
+            masterTable.rows[index].classList.toggle("selected")
+          }
+
+          this.classList.toggle("selected")
+          document.getElementById("code").value = this.cells[0].innerHTML
+          document.getElementById("position").value = this.cells[1].innerHTML
+          index = this.rowIndex
+        }
+      }
+    }
+
+    selectedRow()
+
+    function moveRowUp() {
+      var rows = document.getElementById("masterTable").rows,
+        parent = rows[index].parentNode;
+
+      if (index > 0) {
+        parent.insertBefore(rows[index], rows[index - 1]);
+        // when the row go up the index will be equal to index - 1
+        index--;
+      }
+    }
+
+    function moveRowDown() {
+      var rows = document.getElementById("masterTable").rows,
+        parent = rows[index].parentNode;
+
+      if (index < rows.length - 1) {
+        parent.insertBefore(rows[index + 1], rows[index]);
+        // when the row go down the index will be equal to index + 1
+        index++;
+      }
+    }
+
+    function clearTextbox() {
+      document.getElementById("code").value = ""
+      document.getElementById("position").value = "";
+    }
+  </script>
+</body>
+
+</html>
