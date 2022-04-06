@@ -9,7 +9,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-import nts.arc.error.BusinessException;
 import nts.arc.layer.app.command.CommandHandler;
 import nts.arc.layer.app.command.CommandHandlerContext;
 import nts.uk.ctx.basic.dom.training.jobtitle.HistoryTraining;
@@ -30,13 +29,7 @@ public class UpdateJobTitleCommandHandler extends CommandHandler<JobTitleCommand
 		
 		Optional<JobTitleTraining> jobTitleTraining = jobTitleRepositoryTraining.find(updateCommand.getJobTitleCode());
 		
-		// check nếu không tồn tại JobTitleCode
-		if (jobTitleTraining.isPresent())
-		{
-			throw new BusinessException("Msg_103");
-		}
-		
-		JobTitleCommandCheck.check(updateCommand, jobTitleTraining);
+		JobTitleCommandCheck.check(updateCommand, jobTitleTraining, false);
 		
 		List<HistoryTraining> historyTraining = HistoryTraining.makeListHistory(updateCommand.getHistoryId(),
 				updateCommand.getJobTitleCode(),

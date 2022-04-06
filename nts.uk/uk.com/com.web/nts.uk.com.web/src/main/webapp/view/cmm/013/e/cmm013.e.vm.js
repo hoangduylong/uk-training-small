@@ -13,9 +13,6 @@ var nts;
                         var viewmodel;
                         (function (viewmodel) {
                             var Constants = cmm013.base.Constants;
-                            var SavePeriod = cmm013.base.SavePeriod;
-                            var SaveHistory = cmm013.base.SaveHistory;
-                            var SaveJobTitleHistoryCommand = e.service.model.SaveJobTitleHistoryCommand;
                             var ScreenModel = /** @class */ (function () {
                                 function ScreenModel() {
                                     var _self = this;
@@ -46,33 +43,17 @@ var nts;
                                     if (!_self.validate()) {
                                         return;
                                     }
-                                    nts.uk.ui.block.grayout();
-                                    e.service.saveJobTitleHistory(_self.toJSON())
-                                        .done(function () {
-                                        nts.uk.ui.windows.setShared(Constants.SHARE_OUT_DIALOG_EDIT_HISTORY, true);
-                                        _self.close();
-                                    })
-                                        .fail(function (res) {
-                                        _self.showMessageError(res);
-                                    })
-                                        .always(function () {
-                                        nts.uk.ui.block.clear();
-                                    });
+                                    var transferObj = {};
+                                    transferObj.startDate = _self.startDate;
+                                    transferObj.endDate = _self.endDate;
+                                    nts.uk.ui.windows.setShared(Constants.SHARE_OUT_DIALOG_EDIT_HISTORY, transferObj);
+                                    _self.close();
                                 };
                                 /**
                                  * Close
                                  */
                                 ScreenModel.prototype.close = function () {
                                     nts.uk.ui.windows.close();
-                                };
-                                /**
-                                 * toJSON
-                                 */
-                                ScreenModel.prototype.toJSON = function () {
-                                    var _self = this;
-                                    var jobTitleHistory = new SaveHistory(_self.historyId, new SavePeriod(new Date(_self.startDate()), new Date("9999-12-31")));
-                                    var command = new SaveJobTitleHistoryCommand(false, _self.jobTitleId, jobTitleHistory);
-                                    return command;
                                 };
                                 /**
                                  * Validate
@@ -83,22 +64,6 @@ var nts;
                                     nts.uk.ui.errors.clearAll();
                                     $('#start-date').ntsEditor('validate');
                                     return !$('.nts-input').ntsError('hasError');
-                                };
-                                /**
-                                 * Show Error Message
-                                 */
-                                ScreenModel.prototype.showMessageError = function (res) {
-                                    // check error business exception
-                                    if (!res.businessException) {
-                                        return;
-                                    }
-                                    // show error message
-                                    if (Array.isArray(res.errors)) {
-                                        nts.uk.ui.dialog.bundledErrors(res);
-                                    }
-                                    else {
-                                        nts.uk.ui.dialog.alertError({ messageId: res.messageId, messageParams: res.parameterIds });
-                                    }
                                 };
                                 return ScreenModel;
                             }());

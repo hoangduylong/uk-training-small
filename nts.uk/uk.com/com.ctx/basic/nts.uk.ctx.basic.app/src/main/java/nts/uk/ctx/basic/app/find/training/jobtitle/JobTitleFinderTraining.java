@@ -8,9 +8,9 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import nts.arc.error.BusinessException;
-import nts.uk.ctx.basic.app.training.jobtitle.dto.HistoryDtoTraining;
-import nts.uk.ctx.basic.app.training.jobtitle.dto.JobTitleDtoTraining;
 import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleTraining;
+import nts.uk.ctx.basic.app.find.training.jobtitle.dto.HistoryDtoTraining;
+import nts.uk.ctx.basic.app.find.training.jobtitle.dto.JobTitleDtoTraining;
 import nts.uk.ctx.basic.dom.training.jobtitle.HistoryTraining;
 import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleRepositoryTraining;
 
@@ -45,7 +45,7 @@ public class JobTitleFinderTraining {
 			
 			// convert domain into Dto
 			JobTitleDtoTraining jobTitleDtoTraining = new JobTitleDtoTraining(
-					jobTitle.getPositionCodeTraining().v(),
+					jobTitle.getPositionCode().v(),
 					jobTitle.getJobTitleCodeTraining().v(),
 					toDto(jobTitle.getHistoryTrainings()),
 					jobTitle.isAbrogated(),

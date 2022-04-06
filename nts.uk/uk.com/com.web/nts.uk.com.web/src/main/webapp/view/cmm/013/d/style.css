@@ -28,9 +28,8 @@
 
 #start-date
 {
-	border: 0.01px solid black;
-	border-radius: 4px;
-	height: 30px;
+	height: 10px;
+	width: 120px;
 }
 
 .line
