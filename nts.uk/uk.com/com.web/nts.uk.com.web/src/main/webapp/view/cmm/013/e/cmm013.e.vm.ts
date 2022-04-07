@@ -3,6 +3,7 @@ module nts.uk.com.view.cmm013.e {
     export module viewmodel {
         
         import Constants = base.Constants;
+		import listHistory = base.History;
         
         export class ScreenModel {
             
@@ -43,6 +44,7 @@ module nts.uk.com.view.cmm013.e {
             public execution(): void {
                 let _self = this;
                 if (!_self.validate()) {
+					alert('最新の履歴開始日以前に履歴を追加することはできません。');
                     return;
                 }
                 let transferObj: any = {};
@@ -64,8 +66,14 @@ module nts.uk.com.view.cmm013.e {
              * Validate
              */
             private validate(): boolean {
-                let _self = this;             
-                  
+                let _self = this;
+                let transferObj: any = nts.uk.ui.windows.getShared(Constants.SHARE_IN_DIALOG_EDIT_HISTORY);
+				let listHistory: listHistory[] =  transferObj.listJobTitleHistory;
+				
+				listHistory.every(function (history)
+				{
+					return  new Date(_self.startDate()) > new Date(history.period.startDate)
+				})
                 // Clear error
                 nts.uk.ui.errors.clearAll();    
                               
