@@ -12,79 +12,59 @@ var nts;
                     (function (f) {
                         var service;
                         (function (service) {
-                            /**
-                             *  Service paths
-                             */
+                            /* Service path */
                             var servicePath = {
-                                findAllSequenceMaster: "bs/employee/jobtitle/sequence/findAll",
-                                findBySequenceCode: "bs/employee/jobtitle/sequence/find",
-                                saveSequenceMaster: "bs/employee/jobtitle/sequence/save",
-                                removeSequenceMaster: "bs/employee/jobtitle/sequence/remove",
-                                updateOrder: "bs/employee/jobtitle/sequence/updateOrder",
+                                findAllPosition: "basic/training/position/find/all",
+                                findByPositionCode: "basic/training/position/",
+                                addPosition: "basic/training/position/add",
+                                removePosition: "basic/training/position/remove",
+                                updatePosition: "basic/training/position/update",
                             };
-                            /**
-                             * findAllSequenceMaster
-                             */
-                            function findAllSequenceMaster() {
-                                return nts.uk.request.ajax(servicePath.findAllSequenceMaster);
+                            /* findAllPosition */
+                            function findAllPosition() {
+                                return nts.uk.request.ajax(servicePath.findAllPosition);
                             }
-                            service.findAllSequenceMaster = findAllSequenceMaster;
-                            /**
-                             * findBySequenceCode
-                             */
-                            function findBySequenceCode(sequenceCode) {
-                                return nts.uk.request.ajax(servicePath.findBySequenceCode, { sequenceCode: sequenceCode });
+                            service.findAllPosition = findAllPosition;
+                            /* findByPositionCode */
+                            function findByPositionCode(positionCode) {
+                                return nts.uk.request.ajax(servicePath.findByPositionCode, { positionCode: positionCode });
                             }
-                            service.findBySequenceCode = findBySequenceCode;
-                            /**
-                             * saveSequenceMaster
-                             */
-                            function saveSequenceMaster(command) {
-                                return nts.uk.request.ajax(servicePath.saveSequenceMaster, command);
+                            service.findByPositionCode = findByPositionCode;
+                            /* addPosition */
+                            function addPosition(position) {
+                                return nts.uk.request.ajax(servicePath.addPosition, { Position: position });
                             }
-                            service.saveSequenceMaster = saveSequenceMaster;
-                            /**
-                             * removeSequenceMaster
-                             */
-                            function removeSequenceMaster(command) {
-                                return nts.uk.request.ajax(servicePath.removeSequenceMaster, command);
+                            service.addPosition = addPosition;
+                            /* removePosition */
+                            function removePosition(positionCode) {
+                                return nts.uk.request.ajax(servicePath.addPosition, { positionCode: positionCode });
                             }
-                            service.removeSequenceMaster = removeSequenceMaster;
-                            /**
-                             * updateOrder
-                             */
-                            function updateOrder(command) {
-                                return nts.uk.request.ajax(servicePath.updateOrder, command);
+                            service.removePosition = removePosition;
+                            /* updatePosition */
+                            function updatePosition(position) {
+                                return nts.uk.request.ajax(servicePath.addPosition, { Position: position });
                             }
-                            service.updateOrder = updateOrder;
-                            /**
-                            * Model namespace.
-                            */
+                            service.updatePosition = updatePosition;
                             var model;
                             (function (model) {
-                                /**
-                                 * SequenceMaster save command
-                                 */
-                                var SequenceMasterSaveCommand = /** @class */ (function () {
-                                    function SequenceMasterSaveCommand(isCreateMode, sequenceCode, sequenceName, order) {
-                                        this.isCreateMode = isCreateMode;
-                                        this.sequenceCode = sequenceCode;
-                                        this.sequenceName = sequenceName;
+                                /* Position save command */
+                                var PositionSaveCommand = /** @class */ (function () {
+                                    function PositionSaveCommand(positionCode, positionName, order) {
+                                        this.positionCode = positionCode;
+                                        this.positionName = positionName;
                                         this.order = order;
                                     }
-                                    return SequenceMasterSaveCommand;
+                                    return PositionSaveCommand;
                                 }());
-                                model.SequenceMasterSaveCommand = SequenceMasterSaveCommand;
-                                /**
-                                 * SequenceMaster remove command
-                                 */
-                                var SequenceMasterRemoveCommand = /** @class */ (function () {
-                                    function SequenceMasterRemoveCommand(sequenceCode) {
-                                        this.sequenceCode = sequenceCode;
+                                model.PositionSaveCommand = PositionSaveCommand;
+                                /* Position remove command */
+                                var PositionRemoveCommand = /** @class */ (function () {
+                                    function PositionRemoveCommand(positionCode) {
+                                        this.positionCode = positionCode;
                                     }
-                                    return SequenceMasterRemoveCommand;
+                                    return PositionRemoveCommand;
                                 }());
-                                model.SequenceMasterRemoveCommand = SequenceMasterRemoveCommand;
+                                model.PositionRemoveCommand = PositionRemoveCommand;
                             })(model = service.model || (service.model = {}));
                         })(service = f.service || (f.service = {}));
                     })(f = cmm013.f || (cmm013.f = {}));

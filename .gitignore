@@ -1,9 +1,58 @@
+#ignore project build folders
+build/
+bin/
+
+#ignore node_modules
+**/node_modules*
+
+#ignore gradle cache folder
+**/.gradle*
+**/.nb-gradle*
+**/.settings*
+**/.ide*
+**/.sts4-cache*
+!build.gradle
+
+#ignore spotlight cache
+**/.DS_Store
+
+#ignore sass-cache folder
+**/.sass-cache*
+
+**/.metadata*
+**/.recommenders*
+**/taskArtifacts*
 
 #ignore all gradle project files
+*.classpath
+*.project
+*.launch
 *.class
-
+*.orig
 
 #ignore all js, map file
-**/*.map*
+**/*.js*
+!**/*.json
+
+# except all js, map in base.web
+!**/base.web/**/*.js*
+**/base.web/**/*bundles.js*
+!**/nts.uk.cnv.web/**/*.js*
+
+
+# add ignore file of mobile project
+**/.vscode/*
+**/node_modules/*
+**/vendor*
+**/bundles*
+**/main-server*
+**/wwwroot/*
+**/.DS_Store
+
+*.log
+**/.sass-cache/*
+
+**/obj/*
+**/.vs/*
 
 !binary/

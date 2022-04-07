@@ -10,15 +10,15 @@ import javax.transaction.Transactional;
 
 import nts.arc.layer.app.command.CommandHandlerContext;
 import nts.arc.layer.app.command.CommandHandler;
-import nts.uk.ctx.basic.dom.training.position.Position;
-import nts.uk.ctx.basic.dom.training.position.PositionRepository;
+import nts.uk.ctx.basic.dom.training.position.PositionTraining;
+import nts.uk.ctx.basic.dom.training.position.PositionRepositoryTraining;
 
 @Stateless
 @Transactional
 public class RemovePositionCommandHandler extends CommandHandler<RemovePositionCommand>{
 	
 	@Inject
-	private PositionRepository positionRepository;
+	private PositionRepositoryTraining positionRepository;
 	
 	@Override
 	protected void handle(CommandHandlerContext<RemovePositionCommand> context) {
@@ -29,7 +29,7 @@ public class RemovePositionCommandHandler extends CommandHandler<RemovePositionC
 		positionCodeList.add(command.getPositionCode());
 
 		// check exists position
-		Optional<Position> domain = positionRepository.findByPositionCode(command.getPositionCode());
+		Optional<PositionTraining> domain = positionRepository.findByPositionCode(command.getPositionCode());
 		if (!domain.isPresent()) {
 			throw new RuntimeException("Position not found");
 		}

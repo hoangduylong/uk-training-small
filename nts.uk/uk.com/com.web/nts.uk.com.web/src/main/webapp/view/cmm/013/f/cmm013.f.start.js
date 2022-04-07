@@ -14,13 +14,6 @@ var nts;
                             var screenModel = new f.viewmodel.ScreenModel();
                             screenModel.startPage().done(function () {
                                 __viewContext.bind(screenModel);
-                                // Set focus 
-                                if (screenModel.createMode()) {
-                                    $('#sequence-code').focus();
-                                }
-                                else {
-                                    $('#sequence-name').focus();
-                                }
                             });
                         });
                     })(f = cmm013.f || (cmm013.f = {}));

@@ -9,40 +9,38 @@ public class PositionTraining implements DomainAggregate {
 	 * Position Code
 	 */
 	@Getter
-	private PositionCodeTraining positionCodeTraining;
+	@Setter
+	private PositionCodeTraining positionCode;
 	
 	/**
 	 * Position Name
 	 */
 	@Getter
-	private PositionNameTraining positionNameTraining;
-
+	@Setter
+	private PositionNameTraining positionName;
 	
 	/**
-	 * 
-	 * @param positionCodeTraining
-	 * @param positionNameTraining
+	 * Position Order
 	 */
-	public PositionTraining(PositionCodeTraining positionCodeTraining, PositionNameTraining positionNameTraining) {
+	@Getter
+	@Setter
+	private int positionOrder;
+
+	
+	
+	/*
+	 * Constructor
+	 * @param positionCode
+	 * @param positionName
+	 * @param positionOrder
+	 */
+	public PositionTraining(PositionCodeTraining positionCode, PositionNameTraining positionName, int positionOrder) {
 		super();
-		this.positionCodeTraining = positionCodeTraining;
-		this.positionNameTraining = positionNameTraining;
+		this.positionCode = positionCode;
+		this.positionName = positionName;
+		this.positionOrder = positionOrder;
 	}
 
-	/**
-	 * 
-	 * @param code
-	 * @param name
-	 * @return
-	 */
-	public boolean checkExistPosition(PositionCodeTraining code, PositionNameTraining name) {
-//		if( ) {
-//			
-//			return true;
-//		}
-//		
-		return false;
-	}
 
 	/**
 	 * Convert java type to domain
@@ -50,10 +48,11 @@ public class PositionTraining implements DomainAggregate {
 	 * @param positionName
 	 * @return
 	 */
-	public static PositionTraining createFromJavaType(String positionCode, String positionName) {
+	public static PositionTraining toDomain(String positionCode, String positionName, int positionOrder) {
 		return new PositionTraining(
 			new PositionCodeTraining(positionCode),
-			new PositionNameTraining(positionName));
+			new PositionNameTraining(positionName),
+			positionOrder);
 	}
 
 }

@@ -1,90 +1,69 @@
 module nts.uk.com.view.cmm013.f {
-       
-    import SequenceMasterSaveCommand = service.model.SequenceMasterSaveCommand;  
-    import SequenceMasterRemoveCommand = service.model.SequenceMasterRemoveCommand;
-    
-    export module service {
-        
-        /**
-         *  Service paths
-         */
-        var servicePath: any = {
-            findAllSequenceMaster: "bs/employee/jobtitle/sequence/findAll",
-            findBySequenceCode: "bs/employee/jobtitle/sequence/find",
-            saveSequenceMaster: "bs/employee/jobtitle/sequence/save",
-            removeSequenceMaster: "bs/employee/jobtitle/sequence/remove",
-            updateOrder: "bs/employee/jobtitle/sequence/updateOrder",
-        };
-        
-        /**
-         * findAllSequenceMaster
-         */
-        export function findAllSequenceMaster(): JQueryPromise<any> {
-            return nts.uk.request.ajax(servicePath.findAllSequenceMaster);
-        }
-        
-        /**
-         * findBySequenceCode
-         */
-        export function findBySequenceCode(sequenceCode: string): JQueryPromise<any> {
-            return nts.uk.request.ajax(servicePath.findBySequenceCode, {sequenceCode: sequenceCode});
-        }
-        
-        /**
-         * saveSequenceMaster
-         */
-        export function saveSequenceMaster(command: SequenceMasterSaveCommand): JQueryPromise<any> {
-            return nts.uk.request.ajax(servicePath.saveSequenceMaster, command);
-        }
-        
-        /**
-         * removeSequenceMaster
-         */
-        export function removeSequenceMaster(command: SequenceMasterRemoveCommand): JQueryPromise<any> {
-            return nts.uk.request.ajax(servicePath.removeSequenceMaster, command);
-        }
-               
-        /**
-         * updateOrder
-         */
-        export function updateOrder(command: SequenceMasterSaveCommand[]): JQueryPromise<any> {
-            return nts.uk.request.ajax(servicePath.updateOrder, command);
-        }
-        
-        /**
-        * Model namespace.
-        */
-        export module model {
-            
-            /**
-             * SequenceMaster save command
-             */
-            export class SequenceMasterSaveCommand {
-                
-                isCreateMode: boolean;
-                sequenceCode: string;
-                sequenceName: string;
-                order: number;
-                
-                constructor(isCreateMode: boolean, sequenceCode: string, sequenceName: string, order: number) {
-                    this.isCreateMode = isCreateMode;
-                    this.sequenceCode = sequenceCode;
-                    this.sequenceName = sequenceName;
-                    this.order = order;
-                }
-            }
-            
-            /**
-             * SequenceMaster remove command
-             */
-            export class SequenceMasterRemoveCommand {
-                
-                sequenceCode: string;
-                
-                constructor(sequenceCode: string) {
-                    this.sequenceCode = sequenceCode;
-                }
-            }   
-        }
-    }
+
+	import Position = base.Position;
+
+	export module service {
+
+		/* Service path */
+		let servicePath: any = {
+			findAllPosition: "basic/training/position/find/all",
+			findByPositionCode: "basic/training/position/",
+			addPosition: "basic/training/position/add",
+			removePosition: "basic/training/position/remove",
+			updatePosition: "basic/training/position/update",
+		}
+
+		/* findAllPosition */
+		export function findAllPosition(): JQueryPromise<any> {
+			return nts.uk.request.ajax(servicePath.findAllPosition);
+		}
+
+		/* findByPositionCode */
+		export function findByPositionCode(positionCode: String): JQueryPromise<any> {
+			return nts.uk.request.ajax(servicePath.findByPositionCode, { positionCode: positionCode });
+		}
+
+		/* addPosition */
+		export function addPosition(position: Position): JQueryPromise<any> {
+			return nts.uk.request.ajax(servicePath.addPosition, { Position: position });
+		}
+
+		/* removePosition */
+		export function removePosition(positionCode: String): JQueryPromise<any> {
+			return nts.uk.request.ajax(servicePath.addPosition, { positionCode: positionCode });
+		}
+
+		/* updatePosition */
+		export function updatePosition(position: Position): JQueryPromise<any> {
+			return nts.uk.request.ajax(servicePath.addPosition, { Position: position });
+		}
+
+
+
+		export module model {
+			/* Position save command */
+			export class PositionSaveCommand {
+
+				positionCode: string;
+				positionName: string;
+				order: number;
+
+				constructor(positionCode: string, positionName: string, order: number) {
+					this.positionCode = positionCode;
+					this.positionName = positionName;
+					this.order = order;
+				}
+			}
+
+			/* Position remove command */
+			export class PositionRemoveCommand {
+
+				positionCode: string;
+
+				constructor(positionCode: string) {
+					this.positionCode = positionCode;
+				}
+			}
+		}
+	}
 }

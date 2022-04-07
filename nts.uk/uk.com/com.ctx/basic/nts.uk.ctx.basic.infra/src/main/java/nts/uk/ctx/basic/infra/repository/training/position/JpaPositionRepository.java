@@ -7,20 +7,20 @@ import java.util.stream.Collectors;
 import javax.ejb.Stateless;
 
 import nts.arc.layer.infra.data.JpaRepository;
-import nts.uk.ctx.basic.dom.training.position.Position;
-import nts.uk.ctx.basic.dom.training.position.PositionRepository;
+import nts.uk.ctx.basic.dom.training.position.PositionTraining;
+import nts.uk.ctx.basic.dom.training.position.PositionRepositoryTraining;
 import nts.uk.ctx.basic.infra.entity.training.position.PositionClassification;
 import nts.uk.ctx.basic.infra.entity.training.position.PositionClassificationPK;
 @Stateless
-public class JpaPositionRepository extends JpaRepository implements PositionRepository {
+public class JpaPositionRepository extends JpaRepository implements PositionRepositoryTraining {
 	
 	private static final String SELECT_ALL = "SELECT p FROM PositionClassification p";
 	
 	
 	@Override
-	public List<Position> findAll() {
+	public List<PositionTraining> findAll() {
 		return this.queryProxy().query(SELECT_ALL, PositionClassification.class)
-		 .getList(x -> Position.toDomain(
+		 .getList(x -> PositionTraining.toDomain(
 				 x.positionClassificationPK.positionCode, 
 				 x.positionName,
 				 x.positionOrder));
@@ -28,22 +28,22 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 
 	
 	@Override
-	public Optional<Position> findByPositionCode(String positionCode) {
+	public Optional<PositionTraining> findByPositionCode(String positionCode) {
 		PositionClassificationPK key = new PositionClassificationPK(positionCode);
 		
 		return this.queryProxy().find(key, PositionClassification.class)
-				.map(x -> Position.toDomain(positionCode, x.positionName, x.positionOrder));
+				.map(x -> PositionTraining.toDomain(positionCode, x.positionName, x.positionOrder));
 	}
 
 
 	@Override
-	public void add(Position position) {
+	public void add(PositionTraining position) {
 		this.commandProxy().insert(toEntity(position));
 	}
 
 
 	@Override
-	public void update(Position position) {
+	public void update(PositionTraining position) {
 		PositionClassification p = toEntity(position);
 		this.commandProxy().update(p);
 	}
@@ -55,7 +55,7 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 		this.commandProxy().remove(PositionClassificationPK.class, key);	
 	}
 	
-	private PositionClassification toEntity(Position domain) {
+	private PositionClassification toEntity(PositionTraining domain) {
 		PositionClassificationPK key = new PositionClassificationPK(domain.getPositionCode().v());
 		PositionClassification entity = 
 				new PositionClassification(key, domain.getPositionName().v(), domain.getPositionOrder());
@@ -64,7 +64,7 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 
 
 	@Override
-	public void updateOrder(List<Position> positionList) {
+	public void updateOrder(List<PositionTraining> positionList) {
 		this.commandProxy().updateAll(positionList.stream()
 				.map(domain -> this.toEntity(domain))
 				.collect(Collectors.toList()));

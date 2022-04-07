@@ -1,0 +1,173 @@
+html {
+  font-size: 10.5pt;
+}
+
+.masterHead {
+  top: 174px;
+  left: 27px;
+  position: absolute;
+  border-collapse: collapse;
+  width: 242px;
+  border: 1px solid black;
+  border-bottom: 0px;
+  margin-left: 20px;
+}
+
+.masterHead td {
+  border: 1px solid black;
+  padding: 2px 4px;
+}
+
+.master {
+  top: 200px;
+  left: 27px;
+  position: absolute;
+  border-collapse: collapse;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 390px;
+  width: 240px;
+  border: 1px solid black;
+  margin-left: 20px;
+  float: left;
+}
+
+.master tbody {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.master tr {
+  cursor: pointer;
+}
+
+.master td {
+  /* background-color: white; */
+  border: 1px solid black;
+  padding: 2px 4px;
+  border-left: 0px;
+  border-top: 0px;
+}
+
+.selected {
+  background-color: rgb(196, 252, 253);
+}
+
+table.info {
+  top: 200px;
+  left: 300px;
+  position: absolute;
+  border-collapse: collapse;
+  float: left;
+  margin-left: 120px;
+}
+
+button {
+  border: 1.5px solid black;
+  border-radius: 4px;
+  font-size: 19px;
+  width: 88px;
+  height: 36px;
+}
+
+.createNew {
+  top: 85px;
+  left: 27px;
+  position: absolute;
+  background-color: white;
+  margin-left: 20px;
+  box-shadow: 0px 6px 0px #c0c0c0;
+}
+
+.save {
+  top: 85px;
+  left: 145px;
+  position: absolute;
+  background-color: rgb(178, 248, 178); 
+  margin-left: 10px;
+  box-shadow: 0px 6px 0px #c0c0c0;
+}
+
+.close {
+  top: 85px;
+  left: 253px;
+  position: absolute;
+  background-color: white; 
+  margin-left: 10px;
+  box-shadow: 0px 6px 0px #c0c0c0;
+}
+
+.remove {
+  top: 85px;
+  left: 420px;
+  position: absolute;
+  background-color: rgb(255, 224, 206); 
+  margin-left: 100px;
+  box-shadow: 0px 6px 0px #c0c0c0;
+}
+
+button:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.05) 0 0);
+}
+
+.upbutton {
+  top:290px;
+  left:300px;
+  width:30px;
+  height:65px;
+  position: absolute;
+  font-size:35px;
+  text-align: center;
+  color: rgb(0, 175, 0);
+  background: white; 
+}
+
+.downbutton {
+  top: 390px;
+  left:300px;
+  width:30px;
+  height:65px;
+  position: absolute;
+  text-align: center;
+  color: rgb(0, 175, 0);
+  font-size:35px;
+  background: white; 
+}
+
+.title {
+  top: 20px;
+  left:27px;
+  position: absolute;
+}
+
+.codeLabel {
+  top: 198px;
+  left: 415px;
+  position: absolute;
+}
+
+.positionLabel {
+  top: 262px;
+  left: 415px;
+  position: absolute;
+}
+
+.code {
+  top: 205px;
+  left: 550px;
+  position: absolute;
+  height: 20px;
+  width: 40px;
+  border: 0.5px solid gray;
+  border-radius: 3px
+}
+
+.position {
+  top: 269px;
+  left: 550px;
+  position: absolute;
+  height: 20px;
+  width: 170px;
+  border: 0.5px solid gray;
+  border-radius: 3px
+}
