@@ -41,6 +41,7 @@ var nts;
                                 ScreenModel.prototype.execution = function () {
                                     var _self = this;
                                     if (!_self.validate()) {
+                                        alert('最新の履歴開始日以前に履歴を追加することはできません。');
                                         return;
                                     }
                                     var transferObj = {};
@@ -60,6 +61,11 @@ var nts;
                                  */
                                 ScreenModel.prototype.validate = function () {
                                     var _self = this;
+                                    var transferObj = nts.uk.ui.windows.getShared(Constants.SHARE_IN_DIALOG_EDIT_HISTORY);
+                                    var listHistory = transferObj.listJobTitleHistory;
+                                    listHistory.every(function (history) {
+                                        return new Date(_self.startDate()) > new Date(history.period.startDate);
+                                    });
                                     // Clear error
                                     nts.uk.ui.errors.clearAll();
                                     $('#start-date').ntsEditor('validate');
