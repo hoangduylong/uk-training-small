@@ -1,6 +1,7 @@
 package nts.uk.ctx.basic.ws.jobtitle;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.ws.rs.POST;
@@ -14,7 +15,7 @@ import nts.uk.ctx.basic.app.command.training.jobtitle.AddJobTitleCommandHandler;
 import nts.uk.ctx.basic.app.command.training.jobtitle.JobTitleCommand;
 import nts.uk.ctx.basic.app.command.training.jobtitle.UpdateJobTitleCommandHandler;
 import nts.uk.ctx.basic.app.find.training.jobtitle.JobTitleFinderTraining;
-import nts.uk.ctx.basic.app.training.jobtitle.dto.JobTitleDtoTraining;
+import nts.uk.ctx.basic.app.find.training.jobtitle.dto.JobTitleDtoTraining;
 
 @Path("basic/training/jobtitle")
 @Produces(MediaType.APPLICATION_JSON)

@@ -3,7 +3,6 @@ package nts.uk.ctx.basic.app.command.training.jobtitle;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -27,9 +26,7 @@ public class UpdateJobTitleCommandHandler extends CommandHandler<JobTitleCommand
 		
 		JobTitleCommand updateCommand = context.getCommand();
 		
-		Optional<JobTitleTraining> jobTitleTraining = jobTitleRepositoryTraining.find(updateCommand.getJobTitleCode());
-		
-		JobTitleCommandCheck.check(updateCommand, jobTitleTraining, false);
+		JobTitleCommandCheck.check(updateCommand, false);
 		
 		List<HistoryTraining> historyTraining = HistoryTraining.makeListHistory(updateCommand.getHistoryId(),
 				updateCommand.getJobTitleCode(),
@@ -41,7 +38,7 @@ public class UpdateJobTitleCommandHandler extends CommandHandler<JobTitleCommand
 				updateCommand.getPositionCode(),
 				updateCommand.getJobTitleCode(),
 				historyTraining,
-				false,
+				updateCommand.isAbrogated(),
 				updateCommand.isTreatAsAManager()));
 	}
 }

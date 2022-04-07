@@ -2,6 +2,7 @@ package nts.uk.ctx.basic.app.find.training.jobtitle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.ejb.Stateless;
@@ -45,9 +46,9 @@ public class JobTitleFinderTraining {
 			
 			// convert domain into Dto
 			JobTitleDtoTraining jobTitleDtoTraining = new JobTitleDtoTraining(
-					jobTitle.getPositionCode().v(),
+					jobTitle.getPositionCodeTraining().v(),
 					jobTitle.getJobTitleCodeTraining().v(),
-					toDto(jobTitle.getHistoryTrainings()),
+					this.toDto(jobTitle.getHistoryTrainings()),
 					jobTitle.isAbrogated(),
 					jobTitle.isTreatAsAManager());
 			
@@ -56,6 +57,26 @@ public class JobTitleFinderTraining {
 		});
 		return result;
 	}
+	
+	/**
+	 * find Job Title Dto by Job Code
+	 * @param jobTitleCode
+	 * @return Job Title Dto
+	 */
+	public JobTitleDtoTraining find(String jobTitleCode) {
+		Optional<JobTitleTraining> jobTitle = this.jobTitleRepositoryTraining.find(jobTitleCode);
+		
+		if(jobTitle.isPresent()) {
+			throw new BusinessException("Msg_102");
+		}
+		
+		return new JobTitleDtoTraining(jobTitle.get().getJobTitleCodeTraining().v(), 
+				jobTitleCode,
+				this.toDto(jobTitle.get().getHistoryTrainings()), 
+				jobTitle.get().isAbrogated(), 
+				jobTitle.get().isTreatAsAManager());
+	}
+	
 	/**
 	 * 
 	 * check exists JobTitle
