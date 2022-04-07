@@ -4,7 +4,7 @@ import nts.arc.error.BusinessException;
 import nts.arc.layer.dom.AggregateRoot;
 import nts.arc.time.GeneralDate;
 import nts.gul.text.StringUtil;
-import nts.uk.ctx.basic.dom.training.position.PositionCodeTraining;
+import nts.uk.ctx.basic.dom.training.position.PositionCode;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ public class JobTitleTraining extends AggregateRoot {
 
 	
 	@Setter
-	private PositionCodeTraining positionCodeTraining;
+	private PositionCode positionCode;
 	
 	private JobTitleCodeTraining jobTitleCodeTraining;
 	
