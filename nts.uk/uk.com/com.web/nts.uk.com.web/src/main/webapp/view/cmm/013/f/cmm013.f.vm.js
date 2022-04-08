@@ -151,13 +151,13 @@ var nts;
                                         position.order = order;
                                         order++;
                                     }
-                                    /*service.updatePositionOrder(positionList)
-                                        .done((data: any) => {
-                                            dfd.resolve(data);
-                                        })
-                                        .fail((res: any) => {
-                                            dfd.reject(res);
-                                        });*/
+                                    f.service.updateOrder(positionList)
+                                        .done(function (data) {
+                                        dfd.resolve(data);
+                                    })
+                                        .fail(function (res) {
+                                        dfd.reject(res);
+                                    });
                                     return dfd.promise();
                                 };
                                 ScreenModel.prototype.showMessageError = function (res) {

@@ -26,44 +26,89 @@
 
 		<!-- PAGE CONTENT -->
 		<ui:define name="content">
-			<div id="contents-area">
-				<div>#{i18n.getText('CMM013_16')}</div>
+			<div style="padding-left: 100px; padding-top: 50px;">
+				<!-- title -->
 
-				<table class="table_content">
-					<colgroup>
-						<col width="120px" />
-						<col width="250px" />
-					</colgroup>
+				<h3>職位の廃止</h3>
+				<!-- line -->
 
-					<tr>
-						<td>
-							<div data-bind="ntsFormLabel: {}">#{i18n.getText('CMM013_17')}</div>
-						</td>
-						<td><span data-bind="text: jobTitleCode"></span> <span
-							data-bind="text: jobTitleName" style="margin: 20px;"></span></td>
-					</tr>
+				<div class="line" />
 
-					<tr>
-						<td>
-							<div data-bind="ntsFormLabel: {required: true}">#{i18n.getText('CMM013_18')}</div>
-						</td>
-						<td>
-							<div id="end-date" tabindex="1"
-								data-bind="ntsDatePicker: {
-								name: '終了日',
-								required: true, 
-								value: endDate,								
-								dateFormat: 'YYYY/MM/DD'
-							}"></div>
-						</td>
-					</tr>
+				<div
+					style="font-weight: bold; font-size: 18px; margin-left: 40px; margin-bottom: 30px;">廃止する職位の終了日を入力してください</div>
+
+				<table>
+					<!-- infomation of job title -->
+
+					<tbody>
+						<tr height="80px">
+
+							<td>
+
+								<div class="side-line" style="background-color: green;" />
+							</td>
+
+							<td style="width: 200px;"><strong>廃止対象</strong></td>
+
+							<td>
+
+								<table>
+
+									<tbody>
+										<tr>
+
+											<td width="100px">
+
+												<div class="col-sm-2">00001</div>
+											</td>
+
+											<td>
+
+												<div class="col-sm-4" style="width: 100px;">取締役7</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						<!-- date input -->
+
+						<tr height="80px">
+
+							<td>
+
+								<div class="side-line"
+									style="background-color: rgb(192, 192, 51);" />
+							</td>
+
+							<td style="width: 200px;"><strong>終了日</strong></td>
+
+							<td><input type="date" name="" value="2022-01-01"
+								style="width: 180px; height: 40px; border-radius: 5px; border: 0px; box-shadow: 1px 2px 3px 1px;" />
+							</td>
+						</tr>
+					</tbody>
 				</table>
-			</div>
+				<!-- line -->
 
-			<div id="functions-area-bottom">
-				<button tabindex="2" data-bind="click: execution"
-					class="x-large proceed">#{i18n.getText('CMM013_19')}</button>
-				<button tabindex="3" data-bind="click: close" class="large">#{i18n.getText('CMM013_20')}</button>
+				<div class="line" />
+				<!-- button -->
+
+				<table>
+
+					<tbody>
+						<tr>
+
+							<td>
+								<button class="button button-submit" type="submit">実行</button>
+							</td>
+
+							<td>
+								<button class="button button-cancel" type="button">キャンセル</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</ui:define>
 

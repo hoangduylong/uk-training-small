@@ -10,13 +10,13 @@
 
 			<script>
 				var dialogSize = {
-					width : 300,
-					height : 500
+					width : 500,
+					height : 420
 				};
 			</script>
 
 			<com:scriptfile set="IGNITE" />
-
+			
 			<com:stylefile path="style.css" />
 			<com:scriptfile path="../_base/cmm013.base.js" />
 			<com:scriptfile path="cmm013.c.service.js" />
@@ -26,28 +26,214 @@
 
 		<!-- PAGE CONTENT -->
 		<ui:define name="content">
-			<div id="contents-area">
-				<div class="header-text">#{i18n.getText('CMM013_21')}</div>
+			<div style="padding-left: 100px; padding-top: 50px;">
+				<!-- title -->
 
-				<table id="single-list" tabindex="1"
-					data-bind="ntsGridList: {	
-					name: '#[CMM013_22]',
-					width: 260,					
-					height: 330,
-					dataSource: items,
-					primaryKey: 'sequenceCode',
-					columns: columns,
-					multiple: false,
-					value: currentCode
-				}"></table>
+				<h3>序列設定</h3>
+				<!-- line -->
 
+				<div class="line" />
+
+				<div
+					style="font-weight: bold; font-size: 18px; margin-left: 40px; margin-bottom: 30px;">職位情報の序列を設定してください。</div>
+
+
+				<div class="position-table" style="margin-left: 50px; width: 600px;">
+
+					<table>
+
+						<tbody>
+							<tr>
+							</tr>
+						</tbody>
+					</table>
+					<table>
+
+						<tbody>
+							<tr>
+
+								<td class="bg-success text-light" style="width: 100px;">コード</td>
+
+								<td class="bg-success text-light">名称</td>
+							</tr>
+						</tbody>
+					</table>
+
+
+
+					<div class="table-content">
+
+						<table>
+
+							<tbody>
+								<tr>
+
+									<td style="width: 100px;">01</td>
+
+									<td>役員</td>
+								</tr>
+
+								<tr>
+
+									<td>02</td>
+
+									<td>本部長格</td>
+								</tr>
+
+								<tr>
+
+									<td>03</td>
+
+									<td>部長格</td>
+								</tr>
+
+								<tr>
+
+									<td>04</td>
+
+									<td>次長格</td>
+								</tr>
+
+								<tr>
+
+									<td>05</td>
+
+									<td>課長格</td>
+								</tr>
+
+								<tr>
+
+									<td>06</td>
+
+									<td>係長格</td>
+								</tr>
+
+								<tr>
+
+									<td>07</td>
+
+									<td>主任格</td>
+								</tr>
+
+								<tr>
+
+									<td>08</td>
+
+									<td>一般Ⅱ</td>
+								</tr>
+
+								<tr>
+
+									<td>09</td>
+
+									<td>一般Ⅰ</td>
+								</tr>
+
+								<tr>
+
+									<td>10</td>
+
+									<td>パート・アルバイト</td>
+								</tr>
+
+								<tr>
+
+									<td>11</td>
+
+									<td>その他</td>
+								</tr>
+
+								<tr>
+
+									<td>12</td>
+
+									<td>役員</td>
+								</tr>
+
+								<tr>	
+
+									<td>13</td>
+
+									<td>役員</td>
+								</tr>
+
+								<tr>
+
+									<td>14</td>
+
+									<td>役員</td>
+								</tr>
+
+								<tr>
+
+									<td>15</td>
+
+									<td>役員</td>
+								</tr>
+
+								<tr>
+
+									<td>16</td>
+
+									<td>役員</td>
+								</tr>
+
+								<tr>
+
+									<td>17</td>
+
+									<td>役員</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+
+				</div>
+				<!-- line -->
+
+				<div class="line" />
+				<!-- button -->
+
+				<table>
+
+					<tbody>
+						<tr>
+
+							<td>
+								<button class="button button-submit" type="submit">実行</button>
+							</td>
+
+							<td>
+								<button class="button button-cancel" type="button">キャンセル</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 
-			<div id="functions-area-bottom">
-				<button class="x-large proceed" tabindex="2"
-					data-bind="click: selectSequence">#{i18n.getText('CMM013_25')}</button>
-				<button class="large" tabindex="3" data-bind="click: close">#{i18n.getText('CMM013_26')}</button>
-			</div>
+			<script>
+        var index
+        function selectedRow() {
+            let tableContent = document.querySelector(".table-content table")
+            for (let i = 0; i &lt; tableContent.rows.length; i++) {
+                // tableContent.rows[i].onmouseenter = function () {
+                //     this.classList.add("selected")
+                // }
+                // tableContent.rows[i].onmouseleave = function () {
+                //     this.classList.remove("selected")
+                // }
+                // if(i != index){
+                //     tableContent.rows[i].classList.remove("selected")
+                // }
+                // tableContent.rows[i].onclick = function () {
+                //     this.classList.toggle("selected")
+                //     index = i;
+                // }
+            }
+        }
+        selectedRow()
+    </script>
 		</ui:define>
 
 	</ui:composition>

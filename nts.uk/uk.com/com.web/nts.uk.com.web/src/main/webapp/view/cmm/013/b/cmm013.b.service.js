@@ -10,21 +10,20 @@ var nts;
                 (function (cmm013) {
                     var b;
                     (function (b) {
+                        var ajax = nts.uk.request.ajax;
+                        // import format = nts.uk.text.format;
                         var service;
                         (function (service) {
                             /**
-                             *  Service paths
+                             * Service path
                              */
                             var servicePath = {
-                                removeJobTitle: "bs/employee/jobtitle/remove",
+                                abrogateJobTItle: "",
                             };
-                            /**
-                             * removeJobTitle
-                             */
-                            function removeJobTitle(command) {
-                                return nts.uk.request.ajax(servicePath.removeJobTitle, command);
+                            function abrogateJobTItle(jobTitleCode, endDate) {
+                                return ajax(servicePath.abrogateJobTItle, { jobTitleCode: jobTitleCode, endDate: endDate });
                             }
-                            service.removeJobTitle = removeJobTitle;
+                            service.abrogateJobTItle = abrogateJobTItle;
                         })(service = b.service || (b.service = {}));
                     })(b = cmm013.b || (cmm013.b = {}));
                 })(cmm013 = view.cmm013 || (view.cmm013 = {}));

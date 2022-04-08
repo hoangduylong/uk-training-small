@@ -14,7 +14,6 @@ var nts;
                             var screenModel = new b.viewmodel.ScreenModel();
                             screenModel.startPage().done(function () {
                                 __viewContext.bind(screenModel);
-                                $("#end-date").focus();
                             });
                         });
                     })(b = cmm013.b || (cmm013.b = {}));
