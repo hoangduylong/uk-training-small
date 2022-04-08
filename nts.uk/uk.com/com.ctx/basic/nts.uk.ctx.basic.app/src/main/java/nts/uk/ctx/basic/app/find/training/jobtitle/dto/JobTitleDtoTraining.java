@@ -1,4 +1,4 @@
-package nts.uk.ctx.basic.app.training.jobtitle.dto;
+package nts.uk.ctx.basic.app.find.training.jobtitle.dto;
 
 import java.util.List;
 

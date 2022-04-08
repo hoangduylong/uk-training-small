@@ -30,8 +30,14 @@
 							<div class = "item">追加する履歴の開始日を入力してください</div>
 							<div class = "group">
 								<span class = "item">期間</span>
-								<input class = "item" id = "start-date" data-bind = "text: startDate"
-									type = "date" data-date-format=" YYYY/MM/DD"/>
+								<div  class = "item" id="start-date" tabindex="1"
+									data-bind="ntsDatePicker: {
+										name: '#[CMM013_29]', 
+										required: true, 
+										value: startDate,
+										dateFormat: 'YYYY/MM/DD'
+									}">
+								</div>
 								<span class = "item">～</span>
 								<span class = "item end_date">9999/12/31</span>
 							</div>

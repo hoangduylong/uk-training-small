@@ -2,6 +2,7 @@ module nts.uk.com.view.cmm013.d {
 
     export module viewmodel {
         import Constants = base.Constants;
+		import listHistory = base.History;
         
         export class ScreenModel {
             
@@ -9,8 +10,7 @@ module nts.uk.com.view.cmm013.d {
             endDate: KnockoutObservable<string>;
             
             constructor() {
-                let _self = this;
-                                
+                let _self = this;  
                 _self.startDate = ko.observable("");
                 _self.endDate = ko.observable("9999/12/31");
             }
@@ -51,10 +51,27 @@ module nts.uk.com.view.cmm013.d {
              * Validate
              */
             private validate(): boolean {
-                // Clear error
-                nts.uk.ui.errors.clearAll()
-                $('#start-date').ntsEditor('validate');               
-                return !$('.nts-input').ntsError('hasError');
+				let _self = this;
+				
+				if(_self.startDate() == "")
+				{
+					alert('開始日を入力してください。');
+					return false;
+				}
+				
+                let transferObj: any = nts.uk.ui.windows.getShared(Constants.SHARE_IN_DIALOG_EDIT_HISTORY);
+				let listHistory: listHistory[] =  transferObj.listJobTitleHistory;
+				
+				let valid: boolean = listHistory.every(function (history)
+				{
+					return  new Date(_self.startDate()) > new Date(history.period.startDate)
+				})
+				if(!valid)
+				{
+					alert('最新の履歴開始日以前に履歴を追加することはできません。');
+					return false;
+				}
+                return true;
             }
         }
     }    

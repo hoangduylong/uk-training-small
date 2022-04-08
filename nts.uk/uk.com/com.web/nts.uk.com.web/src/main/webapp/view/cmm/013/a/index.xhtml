@@ -27,22 +27,44 @@
 
 			<div id="functions-area">
 				<button tabindex="1"
-					data-bind="click: startCreateMode, enable: enable_button_create_mode"
 					class="btnStyle">#{i18n.getText('CMM013_1')}</button>
-				<button tabindex="2" data-bind="click: saveJobTitle"
+				<button tabindex="2" 
 					class="proceed btnStyle">#{i18n.getText('CMM013_2')}</button>
 				<button tabindex="3"
-					data-bind="click: openDeleteDialog, enable: enable_button_delete"
 					class="danger btnStyle">#{i18n.getText('CMM013_3')}</button>
-				<button tabindex="5" data-bind="click: openSequenceManageDialog"
+				<button tabindex="5"
 					class="btnStyle">#{i18n.getText('CMM013_4')}</button>
-				<button  tabindex="5" id="print-button" data-bind="click: opencdl028Dialog">#{i18n.getText('KMK007_4')}</button>
-				<button data-bind="click: openHScreen">#{i18n.getText('CMM013_69')}</button> 
+				<button  tabindex="5" id="print-button">#{i18n.getText('KMK007_4')}</button>
+				<button >#{i18n.getText('CMM013_69')}</button> 
 			</div>
-
 			<div id="contents-area">
+			<span>HELLO WORLD</span>
+			<div id="left-content">
+					<div id="job-title-items-list">
+						<table id="single-list" data-bind="ntsGridList: {								
+							height: 350,
+							options: jobTitleList,
+							optionsValue: 'jobTitleCode',
+							columns: jobTitleColumns,
+							multiple: false,
+							value: selectedJobTitleCode
+						}"></table>
+					</div>
+				</div>
+			</div>
+			<!-- <div id="contents-area">
 				<div id="left-content">
-					<div id="job-title-items-list"></div>
+					<div id="job-title-items-list">
+						<table id="single-list" data-bind="ntsGridList: {								
+							height: 350,
+							options: jobTitleList,
+							optionsValue: 'code',
+							primaryKey: 'code',
+							columns: jobTitleColumns,
+							multiple: false,
+							value: selectedJobTitleCode
+						}"></table>
+					</div>
 				</div>
 
 				<div id="right-content">
@@ -165,7 +187,7 @@
 
 
 				</div>
-			</div>
+			</div> -->
 
 		</ui:define>
 	</ui:composition>

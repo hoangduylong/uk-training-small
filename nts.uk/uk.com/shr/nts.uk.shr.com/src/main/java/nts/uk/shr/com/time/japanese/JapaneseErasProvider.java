@@ -1,11 +1,11 @@
 package nts.uk.shr.com.time.japanese;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.Stateless;
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 
 import lombok.extern.slf4j.Slf4j;
 import nts.arc.time.GeneralDate;
@@ -31,7 +31,11 @@ public class JapaneseErasProvider {
 	}
 	
 	public JapaneseEras getAllEras() {
-		return null;//this.adapter.getAllEras(); 
+		List<JapaneseEraName> names = new ArrayList<>();
+		JapaneseEraName name = new JapaneseEraName("平成", "H", GeneralDate.ymd(1900, 1, 1), GeneralDate.today());
+		names.add(name);
+		JapaneseEras eras = new JapaneseEras(names);
+		return eras; //this.adapter.getAllEras(); 
 	}
 	
 	public Optional<JapaneseEraName> eraOf (GeneralDate date) {

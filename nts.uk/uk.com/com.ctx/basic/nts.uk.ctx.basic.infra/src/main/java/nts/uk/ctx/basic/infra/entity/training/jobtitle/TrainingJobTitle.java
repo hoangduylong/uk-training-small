@@ -96,7 +96,7 @@ public class TrainingJobTitle extends ContractUkJpaEntity implements Serializabl
 				new JobTitleCodeTraining(String.valueOf(trainingJobTitle.getKey())),
 				historyTrainings,
 				Boolean.getBoolean(String.valueOf(trainingJobTitle.isAbrogated)),
-				Boolean.getBoolean(String.valueOf(	trainingJobTitle.asManager)));
+				Boolean.getBoolean(String.valueOf(trainingJobTitle.asManager)));
 		return result;
 	}
 }

@@ -14,13 +14,12 @@ var nts;
                             var screenModel = new a.viewmodel.ScreenModel();
                             screenModel.startPage().done(function () {
                                 __viewContext.bind(screenModel);
-                                // Set focus 
+                                /*// Set focus
                                 if (screenModel.createMode()) {
                                     $('#job-title-code').focus();
-                                }
-                                else {
+                                } else {
                                     $('#job-title-name').focus();
-                                }
+                                }*/
                             });
                         });
                     })(a = cmm013.a || (cmm013.a = {}));

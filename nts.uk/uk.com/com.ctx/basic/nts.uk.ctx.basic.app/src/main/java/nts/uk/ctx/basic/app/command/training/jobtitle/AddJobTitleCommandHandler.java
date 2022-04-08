@@ -1,13 +1,11 @@
 package nts.uk.ctx.basic.app.command.training.jobtitle;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
-import nts.arc.error.BusinessException;
 import nts.arc.layer.app.command.CommandHandler;
 import nts.arc.layer.app.command.CommandHandlerContext;
 import nts.uk.ctx.basic.dom.training.jobtitle.HistoryTraining;
@@ -25,15 +23,7 @@ public class AddJobTitleCommandHandler extends CommandHandler<JobTitleCommand>{
 	protected void handle(CommandHandlerContext<JobTitleCommand> context) {
 		JobTitleCommand addCommand = context.getCommand();
 		
-		Optional<JobTitleTraining> jobTitleTraining = jobTitleRepositoryTraining.find(addCommand.getJobTitleCode());
-		
-		// check nếu tồn tại JobTitleCode
-		if (!jobTitleTraining.isPresent())
-		{
-			throw new BusinessException("Msg_3");
-		}
-		
-		JobTitleCommandCheck.check(addCommand, jobTitleTraining);
+		JobTitleCommandCheck.check(addCommand, true);
 		
 		List<HistoryTraining> historyTraining = HistoryTraining.makeListHistory(addCommand.getHistoryId(),
 				addCommand.getJobTitleCode(),
@@ -45,7 +35,7 @@ public class AddJobTitleCommandHandler extends CommandHandler<JobTitleCommand>{
 				addCommand.getPositionCode(),
 				addCommand.getJobTitleCode(),
 				historyTraining,
-				false,
+				addCommand.isAbrogated(),
 				addCommand.isTreatAsAManager()));
 	}
 }
