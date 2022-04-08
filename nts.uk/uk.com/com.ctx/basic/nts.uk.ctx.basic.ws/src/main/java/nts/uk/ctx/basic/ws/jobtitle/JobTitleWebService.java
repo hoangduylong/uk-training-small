@@ -50,26 +50,27 @@ public class JobTitleWebService extends WebService{
 	@POST
 	@Path("update")
 	public void update(JobTitleCommand command) {
-		this.updateJobTitleCommandHandler.handle(command);;
+		this.updateJobTitleCommandHandler.handle(command);
 	}
-	
-	/**
-	 * abrogate job title
-	 * @param command
-	 */
-	@POST
-	@Path("remove")
-	public void remove(JobTitleCommand command) {
-		this.abrogateJobTitleCommandHandler.handle(command);;
-	}
-	
+
 	/**
 	 * find all job title
-	 * @return
+	 * @return list of job title
 	 */
 	@POST
 	@Path("find/all")
 	public List<JobTitleDtoTraining> findAll() {
 		return this.jobTitleFinder.findAll();
+	}
+	
+	/**
+	 * find one job title by code/id
+	 * @param jobTitleId
+	 * @return one of job title
+	 */
+	@POST
+	@Path("find")
+	public JobTitleDtoTraining find(String jobTitleId) {
+		return this.jobTitleFinder.find(jobTitleId);
 	}
 }

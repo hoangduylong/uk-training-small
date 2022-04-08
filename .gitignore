@@ -56,3 +56,4 @@ bin/
 **/.vs/*
 
 !binary/
+*.lock

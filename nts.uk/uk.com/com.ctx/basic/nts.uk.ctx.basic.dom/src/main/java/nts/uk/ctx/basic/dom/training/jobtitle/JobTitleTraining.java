@@ -65,6 +65,16 @@ public class JobTitleTraining extends AggregateRoot {
 	public boolean checkAbrogated() {
 		return this.isAbrogated;
 	}
+	
+	/**
+	 * get lastest history (head)
+	 * @return history
+	 */
+	public HistoryTraining getLastestHistory() {
+		// insert into history list from head
+		int head = 0;
+		return this.historyTrainings.get(head);
+	}
 
 	/**
 	 * validate the JobTitle

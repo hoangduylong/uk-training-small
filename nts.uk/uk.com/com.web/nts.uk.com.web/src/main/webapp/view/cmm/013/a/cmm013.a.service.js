@@ -16,70 +16,39 @@ var nts;
                              *  Service paths
                              */
                             var servicePath = {
-                                findJobHistoryList: "bs/employee/jobtitle/history/findByJobId",
-                                findJobInfoByJobIdAndHistoryId: "bs/employee/jobtitle/info/findByJobIdAndHistoryId",
-                                findJobInfoByJobCode: "bs/employee/jobtitle/info/findByJobCode",
-                                saveJobTitle: "bs/employee/jobtitle/save",
-                                removeJobTitleHistory: "bs/employee/jobtitle/history/remove",
-                                findAllSequenceMaster: "bs/employee/jobtitle/sequence/findAll",
+                                findJobTitleList: "basic/training/jobtitle/find/all",
+                                updateJobTitle: "basic/training/jobtitle/update",
+                                addJobTitle: "basic/training/jobtitle/add",
+                                findHistoryList: "basic/training/jobtitle/find",
                             };
                             /**
-                             * findJobHistoryList
+                             * find history list (get all info of one job title)
                              */
-                            function findJobHistoryList(jobTitleId) {
-                                return nts.uk.request.ajax(servicePath.findJobHistoryList, { jobTitleId: jobTitleId });
+                            function findHistoryList(jobTitleId) {
+                                return nts.uk.request.ajax(servicePath.findHistoryList, { jobTitleId: jobTitleId });
                             }
-                            service.findJobHistoryList = findJobHistoryList;
+                            service.findHistoryList = findHistoryList;
                             /**
-                             * findJobInfoByJobIdAndHistoryId
+                             * find all job title
                              */
-                            function findJobInfoByJobIdAndHistoryId(jobTitleId, jobTitleHistoryId) {
-                                return nts.uk.request.ajax(servicePath.findJobInfoByJobIdAndHistoryId, { jobTitleId: jobTitleId, jobTitleHistoryId: jobTitleHistoryId });
+                            function findAllJobTitle() {
+                                return nts.uk.request.ajax(servicePath.findJobTitleList);
                             }
-                            service.findJobInfoByJobIdAndHistoryId = findJobInfoByJobIdAndHistoryId;
+                            service.findAllJobTitle = findAllJobTitle;
                             /**
-                             * findJobInfoByJobCode
+                             * update job title
                              */
-                            function findJobInfoByJobCode(jobTitleCode) {
-                                return nts.uk.request.ajax(servicePath.findJobInfoByJobCode, { jobTitleCode: jobTitleCode });
+                            function updateJobTitle(command) {
+                                return nts.uk.request.ajax(servicePath.updateJobTitle, command);
                             }
-                            service.findJobInfoByJobCode = findJobInfoByJobCode;
+                            service.updateJobTitle = updateJobTitle;
                             /**
-                             * saveJobTitle
+                             * add job title
                              */
-                            function saveJobTitle(command) {
-                                return nts.uk.request.ajax(servicePath.saveJobTitle, command);
+                            function addJobTitle(command) {
+                                return nts.uk.request.ajax(servicePath.addJobTitle, command);
                             }
-                            service.saveJobTitle = saveJobTitle;
-                            /**
-                             * removeWorkplaceHistory
-                             */
-                            function removeJobTitleHistory(command) {
-                                return nts.uk.request.ajax(servicePath.removeJobTitleHistory, command);
-                            }
-                            service.removeJobTitleHistory = removeJobTitleHistory;
-                            /**
-                             * findAllSequenceMaster
-                             */
-                            function findAllSequenceMaster() {
-                                return nts.uk.request.ajax(servicePath.findAllSequenceMaster);
-                            }
-                            service.findAllSequenceMaster = findAllSequenceMaster;
-                            function saveAsExcel(mode, baseDate) {
-                                var program = nts.uk.ui._viewModel.kiban.programName().split(" ");
-                                var domainType = "CMM013";
-                                if (program.length > 1) {
-                                    program.shift();
-                                    domainType = domainType + program.join(" ");
-                                }
-                                return nts.uk.request.exportFile('/masterlist/report/print', {
-                                    domainId: 'Sequence',
-                                    domainType: domainType,
-                                    languageId: 'ja', reportType: 0,
-                                    baseDate: moment.utc(baseDate).format()
-                                });
-                            }
-                            service.saveAsExcel = saveAsExcel;
+                            service.addJobTitle = addJobTitle;
                         })(service = a.service || (a.service = {}));
                     })(a = cmm013.a || (cmm013.a = {}));
                 })(cmm013 = view.cmm013 || (view.cmm013 = {}));

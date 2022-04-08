@@ -31,60 +31,14 @@ var nts;
                         /**
                          * JobTitleHistoryAbstract
                          */
-                        var JobTitleHistoryAbstract = /** @class */ (function () {
-                            function JobTitleHistoryAbstract() {
-                                var _self = this;
-                                _self.listJobTitleHistory = ko.observableArray([]);
-                                _self.selectedHistoryId = ko.observable(null);
-                                _self.listJobTitleHistory.subscribe(function (newListHistory) {
-                                    _self.fillTextDisplay();
-                                });
-                            }
-                            /**
-                             * selectFirst
-                             */
-                            JobTitleHistoryAbstract.prototype.selectFirst = function () {
-                                var _self = this;
-                                if (_self.listJobTitleHistory()[0]) {
-                                    _self.selectedHistoryId(_self.listJobTitleHistory()[0].historyId);
-                                }
-                            };
-                            /**
-                             * getSelectedHistoryByHistoryId
-                             */
-                            JobTitleHistoryAbstract.prototype.getSelectedHistoryByHistoryId = function () {
-                                var _self = this;
-                                return _self.listJobTitleHistory().filter(function (item) { return item.historyId == _self.selectedHistoryId(); })[0];
-                            };
-                            /**
-                             * fillTextDisplay
-                             */
-                            JobTitleHistoryAbstract.prototype.fillTextDisplay = function () {
-                                var _self = this;
-                                _.forEach(_self.listJobTitleHistory(), function (item) {
-                                    item.textDisplay = item.period.startDate + " " + nts.uk.resource.getText("CMM013_30") + " " + item.period.endDate;
-                                });
-                            };
-                            /**
-                             * isSelectedLatestHistory
-                             */
-                            JobTitleHistoryAbstract.prototype.isSelectedLatestHistory = function () {
-                                var _self = this;
-                                if (_self.listJobTitleHistory().length > 0) {
-                                    return _self.selectedHistoryId() == _self.listJobTitleHistory()[0].historyId;
-                                }
-                                return false;
-                            };
-                            return JobTitleHistoryAbstract;
-                        }());
-                        base.JobTitleHistoryAbstract = JobTitleHistoryAbstract;
+                        //export abstract class JobTitleHistoryAbstract {   
                         /**
                          * JobTitle
                          */
                         var JobTitle = /** @class */ (function () {
-                            function JobTitle(companyId, jobTitleId) {
-                                this.companyId = companyId;
-                                this.jobTitleId = jobTitleId;
+                            function JobTitle(jobTitleCode, jobTitleName) {
+                                this.jobTitleCode = jobTitleCode;
+                                this.jobTitleName = jobTitleName;
                             }
                             return JobTitle;
                         }());
@@ -93,68 +47,68 @@ var nts;
                          * History
                          */
                         var History = /** @class */ (function () {
-                            function History(jobTitleId, historyId, period, textDisplay) {
+                            function History(jobTitleId, historyId, startDate, endDate) {
                                 this.jobTitleId = jobTitleId;
                                 this.historyId = historyId;
-                                this.period = period;
-                                this.textDisplay = textDisplay;
+                                this.startDate = startDate;
+                                this.endDate = endDate ? endDate : "31/12/9999";
                             }
                             return History;
                         }());
                         base.History = History;
-                        /**
-                         * History (for save command)
-                         */
-                        var SaveHistory = /** @class */ (function () {
-                            function SaveHistory(historyId, period) {
-                                this.historyId = historyId;
-                                this.period = period;
+                        /*
+                            
+                
+                            listHistory: KnockoutObservableArray<History>;
+                            selectedHistoryId: KnockoutObservable<string>;
+                            
+                            constructor() {
+                                let self = this;
+                                self.listHistory = ko.observableArray([]);
+                                self.selectedHistoryId = ko.observable(null);
+                                
+                                self.listJobTitleHistory.subscribe((newListHistory) => {
+                                    _self.fillTextDisplay();
+                                });
                             }
-                            return SaveHistory;
-                        }());
-                        base.SaveHistory = SaveHistory;
-                        /**
-                         * Period
-                         */
-                        var Period = /** @class */ (function () {
-                            function Period(startDate, endDate) {
-                                this.startDate = startDate;
-                                this.endDate = endDate;
+                            
+                            /**
+                             * selectFirst
+                             
+                            public selectFirst() {
+                                let _self = this;
+                                if (_self.listJobTitleHistory()[0]){
+                                    _self.selectedHistoryId(_self.listJobTitleHistory()[0].historyId);
+                                }
                             }
-                            return Period;
-                        }());
-                        base.Period = Period;
-                        /**
-                         * Period (for save command)
-                         */
-                        var SavePeriod = /** @class */ (function () {
-                            function SavePeriod(startDate, endDate) {
-                                this.startDate = startDate;
-                                this.endDate = endDate;
+                            
+                            /**
+                             * getSelectedHistoryByHistoryId
+                             
+                            public getSelectedHistoryByHistoryId(): History {
+                                let _self = this;
+                                return _self.listJobTitleHistory().filter(item => item.historyId == _self.selectedHistoryId())[0];
                             }
-                            return SavePeriod;
-                        }());
-                        base.SavePeriod = SavePeriod;
-                        /**
-                         * SequenceMaster
-                         */
-                        var SequenceMaster = /** @class */ (function () {
-                            function SequenceMaster(sequenceCode, sequenceName, order) {
-                                this.sequenceCode = sequenceCode;
-                                this.sequenceName = sequenceName;
-                                this.order = order;
+                            
+                            /**
+                             * fillTextDisplay
+                             
+                            private fillTextDisplay() {
+                                let _self = this;
+                                _.forEach(_self.listJobTitleHistory(), (item: History) => {
+                                    item.textDisplay = item.period.startDate + " " + nts.uk.resource.getText("CMM013_30") + " " + item.period.endDate;
+                                })
                             }
-                            return SequenceMaster;
-                        }());
-                        base.SequenceMaster = SequenceMaster;
+                            
+                        }
+                         */
                         /**
                          * Position
                          */
                         var Position = /** @class */ (function () {
-                            function Position(positionCode, positionName, order) {
+                            function Position(positionCode, positionName) {
                                 this.positionCode = positionCode;
                                 this.positionName = positionName;
-                                this.order = order;
                             }
                             return Position;
                         }());
