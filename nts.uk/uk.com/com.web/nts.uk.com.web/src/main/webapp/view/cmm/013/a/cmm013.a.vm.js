@@ -22,30 +22,31 @@ var nts;
                                     var self = this;
                                     // init UI table job title
                                     self.jobTitleColumns = ko.observableArray([
-                                        { headerText: 'コード', key: 'code', width: 100, hidden: true },
-                                        { headerText: '名称', key: 'name', width: 150, hidden: true },
+                                        { headerText: 'コード', key: 'jobTitleCode', width: 100 },
+                                        { headerText: '名称', key: 'jobTitleName', width: 150 }
                                     ]);
                                     // get data
-                                    //this.effect()
+                                    self.effect();
                                     // set active job (job code)
                                     //this.selectedJobTitleCode(this.jobTitleList()[0].jobTitleCode);
                                 }
                                 ScreenModel.prototype.effect = function () {
-                                    var _this = this;
+                                    var self = this;
                                     // first request data
-                                    a.service.findAllJobTitle()
-                                        .done(function (data) {
-                                        console.log(data);
-                                    })
-                                        .fail(function (err) {
-                                        console.log(err);
-                                    });
+                                    /*service.findAllJobTitle()
+                                        .done((data: any) => {
+                                            console.log(data)
+                                        })
+                                        .fail((err: any) => {
+                                            console.log(err)
+                                        })*/
                                     // get data of jobtitle list
                                     for (var i = 0; i < 20; i++) {
-                                        this.jobTitleList.push(new JobTitle("code_" + i, "name" + i));
+                                        self.jobTitleList.push(new JobTitle("code_" + i, "name" + i));
+                                        console.log("fake data success");
                                     }
                                     // change events
-                                    this.selectedJobTitleCode.subscribe(function (newJobCode) {
+                                    self.selectedJobTitleCode.subscribe(function (newJobCode) {
                                         // reload job title info
                                         /*service.findHistoryList(newJobCode)
                                             .done((data: any) => {
@@ -56,13 +57,13 @@ var nts;
                                             })*/
                                         // reset all state
                                     });
-                                    this.selectedHistoryId.subscribe(function (newHistoryId) {
+                                    self.selectedHistoryId.subscribe(function (newHistoryId) {
                                         // check lastest history local
-                                        if (newHistoryId == _this.historyList()[0].historyId) {
-                                            _this.enable_button_history(true);
+                                        if (newHistoryId == self.historyList()[0].historyId) {
+                                            self.enable_button_history(true);
                                         }
                                         else {
-                                            _this.enable_button_history(false);
+                                            self.enable_button_history(false);
                                         }
                                     });
                                 };

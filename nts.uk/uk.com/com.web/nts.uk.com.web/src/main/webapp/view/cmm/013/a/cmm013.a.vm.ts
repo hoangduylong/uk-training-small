@@ -29,12 +29,12 @@ module nts.uk.com.view.cmm013.a {
 
 				// init UI table job title
 				self.jobTitleColumns = ko.observableArray([
-	                { headerText: 'コード', key: 'code', width: 100, hidden: true },
-	                { headerText: '名称', key: 'name', width: 150, hidden: true }, 
+	                { headerText: 'コード', key: 'jobTitleCode', width: 100 },
+	                { headerText: '名称', key: 'jobTitleName', width: 150 }
 	            ]); 
 				
 				// get data
-				//this.effect()
+				self.effect()
                 
 				
 				// set active job (job code)
@@ -42,22 +42,24 @@ module nts.uk.com.view.cmm013.a {
             }
 
 			private effect(): void {
+				let self = this;
 				// first request data
-				service.findAllJobTitle()
+				/*service.findAllJobTitle()
 					.done((data: any) => {
 						console.log(data)
 					})
 					.fail((err: any) => {
 						console.log(err)
-					})
+					})*/
 					
 				// get data of jobtitle list
                 for (let i = 0; i < 20; i++) {
-					this.jobTitleList.push(new JobTitle("code_"+i, "name"+i));
+					self.jobTitleList.push(new JobTitle("code_"+i, "name"+i));
+					console.log("fake data success");
 				}
 					
 				// change events
-				this.selectedJobTitleCode.subscribe(newJobCode => {
+				self.selectedJobTitleCode.subscribe(newJobCode => {
 					// reload job title info
 					/*service.findHistoryList(newJobCode)
 						.done((data: any) => {
@@ -71,12 +73,12 @@ module nts.uk.com.view.cmm013.a {
 					
 				})
 				
-				this.selectedHistoryId.subscribe(newHistoryId => {
+				self.selectedHistoryId.subscribe(newHistoryId => {
 					// check lastest history local
-					if (newHistoryId == this.historyList()[0].historyId) {
-						this.enable_button_history(true);
+					if (newHistoryId == self.historyList()[0].historyId) {
+						self.enable_button_history(true);
 					} else {
-						this.enable_button_history(false);
+						self.enable_button_history(false);
 					}
 				})
 			}
