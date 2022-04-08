@@ -23,7 +23,7 @@ public class ViewContextEnvWriter {
 		rw.write("__viewContext.env = {};");
 		
 		this.writeSystem(rw);
-		//this.writeJapanseEras(rw);
+		this.writeJapanseEras(rw);
 	}
 	
 	private void writeSystem(ResponseWriter rw) throws IOException {
