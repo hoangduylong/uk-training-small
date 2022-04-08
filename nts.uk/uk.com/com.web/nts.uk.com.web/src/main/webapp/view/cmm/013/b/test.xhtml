@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+
+			<script>
+				var dialogSize = {
+					width : 500,
+					height : 420
+				};
+			</script>
+
+			<com:scriptfile set="IGNITE" />
+
+			<com:stylefile path="style.css" />
+			<com:scriptfile path="../_base/cmm013.base.js" />
+			<com:scriptfile path="cmm013.b.service.js" />
+			<com:scriptfile path="cmm013.b.vm.js" />
+			<com:scriptfile path="cmm013.b.start.js" />
+		</ui:define>
+
+		<!-- PAGE CONTENT -->
+		<ui:define name="content">
+			<div style="padding-left: 100px; padding-top: 50px;">
+				<!-- title -->
+
+				<h3>職位の廃止</h3>
+				<!-- line -->
+
+				<div class="line" />
+
+				<div
+					style="font-weight: bold; font-size: 18px; margin-left: 40px; margin-bottom: 30px;">廃止する職位の終了日を入力してください</div>
+
+				<table>
+					<!-- infomation of job title -->
+
+					<tbody>
+						<tr height="80px">
+
+							<td>
+
+								<div class="side-line" style="background-color: green;" />
+							</td>
+
+							<td style="width: 200px;"><strong>廃止対象</strong></td>
+
+							<td>
+
+								<table>
+
+									<tbody>
+										<tr>
+
+											<td width="100px">
+
+												<div class="col-sm-2">00001</div>
+											</td>
+
+											<td>
+
+												<div class="col-sm-4" style="width: 100px;">取締役7</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						<!-- date input -->
+
+						<tr height="80px">
+
+							<td>
+
+								<div class="side-line"
+									style="background-color: rgb(192, 192, 51);" />
+							</td>
+
+							<td style="width: 200px;"><strong>終了日</strong></td>
+
+							<td><input type="date" name="" value="2022-01-01"
+								style="width: 180px; height: 40px; border-radius: 5px; border: 0px; box-shadow: 1px 2px 3px 1px;" />
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<!-- line -->
+
+				<div class="line" />
+				<!-- button -->
+
+				<table>
+
+					<tbody>
+						<tr>
+
+							<td>
+								<button class="button button-submit" type="submit">実行</button>
+							</td>
+
+							<td>
+								<button class="button button-cancel" type="button">キャンセル</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</ui:define>
+
+	</ui:composition>
+</body>
+</html>

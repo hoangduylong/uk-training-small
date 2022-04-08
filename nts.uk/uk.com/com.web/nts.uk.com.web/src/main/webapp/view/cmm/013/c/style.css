@@ -29,6 +29,7 @@
 
 .button:hover {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+    color: black;
 }
 
 .line{
@@ -59,10 +60,8 @@
     background-color: rgb(226, 226, 226);
 }
 
-.position-table td,
-th,
-tr {
-    border: black solid 3px;
+.position-table td {
+    border: black solid 1px;
 }
 
 .table-content {
