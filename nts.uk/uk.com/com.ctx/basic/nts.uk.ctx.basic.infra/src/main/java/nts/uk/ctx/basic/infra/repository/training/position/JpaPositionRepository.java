@@ -55,20 +55,20 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 		this.commandProxy().remove(PositionClassificationPK.class, key);	
 	}
 	
-	private PositionClassification toEntity(PositionTraining domain) {
-		PositionClassificationPK key = new PositionClassificationPK(domain.getPositionCode().v());
-		PositionClassification entity = 
-				new PositionClassification(key, domain.getPositionName().v(), domain.getPositionOrder());
-		return entity;
-	}
-
-
+	
 	@Override
 	public void updateOrder(List<PositionTraining> positionList) {
 		this.commandProxy().updateAll(positionList.stream()
 				.map(domain -> this.toEntity(domain))
 				.collect(Collectors.toList()));
-		
+	}
+	
+	
+	private PositionClassification toEntity(PositionTraining domain) {
+		PositionClassificationPK key = new PositionClassificationPK(domain.getPositionCode().v());
+		PositionClassification entity = 
+				new PositionClassification(key, domain.getPositionName().v(), domain.getPositionOrder());
+		return entity;
 	}
 
 }

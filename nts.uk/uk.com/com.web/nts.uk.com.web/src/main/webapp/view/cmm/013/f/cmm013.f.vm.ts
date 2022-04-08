@@ -177,13 +177,13 @@ module nts.uk.com.view.cmm013.f {
 					order++;
 				}
 
-				/*service.updatePositionOrder(positionList)
+				service.updateOrder(positionList)
 					.done((data: any) => {
 						dfd.resolve(data);
 					})
 					.fail((res: any) => {
 						dfd.reject(res);
-					});*/
+					});
 
 				return dfd.promise();
 			}

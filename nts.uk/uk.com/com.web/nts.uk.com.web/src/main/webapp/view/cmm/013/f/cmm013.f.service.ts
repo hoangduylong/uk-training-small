@@ -37,6 +37,11 @@ module nts.uk.com.view.cmm013.f {
 		export function updatePosition(position: Position): JQueryPromise<any> {
 			return nts.uk.request.ajax(servicePath.addPosition, { Position: position });
 		}
+		
+		/* update order */
+		export function updateOrder(position: Position): JQueryPromise<any> {
+			return nts.uk.request.ajax(servicePath.updateOrder, { positionList: position });
+		}
 
 
 
