@@ -8,10 +8,11 @@ module nts.uk.com.view.cmm013.f {
 			createNew: KnockoutObservable<boolean>;
 
 			positionList: KnockoutObservableArray<Position>;
-			positionCode: KnockoutObservable<string>;
-			positionName: KnockoutObservable<string>;
+			selectedPositionCode: KnockoutObservable<string> = ko.observable("");;
+			positionCode: KnockoutObservable<string> = ko.observable("");
+			positionName: KnockoutObservable<string> = ko.observable("");
 			order: KnockoutObservable<number>;
-
+			index: number;
 
 			constructor() {
 				let self = this;
@@ -22,11 +23,15 @@ module nts.uk.com.view.cmm013.f {
 				self.positionCode = ko.observable("");
 				self.positionName = ko.observable("");
 				self.order = ko.observable(0);
+
+				self.index = 0;
 			}
 
 
 			startPage(): JQueryPromise<any> {
 				let self = this;
+				
+				self.selectedRow();
 
 				let dfd = $.Deferred<any>();
 				self.loadPositionList()
@@ -78,7 +83,7 @@ module nts.uk.com.view.cmm013.f {
 					return;
 				}
 
-				let newPosition: Position = new Position(self.positionCode(), self.positionName(), self.order());
+				/*let newPosition: Position = new Position(self.positionCode(), self.positionName(), self.order());
 
 				if (self.createNew()) {
 					service.addPosition(newPosition)
@@ -110,7 +115,7 @@ module nts.uk.com.view.cmm013.f {
 					})
 					.fail((res: any) => {
 						self.showMessageError(res);
-					});
+					});*/
 			}
 
 
@@ -177,13 +182,13 @@ module nts.uk.com.view.cmm013.f {
 					order++;
 				}
 
-				service.updateOrder(positionList)
+				/*service.updateOrder(positionList)
 					.done((data: any) => {
 						dfd.resolve(data);
 					})
 					.fail((res: any) => {
 						dfd.reject(res);
-					});
+					});*/
 
 				return dfd.promise();
 			}
@@ -202,6 +207,59 @@ module nts.uk.com.view.cmm013.f {
 					// nts.uk.ui.dialog.alertError({ messageId: res.messageId, messageParams: res.parameterIds });
 				}
 			}
+
+
+
+			/*let index: any;*/
+			public selectedRow(): void {
+				let self = this;
+				let masterTable = (<HTMLTableElement>document.getElementById("masterTable"));
+				let code = (<HTMLInputElement>document.getElementById("code"));
+				let name = (<HTMLInputElement>document.getElementById("name"));
+
+				for (let i = 0; masterTable.rows.length; i++) {
+					masterTable.rows[i].onclick = function() {
+						if (typeof self.index !== "undefined") {
+							masterTable.rows[self.index].classList.toggle("selected")
+						}
+
+						masterTable.classList.toggle("selected");
+						code.value = masterTable.rows[i].cells[0].innerHTML;
+						name.value = masterTable.rows[i].cells[1].innerHTML;
+						self.index = masterTable.rows[i].rowIndex;
+					}
+				}
+			}
+
+			
+			public moveRowUp(): void {
+				let self = this;
+				let masterTable = (<HTMLTableElement>document.getElementById("masterTable"));
+				let row = masterTable.rows;
+				let parent = row[self.index].parentNode;
+	
+	
+				if (self.index > 0) {
+					parent.insertBefore(row[self.index], row[self.index - 1]);
+					// when the row go up the index will be equal to index - 1
+					self.index--;
+				}
+			}
+
+			public moveRowDown(): void {
+				let self = this;
+				let masterTable = (<HTMLTableElement>document.getElementById("masterTable"));
+				let row = masterTable.rows;
+				let parent = row[self.index].parentNode;
+	
+				if(self.index < row.length - 1) {
+					parent.insertBefore(row[self.index + 1], row[self.index]);
+					// when the row go down the index will be equal to index + 1
+					self.index++;
+				}
+			}
+
+
 
 
 		}

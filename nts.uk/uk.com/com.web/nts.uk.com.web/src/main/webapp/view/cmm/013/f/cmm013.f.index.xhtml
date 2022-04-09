@@ -11,9 +11,9 @@
 			<script>var dialogSize = { width: 600, height: 800 };</script>
 
 			<com:ValidatorScript>
-					nts.uk.ctx.basic.dom.training.position.PositionCode
-					nts.uk.ctx.basic.dom.training.position.PositionName
-				</com:ValidatorScript>
+				nts.uk.ctx.basic.dom.training.position.PositionCodeTraining
+				nts.uk.ctx.basic.dom.training.position.PositionNameTraining
+			</com:ValidatorScript>
 
 			<com:stylefile path="cmm013.f.style.css" />
 			<com:scriptfile path="cmm013.f.service.js" />
@@ -207,7 +207,7 @@
 								<td>役員</td>
 							</tr>
 
-							<tr>
+							<tr>	
 
 								<td>17</td>
 
@@ -245,6 +245,7 @@
       }
     }
     selectedRow()
+    
     function moveRowUp() {
       var rows = document.getElementById("masterTable").rows,
         parent = rows[index].parentNode;
@@ -254,6 +255,7 @@
         index--;
       }
     }
+    
     function moveRowDown() {
       var rows = document.getElementById("masterTable").rows,
         parent = rows[index].parentNode;
@@ -263,6 +265,7 @@
         index++;
       }
     }
+    
     function clearTextbox() {
       document.getElementById("code").value = ""
       document.getElementById("position").value = "";
