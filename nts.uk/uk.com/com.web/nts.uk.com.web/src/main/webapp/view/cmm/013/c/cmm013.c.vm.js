@@ -8,89 +8,103 @@ var nts;
             (function (view) {
                 var cmm013;
                 (function (cmm013) {
-                    var c;
-                    (function (c) {
+                    var b;
+                    (function (b) {
                         var viewmodel;
                         (function (viewmodel) {
-                            var Constants = cmm013.base.Constants;
                             var ScreenModel = /** @class */ (function () {
                                 function ScreenModel() {
-                                    var _self = this;
-                                    _self.items = ko.observableArray([]);
-                                    _self.currentCode = ko.observable(null);
-                                    _self.columns = ko.observableArray([
-                                        { headerText: nts.uk.resource.getText('CMM013_23'), key: 'sequenceCode', width: 75 },
-                                        { headerText: nts.uk.resource.getText('CMM013_24'), key: 'sequenceName', width: 135 }
-                                    ]);
+                                    var self = this;
+                                    self.createNew = ko.observable(null);
+                                    self.positionList = ko.observableArray([]);
+                                    self.positionCode = ko.observable("");
+                                    self.positionName = ko.observable("");
+                                    self.order = ko.observable(0);
+                                    /*// Khi thay đổi code
+                                    self.positionCode.subscribe((value) => {
+                    
+                                    })*/
                                 }
-                                /**
-                                 * Start page
-                                 */
                                 ScreenModel.prototype.startPage = function () {
-                                    var _self = this;
+                                    var self = this;
                                     var dfd = $.Deferred();
-                                    // Load sequence data list
-                                    var data = nts.uk.ui.windows.getShared(Constants.SHARE_IN_DIALOG_SELECT_SEQUENCE);
-                                    _self.initNotSelectItem(data);
-                                    var currentSelectedCode = nts.uk.ui.windows.getShared("currentSelectedCode");
-                                    if (data) {
-                                        _self.items(data);
-                                        if (_.isEmpty(currentSelectedCode)) {
-                                            _self.currentCode(data[0].sequenceCode);
-                                        }
-                                        else {
-                                            _self.currentCode(currentSelectedCode);
-                                        }
-                                    }
-                                    dfd.resolve();
+                                    self.loadPositionList()
+                                        .done(function (data) {
+                                        // Update position mode
+                                        self.createNew(false);
+                                        self.positionList(data);
+                                    })
+                                        .fail(function (res) {
+                                        // Create new position mode
+                                        dfd.reject(res);
+                                    });
+                                    return dfd.promise();
+                                    ;
+                                };
+                                /* load position list */
+                                ScreenModel.prototype.loadPositionList = function () {
+                                    var dfd = $.Deferred();
+                                    b.service.findAllPosition()
+                                        .done(function (data) {
+                                        dfd.resolve(data);
+                                    })
+                                        .fail(function (res) {
+                                        dfd.reject(res);
+                                    });
                                     return dfd.promise();
                                 };
-                                ScreenModel.prototype.initNotSelectItem = function (data) {
+                                // /* create new position */
+                                // public createNewPosition(): void {
+                                // 	let self = this;
+                                // 	self.createNew(true);
+                                // 	self.positionCode("");
+                                // 	self.positionName("");
+                                // }
+                                /* remove position */
+                                ScreenModel.prototype.remove = function () {
                                     var self = this;
-                                    var noSelectItem = {
-                                        order: 0,
-                                        sequenceName: '選択なし',
-                                        sequenceCode: '',
-                                    };
-                                    data.unshift(noSelectItem);
-                                };
-                                /**
-                                 * Select sequence master
-                                 */
-                                ScreenModel.prototype.selectSequence = function () {
-                                    var _self = this;
-                                    nts.uk.ui.windows.setShared(Constants.IS_ACCEPT_DIALOG_SELECT_SEQUENCE, true);
-                                    if (_self.currentCode()) {
-                                        nts.uk.ui.block.grayout();
-                                        c.service.findBySequenceCode(_self.currentCode())
-                                            .done(function (data) {
-                                            nts.uk.ui.windows.setShared(Constants.SHARE_OUT_DIALOG_SELECT_SEQUENCE, data);
-                                        })
-                                            .fail(function (res) {
-                                            nts.uk.ui.windows.setShared(Constants.SHARE_OUT_DIALOG_SELECT_SEQUENCE, null);
-                                        })
-                                            .always(function () {
-                                            nts.uk.ui.block.clear();
-                                            nts.uk.ui.windows.close();
+                                    if (self.positionCode() !== "") {
+                                        var currentIndex = null;
+                                        for (var _i = 0, _a = self.positionList(); _i < _a.length; _i++) {
+                                            var item = _a[_i];
+                                            if (item.positionCode === self.positionCode()) {
+                                                currentIndex = self.positionList.indexOf(item);
+                                            }
+                                        }
+                                        self.positionList.splice(currentIndex, 1);
+                                        nts.uk.ui.dialog.confirm({ messageId: "Msg_18" })
+                                            .ifYes(function () {
                                         });
                                     }
-                                    else {
-                                        nts.uk.ui.windows.setShared(Constants.SHARE_OUT_DIALOG_SELECT_SEQUENCE, null);
-                                        nts.uk.ui.windows.close();
-                                    }
                                 };
-                                /**
-                                 * Close
-                                 */
+                                /* close dialog */
                                 ScreenModel.prototype.close = function () {
-                                    nts.uk.ui.windows.setShared(Constants.IS_ACCEPT_DIALOG_SELECT_SEQUENCE, false);
                                     nts.uk.ui.windows.close();
+                                };
+                                /* validate */
+                                ScreenModel.prototype.validate = function () {
+                                    // clear error
+                                    nts.uk.ui.errors.clearAll();
+                                    return !$('.nts-input').ntsError('hasError');
+                                };
+                                ScreenModel.prototype.execution = function () {
+                                    var self = this;
+                                    var dfd = $.Deferred();
+                                    var positionList = self.positionList();
+                                    // service.updateOrder(positionList)
+                                    // 	.done((data: any) => {
+                                    // 		dfd.resolve(data);
+                                    // 	})
+                                    // 	.fail((res: any) => {
+                                    // 		dfd.reject(res);
+                                    // 	});
+                                    return dfd.promise();
                                 };
                                 return ScreenModel;
                             }());
                             viewmodel.ScreenModel = ScreenModel;
-                        })(viewmodel = c.viewmodel || (c.viewmodel = {}));
-                    })(c = cmm013.c || (cmm013.c = {}));
+                        })(viewmodel = b.viewmodel || (b.viewmodel = {}));
+                    })(b = cmm013.b || (cmm013.b = {}));
                 })(cmm013 = view.cmm013 || (view.cmm013 = {}));
             })(view = com.view || (com.view = {}));
         })(com = uk.com || (uk.com = {}));
