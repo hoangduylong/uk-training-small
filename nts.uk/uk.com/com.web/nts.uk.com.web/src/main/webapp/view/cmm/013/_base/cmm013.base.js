@@ -21,6 +21,8 @@ var nts;
                             Constants.SHARE_OUT_DIALOG_REMOVE_JOB = "SHARE_OUT_DIALOG_REMOVE_JOB";
                             Constants.SHARE_IN_DIALOG_SELECT_SEQUENCE = "SHARE_IN_DIALOG_SELECT_SEQUENCE";
                             Constants.SHARE_OUT_DIALOG_SELECT_SEQUENCE = "SHARE_OUT_DIALOG_SELECT_SEQUENCE";
+                            Constants.SHARE_IN_DIALOG_ABROGATE_JOB_TITLE = "SHARE_IN_DIALOG_ABROGATE_JOB_TITLE";
+                            Constants.SHARE_OUT_DIALOG_ABROGATE_JOB_TITLE = "SHARE_OUT_DIALOG_ABROGATE_JOB_TITLE";
                             Constants.SHARE_IN_DIALOG_ADD_HISTORY = "SHARE_IN_DIALOG_ADD_HISTORY";
                             Constants.SHARE_OUT_DIALOG_ADD_HISTORY = "SHARE_OUT_DIALOG_ADD_HISTORY";
                             Constants.SHARE_IN_DIALOG_EDIT_HISTORY = "SHARE_IN_DIALOG_EDIT_HISTORY";
@@ -49,14 +51,20 @@ var nts;
                          */
                         var History = /** @class */ (function () {
                             function History(jobTitleId, jobTitleName, historyId, startDate, endDate) {
+                                this.displayString = ko.observable("");
                                 var self = this;
                                 self.jobTitleId = jobTitleId;
                                 self.jobTitleName = jobTitleName;
                                 self.historyId = historyId;
                                 self.startDate = startDate;
                                 self.endDate = endDate ? endDate : "31/12/9999";
-                                self.displayString = "".concat(self.startDate, " ~ ").concat(self.endDate);
+                                self.displayString("".concat(self.startDate, " ~ ").concat(self.endDate));
                             }
+                            History.prototype.updateEndDate = function (endDate) {
+                                this.endDate = endDate;
+                                /*this.displayString = `${this.startDate} ~ ${this.endDate}`;*/
+                                this.displayString("".concat(this.startDate, " ~ ").concat(this.endDate));
+                            };
                             return History;
                         }());
                         base.History = History;
@@ -64,9 +72,10 @@ var nts;
                          * Position
                          */
                         var Position = /** @class */ (function () {
-                            function Position(positionCode, positionName) {
+                            function Position(positionCode, positionName, order) {
                                 this.positionCode = positionCode;
                                 this.positionName = positionName;
+                                this.order = order;
                             }
                             return Position;
                         }());

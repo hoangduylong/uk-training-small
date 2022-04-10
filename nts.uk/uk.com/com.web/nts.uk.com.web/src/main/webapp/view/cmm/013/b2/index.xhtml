@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = 
+				{
+					width : 700,
+					height : 450
+				};
+				</script>
+
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="style.css" />
+			<com:scriptfile path="../_base/cmm013.base.js" />
+			<com:scriptfile path="cmm013.b2.service.js" />
+			<com:scriptfile path="cmm013.b2.vm.js" />
+			<com:scriptfile path="cmm013.b2.start.js" />
+		</ui:define>
+
+		<!-- PAGE CONTENT -->
+		<ui:define name="content">
+			<div id="contents-area">
+				<div class="part">
+					<div style = "font-size: 18px">職位の廃止</div>
+				</div>
+
+				<table style = "margin-left: 60px">
+					<!-- infomation of job title -->
+
+					<tbody>
+						<tr height="80px">
+
+							<td> <div class="side-line" style="background-color: green;" /></td>
+
+							<td style="width: 200px;"><strong>廃止対象</strong></td>
+
+							<td><table><tbody>
+										<tr><td width="100px">
+												<div class="col-sm-2" data-bind = "text: jobCode"></div>
+											</td>
+
+											<td><div class="col-sm-4" style="width: 100px;" data-bind = "text: jobName"></div>
+											</td>
+										</tr>
+							</tbody></table></td>
+						</tr>
+						<!-- date input -->
+
+						<tr height="80px">
+
+							<td><div class="side-line"
+									style="background-color: rgb(192, 192, 51);" />
+							</td>
+
+							<td style="width: 200px;"><strong>終了日</strong></td>
+
+							<td><div id="abrogated-date" tabindex="1"
+									data-bind="ntsDatePicker: {
+										name: '#[CMM013_29]', 
+										required: true, 
+										value: abrogatedDate,
+										dateFormat: 'YYYY/MM/DD'
+									}">
+							</div></td>
+						</tr>
+					</tbody>
+				</table>
+
+				<div class="line"></div>
+
+				<div class="item group part">
+					<button class="item button button-submit"
+						data-bind="click: execution">実行</button>
+					<button class="item button button-cancel" data-bind="click: close">キャンセル</button>
+				</div>
+			</div>
+			
+			<style>
+
+#abrogated-date{
+	font-size: 16px;
+	width: 180px; 
+	height: 30px; 
+	border-radius: 5px; 
+	border: 0px; 
+	box-shadow: 1px 2px 3px 1px;
+}
+
+.button {
+	width: 150px;
+	height: 40px;
+	border-radius: 4px;
+	/* margin-right: 50px; */
+	border: none;
+	margin-left: 15px;
+	/* padding: 15px 32px; */
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	font-weight: bold;
+	/* margin: 4px 2px; */
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+}
+
+.button-submit {
+	background-color: #367738;
+	color: white;
+}
+
+.button-cancel {
+	background-color: #e4e4e4;
+	color: black;
+}
+
+.button:hover {
+	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0
+		rgba(0, 0, 0, 0.19);
+	color: black;
+}
+
+.button-submit:hover {
+	background-color: #367738;
+}
+
+.button-cancel:hover {
+	background-color: #e4e4e4;
+}
+
+.line {
+	width: 600px;
+	height: 1px;
+	border: 0px;
+	background-color: black;
+	margin: 30px 0px;
+}
+</style>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>

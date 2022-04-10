@@ -14,6 +14,8 @@ var nts;
                         (function (viewmodel) {
                             var History = cmm013.base.History;
                             var JobTitle = cmm013.base.JobTitle;
+                            var setShared = nts.uk.ui.windows.setShared;
+                            var getShared = nts.uk.ui.windows.getShared;
                             var ScreenModel = /** @class */ (function () {
                                 function ScreenModel() {
                                     this.selectedJobTitleCode = ko.observable("");
@@ -56,13 +58,6 @@ var nts;
                                     }
                                     // select first element of list job
                                     self.selectedJobTitleCode(self.jobTitleList()[0].jobTitleCode);
-                                    // get data of history for job title (get by selected job id)
-                                    for (var i = 0; i < 20; i++) {
-                                        self.historyList.push(new History("job", "history_name_" + i, "historyId_" + i, "3/1/2020", "1/3/2021"));
-                                        console.log("fake history data success");
-                                    }
-                                    // select first element of list history
-                                    self.selectedHistoryId(self.historyList()[0].historyId);
                                     // change events
                                     self.selectedJobTitleCode.subscribe(function (newJobCode) {
                                         console.log(newJobCode);
@@ -74,6 +69,13 @@ var nts;
                                             .fail((err: any) => {
                                                 console.log(err)
                                             })*/
+                                        // get data of history for job title (get by selected job id)
+                                        for (var i = 0; i < 20; i++) {
+                                            self.historyList.push(new History("job", "history_name_" + i, "historyId_" + i, "3/1/2020", "1/3/2021"));
+                                            console.log("fake history data success");
+                                        }
+                                        // select first element of list history
+                                        self.selectedHistoryId(self.historyList()[0].historyId);
                                         // reset all state
                                         var jobs = self.jobTitleList().filter(function (e) { return (e.jobTitleCode == newJobCode); });
                                         if (jobs.length > 0) {
@@ -108,6 +110,70 @@ var nts;
                                 ScreenModel.prototype.isLastestHistory = function (historyId) {
                                     var self = this;
                                     return historyId == self.historyList()[0].historyId;
+                                };
+                                /**
+                                    Dialogs
+                                 */
+                                ScreenModel.prototype.openDialogB = function () {
+                                    var self = this;
+                                    setShared('listMasterToB', {
+                                        jobTitleCode: self.selectedJobTitleCode(),
+                                        jobTitleName: self.currentJobTitleName()
+                                    });
+                                    nts.uk.ui.windows.sub.modal('/view/cmm/013/b2/index.xhtml').onClosed(function () {
+                                        var data = getShared('DialogBToMaster');
+                                        console.log(data);
+                                        self.historyList()[0].updateEndDate(data.abrogatedDate);
+                                        /*let newHistories = [...self.historyList()]
+                                        newHistories[0].updateEndDate(data.abrogatedDate);
+                                        self.historyList(newHistories)
+                                        console.log(self.historyList()[0].endDate)*/
+                                        console.log(123);
+                                        console.log(self.historyList());
+                                    });
+                                };
+                                ScreenModel.prototype.openDialogC = function () {
+                                    var self = this;
+                                    setShared('listMasterToC', {});
+                                    nts.uk.ui.windows.sub.modal('/view/cmm/013/c2/index.xhtml').onClosed(function () {
+                                        var data = getShared('DialogCToMaster');
+                                        self.currentPositionCode(data.positionCode);
+                                        self.currentPositionName(data.positionName);
+                                    });
+                                };
+                                ScreenModel.prototype.openDialogD = function () {
+                                    var self = this;
+                                    setShared('listMasterToD', {});
+                                    nts.uk.ui.windows.sub.modal('/view/cmm/022/d/index.xhtml').onClosed(function () {
+                                        var data = getShared('DialogDToMaster');
+                                    });
+                                };
+                                ScreenModel.prototype.openDialogE = function () {
+                                    var self = this;
+                                    setShared('listMasterToE', {});
+                                    nts.uk.ui.windows.sub.modal('/view/cmm/013/e/index.xhtml').onClosed(function () {
+                                        var data = getShared('DialogEToMaster');
+                                    });
+                                };
+                                ScreenModel.prototype.openDialogF = function () {
+                                    var self = this;
+                                    setShared('listMasterToF', {});
+                                    nts.uk.ui.windows.sub.modal('/view/cmm/013/f/index.xhtml').onClosed(function () {
+                                        var data = getShared('DialogFToMaster');
+                                    });
+                                };
+                                ScreenModel.prototype.prepareToServer = function (isAbrogated) {
+                                    var self = this;
+                                    return {
+                                        positionCode: self.currentPositionCode(),
+                                        jobTitleCode: self.selectedJobTitleCode(),
+                                        historyId: self.historyList().map(function (e) { return e.historyId; }),
+                                        jobTitleName: self.historyList().map(function (e) { return e.jobTitleName; }),
+                                        startDate: self.historyList().map(function (e) { return e.startDate; }),
+                                        endtDate: self.historyList().map(function (e) { return e.endDate; }),
+                                        isAbrogated: isAbrogated,
+                                        treatAsAManager: self.jobTitleIsManager()
+                                    };
                                 };
                                 /**
                                  * Validate

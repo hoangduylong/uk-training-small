@@ -1,3 +1,4 @@
+
 module nts.uk.com.view.cmm022.b.viewmodel {
     import setShared = nts.uk.ui.windows.setShared;
     import blockUI = nts.uk.ui.block;

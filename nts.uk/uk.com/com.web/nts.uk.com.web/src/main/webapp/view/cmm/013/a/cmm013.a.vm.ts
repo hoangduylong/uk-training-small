@@ -5,8 +5,10 @@ module nts.uk.com.view.cmm013.a {
         import Constants = base.Constants;
 
         import History = base.History;
-
         import JobTitle = base.JobTitle;
+
+		import setShared = nts.uk.ui.windows.setShared;
+    	import getShared = nts.uk.ui.windows.getShared;
 
         export class ScreenModel {
 
@@ -69,14 +71,6 @@ module nts.uk.com.view.cmm013.a {
 				// select first element of list job
 				self.selectedJobTitleCode(self.jobTitleList()[0].jobTitleCode);
 				
-				// get data of history for job title (get by selected job id)
-				for (let i = 0; i < 20; i++) {
-					self.historyList.push(new History("job", "history_name_"+i, "historyId_"+i, "3/1/2020", "1/3/2021"));
-					console.log("fake history data success");
-				}
-				// select first element of list history
-				self.selectedHistoryId(self.historyList()[0].historyId);
-
 				// change events
 				self.selectedJobTitleCode.subscribe(newJobCode => {
 					console.log(newJobCode);
@@ -89,6 +83,14 @@ module nts.uk.com.view.cmm013.a {
 							console.log(err)
 						})*/
 					
+					// get data of history for job title (get by selected job id)
+					for (let i = 0; i < 20; i++) {
+						self.historyList.push(new History("job", "history_name_"+i, "historyId_"+i, "3/1/2020", "1/3/2021"));
+						console.log("fake history data success");
+					}
+					// select first element of list history
+					self.selectedHistoryId(self.historyList()[0].historyId);
+
 					// reset all state
 					
 					let jobs = self.jobTitleList().filter(e => (e.jobTitleCode == newJobCode));
@@ -133,7 +135,80 @@ module nts.uk.com.view.cmm013.a {
 			}
 
 
+			/**
+				Dialogs
+			 */
+			public openDialogB() {
+                let self = this;
+                setShared('listMasterToB', {
+					jobTitleCode: self.selectedJobTitleCode(),
+					jobTitleName: self.currentJobTitleName()
+                });
+                nts.uk.ui.windows.sub.modal('/view/cmm/013/b2/index.xhtml').onClosed(function(): any {
+                    let data: any = getShared('DialogBToMaster');
+					console.log(data);
+					self.historyList()[0].updateEndDate(data.abrogatedDate)
+					/*let newHistories = [...self.historyList()]
+					newHistories[0].updateEndDate(data.abrogatedDate);
+					self.historyList(newHistories)
+					console.log(self.historyList()[0].endDate)*/
+					console.log(123)
+					console.log(self.historyList());
+                });
+            } 
 
+			public openDialogC() {
+                let self = this;
+                setShared('listMasterToC', {
+                });
+                nts.uk.ui.windows.sub.modal('/view/cmm/013/c2/index.xhtml').onClosed(function(): any {
+                    let data: any = getShared('DialogCToMaster');
+					self.currentPositionCode(data.positionCode);
+					self.currentPositionName(data.positionName);
+                });
+            }
+
+			public openDialogD() {
+                let self = this;
+                setShared('listMasterToD', {
+                });
+                nts.uk.ui.windows.sub.modal('/view/cmm/022/d/index.xhtml').onClosed(function(): any {
+                    let data: any = getShared('DialogDToMaster');
+                });
+            }
+
+			public openDialogE() {
+                let self = this;
+                setShared('listMasterToE', {
+                });
+                nts.uk.ui.windows.sub.modal('/view/cmm/013/e/index.xhtml').onClosed(function(): any {
+                    let data: any = getShared('DialogEToMaster');
+                });
+            }
+
+			public openDialogF() {
+                let self = this;
+                setShared('listMasterToF', {
+                });
+                nts.uk.ui.windows.sub.modal('/view/cmm/013/f/index.xhtml').onClosed(function(): any {
+                    let data: any = getShared('DialogFToMaster');
+                });
+            }
+
+			public prepareToServer(isAbrogated: boolean): any {
+				let self = this;
+				
+				return {
+					positionCode: self.currentPositionCode(),
+					jobTitleCode: self.selectedJobTitleCode(),
+					historyId: self.historyList().map(e => e.historyId),
+					jobTitleName: self.historyList().map(e => e.jobTitleName),
+					startDate: self.historyList().map(e => e.startDate),
+					endtDate: self.historyList().map(e => e.endDate),
+					isAbrogated,
+					treatAsAManager: self.jobTitleIsManager()
+				}
+			}
 
             /**
              * Validate

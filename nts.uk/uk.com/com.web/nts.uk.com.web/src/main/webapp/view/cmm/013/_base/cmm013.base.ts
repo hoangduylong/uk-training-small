@@ -11,6 +11,8 @@ module nts.uk.com.view.cmm013 {
             public static SHARE_OUT_DIALOG_REMOVE_JOB: string = "SHARE_OUT_DIALOG_REMOVE_JOB"; 
             public static SHARE_IN_DIALOG_SELECT_SEQUENCE: string = "SHARE_IN_DIALOG_SELECT_SEQUENCE";
             public static SHARE_OUT_DIALOG_SELECT_SEQUENCE: string = "SHARE_OUT_DIALOG_SELECT_SEQUENCE"; 
+			public static SHARE_IN_DIALOG_ABROGATE_JOB_TITLE: string = "SHARE_IN_DIALOG_ABROGATE_JOB_TITLE";
+			public static SHARE_OUT_DIALOG_ABROGATE_JOB_TITLE: string = "SHARE_OUT_DIALOG_ABROGATE_JOB_TITLE"; 
             public static SHARE_IN_DIALOG_ADD_HISTORY: string = "SHARE_IN_DIALOG_ADD_HISTORY"; 
             public static SHARE_OUT_DIALOG_ADD_HISTORY: string = "SHARE_OUT_DIALOG_ADD_HISTORY"; 
             public static SHARE_IN_DIALOG_EDIT_HISTORY: string = "SHARE_IN_DIALOG_EDIT_HISTORY"; 
@@ -49,7 +51,7 @@ module nts.uk.com.view.cmm013 {
             historyId: string;
             startDate: string;
             endDate: string;
-			displayString: string;
+			displayString: KnockoutObservable<string> = ko.observable("");
 			
             
             constructor(jobTitleId: string, jobTitleName: string, historyId: string, startDate: string, endDate?: string) {
@@ -61,8 +63,14 @@ module nts.uk.com.view.cmm013 {
 				self.startDate = startDate;
 				self.endDate = endDate ? endDate : "31/12/9999";
 				
-				self.displayString = `${self.startDate} ~ ${self.endDate}`;
+				self.displayString(`${self.startDate} ~ ${self.endDate}`);
             }
+
+			public updateEndDate(endDate: string) : void{
+				this.endDate = endDate;
+				/*this.displayString = `${this.startDate} ~ ${this.endDate}`;*/
+				this.displayString(`${this.startDate} ~ ${this.endDate}`);
+			}
         }  
         /**
          * Position

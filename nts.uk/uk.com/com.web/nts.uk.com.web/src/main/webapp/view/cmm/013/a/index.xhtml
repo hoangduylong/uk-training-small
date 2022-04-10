@@ -9,8 +9,7 @@
 		<ui:define name="htmlHead">
 
 			<com:ValidatorScript>
-				nts.uk.ctx.bs.employee.dom.jobtitle.info.JobTitleCode
-				nts.uk.ctx.bs.employee.dom.jobtitle.info.JobTitleName
+				
 			</com:ValidatorScript>
 
 			<com:scriptfile set="IGNITE" />
@@ -31,9 +30,9 @@
 				<button tabindex="2" 
 					class="proceed btnStyle">登録</button>
 				<button tabindex="3"
-					class="danger btnStyle">廃止</button>
-				<button tabindex="4"
-					class="btnStyle">序列の登録</button>
+					class="danger btnStyle" data-bind="click: openDialogB">廃止</button>
+				<a href="../f/index.xhtml"><button tabindex="4"
+					class="btnStyle">序列の登録</button></a>
 			</div>
 			<div id="contents-area">
 				<div id="left-content">
@@ -102,148 +101,12 @@
 					</div>
 					<div id="position-area" class="panel">
 						<span>序列</span>
-						<button>設定</button>
+						<button data-bind = "click: openDialogC">設定</button>
 						<span data-bind="text: currentPositionCode"></span>
 						<span data-bind="text: currentPositionName"></span>
 					</div>
 				</div>
 			</div>
-			<!-- <div id="contents-area">
-				<div id="left-content">
-					<div id="job-title-items-list">
-						<table id="single-list" data-bind="ntsGridList: {								
-							height: 350,
-							options: jobTitleList,
-							optionsValue: 'code',
-							primaryKey: 'code',
-							columns: jobTitleColumns,
-							multiple: false,
-							value: selectedJobTitleCode
-						}"></table>
-					</div>
-				</div>
-
-				<div id="right-content">
-
-					<table class="table_content">
-						<colgroup>
-							<col width="85px" />
-							<col width="270px" />
-							<col width="*" />
-						</colgroup>
-
-						<tr>
-							<td style="vertical-align: top;">
-								<div data-bind="ntsFormLabel: {}">#{i18n.getText('CMM013_5')}</div>
-							</td>
-							<td data-bind="with: jobTitleHistoryModel">
-								<div id="list-box" tabindex="7"
-									data-bind="ntsListBox: {
-									name: '#[CMM013_6]',
-									options: listJobTitleHistory,
-									optionsValue: 'historyId',
-									optionsText: 'textDisplay',
-									multiple: false,
-									value: selectedHistoryId,
-									rows: 4,
-									columns: [
-										{ key: 'textDisplay', length: 15 }
-									]}">
-								</div>
-							</td>
-							<td style="vertical-align: top;">
-								<div>
-									<button tabindex="8"
-										data-bind="click: openAddHistoryDialog, enable: enable_button_add_history"
-										class="history-button">#{i18n.getText('CMM013_7')}</button>
-								</div>
-								<div>
-									<button tabindex="9"
-										data-bind="click: openUpdateHistoryDialog, enable: enable_button_update_history"
-										class="history-button">#{i18n.getText('CMM013_8')}</button>
-								</div>
-								<div>
-									<button tabindex="10"
-										data-bind="click: removeHistory, enable: enable_button_delete_history"
-										class="history-button danger">#{i18n.getText('CMM013_9')}</button>
-								</div>
-							</td>
-						</tr>
-
-						<tr>
-							<td>
-								<div
-									data-bind="ntsFormLabel: { 
-									constraint: 'JobTitleCode', 
-									required: true 
-								}">#{i18n.getText('CMM013_10')}</div>
-							</td>
-							<td><input id="job-title-code" tabindex="11"
-								data-bind="ntsTextEditor: {
-									value: jobTitleCode,
-									name: '#[CMM013_11]',
-									constraint: 'JobTitleCode',
-									option: {
-										width: '100px',
-									},
-									required: true,
-									enable: enable_input_job_title_code
-								}" />
-							</td>
-							<td></td>
-						</tr>
-
-						<tr>
-							<td>
-								<div
-									data-bind="ntsFormLabel: { 
-									constraint: 'JobTitleName',
-									required: true									
-								}">#{i18n.getText('CMM013_12')}</div>
-							</td>
-							<td><input id="job-title-name" tabindex="12"
-								data-bind="ntsTextEditor: {
-									value: jobTitleName,
-									name: '#[CMM013_13]',
-									constraint: 'JobTitleName',
-									option: {
-										width: '200px',
-									},
-									required: true
-								}" />
-							</td>
-							<td></td>
-						</tr>
-
-						<tr>
-							<td></td>
-							<td>
-								<div tabindex="13"
-									data-bind="ntsCheckBox: {
-									checked: jobTitleIsManager
-								}">#{i18n.getText('CMM013_52')}</div>
-							</td>
-							<td></td>
-						</tr>
-
-						<tr>
-							<td>
-								<div data-bind="ntsFormLabel: {}">#{i18n.getText('CMM013_14')}</div>
-							</td>
-							<td>
-								<button tabindex="14" data-bind="click: checkSequenceList"
-									class="btnStyle">#{i18n.getText('CMM013_15')}</button> <span
-								class="label" data-bind="text: sequenceCode"></span> <span
-								class="label" data-bind="text: sequenceName"></span>
-							</td>
-							<td></td>
-						</tr>
-
-					</table>
-
-
-				</div>
-			</div> -->
 
 		</ui:define>
 	</ui:composition>
