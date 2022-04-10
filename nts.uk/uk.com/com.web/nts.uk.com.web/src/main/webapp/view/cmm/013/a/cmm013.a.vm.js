@@ -12,19 +12,28 @@ var nts;
                     (function (a) {
                         var viewmodel;
                         (function (viewmodel) {
+                            var History = cmm013.base.History;
                             var JobTitle = cmm013.base.JobTitle;
                             var ScreenModel = /** @class */ (function () {
                                 function ScreenModel() {
                                     this.selectedJobTitleCode = ko.observable("");
+                                    this.currentJobTitleName = ko.observable("");
+                                    this.currentPositionCode = ko.observable("");
+                                    this.currentPositionName = ko.observable("");
                                     this.selectedHistoryId = ko.observable("");
                                     this.jobTitleIsManager = ko.observable(false);
                                     this.jobTitleList = ko.observableArray([]);
+                                    this.jobTitleFoundList = ko.observableArray([]);
+                                    this.historyList = ko.observableArray([]);
+                                    this.enableHistory = ko.observable(true);
                                     var self = this;
                                     // init UI table job title
                                     self.jobTitleColumns = ko.observableArray([
                                         { headerText: 'コード', key: 'jobTitleCode', width: 100 },
-                                        { headerText: '名称', key: 'jobTitleName', width: 150 }
+                                        { headerText: '名称', key: 'jobTitleName', width: 220 }
                                     ]);
+                                    // setup date default for search input
+                                    self.baseDate = ko.observable((new Date()).toDateString());
                                     // get data
                                     self.effect();
                                     // set active job (job code)
@@ -33,20 +42,30 @@ var nts;
                                 ScreenModel.prototype.effect = function () {
                                     var self = this;
                                     // first request data
-                                    /*service.findAllJobTitle()
-                                        .done((data: any) => {
-                                            console.log(data)
-                                        })
-                                        .fail((err: any) => {
-                                            console.log(err)
-                                        })*/
+                                    a.service.findAllJobTitle()
+                                        .done(function (data) {
+                                        console.log("Success: " + data);
+                                    })
+                                        .fail(function (err) {
+                                        console.log("Error: " + err);
+                                    });
                                     // get data of jobtitle list
                                     for (var i = 0; i < 20; i++) {
-                                        self.jobTitleList.push(new JobTitle("code_" + i, "name" + i));
-                                        console.log("fake data success");
+                                        self.jobTitleList.push(new JobTitle("code_" + i, "name" + i, "position_code_" + i + 1, "position_name_" + i + 1));
+                                        console.log("fake job data success");
                                     }
+                                    // select first element of list job
+                                    self.selectedJobTitleCode(self.jobTitleList()[0].jobTitleCode);
+                                    // get data of history for job title (get by selected job id)
+                                    for (var i = 0; i < 20; i++) {
+                                        self.historyList.push(new History("job", "history_name_" + i, "historyId_" + i, "3/1/2020", "1/3/2021"));
+                                        console.log("fake history data success");
+                                    }
+                                    // select first element of list history
+                                    self.selectedHistoryId(self.historyList()[0].historyId);
                                     // change events
                                     self.selectedJobTitleCode.subscribe(function (newJobCode) {
+                                        console.log(newJobCode);
                                         // reload job title info
                                         /*service.findHistoryList(newJobCode)
                                             .done((data: any) => {
@@ -56,19 +75,27 @@ var nts;
                                                 console.log(err)
                                             })*/
                                         // reset all state
+                                        var jobs = self.jobTitleList().filter(function (e) { return (e.jobTitleCode == newJobCode); });
+                                        if (jobs.length > 0) {
+                                            self.currentPositionName(jobs[0].position.positionName);
+                                            self.currentPositionCode(jobs[0].position.positionCode);
+                                        }
                                     });
                                     self.selectedHistoryId.subscribe(function (newHistoryId) {
+                                        console.log(newHistoryId);
                                         // check lastest history local
-                                        if (newHistoryId == self.historyList()[0].historyId) {
-                                            self.enable_button_history(true);
-                                        }
-                                        else {
-                                            self.enable_button_history(false);
+                                        var isCtrlHistory = self.isLastestHistory(newHistoryId);
+                                        self.enableHistory(isCtrlHistory);
+                                        // get job of history selected
+                                        var histories = self.historyList().filter(function (e) { return (e.historyId == newHistoryId); });
+                                        // exist elements
+                                        if (histories.length > 0) {
+                                            self.currentJobTitleName(histories[0].jobTitleName);
                                         }
                                     });
                                 };
                                 /**
-                                 * Reload component
+                                 * start
                                  */
                                 ScreenModel.prototype.startPage = function () {
                                     var dfd = $.Deferred();
@@ -77,6 +104,10 @@ var nts;
                                     nts.uk.ui.block.clear();
                                     dfd.resolve();
                                     return dfd.promise();
+                                };
+                                ScreenModel.prototype.isLastestHistory = function (historyId) {
+                                    var self = this;
+                                    return historyId == self.historyList()[0].historyId;
                                 };
                                 /**
                                  * Validate
@@ -108,48 +139,6 @@ var nts;
                                 return ScreenModel;
                             }());
                             viewmodel.ScreenModel = ScreenModel;
-                            /**
-                             * JobTitleHistoryModel
-                             */
-                            /*
-                    class JobTitleHistoryModel extends JobTitleHistoryAbstract {
-                    
-                                parentModel: ScreenModel;
-                    
-                                constructor(parentModel: ScreenModel) {
-                                    super();
-                                    let _self = this;
-                                    _self.parentModel = parentModel;
-                                    _self.selectedHistoryId.subscribe((jobHistoryId: string) => {
-                                        _self.parentModel.findJobInfo(_self.parentModel.selectedJobTitleId(), jobHistoryId);
-                                        _self.validateHistory();
-                                    })
-                                    _self.init([]);
-                                }
-                    
-                                public init(data: History[]): void {
-                                    let _self = this;
-                                    _self.listJobTitleHistory(data);
-                                    _self.selectFirst();
-                                }
-                    
-                                public clearData(): void {
-                                    let _self = this;
-                                    _self.listJobTitleHistory([]);
-                                    _self.selectedHistoryId(null);
-                                }
-                    
-                                public validateHistory(): void {
-                                    let _self = this;
-                                    let currentHistory: History = _self.getSelectedHistoryByHistoryId();
-                                    if (currentHistory && _self.isSelectedLatestHistory() && currentHistory.period.endDate === "9999/12/31") {
-                                        _self.parentModel.historyChangeMode(true);
-                                    } else {
-                                        _self.parentModel.historyChangeMode(false);
-                                    }
-                                }
-                            }
-                             */
                         })(viewmodel = a.viewmodel || (a.viewmodel = {}));
                     })(a = cmm013.a || (cmm013.a = {}));
                 })(cmm013 = view.cmm013 || (view.cmm013 = {}));

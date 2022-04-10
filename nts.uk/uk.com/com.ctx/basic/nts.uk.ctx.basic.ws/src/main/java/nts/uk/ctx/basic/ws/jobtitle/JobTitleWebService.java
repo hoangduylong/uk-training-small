@@ -17,7 +17,7 @@ import nts.uk.ctx.basic.app.command.training.jobtitle.UpdateJobTitleCommandHandl
 import nts.uk.ctx.basic.app.find.training.jobtitle.JobTitleFinderTraining;
 import nts.uk.ctx.basic.app.find.training.jobtitle.dto.JobTitleDtoTraining;
 
-@Path("basic/training/jobtitle")
+@Path("basic/training/jobtitle/")
 @Produces(MediaType.APPLICATION_JSON)
 public class JobTitleWebService extends WebService{
 	
