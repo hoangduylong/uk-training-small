@@ -11,6 +11,7 @@ module nts.uk.com.view.cmm013.f {
 			addPosition: "basic/training/position/add",
 			removePosition: "basic/training/position/remove",
 			updatePosition: "basic/training/position/update",
+			updateOrder: "basic/training/position/updateOrder",
 		}
 
 		/* findAllPosition */
@@ -36,6 +37,11 @@ module nts.uk.com.view.cmm013.f {
 		/* updatePosition */
 		export function updatePosition(position: Position): JQueryPromise<any> {
 			return nts.uk.request.ajax(servicePath.addPosition, { Position: position });
+		}
+		
+		/* update order */
+		export function updateOrder(position: Position): JQueryPromise<any> {
+			return nts.uk.request.ajax(servicePath.updateOrder, { positionList: position });
 		}
 
 

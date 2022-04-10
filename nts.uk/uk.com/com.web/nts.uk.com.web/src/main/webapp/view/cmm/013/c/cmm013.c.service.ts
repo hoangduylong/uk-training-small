@@ -1,26 +1,22 @@
-module nts.uk.com.view.cmm013.c {
-    
-    export module service {
-        
-        /**
-         *  Service paths
+module nts.uk.com.view.cmm013.b {
+
+	import Position = base.Position;
+
+	export module service {
+
+		/**
+	 	 * Service path
+	 	 */
+		let servicePath: any = {
+			findAllPosition: "basic/training/position/find/all",
+		}
+
+		/**
+         * getListPosition
          */
-        var servicePath: any = {
-            findBySequenceCode: "bs/employee/jobtitle/sequence/find",
-        };     
-        
-        /**
-         * findBySequenceCode
-         */
-        export function findBySequenceCode(sequenceCode: string): JQueryPromise<any> {
-            return nts.uk.request.ajax(servicePath.findBySequenceCode, {sequenceCode: sequenceCode});
-        }
-        
-        /**
-        * Model namespace.
-        */
-        export module model {
-            
-        }
-    }
+		export function findAllPosition(): JQueryPromise<Array<Position>> {
+			return nts.uk.request.ajax(servicePath.findAllPosition);
+		}
+		
+	}
 }
