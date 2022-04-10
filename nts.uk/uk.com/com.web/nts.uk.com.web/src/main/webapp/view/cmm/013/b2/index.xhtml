@@ -74,10 +74,10 @@
 
 				<div class="line"></div>
 
-				<div class="item group part">
-					<button class="item button button-submit"
-						data-bind="click: execution">実行</button>
-					<button class="item button button-cancel" data-bind="click: close">キャンセル</button>
+				<div class="flex-item">
+					<div><button class="item button button-submit"
+						data-bind="click: execution">実行</button></div>
+					<div><button class="item button button-cancel" data-bind="click: close">キャンセル</button></div>
 				</div>
 			</div>
 			
@@ -133,6 +133,11 @@
 
 .button-cancel:hover {
 	background-color: #e4e4e4;
+}
+
+.flex-item {
+	display: flex;
+	justify-content: center;
 }
 
 .line {

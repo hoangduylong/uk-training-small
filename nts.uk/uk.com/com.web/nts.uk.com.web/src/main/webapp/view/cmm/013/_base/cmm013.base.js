@@ -51,19 +51,17 @@ var nts;
                          */
                         var History = /** @class */ (function () {
                             function History(jobTitleId, jobTitleName, historyId, startDate, endDate) {
-                                this.displayString = ko.observable("");
                                 var self = this;
                                 self.jobTitleId = jobTitleId;
                                 self.jobTitleName = jobTitleName;
                                 self.historyId = historyId;
                                 self.startDate = startDate;
                                 self.endDate = endDate ? endDate : "31/12/9999";
-                                self.displayString("".concat(self.startDate, " ~ ").concat(self.endDate));
+                                self.displayString = "".concat(self.startDate, " ~ ").concat(self.endDate);
                             }
                             History.prototype.updateEndDate = function (endDate) {
                                 this.endDate = endDate;
-                                /*this.displayString = `${this.startDate} ~ ${this.endDate}`;*/
-                                this.displayString("".concat(this.startDate, " ~ ").concat(this.endDate));
+                                this.displayString = "".concat(this.startDate, " ~ ").concat(this.endDate);
                             };
                             return History;
                         }());

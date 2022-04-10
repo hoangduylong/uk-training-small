@@ -51,7 +51,7 @@ module nts.uk.com.view.cmm013 {
             historyId: string;
             startDate: string;
             endDate: string;
-			displayString: KnockoutObservable<string> = ko.observable("");
+			displayString: string;
 			
             
             constructor(jobTitleId: string, jobTitleName: string, historyId: string, startDate: string, endDate?: string) {
@@ -63,13 +63,13 @@ module nts.uk.com.view.cmm013 {
 				self.startDate = startDate;
 				self.endDate = endDate ? endDate : "31/12/9999";
 				
-				self.displayString(`${self.startDate} ~ ${self.endDate}`);
+				self.displayString = `${self.startDate} ~ ${self.endDate}`;
             }
 
 			public updateEndDate(endDate: string) : void{
 				this.endDate = endDate;
-				/*this.displayString = `${this.startDate} ~ ${this.endDate}`;*/
-				this.displayString(`${this.startDate} ~ ${this.endDate}`);
+				this.displayString = `${this.startDate} ~ ${this.endDate}`;
+				
 			}
         }  
         /**

@@ -26,7 +26,7 @@ module nts.uk.com.view.cmm013.b2 {
                 let shared = getShared('listMasterToB');
 				this.jobCode(shared.jobTitleCode);
 				this.jobName(shared.jobTitleName);
-				console.log(shared)
+				//console.log(shared)
 				dfd.resolve();
                 return dfd.promise();
             }
@@ -40,9 +40,10 @@ module nts.uk.com.view.cmm013.b2 {
                     return;
                 }
 */				let transferObj: any = {
-					abrogatedDate: "2022/12/12"
+					abrogatedDate: self.abrogatedDate().slice(0, 10)
 				};
-				self.abrogatedDate("2022/12/12");
+				
+				/*self.abrogatedDate("2022/12/12");*/
 				/*transferObj.abrogatedDate =  self.abrogatedDate;*/
                 setShared('DialogBToMaster', transferObj);
                 self.close();
