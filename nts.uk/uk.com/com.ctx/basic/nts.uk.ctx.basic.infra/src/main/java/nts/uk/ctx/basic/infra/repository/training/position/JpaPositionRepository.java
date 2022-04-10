@@ -8,6 +8,8 @@ import javax.ejb.Stateless;
 
 import nts.arc.layer.infra.data.JpaRepository;
 import nts.uk.ctx.basic.dom.training.position.PositionTraining;
+import nts.uk.ctx.basic.dom.training.position.PositionCodeTraining;
+import nts.uk.ctx.basic.dom.training.position.PositionNameTraining;
 import nts.uk.ctx.basic.dom.training.position.PositionRepositoryTraining;
 import nts.uk.ctx.basic.infra.entity.training.position.PositionClassification;
 import nts.uk.ctx.basic.infra.entity.training.position.PositionClassificationPK;
@@ -40,7 +42,14 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 	public void add(PositionTraining position) {
 		this.commandProxy().insert(toEntity(position));
 	}
-
+	
+	
+	@Override
+	public void remove(String positionCode) {
+		PositionClassificationPK key = new PositionClassificationPK(positionCode);
+		this.commandProxy().remove(PositionClassificationPK.class, key);	
+	}
+	
 
 	@Override
 	public void update(PositionTraining position) {
@@ -50,13 +59,6 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 
 
 	@Override
-	public void remove(String positionCode) {
-		PositionClassificationPK key = new PositionClassificationPK(positionCode);
-		this.commandProxy().remove(PositionClassificationPK.class, key);	
-	}
-	
-	
-	@Override
 	public void updateOrder(List<PositionTraining> positionList) {
 		this.commandProxy().updateAll(positionList.stream()
 				.map(domain -> this.toEntity(domain))
@@ -64,12 +66,12 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 	}
 	
 	
+	// convert domain to entity 
 	private PositionClassification toEntity(PositionTraining domain) {
 		PositionClassificationPK key = new PositionClassificationPK(domain.getPositionCode().v());
 		PositionClassification entity = 
 				new PositionClassification(key, domain.getPositionName().v(), domain.getPositionOrder());
 		return entity;
 	}
-
+	
 }
-

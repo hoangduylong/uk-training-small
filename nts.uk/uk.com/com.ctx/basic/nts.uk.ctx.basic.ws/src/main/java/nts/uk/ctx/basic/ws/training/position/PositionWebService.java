@@ -18,74 +18,68 @@ import nts.uk.ctx.basic.app.command.training.position.UpdatePositionCommandHandl
 import nts.uk.ctx.basic.app.find.training.position.PositionFinder;
 import nts.uk.ctx.basic.app.find.training.position.dto.PositionDto;
 
-
 @Path("basic/training/position")
 @Produces(MediaType.APPLICATION_JSON)
-public class PositionWebService extends WebService{
-	
+public class PositionWebService extends WebService {
 
 	@Inject
 	private AddPositionCommandHandler addPositionCommandHandler;
 
 	@Inject
 	private UpdatePositionCommandHandler updatePositionCommandHandler;
-	
+
 	@Inject
 	private RemovePositionCommandHandler removePositionCommandHandler;
-	
+
 	@Inject
 	private PositionFinder positionFinder;
 
 	
-	/**
-	 * add position
-	 * @param command
-	 */
-	@POST
-	@Path("add")
-	public void add(AddPositionCommand command) {
-		this.addPositionCommandHandler.handle(command);
-	}
-    
-	/**
-	 * update position
-	 * @param command
-	 */
-	@POST
-	@Path("update")
-	public void update(UpdatePositionCommand command) {
-		this.updatePositionCommandHandler.handle(command);
-	}
-	
-	/**
-	 * remove position
-	 * @param command
-	 */
-	@POST
-	@Path("remove")
-	public void remove(RemovePositionCommand command) {
-		this.removePositionCommandHandler.handle(command);
-	}
-	
-	/**
-	 * find all position
-	 * @return
-	 */
+	// find all position
 	@POST
 	@Path("findAll")
 	public List<PositionDto> findAll() {
 		return this.positionFinder.findAll();
 	}
+
 	
-	
-	/**
-	 * find by positionCode
-	 * @return
-	 */
+	// find by positionCode
 	@POST
 	@Path("findByPositionCode")
 	public PositionDto findByPositionCode(String positionCode) {
 		return this.positionFinder.findByPositionCode(positionCode);
+	}
+
+	
+	// add position
+	@POST
+	@Path("add")
+	public void add(AddPositionCommand command) {
+		this.addPositionCommandHandler.handle(command);
+	}
+
+	
+	// remove position
+	@POST
+	@Path("remove")
+	public void remove(RemovePositionCommand command) {
+		this.removePositionCommandHandler.handle(command);
+	}
+		
+	
+	// update position
+	@POST
+	@Path("update")
+	public void update(UpdatePositionCommand command) {
+		this.updatePositionCommandHandler.handle(command);
+	}
+
+	
+	// update position's order
+	@POST
+	@Path("updateOrder")
+	public void updateOrder(List<UpdatePositionCommand> commandList) {
+		this.updatePositionCommandHandler.updateOrder(commandList);
 	}
 
 }

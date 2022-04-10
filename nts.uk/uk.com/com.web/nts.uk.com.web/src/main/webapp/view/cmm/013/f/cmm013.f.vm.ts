@@ -30,12 +30,12 @@ module nts.uk.com.view.cmm013.f {
 				self.order = ko.observable(0);
 
 				self.currentCode = ko.observable(null);
-				self.currentCode.subscribe((newValue) => {
-                    self.select(newValue);
-                    if (!_.isEmpty(newValue)) {
+				/*self.currentCode.subscribe((selectedCode) => {
+                    self.select(selectedCode);
+                    if (!_.isEmpty(selectedCode)) {
                         nts.uk.ui.errors.clearAll();    
                     }
-				});
+				});*/
 
 				self.index = 0;
 
@@ -50,23 +50,23 @@ module nts.uk.com.view.cmm013.f {
 			}
 			
 			
-			public select(selectedValue: string): void {
+			/*public select(selectedCode: string): void {
 				let self = this;   
 				      
-                if (selectedValue) {
-					self.positionCode(selectedValue);
+                if (selectedCode) {
+					self.positionCode(selectedCode);
 					
-                    // Find sequence by sequence code
-                    /*service.findByPositionCode(newValue)
+                    // Find position by position code
+                    service.findByPositionCode(selectedCode)
                         .done((data: Position) => {                        
-                            if (data) {                              
-                                // Found sequence         
+                            if (data) {                           
+                                // position found     
                                 self.isCreateNew(false);                                                     
                                 self.positionCode(data.positionCode);
                                 self.positionName(data.positionName);    
                                 self.order(data.order);                           
                             } else {                               
-                                // Sequence not found
+                                // position not found
                                 self.positionCode("");
                                 self.positionName("");   
                             }
@@ -79,12 +79,12 @@ module nts.uk.com.view.cmm013.f {
                         })
                         .fail((res: any) => {
                             self.showMessageError(res);
-                        });*/                       
+                        });                     
                 } else {
                    // No position selected, switch to create new
                    self.isCreateNew(true); 
-                }               
-			}
+                }
+			}*/
 
 
 			private loadPositionList2(): void {
@@ -100,28 +100,28 @@ module nts.uk.com.view.cmm013.f {
 			startPage(): JQueryPromise<any> {
 				let self = this;
 
-				let dfd = $.Deferred<any>();
-				//var dfd = $.Deferred<void>();
+				//let dfd = $.Deferred<any>();
+				var dfd = $.Deferred<void>();
 
-				/*self.loadPositionList2()
+				/*self.loadPositionList()
 					.done((data: Position[]) => {
 						// Update position mode
-						self.createNew(false);
+						self.isCreateNew(false);
 						self.positionList(data);
 					})
 					.fail((res: any) => {
 						// Create new position mode
-						self.createNew(true);
+						self.isCreateNew(true);
 						self.positionList([]);
 					})*/
+					
 				dfd.resolve();
-
 				return dfd.promise();;
 			}
 
 
 			// load position list
-			public loadPositionList(): JQueryPromise<any> {
+			/*public loadPositionList(): JQueryPromise<any> {
 				let dfd = $.Deferred<any>();
 
 				service.findAllPosition()
@@ -132,7 +132,7 @@ module nts.uk.com.view.cmm013.f {
 						dfd.reject(res);
 					});
 				return dfd.promise();
-			}
+			}*/
 
 
 			// create new position mode
@@ -153,7 +153,7 @@ module nts.uk.com.view.cmm013.f {
 				/*service.addPosition(newPosition)
 					.done((data: any) => {
 						self.positionList().push(newPosition);
-						self.loadPositionList2()
+						self.loadPositionList()
 							.done((data: Position[]) => {
 								// Update position mode
 								self.isCreateNew(false);
@@ -162,7 +162,7 @@ module nts.uk.com.view.cmm013.f {
 							.fail((res: any) => {
 								// Create new position mode
 								self.isCreateNew(true);
-								//self.positionList([]);
+								self.positionList([]);
 							})
 					})
 					.fail((res: any) => {
@@ -285,7 +285,7 @@ module nts.uk.com.view.cmm013.f {
 				let positionList: any[] = self.positionList();
 				let order = 1;
 
-				/* update all position's order in list in UI side */
+				// update all position's order in list in UI side
 				for (let position of positionList) {
 					position.order = order;
 					order++;

@@ -5,42 +5,22 @@ import java.util.Optional;
 
 public interface PositionRepositoryTraining {
 	
-	/**
-	 * Get list of Position
-	 * @param positionCode
-	 * @return
-	 */
+	// Get list of Position
 	List<PositionTraining> findAll();
 	
-	/**
-	 * Find position by positionCode
-	 * @param positionCode
-	 * @return
-	 */
+	// Find position by positionCode
 	Optional<PositionTraining> findByPositionCode(String positionCode);
 
-	/**
-	 * Add new position
-	 * @param position
-	 */
+	// Add new position
 	void add(PositionTraining position);
 
-	/**
-	 * Update position information
-	 * @param position
-	 */
+	// Update position information
 	void update(PositionTraining position);
 
-	/**
-	 * Remove a position
-	 * @param positionCode
-	 */
+	// Remove a position
 	void remove(String positionCode);
 	
-	/**
-	 * Update position's order
-	 */
+	// Update position's order
 	void updateOrder(List<PositionTraining> positionList);
-	
 
 }

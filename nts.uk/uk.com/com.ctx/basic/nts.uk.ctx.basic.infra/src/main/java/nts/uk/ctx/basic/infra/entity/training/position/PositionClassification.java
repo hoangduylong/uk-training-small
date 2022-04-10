@@ -24,16 +24,19 @@ public class PositionClassification extends UkJpaEntity implements Serializable{
 	@EmbeddedId
 	public PositionClassificationPK positionClassificationPK;
 
-	@Basic(optional = false)
+	
 	@NotNull
+	@Basic(optional = false)
 	@Column(name = "POSITION_NAME")
 	public String positionName;
 	
-	@Basic(optional = false)
+
 	@NotNull
+	@Basic(optional = false)
 	@Column(name = "POSITION_ORDER")
 	public int positionOrder;
 
+	
 	protected Object getKey() {
 		return positionClassificationPK;
 	}
