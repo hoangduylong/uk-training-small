@@ -5,35 +5,22 @@ import nts.arc.layer.dom.objecttype.DomainAggregate;
 
 public class PositionTraining implements DomainAggregate {
 
-	/**
-	 * Position Code
-	 */
+	// Position Code
 	@Getter
-	@Setter
 	private PositionCodeTraining positionCode;
 	
-	/**
-	 * Position Name
-	 */
+	// Position Name
 	@Getter
 	@Setter
 	private PositionNameTraining positionName;
 	
-	/**
-	 * Position Order
-	 */
+	// Position Order
 	@Getter
 	@Setter
 	private int positionOrder;
 
 	
-	
-	/*
-	 * Constructor
-	 * @param positionCode
-	 * @param positionName
-	 * @param positionOrder
-	 */
+	// Constructor
 	public PositionTraining(PositionCodeTraining positionCode, PositionNameTraining positionName, int positionOrder) {
 		super();
 		this.positionCode = positionCode;
@@ -42,12 +29,7 @@ public class PositionTraining implements DomainAggregate {
 	}
 
 
-	/**
-	 * Convert java type to domain
-	 * @param positionCode
-	 * @param positionName
-	 * @return
-	 */
+	// Convert java type to domain
 	public static PositionTraining toDomain(String positionCode, String positionName, int positionOrder) {
 		return new PositionTraining(
 			new PositionCodeTraining(positionCode),

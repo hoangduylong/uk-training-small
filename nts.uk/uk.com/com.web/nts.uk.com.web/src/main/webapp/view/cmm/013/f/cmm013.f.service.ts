@@ -11,6 +11,7 @@ module nts.uk.com.view.cmm013.f {
 			addPosition: "basic/training/position/add",
 			removePosition: "basic/training/position/remove",
 			updatePosition: "basic/training/position/update",
+			updateOrder: "basic/training/position/updateOrder",
 		}
 
 		/* findAllPosition */

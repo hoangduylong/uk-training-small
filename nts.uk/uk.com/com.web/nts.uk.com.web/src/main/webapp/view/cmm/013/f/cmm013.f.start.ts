@@ -4,7 +4,7 @@ module nts.uk.com.view.cmm013.f {
         screenModel.startPage().done(function() {
             __viewContext.bind(screenModel);
             
-
+			
         });
     });
 }

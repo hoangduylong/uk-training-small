@@ -106,10 +106,12 @@ module nts.uk.com.view.cmm013 {
 
 			positionCode: string;
 			positionName: string;
+			order: number;
 
-			constructor(positionCode: string, positionName: string) {
+			constructor(positionCode: string, positionName: string, order: number) {
 				this.positionCode = positionCode;
 				this.positionName = positionName;
+				this.order = order;
 			}
 		}
 	}
