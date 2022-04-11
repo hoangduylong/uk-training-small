@@ -38,10 +38,10 @@ var nts;
                          * JobTitle
                          */
                         var JobTitle = /** @class */ (function () {
-                            function JobTitle(jobTitleCode, jobTitleName, positionCode, positionName) {
+                            function JobTitle(jobTitleCode, jobTitleName, positionCode, positionName, positionOrder) {
                                 this.jobTitleCode = jobTitleCode;
                                 this.jobTitleName = jobTitleName;
-                                this.position = new Position(positionCode, positionName);
+                                this.position = new Position(positionCode, positionName, positionOrder);
                             }
                             return JobTitle;
                         }());

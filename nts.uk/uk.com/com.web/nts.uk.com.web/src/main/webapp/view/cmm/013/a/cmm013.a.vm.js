@@ -21,6 +21,7 @@ var nts;
                                     this.selectedJobTitleCode = ko.observable("");
                                     this.currentJobTitleName = ko.observable("");
                                     this.currentPositionCode = ko.observable("");
+                                    this.currentPositionOrder = ko.observable("");
                                     this.currentPositionName = ko.observable("");
                                     this.selectedHistoryId = ko.observable("");
                                     this.jobTitleIsManager = ko.observable(false);
@@ -53,7 +54,7 @@ var nts;
                                     });
                                     // get data of jobtitle list
                                     for (var i = 0; i < 20; i++) {
-                                        self.jobTitleList.push(new JobTitle("code_" + i, "name" + i, "position_code_" + i + 1, "position_name_" + i + 1));
+                                        self.jobTitleList.push(new JobTitle("code_" + i, "name" + i, "position_code_" + i + 1, "position_name_" + i + 1, 1));
                                         console.log("fake job data success");
                                     }
                                     // select first element of list job
@@ -81,6 +82,7 @@ var nts;
                                         if (jobs.length > 0) {
                                             self.currentPositionName(jobs[0].position.positionName);
                                             self.currentPositionCode(jobs[0].position.positionCode);
+                                            self.currentPositionOrder(jobs[0].position.order + "");
                                         }
                                     });
                                     self.selectedHistoryId.subscribe(function (newHistoryId) {
@@ -123,11 +125,18 @@ var nts;
                                     nts.uk.ui.windows.sub.modal('/view/cmm/013/b2/index.xhtml').onClosed(function () {
                                         var data = getShared('DialogBToMaster');
                                         console.log(data);
-                                        self.historyList()[0].updateEndDate(data.abrogatedDate);
-                                        /*let newHistories = [...self.historyList()]
-                                        newHistories[0].updateEndDate(data.abrogatedDate);
-                                        self.historyList(newHistories)
-                                        console.log(self.historyList()[0].endDate)*/
+                                        /*let arrrew: any = [];
+                                        for (let i = 0; i < self.historyList().length; i++) {
+                                            arrrew.push(new History())
+                                        }*/
+                                        //self.historyList()[0].updateEndDate(data.abrogatedDate)
+                                        //let newHistories = [...self.historyList()]
+                                        //newHistories[0].updateEndDate(data.abrogatedDate);
+                                        //self.historyList(arrrew);
+                                        var first = self.historyList.shift();
+                                        self.historyList.unshift(new History(first.jobTitleId, first.jobTitleName, first.historyId, first.startDate, data.abrogatedDate));
+                                        self.historyList.valueHasMutated();
+                                        console.log(self.historyList()[0].endDate);
                                         console.log(123);
                                         console.log(self.historyList());
                                     });
@@ -143,9 +152,12 @@ var nts;
                                 };
                                 ScreenModel.prototype.openDialogD = function () {
                                     var self = this;
-                                    setShared('listMasterToD', {});
+                                    setShared('listMasterToD', {
+                                        historyList: self.historyList()
+                                    });
                                     nts.uk.ui.windows.sub.modal('/view/cmm/022/d/index.xhtml').onClosed(function () {
                                         var data = getShared('DialogDToMaster');
+                                        console.log(data);
                                     });
                                 };
                                 ScreenModel.prototype.openDialogE = function () {
@@ -153,13 +165,6 @@ var nts;
                                     setShared('listMasterToE', {});
                                     nts.uk.ui.windows.sub.modal('/view/cmm/013/e/index.xhtml').onClosed(function () {
                                         var data = getShared('DialogEToMaster');
-                                    });
-                                };
-                                ScreenModel.prototype.openDialogF = function () {
-                                    var self = this;
-                                    setShared('listMasterToF', {});
-                                    nts.uk.ui.windows.sub.modal('/view/cmm/013/f/index.xhtml').onClosed(function () {
-                                        var data = getShared('DialogFToMaster');
                                     });
                                 };
                                 ScreenModel.prototype.prepareToServer = function (isAbrogated) {
@@ -185,22 +190,6 @@ var nts;
                                     $('#job-title-code').ntsEditor('validate');
                                     $('#job-title-name').ntsEditor('validate');
                                     return !$('.nts-input').ntsError('hasError');
-                                };
-                                /**
-                                 * Show Error Message
-                                 */
-                                ScreenModel.prototype.showMessageError = function (res) {
-                                    // check error business exception
-                                    if (!res.businessException) {
-                                        return;
-                                    }
-                                    // show error message
-                                    if (Array.isArray(res.errors)) {
-                                        nts.uk.ui.dialog.bundledErrors(res);
-                                    }
-                                    else {
-                                        nts.uk.ui.dialog.alertError({ messageId: res.messageId, messageParams: res.parameterIds });
-                                    }
                                 };
                                 return ScreenModel;
                             }());

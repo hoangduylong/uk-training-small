@@ -19,6 +19,7 @@ module nts.uk.com.view.cmm013.a {
             selectedJobTitleCode: KnockoutObservable<string> = ko.observable("");
 			currentJobTitleName: KnockoutObservable<string> = ko.observable("");
 			currentPositionCode: KnockoutObservable<string> = ko.observable("");
+			currentPositionOrder: KnockoutObservable<string> = ko.observable("");
 			currentPositionName: KnockoutObservable<string> = ko.observable("");
 			selectedHistoryId: KnockoutObservable<string> = ko.observable("");
             jobTitleIsManager: KnockoutObservable<boolean> = ko.observable(false);
@@ -65,7 +66,7 @@ module nts.uk.com.view.cmm013.a {
 					
 				// get data of jobtitle list
                 for (let i = 0; i < 20; i++) {
-					self.jobTitleList.push(new JobTitle("code_"+i, "name"+i, "position_code_"+i+1, "position_name_"+i+1));
+					self.jobTitleList.push(new JobTitle("code_"+i, "name"+i, "position_code_"+i+1, "position_name_"+i+1, 1));
 					console.log("fake job data success");
 				}
 				// select first element of list job
@@ -97,6 +98,7 @@ module nts.uk.com.view.cmm013.a {
 					if (jobs.length > 0) {						
 						self.currentPositionName(jobs[0].position.positionName);
 						self.currentPositionCode(jobs[0].position.positionCode);
+						self.currentPositionOrder(jobs[0].position.order+"");
 					}
 				})
 				
@@ -121,7 +123,7 @@ module nts.uk.com.view.cmm013.a {
 			public startPage(): JQueryPromise<void> {
                 var dfd = $.Deferred<void>();
                 var self = this;
-                nts.uk.ui.block.invisible();
+               nts.uk.ui.block.invisible();
                 
                 
                 nts.uk.ui.block.clear();
@@ -147,11 +149,18 @@ module nts.uk.com.view.cmm013.a {
                 nts.uk.ui.windows.sub.modal('/view/cmm/013/b2/index.xhtml').onClosed(function(): any {
                     let data: any = getShared('DialogBToMaster');
 					console.log(data);
-					self.historyList()[0].updateEndDate(data.abrogatedDate)
-					/*let newHistories = [...self.historyList()]
-					newHistories[0].updateEndDate(data.abrogatedDate);
-					self.historyList(newHistories)
-					console.log(self.historyList()[0].endDate)*/
+					/*let arrrew: any = [];
+					for (let i = 0; i < self.historyList().length; i++) {
+						arrrew.push(new History())
+					}*/
+					//self.historyList()[0].updateEndDate(data.abrogatedDate)
+					//let newHistories = [...self.historyList()]
+					//newHistories[0].updateEndDate(data.abrogatedDate);
+					//self.historyList(arrrew);
+					let first = self.historyList.shift();
+					self.historyList.unshift(new History(first.jobTitleId, first.jobTitleName, first.historyId, first.startDate, data.abrogatedDate));
+					self.historyList.valueHasMutated();
+					console.log(self.historyList()[0].endDate)
 					console.log(123)
 					console.log(self.historyList());
                 });
@@ -171,9 +180,11 @@ module nts.uk.com.view.cmm013.a {
 			public openDialogD() {
                 let self = this;
                 setShared('listMasterToD', {
+					historyList: self.historyList()
                 });
                 nts.uk.ui.windows.sub.modal('/view/cmm/022/d/index.xhtml').onClosed(function(): any {
                     let data: any = getShared('DialogDToMaster');
+					console.log(data)
                 });
             }
 
@@ -183,15 +194,6 @@ module nts.uk.com.view.cmm013.a {
                 });
                 nts.uk.ui.windows.sub.modal('/view/cmm/013/e/index.xhtml').onClosed(function(): any {
                     let data: any = getShared('DialogEToMaster');
-                });
-            }
-
-			public openDialogF() {
-                let self = this;
-                setShared('listMasterToF', {
-                });
-                nts.uk.ui.windows.sub.modal('/view/cmm/013/f/index.xhtml').onClosed(function(): any {
-                    let data: any = getShared('DialogFToMaster');
                 });
             }
 
@@ -228,7 +230,7 @@ module nts.uk.com.view.cmm013.a {
             /**
              * Show Error Message
              */
-            public showMessageError(res: any): void {
+           /* public showMessageError(res: any): void {
                 // check error business exception
                 if (!res.businessException) {
                     return;
@@ -240,7 +242,7 @@ module nts.uk.com.view.cmm013.a {
                 } else {
                     nts.uk.ui.dialog.alertError({ messageId: res.messageId, messageParams: res.parameterIds });
                 }
-            }   
+            }   */
         }
     }
 }

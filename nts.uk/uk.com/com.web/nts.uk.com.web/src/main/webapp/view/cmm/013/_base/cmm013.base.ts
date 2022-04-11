@@ -34,10 +34,10 @@ module nts.uk.com.view.cmm013 {
 
 			position: Position;
             
-            constructor(jobTitleCode: string, jobTitleName: string, positionCode: string, positionName: string) {
+            constructor(jobTitleCode: string, jobTitleName: string, positionCode: string, positionName: string, positionOrder: number) {
                 this.jobTitleCode = jobTitleCode;
                 this.jobTitleName = jobTitleName;
-				this.position = new Position(positionCode, positionName);
+				this.position = new Position(positionCode, positionName, positionOrder);
             }
         }
                         
