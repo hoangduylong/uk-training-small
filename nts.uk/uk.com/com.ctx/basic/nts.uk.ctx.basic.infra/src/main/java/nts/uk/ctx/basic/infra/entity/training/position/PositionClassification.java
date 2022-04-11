@@ -6,6 +6,7 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -20,9 +21,10 @@ import nts.uk.shr.infra.data.entity.UkJpaEntity;
 public class PositionClassification extends UkJpaEntity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
-	@EmbeddedId
-	public PositionClassificationPK positionClassificationPK;
+	
+	@Id
+	@Column(name="POSITION_CD")
+	public String positionCode;
 
 	
 	@NotNull
@@ -36,8 +38,8 @@ public class PositionClassification extends UkJpaEntity implements Serializable{
 	@Column(name = "POSITION_ORDER")
 	public int positionOrder;
 
-	
+
 	protected Object getKey() {
-		return positionClassificationPK;
+		return positionCode;
 	}
 }

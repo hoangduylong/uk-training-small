@@ -74,7 +74,7 @@ module nts.uk.com.view.cmm013.f {
 			}
 
 
-			public select(selectedCode: string): void {
+			public select(selectedCode: String): void {
 				let self = this;
 
 				if (selectedCode) {
@@ -101,6 +101,7 @@ module nts.uk.com.view.cmm013.f {
 							if (self.isCreateNew()) {
 								$('#position-code').focus();
 							} else {
+								$('#position-code').disable();
 								$('#position-name').focus();
 							}
 						})
@@ -188,7 +189,7 @@ module nts.uk.com.view.cmm013.f {
 				let addCommand: AddPositionCommand = new AddPositionCommand(self.positionCode(), 
 																			self.positionName(), 0);
 				
-				let updateCommand: AddPositionCommand = new AddPositionCommand(self.positionCode(), 
+				let updateCommand: UpdatePositionCommand = new UpdatePositionCommand(self.positionCode(), 
 																			   self.positionName(), 0);
 
 
