@@ -64,7 +64,7 @@ module nts.uk.com.view.cmm013.d {
 				
 				let valid: boolean = listHistory.every(function (history)
 				{
-					return  new Date(_self.startDate()) > new Date(history.period.startDate)
+					return  new Date(_self.startDate()) > new Date(history.startDate)
 				})
 				if(!valid)
 				{

@@ -50,7 +50,7 @@ module nts.uk.com.view.cmm013 {
                 this.jobTitleId = jobTitleId;
                 this.historyId = historyId;
 				this.startDate = startDate;
-				this.endDate = endDate ? endDate : "31/12/9999";
+				this.endDate = endDate ? endDate : "9999/12/31";
             }     
         }    
         /*
