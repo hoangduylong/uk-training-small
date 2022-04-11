@@ -2,6 +2,7 @@ package nts.uk.ctx.basic.app.command.training.position;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
@@ -33,18 +34,20 @@ public class UpdatePositionCommandHandler extends CommandHandler<UpdatePositionC
 		
 		// convert to domain
 		PositionTraining domain = PositionTraining.toDomain(command.getPositionCode(), 
-											command.getPositionName(), 
-											command.getPositionOrder());
+															command.getPositionName(), 
+															command.getPositionOrder());
 				
 		// validate
 		domain.validate();
 				
 		// update position
 		positionRepository.update(domain);
-		
-		
-//		public void updateOrder(List<UpdatePositionCommand> listCommand) {
-//			this.repository.updateOrder(listCommand.stream().map(command -> Position.toDomain(companyId)).collect(Collectors.toList()));
-//		}
-		
-	}}
+	}
+	
+	public void updateOrder(List<UpdatePositionCommand> commandList) {
+		this.positionRepository.updateOrder(commandList.stream()
+											.map(command -> command.toDomain(command))
+											.collect(Collectors.toList()));
+	}
+	
+}

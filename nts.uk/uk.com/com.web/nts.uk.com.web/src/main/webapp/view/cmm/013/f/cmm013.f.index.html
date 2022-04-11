@@ -59,7 +59,7 @@
   </script>
 
   <!-- create button -->
-  <label class="title" style="margin-left: 20px; font-size: 24px;">序列の登録</label>
+  <label class="title" style="margin-left: 20px; font-size: 18px;">序列の登録</label>
   <button class="createNew" data-bind="click: createNewPositionMode" onclick="clearTextbox()">新規</button>
   <button class="save" data-bind="click: save">登録</button>
   <button class="close" data-bind="click: close">閉じる</button>
@@ -163,9 +163,11 @@
   <script>
     
     // master table
-    var index
-
-    function selectedRow() {
+    /* var index
+    var screenModel = new viewmodel.ScreenModel();
+    screenModel.selectedRow()
+ */
+    /* function selectedRow() {
       let masterTable = document.getElementById("masterTable")
 
       for (let i = 0; i < masterTable.rows.length; i++) {
@@ -204,7 +206,7 @@
         // when the row go down the index will be equal to index + 1
         index++;
       }
-    }
+    } */
 
     function clearTextbox() {
       document.getElementById("code").value = ""

@@ -5,36 +5,47 @@ module nts.uk.com.view.cmm013.a {
         import Constants = base.Constants;
 
         import History = base.History;
-
         import JobTitle = base.JobTitle;
+
+		import setShared = nts.uk.ui.windows.setShared;
+    	import getShared = nts.uk.ui.windows.getShared;
 
         export class ScreenModel {
 
 			jobTitleColumns: KnockoutObservableArray<any>
 
-            baseDate: KnockoutObservable<Date>;
+            baseDate: KnockoutObservable<string>;
 
             selectedJobTitleCode: KnockoutObservable<string> = ko.observable("");
+			currentJobTitleName: KnockoutObservable<string> = ko.observable("");
+			currentPositionCode: KnockoutObservable<string> = ko.observable("");
+			currentPositionName: KnockoutObservable<string> = ko.observable("");
 			selectedHistoryId: KnockoutObservable<string> = ko.observable("");
             jobTitleIsManager: KnockoutObservable<boolean> = ko.observable(false);
 
 			jobTitleList: KnockoutObservableArray<JobTitle> = ko.observableArray([]);
-			historyList: KnockoutObservableArray<History>;
-
-            enable_button_history: KnockoutObservable<boolean>;
+			jobTitleFoundList: KnockoutObservableArray<JobTitle> = ko.observableArray([]);
 			
+			historyList: KnockoutObservableArray<History> = ko.observableArray([]);
 
+            enableHistory: KnockoutObservable<boolean> = ko.observable(true);
+
+			texteditor: any;
+			
             constructor() {
                 let self = this;
 
 				// init UI table job title
 				self.jobTitleColumns = ko.observableArray([
-	                { headerText: 'コード', key: 'code', width: 100, hidden: true },
-	                { headerText: '名称', key: 'name', width: 150, hidden: true }, 
+	                { headerText: 'コード', key: 'jobTitleCode', width: 100 },
+	                { headerText: '名称', key: 'jobTitleName', width: 220 }
 	            ]); 
+
+				// setup date default for search input
+				self.baseDate = ko.observable((new Date()).toDateString());
 				
 				// get data
-				//this.effect()
+				self.effect()
                 
 				
 				// set active job (job code)
@@ -42,22 +53,27 @@ module nts.uk.com.view.cmm013.a {
             }
 
 			private effect(): void {
+				let self = this;
 				// first request data
 				service.findAllJobTitle()
 					.done((data: any) => {
-						console.log(data)
+						console.log("Success: " + data)
 					})
 					.fail((err: any) => {
-						console.log(err)
+						console.log("Error: " + err)
 					})
 					
 				// get data of jobtitle list
                 for (let i = 0; i < 20; i++) {
-					this.jobTitleList.push(new JobTitle("code_"+i, "name"+i));
+					self.jobTitleList.push(new JobTitle("code_"+i, "name"+i, "position_code_"+i+1, "position_name_"+i+1));
+					console.log("fake job data success");
 				}
-					
+				// select first element of list job
+				self.selectedJobTitleCode(self.jobTitleList()[0].jobTitleCode);
+				
 				// change events
-				this.selectedJobTitleCode.subscribe(newJobCode => {
+				self.selectedJobTitleCode.subscribe(newJobCode => {
+					console.log(newJobCode);
 					// reload job title info
 					/*service.findHistoryList(newJobCode)
 						.done((data: any) => {
@@ -67,22 +83,40 @@ module nts.uk.com.view.cmm013.a {
 							console.log(err)
 						})*/
 					
+					// get data of history for job title (get by selected job id)
+					for (let i = 0; i < 20; i++) {
+						self.historyList.push(new History("job", "history_name_"+i, "historyId_"+i, "3/1/2020", "1/3/2021"));
+						console.log("fake history data success");
+					}
+					// select first element of list history
+					self.selectedHistoryId(self.historyList()[0].historyId);
+
 					// reset all state
 					
+					let jobs = self.jobTitleList().filter(e => (e.jobTitleCode == newJobCode));
+					if (jobs.length > 0) {						
+						self.currentPositionName(jobs[0].position.positionName);
+						self.currentPositionCode(jobs[0].position.positionCode);
+					}
 				})
 				
-				this.selectedHistoryId.subscribe(newHistoryId => {
+				self.selectedHistoryId.subscribe(newHistoryId => {
+					console.log(newHistoryId);
 					// check lastest history local
-					if (newHistoryId == this.historyList()[0].historyId) {
-						this.enable_button_history(true);
-					} else {
-						this.enable_button_history(false);
+					let isCtrlHistory = self.isLastestHistory(newHistoryId);
+					self.enableHistory(isCtrlHistory);
+					
+					// get job of history selected
+					let histories = self.historyList().filter(e => (e.historyId == newHistoryId));
+					// exist elements
+					if (histories.length > 0) {					
+						self.currentJobTitleName(histories[0].jobTitleName);
 					}
 				})
 			}
 
             /**
-             * Reload component
+             * start
              */
 			public startPage(): JQueryPromise<void> {
                 var dfd = $.Deferred<void>();
@@ -95,8 +129,86 @@ module nts.uk.com.view.cmm013.a {
                 return dfd.promise();
             }
 
+			private isLastestHistory(historyId: string): boolean {
+				let self = this;
+				return historyId == self.historyList()[0].historyId;
+			}
 
 
+			/**
+				Dialogs
+			 */
+			public openDialogB() {
+                let self = this;
+                setShared('listMasterToB', {
+					jobTitleCode: self.selectedJobTitleCode(),
+					jobTitleName: self.currentJobTitleName()
+                });
+                nts.uk.ui.windows.sub.modal('/view/cmm/013/b2/index.xhtml').onClosed(function(): any {
+                    let data: any = getShared('DialogBToMaster');
+					console.log(data);
+					self.historyList()[0].updateEndDate(data.abrogatedDate)
+					/*let newHistories = [...self.historyList()]
+					newHistories[0].updateEndDate(data.abrogatedDate);
+					self.historyList(newHistories)
+					console.log(self.historyList()[0].endDate)*/
+					console.log(123)
+					console.log(self.historyList());
+                });
+            } 
+
+			public openDialogC() {
+                let self = this;
+                setShared('listMasterToC', {
+                });
+                nts.uk.ui.windows.sub.modal('/view/cmm/013/c2/index.xhtml').onClosed(function(): any {
+                    let data: any = getShared('DialogCToMaster');
+					self.currentPositionCode(data.positionCode);
+					self.currentPositionName(data.positionName);
+                });
+            }
+
+			public openDialogD() {
+                let self = this;
+                setShared('listMasterToD', {
+                });
+                nts.uk.ui.windows.sub.modal('/view/cmm/022/d/index.xhtml').onClosed(function(): any {
+                    let data: any = getShared('DialogDToMaster');
+                });
+            }
+
+			public openDialogE() {
+                let self = this;
+                setShared('listMasterToE', {
+                });
+                nts.uk.ui.windows.sub.modal('/view/cmm/013/e/index.xhtml').onClosed(function(): any {
+                    let data: any = getShared('DialogEToMaster');
+                });
+            }
+
+			public openDialogF() {
+                let self = this;
+                setShared('listMasterToF', {
+                });
+                nts.uk.ui.windows.sub.modal('/view/cmm/013/f/index.xhtml').onClosed(function(): any {
+                    let data: any = getShared('DialogFToMaster');
+                });
+            }
+
+			public prepareToServer(isAbrogated: boolean): any {
+				let self = this;
+				
+				return {
+					positionCode: self.currentPositionCode(),
+					jobTitleCode: self.selectedJobTitleCode(),
+					historyId: self.historyList().map(e => e.historyId),
+					jobTitleName: self.historyList().map(e => e.jobTitleName),
+					startDate: self.historyList().map(e => e.startDate),
+					endtDate: self.historyList().map(e => e.endDate),
+					isAbrogated,
+					treatAsAManager: self.jobTitleIsManager()
+				}
+			}
 
             /**
              * Validate
@@ -129,77 +241,6 @@ module nts.uk.com.view.cmm013.a {
                     nts.uk.ui.dialog.alertError({ messageId: res.messageId, messageParams: res.parameterIds });
                 }
             }   
-
-
-            
-
-
-            // Load Dialog
-            /**
-             * Screen B - openDeleteDialog
-             */
-            /*public openDeleteDialog() {
-                let _self = this;
-                let transferObj: any = {};
-                transferObj.jobTitleId = _self.selectedJobTitleId();
-                transferObj.jobTitleCode = _self.jobTitleCode();
-                transferObj.jobTitleName = _self.jobTitleName();
-                nts.uk.ui.windows.setShared(Constants.SHARE_IN_DIALOG_REMOVE_JOB, transferObj);
-                nts.uk.ui.windows.sub.modal('/view/cmm/013/b/index.xhtml').onClosed(() => {
-                    let isSuccess: boolean = nts.uk.ui.windows.getShared(Constants.SHARE_OUT_DIALOG_REMOVE_JOB);
-                    if (isSuccess) {
-                        // Reload list
-                        _self.reloadComponent();
-                    }
-                });
-            }*/
-
-            
-
         }
-
-        /**
-         * JobTitleHistoryModel
-         */
-        /*
-class JobTitleHistoryModel extends JobTitleHistoryAbstract {
-
-            parentModel: ScreenModel;
-
-            constructor(parentModel: ScreenModel) {
-                super();
-                let _self = this;
-                _self.parentModel = parentModel;
-                _self.selectedHistoryId.subscribe((jobHistoryId: string) => {
-                    _self.parentModel.findJobInfo(_self.parentModel.selectedJobTitleId(), jobHistoryId);
-                    _self.validateHistory();
-                })
-                _self.init([]);
-            }
-
-            public init(data: History[]): void {
-                let _self = this;
-                _self.listJobTitleHistory(data);
-                _self.selectFirst();
-            }
-
-            public clearData(): void {
-                let _self = this;
-                _self.listJobTitleHistory([]);
-                _self.selectedHistoryId(null);
-            }
-
-            public validateHistory(): void {
-                let _self = this;
-                let currentHistory: History = _self.getSelectedHistoryByHistoryId();
-                if (currentHistory && _self.isSelectedLatestHistory() && currentHistory.period.endDate === "9999/12/31") {
-                    _self.parentModel.historyChangeMode(true);
-                } else {
-                    _self.parentModel.historyChangeMode(false);
-                }
-            }
-        }
-		 */
-
     }
 }

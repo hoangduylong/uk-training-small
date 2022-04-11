@@ -37,7 +37,7 @@ public class ValidatorScript extends UIComponentBase {
         rw.write(JS_VAR_NAME);
         rw.write(" || {};");
 
-        val primitives = TagContentsUtil.readMultipleLinesString(this.getChildren().get(0).toString());
+        val primitives = TagContentsUtil.readMultipleLinesString(this.getChildren().isEmpty() ? "" : this.getChildren().get(0).toString());
         for(String fqnOfPrimitiveValueClass : primitives) {
         	writePrimitiveValueConstraints(rw, fqnOfPrimitiveValueClass);
         }

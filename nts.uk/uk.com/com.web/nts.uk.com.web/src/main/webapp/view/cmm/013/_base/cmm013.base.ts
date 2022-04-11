@@ -11,6 +11,8 @@ module nts.uk.com.view.cmm013 {
             public static SHARE_OUT_DIALOG_REMOVE_JOB: string = "SHARE_OUT_DIALOG_REMOVE_JOB"; 
             public static SHARE_IN_DIALOG_SELECT_SEQUENCE: string = "SHARE_IN_DIALOG_SELECT_SEQUENCE";
             public static SHARE_OUT_DIALOG_SELECT_SEQUENCE: string = "SHARE_OUT_DIALOG_SELECT_SEQUENCE"; 
+			public static SHARE_IN_DIALOG_ABROGATE_JOB_TITLE: string = "SHARE_IN_DIALOG_ABROGATE_JOB_TITLE";
+			public static SHARE_OUT_DIALOG_ABROGATE_JOB_TITLE: string = "SHARE_OUT_DIALOG_ABROGATE_JOB_TITLE"; 
             public static SHARE_IN_DIALOG_ADD_HISTORY: string = "SHARE_IN_DIALOG_ADD_HISTORY"; 
             public static SHARE_OUT_DIALOG_ADD_HISTORY: string = "SHARE_OUT_DIALOG_ADD_HISTORY"; 
             public static SHARE_IN_DIALOG_EDIT_HISTORY: string = "SHARE_IN_DIALOG_EDIT_HISTORY"; 
@@ -29,10 +31,13 @@ module nts.uk.com.view.cmm013 {
             
             jobTitleCode: string;
             jobTitleName: string;
+
+			position: Position;
             
-            constructor(jobTitleCode: string, jobTitleName: string) {
+            constructor(jobTitleCode: string, jobTitleName: string, positionCode: string, positionName: string) {
                 this.jobTitleCode = jobTitleCode;
                 this.jobTitleName = jobTitleName;
+				this.position = new Position(positionCode, positionName);
             }
         }
                         
@@ -42,6 +47,7 @@ module nts.uk.com.view.cmm013 {
         export class History {
             
             jobTitleId: string;
+			jobTitleName: string;
             historyId: string;
             startDate: string;
             endDate: string;
@@ -55,50 +61,25 @@ module nts.uk.com.view.cmm013 {
         }    
         /*
 			
+            
+            constructor(jobTitleId: string, jobTitleName: string, historyId: string, startDate: string, endDate?: string) {
+                let self = this; 
 
-            listHistory: KnockoutObservableArray<History>;
-            selectedHistoryId: KnockoutObservable<string>;
-            
-            constructor() {
-                let self = this;
-                self.listHistory = ko.observableArray([]);
-                self.selectedHistoryId = ko.observable(null);
-                
-                self.listJobTitleHistory.subscribe((newListHistory) => {
-                    _self.fillTextDisplay();               
-                });
+				self.jobTitleId = jobTitleId;
+				self.jobTitleName = jobTitleName;
+                self.historyId = historyId;
+				self.startDate = startDate;
+				self.endDate = endDate ? endDate : "31/12/9999";
+				
+				self.displayString = `${self.startDate} ~ ${self.endDate}`;
             }
-            
-            /**
-             * selectFirst
-             
-            public selectFirst() {
-                let _self = this;
-                if (_self.listJobTitleHistory()[0]){
-                    _self.selectedHistoryId(_self.listJobTitleHistory()[0].historyId);
-                }               
-            }            
-            
-            /**
-             * getSelectedHistoryByHistoryId
-             
-            public getSelectedHistoryByHistoryId(): History {
-                let _self = this;
-                return _self.listJobTitleHistory().filter(item => item.historyId == _self.selectedHistoryId())[0];
-            }
-            
-            /**
-             * fillTextDisplay
-             
-            private fillTextDisplay() {
-                let _self = this;
-                _.forEach(_self.listJobTitleHistory(), (item: History) => {
-                    item.textDisplay = item.period.startDate + " " + nts.uk.resource.getText("CMM013_30") + " " + item.period.endDate;
-                })
-            }
-            
-        }     
-		 */
+
+			public updateEndDate(endDate: string) : void{
+				this.endDate = endDate;
+				this.displayString = `${this.startDate} ~ ${this.endDate}`;
+				
+			}
+        }  
         /**
          * Position
          */
@@ -106,10 +87,12 @@ module nts.uk.com.view.cmm013 {
 
 			positionCode: string;
 			positionName: string;
+			positionOrder: number;
 
-			constructor(positionCode: string, positionName: string) {
+			constructor(positionCode: string, positionName: string, order: number) {
 				this.positionCode = positionCode;
 				this.positionName = positionName;
+				this.positionOrder = order;
 			}
 		}
 	}

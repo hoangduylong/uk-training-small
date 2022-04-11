@@ -35,8 +35,8 @@ public class AddPositionCommandHandler extends CommandHandler<AddPositionCommand
 		
 		// convert to domain
 		PositionTraining domain = PositionTraining.toDomain(command.getPositionCode().trim(), 
-											command.getPositionName(), 
-											command.getPositionOrder());
+															command.getPositionName(), 
+															command.getPositionOrder());
 				
 		// validate
 		domain.validate();

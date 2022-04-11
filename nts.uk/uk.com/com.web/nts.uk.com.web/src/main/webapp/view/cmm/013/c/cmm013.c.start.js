@@ -8,15 +8,15 @@ var nts;
             (function (view) {
                 var cmm013;
                 (function (cmm013) {
-                    var c;
-                    (function (c) {
+                    var b;
+                    (function (b) {
                         __viewContext.ready(function () {
-                            var screenModel = new c.viewmodel.ScreenModel();
+                            var screenModel = new b.viewmodel.ScreenModel();
                             screenModel.startPage().done(function () {
                                 __viewContext.bind(screenModel);
                             });
                         });
-                    })(c = cmm013.c || (cmm013.c = {}));
+                    })(b = cmm013.b || (cmm013.b = {}));
                 })(cmm013 = view.cmm013 || (view.cmm013 = {}));
             })(view = com.view || (com.view = {}));
         })(com = uk.com || (uk.com = {}));

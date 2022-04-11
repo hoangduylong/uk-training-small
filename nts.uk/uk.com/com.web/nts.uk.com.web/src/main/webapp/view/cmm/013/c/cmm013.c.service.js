@@ -8,25 +8,25 @@ var nts;
             (function (view) {
                 var cmm013;
                 (function (cmm013) {
-                    var c;
-                    (function (c) {
+                    var b;
+                    (function (b) {
                         var service;
                         (function (service) {
                             /**
-                             *  Service paths
+                             * Service path
                              */
                             var servicePath = {
-                                findBySequenceCode: "bs/employee/jobtitle/sequence/find",
+                                findAllPosition: "basic/training/position/find/all",
                             };
                             /**
-                             * findBySequenceCode
+                             * getListPosition
                              */
-                            function findBySequenceCode(sequenceCode) {
-                                return nts.uk.request.ajax(servicePath.findBySequenceCode, { sequenceCode: sequenceCode });
+                            function findAllPosition() {
+                                return nts.uk.request.ajax(servicePath.findAllPosition);
                             }
-                            service.findBySequenceCode = findBySequenceCode;
-                        })(service = c.service || (c.service = {}));
-                    })(c = cmm013.c || (cmm013.c = {}));
+                            service.findAllPosition = findAllPosition;
+                        })(service = b.service || (b.service = {}));
+                    })(b = cmm013.b || (cmm013.b = {}));
                 })(cmm013 = view.cmm013 || (view.cmm013 = {}));
             })(view = com.view || (com.view = {}));
         })(com = uk.com || (uk.com = {}));

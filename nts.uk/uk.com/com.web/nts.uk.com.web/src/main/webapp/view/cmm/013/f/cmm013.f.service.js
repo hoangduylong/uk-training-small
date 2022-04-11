@@ -19,6 +19,7 @@ var nts;
                                 addPosition: "basic/training/position/add",
                                 removePosition: "basic/training/position/remove",
                                 updatePosition: "basic/training/position/update",
+                                updateOrder: "basic/training/position/updateOrder",
                             };
                             /* findAllPosition */
                             function findAllPosition() {
@@ -45,6 +46,11 @@ var nts;
                                 return nts.uk.request.ajax(servicePath.addPosition, { Position: position });
                             }
                             service.updatePosition = updatePosition;
+                            /* update order */
+                            function updateOrder(position) {
+                                return nts.uk.request.ajax(servicePath.updateOrder, { positionList: position });
+                            }
+                            service.updateOrder = updateOrder;
                             var model;
                             (function (model) {
                                 /* Position save command */
