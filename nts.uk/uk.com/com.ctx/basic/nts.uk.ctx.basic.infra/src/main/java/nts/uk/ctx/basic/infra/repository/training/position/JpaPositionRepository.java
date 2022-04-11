@@ -47,7 +47,7 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 	@Override
 	public void remove(String positionCode) {
 		PositionClassificationPK key = new PositionClassificationPK(positionCode);
-		this.commandProxy().remove(PositionClassificationPK.class, key);	
+		this.commandProxy().remove(PositionClassificationPK.class, key);
 	}
 	
 

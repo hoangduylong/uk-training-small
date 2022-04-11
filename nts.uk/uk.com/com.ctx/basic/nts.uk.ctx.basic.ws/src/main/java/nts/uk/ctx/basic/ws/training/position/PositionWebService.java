@@ -55,6 +55,8 @@ public class PositionWebService extends WebService {
 	@POST
 	@Path("add")
 	public void add(AddPositionCommand command) {
+		System.out.print(command);
+		System.out.print("yeahhh went into server");
 		this.addPositionCommandHandler.handle(command);
 	}
 
@@ -65,7 +67,7 @@ public class PositionWebService extends WebService {
 	public void remove(RemovePositionCommand command) {
 		this.removePositionCommandHandler.handle(command);
 	}
-		
+	
 	
 	// update position
 	@POST

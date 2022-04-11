@@ -2,6 +2,9 @@ module nts.uk.com.view.cmm013.f {
 
 	export module viewmodel {
 		import Position = base.Position;
+		import UpdatePositionCommand = service.model.UpdatePositionCommand;
+		import AddPositionCommand = service.model.AddPositionCommand;
+		import RemovePositionCommand = service.model.RemovePositionCommand;
 
 		export class ScreenModel {
 
@@ -22,7 +25,7 @@ module nts.uk.com.view.cmm013.f {
 			constructor() {
 				let self = this;
 
-				self.isCreateNew = ko.observable(null);
+				self.isCreateNew = ko.observable(false);
 
 				self.positionList = ko.observableArray([]);
 				self.positionCode = ko.observable("");
@@ -30,12 +33,12 @@ module nts.uk.com.view.cmm013.f {
 				self.order = ko.observable(0);
 
 				self.currentCode = ko.observable(null);
-				/*self.currentCode.subscribe((selectedCode) => {
-                    self.select(selectedCode);
-                    if (!_.isEmpty(selectedCode)) {
-                        nts.uk.ui.errors.clearAll();    
-                    }
-				});*/
+				self.currentCode.subscribe((selectedCode) => {
+					self.select(selectedCode);
+					if (!_.isEmpty(selectedCode)) {
+						nts.uk.ui.errors.clearAll();
+					}
+				});
 
 				self.index = 0;
 
@@ -45,65 +48,15 @@ module nts.uk.com.view.cmm013.f {
 				]);
 
 				// get data
-				self.loadPositionList2();
-
-			}
-			
-			
-			/*public select(selectedCode: string): void {
-				let self = this;   
-				      
-                if (selectedCode) {
-					self.positionCode(selectedCode);
-					
-                    // Find position by position code
-                    service.findByPositionCode(selectedCode)
-                        .done((data: Position) => {                        
-                            if (data) {                           
-                                // position found     
-                                self.isCreateNew(false);                                                     
-                                self.positionCode(data.positionCode);
-                                self.positionName(data.positionName);    
-                                self.order(data.order);                           
-                            } else {                               
-                                // position not found
-                                self.positionCode("");
-                                self.positionName("");   
-                            }
-                            // Set focus
-                            if (self.isCreateNew()) {
-                                $('#position-code').focus();
-                            } else {
-                                $('#position-name').focus();
-                            }
-                        })
-                        .fail((res: any) => {
-                            self.showMessageError(res);
-                        });                     
-                } else {
-                   // No position selected, switch to create new
-                   self.isCreateNew(true); 
-                }
-			}*/
-
-
-			private loadPositionList2(): void {
-				let self = this;
-
-				for (var i = 0; i < 20; i++) {
-					self.positionList.push(new Position("" + i, "基本給", 0));
-					console.log("fake data success");
-				}
+				self.selectNext();
 			}
 
 
 			startPage(): JQueryPromise<any> {
 				let self = this;
+				let dfd = $.Deferred<void>();
 
-				//let dfd = $.Deferred<any>();
-				var dfd = $.Deferred<void>();
-
-				/*self.loadPositionList()
+				self.loadPositionList()
 					.done((data: Position[]) => {
 						// Update position mode
 						self.isCreateNew(false);
@@ -111,28 +64,62 @@ module nts.uk.com.view.cmm013.f {
 					})
 					.fail((res: any) => {
 						// Create new position mode
-						self.isCreateNew(true);
+						console.log("fail");
+						//self.isCreateNew(true);
 						self.positionList([]);
-					})*/
-					
+					})
+
 				dfd.resolve();
 				return dfd.promise();;
 			}
 
 
-			// load position list
-			/*public loadPositionList(): JQueryPromise<any> {
-				let dfd = $.Deferred<any>();
+			public select(selectedCode: string): void {
+				let self = this;
 
-				service.findAllPosition()
-					.done((data: Position[]) => {
-						dfd.resolve(data);
-					})
-					.fail((res: any) => {
-						dfd.reject(res);
-					});
-				return dfd.promise();
-			}*/
+				if (selectedCode) {
+					self.positionCode(selectedCode);
+
+					// Find position by position code
+					service.findByPositionCode(selectedCode)
+						.done((data: Position) => {
+							if (data) {
+								// position found
+								console.log("position found")
+								self.isCreateNew(false);
+								self.positionCode(data.positionCode);
+								self.positionName(data.positionName);
+								self.order(data.positionOrder);
+								//console.log(data.positionName);                      
+							} else {
+								// position not found
+								console.log("position not found")
+                                /*self.positionCode("");
+                                self.positionName("");*/
+							}
+							// Set focus
+							if (self.isCreateNew()) {
+								$('#position-code').focus();
+							} else {
+								$('#position-name').focus();
+							}
+						})
+						.fail((res: any) => {
+							self.showMessageError(res);
+						});
+
+				} else {
+					// No position selected, switch to create new
+					console.log("huhu");
+					self.isCreateNew(true);
+				}
+			}
+
+
+			public selectNext(): void {
+				let self = this;
+				//self.positionList()[0].positionCode;
+			}
 
 
 			// create new position mode
@@ -144,14 +131,31 @@ module nts.uk.com.view.cmm013.f {
 			}
 
 
-			public addPosition(newPosition: Position): void {
-				let self = this;
+			// load position list
+			public loadPositionList(): JQueryPromise<any> {
+				let dfd = $.Deferred<any>();
+
+				service.findAllPosition()
+					.done((data: Position[]) => {
+						dfd.resolve(data);
+					})
+					.fail((res: any) => {
+						dfd.reject(res);
+					});
+				return dfd.promise();
+			}
+
+
+			public addPosition(addCommand: AddPositionCommand): void {
+				let self = this;	
+				let newPosition = new Position(addCommand.positionCode,
+												addCommand.positionName, 
+												addCommand.positionOrder);
 				
-				// add new position into list in UI
-				self.positionList().push(newPosition);
-				
-				/*service.addPosition(newPosition)
+				service.addPosition(addCommand)
 					.done((data: any) => {
+						console.log("add success");
+						// add new position into list in UI
 						self.positionList().push(newPosition);
 						self.loadPositionList()
 							.done((data: Position[]) => {
@@ -166,8 +170,9 @@ module nts.uk.com.view.cmm013.f {
 							})
 					})
 					.fail((res: any) => {
+						console.log("add fail");
 						self.showMessageError(res);
-					})*/
+					})
 			}
 
 
@@ -176,21 +181,23 @@ module nts.uk.com.view.cmm013.f {
 				let self = this;
 
 				// Validate
-				/*if (!self.validate()) {
+				if (!self.validate()) {
 					return;
-				}*/
+				}
 
-				let newPosition: Position = new Position(self.positionCode(), self.positionName(), 0);
+				let addCommand: AddPositionCommand = new AddPositionCommand(self.positionCode(), 
+																			self.positionName(), 0);
+				
+				let updateCommand: AddPositionCommand = new AddPositionCommand(self.positionCode(), 
+																			   self.positionName(), 0);
+
 
 				if (self.isCreateNew()) {
-					console.log(newPosition);										
-					// self.loadPositionList();
-
-					self.addPosition(newPosition);
-					console.log(self.positionList());
+					self.addPosition(addCommand);
 				} else {
 					console.log("huhu");
-					service.updatePosition(newPosition);
+					service.updatePosition(updateCommand);
+					console.log(self.positionList());
 				}
 
 				self.updatePositionOrder()
@@ -222,31 +229,34 @@ module nts.uk.com.view.cmm013.f {
 							currentIndex = self.positionList.indexOf(item);
 						}
 					}
+					
+					let removeCommand = new RemovePositionCommand(self.positionCode());
 
-					self.positionList.splice(currentIndex, 1);
-					console.log(self.positionList());
-
-					/*nts.uk.ui.dialog.confirm({ messageId: "Msg_18" })
+					nts.uk.ui.dialog.confirm({ messageId: "Msg_18" })
 						.ifYes(() => {
-							service.removePosition(self.positionCode())
+							service.removePosition(removeCommand)
 								.done((data: any) => {
+									console.log("remove ok");
 									self.positionList.splice(currentIndex, 1);
+									console.log(self.positionList());
+
 									self.loadPositionList()
 										.done((data: Position[]) => {
 											// Update position mode
-											self.createNew(false);
+											self.isCreateNew(false);
 											self.positionList(data);
 										})
 										.fail((res: any) => {
 											// Create new position mode
-											self.createNew(true);
+											self.isCreateNew(true);
 											self.positionList([]);
 										})
 								})
 								.fail((res: any) => {
-									self.showMessageError(res);
+									console.log("remove failed");
+									//self.showMessageError(res);
 								})
-						});*/
+						});
 				} else {
 					console.log("huhu");
 				}
@@ -261,22 +271,7 @@ module nts.uk.com.view.cmm013.f {
 			}
 
 
-			// close dialog
-			public close(): void {
-				nts.uk.ui.windows.close();
-			}
 
-
-			// validate
-			private validate(): any {
-				// clear error
-				nts.uk.ui.errors.clearAll();
-				
-				 $('#position-code').ntsEditor('validate');
-                $('#position-name').ntsEditor('validate');
-
-				return !$('.nts-input').ntsError('hasError');
-			}
 
 
 			private updatePositionOrder(): JQueryPromise<any> {
@@ -305,8 +300,27 @@ module nts.uk.com.view.cmm013.f {
 			}
 
 
+
+			// close dialog
+			public close(): void {
+				nts.uk.ui.windows.close();
+			}
+
+
+			// validate
+			private validate(): any {
+				// clear error
+				nts.uk.ui.errors.clearAll();
+
+				$('#position-code').ntsEditor('validate');
+				$('#position-name').ntsEditor('validate');
+
+				return !$('.nts-input').ntsError('hasError');
+			}
+
+
 			public showMessageError(res: any): void {
-				
+
 			}
 
 
@@ -330,7 +344,7 @@ module nts.uk.com.view.cmm013.f {
 						self.index = masterTable.rows[i].rowIndex;
 					}
 				}
-			}
+			} 
 
 			
 			public moveRowUp(): void {

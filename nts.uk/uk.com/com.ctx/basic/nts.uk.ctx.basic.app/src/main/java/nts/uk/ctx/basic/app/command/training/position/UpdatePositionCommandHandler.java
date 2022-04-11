@@ -42,7 +42,6 @@ public class UpdatePositionCommandHandler extends CommandHandler<UpdatePositionC
 				
 		// update position
 		positionRepository.update(domain);
-		
 	}
 	
 	public void updateOrder(List<UpdatePositionCommand> commandList) {
