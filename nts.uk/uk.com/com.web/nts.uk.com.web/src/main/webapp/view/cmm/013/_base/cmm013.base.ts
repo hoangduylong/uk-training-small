@@ -51,7 +51,15 @@ module nts.uk.com.view.cmm013 {
             historyId: string;
             startDate: string;
             endDate: string;
-			displayString: string;
+            
+            constructor(jobTitleId: string, historyId: string, startDate: string, endDate?: string) {
+                this.jobTitleId = jobTitleId;
+                this.historyId = historyId;
+				this.startDate = startDate;
+				this.endDate = endDate ? endDate : "9999/12/31";
+            }     
+        }    
+        /*
 			
             
             constructor(jobTitleId: string, jobTitleName: string, historyId: string, startDate: string, endDate?: string) {
@@ -79,12 +87,12 @@ module nts.uk.com.view.cmm013 {
 
 			positionCode: string;
 			positionName: string;
-			order: number;
+			positionOrder: number;
 
 			constructor(positionCode: string, positionName: string, order: number) {
 				this.positionCode = positionCode;
 				this.positionName = positionName;
-				this.order = order;
+				this.positionOrder = order;
 			}
 		}
 	}

@@ -34,19 +34,20 @@ public class UpdatePositionCommandHandler extends CommandHandler<UpdatePositionC
 		
 		// convert to domain
 		PositionTraining domain = PositionTraining.toDomain(command.getPositionCode(), 
-											command.getPositionName(), 
-											command.getPositionOrder());
+															command.getPositionName(), 
+															command.getPositionOrder());
 				
 		// validate
 		domain.validate();
 				
 		// update position
 		positionRepository.update(domain);
-		
 	}
 	
-	public void updateOrder(List<UpdatePositionCommand> listCommand) {
-		this.positionRepository.updateOrder(listCommand.stream().map(command -> command.toDomain(command)).collect(Collectors.toList()));
+	public void updateOrder(List<UpdatePositionCommand> commandList) {
+		this.positionRepository.updateOrder(commandList.stream()
+											.map(command -> command.toDomain(command))
+											.collect(Collectors.toList()));
 	}
 	
 }

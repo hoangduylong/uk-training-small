@@ -52,7 +52,6 @@ module nts.uk.com.view.cmm013.d {
              */
             private validate(): boolean {
 				let _self = this;
-				
 				if(_self.startDate() == "")
 				{
 					alert('開始日を入力してください。');
@@ -61,11 +60,15 @@ module nts.uk.com.view.cmm013.d {
 				
                 let transferObj: any = nts.uk.ui.windows.getShared(Constants.SHARE_IN_DIALOG_EDIT_HISTORY);
 				let listHistory: listHistory[] =  transferObj.listJobTitleHistory;
-				
 				let valid: boolean = listHistory.every(function (history)
 				{
-					return  new Date(_self.startDate()) > new Date(history.period.startDate)
-				})
+					return  new Date(_self.startDate()) > new Date (history.startDate);
+				});
+				//alert(_self.startDate());
+				//let date = new Date("2022-04-07");
+				//alert(date);
+				//let valid = new Date(_self.startDate()) > date;
+				//alert(valid);
 				if(!valid)
 				{
 					alert('最新の履歴開始日以前に履歴を追加することはできません。');

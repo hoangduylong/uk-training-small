@@ -8,6 +8,7 @@ import nts.uk.ctx.basic.dom.training.position.PositionTraining;
 @NoArgsConstructor
 @Data
 public class UpdatePositionCommand {
+	
 	private String positionCode;
 	private String positionName;
 	private int positionOrder;

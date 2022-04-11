@@ -28,7 +28,8 @@
 			<com:scriptfile path="cmm013.f.vm.js" />
 			<com:scriptfile path="cmm013.f.start.js" />
 		</ui:define>
-
+		
+		
 		<!-- PAGE CONTENT -->
 		<ui:define name="content">
 
@@ -56,14 +57,14 @@
 						}"></table>
 					</div>
 
-					<!-- <div id="position-list-up-down">
-						<div data-bind="ntsUpDown: {
+					<div id="position-list-up-down">
+						<div id="swap-up-down" data-bind="ntsUpDown: {
 							targetSource: positionList,
 							primaryKey: 'positionCode',
 							comId: '#position-list-table',
 							type: 'grid'
 						}"></div>
-					</div> -->
+					</div>
 				</div>
 
 				<div id="right-content">

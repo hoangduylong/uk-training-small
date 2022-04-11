@@ -54,10 +54,11 @@ public class PositionFinder {
 			PositionDto positionDto = new PositionDto(position.get().getPositionCode().v(), 
 					 								  position.get().getPositionName().v(), 
 					 								  position.get().getPositionOrder());
-			 
+			System.out.print(positionDto);
 			return positionDto;
 		}
-		
+		System.out.print("nothing");
+		System.out.print("nothing");
 		return null;
 	}
 

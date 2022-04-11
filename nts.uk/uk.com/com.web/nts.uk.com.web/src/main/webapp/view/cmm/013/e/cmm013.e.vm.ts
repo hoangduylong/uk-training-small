@@ -18,7 +18,7 @@ module nts.uk.com.view.cmm013.e {
                 _self.jobTitleId = null;
                 _self.historyId = null;                
                 _self.startDate = ko.observable("");
-                _self.endDate = ko.observable(nts.uk.resource.getText("CMM013_38"));
+                _self.endDate = ko.observable("9999/12/31");
             }
             
             /**
@@ -72,7 +72,7 @@ module nts.uk.com.view.cmm013.e {
 				
 				listHistory.every(function (history)
 				{
-					return  new Date(_self.startDate()) > new Date(history.period.startDate)
+					return  new Date(_self.startDate()) > new Date(history.startDate)
 				})
                 // Clear error
                 nts.uk.ui.errors.clearAll();    

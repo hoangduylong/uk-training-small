@@ -1,20 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Screen F</title>
-
-  <link rel="stylesheet" href="cmm013.f.style.css">
-
-  <canvas id="canvas" width="800px" height="700px"></canvas>
-</head>
-
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
 <body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			
+			<com:ValidatorScript>
+				nts.uk.ctx.basic.dom.training.position.PositionCodeTraining
+				nts.uk.ctx.basic.dom.training.position.PositionNameTraining
+			</com:ValidatorScript>
 
-  <script>
+			<script>
+				var dialogSize = {
+					width : 800,
+					height : 700
+				};
+			</script>
+
+			<com:scriptfile set="IGNITE" />
+
+			<com:stylefile path="cmm013.f.style.css" />
+			<com:scriptfile path="../_base/cmm013.base.js" />
+			<com:scriptfile path="cmm013.f.service.js" />
+			<com:scriptfile path="cmm013.f.vm.js" />
+			<com:scriptfile path="cmm013.f.start.js" />
+		</ui:define>
+		
+		
+		<!-- PAGE CONTENT -->
+		<ui:define name="content">
+<canvas id="canvas" width="800px" height="700px"></canvas>
+			<div id="functions-area">
+				<script>
     // draw with canvas
     var canvas = document.getElementById("canvas");
     if (canvas.getContext) {
@@ -154,65 +174,27 @@
   <button onclick="moveRowDown()" class="downbutton">🠗</button>
 
   <!-- label code - position and text box -->
-  <label class="codeLabel">コード<br><label style="color: gray;">(半角英数2文字)</label></label><br>
+  <label class="codeLabel">コード<br><label style="color: gray;">(半角英数2文字)</label></label>
   <label class="positionLabel">名称<br><label style="color: gray;">(全角10文字)</label></label>
   <input type="text" id="code" class="code" maxlength="10">
   <input type="text" id="position" class="position" maxlength="15">
 
-  <!-- <script src="index.js"></script> -->
-  <script>
-    
-    // master table
-    /* var index
-    var screenModel = new viewmodel.ScreenModel();
-    screenModel.selectedRow()
- */
-    /* function selectedRow() {
-      let masterTable = document.getElementById("masterTable")
-
-      for (let i = 0; i < masterTable.rows.length; i++) {
-        masterTable.rows[i].onclick = function () {
-          if (typeof index !== "undefined") {
-            masterTable.rows[index].classList.toggle("selected")
-          }
-
-          this.classList.toggle("selected")
-          document.getElementById("code").value = this.cells[0].innerHTML
-          document.getElementById("position").value = this.cells[1].innerHTML
-          index = this.rowIndex
-        }
-      }
-    }
-
-    selectedRow()
-
-    function moveRowUp() {
-      var rows = document.getElementById("masterTable").rows,
-        parent = rows[index].parentNode;
-
-      if (index > 0) {
-        parent.insertBefore(rows[index], rows[index - 1]);
-        // when the row go up the index will be equal to index - 1
-        index--;
-      }
-    }
-
-    function moveRowDown() {
-      var rows = document.getElementById("masterTable").rows,
-        parent = rows[index].parentNode;
-
-      if (index < rows.length - 1) {
-        parent.insertBefore(rows[index + 1], rows[index]);
-        // when the row go down the index will be equal to index + 1
-        index++;
-      }
-    } */
-
-    function clearTextbox() {
-      document.getElementById("code").value = ""
-      document.getElementById("position").value = "";
-    }
+  
   </script>
-</body>
+								
+			</div>
+			
 
+			<div id="contents-area">
+
+				
+				</div>
+
+				<div id="right-content">
+				</div>
+			</div>
+		</ui:define>
+
+	</ui:composition>
+</body>
 </html>

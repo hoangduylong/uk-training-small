@@ -12,65 +12,76 @@ var nts;
                     (function (f) {
                         var service;
                         (function (service) {
-                            /* Service path */
+                            // Service path
                             var servicePath = {
-                                findAllPosition: "basic/training/position/find/all",
-                                findByPositionCode: "basic/training/position/",
+                                findAllPosition: "basic/training/position/findAll",
+                                findByPositionCode: "basic/training/position/findByPositionCode",
                                 addPosition: "basic/training/position/add",
                                 removePosition: "basic/training/position/remove",
                                 updatePosition: "basic/training/position/update",
                                 updateOrder: "basic/training/position/updateOrder",
                             };
-                            /* findAllPosition */
+                            // findAllPosition
                             function findAllPosition() {
                                 return nts.uk.request.ajax(servicePath.findAllPosition);
                             }
                             service.findAllPosition = findAllPosition;
-                            /* findByPositionCode */
+                            // findByPositionCode
                             function findByPositionCode(positionCode) {
                                 return nts.uk.request.ajax(servicePath.findByPositionCode, { positionCode: positionCode });
                             }
                             service.findByPositionCode = findByPositionCode;
-                            /* addPosition */
-                            function addPosition(position) {
-                                return nts.uk.request.ajax(servicePath.addPosition, { Position: position });
+                            // addPosition
+                            function addPosition(addCommand) {
+                                console.log("okeeeee");
+                                return nts.uk.request.ajax(servicePath.addPosition, addCommand);
                             }
                             service.addPosition = addPosition;
-                            /* removePosition */
-                            function removePosition(positionCode) {
-                                return nts.uk.request.ajax(servicePath.addPosition, { positionCode: positionCode });
+                            // removePosition
+                            function removePosition(removeCommand) {
+                                return nts.uk.request.ajax(servicePath.removePosition, removeCommand);
                             }
                             service.removePosition = removePosition;
-                            /* updatePosition */
-                            function updatePosition(position) {
-                                return nts.uk.request.ajax(servicePath.addPosition, { Position: position });
+                            // updatePosition
+                            function updatePosition(updateCommand) {
+                                return nts.uk.request.ajax(servicePath.addPosition, updateCommand);
                             }
                             service.updatePosition = updatePosition;
-                            /* update order */
-                            function updateOrder(position) {
-                                return nts.uk.request.ajax(servicePath.updateOrder, { positionList: position });
+                            // update order
+                            function updateOrder(updateCommand) {
+                                return nts.uk.request.ajax(servicePath.updateOrder, updateCommand);
                             }
                             service.updateOrder = updateOrder;
                             var model;
                             (function (model) {
-                                /* Position save command */
-                                var PositionSaveCommand = /** @class */ (function () {
-                                    function PositionSaveCommand(positionCode, positionName, order) {
+                                // add position command        
+                                var AddPositionCommand = /** @class */ (function () {
+                                    function AddPositionCommand(positionCode, positionName, positionOrder) {
                                         this.positionCode = positionCode;
                                         this.positionName = positionName;
-                                        this.order = order;
+                                        this.positionOrder = positionOrder;
                                     }
-                                    return PositionSaveCommand;
+                                    return AddPositionCommand;
                                 }());
-                                model.PositionSaveCommand = PositionSaveCommand;
-                                /* Position remove command */
-                                var PositionRemoveCommand = /** @class */ (function () {
-                                    function PositionRemoveCommand(positionCode) {
+                                model.AddPositionCommand = AddPositionCommand;
+                                // update position command        
+                                var UpdatePositionCommand = /** @class */ (function () {
+                                    function UpdatePositionCommand(positionCode, positionName, positionOrder) {
+                                        this.positionCode = positionCode;
+                                        this.positionName = positionName;
+                                        this.positionOrder = positionOrder;
+                                    }
+                                    return UpdatePositionCommand;
+                                }());
+                                model.UpdatePositionCommand = UpdatePositionCommand;
+                                // remove position command
+                                var RemovePositionCommand = /** @class */ (function () {
+                                    function RemovePositionCommand(positionCode) {
                                         this.positionCode = positionCode;
                                     }
-                                    return PositionRemoveCommand;
+                                    return RemovePositionCommand;
                                 }());
-                                model.PositionRemoveCommand = PositionRemoveCommand;
+                                model.RemovePositionCommand = RemovePositionCommand;
                             })(model = service.model || (service.model = {}));
                         })(service = f.service || (f.service = {}));
                     })(f = cmm013.f || (cmm013.f = {}));

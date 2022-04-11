@@ -59,8 +59,13 @@ var nts;
                                     var transferObj = nts.uk.ui.windows.getShared(Constants.SHARE_IN_DIALOG_EDIT_HISTORY);
                                     var listHistory = transferObj.listJobTitleHistory;
                                     var valid = listHistory.every(function (history) {
-                                        return new Date(_self.startDate()) > new Date(history.period.startDate);
+                                        return new Date(_self.startDate()) > new Date(history.startDate);
                                     });
+                                    //alert(_self.startDate());
+                                    //let date = new Date("2022-04-07");
+                                    //alert(date);
+                                    //let valid = new Date(_self.startDate()) > date;
+                                    //alert(valid);
                                     if (!valid) {
                                         alert('最新の履歴開始日以前に履歴を追加することはできません。');
                                         return false;
