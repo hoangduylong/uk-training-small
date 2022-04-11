@@ -30,6 +30,5 @@
 }
 
 .btn-history-ctrl {
-	display: flex;
-	flex-direction: column;
+	display:block;
 }

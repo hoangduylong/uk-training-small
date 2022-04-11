@@ -28,7 +28,7 @@ module nts.uk.com.view.cmm013.c2 {
 					{ headerText: '名称', key: 'positionName', width: 120 }
 				]);
 				self.loadPositionList2();
-				console.log(self.positionList())
+				//console.log(self.positionList())
             }
 
 			private loadPositionList2(): void {
@@ -78,7 +78,7 @@ module nts.uk.com.view.cmm013.c2 {
 				console.log(self.positionList());*/
 				
                 nts.uk.ui.windows.setShared("DialogCToMaster", transferObj);
-				console.log(transferObj)
+				//console.log(transferObj)
                 self.close();
 			}
             
