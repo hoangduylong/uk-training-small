@@ -19,6 +19,7 @@ var nts;
                                 addPosition: "basic/training/position/add",
                                 removePosition: "basic/training/position/remove",
                                 updatePosition: "basic/training/position/update",
+                                updateOrder: "basic/training/position/updateOrder",
                             };
                             /* findAllPosition */
                             function findAllPosition() {

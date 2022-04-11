@@ -1,0 +1,12 @@
+.side-line {
+	margin-left: 80px;
+	margin-right: 20px;
+	width: 7px;
+	height: 50px;
+	border-radius: 2px;
+}
+
+.flex-item {
+	display: flex;
+	align-items: center;
+}

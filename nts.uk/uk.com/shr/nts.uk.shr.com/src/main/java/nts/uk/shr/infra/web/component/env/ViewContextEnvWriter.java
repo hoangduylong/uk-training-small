@@ -50,6 +50,7 @@ public class ViewContextEnvWriter {
 		rw.write("__viewContext.env.japaneseEras = [];");
 		
 		val eras = this.japaneseErasProvider.getAllEras();
+		if (eras == null) return;
 		for (val era : eras.getNames()) {
 			rw.write("__viewContext.env.japaneseEras.push(");
 			

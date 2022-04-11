@@ -21,6 +21,8 @@ var nts;
                             Constants.SHARE_OUT_DIALOG_REMOVE_JOB = "SHARE_OUT_DIALOG_REMOVE_JOB";
                             Constants.SHARE_IN_DIALOG_SELECT_SEQUENCE = "SHARE_IN_DIALOG_SELECT_SEQUENCE";
                             Constants.SHARE_OUT_DIALOG_SELECT_SEQUENCE = "SHARE_OUT_DIALOG_SELECT_SEQUENCE";
+                            Constants.SHARE_IN_DIALOG_ABROGATE_JOB_TITLE = "SHARE_IN_DIALOG_ABROGATE_JOB_TITLE";
+                            Constants.SHARE_OUT_DIALOG_ABROGATE_JOB_TITLE = "SHARE_OUT_DIALOG_ABROGATE_JOB_TITLE";
                             Constants.SHARE_IN_DIALOG_ADD_HISTORY = "SHARE_IN_DIALOG_ADD_HISTORY";
                             Constants.SHARE_OUT_DIALOG_ADD_HISTORY = "SHARE_OUT_DIALOG_ADD_HISTORY";
                             Constants.SHARE_IN_DIALOG_EDIT_HISTORY = "SHARE_IN_DIALOG_EDIT_HISTORY";
@@ -36,9 +38,10 @@ var nts;
                          * JobTitle
                          */
                         var JobTitle = /** @class */ (function () {
-                            function JobTitle(jobTitleCode, jobTitleName) {
+                            function JobTitle(jobTitleCode, jobTitleName, positionCode, positionName) {
                                 this.jobTitleCode = jobTitleCode;
                                 this.jobTitleName = jobTitleName;
+                                this.position = new Position(positionCode, positionName);
                             }
                             return JobTitle;
                         }());
@@ -47,68 +50,30 @@ var nts;
                          * History
                          */
                         var History = /** @class */ (function () {
-                            function History(jobTitleId, historyId, startDate, endDate) {
-                                this.jobTitleId = jobTitleId;
-                                this.historyId = historyId;
-                                this.startDate = startDate;
-                                this.endDate = endDate ? endDate : "31/12/9999";
+                            function History(jobTitleId, jobTitleName, historyId, startDate, endDate) {
+                                var self = this;
+                                self.jobTitleId = jobTitleId;
+                                self.jobTitleName = jobTitleName;
+                                self.historyId = historyId;
+                                self.startDate = startDate;
+                                self.endDate = endDate ? endDate : "31/12/9999";
+                                self.displayString = "".concat(self.startDate, " ~ ").concat(self.endDate);
                             }
+                            History.prototype.updateEndDate = function (endDate) {
+                                this.endDate = endDate;
+                                this.displayString = "".concat(this.startDate, " ~ ").concat(this.endDate);
+                            };
                             return History;
                         }());
                         base.History = History;
-                        /*
-                            
-                
-                            listHistory: KnockoutObservableArray<History>;
-                            selectedHistoryId: KnockoutObservable<string>;
-                            
-                            constructor() {
-                                let self = this;
-                                self.listHistory = ko.observableArray([]);
-                                self.selectedHistoryId = ko.observable(null);
-                                
-                                self.listJobTitleHistory.subscribe((newListHistory) => {
-                                    _self.fillTextDisplay();
-                                });
-                            }
-                            
-                            /**
-                             * selectFirst
-                             
-                            public selectFirst() {
-                                let _self = this;
-                                if (_self.listJobTitleHistory()[0]){
-                                    _self.selectedHistoryId(_self.listJobTitleHistory()[0].historyId);
-                                }
-                            }
-                            
-                            /**
-                             * getSelectedHistoryByHistoryId
-                             
-                            public getSelectedHistoryByHistoryId(): History {
-                                let _self = this;
-                                return _self.listJobTitleHistory().filter(item => item.historyId == _self.selectedHistoryId())[0];
-                            }
-                            
-                            /**
-                             * fillTextDisplay
-                             
-                            private fillTextDisplay() {
-                                let _self = this;
-                                _.forEach(_self.listJobTitleHistory(), (item: History) => {
-                                    item.textDisplay = item.period.startDate + " " + nts.uk.resource.getText("CMM013_30") + " " + item.period.endDate;
-                                })
-                            }
-                            
-                        }
-                         */
                         /**
                          * Position
                          */
                         var Position = /** @class */ (function () {
-                            function Position(positionCode, positionName) {
+                            function Position(positionCode, positionName, order) {
                                 this.positionCode = positionCode;
                                 this.positionName = positionName;
+                                this.order = order;
                             }
                             return Position;
                         }());

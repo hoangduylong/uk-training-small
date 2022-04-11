@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:com="http://xmlns.jcp.org/jsf/component"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = 
+				{
+					width : 550,
+					height : 380
+				};
+				</script>
+
+			<com:scriptfile set="IGNITE" />
+			<com:stylefile path="style.css" />
+			<com:scriptfile path="../_base/cmm013.base.js" />
+			<com:scriptfile path="cmm013.c2.service.js" />
+			<com:scriptfile path="cmm013.c2.vm.js" />
+			<com:scriptfile path="cmm013.c2.start.js" />
+		</ui:define>
+
+		<!-- PAGE CONTENT -->
+		<ui:define name="content">
+			<div id="contents-area">
+				<div class="part">
+					<div style="font-size: 18px">序列設定</div>
+
+				</div>
+
+				<div id="position-items-list">
+					<table id="position-list-table"
+						data-bind="ntsGridList: {
+							width: 220,							
+							height: 340,											
+							dataSource: positionList,
+							primaryKey: 'positionCode',
+							columns: positionColumns,
+							value: currentCode,
+							multiple: false,														
+						}"></table>
+				</div>
+
+				<div class="line"></div>
+
+				<div class="item group part">
+					<button class="item button button-submit"
+						data-bind="click: execution">実行</button>
+					<button class="item button button-cancel" data-bind="click: close">キャンセル</button>
+				</div>
+			</div>
+
+			<style>
+#position-items-list{
+	margin-top: 30px;
+	margin-left: 20px;
+}
+
+#position-items-list th{
+	background-color: #367738;
+}
+
+#position-items-list th span {
+    color: white;
+}
+
+.button {
+	width: 150px;
+	height: 40px;
+	border-radius: 4px;
+	/* margin-right: 50px; */
+	border: none;
+	margin-left: 15px;
+	/* padding: 15px 32px; */
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	font-weight: bold;
+	/* margin: 4px 2px; */
+	cursor: pointer;
+	-webkit-transition-duration: 0.4s; /* Safari */
+	transition-duration: 0.4s;
+}
+
+.button-submit {
+	background-color: #367738;
+	color: white;
+}
+
+.button-cancel {
+	background-color: #e4e4e4;
+	color: black;
+}
+
+.button:hover {
+	box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0
+		rgba(0, 0, 0, 0.19);
+	color: black;
+}
+
+.button-submit:hover {
+	background-color: #367738;
+}
+
+.button-cancel:hover {
+	background-color: #e4e4e4;
+}
+
+.line {
+	width: 800px;
+	height: 1px;
+	border: 0px;
+	background-color: black;
+	margin: 30px 0px;
+}
+</style>
+		</ui:define>
+	</ui:composition>
+</body>
+</html>
