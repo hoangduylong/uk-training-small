@@ -22,7 +22,7 @@ module nts.uk.com.view.cmm013.c2 {
 				self.positionName = ko.observable("");
 
 				self.currentCode = ko.observable(null);
-
+				
 				self.positionColumns = ko.observableArray([
 					{ headerText: 'コード', key: 'positionCode', width: 80 },
 					{ headerText: '名称', key: 'positionName', width: 140 }
