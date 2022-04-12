@@ -1,9 +1,14 @@
+
+
 #left-content {
 	margin-left: 15px;
+	margin-top: 15px !important;
 	float: left;
 	min-height: 400px;
 	width: 340px;
 	padding: 20px;
+	padding-bottom: 10px;
+	padding-top: 10px;
 	background: #e2f79f;
 	position: relative;
 }
@@ -103,4 +108,14 @@
 	height: min-content;
 	text-align: center;
 	min-width: 60px;
+}
+
+#search-icon-custom {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+#left-content .nts-searchbbox-wrapper {
+	margin-bottom: 0 !important;
 }

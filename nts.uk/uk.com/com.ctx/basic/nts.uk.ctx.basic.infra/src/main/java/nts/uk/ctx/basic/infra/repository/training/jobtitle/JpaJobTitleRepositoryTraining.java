@@ -23,7 +23,6 @@ import nts.uk.ctx.basic.infra.entity.training.jobtitle.TrainingHistoryPK;
 import nts.uk.ctx.basic.infra.entity.training.jobtitle.TrainingJobTitle;
 import nts.uk.ctx.basic.infra.entity.training.jobtitle.TrainingJobTitlePK;
 
-
 @Stateless
 public class JpaJobTitleRepositoryTraining extends JpaRepository implements JobTitleRepositoryTraining {
 	@Inject
@@ -32,16 +31,15 @@ public class JpaJobTitleRepositoryTraining extends JpaRepository implements JobT
 			+ " FROM TrainingJobTitle j"
 			+ " INNER JOIN TrainingPosition p ON j.positionCd = p.trainingPositionPK.positionCd"
 			+ " INNER JOIN TrainingHistory h ON j.trainingJobTitlePK.jobCd = h.jobCd";
-// A sửa lại thành JPA rồi e kiểm tra xem nhé 
-//	@Inject
-//	private static final String SELECT_BY_JOB_CD = SELECT_ALL + "WHERE JOB_CD = :jobTitleCode";	
+
 
 	@Override
 	public List<JobTitleTraining> findAll() {
-		return this.queryProxy().query(SELECT_ALL, TrainingJobTitle.class)
-					.getList(x -> TrainingJobTitle.toDomain(x));
-		}
-	
+		System.out.println("helloeoituoi5tu34985u798tueroitdrg))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))\n");
+
+		return this.queryProxy().query(SELECT_ALL, TrainingJobTitle.class).getList(x -> TrainingJobTitle.toDomain(x));
+	}
+
 	@Override
 	public List<JobTitleTraining> findAllByJdbc() {
 		
@@ -77,8 +75,7 @@ public class JpaJobTitleRepositoryTraining extends JpaRepository implements JobT
 	
 	@Override
 	public Optional<JobTitleTraining> find(String jobTitleCode) {
-		return this.queryProxy().find(jobTitleCode, TrainingJobTitle.class)
-				.map(x -> TrainingJobTitle.toDomain(x));
+		return this.queryProxy().find(jobTitleCode, TrainingJobTitle.class).map(x -> TrainingJobTitle.toDomain(x));
 	}
 
 	@Override
@@ -90,31 +87,27 @@ public class JpaJobTitleRepositoryTraining extends JpaRepository implements JobT
 	public void update(JobTitleTraining jobTitleTraining) {
 		this.commandProxy().update(toJobTitleEntity(jobTitleTraining));
 	}
-	
-	public List <TrainingHistory> toHistoryEntity(JobTitleTraining jobTitleTraining) {
-		
-		List<TrainingHistory> listEntity =  jobTitleTraining.getHistoryTrainings().stream()
-				.map(history -> {
-					TrainingHistoryPK pk = new TrainingHistoryPK(history.getHistoryId());
-					
-					TrainingHistory entity = this.queryProxy().find(pk, TrainingHistory.class)
-							.orElse(new TrainingHistory());
-					entity.setTrainingHistoryPK(pk);
-					entity.setJobCd(history.getJobTitleCodeTraining().v());
-					entity.setJobName(history.getJobTitleNameTraining().v());
-					entity.setStartDate(history.getStartDate());
-					entity.setEndDate(history.getEndDate());
-					return entity;
-				}).collect(Collectors.toList());
+
+	public List<TrainingHistory> toHistoryEntity(JobTitleTraining jobTitleTraining) {
+
+		List<TrainingHistory> listEntity = jobTitleTraining.getHistoryTrainings().stream().map(history -> {
+			TrainingHistoryPK pk = new TrainingHistoryPK(history.getHistoryId());
+
+			TrainingHistory entity = this.queryProxy().find(pk, TrainingHistory.class).orElse(new TrainingHistory());
+			entity.setTrainingHistoryPK(pk);
+			entity.setJobCd(history.getJobTitleCodeTraining().v());
+			entity.setJobName(history.getJobTitleNameTraining().v());
+			entity.setStartDate(history.getStartDate());
+			entity.setEndDate(history.getEndDate());
+			return entity;
+		}).collect(Collectors.toList());
 		return listEntity;
 	}
-	
-	public TrainingJobTitle toJobTitleEntity(JobTitleTraining jobTitleTraining)
-	{
+
+	public TrainingJobTitle toJobTitleEntity(JobTitleTraining jobTitleTraining) {
 		TrainingJobTitlePK pk = new TrainingJobTitlePK(jobTitleTraining.getJobTitleCodeTraining().v());
-				
-		TrainingJobTitle entity = this.queryProxy().find(pk, TrainingJobTitle.class)
-				.orElse(new TrainingJobTitle());
+
+		TrainingJobTitle entity = this.queryProxy().find(pk, TrainingJobTitle.class).orElse(new TrainingJobTitle());
 		entity.setTrainingJobTitlePK(pk);
 		entity.setPositionCd(jobTitleTraining.getPositionCodeTraining().v());
 		entity.setAsManager(jobTitleTraining.isTreatAsAManager() ? 1 : 0);

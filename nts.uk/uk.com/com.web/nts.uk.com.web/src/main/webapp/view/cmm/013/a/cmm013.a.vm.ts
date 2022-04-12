@@ -24,6 +24,8 @@ module nts.uk.com.view.cmm013.a {
 			selectedHistoryId: KnockoutObservable<string> = ko.observable("");
             jobTitleIsManager: KnockoutObservable<boolean> = ko.observable(false);
 
+			codeEditor: KnockoutObservable<boolean> = ko.observable(true);
+
 			jobTitleList: KnockoutObservableArray<JobTitle> = ko.observableArray([]);
 			jobTitleFoundList: KnockoutObservableArray<JobTitle> = ko.observableArray([]);
 			
@@ -45,15 +47,18 @@ module nts.uk.com.view.cmm013.a {
 				// setup date default for search input
 				self.baseDate = ko.observable((new Date()).toDateString());
 				
-				// get data
+				// effect
 				self.effect()
+				
+				// get data
+				self.firstData()
                 
 				
 				// set active job (job code)
 				//this.selectedJobTitleCode(this.jobTitleList()[0].jobTitleCode);
             }
 
-			private effect(): void {
+			private firstData(): void {
 				let self = this;
 				// first request data
 				service.findAllJobTitle()
@@ -72,17 +77,26 @@ module nts.uk.com.view.cmm013.a {
 				// select first element of list job
 				self.selectedJobTitleCode(self.jobTitleList()[0].jobTitleCode);
 				
+				
+			}
+			
+			public effect() {
+				let self = this;
 				// change events
 				self.selectedJobTitleCode.subscribe(newJobCode => {
+					if (!self.jobTitleList().some(e => e.jobTitleCode == newJobCode)) {
+						self.historyList([]);
+						self.baseDate("");
+						self.currentJobTitleName("");
+						self.currentPositionCode("");
+						self.currentPositionName("");
+            			self.jobTitleIsManager(false);
+						self.codeEditor(true)
+						return;
+					}
 					console.log(newJobCode);
-					// reload job title info
-					/*service.findHistoryList(newJobCode)
-						.done((data: any) => {
-							console.log(data)
-						})
-						.fail((err: any) => {
-							console.log(err)
-						})*/
+					
+					self.codeEditor(false);
 					
 					// get data of history for job title (get by selected job id)
 					self.historyList([]);
@@ -145,6 +159,10 @@ module nts.uk.com.view.cmm013.a {
 				self.historyList.valueHasMutated();
 			}
 
+			public createJobtitle() {
+				let self = this;
+				self.selectedJobTitleCode("");
+			}
 
 			/**
 				Dialogs
@@ -163,7 +181,7 @@ module nts.uk.com.view.cmm013.a {
 					self.historyList.unshift(new History(first.jobTitleId, first.jobTitleName, first.historyId, first.startDate, data.abrogatedDate));
 					self.historyList.valueHasMutated();
                 });
-            } 
+            }
 
 			public openDialogC() {
                 let self = this;
@@ -216,7 +234,7 @@ module nts.uk.com.view.cmm013.a {
             }
 
 
-			public prepareToServer(isAbrogated: boolean): any {
+			public prepareToServer(): any {
 				let self = this;
 				
 				return {
@@ -226,9 +244,19 @@ module nts.uk.com.view.cmm013.a {
 					jobTitleName: self.historyList().map(e => e.jobTitleName),
 					startDate: self.historyList().map(e => e.startDate),
 					endtDate: self.historyList().map(e => e.endDate),
-					isAbrogated,
+					isAbrogated: self.jobTitleIsManager(),
 					treatAsAManager: self.jobTitleIsManager()
 				}
+			}
+			
+			public submitForm() {
+				let self = this;
+				// insert or update;
+				let data = self.prepareToServer()
+				service.updateJobTitle(data)
+					.done((result: any) => {
+						location.reload();
+					})
 			}
 
             /**

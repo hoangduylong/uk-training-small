@@ -3,6 +3,7 @@ package nts.uk.ctx.basic.infra.entity.training.jobtitle;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -11,6 +12,7 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -32,6 +34,11 @@ public class TrainingPosition extends ContractUkJpaEntity implements Serializabl
 	/** The Position Name. */
 	@Column(name = "POSITION_NAME")
 	private String positionName;
+	
+	@NotNull
+	@Basic(optional = false)
+	@Column(name = "POSITION_ORDER")
+	public int positionOrder;
 
 	/** The Training JobTitle. */
 	@OneToMany(targetEntity = TrainingJobTitle.class, mappedBy = "trainingPosition", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
