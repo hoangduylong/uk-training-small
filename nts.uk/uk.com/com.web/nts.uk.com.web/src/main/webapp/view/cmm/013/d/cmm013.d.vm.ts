@@ -1,13 +1,13 @@
 module nts.uk.com.view.cmm013.d {
 
     export module viewmodel {
-        import Constants = base.Constants;
-		import listHistory = base.History;
+		import History = base.History;
         
         export class ScreenModel {
             
             startDate: KnockoutObservable<string>;
             endDate: KnockoutObservable<string>;
+			listHistory: KnockoutObservableArray<History> = ko.observableArray([]);
             
             constructor() {
                 let _self = this;  
@@ -32,13 +32,27 @@ module nts.uk.com.view.cmm013.d {
                 if (!_self.validate()) {
                     return;
                 }
-				let transferObj: any = {};
-				transferObj.startDate =  _self.startDate;
-				transferObj.endDate =  _self.endDate;
-                nts.uk.ui.windows.setShared("DialogDToMaster", transferObj);
+				let data: any = {
+					startDate:  _self.startDate(),
+					endDate:  _self.endDate()
+				};
+                nts.uk.ui.windows.setShared('DialogDToMaster', data);
                 _self.close();
 			}
             
+			   private validate(): boolean {
+				let _self = this;
+				let data: any = nts.uk.ui.windows.getShared('listMasterToD');
+				_self.listHistory(data.historyList);
+				if(new Date(_self.startDate()) < new Date(_self.listHistory()[0].startDate))
+				{
+					alert('最新の履歴開始日以前に履歴を追加することはできません。');
+					return false;
+				}
+				
+                return true;
+            }
+
             /**
              * Close
              */
@@ -46,36 +60,21 @@ module nts.uk.com.view.cmm013.d {
                 nts.uk.ui.windows.close();
             }
             
-            
-            /**
-             * Validate
-             */
-            private validate(): boolean {
-				let _self = this;
-				if(_self.startDate() == "")
+			private checkDate(strDate: string): boolean {
+				let comp = strDate.split('/')
+   				let d = parseInt(comp[0], 10)
+    			let m = parseInt(comp[1], 10)
+    			let y = parseInt(comp[2], 10)
+    			let date = new Date(y,m-1,d);
+    			if (date.getFullYear() != y && date.getMonth() + 1 != m && date.getDate() != d) {
+     				return false
+    			}
+				if (1900 > y && y > 9999)
 				{
-					alert('開始日を入力してください。');
 					return false;
 				}
-				
-                let transferObj: any = nts.uk.ui.windows.getShared("listMasterToD");
-				let listHistory: listHistory[] =  transferObj.historyList;
-				let valid: boolean = listHistory.every(function (history)
-				{
-					return  new Date(_self.startDate()) > new Date (history.startDate);
-				});
-				//alert(_self.startDate());
-				//let date = new Date("2022-04-07");
-				//alert(date);
-				//let valid = new Date(_self.startDate()) > date;
-				//alert(valid);
-				if(!valid)
-				{
-					alert('最新の履歴開始日以前に履歴を追加することはできません。');
-					return false;
-				}
-                return true;
-            }
+    			return true
+			}
         }
     }    
 }
