@@ -71,6 +71,8 @@ var nts;
                                                 console.log(err)
                                             })*/
                                         // get data of history for job title (get by selected job id)
+                                        self.historyList([]);
+                                        self.historyList.valueHasMutated();
                                         for (var i = 0; i < 20; i++) {
                                             self.historyList.push(new History("job", "history_name_" + i, "historyId_" + i, "3/1/2020", "1/3/2021"));
                                             console.log("fake history data success");
