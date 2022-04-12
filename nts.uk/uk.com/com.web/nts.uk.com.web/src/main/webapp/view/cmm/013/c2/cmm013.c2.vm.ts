@@ -55,7 +55,7 @@ module nts.uk.com.view.cmm013.c2 {
             public execution(): void {
 				let self = this;
 				if (!self.currentCode()) {
-					nts.uk.ui.dialog.info("名称を選んでください");
+					nts.uk.ui.dialog.error("名称を選んでください");
                     return;
                 }
 				

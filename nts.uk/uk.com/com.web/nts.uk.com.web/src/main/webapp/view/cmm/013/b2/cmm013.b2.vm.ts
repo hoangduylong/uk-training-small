@@ -10,7 +10,8 @@ module nts.uk.com.view.cmm013.b2 {
             
             abrogatedDate: KnockoutObservable<string>;
 			jobCode: KnockoutObservable<string> = ko.observable('');
-			jobName: KnockoutObservable<string> = ko.observable('');
+            jobName: KnockoutObservable<string> = ko.observable('');
+            endDateOfLastestHistory: KnockoutObservable<string> = ko.observable('');
             
             constructor() {
                 let self = this;  
@@ -24,8 +25,11 @@ module nts.uk.com.view.cmm013.b2 {
                 let dfd = $.Deferred<any>();
                 
                 let shared = getShared('listMasterToB');
+                // console.log(shared)
 				this.jobCode(shared.jobTitleCode);
-				this.jobName(shared.jobTitleName);
+                this.jobName(shared.jobTitleName);
+                this.endDateOfLastestHistory(shared.lastestHistory.startDate);
+                console.log(this.endDateOfLastestHistory());
 				//console.log(shared)
 				dfd.resolve();
                 return dfd.promise();
@@ -36,10 +40,16 @@ module nts.uk.com.view.cmm013.b2 {
              */
             public execution(): void {
                 let self = this;
-/*                if (!self.validate()) {
+
+                let start = new Date(self.endDateOfLastestHistory());
+                let abrogated = new Date(self.abrogatedDate());
+                
+                if(abrogated <= start){
+                    nts.uk.ui.dialog.error(self.endDateOfLastestHistory() + "以降の日を選んでください");
                     return;
                 }
-*/				let transferObj: any = {
+                
+                let transferObj: any = {
 					abrogatedDate: self.abrogatedDate().slice(0, 10)
 				};
 				
