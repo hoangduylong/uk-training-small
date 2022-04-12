@@ -85,6 +85,8 @@ module nts.uk.com.view.cmm013.a {
 						})*/
 					
 					// get data of history for job title (get by selected job id)
+					self.historyList([]);
+					self.historyList.valueHasMutated();
 					for (let i = 0; i < 20; i++) {
 						self.historyList.push(new History("job", "history_name_"+i, "historyId_"+i, "3/1/2020", "1/3/2021"));
 						console.log("fake history data success");
@@ -151,25 +153,15 @@ module nts.uk.com.view.cmm013.a {
                 let self = this;
                 setShared('listMasterToB', {
 					jobTitleCode: self.selectedJobTitleCode(),
-					jobTitleName: self.currentJobTitleName()
+					jobTitleName: self.currentJobTitleName(),
+					lastestHistory: self.historyList()[0]
                 });
                 nts.uk.ui.windows.sub.modal('/view/cmm/013/b2/index.xhtml').onClosed(function(): any {
                     let data: any = getShared('DialogBToMaster');
 					console.log(data);
-					/*let arrrew: any = [];
-					for (let i = 0; i < self.historyList().length; i++) {
-						arrrew.push(new History())
-					}*/
-					//self.historyList()[0].updateEndDate(data.abrogatedDate)
-					//let newHistories = [...self.historyList()]
-					//newHistories[0].updateEndDate(data.abrogatedDate);
-					//self.historyList(arrrew);
 					let first = self.historyList.shift();
 					self.historyList.unshift(new History(first.jobTitleId, first.jobTitleName, first.historyId, first.startDate, data.abrogatedDate));
 					self.historyList.valueHasMutated();
-					console.log(self.historyList()[0].endDate)
-					console.log(123)
-					console.log(self.historyList());
                 });
             } 
 
@@ -253,22 +245,6 @@ module nts.uk.com.view.cmm013.a {
                 return !$('.nts-input').ntsError('hasError');
             }
 
-            /**
-             * Show Error Message
-             */
-           /* public showMessageError(res: any): void {
-                // check error business exception
-                if (!res.businessException) {
-                    return;
-                }
-                
-                // show error message
-                if (Array.isArray(res.errors)) {
-                    nts.uk.ui.dialog.bundledErrors(res);
-                } else {
-                    nts.uk.ui.dialog.alertError({ messageId: res.messageId, messageParams: res.parameterIds });
-                }
-            }   */
         }
     }
 }

@@ -71,6 +71,8 @@ var nts;
                                                 console.log(err)
                                             })*/
                                         // get data of history for job title (get by selected job id)
+                                        self.historyList([]);
+                                        self.historyList.valueHasMutated();
                                         for (var i = 0; i < 20; i++) {
                                             self.historyList.push(new History("job", "history_name_" + i, "historyId_" + i, "3/1/2020", "1/3/2021"));
                                             console.log("fake history data success");
@@ -126,25 +128,15 @@ var nts;
                                     var self = this;
                                     setShared('listMasterToB', {
                                         jobTitleCode: self.selectedJobTitleCode(),
-                                        jobTitleName: self.currentJobTitleName()
+                                        jobTitleName: self.currentJobTitleName(),
+                                        lastestHistory: self.historyList()[0]
                                     });
                                     nts.uk.ui.windows.sub.modal('/view/cmm/013/b2/index.xhtml').onClosed(function () {
                                         var data = getShared('DialogBToMaster');
                                         console.log(data);
-                                        /*let arrrew: any = [];
-                                        for (let i = 0; i < self.historyList().length; i++) {
-                                            arrrew.push(new History())
-                                        }*/
-                                        //self.historyList()[0].updateEndDate(data.abrogatedDate)
-                                        //let newHistories = [...self.historyList()]
-                                        //newHistories[0].updateEndDate(data.abrogatedDate);
-                                        //self.historyList(arrrew);
                                         var first = self.historyList.shift();
                                         self.historyList.unshift(new History(first.jobTitleId, first.jobTitleName, first.historyId, first.startDate, data.abrogatedDate));
                                         self.historyList.valueHasMutated();
-                                        console.log(self.historyList()[0].endDate);
-                                        console.log(123);
-                                        console.log(self.historyList());
                                     });
                                 };
                                 ScreenModel.prototype.openDialogC = function () {
