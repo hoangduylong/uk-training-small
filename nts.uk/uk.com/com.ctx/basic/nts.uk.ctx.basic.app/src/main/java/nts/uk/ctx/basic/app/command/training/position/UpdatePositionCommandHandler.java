@@ -26,6 +26,7 @@ public class UpdatePositionCommandHandler extends CommandHandler<UpdatePositionC
 	protected void handle(CommandHandlerContext<UpdatePositionCommand> context) {
 		UpdatePositionCommand command = context.getCommand();
 		
+		System.out.println("=================yeahhhhhhhhh================\n");
 		// check exists position
 		Optional<PositionTraining> position = positionRepository.findByPositionCode(command.getPositionCode());
 		if (!position.isPresent()) {

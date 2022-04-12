@@ -97,72 +97,8 @@
     <table id="masterTable" style="width: 100%; border-collapse: collapse;">
       <tbody data-bind="foreach: positionList">
         <tr>
-          <td style="width:29%">01</td>
-          <td>役員</td>
-        </tr>
-        <tr>
-          <td>02</td>
-          <td>本部長格</td>
-        </tr>
-        <tr>
-          <td>03</td>
-          <td>部長格</td>
-        </tr>
-        <tr>
-          <td>04</td>
-          <td>次長格</td>
-        </tr>
-        <tr>
-          <td>05</td>
-          <td>課長格</td>
-        </tr>
-        <tr>
-          <td>06</td>
-          <td>係長格</td>
-        </tr>
-        <tr>
-          <td>07</td>
-          <td>主任格</td>
-        </tr>
-        <tr>
-          <td>08</td>
-          <td>一般Ⅱ</td>
-        </tr>
-        <tr>
-          <td>09</td>
-          <td>一般Ⅰ</td>
-        </tr>
-        <tr>
-          <td>10</td>
-          <td>パート・アルバイト</td>
-        </tr>
-        <tr>
-          <td>11</td>
-          <td>その他</td>
-        </tr>
-        <tr>
-          <td>12</td>
-          <td>役員</td>
-        </tr>
-        <tr>
-          <td>13</td>
-          <td>役員</td>
-        </tr>
-        <tr>
-          <td>14</td>
-          <td>役員</td>
-        </tr>
-        <tr>
-          <td>15</td>
-          <td>役員</td>
-        </tr>
-        <tr>
-          <td>16</td>
-          <td>役員</td>
-        </tr>
-        <tr>
-          <td>17</td>
-          <td>役員</td>
+          <td style="width:29%" data-bind="text: positionCode"></td>
+           <td data-bind="text: positionName"></td>
         </tr>
       </tbody>
     </table>
@@ -174,8 +110,8 @@
   <button onclick="moveRowDown()" class="downbutton">🠗</button>
 
   <!-- label code - position and text box -->
-  <label class="codeLabel">コード<br><label style="color: gray;">(半角英数2文字)</label></label>
-  <label class="positionLabel">名称<br><label style="color: gray;">(全角10文字)</label></label>
+  <label class="codeLabel">コード<br></br><label style="color: gray;">(半角英数2文字)</label></label>
+  <label class="positionLabel">名称<br></br><label style="color: gray;">(全角10文字)</label></label>
   <input type="text" id="code" class="code" maxlength="10">
   <input type="text" id="position" class="position" maxlength="15">
 

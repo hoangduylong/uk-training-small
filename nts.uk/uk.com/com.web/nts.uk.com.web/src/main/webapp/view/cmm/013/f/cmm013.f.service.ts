@@ -20,13 +20,12 @@ module nts.uk.com.view.cmm013.f {
 		}
 
 		// findByPositionCode
-		export function findByPositionCode(positionCode: String): JQueryPromise<Position> {
-			return nts.uk.request.ajax(servicePath.findByPositionCode, { positionCode: positionCode });
+		export function findByPositionCode(positionCode: string): JQueryPromise<any> {			
+			return nts.uk.request.ajax(servicePath.findByPositionCode + '/' + positionCode);
 		}
 
 		// addPosition
 		export function addPosition(addCommand: model.AddPositionCommand): JQueryPromise<any> {
-			console.log("okeeeee");
 			return nts.uk.request.ajax(servicePath.addPosition, addCommand);
 		}
 
@@ -37,7 +36,8 @@ module nts.uk.com.view.cmm013.f {
 
 		// updatePosition
 		export function updatePosition(updateCommand: model.UpdatePositionCommand): JQueryPromise<any> {
-			return nts.uk.request.ajax(servicePath.addPosition, updateCommand);
+			console.log("hellooooo")
+			return nts.uk.request.ajax(servicePath.updatePosition, updateCommand);
 		}
 
 		// update order

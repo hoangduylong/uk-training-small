@@ -42,23 +42,17 @@ public class PositionFinder {
 	}
 	
 	
-	/**
-	 * find position by position code
-	 * @param positionCode
-	 * @return
-	 */
+	// find position by position code
 	public PositionDto findByPositionCode(String positionCode) {
 		Optional<PositionTraining> position = this.positionRepository.findByPositionCode(positionCode);
-		
+
 		if(position.isPresent()) {
+			System.out.println("isPresent!!!");
 			PositionDto positionDto = new PositionDto(position.get().getPositionCode().v(), 
 					 								  position.get().getPositionName().v(), 
 					 								  position.get().getPositionOrder());
-			System.out.print(positionDto);
 			return positionDto;
 		}
-		System.out.print("nothing");
-		System.out.print("nothing");
 		return null;
 	}
 

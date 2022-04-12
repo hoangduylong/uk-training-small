@@ -16,7 +16,7 @@ public class UpdatePositionCommand {
 	public PositionTraining toDomain(UpdatePositionCommand command) {
 		return new PositionTraining(
 				new PositionCodeTraining(command.positionCode),
-				new PositionNameTraining(command.positionCode),
+				new PositionNameTraining(command.positionName),
 				command.positionOrder);
 	}
 }

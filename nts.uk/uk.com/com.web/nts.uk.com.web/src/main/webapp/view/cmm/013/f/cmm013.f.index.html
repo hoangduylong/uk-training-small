@@ -7,7 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Screen F</title>
 
-  <link rel="stylesheet" href="cmm013.f.style.css">
+  <link rel="stylesheet" href="style2.css">
+  
+  <com:scriptfile path="cmm013.f.service.js" />
+			<com:scriptfile path="cmm013.f.vm2.js" />
+			<com:scriptfile path="cmm013.f.start2.js" />
 
   <canvas id="canvas" width="800px" height="700px"></canvas>
 </head>
@@ -76,73 +80,9 @@
   <div class="master">
     <table id="masterTable" style="width: 100%; border-collapse: collapse;">
       <tbody data-bind="foreach: positionList">
-        <tr>
-          <td style="width:29%">01</td>
-          <td>役員</td>
-        </tr>
-        <tr>
-          <td>02</td>
-          <td>本部長格</td>
-        </tr>
-        <tr>
-          <td>03</td>
-          <td>部長格</td>
-        </tr>
-        <tr>
-          <td>04</td>
-          <td>次長格</td>
-        </tr>
-        <tr>
-          <td>05</td>
-          <td>課長格</td>
-        </tr>
-        <tr>
-          <td>06</td>
-          <td>係長格</td>
-        </tr>
-        <tr>
-          <td>07</td>
-          <td>主任格</td>
-        </tr>
-        <tr>
-          <td>08</td>
-          <td>一般Ⅱ</td>
-        </tr>
-        <tr>
-          <td>09</td>
-          <td>一般Ⅰ</td>
-        </tr>
-        <tr>
-          <td>10</td>
-          <td>パート・アルバイト</td>
-        </tr>
-        <tr>
-          <td>11</td>
-          <td>その他</td>
-        </tr>
-        <tr>
-          <td>12</td>
-          <td>役員</td>
-        </tr>
-        <tr>
-          <td>13</td>
-          <td>役員</td>
-        </tr>
-        <tr>
-          <td>14</td>
-          <td>役員</td>
-        </tr>
-        <tr>
-          <td>15</td>
-          <td>役員</td>
-        </tr>
-        <tr>
-          <td>16</td>
-          <td>役員</td>
-        </tr>
-        <tr>
-          <td>17</td>
-          <td>役員</td>
+        <tr data-bind="click: $parent.select">
+          <td style="width:29%" data-bind="text: positionCode"></td>
+           <td data-bind="text: positionName"></td>
         </tr>
       </tbody>
     </table>
@@ -167,7 +107,7 @@
     var screenModel = new viewmodel.ScreenModel();
     screenModel.selectedRow()
  */
-    /* function selectedRow() {
+    function selectedRow() {
       let masterTable = document.getElementById("masterTable")
 
       for (let i = 0; i < masterTable.rows.length; i++) {
@@ -206,7 +146,7 @@
         // when the row go down the index will be equal to index + 1
         index++;
       }
-    } */
+    }
 
     function clearTextbox() {
       document.getElementById("code").value = ""

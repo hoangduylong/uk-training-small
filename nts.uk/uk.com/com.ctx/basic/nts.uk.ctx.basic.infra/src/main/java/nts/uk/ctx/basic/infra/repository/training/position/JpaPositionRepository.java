@@ -15,6 +15,8 @@ import nts.uk.ctx.basic.infra.entity.training.position.PositionClassification;
 public class JpaPositionRepository extends JpaRepository implements PositionRepositoryTraining {
 	
 	private static final String SELECT_ALL = "SELECT p FROM PositionClassification p";
+	private static final String SELECT_ONE = "SELECT p FROM PositionClassification p " + 
+											"WHERE p.positionCode = :positionCode";
 
 	@Override
 	public List<PositionTraining> findAll() {
@@ -28,10 +30,27 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 	
 	@Override
 	public Optional<PositionTraining> findByPositionCode(String positionCode) {
-		String key = positionCode;
+//		String key = positionCode;
+//		 System.out.println("=============find one !!!!=============");
+//		return this.queryProxy().find(positionCode, PositionClassification.class)
+//		 .map(x -> PositionTraining.toDomain(positionCode, x.positionName, x.positionOrder));
+
 		
-		return this.queryProxy().find(key, PositionClassification.class)
-				.map(x -> PositionTraining.toDomain(positionCode, x.positionName, x.positionOrder));
+		
+		
+		 Optional<PositionTraining> temp = this.queryProxy().query(SELECT_ONE,
+		 PositionClassification.class) .setParameter("positionCode", positionCode)
+		 .getSingle(x -> PositionTraining.toDomain( x.positionCode, x.positionName,
+		 x.positionOrder));
+		 
+		 System.out.println("=============find one !!!!=============");
+		 if(temp.isPresent()) System.out.println("hello");
+		
+		 
+		 return this.queryProxy().query(SELECT_ONE, PositionClassification.class)
+		 .setParameter("positionCode", positionCode)
+		 .getSingle(x -> PositionTraining.toDomain( x.positionCode, x.positionName, x.positionOrder));
+
 	}
 
 
@@ -43,15 +62,16 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 	
 	@Override
 	public void remove(String positionCode) {
-		String key = positionCode;
-		this.commandProxy().remove(PositionClassification.class, key);
+		this.commandProxy().remove(PositionClassification.class, positionCode);
 	}
 	
 
 	@Override
 	public void update(PositionTraining position) {
-		PositionClassification p = toEntity(position);
-		this.commandProxy().update(p);
+		PositionClassification entity = this.queryProxy().find(position.getPositionCode().v(), PositionClassification.class).get();
+		entity.positionName = position.getPositionName().v();
+		entity.positionOrder = position.getPositionOrder();
+		this.commandProxy().update(entity);
 	}
 
 

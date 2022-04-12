@@ -37,8 +37,7 @@
 				<button class="btnStyle" data-bind="click: createNewPositionMode">新規</button>								
 				<button class="proceed btnStyle" data-bind="click: save">登録</button>				
 				<button class="btnStyle" data-bind="click: close">閉じる</button>
-				<button class="danger btnStyle" data-bind="click: remove">削除</button>
-								
+				<button class="danger btnStyle" data-bind="click: remove">削除</button>	
 			</div>
 			
 
@@ -73,7 +72,7 @@
 							<col width="85px" />
 							<col width="*" />
 						</colgroup>
-
+						
 						<tr>
 							<td>
 								<div id="position-code-label" data-bind="ntsFormLabel: { 
@@ -82,13 +81,14 @@
 								}">コード</div>
 							</td>
 							<td>
-								<input id="position-code" data-bind="ntsTextEditor: {
+								<input id="position-code" class="panel panel-frame panel-gray-bg" data-bind="ntsTextEditor: {
 									value: positionCode,
 									constraint: 'PositionCodeTraining',
 									option: {
 										width: '30px',
 									},
 									required: true,
+									enable: enable_input_positionCode,
 									
 								}" />
 							</td>

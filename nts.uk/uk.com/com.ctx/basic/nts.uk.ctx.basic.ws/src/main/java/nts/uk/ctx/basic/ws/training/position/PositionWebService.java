@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -19,7 +20,7 @@ import nts.uk.ctx.basic.app.find.training.position.PositionFinder;
 import nts.uk.ctx.basic.app.find.training.position.dto.PositionDto;
 
 @Path("basic/training/position")
-@Produces(MediaType.APPLICATION_JSON)
+@Produces("application/json")
 public class PositionWebService extends WebService {
 
 	@Inject
@@ -45,8 +46,8 @@ public class PositionWebService extends WebService {
 	
 	// find by positionCode
 	@POST
-	@Path("findByPositionCode")
-	public PositionDto findByPositionCode(String positionCode) {
+	@Path("findByPositionCode/{positionCode}")
+	public PositionDto findByPositionCode(@PathParam("positionCode") String positionCode) {
 		return this.positionFinder.findByPositionCode(positionCode);
 	}
 
@@ -55,8 +56,6 @@ public class PositionWebService extends WebService {
 	@POST
 	@Path("add")
 	public void add(AddPositionCommand command) {
-		System.out.print(command);
-		System.out.print("yeahhh went into server");
 		this.addPositionCommandHandler.handle(command);
 	}
 
