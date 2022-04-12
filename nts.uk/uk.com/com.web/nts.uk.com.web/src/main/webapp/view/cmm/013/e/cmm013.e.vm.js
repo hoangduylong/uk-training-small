@@ -12,12 +12,10 @@ var nts;
                     (function (e) {
                         var viewmodel;
                         (function (viewmodel) {
-                            var Constants = cmm013.base.Constants;
                             var ScreenModel = /** @class */ (function () {
                                 function ScreenModel() {
+                                    this.listHistory = ko.observableArray([]);
                                     var _self = this;
-                                    _self.jobTitleId = null;
-                                    _self.historyId = null;
                                     _self.startDate = ko.observable("");
                                     _self.endDate = ko.observable("9999/12/31");
                                 }
@@ -28,10 +26,8 @@ var nts;
                                     var _self = this;
                                     var dfd = $.Deferred();
                                     // Load data from parent screen
-                                    var transferObj = nts.uk.ui.windows.getShared("listMasterToE");
-                                    _self.jobTitleId = transferObj.jobTitleId;
-                                    _self.historyId = transferObj.historyId;
-                                    _self.startDate(transferObj.startDate);
+                                    var data = nts.uk.ui.windows.getShared('listMasterToE');
+                                    _self.startDate(data.startDate);
                                     dfd.resolve();
                                     return dfd.promise();
                                 };
@@ -41,13 +37,13 @@ var nts;
                                 ScreenModel.prototype.execution = function () {
                                     var _self = this;
                                     if (!_self.validate()) {
-                                        alert('最新の履歴開始日以前に履歴を追加することはできません。');
                                         return;
                                     }
-                                    var transferObj = {};
-                                    transferObj.startDate = _self.startDate;
-                                    transferObj.endDate = _self.endDate;
-                                    nts.uk.ui.windows.setShared("DialogEToMaster", transferObj);
+                                    var data = {
+                                        startDate: _self.startDate,
+                                        endDate: _self.endDate
+                                    };
+                                    nts.uk.ui.windows.setShared('DialogEToMaster', data);
                                     _self.close();
                                 };
                                 /**
@@ -61,15 +57,32 @@ var nts;
                                  */
                                 ScreenModel.prototype.validate = function () {
                                     var _self = this;
-                                    var transferObj = nts.uk.ui.windows.getShared(Constants.SHARE_IN_DIALOG_EDIT_HISTORY);
-                                    var listHistory = transferObj.listJobTitleHistory;
-                                    listHistory.every(function (history) {
-                                        return new Date(_self.startDate()) > new Date(history.startDate);
-                                    });
-                                    // Clear error
-                                    nts.uk.ui.errors.clearAll();
-                                    $('#start-date').ntsEditor('validate');
-                                    return !$('.nts-input').ntsError('hasError');
+                                    if (_self.startDate() == "") {
+                                        alert('開始日を入力してください。');
+                                        return false;
+                                    }
+                                    if (_self.checkDate(_self.startDate())) {
+                                        alert("開始日は 1900/01/01 ～ 9999/12/31 の日付を入力してください");
+                                        return false;
+                                    }
+                                    var data = nts.uk.ui.windows.getShared('listMasterToE');
+                                    _self.listHistory(data.historyList);
+                                    if (new Date(_self.startDate()) < new Date(_self.listHistory()[0].startDate)) {
+                                        alert('最新の履歴開始日以前に履歴を追加することはできません。');
+                                        return false;
+                                    }
+                                    return true;
+                                };
+                                ScreenModel.prototype.checkDate = function (strDate) {
+                                    var comp = strDate.split('/');
+                                    var d = parseInt(comp[0], 10);
+                                    var m = parseInt(comp[1], 10);
+                                    var y = parseInt(comp[2], 10);
+                                    var date = new Date(y, m - 1, d);
+                                    if (date.getFullYear() == y && date.getMonth() + 1 == m && date.getDate() == d) {
+                                        return true;
+                                    }
+                                    return false;
                                 };
                                 return ScreenModel;
                             }());

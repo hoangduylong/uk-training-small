@@ -25,6 +25,7 @@ var nts;
                                     this.currentPositionName = ko.observable("");
                                     this.selectedHistoryId = ko.observable("");
                                     this.jobTitleIsManager = ko.observable(false);
+                                    this.codeEditor = ko.observable(true);
                                     this.jobTitleList = ko.observableArray([]);
                                     this.jobTitleFoundList = ko.observableArray([]);
                                     this.historyList = ko.observableArray([]);
@@ -37,12 +38,14 @@ var nts;
                                     ]);
                                     // setup date default for search input
                                     self.baseDate = ko.observable((new Date()).toDateString());
-                                    // get data
+                                    // effect
                                     self.effect();
+                                    // get data
+                                    self.firstData();
                                     // set active job (job code)
                                     //this.selectedJobTitleCode(this.jobTitleList()[0].jobTitleCode);
                                 }
-                                ScreenModel.prototype.effect = function () {
+                                ScreenModel.prototype.firstData = function () {
                                     var self = this;
                                     // first request data
                                     a.service.findAllJobTitle()
@@ -59,17 +62,23 @@ var nts;
                                     }
                                     // select first element of list job
                                     self.selectedJobTitleCode(self.jobTitleList()[0].jobTitleCode);
+                                };
+                                ScreenModel.prototype.effect = function () {
+                                    var self = this;
                                     // change events
                                     self.selectedJobTitleCode.subscribe(function (newJobCode) {
+                                        if (!self.jobTitleList().some(function (e) { return e.jobTitleCode == newJobCode; })) {
+                                            self.historyList([]);
+                                            self.baseDate("");
+                                            self.currentJobTitleName("");
+                                            self.currentPositionCode("");
+                                            self.currentPositionName("");
+                                            self.jobTitleIsManager(false);
+                                            self.codeEditor(true);
+                                            return;
+                                        }
                                         console.log(newJobCode);
-                                        // reload job title info
-                                        /*service.findHistoryList(newJobCode)
-                                            .done((data: any) => {
-                                                console.log(data)
-                                            })
-                                            .fail((err: any) => {
-                                                console.log(err)
-                                            })*/
+                                        self.codeEditor(false);
                                         // get data of history for job title (get by selected job id)
                                         self.historyList([]);
                                         self.historyList.valueHasMutated();
@@ -121,6 +130,10 @@ var nts;
                                     self.historyList.shift();
                                     self.historyList.valueHasMutated();
                                 };
+                                ScreenModel.prototype.createJobtitle = function () {
+                                    var self = this;
+                                    self.selectedJobTitleCode("");
+                                };
                                 /**
                                     Dialogs
                                  */
@@ -155,14 +168,23 @@ var nts;
                                     });
                                     nts.uk.ui.windows.sub.modal('/view/cmm/013/d/index.xhtml').onClosed(function () {
                                         var data = getShared('DialogDToMaster');
-                                        console.log(data);
+                                        self.historyList()[0].startDate = data.startDate;
+                                        var preEndDate = new Date();
+                                        preEndDate.setDate(new Date(data.startDate).getDate() - 1);
+                                        self.historyList()[1].endDate = preEndDate.toString();
                                     });
                                 };
                                 ScreenModel.prototype.openDialogE = function () {
                                     var self = this;
-                                    setShared('listMasterToE', {});
+                                    setShared('listMasterToE', {
+                                        startDate: self.historyList()[0].startDate
+                                    });
                                     nts.uk.ui.windows.sub.modal('/view/cmm/013/e/index.xhtml').onClosed(function () {
                                         var data = getShared('DialogEToMaster');
+                                        self.historyList()[0].startDate = data.startDate;
+                                        var preEndDate = new Date();
+                                        preEndDate.setDate(new Date(data.startDate).getDate() - 1);
+                                        self.historyList()[1].endDate = preEndDate.toString();
                                     });
                                 };
                                 ScreenModel.prototype.openDialogF = function () {
@@ -172,7 +194,7 @@ var nts;
                                         var data = getShared('DialogEToMaster');
                                     });
                                 };
-                                ScreenModel.prototype.prepareToServer = function (isAbrogated) {
+                                ScreenModel.prototype.prepareToServer = function () {
                                     var self = this;
                                     return {
                                         positionCode: self.currentPositionCode(),
@@ -181,9 +203,18 @@ var nts;
                                         jobTitleName: self.historyList().map(function (e) { return e.jobTitleName; }),
                                         startDate: self.historyList().map(function (e) { return e.startDate; }),
                                         endtDate: self.historyList().map(function (e) { return e.endDate; }),
-                                        isAbrogated: isAbrogated,
+                                        isAbrogated: self.jobTitleIsManager(),
                                         treatAsAManager: self.jobTitleIsManager()
                                     };
+                                };
+                                ScreenModel.prototype.submitForm = function () {
+                                    var self = this;
+                                    // insert or update;
+                                    var data = self.prepareToServer();
+                                    a.service.updateJobTitle(data)
+                                        .done(function (result) {
+                                        location.reload();
+                                    });
                                 };
                                 /**
                                  * Validate

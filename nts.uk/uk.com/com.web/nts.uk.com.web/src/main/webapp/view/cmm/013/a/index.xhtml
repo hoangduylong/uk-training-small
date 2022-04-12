@@ -26,9 +26,9 @@
 
 			<div id="functions-area">
 				<button tabindex="1"
-					class="btnStyle">職位の作成</button>
+					class="btnStyle" data-bind="click: createJobtitle">職位の作成</button>
 				<button tabindex="2" 
-					class="proceed btnStyle">登録</button>
+					class="proceed btnStyle" data-bind="click: submitForm">登録</button>
 				<button tabindex="3"
 					class="danger btnStyle" data-bind="click: openDialogB">廃止</button>
 				<button tabindex="4" data-bind="click: openDialogF"
@@ -36,12 +36,15 @@
 			</div>
 			<div id="contents-area">
 				<div id="left-content">
+						<span id="search-icon-custom" class="bg-green">
+							<i class="icon icon-searchbox"></i>
+						</span>
 						<div id="search-date" class="panel">
 							<span>基準日</span>
 							<div data-bind="ntsDatePicker: { value: baseDate, dateType: 'yearmonth' }"></div>
 							<button class="btnStyle">適用</button>
 						</div>
-						<div class="panel" data-bind="ntsSearchBox: {
+						<div  class="panel" style="width: 300px" data-bind="ntsSearchBox: {
 							searchMode: 'highlight',  
 							comId:'job-title-list', 
 							items: jobTitleList, 
@@ -95,7 +98,7 @@
 								<div class="custom-panel-sub">(半角英数5文字)</div>
 							</div>
 						</div>
-						<div class="code-custom" data-bind="text: selectedJobTitleCode"></div>
+						<input class="panel panel-frame" data-bind="ntsTextEditor: {value: selectedJobTitleCode, required: true, enable: codeEditor }" />
 					</div>
 					<div id="name-area" class="panel custom-panel">
 						<div class="custom-label">
@@ -105,7 +108,7 @@
 								<div class="custom-panel-sub">(全角10文字)</div>
 							</div>
 						</div>
-						<input class="panel panel-frame" data-bind="ntsTextEditor: {value: currentJobTitleName }" />
+						<input class="panel panel-frame" data-bind="ntsTextEditor: {value: currentJobTitleName, required: true }" />
 					</div>
 					<div id="check-area" class="panel custom-panel">
 						<div class="custom-label">
