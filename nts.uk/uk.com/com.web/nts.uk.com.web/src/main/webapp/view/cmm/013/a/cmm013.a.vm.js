@@ -163,14 +163,23 @@ var nts;
                                     });
                                     nts.uk.ui.windows.sub.modal('/view/cmm/013/d/index.xhtml').onClosed(function () {
                                         var data = getShared('DialogDToMaster');
-                                        console.log(data);
+                                        self.historyList()[0].startDate = data.startDate;
+                                        var preEndDate = new Date();
+                                        preEndDate.setDate(new Date(data.startDate).getDate() - 1);
+                                        self.historyList()[1].endDate = preEndDate.toString();
                                     });
                                 };
                                 ScreenModel.prototype.openDialogE = function () {
                                     var self = this;
-                                    setShared('listMasterToE', {});
+                                    setShared('listMasterToE', {
+                                        startDate: self.historyList()[0].startDate
+                                    });
                                     nts.uk.ui.windows.sub.modal('/view/cmm/013/e/index.xhtml').onClosed(function () {
                                         var data = getShared('DialogEToMaster');
+                                        self.historyList()[0].startDate = data.startDate;
+                                        var preEndDate = new Date();
+                                        preEndDate.setDate(new Date(data.startDate).getDate() - 1);
+                                        self.historyList()[1].endDate = preEndDate.toString();
                                     });
                                 };
                                 ScreenModel.prototype.openDialogF = function () {
