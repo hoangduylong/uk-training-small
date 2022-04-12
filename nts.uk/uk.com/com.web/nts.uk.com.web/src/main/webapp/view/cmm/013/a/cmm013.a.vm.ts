@@ -92,7 +92,7 @@ module nts.uk.com.view.cmm013.a {
 					self.historyList.valueHasMutated();
 					// select first element of list history
 					self.selectedHistoryId(self.historyList()[0].historyId);
-
+ 
 					// reset all state
 					
 					let jobs = self.jobTitleList().filter(e => (e.jobTitleCode == newJobCode));
@@ -212,6 +212,16 @@ module nts.uk.com.view.cmm013.a {
 					self.historyList()[1].endDate = preEndDate.toString();			
                 });
             }
+
+			public openDialogF() {
+                let self = this;
+                setShared('listMasterToF', {
+                });
+                nts.uk.ui.windows.sub.modal('/view/cmm/013/f/index.xhtml').onClosed(function(): any {
+                    let data: any = getShared('DialogEToMaster');
+                });
+            }
+
 
 			public prepareToServer(isAbrogated: boolean): any {
 				let self = this;

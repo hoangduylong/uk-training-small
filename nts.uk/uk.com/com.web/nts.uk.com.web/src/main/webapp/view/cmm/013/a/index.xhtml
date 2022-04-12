@@ -31,8 +31,8 @@
 					class="proceed btnStyle">登録</button>
 				<button tabindex="3"
 					class="danger btnStyle" data-bind="click: openDialogB">廃止</button>
-				<a href="../f/index.xhtml"><button tabindex="4"
-					class="btnStyle">序列の登録</button></a>
+				<button tabindex="4" data-bind="click: openDialogF"
+					class="btnStyle">序列の登録</button>
 			</div>
 			<div id="contents-area">
 				<div id="left-content">
@@ -64,7 +64,12 @@
 				
 				<div id="right-content">
 					<div id="history-area" class="panel custom-panel">
-						<div class="custom-label custom-label-success">職位</div>
+						<div class="custom-label">
+							<div class="custom-label-mark custom-label-mark-success"></div>
+							<div class="custom-label-content">
+								<div class="custom-label-title">職位</div>
+							</div>
+						</div>
 						
 						<div id="list-box" data-bind="ntsListBox: {
 							options: historyList,
@@ -83,32 +88,46 @@
 						</div>
 					</div>
 					<div id="code-area" class="panel custom-panel">
-						<div class="custom-label ">
-							<div class="custom-label-success">コード</div>
-							(半角英数5文字)
+						<div class="custom-label">
+							<div class="custom-label-mark custom-label-mark-warning"></div>
+							<div class="custom-label-content">
+								<div class="custom-label-title">コード</div>
+								<div class="custom-panel-sub">(半角英数5文字)</div>
+							</div>
 						</div>
-						<span class="panel panel-frame panel-gray-bg" data-bind="text: selectedJobTitleCode"></span>
+						<div class="code-custom" data-bind="text: selectedJobTitleCode"></div>
 					</div>
 					<div id="name-area" class="panel custom-panel">
-						<div class="custom-label custom-label-default">
-							<div>名称</div> 
-							(全角10文字)
+						<div class="custom-label">
+							<div class="custom-label-mark custom-label-mark-warning"></div>
+							<div class="custom-label-content">
+								<div class="custom-label-title">名称</div>
+								<div class="custom-panel-sub">(全角10文字)</div>
+							</div>
 						</div>
 						<input class="panel panel-frame" data-bind="ntsTextEditor: {value: currentJobTitleName }" />
 					</div>
-					<div id="check-area" class="panel">
-						<span class="custom-label custom-label-warning"></span>
+					<div id="check-area" class="panel custom-panel">
+						<div class="custom-label">
+							<div class="custom-label-mark custom-label-mark-default"></div>
+							<div class="custom-label-content"></div>
+						</div>
 						<span data-bind="ntsCheckBox: { checked: jobTitleIsManager }">管理職として扱う</span>
 					</div>
-					<div id="position-area" class="panel">
-						<div class="custom-label custom-label-success">序列</div>
+					<div id="position-area" class="panel custom-panel">
+						<div class="custom-label">						
+							<div class="custom-label-mark custom-label-mark-success"></div>
+							<div class="custom-label-content">
+								<div class="custom-label-title">序列</div>
+							</div>
+						</div>
 						<button data-bind = "click: openDialogC">設定</button>
 						<span data-bind="text: currentPositionOrder"></span>
 						<span data-bind="text: currentPositionName"></span>
 					</div>
 				</div>
+			
 			</div>
-
 		</ui:define>
 	</ui:composition>
 </body>
