@@ -173,6 +173,13 @@ var nts;
                                         var data = getShared('DialogEToMaster');
                                     });
                                 };
+                                ScreenModel.prototype.openDialogF = function () {
+                                    var self = this;
+                                    setShared('listMasterToF', {});
+                                    nts.uk.ui.windows.sub.modal('/view/cmm/013/f/index.xhtml').onClosed(function () {
+                                        var data = getShared('DialogEToMaster');
+                                    });
+                                };
                                 ScreenModel.prototype.prepareToServer = function (isAbrogated) {
                                     var self = this;
                                     return {
