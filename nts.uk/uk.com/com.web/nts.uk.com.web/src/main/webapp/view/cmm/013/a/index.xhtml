@@ -64,7 +64,8 @@
 				
 				<div id="right-content">
 					<div id="history-area" class="panel custom-panel">
-						<p>職位</p>
+						<div class="custom-label custom-label-success">職位</div>
+						
 						<div id="list-box" data-bind="ntsListBox: {
 							options: historyList,
 							optionsValue: 'historyId',
@@ -81,18 +82,18 @@
 							<button class="btnStyle" data-bind="enable: enableHistory, click: deleteHistory">職位履歴削除</button>
 						</div>
 					</div>
-					<div id="code-area" class="panel">
-						<span class="custom-label custom-label-success">
-							コード
+					<div id="code-area" class="panel custom-panel">
+						<div class="custom-label ">
+							<div class="custom-label-success">コード</div>
 							(半角英数5文字)
-						</span>
+						</div>
 						<span class="panel panel-frame panel-gray-bg" data-bind="text: selectedJobTitleCode"></span>
 					</div>
-					<div id="name-area" class="panel">
-						<span class="custom-label custom-label-warning">
-							名称 
+					<div id="name-area" class="panel custom-panel">
+						<div class="custom-label custom-label-default">
+							<div>名称</div> 
 							(全角10文字)
-						</span>
+						</div>
 						<input class="panel panel-frame" data-bind="ntsTextEditor: {value: currentJobTitleName }" />
 					</div>
 					<div id="check-area" class="panel">
@@ -100,7 +101,7 @@
 						<span data-bind="ntsCheckBox: { checked: jobTitleIsManager }">管理職として扱う</span>
 					</div>
 					<div id="position-area" class="panel">
-						<span class="custom-label custom-label-success">序列</span>
+						<div class="custom-label custom-label-success">序列</div>
 						<button data-bind = "click: openDialogC">設定</button>
 						<span data-bind="text: currentPositionOrder"></span>
 						<span data-bind="text: currentPositionName"></span>

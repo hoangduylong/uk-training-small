@@ -39,9 +39,7 @@
 }
 
 .custom-label {
-	width: 100px;
 	padding: 4px 16px;
-	max-width: 100px; 
 }
 
 .custom-label-success {
@@ -52,4 +50,14 @@
 .custom-label-warning {
 	border: none;
 	border-left: 3px solid #FAC002;
+}
+
+.custom-label-default {
+	border: none;
+}
+
+.custom-panel {
+	display: flex;
+	align-content: center;
+	height: 32px;
 }
