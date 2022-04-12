@@ -46,7 +46,7 @@ module nts.uk.com.view.cmm013.d {
 				_self.listHistory(data.historyList);
 				if(new Date(_self.startDate()) < new Date(_self.listHistory()[0].startDate))
 				{
-					alert('最新の履歴開始日以前に履歴を追加することはできません。');
+					nts.uk.ui.dialog.caution({ messageId: "Msg_102" })
 					return false;
 				}
 				
