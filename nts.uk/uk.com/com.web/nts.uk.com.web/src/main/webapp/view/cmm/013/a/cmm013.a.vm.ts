@@ -98,7 +98,7 @@ module nts.uk.com.view.cmm013.a {
 					if (jobs.length > 0) {						
 						self.currentPositionName(jobs[0].position.positionName);
 						self.currentPositionCode(jobs[0].position.positionCode);
-						self.currentPositionOrder(jobs[0].position.order+"");
+						self.currentPositionOrder(jobs[0].position.positionOrder+"");
 					}
 				})
 				
@@ -134,6 +134,12 @@ module nts.uk.com.view.cmm013.a {
 			private isLastestHistory(historyId: string): boolean {
 				let self = this;
 				return historyId == self.historyList()[0].historyId;
+			}
+			
+			public deleteHistory() {
+				let self = this;
+				self.historyList.shift();
+				self.historyList.valueHasMutated();
 			}
 
 
@@ -182,7 +188,7 @@ module nts.uk.com.view.cmm013.a {
                 setShared('listMasterToD', {
 					historyList: self.historyList()
                 });
-                nts.uk.ui.windows.sub.modal('/view/cmm/022/d/index.xhtml').onClosed(function(): any {
+                nts.uk.ui.windows.sub.modal('/view/cmm/013/d/index.xhtml').onClosed(function(): any {
                     let data: any = getShared('DialogDToMaster');
 					console.log(data)
                 });

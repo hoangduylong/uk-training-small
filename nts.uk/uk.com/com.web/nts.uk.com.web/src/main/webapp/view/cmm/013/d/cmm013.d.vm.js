@@ -12,7 +12,6 @@ var nts;
                     (function (d) {
                         var viewmodel;
                         (function (viewmodel) {
-                            var Constants = cmm013.base.Constants;
                             var ScreenModel = /** @class */ (function () {
                                 function ScreenModel() {
                                     var _self = this;
@@ -38,7 +37,7 @@ var nts;
                                     var transferObj = {};
                                     transferObj.startDate = _self.startDate;
                                     transferObj.endDate = _self.endDate;
-                                    nts.uk.ui.windows.setShared(Constants.SHARE_OUT_DIALOG_EDIT_HISTORY, transferObj);
+                                    nts.uk.ui.windows.setShared("DialogDToMaster", transferObj);
                                     _self.close();
                                 };
                                 /**
@@ -56,8 +55,8 @@ var nts;
                                         alert('開始日を入力してください。');
                                         return false;
                                     }
-                                    var transferObj = nts.uk.ui.windows.getShared(Constants.SHARE_IN_DIALOG_EDIT_HISTORY);
-                                    var listHistory = transferObj.listJobTitleHistory;
+                                    var transferObj = nts.uk.ui.windows.getShared("listMasterToD");
+                                    var listHistory = transferObj.historyList;
                                     var valid = listHistory.every(function (history) {
                                         return new Date(_self.startDate()) > new Date(history.startDate);
                                     });

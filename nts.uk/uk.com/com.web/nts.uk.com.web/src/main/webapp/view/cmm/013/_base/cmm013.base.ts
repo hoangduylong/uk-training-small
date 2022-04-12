@@ -52,8 +52,9 @@ module nts.uk.com.view.cmm013 {
             startDate: string;
             endDate: string;
             
-            constructor(jobTitleId: string, historyId: string, startDate: string, endDate?: string) {
+            constructor(jobTitleId: string, jobTitleName: string, historyId: string, startDate: string, endDate?: string) {
                 this.jobTitleId = jobTitleId;
+				this.jobTitleName = jobTitleName;
                 this.historyId = historyId;
 				this.startDate = startDate;
 				this.endDate = endDate ? endDate : "9999/12/31";

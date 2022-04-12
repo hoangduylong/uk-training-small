@@ -113,6 +113,11 @@ var nts;
                                     var self = this;
                                     return historyId == self.historyList()[0].historyId;
                                 };
+                                ScreenModel.prototype.deleteHistory = function () {
+                                    var self = this;
+                                    self.historyList.shift();
+                                    self.historyList.valueHasMutated();
+                                };
                                 /**
                                     Dialogs
                                  */
@@ -155,7 +160,7 @@ var nts;
                                     setShared('listMasterToD', {
                                         historyList: self.historyList()
                                     });
-                                    nts.uk.ui.windows.sub.modal('/view/cmm/022/d/index.xhtml').onClosed(function () {
+                                    nts.uk.ui.windows.sub.modal('/view/cmm/013/d/index.xhtml').onClosed(function () {
                                         var data = getShared('DialogDToMaster');
                                         console.log(data);
                                     });

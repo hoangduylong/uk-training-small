@@ -35,7 +35,7 @@ module nts.uk.com.view.cmm013.d {
 				let transferObj: any = {};
 				transferObj.startDate =  _self.startDate;
 				transferObj.endDate =  _self.endDate;
-                nts.uk.ui.windows.setShared(Constants.SHARE_OUT_DIALOG_EDIT_HISTORY, transferObj);
+                nts.uk.ui.windows.setShared("DialogDToMaster", transferObj);
                 _self.close();
 			}
             
@@ -58,8 +58,8 @@ module nts.uk.com.view.cmm013.d {
 					return false;
 				}
 				
-                let transferObj: any = nts.uk.ui.windows.getShared(Constants.SHARE_IN_DIALOG_EDIT_HISTORY);
-				let listHistory: listHistory[] =  transferObj.listJobTitleHistory;
+                let transferObj: any = nts.uk.ui.windows.getShared("listMasterToD");
+				let listHistory: listHistory[] =  transferObj.historyList;
 				let valid: boolean = listHistory.every(function (history)
 				{
 					return  new Date(_self.startDate()) > new Date (history.startDate);

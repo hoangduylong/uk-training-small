@@ -76,9 +76,9 @@
 								{ key: 'displayString', length: 16 }
 							]}"></div>
 						<div id="btn-history-ctrl">						
-							<button class="btnStyle" data-bind="enable: enableHistory">職位履歴追加</button>
-							<button class="btnStyle" data-bind="enable: enableHistory">職位履歴編集</button>
-							<button class="btnStyle" data-bind="enable: enableHistory">職位履歴削除</button>
+							<button class="btnStyle" data-bind="enable: enableHistory, click: openDialogD">職位履歴追加</button>
+							<button class="btnStyle" data-bind="enable: enableHistory, click: openDialogE">職位履歴編集</button>
+							<button class="btnStyle" data-bind="enable: enableHistory, click: deleteHistory">職位履歴削除</button>
 						</div>
 					</div>
 					<div id="code-area" class="panel">

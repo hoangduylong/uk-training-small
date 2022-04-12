@@ -29,7 +29,7 @@ module nts.uk.com.view.cmm013.e {
                 let dfd = $.Deferred<any>();
                 
                 // Load data from parent screen
-                let transferObj: any = nts.uk.ui.windows.getShared(Constants.SHARE_IN_DIALOG_EDIT_HISTORY);
+                let transferObj: any = nts.uk.ui.windows.getShared("listMasterToE");
                 _self.jobTitleId = transferObj.jobTitleId;
                 _self.historyId = transferObj.historyId;
                 _self.startDate(transferObj.startDate);
@@ -50,7 +50,7 @@ module nts.uk.com.view.cmm013.e {
                 let transferObj: any = {};
 				transferObj.startDate =  _self.startDate;
 				transferObj.endDate =  _self.endDate;
-                nts.uk.ui.windows.setShared(Constants.SHARE_OUT_DIALOG_EDIT_HISTORY, transferObj);
+                nts.uk.ui.windows.setShared("DialogEToMaster", transferObj);
                 _self.close();
             }
             

@@ -28,7 +28,7 @@ var nts;
                                     var _self = this;
                                     var dfd = $.Deferred();
                                     // Load data from parent screen
-                                    var transferObj = nts.uk.ui.windows.getShared(Constants.SHARE_IN_DIALOG_EDIT_HISTORY);
+                                    var transferObj = nts.uk.ui.windows.getShared("listMasterToE");
                                     _self.jobTitleId = transferObj.jobTitleId;
                                     _self.historyId = transferObj.historyId;
                                     _self.startDate(transferObj.startDate);
@@ -47,7 +47,7 @@ var nts;
                                     var transferObj = {};
                                     transferObj.startDate = _self.startDate;
                                     transferObj.endDate = _self.endDate;
-                                    nts.uk.ui.windows.setShared(Constants.SHARE_OUT_DIALOG_EDIT_HISTORY, transferObj);
+                                    nts.uk.ui.windows.setShared("DialogEToMaster", transferObj);
                                     _self.close();
                                 };
                                 /**
