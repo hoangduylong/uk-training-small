@@ -75,6 +75,7 @@ var nts;
                                             self.historyList.push(new History("job", "history_name_" + i, "historyId_" + i, "3/1/2020", "1/3/2021"));
                                             console.log("fake history data success");
                                         }
+                                        self.historyList.valueHasMutated();
                                         // select first element of list history
                                         self.selectedHistoryId(self.historyList()[0].historyId);
                                         // reset all state
@@ -82,7 +83,7 @@ var nts;
                                         if (jobs.length > 0) {
                                             self.currentPositionName(jobs[0].position.positionName);
                                             self.currentPositionCode(jobs[0].position.positionCode);
-                                            self.currentPositionOrder(jobs[0].position.order + "");
+                                            self.currentPositionOrder(jobs[0].position.positionOrder + "");
                                         }
                                     });
                                     self.selectedHistoryId.subscribe(function (newHistoryId) {

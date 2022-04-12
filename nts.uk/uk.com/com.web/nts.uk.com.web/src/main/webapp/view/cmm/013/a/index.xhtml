@@ -82,25 +82,25 @@
 						</div>
 					</div>
 					<div id="code-area" class="panel">
-						<span>
-							<p>コード</p>
-							<small>(半角英数5文字)</small>
+						<span class="custom-label custom-label-success">
+							コード
+							(半角英数5文字)
 						</span>
 						<span class="panel panel-frame panel-gray-bg" data-bind="text: selectedJobTitleCode"></span>
 					</div>
 					<div id="name-area" class="panel">
-						<span>
-							<p>名称</p>
-							<small>(全角10文字)</small>
+						<span class="custom-label custom-label-warning">
+							名称 
+							(全角10文字)
 						</span>
 						<input class="panel panel-frame" data-bind="ntsTextEditor: {value: currentJobTitleName }" />
 					</div>
 					<div id="check-area" class="panel">
-						<span></span>
+						<span class="custom-label custom-label-warning"></span>
 						<span data-bind="ntsCheckBox: { checked: jobTitleIsManager }">管理職として扱う</span>
 					</div>
 					<div id="position-area" class="panel">
-						<span>序列</span>
+						<span class="custom-label custom-label-success">序列</span>
 						<button data-bind = "click: openDialogC">設定</button>
 						<span data-bind="text: currentPositionOrder"></span>
 						<span data-bind="text: currentPositionName"></span>

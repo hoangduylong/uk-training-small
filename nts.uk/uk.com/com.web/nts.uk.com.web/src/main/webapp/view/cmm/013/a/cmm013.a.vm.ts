@@ -89,6 +89,7 @@ module nts.uk.com.view.cmm013.a {
 						self.historyList.push(new History("job", "history_name_"+i, "historyId_"+i, "3/1/2020", "1/3/2021"));
 						console.log("fake history data success");
 					}
+					self.historyList.valueHasMutated();
 					// select first element of list history
 					self.selectedHistoryId(self.historyList()[0].historyId);
 

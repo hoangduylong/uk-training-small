@@ -3,6 +3,7 @@
 	float: left;
 	min-height: 400px;
 	width: 340px;
+	padding-right: 30px;
 }
 
 #right-content {
@@ -29,10 +30,26 @@
 	width: 1100px;
 }
 
-.btn-history-ctrl {
-	display:block;
-	color: blue;
+#history-area {
+	display:flex;
 }
-.btnStyle {
-	color: blue;
+#btn-history-ctrl {
+	display: flex;
+	flex-direction: column;
+}
+
+.custom-label {
+	width: 100px;
+	padding: 4px 16px;
+	max-width: 100px; 
+}
+
+.custom-label-success {
+	border: none;
+	border-left: 3px solid #97D155;
+}
+
+.custom-label-warning {
+	border: none;
+	border-left: 3px solid #FAC002;
 }

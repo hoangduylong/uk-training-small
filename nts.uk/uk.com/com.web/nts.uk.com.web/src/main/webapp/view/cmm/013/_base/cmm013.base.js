@@ -50,11 +50,13 @@ var nts;
                          * History
                          */
                         var History = /** @class */ (function () {
-                            function History(jobTitleId, historyId, startDate, endDate) {
+                            function History(jobTitleId, jobTitleName, historyId, startDate, endDate) {
                                 this.jobTitleId = jobTitleId;
+                                this.jobTitleName = jobTitleName;
                                 this.historyId = historyId;
                                 this.startDate = startDate;
                                 this.endDate = endDate ? endDate : "9999/12/31";
+                                this.displayString = "".concat(this.startDate, " ~ ").concat(this.endDate);
                             }
                             return History;
                         }());
