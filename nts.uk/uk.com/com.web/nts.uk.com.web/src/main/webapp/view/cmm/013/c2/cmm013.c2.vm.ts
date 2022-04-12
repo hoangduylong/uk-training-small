@@ -53,10 +53,11 @@ module nts.uk.com.view.cmm013.c2 {
              * Execution
              */
             public execution(): void {
-                let self = this;
-               /* if (!self.validate()) {
+				let self = this;
+				if (!self.currentCode()) {
+					nts.uk.ui.dialog.info("名称を選んでください");
                     return;
-                }*/
+                }
 				
 				self.positionCode(self.currentCode());
 				let selectedItem = self.positionList().filter(item => {
