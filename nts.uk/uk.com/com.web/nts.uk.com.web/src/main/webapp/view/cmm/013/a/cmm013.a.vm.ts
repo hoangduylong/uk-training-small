@@ -191,16 +191,25 @@ module nts.uk.com.view.cmm013.a {
                 });
                 nts.uk.ui.windows.sub.modal('/view/cmm/013/d/index.xhtml').onClosed(function(): any {
                     let data: any = getShared('DialogDToMaster');
-					console.log(data)
+					self.historyList()[0].startDate = data.startDate;
+					let preEndDate = new Date();
+					preEndDate.setDate(new Date(data.startDate).getDate() - 1);
+					self.historyList()[1].endDate = preEndDate.toString();
                 });
             }
+
 
 			public openDialogE() {
                 let self = this;
                 setShared('listMasterToE', {
+					startDate: self.historyList()[0].startDate
                 });
                 nts.uk.ui.windows.sub.modal('/view/cmm/013/e/index.xhtml').onClosed(function(): any {
                     let data: any = getShared('DialogEToMaster');
+					self.historyList()[0].startDate = data.startDate;
+					let preEndDate = new Date();
+					preEndDate.setDate(new Date(data.startDate).getDate() - 1);
+					self.historyList()[1].endDate = preEndDate.toString();			
                 });
             }
 
