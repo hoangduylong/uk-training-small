@@ -14,6 +14,7 @@ var nts;
                         (function (viewmodel) {
                             var ScreenModel = /** @class */ (function () {
                                 function ScreenModel() {
+                                    this.listHistory = ko.observableArray([]);
                                     var _self = this;
                                     _self.startDate = ko.observable("");
                                     _self.endDate = ko.observable("9999/12/31");
@@ -34,42 +35,28 @@ var nts;
                                     if (!_self.validate()) {
                                         return;
                                     }
-                                    var transferObj = {};
-                                    transferObj.startDate = _self.startDate;
-                                    transferObj.endDate = _self.endDate;
-                                    nts.uk.ui.windows.setShared("DialogDToMaster", transferObj);
+                                    var data = {
+                                        startDate: _self.startDate(),
+                                        endDate: _self.endDate()
+                                    };
+                                    nts.uk.ui.windows.setShared('DialogDToMaster', data);
                                     _self.close();
+                                };
+                                ScreenModel.prototype.validate = function () {
+                                    var _self = this;
+                                    var data = nts.uk.ui.windows.getShared('listMasterToD');
+                                    _self.listHistory(data.historyList);
+                                    if (new Date(_self.startDate()) < new Date(_self.listHistory()[0].startDate)) {
+                                        nts.uk.ui.dialog.caution({ messageId: "Msg_102" });
+                                        return false;
+                                    }
+                                    return true;
                                 };
                                 /**
                                  * Close
                                  */
                                 ScreenModel.prototype.close = function () {
                                     nts.uk.ui.windows.close();
-                                };
-                                /**
-                                 * Validate
-                                 */
-                                ScreenModel.prototype.validate = function () {
-                                    var _self = this;
-                                    if (_self.startDate() == "") {
-                                        alert('開始日を入力してください。');
-                                        return false;
-                                    }
-                                    var transferObj = nts.uk.ui.windows.getShared("listMasterToD");
-                                    var listHistory = transferObj.historyList;
-                                    var valid = listHistory.every(function (history) {
-                                        return new Date(_self.startDate()) > new Date(history.startDate);
-                                    });
-                                    //alert(_self.startDate());
-                                    //let date = new Date("2022-04-07");
-                                    //alert(date);
-                                    //let valid = new Date(_self.startDate()) > date;
-                                    //alert(valid);
-                                    if (!valid) {
-                                        alert('最新の履歴開始日以前に履歴を追加することはできません。');
-                                        return false;
-                                    }
-                                    return true;
                                 };
                                 return ScreenModel;
                             }());

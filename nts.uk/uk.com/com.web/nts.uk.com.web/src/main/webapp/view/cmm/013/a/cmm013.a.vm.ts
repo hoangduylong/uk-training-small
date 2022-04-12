@@ -194,7 +194,8 @@ module nts.uk.com.view.cmm013.a {
 			public openDialogE() {
                 let self = this;
                 setShared('listMasterToE', {
-					startDate: self.historyList()[0].startDate
+					startDate: self.historyList()[0].startDate,
+					historyList: self.historyList()
                 });
                 nts.uk.ui.windows.sub.modal('/view/cmm/013/e/index.xhtml').onClosed(function(): any {
                     let data: any = getShared('DialogEToMaster');

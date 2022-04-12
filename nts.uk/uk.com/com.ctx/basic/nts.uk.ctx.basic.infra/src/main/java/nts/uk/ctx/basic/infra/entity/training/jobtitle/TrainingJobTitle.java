@@ -61,7 +61,7 @@ public class TrainingJobTitle extends ContractUkJpaEntity implements Serializabl
 	/** The Training Position. */
 	@ManyToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumns({ @PrimaryKeyJoinColumn(name = "POSITION_CD", referencedColumnName = "POSITION_CD")})
-    public TrainingPosition trainingPosition;
+    public static TrainingPosition trainingPosition;
     
 	
 	public TrainingJobTitle(TrainingJobTitlePK trainingJobTitlePK, String positionCd, int asManager, int isAbrogated,

@@ -38,8 +38,8 @@ module nts.uk.com.view.cmm013.e {
                     return;
                 }
                 let data: any = {
-					startDate:  _self.startDate,
-					endDate:  _self.endDate
+					startDate:  _self.startDate(),
+					endDate:  _self.endDate()
 				};
                 nts.uk.ui.windows.setShared('DialogEToMaster', data);
                 _self.close();
@@ -58,22 +58,11 @@ module nts.uk.com.view.cmm013.e {
              */
             private validate(): boolean {
                 let _self = this;
-				if(_self.startDate() == "")
-				{
-					alert('開始日を入力してください。');
-					return false;
-				}
-				
-				if(_self.checkDate(_self.startDate())){
-					alert("開始日は 1900/01/01 ～ 9999/12/31 の日付を入力してください");
-					return false;
-				}
-				
                 let data: any = nts.uk.ui.windows.getShared('listMasterToE');
 				_self.listHistory(data.historyList);
-				if(new Date(_self.startDate()) < new Date (_self.listHistory()[0].startDate))
+				if(new Date(_self.startDate()) < new Date(_self.listHistory()[1].startDate))
 				{
-					alert('最新の履歴開始日以前に履歴を追加することはできません。');
+					nts.uk.ui.dialog.caution({ messageId: "Msg_102" });
 					return false;
 				}
                 return true;

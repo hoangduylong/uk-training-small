@@ -30,6 +30,8 @@ public interface JobTitleRepositoryTraining {
 	 */
 	void update(JobTitleTraining jobTitleTraining);
 
+	List<JobTitleTraining> findAllByJdbc();
+
 
 
 	

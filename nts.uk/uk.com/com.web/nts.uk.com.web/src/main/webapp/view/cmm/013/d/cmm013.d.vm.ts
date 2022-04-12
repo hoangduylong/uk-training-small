@@ -46,7 +46,7 @@ module nts.uk.com.view.cmm013.d {
 				_self.listHistory(data.historyList);
 				if(new Date(_self.startDate()) < new Date(_self.listHistory()[0].startDate))
 				{
-					nts.uk.ui.dialog.caution({ messageId: "Msg_102" })
+					nts.uk.ui.dialog.caution({ messageId: "Msg_102" });
 					return false;
 				}
 				
@@ -59,22 +59,6 @@ module nts.uk.com.view.cmm013.d {
             public close(): void {
                 nts.uk.ui.windows.close();
             }
-            
-			private checkDate(strDate: string): boolean {
-				let comp = strDate.split('/')
-   				let d = parseInt(comp[0], 10)
-    			let m = parseInt(comp[1], 10)
-    			let y = parseInt(comp[2], 10)
-    			let date = new Date(y,m-1,d);
-    			if (date.getFullYear() != y && date.getMonth() + 1 != m && date.getDate() != d) {
-     				return false
-    			}
-				if (1900 > y && y > 9999)
-				{
-					return false;
-				}
-    			return true
-			}
         }
     }    
 }
