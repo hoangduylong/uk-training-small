@@ -17,11 +17,9 @@ public class PositionFinder {
 	
 	@Inject
 	private PositionRepositoryTraining positionRepository;
-	/**
-	 * find all position
-	 * @return
-	 */
 	
+	
+	// find all position
 	public List<PositionDto> findAll() {
 		List<PositionDto> result = new ArrayList<>();
 		
@@ -37,7 +35,6 @@ public class PositionFinder {
 			// add Dto to result list
 			result.add(positionDto);
 		});	
-		
 		return result;
 	}
 	
@@ -47,7 +44,6 @@ public class PositionFinder {
 		Optional<PositionTraining> position = this.positionRepository.findByPositionCode(positionCode);
 
 		if(position.isPresent()) {
-			System.out.println("isPresent!!!");
 			PositionDto positionDto = new PositionDto(position.get().getPositionCode().v(), 
 					 								  position.get().getPositionName().v(), 
 					 								  position.get().getPositionOrder());
