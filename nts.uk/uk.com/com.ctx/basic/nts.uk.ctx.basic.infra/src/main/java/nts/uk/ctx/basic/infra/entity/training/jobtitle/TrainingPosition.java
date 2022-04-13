@@ -44,8 +44,8 @@ public class TrainingPosition extends ContractUkJpaEntity implements Serializabl
 	@OneToMany(targetEntity = TrainingJobTitle.class, mappedBy = "trainingPosition", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@JoinTable(name = "TRAINING_JOB_TITLE")
 	public List<TrainingJobTitle> lstTrainingJobTitle;
-
-
+	
+	
 	public TrainingPosition() {
 		super();
 	}

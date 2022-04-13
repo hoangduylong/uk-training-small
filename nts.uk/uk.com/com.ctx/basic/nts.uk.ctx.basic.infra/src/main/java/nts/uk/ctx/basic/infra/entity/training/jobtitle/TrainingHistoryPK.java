@@ -21,7 +21,7 @@ public class TrainingHistoryPK implements Serializable {
 	private static final long serialVersionUID = 1L;
 	    
     /** The history id. */
-    @Column(name = "HISOTORY_ID")
+    @Column(name = "HISTORY_ID")
     private String historyId;
 
 

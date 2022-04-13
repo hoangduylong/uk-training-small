@@ -1,9 +1,6 @@
 package nts.uk.ctx.basic.infra.repository.training.jobtitle;
 
-
-import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,19 +22,16 @@ import nts.uk.ctx.basic.infra.entity.training.jobtitle.TrainingJobTitlePK;
 
 @Stateless
 public class JpaJobTitleRepositoryTraining extends JpaRepository implements JobTitleRepositoryTraining {
+	
 	@Inject
-	private static final String SELECT_ALL = "SELECT p.trainingPositionPK.positionCd, j.trainingJobTitlePK.jobCd, h.jobName,"
-			+ " h.startDate, h.endDate, j.isAbrogated, j.asManager"
-			+ " FROM TrainingJobTitle j"
-			+ " INNER JOIN TrainingPosition p ON j.positionCd = p.trainingPositionPK.positionCd"
-			+ " INNER JOIN TrainingHistory h ON j.trainingJobTitlePK.jobCd = h.jobCd";
+	private static final String SELECT_ALL = "SELECT a FROM TrainingJobTitle a";
 
 
 	@Override
 	public List<JobTitleTraining> findAll() {
-		System.out.println("helloeoituoi5tu34985u798tueroitdrg))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))\n");
-
-		return this.queryProxy().query(SELECT_ALL, TrainingJobTitle.class).getList(x -> TrainingJobTitle.toDomain(x));
+		List<JobTitleTraining> kq =  this.queryProxy().query(SELECT_ALL, TrainingJobTitle.class)
+				.getList(x -> TrainingJobTitle.toDomain(x));
+		return kq;
 	}
 
 	@Override

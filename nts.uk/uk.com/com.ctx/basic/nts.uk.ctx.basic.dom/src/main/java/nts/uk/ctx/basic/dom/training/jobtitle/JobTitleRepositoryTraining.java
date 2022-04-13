@@ -29,10 +29,7 @@ public interface JobTitleRepositoryTraining {
 	 * @param jobTitleTraining
 	 */
 	void update(JobTitleTraining jobTitleTraining);
-
-	List<JobTitleTraining> findAllByJdbc();
-
-
-
 	
+	
+	List<JobTitleTraining> findAllByJdbc();
 }

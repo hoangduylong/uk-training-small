@@ -19,6 +19,7 @@ public class JobTitleTraining extends AggregateRoot {
 	
 	private JobTitleCodeTraining jobTitleCodeTraining;
 	
+	@Setter
 	private List<HistoryTraining> historyTrainings;
 	
 	@Setter
@@ -58,7 +59,7 @@ public class JobTitleTraining extends AggregateRoot {
 		this.positionCodeTraining = position;
 		this.isAbrogated = isAbrogated;
 		this.treatAsAManager = treatAsAManager;
-		this.historyTrainings.addAll(historyTraining);
+		this.historyTrainings = historyTraining; // ở đây gán lại chứ ko phải add all
 	}
 	
 //	methods

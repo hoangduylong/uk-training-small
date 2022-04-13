@@ -64,10 +64,8 @@ public class HistoryTraining{
 		this.historyId = historyId;
 		this.jobTitleCodeTraining = new JobTitleCodeTraining(jobTitleCode);
 		this.jobTitleNameTraining = new JobTitleNameTraining(jobTitleName);
-		LocalDate start = LocalDate.parse(startDate);
-		LocalDate end = LocalDate.parse(endDate);
-		this.startDate = GeneralDate.localDate(start);
-		this.endDate = GeneralDate.localDate(end);
+		this.startDate = GeneralDate.fromString(startDate, "yyyy/MM/dd");
+		this.endDate = GeneralDate.fromString(endDate, "yyyy/MM/dd");
 	}
 	
 	/**

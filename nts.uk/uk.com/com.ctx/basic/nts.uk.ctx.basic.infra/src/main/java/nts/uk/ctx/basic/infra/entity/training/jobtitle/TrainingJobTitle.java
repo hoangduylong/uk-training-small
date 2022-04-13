@@ -63,18 +63,18 @@ public class TrainingJobTitle extends ContractUkJpaEntity implements Serializabl
 	@PrimaryKeyJoinColumns({ @PrimaryKeyJoinColumn(name = "POSITION_CD", referencedColumnName = "POSITION_CD")})
     public TrainingPosition trainingPosition;
 	    
-//	
-//	public TrainingJobTitle(TrainingJobTitlePK trainingJobTitlePK, String positionCd, int asManager, int isAbrogated,
-//			List<TrainingHistory> lstTrainingHistory, TrainingPosition trainingPosition) {
-//		super();
-//		this.trainingJobTitlePK = trainingJobTitlePK;
-//		this.positionCd = positionCd;
-//		this.asManager = asManager;
-//		this.isAbrogated = isAbrogated;
-//		this.lstTrainingHistory = lstTrainingHistory;
-//		this.trainingPosition = trainingPosition;
-//	}
-//	
+	
+	public TrainingJobTitle(TrainingJobTitlePK trainingJobTitlePK, String positionCd, int asManager, int isAbrogated,
+			List<TrainingHistory> lstTrainingHistory, TrainingPosition trainingPosition) {
+		super();
+		this.trainingJobTitlePK = trainingJobTitlePK;
+		this.positionCd = positionCd;
+		this.asManager = asManager;
+		this.isAbrogated = isAbrogated;
+		this.lstTrainingHistory = lstTrainingHistory;
+		this.trainingPosition = trainingPosition;
+	}
+	
 	public TrainingJobTitle() {
         super();
     }
