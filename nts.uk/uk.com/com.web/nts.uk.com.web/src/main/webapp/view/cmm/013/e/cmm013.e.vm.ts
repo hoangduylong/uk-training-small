@@ -2,23 +2,17 @@ module nts.uk.com.view.cmm013.e {
 
     export module viewmodel {
         
-        import Constants = base.Constants;
-		import listHistory = base.History;
+		import History = base.History;
         
         export class ScreenModel {
-            
-            jobTitleId: string;
-            historyId: string;
             startDate: KnockoutObservable<string>;
             endDate: KnockoutObservable<string>;
+			listHistory: KnockoutObservableArray<History> = ko.observableArray([]);
             
             constructor() {
                 let _self = this;
-                
-                _self.jobTitleId = null;
-                _self.historyId = null;                
                 _self.startDate = ko.observable("");
-                _self.endDate = ko.observable(nts.uk.resource.getText("CMM013_38"));
+                _self.endDate = ko.observable("9999/12/31");
             }
             
             /**
@@ -29,11 +23,8 @@ module nts.uk.com.view.cmm013.e {
                 let dfd = $.Deferred<any>();
                 
                 // Load data from parent screen
-                let transferObj: any = nts.uk.ui.windows.getShared(Constants.SHARE_IN_DIALOG_EDIT_HISTORY);
-                _self.jobTitleId = transferObj.jobTitleId;
-                _self.historyId = transferObj.historyId;
-                _self.startDate(transferObj.startDate);
-                
+                let data: any = nts.uk.ui.windows.getShared('listMasterToE');
+                _self.startDate(data.startDate);
                 dfd.resolve();
                 return dfd.promise();
             }
@@ -44,13 +35,13 @@ module nts.uk.com.view.cmm013.e {
             public execution(): void {
                 let _self = this;
                 if (!_self.validate()) {
-					alert('最新の履歴開始日以前に履歴を追加することはできません。');
                     return;
                 }
-                let transferObj: any = {};
-				transferObj.startDate =  _self.startDate;
-				transferObj.endDate =  _self.endDate;
-                nts.uk.ui.windows.setShared(Constants.SHARE_OUT_DIALOG_EDIT_HISTORY, transferObj);
+                let data: any = {
+					startDate:  _self.startDate(),
+					endDate:  _self.endDate()
+				};
+                nts.uk.ui.windows.setShared('DialogEToMaster', data);
                 _self.close();
             }
             
@@ -67,19 +58,27 @@ module nts.uk.com.view.cmm013.e {
              */
             private validate(): boolean {
                 let _self = this;
-                let transferObj: any = nts.uk.ui.windows.getShared(Constants.SHARE_IN_DIALOG_EDIT_HISTORY);
-				let listHistory: listHistory[] =  transferObj.listJobTitleHistory;
-				
-				listHistory.every(function (history)
+                let data: any = nts.uk.ui.windows.getShared('listMasterToE');
+				_self.listHistory(data.historyList);
+				if(new Date(_self.startDate()) < new Date(_self.listHistory()[1].startDate))
 				{
-					return  new Date(_self.startDate()) > new Date(history.period.startDate)
-				})
-                // Clear error
-                nts.uk.ui.errors.clearAll();    
-                              
-                $('#start-date').ntsEditor('validate');               
-                return !$('.nts-input').ntsError('hasError');
+					nts.uk.ui.dialog.caution({ messageId: "Msg_102" });
+					return false;
+				}
+                return true;
+				
             }
+			private checkDate(strDate: string): boolean {
+				let comp = strDate.split('/')
+   				let d = parseInt(comp[0], 10)
+    			let m = parseInt(comp[1], 10)
+    			let y = parseInt(comp[2], 10)
+    			let date = new Date(y,m-1,d);
+    			if (date.getFullYear() == y && date.getMonth() + 1 == m && date.getDate() == d) {
+     				return true
+    			}
+    			return false
+			}
         }
     }    
 }

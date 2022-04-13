@@ -1,13 +1,13 @@
 module nts.uk.com.view.cmm013.d {
 
     export module viewmodel {
-        import Constants = base.Constants;
-		import listHistory = base.History;
+		import History = base.History;
         
         export class ScreenModel {
             
             startDate: KnockoutObservable<string>;
             endDate: KnockoutObservable<string>;
+			listHistory: KnockoutObservableArray<History> = ko.observableArray([]);
             
             constructor() {
                 let _self = this;  
@@ -32,46 +32,32 @@ module nts.uk.com.view.cmm013.d {
                 if (!_self.validate()) {
                     return;
                 }
-				let transferObj: any = {};
-				transferObj.startDate =  _self.startDate;
-				transferObj.endDate =  _self.endDate;
-                nts.uk.ui.windows.setShared(Constants.SHARE_OUT_DIALOG_EDIT_HISTORY, transferObj);
+				let data: any = {
+					startDate:  _self.startDate(),
+					endDate:  _self.endDate()
+				};
+                nts.uk.ui.windows.setShared('DialogDToMaster', data);
                 _self.close();
 			}
             
+			   private validate(): boolean {
+				let _self = this;
+				let data: any = nts.uk.ui.windows.getShared('listMasterToD');
+				_self.listHistory(data.historyList);
+				if(new Date(_self.startDate()) < new Date(_self.listHistory()[0].startDate))
+				{
+					nts.uk.ui.dialog.caution({ messageId: "Msg_102" });
+					return false;
+				}
+				
+                return true;
+            }
+
             /**
              * Close
              */
             public close(): void {
                 nts.uk.ui.windows.close();
-            }
-            
-            
-            /**
-             * Validate
-             */
-            private validate(): boolean {
-				let _self = this;
-				
-				if(_self.startDate() == "")
-				{
-					alert('開始日を入力してください。');
-					return false;
-				}
-				
-                let transferObj: any = nts.uk.ui.windows.getShared(Constants.SHARE_IN_DIALOG_EDIT_HISTORY);
-				let listHistory: listHistory[] =  transferObj.listJobTitleHistory;
-				
-				let valid: boolean = listHistory.every(function (history)
-				{
-					return  new Date(_self.startDate()) > new Date(history.period.startDate)
-				})
-				if(!valid)
-				{
-					alert('最新の履歴開始日以前に履歴を追加することはできません。');
-					return false;
-				}
-                return true;
             }
         }
     }    

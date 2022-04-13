@@ -38,10 +38,10 @@ var nts;
                          * JobTitle
                          */
                         var JobTitle = /** @class */ (function () {
-                            function JobTitle(jobTitleCode, jobTitleName, positionCode, positionName) {
+                            function JobTitle(jobTitleCode, jobTitleName, positionCode, positionName, positionOrder) {
                                 this.jobTitleCode = jobTitleCode;
                                 this.jobTitleName = jobTitleName;
-                                this.position = new Position(positionCode, positionName);
+                                this.position = new Position(positionCode, positionName, positionOrder);
                             }
                             return JobTitle;
                         }());
@@ -51,21 +51,37 @@ var nts;
                          */
                         var History = /** @class */ (function () {
                             function History(jobTitleId, jobTitleName, historyId, startDate, endDate) {
-                                var self = this;
+                                this.jobTitleId = jobTitleId;
+                                this.jobTitleName = jobTitleName;
+                                this.historyId = historyId;
+                                this.startDate = startDate;
+                                this.endDate = endDate ? endDate : "9999/12/31";
+                                this.displayString = "".concat(this.startDate, " ~ ").concat(this.endDate);
+                            }
+                            return History;
+                        }());
+                        base.History = History;
+                        /*
+                            
+                            
+                            constructor(jobTitleId: string, jobTitleName: string, historyId: string, startDate: string, endDate?: string) {
+                                let self = this;
+                
                                 self.jobTitleId = jobTitleId;
                                 self.jobTitleName = jobTitleName;
                                 self.historyId = historyId;
                                 self.startDate = startDate;
                                 self.endDate = endDate ? endDate : "31/12/9999";
-                                self.displayString = "".concat(self.startDate, " ~ ").concat(self.endDate);
+                                
+                                self.displayString = `${self.startDate} ~ ${self.endDate}`;
                             }
-                            History.prototype.updateEndDate = function (endDate) {
+                
+                            public updateEndDate(endDate: string) : void{
                                 this.endDate = endDate;
-                                this.displayString = "".concat(this.startDate, " ~ ").concat(this.endDate);
-                            };
-                            return History;
-                        }());
-                        base.History = History;
+                                this.displayString = `${this.startDate} ~ ${this.endDate}`;
+                                
+                            }
+                        }
                         /**
                          * Position
                          */
@@ -73,7 +89,7 @@ var nts;
                             function Position(positionCode, positionName, order) {
                                 this.positionCode = positionCode;
                                 this.positionName = positionName;
-                                this.order = order;
+                                this.positionOrder = order;
                             }
                             return Position;
                         }());

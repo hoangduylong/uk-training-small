@@ -34,10 +34,10 @@ module nts.uk.com.view.cmm013 {
 
 			position: Position;
             
-            constructor(jobTitleCode: string, jobTitleName: string, positionCode: string, positionName: string) {
+            constructor(jobTitleCode: string, jobTitleName: string, positionCode: string, positionName: string, positionOrder: number) {
                 this.jobTitleCode = jobTitleCode;
                 this.jobTitleName = jobTitleName;
-				this.position = new Position(positionCode, positionName);
+				this.position = new Position(positionCode, positionName, positionOrder);
             }
         }
                         
@@ -52,6 +52,17 @@ module nts.uk.com.view.cmm013 {
             startDate: string;
             endDate: string;
 			displayString: string;
+            
+            constructor(jobTitleId: string, jobTitleName: string, historyId: string, startDate: string, endDate?: string) {
+                this.jobTitleId = jobTitleId;
+				this.jobTitleName = jobTitleName;
+                this.historyId = historyId;
+				this.startDate = startDate;
+				this.endDate = endDate ? endDate : "9999/12/31";
+				this.displayString = `${this.startDate} ~ ${this.endDate}`
+            }     
+        }    
+        /*
 			
             
             constructor(jobTitleId: string, jobTitleName: string, historyId: string, startDate: string, endDate?: string) {

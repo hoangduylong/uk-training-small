@@ -62,19 +62,19 @@ public class TrainingJobTitle extends ContractUkJpaEntity implements Serializabl
 	@ManyToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumns({ @PrimaryKeyJoinColumn(name = "POSITION_CD", referencedColumnName = "POSITION_CD")})
     public TrainingPosition trainingPosition;
-    
-	
-	public TrainingJobTitle(TrainingJobTitlePK trainingJobTitlePK, String positionCd, int asManager, int isAbrogated,
-			List<TrainingHistory> lstTrainingHistory, TrainingPosition trainingPosition) {
-		super();
-		this.trainingJobTitlePK = trainingJobTitlePK;
-		this.positionCd = positionCd;
-		this.asManager = asManager;
-		this.isAbrogated = isAbrogated;
-		this.lstTrainingHistory = lstTrainingHistory;
-		this.trainingPosition = trainingPosition;
-	}
-	
+	    
+//	
+//	public TrainingJobTitle(TrainingJobTitlePK trainingJobTitlePK, String positionCd, int asManager, int isAbrogated,
+//			List<TrainingHistory> lstTrainingHistory, TrainingPosition trainingPosition) {
+//		super();
+//		this.trainingJobTitlePK = trainingJobTitlePK;
+//		this.positionCd = positionCd;
+//		this.asManager = asManager;
+//		this.isAbrogated = isAbrogated;
+//		this.lstTrainingHistory = lstTrainingHistory;
+//		this.trainingPosition = trainingPosition;
+//	}
+//	
 	public TrainingJobTitle() {
         super();
     }
@@ -95,8 +95,8 @@ public class TrainingJobTitle extends ContractUkJpaEntity implements Serializabl
 				new PositionCodeTraining(trainingJobTitle.getPositionCd()),
 				new JobTitleCodeTraining(String.valueOf(trainingJobTitle.getKey())),
 				historyTrainings,
-				Boolean.getBoolean(String.valueOf(trainingJobTitle.isAbrogated)),
-				Boolean.getBoolean(String.valueOf(trainingJobTitle.asManager)));
+				trainingJobTitle.isAbrogated == 1 ? true : false,
+				trainingJobTitle.asManager  == 1 ? true : false);
 		return result;
 	}
 }

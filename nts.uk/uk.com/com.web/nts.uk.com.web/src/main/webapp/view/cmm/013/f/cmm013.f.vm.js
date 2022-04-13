@@ -13,18 +13,21 @@ var nts;
                         var viewmodel;
                         (function (viewmodel) {
                             var Position = cmm013.base.Position;
+                            var UpdatePositionCommand = f.service.model.UpdatePositionCommand;
+                            var AddPositionCommand = f.service.model.AddPositionCommand;
+                            var RemovePositionCommand = f.service.model.RemovePositionCommand;
                             var ScreenModel = /** @class */ (function () {
                                 function ScreenModel() {
                                     var self = this;
-                                    self.isCreateNew = ko.observable(null);
+                                    self.isCreateNew = ko.observable(false);
                                     self.positionList = ko.observableArray([]);
                                     self.positionCode = ko.observable("");
                                     self.positionName = ko.observable("");
                                     self.order = ko.observable(0);
                                     self.currentCode = ko.observable(null);
-                                    self.currentCode.subscribe(function (newValue) {
-                                        self.select(newValue);
-                                        if (!_.isEmpty(newValue)) {
+                                    self.currentCode.subscribe(function (selectedCode) {
+                                        self.select(selectedCode);
+                                        if (!_.isEmpty(selectedCode)) {
                                             nts.uk.ui.errors.clearAll();
                                         }
                                     });
@@ -34,67 +37,78 @@ var nts;
                                         { headerText: '名称', key: 'positionName', width: 120 }
                                     ]);
                                     // get data
-                                    self.loadPositionList2();
+                                    self.selectNext();
                                 }
-                                ScreenModel.prototype.select = function (selectedValue) {
-                                    var self = this;
-                                    if (selectedValue) {
-                                        self.positionCode(selectedValue);
-                                        // Find sequence by sequence code
-                                        /*service.findByPositionCode(newValue)
-                                            .done((data: Position) => {
-                                                if (data) {
-                                                    // Found sequence
-                                                    self.isCreateNew(false);
-                                                    self.positionCode(data.positionCode);
-                                                    self.positionName(data.positionName);
-                                                    self.order(data.order);
-                                                } else {
-                                                    // Sequence not found
-                                                    self.positionCode("");
-                                                    self.positionName("");
-                                                }
-                                                // Set focus
-                                                if (self.isCreateNew()) {
-                                                    $('#position-code').focus();
-                                                } else {
-                                                    $('#position-name').focus();
-                                                }
-                                            })
-                                            .fail((res: any) => {
-                                                self.showMessageError(res);
-                                            });*/
-                                    }
-                                    else {
-                                        // No position selected, switch to create new
-                                        self.isCreateNew(true);
-                                    }
-                                };
-                                ScreenModel.prototype.loadPositionList2 = function () {
-                                    var self = this;
-                                    for (var i = 0; i < 20; i++) {
-                                        self.positionList.push(new Position("" + i, "基本給", 0));
-                                        console.log("fake data success");
-                                    }
-                                };
                                 ScreenModel.prototype.startPage = function () {
                                     var self = this;
                                     var dfd = $.Deferred();
-                                    //var dfd = $.Deferred<void>();
-                                    /*self.loadPositionList2()
-                                        .done((data: Position[]) => {
-                                            // Update position mode
-                                            self.createNew(false);
-                                            self.positionList(data);
-                                        })
-                                        .fail((res: any) => {
-                                            // Create new position mode
-                                            self.createNew(true);
-                                            self.positionList([]);
-                                        })*/
+                                    self.loadPositionList()
+                                        .done(function (data) {
+                                        // Update position mode
+                                        self.isCreateNew(false);
+                                        self.positionList(data);
+                                    })
+                                        .fail(function (res) {
+                                        // Create new position mode
+                                        console.log("fail");
+                                        //self.isCreateNew(true);
+                                        self.positionList([]);
+                                    });
                                     dfd.resolve();
                                     return dfd.promise();
                                     ;
+                                };
+                                ScreenModel.prototype.select = function (selectedCode) {
+                                    var self = this;
+                                    if (selectedCode) {
+                                        self.positionCode(selectedCode);
+                                        // Find position by position code
+                                        f.service.findByPositionCode(selectedCode)
+                                            .done(function (data) {
+                                            if (data) {
+                                                // position found
+                                                console.log("position found");
+                                                self.isCreateNew(false);
+                                                self.positionCode(data.positionCode);
+                                                self.positionName(data.positionName);
+                                                self.order(data.positionOrder);
+                                                //console.log(data.positionName);                      
+                                            }
+                                            else {
+                                                // position not found
+                                                console.log("position not found");
+                                                /*self.positionCode("");
+                                                self.positionName("");*/
+                                            }
+                                            // Set focus
+                                            if (self.isCreateNew()) {
+                                                $('#position-code').focus();
+                                            }
+                                            else {
+                                                $('#position-code').disable();
+                                                $('#position-name').focus();
+                                            }
+                                        })
+                                            .fail(function (res) {
+                                            self.showMessageError(res);
+                                        });
+                                    }
+                                    else {
+                                        // No position selected, switch to create new
+                                        console.log("huhu");
+                                        self.isCreateNew(true);
+                                    }
+                                };
+                                ScreenModel.prototype.selectNext = function () {
+                                    var self = this;
+                                    //self.positionList()[0].positionCode;
+                                };
+                                // create new position mode
+                                ScreenModel.prototype.createNewPositionMode = function () {
+                                    var self = this;
+                                    self.isCreateNew(true);
+                                    self.positionCode("");
+                                    self.positionName("");
                                 };
                                 // load position list
                                 ScreenModel.prototype.loadPositionList = function () {
@@ -108,53 +122,47 @@ var nts;
                                     });
                                     return dfd.promise();
                                 };
-                                // create new position mode
-                                ScreenModel.prototype.createNewPositionMode = function () {
+                                ScreenModel.prototype.addPosition = function (addCommand) {
                                     var self = this;
-                                    self.isCreateNew(true);
-                                    self.positionCode("");
-                                    self.positionName("");
-                                };
-                                ScreenModel.prototype.addPosition = function (newPosition) {
-                                    var self = this;
-                                    // add new position into list in UI
-                                    self.positionList().push(newPosition);
-                                    /*service.addPosition(newPosition)
-                                        .done((data: any) => {
-                                            self.positionList().push(newPosition);
-                                            self.loadPositionList2()
-                                                .done((data: Position[]) => {
-                                                    // Update position mode
-                                                    self.isCreateNew(false);
-                                                    self.positionList(data);
-                                                })
-                                                .fail((res: any) => {
-                                                    // Create new position mode
-                                                    self.isCreateNew(true);
-                                                    //self.positionList([]);
-                                                })
+                                    var newPosition = new Position(addCommand.positionCode, addCommand.positionName, addCommand.positionOrder);
+                                    f.service.addPosition(addCommand)
+                                        .done(function (data) {
+                                        console.log("add success");
+                                        // add new position into list in UI
+                                        self.positionList().push(newPosition);
+                                        self.loadPositionList()
+                                            .done(function (data) {
+                                            // Update position mode
+                                            self.isCreateNew(false);
+                                            self.positionList(data);
                                         })
-                                        .fail((res: any) => {
-                                            self.showMessageError(res);
-                                        })*/
+                                            .fail(function (res) {
+                                            // Create new position mode
+                                            self.isCreateNew(true);
+                                            self.positionList([]);
+                                        });
+                                    })
+                                        .fail(function (res) {
+                                        console.log("add fail");
+                                        self.showMessageError(res);
+                                    });
                                 };
                                 // save position
                                 ScreenModel.prototype.save = function () {
                                     var self = this;
                                     // Validate
-                                    /*if (!self.validate()) {
+                                    if (!self.validate()) {
                                         return;
-                                    }*/
-                                    var newPosition = new Position(self.positionCode(), self.positionName(), 0);
+                                    }
+                                    var addCommand = new AddPositionCommand(self.positionCode(), self.positionName(), 0);
+                                    var updateCommand = new UpdatePositionCommand(self.positionCode(), self.positionName(), 0);
                                     if (self.isCreateNew()) {
-                                        console.log(newPosition);
-                                        // self.loadPositionList();
-                                        self.addPosition(newPosition);
-                                        console.log(self.positionList());
+                                        self.addPosition(addCommand);
                                     }
                                     else {
                                         console.log("huhu");
-                                        f.service.updatePosition(newPosition);
+                                        f.service.updatePosition(updateCommand);
+                                        console.log(self.positionList());
                                     }
                                     self.updatePositionOrder()
                                         .done(function (data) {
@@ -171,37 +179,39 @@ var nts;
                                 ScreenModel.prototype.remove = function () {
                                     var self = this;
                                     if (self.positionCode() !== "") {
-                                        var currentIndex = null;
+                                        var currentIndex_1 = null;
                                         // get the index of removed position in list
                                         for (var _i = 0, _a = self.positionList(); _i < _a.length; _i++) {
                                             var item = _a[_i];
                                             if (item.positionCode === self.positionCode()) {
-                                                currentIndex = self.positionList.indexOf(item);
+                                                currentIndex_1 = self.positionList.indexOf(item);
                                             }
                                         }
-                                        self.positionList.splice(currentIndex, 1);
-                                        console.log(self.positionList());
-                                        /*nts.uk.ui.dialog.confirm({ messageId: "Msg_18" })
-                                            .ifYes(() => {
-                                                service.removePosition(self.positionCode())
-                                                    .done((data: any) => {
-                                                        self.positionList.splice(currentIndex, 1);
-                                                        self.loadPositionList()
-                                                            .done((data: Position[]) => {
-                                                                // Update position mode
-                                                                self.createNew(false);
-                                                                self.positionList(data);
-                                                            })
-                                                            .fail((res: any) => {
-                                                                // Create new position mode
-                                                                self.createNew(true);
-                                                                self.positionList([]);
-                                                            })
-                                                    })
-                                                    .fail((res: any) => {
-                                                        self.showMessageError(res);
-                                                    })
-                                            });*/
+                                        var removeCommand_1 = new RemovePositionCommand(self.positionCode());
+                                        nts.uk.ui.dialog.confirm({ messageId: "Msg_18" })
+                                            .ifYes(function () {
+                                            f.service.removePosition(removeCommand_1)
+                                                .done(function (data) {
+                                                console.log("remove ok");
+                                                self.positionList.splice(currentIndex_1, 1);
+                                                console.log(self.positionList());
+                                                self.loadPositionList()
+                                                    .done(function (data) {
+                                                    // Update position mode
+                                                    self.isCreateNew(false);
+                                                    self.positionList(data);
+                                                })
+                                                    .fail(function (res) {
+                                                    // Create new position mode
+                                                    self.isCreateNew(true);
+                                                    self.positionList([]);
+                                                });
+                                            })
+                                                .fail(function (res) {
+                                                console.log("remove failed");
+                                                //self.showMessageError(res);
+                                            });
+                                        });
                                     }
                                     else {
                                         console.log("huhu");
@@ -213,24 +223,12 @@ var nts;
                                         self.showMessageError(res);
                                     });
                                 };
-                                // close dialog
-                                ScreenModel.prototype.close = function () {
-                                    nts.uk.ui.windows.close();
-                                };
-                                // validate
-                                ScreenModel.prototype.validate = function () {
-                                    // clear error
-                                    nts.uk.ui.errors.clearAll();
-                                    $('#position-code').ntsEditor('validate');
-                                    $('#position-name').ntsEditor('validate');
-                                    return !$('.nts-input').ntsError('hasError');
-                                };
                                 ScreenModel.prototype.updatePositionOrder = function () {
                                     var self = this;
                                     var dfd = $.Deferred();
                                     var positionList = self.positionList();
                                     var order = 1;
-                                    /* update all position's order in list in UI side */
+                                    // update all position's order in list in UI side
                                     for (var _i = 0, positionList_1 = positionList; _i < positionList_1.length; _i++) {
                                         var position = positionList_1[_i];
                                         position.order = order;
@@ -245,6 +243,18 @@ var nts;
                                             dfd.reject(res);
                                         });*/
                                     return dfd.promise();
+                                };
+                                // close dialog
+                                ScreenModel.prototype.close = function () {
+                                    nts.uk.ui.windows.close();
+                                };
+                                // validate
+                                ScreenModel.prototype.validate = function () {
+                                    // clear error
+                                    nts.uk.ui.errors.clearAll();
+                                    $('#position-code').ntsEditor('validate');
+                                    $('#position-name').ntsEditor('validate');
+                                    return !$('.nts-input').ntsError('hasError');
                                 };
                                 ScreenModel.prototype.showMessageError = function (res) {
                                 };
