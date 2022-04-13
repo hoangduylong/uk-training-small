@@ -131,6 +131,14 @@ module nts.uk.com.view.cmm013.f {
 						nts.uk.ui.dialog.info("データが正常に登録されました");
 						self.positionCode("");
 						self.positionName("");
+
+						self.updatePositionOrder()
+							.done((data: any) => {
+
+							})
+							.fail((res: any) => {
+								self.showMessageError(res);
+							});
 					})
 					.fail((res: any) => {
 						nts.uk.ui.dialog.alert("登録に失敗しました! データはすでに存在します");
@@ -144,6 +152,7 @@ module nts.uk.com.view.cmm013.f {
 			public updatePosition(position: Position): JQueryPromise<any> {
 				let self = this;
 				let dfd = $.Deferred<any>();
+				console.log(position);
 
 				service.updatePosition(position)
 					.done((data: any) => {
@@ -160,6 +169,8 @@ module nts.uk.com.view.cmm013.f {
 						self.showMessageError(res);
 					})
 
+				console.log(self.positionList())
+
 				dfd.resolve();
 				return dfd.promise();
 			}
@@ -173,9 +184,9 @@ module nts.uk.com.view.cmm013.f {
 				if (!self.validate()) {
 					return;
 				}
-				
+
 				let position = new Position(self.positionCode(), self.positionName(), 0);
-				
+
 				if (self.isCreateNew()) {
 					self.addPosition(position);
 				} else {
@@ -197,43 +208,41 @@ module nts.uk.com.view.cmm013.f {
 				let self = this;
 
 				if (self.positionCode() !== "") {
-					let currentIndex: number;
-
-					// get the index of removed position in list
-					for (let item of self.positionList()) {
-						if (item.positionCode === self.positionCode()) {
-							currentIndex = self.positionList.indexOf(item);
-						}
-					}
-					
-					let removeCommand = new RemovePositionCommand(self.positionCode());
-
 					nts.uk.ui.dialog.confirm("選択中のデータを削除しますか？")
 						.ifYes(() => {
+
+							let removeCommand = new RemovePositionCommand(self.positionCode());
 							service.removePosition(removeCommand)
 								.done((data: any) => {
+									let currentIndex: number;
+									// get index of position to remove in list
+									for (let item of self.positionList()) {
+										if (item.positionCode === self.positionCode()) {
+											currentIndex = self.positionList.indexOf(item);
+										}
+									}
 									self.positionList.splice(currentIndex, 1);
 
 									nts.uk.ui.dialog.info("データが正常に登録されました!");
 									self.positionCode("");
 									self.positionName("");
+
+									self.updatePositionOrder()
+										.done((data: any) => {
+
+										})
+										.fail((res: any) => {
+											self.showMessageError(res);
+										});
 								})
 								.fail((res: any) => {
 									self.showMessageError(res);
 								})
 						});
 				}
-
-				self.updatePositionOrder()
-					.done((data: any) => {
-
-					})
-					.fail((res: any) => {
-						self.showMessageError(res);
-					});
 			}
 
-			
+
 			// update position order
 			private updatePositionOrder(): JQueryPromise<any> {
 				let self = this;
@@ -260,7 +269,7 @@ module nts.uk.com.view.cmm013.f {
 					.fail((res: any) => {
 						self.showMessageError(res);
 					})
-
+				dfd.resolve();
 				return dfd.promise();
 			}
 
@@ -284,7 +293,7 @@ module nts.uk.com.view.cmm013.f {
 
 
 			public showMessageError(res: any): void {
-				
+
 			}
 
 		}
