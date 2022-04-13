@@ -92,10 +92,10 @@ module nts.uk.com.view.cmm013 {
 			positionName: string;
 			positionOrder: number;
 
-			constructor(positionCode: string, positionName: string, order: number) {
+			constructor(positionCode: string, positionName: string, positionOrder: number) {
 				this.positionCode = positionCode;
 				this.positionName = positionName;
-				this.positionOrder = order;
+				this.positionOrder = positionOrder;
 			}
 		}
 	}

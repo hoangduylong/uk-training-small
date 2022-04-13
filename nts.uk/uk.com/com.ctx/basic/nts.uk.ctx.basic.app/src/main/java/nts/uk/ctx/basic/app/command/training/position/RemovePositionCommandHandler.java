@@ -38,5 +38,4 @@ public class RemovePositionCommandHandler extends CommandHandler<RemovePositionC
 		positionRepository.remove(command.getPositionCode());
 	}
 	
-	
 }

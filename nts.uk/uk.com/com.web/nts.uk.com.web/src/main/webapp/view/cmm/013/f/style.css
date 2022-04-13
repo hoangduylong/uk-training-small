@@ -1,11 +1,25 @@
 #left-content {
 	float: left;
 	padding: 20px 10px 20px 10px;
+	background: #e2f79f;
+	left: 20px;
+}
+
+#left-content:after {
+	position: absolute;
+	display: block;
+	content: "";
+	border-top: 30px solid transparent;
+	border-bottom: 30px solid transparent;
+	border-left: 15px solid #e2f79f;
+	top: 52px;
+	left: 290px;
 }
 
 #right-content {
 	float: left;
 	padding: 20px 20px 20px 20px;
+	margin-left: 60px;
 }
 
 #position-items-list {
@@ -19,4 +33,20 @@
 
 .table_content td {
 	padding-top: 20px;
+}
+
+.orange {
+	width: 6px;
+	height: 48px;
+	background: orange;
+	display: inline-block;
+	position: absolute;
+	top: 50%;
+	transform: translate(0, -50%);
+	left: -12px;
+}
+
+.labelFather {
+	position: relative;
+
 }
