@@ -50,7 +50,7 @@ var nts;
                                     // first request data
                                     a.service.findAllJobTitle()
                                         .done(function (data) {
-                                        console.log("Success: " + data);
+                                        console.log("Success: " + data[0]);
                                     })
                                         .fail(function (err) {
                                         console.log("Error: " + err);

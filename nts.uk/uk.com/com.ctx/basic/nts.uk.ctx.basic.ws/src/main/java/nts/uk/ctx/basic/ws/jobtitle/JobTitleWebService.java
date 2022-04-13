@@ -60,7 +60,6 @@ public class JobTitleWebService extends WebService{
 	@POST
 	@Path("find/all")
 	public List<JobTitleDtoTraining> findAll() {
-		System.out.println("helloeoituoi5tu34985u798tueroitdrg))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))\n");
 		return this.jobTitleFinder.findAll();
 	}
 	

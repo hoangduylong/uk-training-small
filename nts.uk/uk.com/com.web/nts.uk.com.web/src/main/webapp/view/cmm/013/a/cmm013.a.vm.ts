@@ -63,7 +63,8 @@ module nts.uk.com.view.cmm013.a {
 				// first request data
 				service.findAllJobTitle()
 					.done((data: any) => {
-						console.log("Success: " + data)
+						
+						console.log("Success: " + data[0])
 					})
 					.fail((err: any) => {
 						console.log("Error: " + err)

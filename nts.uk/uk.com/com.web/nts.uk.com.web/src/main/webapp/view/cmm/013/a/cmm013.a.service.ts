@@ -22,7 +22,7 @@ module nts.uk.com.view.cmm013.a {
         /**
          * find all job title
          */
-        export function findAllJobTitle(): JQueryPromise<any> {
+        export function findAllJobTitle(): JQueryPromise<Array<model.JobTitleDto>> {
             return nts.uk.request.ajax(servicePath.findJobTitleList);
         }
         
@@ -39,5 +39,25 @@ module nts.uk.com.view.cmm013.a {
         export function addJobTitle(command: any): JQueryPromise<any> {
             return nts.uk.request.ajax(servicePath.addJobTitle, command);
         }
+
+		export module model {
+	
+			export class JobTitleDto {
+				positionCodeTraining: string;
+				jobTitleCode: string;
+				historyTrainings: Array<HistoryDto>;
+				isAbrogated: boolean;
+				treatAsAManager: boolean;
+			}
+			
+			export class HistoryDto {
+				JobTitleId: string;
+				JobTitleCode: string;
+				JobTitleName: string;
+				StartDate: string;
+				EndDate: string;
+			}
+                  
+		}
     }
 }

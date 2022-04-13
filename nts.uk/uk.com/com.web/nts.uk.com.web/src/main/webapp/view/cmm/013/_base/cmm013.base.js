@@ -61,35 +61,14 @@ var nts;
                             return History;
                         }());
                         base.History = History;
-                        /*
-                            
-                            
-                            constructor(jobTitleId: string, jobTitleName: string, historyId: string, startDate: string, endDate?: string) {
-                                let self = this;
-                
-                                self.jobTitleId = jobTitleId;
-                                self.jobTitleName = jobTitleName;
-                                self.historyId = historyId;
-                                self.startDate = startDate;
-                                self.endDate = endDate ? endDate : "31/12/9999";
-                                
-                                self.displayString = `${self.startDate} ~ ${self.endDate}`;
-                            }
-                
-                            public updateEndDate(endDate: string) : void{
-                                this.endDate = endDate;
-                                this.displayString = `${this.startDate} ~ ${this.endDate}`;
-                                
-                            }
-                        }
                         /**
                          * Position
                          */
                         var Position = /** @class */ (function () {
-                            function Position(positionCode, positionName, order) {
+                            function Position(positionCode, positionName, positionOrder) {
                                 this.positionCode = positionCode;
                                 this.positionName = positionName;
-                                this.positionOrder = order;
+                                this.positionOrder = positionOrder;
                             }
                             return Position;
                         }());
