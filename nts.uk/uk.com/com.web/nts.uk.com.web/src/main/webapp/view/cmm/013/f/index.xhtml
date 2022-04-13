@@ -21,14 +21,12 @@
 			</script>
 
 			<com:scriptfile set="IGNITE" />
-
 			<com:stylefile path="style.css" />
 			<com:scriptfile path="../_base/cmm013.base.js" />
 			<com:scriptfile path="cmm013.f.service.js" />
 			<com:scriptfile path="cmm013.f.vm.js" />
 			<com:scriptfile path="cmm013.f.start.js" />
 		</ui:define>
-
 
 
 		<!-- PAGE CONTENT -->
@@ -41,7 +39,6 @@
 				<button class="danger btnStyle" data-bind="click: remove">削除</button>
 			</div>
 
-
 			<div id="contents-area">
 				<div id="left-content">
 					<div id="position-items-list">
@@ -53,8 +50,7 @@
 							primaryKey: 'positionCode',
 							columns: positionColumns,
 							value: currentCode,
-							multiple: false,
-							ntsPanel:{width: '50%', height: '350px', direction: 'bottom', showIcon: false, visible: true}														
+							multiple: false,											
 						}"></table>
 					</div>
 
@@ -78,24 +74,25 @@
 
 						<tr>
 							<td>
-							<div class="labelFather" style="width: 130px">
-								<div class="orange"></div>
-								<label class="positionCodeLabel">コード</label><br></br>
-								<label style="font-size: 12px; color: grey">(半角英数5文字)</label>
-							</div>
-								
+								<div class="labelFather" style="width: 130px">
+									<div class="orange"></div>
+									<label class="positionCodeLabel">コード</label><br></br>
+									<label style="font-size: 12px; color: grey">(半角英数5文字)</label>
+								</div>
 							</td>
-							<td><input id="position-code"
-								class="panel panel-frame panel-gray-bg"
-								data-bind="ntsTextEditor: {
-									value: positionCode,
-									constraint: 'PositionCodeTraining',
-									option: {
-										width: '30px',
-									},
-									required: true,
-									enable: enable_input_positionCode,		
-								}" />
+							
+							<td>
+								<input id="position-code"
+									class="panel panel-frame panel-gray-bg"
+									data-bind="ntsTextEditor: {
+										value: positionCode,
+										constraint: 'PositionCodeTraining',
+										option: {
+											width: '30px',
+										},
+										required: true,
+										enable: enable_input_positionCode,		
+									}" />
 							</td>
 						</tr>
 
@@ -107,6 +104,7 @@
 									<label style="font-size: 12px; color: grey">(全角10文字)</label>
 								</div>
 							</td>
+							
 							<td><input id="position-name"
 								data-bind="ntsTextEditor: {
 									value: positionName,
@@ -118,12 +116,10 @@
 								}" />
 							</td>
 						</tr>
-
 					</table>
 				</div>
 			</div>
 		</ui:define>
-
 	</ui:composition>
 </body>
 </html>
