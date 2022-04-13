@@ -16,14 +16,11 @@ module nts.uk.com.view.cmm013.f {
 			selectedPositionCode: KnockoutObservable<string>;
 			currentCode: KnockoutObservable<string>;
 			index: number;
-			order: KnockoutObservable<number>;
 
 			positionList: KnockoutObservableArray<Position>;
 			positionColumns: KnockoutObservableArray<any>;
-			
-			enable_button_create: KnockoutObservable<boolean>;
+
 			enable_input_positionCode: KnockoutObservable<boolean>;
-			//enable_button_create: KnockoutObservable<boolean>;
 
 
 			constructor() {
@@ -34,12 +31,10 @@ module nts.uk.com.view.cmm013.f {
 				self.positionList = ko.observableArray([]);
 				self.positionCode = ko.observable("");
 				self.positionName = ko.observable("");
-				self.order = ko.observable(0);
-				
-				self.enable_button_create = ko.observable(null);
-				self.enable_input_positionCode = ko.observable(null);
 
+				self.enable_input_positionCode = ko.observable(null);
 				self.currentCode = ko.observable(null);
+
 				self.currentCode.subscribe((selectedCode) => {
 					self.select(selectedCode);
 					if (!_.isEmpty(selectedCode)) {
@@ -47,15 +42,10 @@ module nts.uk.com.view.cmm013.f {
 					}
 				});
 
-				self.index = 0;
-
 				self.positionColumns = ko.observableArray([
 					{ headerText: 'コード', key: 'positionCode', width: 70 },
 					{ headerText: '名称', key: 'positionName', width: 120 }
 				]);
-
-				// get data
-				self.selectNext();
 			}
 
 
@@ -77,7 +67,7 @@ module nts.uk.com.view.cmm013.f {
 					})
 
 				dfd.resolve();
-				return dfd.promise();;
+				return dfd.promise();
 			}
 
 
@@ -86,23 +76,19 @@ module nts.uk.com.view.cmm013.f {
 
 				if (selectedCode) {
 					self.positionCode(selectedCode);
+					self.isCreateNew(false);
 					self.enable_input_positionCode(false);
-					console.log(selectedCode);
 
 					// Find position by position code
 					service.findByPositionCode(selectedCode)
 						.done((data: Position) => {
 							if (data) {
 								// position found
-								console.log("position found")
-								self.isCreateNew(false);
 								self.positionName(data.positionName);
-								self.order(data.positionOrder);
 							} else {
 								// position not found
-								console.log("position not found")
-                                /*self.positionCode("");
-                                self.positionName("");*/
+								self.positionCode("");
+								self.positionName("");
 							}
 							// Set focus
 							if (self.isCreateNew()) {
@@ -114,18 +100,11 @@ module nts.uk.com.view.cmm013.f {
 						.fail((res: any) => {
 							self.showMessageError(res);
 						});
-
 				} else {
 					// No position selected, switch to create new
 					console.log("huhu");
 					self.isCreateNew(true);
 				}
-			}
-
-
-			public selectNext(): void {
-				let self = this;
-				//self.positionList()[0].positionCode;
 			}
 
 
@@ -136,6 +115,7 @@ module nts.uk.com.view.cmm013.f {
 				self.positionCode("");
 				self.positionName("");
 				self.enable_input_positionCode(true);
+				$('#position-code').focus();
 			}
 
 
@@ -157,8 +137,8 @@ module nts.uk.com.view.cmm013.f {
 			public addPosition(addCommand: AddPositionCommand): void {
 				let self = this;
 				let newPosition = new Position(addCommand.positionCode,
-												addCommand.positionName,
-												addCommand.positionOrder);
+					addCommand.positionName,
+					addCommand.positionOrder);
 
 				service.addPosition(addCommand)
 					.done((data: any) => {
@@ -167,7 +147,7 @@ module nts.uk.com.view.cmm013.f {
 						nts.uk.ui.dialog.info("データが正常に登録されました");
 						self.positionCode("");
 						self.positionName("");
-						
+
 						self.loadPositionList()
 							.done((data: Position[]) => {
 								// Update position mode								
@@ -188,29 +168,27 @@ module nts.uk.com.view.cmm013.f {
 
 
 
-			public updatePosition(updateCommand: UpdatePositionCommand): void {
+			public updatePosition(updateCommand: UpdatePositionCommand): JQueryPromise<any> {
 				let self = this;
-				console.log(updateCommand);
+				let dfd = $.Deferred<any>();
 
 				service.updatePosition(updateCommand)
 					.done((data: any) => {
-						console.log("update success");
 						self.loadPositionList()
 							.done((data: Position[]) => {
-								// Update position mode
-								self.isCreateNew(false);
 								self.positionList(data);
+								nts.uk.ui.dialog.info("データは正常に更新されました");
 							})
 							.fail((res: any) => {
-								// Create new position mode
-								self.isCreateNew(true);
 								self.positionList([]);
 							})
 					})
 					.fail((res: any) => {
-						console.log("update fail");
 						self.showMessageError(res);
 					})
+					
+				dfd.resolve();
+				return dfd.promise();
 			}
 
 
@@ -223,20 +201,23 @@ module nts.uk.com.view.cmm013.f {
 					return;
 				}
 
-				let addCommand: AddPositionCommand = new AddPositionCommand(self.positionCode(),
-					self.positionName(), 0);
-
+				let addCommand: AddPositionCommand = new AddPositionCommand(self.positionCode(), self.positionName(), 0);
 				let updateCommand: UpdatePositionCommand = new UpdatePositionCommand(self.positionCode(), self.positionName(), 0);
-
 
 				if (self.isCreateNew()) {
 					self.addPosition(addCommand);
-					
 				} else {
-					console.log("update");
-					self.updatePosition(updateCommand)
-					nts.uk.ui.dialog.info("データは正常に更新されました");
+					self.updatePosition(updateCommand);
 				}
+				
+				self.loadPositionList()
+					.done((data: Position[]) => {
+						//console.log(data);
+						self.positionList(data);
+					})
+					.fail((res: any) => {
+						self.positionList([]);
+					})
 
 				self.updatePositionOrder()
 					.done((data: any) => {
@@ -282,8 +263,6 @@ module nts.uk.com.view.cmm013.f {
 
 									self.loadPositionList()
 										.done((data: Position[]) => {
-											// Return to Update position mode
-											self.isCreateNew(false);
 											self.positionList(data);
 										})
 										.fail((res: any) => {
@@ -314,22 +293,30 @@ module nts.uk.com.view.cmm013.f {
 				let positionList: any[] = self.positionList();
 				let order = 1;
 
+				console.log(positionList);
 				// update all position's order in list in UI side
 				for (let position of positionList) {
-					position.positionOrder = order;
+					position.positionOrder = order;							
 					order++;
 				}
 
-				console.log(self.positionList());
 
 				service.updateOrder(positionList)
 					.done((data: any) => {
-						dfd.resolve(data);
+						self.loadPositionList()
+							.done((data: Position[]) => {
+								self.positionList(data);
+							})
+							.fail((res: any) => {
+								self.positionList([]);
+							})
 					})
 					.fail((res: any) => {
-						dfd.reject(res);
-					});
+						console.log("update order fail");
+						self.showMessageError(res);
+					})
 
+				console.log(self.positionList());
 				return dfd.promise();
 			}
 
@@ -357,64 +344,7 @@ module nts.uk.com.view.cmm013.f {
 
 			}
 
-
-
-			/*let index: any;
-			/*public selectedRow(): void {
-				let self = this;
-				let masterTable = (<HTMLTableElement>document.getElementById("masterTable"));
-				let code = (<HTMLInputElement>document.getElementById("code"));
-				let name = (<HTMLInputElement>document.getElementById("name"));
-
-				for (let i = 0; masterTable.rows.length; i++) {
-					masterTable.rows[i].onclick = function() {
-						if (typeof self.index !== "undefined") {
-							masterTable.rows[self.index].classList.toggle("selected")
-						}
-
-						masterTable.classList.toggle("selected");
-						code.value = masterTable.rows[i].cells[0].innerHTML;
-						name.value = masterTable.rows[i].cells[1].innerHTML;
-						self.index = masterTable.rows[i].rowIndex;
-					}
-				}
-			} 
-
-			
-			public moveRowUp(): void {
-				let self = this;
-				let masterTable = (<HTMLTableElement>document.getElementById("masterTable"));
-				let row = masterTable.rows;
-				let parent = row[self.index].parentNode;
-	
-	
-				if (self.index > 0) {
-					parent.insertBefore(row[self.index], row[self.index - 1]);
-					// when the row go up the index will be equal to index - 1
-					self.index--;
-				}
-			}
-
-			public moveRowDown(): void {
-				let self = this;
-				let masterTable = (<HTMLTableElement>document.getElementById("masterTable"));
-				let row = masterTable.rows;
-				let parent = row[self.index].parentNode;
-	
-				if(self.index < row.length - 1) {
-					parent.insertBefore(row[self.index + 1], row[self.index]);
-					// when the row go down the index will be equal to index + 1
-					self.index++;
-				}
-			}*/
-
-
-
-
 		}
 	}
 }
-
-
-
 

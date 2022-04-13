@@ -14,7 +14,7 @@ import nts.uk.ctx.basic.infra.entity.training.position.PositionClassification;
 @Stateless
 public class JpaPositionRepository extends JpaRepository implements PositionRepositoryTraining {
 	
-	private static final String SELECT_ALL = "SELECT p FROM PositionClassification p";
+	private static final String SELECT_ALL = "SELECT p FROM PositionClassification p" + " ORDER BY p.positionOrder ASC";
 	private static final String SELECT_ONE = "SELECT p FROM PositionClassification p " + 
 											"WHERE p.positionCode = :positionCode";
 
@@ -29,28 +29,10 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 
 	
 	@Override
-	public Optional<PositionTraining> findByPositionCode(String positionCode) {
-//		String key = positionCode;
-//		 System.out.println("=============find one !!!!=============");
-//		return this.queryProxy().find(positionCode, PositionClassification.class)
-//		 .map(x -> PositionTraining.toDomain(positionCode, x.positionName, x.positionOrder));
-
-		
-		
-		
-		 Optional<PositionTraining> temp = this.queryProxy().query(SELECT_ONE,
-		 PositionClassification.class) .setParameter("positionCode", positionCode)
-		 .getSingle(x -> PositionTraining.toDomain( x.positionCode, x.positionName,
-		 x.positionOrder));
-		 
-		 System.out.println("=============find one !!!!=============");
-		 if(temp.isPresent()) System.out.println("hello");
-		
-		 
+	public Optional<PositionTraining> findByPositionCode(String positionCode) {	 
 		 return this.queryProxy().query(SELECT_ONE, PositionClassification.class)
 		 .setParameter("positionCode", positionCode)
 		 .getSingle(x -> PositionTraining.toDomain( x.positionCode, x.positionName, x.positionOrder));
-
 	}
 
 
@@ -68,10 +50,12 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 
 	@Override
 	public void update(PositionTraining position) {
-		PositionClassification entity = this.queryProxy().find(position.getPositionCode().v(), PositionClassification.class).get();
+		PositionClassification entity;
+		entity = this.queryProxy().find(position.getPositionCode().v(), PositionClassification.class).get();
 		entity.positionName = position.getPositionName().v();
 		entity.positionOrder = position.getPositionOrder();
-		this.commandProxy().update(entity);
+
+		this.commandProxy().update(this.toEntity(position));
 	}
 
 
@@ -81,7 +65,7 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 				.map(domain -> this.toEntity(domain))
 				.collect(Collectors.toList()));
 	}
-	
+
 	
 	// convert domain to entity 
 	private PositionClassification toEntity(PositionTraining domain) {
@@ -90,5 +74,5 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 				new PositionClassification(key, domain.getPositionName().v(), domain.getPositionOrder());
 		return entity;
 	}
-	
+
 }
