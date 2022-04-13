@@ -168,10 +168,13 @@ var nts;
                                     });
                                     nts.uk.ui.windows.sub.modal('/view/cmm/013/d/index.xhtml').onClosed(function () {
                                         var data = getShared('DialogDToMaster');
-                                        self.historyList()[0].startDate = data.startDate;
                                         var preEndDate = new Date();
+                                        self.historyList().unshift(new History(self.selectedJobTitleCode(), self.currentJobTitleName(), "", moment(data.startDate.toString()).format("YYYY-MM-DD"), data.endDate));
+                                        self.historyList.valueHasMutated();
                                         preEndDate.setDate(new Date(data.startDate).getDate() - 1);
-                                        self.historyList()[1].endDate = preEndDate.toString();
+                                        self.historyList()[1].endDate = moment(preEndDate).format("YYYY-MM-DD");
+                                        self.historyList.valueHasMutated();
+                                        console.log(self.historyList());
                                     });
                                 };
                                 ScreenModel.prototype.openDialogE = function () {
@@ -182,10 +185,13 @@ var nts;
                                     });
                                     nts.uk.ui.windows.sub.modal('/view/cmm/013/e/index.xhtml').onClosed(function () {
                                         var data = getShared('DialogEToMaster');
-                                        self.historyList()[0].startDate = data.startDate;
                                         var preEndDate = new Date();
+                                        self.historyList()[0].startDate = data.startDate;
+                                        self.historyList.valueHasMutated();
                                         preEndDate.setDate(new Date(data.startDate).getDate() - 1);
-                                        self.historyList()[1].endDate = preEndDate.toString();
+                                        self.historyList()[1].endDate = moment(preEndDate).format("YYYY-MM-DD");
+                                        self.historyList.valueHasMutated();
+                                        console.log(self.historyList());
                                     });
                                 };
                                 ScreenModel.prototype.openDialogF = function () {

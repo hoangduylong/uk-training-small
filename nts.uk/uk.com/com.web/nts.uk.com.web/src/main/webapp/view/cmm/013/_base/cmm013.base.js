@@ -86,10 +86,10 @@ var nts;
                          * Position
                          */
                         var Position = /** @class */ (function () {
-                            function Position(positionCode, positionName, order) {
+                            function Position(positionCode, positionName, positionOrder) {
                                 this.positionCode = positionCode;
                                 this.positionName = positionName;
-                                this.positionOrder = order;
+                                this.positionOrder = positionOrder;
                             }
                             return Position;
                         }());

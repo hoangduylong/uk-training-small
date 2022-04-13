@@ -58,27 +58,15 @@ module nts.uk.com.view.cmm013.e {
              */
             private validate(): boolean {
                 let _self = this;
-                let data: any = nts.uk.ui.windows.getShared('listMasterToE');
+				let data: any = nts.uk.ui.windows.getShared('listMasterToE');
 				_self.listHistory(data.historyList);
 				if(new Date(_self.startDate()) < new Date(_self.listHistory()[1].startDate))
-				{
+				{ 
 					nts.uk.ui.dialog.caution({ messageId: "Msg_102" });
 					return false;
 				}
                 return true;
-				
             }
-			private checkDate(strDate: string): boolean {
-				let comp = strDate.split('/')
-   				let d = parseInt(comp[0], 10)
-    			let m = parseInt(comp[1], 10)
-    			let y = parseInt(comp[2], 10)
-    			let date = new Date(y,m-1,d);
-    			if (date.getFullYear() == y && date.getMonth() + 1 == m && date.getDate() == d) {
-     				return true
-    			}
-    			return false
-			}
         }
     }    
 }
