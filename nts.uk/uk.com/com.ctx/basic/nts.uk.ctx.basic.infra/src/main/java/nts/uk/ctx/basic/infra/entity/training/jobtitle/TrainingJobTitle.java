@@ -93,7 +93,7 @@ public class TrainingJobTitle extends ContractUkJpaEntity implements Serializabl
 				.collect(Collectors.toList());
 		JobTitleTraining result = new JobTitleTraining(
 				new PositionCodeTraining(trainingJobTitle.getPositionCd()),
-				new JobTitleCodeTraining(String.valueOf(trainingJobTitle.getKey())),
+				new JobTitleCodeTraining(trainingJobTitle.trainingJobTitlePK.getJobCd()),
 				historyTrainings,
 				trainingJobTitle.isAbrogated == 1 ? true : false,
 				trainingJobTitle.asManager  == 1 ? true : false);

@@ -1,7 +1,6 @@
 package nts.uk.ctx.basic.ws.jobtitle;
 
 import java.util.List;
-import java.util.Optional;
 
 import javax.inject.Inject;
 import javax.ws.rs.POST;
@@ -10,7 +9,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
 import nts.arc.layer.ws.WebService;
-import nts.uk.ctx.basic.app.command.training.jobtitle.AbrogateJobTitleCommandHandler;
 import nts.uk.ctx.basic.app.command.training.jobtitle.AddJobTitleCommandHandler;
 import nts.uk.ctx.basic.app.command.training.jobtitle.JobTitleCommand;
 import nts.uk.ctx.basic.app.command.training.jobtitle.UpdateJobTitleCommandHandler;
@@ -26,9 +24,6 @@ public class JobTitleWebService extends WebService{
 	
 	@Inject
 	private UpdateJobTitleCommandHandler updateJobTitleCommandHandler;
-
-	@Inject
-	private AbrogateJobTitleCommandHandler abrogateJobTitleCommandHandler;
 	
 	@Inject
 	private JobTitleFinderTraining jobTitleFinder;
@@ -60,7 +55,6 @@ public class JobTitleWebService extends WebService{
 	@POST
 	@Path("find/all")
 	public List<JobTitleDtoTraining> findAll() {
-		System.out.println("helloeoituoi5tu34985u798tueroitdrg))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))\n");
 		return this.jobTitleFinder.findAll();
 	}
 	
@@ -71,7 +65,7 @@ public class JobTitleWebService extends WebService{
 	 */
 	@POST
 	@Path("find")
-	public JobTitleDtoTraining find(String jobTitleId) {
-		return this.jobTitleFinder.find(jobTitleId);
+	public JobTitleDtoTraining find(String jobTitleCode) {
+		return this.jobTitleFinder.find(jobTitleCode);
 	}
 }
