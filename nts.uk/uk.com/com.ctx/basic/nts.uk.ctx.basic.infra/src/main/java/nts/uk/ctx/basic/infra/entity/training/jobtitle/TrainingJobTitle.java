@@ -63,18 +63,18 @@ public class TrainingJobTitle extends ContractUkJpaEntity implements Serializabl
 	@PrimaryKeyJoinColumns({ @PrimaryKeyJoinColumn(name = "POSITION_CD", referencedColumnName = "POSITION_CD")})
     public TrainingPosition trainingPosition;
 	    
-//	
-//	public TrainingJobTitle(TrainingJobTitlePK trainingJobTitlePK, String positionCd, int asManager, int isAbrogated,
-//			List<TrainingHistory> lstTrainingHistory, TrainingPosition trainingPosition) {
-//		super();
-//		this.trainingJobTitlePK = trainingJobTitlePK;
-//		this.positionCd = positionCd;
-//		this.asManager = asManager;
-//		this.isAbrogated = isAbrogated;
-//		this.lstTrainingHistory = lstTrainingHistory;
-//		this.trainingPosition = trainingPosition;
-//	}
-//	
+	
+	public TrainingJobTitle(TrainingJobTitlePK trainingJobTitlePK, String positionCd, int asManager, int isAbrogated,
+			List<TrainingHistory> lstTrainingHistory, TrainingPosition trainingPosition) {
+		super();
+		this.trainingJobTitlePK = trainingJobTitlePK;
+		this.positionCd = positionCd;
+		this.asManager = asManager;
+		this.isAbrogated = isAbrogated;
+		this.lstTrainingHistory = lstTrainingHistory;
+		this.trainingPosition = trainingPosition;
+	}
+	
 	public TrainingJobTitle() {
         super();
     }
@@ -93,7 +93,7 @@ public class TrainingJobTitle extends ContractUkJpaEntity implements Serializabl
 				.collect(Collectors.toList());
 		JobTitleTraining result = new JobTitleTraining(
 				new PositionCodeTraining(trainingJobTitle.getPositionCd()),
-				new JobTitleCodeTraining(String.valueOf(trainingJobTitle.getKey())),
+				new JobTitleCodeTraining(trainingJobTitle.trainingJobTitlePK.getJobCd()),
 				historyTrainings,
 				trainingJobTitle.isAbrogated == 1 ? true : false,
 				trainingJobTitle.asManager  == 1 ? true : false);
