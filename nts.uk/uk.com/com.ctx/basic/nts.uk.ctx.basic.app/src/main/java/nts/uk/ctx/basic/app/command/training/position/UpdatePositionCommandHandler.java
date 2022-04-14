@@ -39,7 +39,7 @@ public class UpdatePositionCommandHandler extends CommandHandler<UpdatePositionC
 				
 		// validate
 		domain.validate();
-				
+
 		// update position
 		positionRepository.update(domain);
 	}

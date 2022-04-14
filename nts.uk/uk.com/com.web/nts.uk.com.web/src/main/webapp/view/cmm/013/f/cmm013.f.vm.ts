@@ -2,6 +2,8 @@ module nts.uk.com.view.cmm013.f {
 
 	export module viewmodel {
 		import Position = base.Position;
+		import AddPositionCommand = service.model.AddPositionCommand;
+		import UpdatePositionCommand = service.model.UpdatePositionCommand;
 		import RemovePositionCommand = service.model.RemovePositionCommand;
 
 		export class ScreenModel {
@@ -10,6 +12,7 @@ module nts.uk.com.view.cmm013.f {
 
 			positionCode: KnockoutObservable<string>;
 			positionName: KnockoutObservable<string>;
+			positionOrder: KnockoutObservable<number>;
 			currentCode: KnockoutObservable<string>;
 
 			positionList: KnockoutObservableArray<Position>;
@@ -26,6 +29,7 @@ module nts.uk.com.view.cmm013.f {
 				self.positionList = ko.observableArray([]);
 				self.positionCode = ko.observable("");
 				self.positionName = ko.observable("");
+				self.positionOrder = ko.observable(0);
 
 				self.enable_input_positionCode = ko.observable(null);
 				self.currentCode = ko.observable(null);
@@ -75,6 +79,7 @@ module nts.uk.com.view.cmm013.f {
 						.done((data: Position) => {
 							if (data) {
 								self.positionName(data.positionName);
+								self.positionOrder(data.positionOrder);
 								// Set focus on position name input
 								$('#position-name').focus();
 							} else {
@@ -148,31 +153,29 @@ module nts.uk.com.view.cmm013.f {
 
 
 			// update position
-			// public updatePosition(updateCommand: UpdatePositionCommand): JQueryPromise<any> {
-			public updatePosition(position: Position): JQueryPromise<any> {
+			public updatePosition(updateCommand: UpdatePositionCommand): void {
 				let self = this;
-				let dfd = $.Deferred<any>();
-				console.log(position);
+				let currentIndex: number;
+				
+				let updatedPosition = new Position(updateCommand.positionCode, 
+													updateCommand.positionName, 
+													updateCommand.positionOrder);
 
-				service.updatePosition(position)
+				for (let item of self.positionList()) {
+					if (item.positionCode === self.positionCode()) {
+						currentIndex = self.positionList.indexOf(item);
+					}
+				}
+
+				self.positionList().splice(currentIndex, 1, updatedPosition);
+
+				self.updatePositionOrder()
 					.done((data: any) => {
-						self.loadPositionList()
-							.done((data: Position[]) => {
-								self.positionList(data);
-								nts.uk.ui.dialog.info("データは正常に更新されました");
-							})
-							.fail((res: any) => {
-								self.positionList([]);
-							})
+
 					})
 					.fail((res: any) => {
 						self.showMessageError(res);
-					})
-
-				console.log(self.positionList())
-
-				dfd.resolve();
-				return dfd.promise();
+					});
 			}
 
 
@@ -185,21 +188,15 @@ module nts.uk.com.view.cmm013.f {
 					return;
 				}
 
-				let position = new Position(self.positionCode(), self.positionName(), 0);
+				let addCommand = new AddPositionCommand(self.positionCode(), self.positionName(), 0);
+				let updateCommand = new UpdatePositionCommand(self.positionCode(), self.positionName(), self.positionOrder());
 
 				if (self.isCreateNew()) {
-					self.addPosition(position);
+					self.addPosition(addCommand);
 				} else {
-					self.updatePosition(position);
+					self.updatePosition(updateCommand);
+					nts.uk.ui.dialog.info("データが正常に登録されました!");
 				}
-
-				self.updatePositionOrder()
-					.done((data: any) => {
-
-					})
-					.fail((res: any) => {
-						self.showMessageError(res);
-					});
 			}
 
 
@@ -223,10 +220,8 @@ module nts.uk.com.view.cmm013.f {
 									}
 									self.positionList.splice(currentIndex, 1);
 
-									nts.uk.ui.dialog.info("データが正常に登録されました!");
 									self.positionCode("");
 									self.positionName("");
-
 									self.updatePositionOrder()
 										.done((data: any) => {
 
@@ -234,6 +229,8 @@ module nts.uk.com.view.cmm013.f {
 										.fail((res: any) => {
 											self.showMessageError(res);
 										});
+
+									nts.uk.ui.dialog.info("データが正常に登録されました!");
 								})
 								.fail((res: any) => {
 									self.showMessageError(res);
@@ -260,6 +257,7 @@ module nts.uk.com.view.cmm013.f {
 					.done((data: any) => {
 						self.loadPositionList()
 							.done((data: Position[]) => {
+								dfd.resolve(data);
 								self.positionList(data);
 							})
 							.fail((res: any) => {
@@ -269,7 +267,7 @@ module nts.uk.com.view.cmm013.f {
 					.fail((res: any) => {
 						self.showMessageError(res);
 					})
-				dfd.resolve();
+
 				return dfd.promise();
 			}
 
