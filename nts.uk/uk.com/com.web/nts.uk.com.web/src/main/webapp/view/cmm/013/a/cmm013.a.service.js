@@ -49,6 +49,21 @@ var nts;
                                 return nts.uk.request.ajax(servicePath.addJobTitle, command);
                             }
                             service.addJobTitle = addJobTitle;
+                            var model;
+                            (function (model) {
+                                var JobTitleDto = /** @class */ (function () {
+                                    function JobTitleDto() {
+                                    }
+                                    return JobTitleDto;
+                                }());
+                                model.JobTitleDto = JobTitleDto;
+                                var HistoryDto = /** @class */ (function () {
+                                    function HistoryDto() {
+                                    }
+                                    return HistoryDto;
+                                }());
+                                model.HistoryDto = HistoryDto;
+                            })(model = service.model || (service.model = {}));
                         })(service = a.service || (a.service = {}));
                     })(a = cmm013.a || (cmm013.a = {}));
                 })(cmm013 = view.cmm013 || (view.cmm013 = {}));

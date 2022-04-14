@@ -46,6 +46,7 @@ var nts;
                                     var _self = this;
                                     var data = nts.uk.ui.windows.getShared('listMasterToD');
                                     _self.listHistory(data.historyList);
+                                    console.log(_self.listHistory()[0]);
                                     if (new Date(_self.startDate()) < new Date(_self.listHistory()[0].startDate)) {
                                         nts.uk.ui.dialog.caution({ messageId: "Msg_102" });
                                         return false;

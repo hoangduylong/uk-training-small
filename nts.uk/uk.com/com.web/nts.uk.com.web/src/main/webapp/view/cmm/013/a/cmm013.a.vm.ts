@@ -63,7 +63,8 @@ module nts.uk.com.view.cmm013.a {
 				// first request data
 				service.findAllJobTitle()
 					.done((data: any) => {
-						console.log("Success: " + data)
+						
+						console.log("Success: " + data[0])
 					})
 					.fail((err: any) => {
 						console.log("Error: " + err)
@@ -201,10 +202,21 @@ module nts.uk.com.view.cmm013.a {
                 });
                 nts.uk.ui.windows.sub.modal('/view/cmm/013/d/index.xhtml').onClosed(function(): any {
                     let data: any = getShared('DialogDToMaster');
-					self.historyList()[0].startDate = data.startDate;
 					let preEndDate = new Date();
+					
+					self.historyList().unshift(new History(
+						self.selectedJobTitleCode(),
+					 	self.currentJobTitleName(),
+						"",
+						moment(data.startDate.toString()).format("YYYY-MM-DD"),
+						data.endDate));
+					self.historyList.valueHasMutated();
+					
 					preEndDate.setDate(new Date(data.startDate).getDate() - 1);
-					self.historyList()[1].endDate = preEndDate.toString();
+					self.historyList()[1].endDate = moment(preEndDate).format("YYYY-MM-DD");
+					self.historyList.valueHasMutated();
+					
+					console.log(self.historyList());
                 });
             }
 
@@ -217,10 +229,17 @@ module nts.uk.com.view.cmm013.a {
                 });
                 nts.uk.ui.windows.sub.modal('/view/cmm/013/e/index.xhtml').onClosed(function(): any {
                     let data: any = getShared('DialogEToMaster');
-					self.historyList()[0].startDate = data.startDate;
 					let preEndDate = new Date();
+					
+					self.historyList()[0].startDate = data.startDate;
+					self.historyList.valueHasMutated();
+					
+					
 					preEndDate.setDate(new Date(data.startDate).getDate() - 1);
-					self.historyList()[1].endDate = preEndDate.toString();			
+					self.historyList()[1].endDate = moment(preEndDate).format("YYYY-MM-DD");
+					self.historyList.valueHasMutated();
+					
+					console.log(self.historyList());
                 });
             }
 
