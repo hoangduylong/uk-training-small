@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -12,6 +13,7 @@ import nts.arc.layer.ws.WebService;
 import nts.uk.ctx.basic.app.command.training.jobtitle.AddJobTitleCommandHandler;
 import nts.uk.ctx.basic.app.command.training.jobtitle.JobTitleCommand;
 import nts.uk.ctx.basic.app.command.training.jobtitle.UpdateJobTitleCommandHandler;
+import nts.uk.ctx.basic.app.find.training.jobtitle.JobTitleFinder;
 import nts.uk.ctx.basic.app.find.training.jobtitle.JobTitleFinderTraining;
 import nts.uk.ctx.basic.app.find.training.jobtitle.dto.JobTitleDtoTraining;
 
@@ -65,7 +67,8 @@ public class JobTitleWebService extends WebService{
 	 */
 	@POST
 	@Path("find")
-	public JobTitleDtoTraining find(String jobTitleCode) {
-		return this.jobTitleFinder.find(jobTitleCode);
+	public JobTitleDtoTraining find(JobTitleFinder obj) {
+		return this.jobTitleFinder.find(obj);
 	}
+	
 }

@@ -3,11 +3,13 @@ package nts.uk.ctx.basic.app.find.training.jobtitle.dto;
 import java.util.List;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 public class JobTitleDtoTraining {
 	private String positionCodeTraining;
 	private String jobTitleCode;

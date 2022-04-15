@@ -69,7 +69,7 @@ public class JpaJobTitleRepositoryTraining extends JpaRepository implements JobT
 	
 	@Override
 	public Optional<JobTitleTraining> find(String jobTitleCode) {
-		return this.queryProxy().find(jobTitleCode, TrainingJobTitle.class).map(x -> TrainingJobTitle.toDomain(x));
+		return this.queryProxy().find(new TrainingJobTitlePK(jobTitleCode), TrainingJobTitle.class).map(x -> TrainingJobTitle.toDomain(x));
 	}
 
 	@Override
