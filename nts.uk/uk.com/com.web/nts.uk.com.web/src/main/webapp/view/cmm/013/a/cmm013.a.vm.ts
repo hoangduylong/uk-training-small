@@ -177,8 +177,17 @@ module nts.uk.com.view.cmm013.a {
 
 			public deleteHistory() {
 				let self = this;
-				self.historyList.shift();
-				self.historyList.valueHasMutated();
+				console.log(self.historyList());
+				console.log(self.historyList().length);
+				nts.uk.ui.dialog.confirm({ messageId: "Msg_18" }).ifYes(()=>{
+					if(self.historyList().length == 1){
+						nts.uk.ui.dialog.caution({ messageId: "Msg_57" });
+					}
+					else{
+						self.historyList.shift();
+						self.historyList.valueHasMutated();
+					}
+				});
 			}
 
 			public createJobtitle() {

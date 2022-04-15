@@ -50,18 +50,22 @@ var nts;
                                     // first request data
                                     a.service.findAllJobTitle()
                                         .done(function (data) {
-                                        console.log("Success: " + data[0]);
+                                        data.forEach(function (e) {
+                                            var _a;
+                                            console.log("Success: " + e.jobTitleCode);
+                                            self.jobTitleList.push(new JobTitle(e.jobTitleCode, (_a = e.historyTrainings[0]) === null || _a === void 0 ? void 0 : _a.jobTitleName, e.positionCodeTraining, "fake", 1));
+                                        });
+                                        // select first element of list job
+                                        self.selectedJobTitleCode(self.jobTitleList()[0].jobTitleCode);
                                     })
                                         .fail(function (err) {
                                         console.log("Error: " + err);
                                     });
                                     // get data of jobtitle list
-                                    for (var i = 0; i < 20; i++) {
-                                        self.jobTitleList.push(new JobTitle("code_" + i, "name" + i, "position_code_" + i + 1, "position_name_" + i + 1, 1));
+                                    /*for (let i = 0; i < 20; i++) {
+                                        self.jobTitleList.push(new JobTitle("code_"+i, "name"+i, "position_code_"+i+1, "position_name_"+i+1, 1));
                                         console.log("fake job data success");
-                                    }
-                                    // select first element of list job
-                                    self.selectedJobTitleCode(self.jobTitleList()[0].jobTitleCode);
+                                    }*/
                                 };
                                 ScreenModel.prototype.effect = function () {
                                     var self = this;
@@ -69,7 +73,6 @@ var nts;
                                     self.selectedJobTitleCode.subscribe(function (newJobCode) {
                                         if (!self.jobTitleList().some(function (e) { return e.jobTitleCode == newJobCode; })) {
                                             self.historyList([]);
-                                            self.baseDate("");
                                             self.currentJobTitleName("");
                                             self.currentPositionCode("");
                                             self.currentPositionName("");
@@ -79,23 +82,29 @@ var nts;
                                         }
                                         console.log(newJobCode);
                                         self.codeEditor(false);
-                                        // get data of history for job title (get by selected job id)
                                         self.historyList([]);
-                                        self.historyList.valueHasMutated();
-                                        for (var i = 0; i < 20; i++) {
-                                            self.historyList.push(new History("job", "history_name_" + i, "historyId_" + i, "3/1/2020", "1/3/2021"));
-                                            console.log("fake history data success");
-                                        }
-                                        self.historyList.valueHasMutated();
-                                        // select first element of list history
-                                        self.selectedHistoryId(self.historyList()[0].historyId);
-                                        // reset all state
-                                        var jobs = self.jobTitleList().filter(function (e) { return (e.jobTitleCode == newJobCode); });
-                                        if (jobs.length > 0) {
-                                            self.currentPositionName(jobs[0].position.positionName);
-                                            self.currentPositionCode(jobs[0].position.positionCode);
-                                            self.currentPositionOrder(jobs[0].position.positionOrder + "");
-                                        }
+                                        // get data of history for job title (get by selected job id)
+                                        a.service.findHistoryList(self.selectedJobTitleCode())
+                                            .done(function (data) {
+                                            // check history list empty
+                                            if (data.historyTrainings.length <= 0) {
+                                                // error
+                                                self.historyList([]);
+                                                self.currentJobTitleName("");
+                                                self.currentPositionCode("");
+                                                self.currentPositionName("");
+                                                self.jobTitleIsManager(false);
+                                                self.codeEditor(false);
+                                                return;
+                                            }
+                                            // add list history
+                                            data.historyTrainings.forEach(function (e) {
+                                                self.historyList.push(new History(e.jobTitleCode, e.jobTitleName, e.historyId, e.startDate, e.endDate));
+                                            });
+                                            self.selectedHistoryId(self.historyList()[0].historyId);
+                                            self.currentPositionName(data.positionCodeTraining);
+                                            self.currentPositionCode(data.positionCodeTraining);
+                                        });
                                     });
                                     self.selectedHistoryId.subscribe(function (newHistoryId) {
                                         console.log(newHistoryId);
@@ -127,8 +136,17 @@ var nts;
                                 };
                                 ScreenModel.prototype.deleteHistory = function () {
                                     var self = this;
-                                    self.historyList.shift();
-                                    self.historyList.valueHasMutated();
+                                    console.log(self.historyList());
+                                    console.log(self.historyList().length);
+                                    nts.uk.ui.dialog.confirm({ messageId: "Msg_18" }).ifYes(function () {
+                                        if (self.historyList().length == 1) {
+                                            nts.uk.ui.dialog.caution({ messageId: "Msg_57" });
+                                        }
+                                        else {
+                                            self.historyList.shift();
+                                            self.historyList.valueHasMutated();
+                                        }
+                                    });
                                 };
                                 ScreenModel.prototype.createJobtitle = function () {
                                     var self = this;
