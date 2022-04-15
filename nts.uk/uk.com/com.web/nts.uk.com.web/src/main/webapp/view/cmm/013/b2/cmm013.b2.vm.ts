@@ -32,6 +32,12 @@ module nts.uk.com.view.cmm013.b2 {
 				dfd.resolve();
                 return dfd.promise();
             }
+
+            private isValidDate(d: Date): boolean {
+                return d.getTime() === d.getTime();
+            }
+
+
             
             /**
              * Execution
@@ -44,6 +50,11 @@ module nts.uk.com.view.cmm013.b2 {
                 
                 if(abrogated <= start){
                     nts.uk.ui.dialog.error(self.endDateOfLastestHistory() + "以降の日を選んでください");
+                    return;
+                }
+
+                if (!self.isValidDate(abrogated)) {
+                    nts.uk.ui.dialog.error("有効な日付を入力してください");
                     return;
                 }
                 
