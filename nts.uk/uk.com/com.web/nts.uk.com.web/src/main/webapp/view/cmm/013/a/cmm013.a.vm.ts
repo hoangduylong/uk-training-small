@@ -243,36 +243,13 @@ module nts.uk.com.view.cmm013.a {
 			public openDialogD() {
 				let self = this;
 				setShared('listMasterToD', {
+					jobTitleCode: self.selectedJobTitleCode(),
+					jobTitleName: self.currentJobTitleName(),
 					historyList: self.historyList()
 				});
 				nts.uk.ui.windows.sub.modal('/view/cmm/013/d/index.xhtml').onClosed(function(): any {
 					let data: any = getShared('DialogDToMaster');
-					let preEndDate = new Date();
-					let firstHistory = self.historyList.shift();
-					
-					preEndDate.setDate(new Date(data.startDate).getDate() - 1);
-					
-					let PreEndDate: string  = moment(preEndDate).format("YYYY-MM-DD");
-					
-					firstHistory.endDate = PreEndDate;
-					self.historyList().unshift(new History(
-						self.selectedJobTitleCode(),
-						self.currentJobTitleName(),
-						"",
-						firstHistory.startDate,
-						PreEndDate
-					));
-					
-					
-					self.historyList().unshift(new History(
-						self.selectedJobTitleCode(),
-						self.currentJobTitleName(),
-						"",
-						moment(data.startDate.toString()).format("YYYY-MM-DD"),
-						data.endDate));
-					self.historyList.valueHasMutated();
-
-					
+					self.historyList(data.listHistory);
 					self.selectedHistoryId(self.historyList()[0].historyId);
 
 					console.log(self.historyList());
@@ -283,20 +260,16 @@ module nts.uk.com.view.cmm013.a {
 			public openDialogE() {
 				let self = this;
 				setShared('listMasterToE', {
+					jobTitleCode: self.selectedJobTitleCode(),
+					jobTitleName: self.currentJobTitleName(),
 					startDate: self.historyList()[0].startDate,
 					historyList: self.historyList()
 				});
 				nts.uk.ui.windows.sub.modal('/view/cmm/013/e/index.xhtml').onClosed(function(): any {
 					let data: any = getShared('DialogEToMaster');
-					let preEndDate = new Date();
-
-					self.historyList()[0].startDate = data.startDate;
+					self.historyList(data.listHistory);
 					self.historyList.valueHasMutated();
-
-
-					preEndDate.setDate(new Date(data.startDate).getDate() - 1);
-					self.historyList()[1].endDate = moment(preEndDate).format("YYYY-MM-DD");
-					self.historyList.valueHasMutated();
+					self.selectedHistoryId(self.historyList()[0].historyId);
 
 					console.log(self.historyList());
 				});
