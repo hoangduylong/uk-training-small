@@ -50,18 +50,7 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 
 	@Override
 	public void update(PositionTraining position) {
-		/*
-		 * PositionClassification entity; entity =
-		 * this.queryProxy().find(position.getPositionCode().v(),
-		 * PositionClassification.class).get(); entity.positionName =
-		 * position.getPositionName().v(); entity.positionOrder =
-		 * position.getPositionOrder();
-		 */
-		
-		// System.out.println(entity.positionCode + "/" + entity.positionName);
-
 		this.commandProxy().update(this.toEntity(position));
-		//this.commandProxy().update(entity);
 	}
 
 
