@@ -219,7 +219,7 @@ module nts.uk.com.view.cmm013.a {
 					let data: any = getShared('DialogBToMaster');
 					console.log(data);
 					let first = self.historyList.shift();
-					self.historyList.unshift(new History(first.jobTitleId, first.jobTitleName, first.historyId, first.startDate, data.abrogatedDate));
+					self.historyList.unshift(new History(first.jobTitleCode, first.jobTitleName, first.historyId, first.startDate, data.abrogatedDate));
 					self.historyList.valueHasMutated();
 				});
 			}
