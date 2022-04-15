@@ -91,9 +91,6 @@ module nts.uk.com.view.cmm013.f {
 						.fail((res: any) => {
 							self.showMessageError(res);
 						});
-				} else {
-					// No position selected, switch to create new
-					self.isCreateNew(true);
 				}
 			}
 
@@ -133,9 +130,7 @@ module nts.uk.com.view.cmm013.f {
 					.done((data: any) => {
 						// add new position into list in UI
 						self.positionList().push(newPosition);
-						nts.uk.ui.dialog.info("データが正常に登録されました");
-						self.positionCode("");
-						self.positionName("");
+						self.currentCode(self.positionCode());
 
 						self.updatePositionOrder()
 							.done((data: any) => {
@@ -144,10 +139,12 @@ module nts.uk.com.view.cmm013.f {
 							.fail((res: any) => {
 								self.showMessageError(res);
 							});
+						
+						nts.uk.ui.dialog.info("データが正常に登録されました");
 					})
 					.fail((res: any) => {
 						nts.uk.ui.dialog.alert("登録に失敗しました! データはすでに存在します");
-						self.showMessageError(res);
+						//self.showMessageError(res);
 					})
 			}
 
@@ -171,7 +168,7 @@ module nts.uk.com.view.cmm013.f {
 
 				self.updatePositionOrder()
 					.done((data: any) => {
-
+						nts.uk.ui.dialog.info("データが正常に登録されました!");
 					})
 					.fail((res: any) => {
 						self.showMessageError(res);
@@ -195,7 +192,6 @@ module nts.uk.com.view.cmm013.f {
 					self.addPosition(addCommand);
 				} else {
 					self.updatePosition(updateCommand);
-					nts.uk.ui.dialog.info("データが正常に登録されました!");
 				}
 			}
 
@@ -222,6 +218,7 @@ module nts.uk.com.view.cmm013.f {
 
 									self.positionCode("");
 									self.positionName("");
+									
 									self.updatePositionOrder()
 										.done((data: any) => {
 
@@ -285,7 +282,6 @@ module nts.uk.com.view.cmm013.f {
 
 				$('#position-code').ntsEditor('validate');
 				$('#position-name').ntsEditor('validate');
-
 				return !$('.nts-input').ntsError('hasError');
 			}
 
@@ -293,7 +289,6 @@ module nts.uk.com.view.cmm013.f {
 			public showMessageError(res: any): void {
 
 			}
-
 		}
 	}
 }
