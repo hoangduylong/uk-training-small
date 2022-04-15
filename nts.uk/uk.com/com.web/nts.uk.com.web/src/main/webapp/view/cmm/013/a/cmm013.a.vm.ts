@@ -187,15 +187,19 @@ module nts.uk.com.view.cmm013.a {
 
 			public deleteHistory() {
 				let self = this;
-				console.log(self.historyList());
-				console.log(self.historyList().length);
 				if(self.historyList().length == 1){
 					nts.uk.ui.dialog.caution({ messageId: "Msg_57" });
 				}
 				else{
 					nts.uk.ui.dialog.confirm({ messageId: "Msg_18" }).ifYes(()=>{
-						self.historyList.shift();
+						let firstHistory = self.historyList.shift();
+						let secondHistory = self.historyList.shift();
+						secondHistory.endDate = "9999/12/31";
+						self.historyList().unshift(secondHistory);
+						self.selectedHistoryId(self.historyList()[0].historyId);
+						
 						self.historyList.valueHasMutated();
+						
 				});
 				}
 				
@@ -244,7 +248,15 @@ module nts.uk.com.view.cmm013.a {
 				nts.uk.ui.windows.sub.modal('/view/cmm/013/d/index.xhtml').onClosed(function(): any {
 					let data: any = getShared('DialogDToMaster');
 					let preEndDate = new Date();
-
+					let firstHistory = self.historyList.shift();
+					
+					preEndDate.setDate(new Date(data.startDate).getDate() - 1);
+					let PreEndDate: string  = moment(preEndDate).format("YYYY-MM-DD");
+					
+					firstHistory.endDate = PreEndDate;
+					self.historyList().unshift(firstHistory);
+					
+					
 					self.historyList().unshift(new History(
 						self.selectedJobTitleCode(),
 						self.currentJobTitleName(),
@@ -253,9 +265,8 @@ module nts.uk.com.view.cmm013.a {
 						data.endDate));
 					self.historyList.valueHasMutated();
 
-					preEndDate.setDate(new Date(data.startDate).getDate() - 1);
-					self.historyList()[1].endDate = moment(preEndDate).format("YYYY-MM-DD");
-					self.historyList.valueHasMutated();
+					
+					self.selectedHistoryId(self.historyList()[0].historyId);
 
 					console.log(self.historyList());
 				});
