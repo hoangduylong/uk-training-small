@@ -6,6 +6,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import nts.arc.error.BusinessException;
 import nts.arc.layer.app.command.CommandHandler;
 import nts.arc.layer.app.command.CommandHandlerContext;
 
@@ -30,7 +31,8 @@ public class AddPositionCommandHandler extends CommandHandler<AddPositionCommand
 		// check exists position
 		Optional<PositionTraining> position = positionRepository.findByPositionCode(command.getPositionCode());
 		if (position.isPresent()) {
-			throw new RuntimeException("This position already exists");
+			//throw new RuntimeException("This position already exists");
+			throw new BusinessException("ER005");
 		}
 		
 		// convert to domain
