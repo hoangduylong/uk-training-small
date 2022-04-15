@@ -1,14 +1,14 @@
-package nts.uk.ctx.basic.dom.training.jobtitle;
 
+package nts.uk.ctx.basic.dom.training.jobtitle;
+import java.util.List;
+
+import lombok.Getter;
+import lombok.Setter;
 import nts.arc.error.BusinessException;
 import nts.arc.layer.dom.AggregateRoot;
 import nts.arc.time.GeneralDate;
 import nts.gul.text.StringUtil;
 import nts.uk.ctx.basic.dom.training.position.PositionCodeTraining;
-
-import java.util.List;
-
-import lombok.*;
 
 @Getter
 public class JobTitleTraining extends AggregateRoot {
@@ -104,4 +104,12 @@ public class JobTitleTraining extends AggregateRoot {
 				abrogated,
 				treatAsAManager);
 	}
+	
+//	public static JobTitleTraining createFromJavaType(JobTitleCommand command) {
+//		return new JobTitleTraining(new PositionCodeTraining(positionCode),
+//				new JobTitleCodeTraining(jobTitleCode),
+//				historyTraining,
+//				abrogated,
+//				treatAsAManager);
+//	}
 }

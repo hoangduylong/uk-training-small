@@ -34,18 +34,18 @@ public class AbrogateJobTitleCommandHandler extends CommandHandler<JobTitleComma
 			throw new BusinessException("Msg_102");
 		}
 		
-		List<HistoryTraining> historyTraining = HistoryTraining.makeListHistory(abrogateCommand.getHistoryId(),
-				abrogateCommand.getJobTitleCode(),
-				abrogateCommand.getJobTitleName(),
-				abrogateCommand.getStartDate(),
-				abrogateCommand.getEndDate());
-		
-		jobTitleRepositoryTraining.update(JobTitleTraining.createFromJavaType(
-				abrogateCommand.getPositionCode(),
-				abrogateCommand.getJobTitleCode(),
-				historyTraining,
-				false,
-				abrogateCommand.isTreatAsAManager()));
+//		List<HistoryTraining> historyTraining = HistoryTraining.makeListHistory(abrogateCommand.getHistoryId(),
+//				abrogateCommand.getJobTitleCode(),
+//				abrogateCommand.getJobTitleName(),
+//				abrogateCommand.getStartDate(),
+//				abrogateCommand.getEndDate());
+//		
+//		jobTitleRepositoryTraining.update(JobTitleTraining.createFromJavaType(
+//				abrogateCommand.getPositionCode(),
+//				abrogateCommand.getJobTitleCode(),
+//				historyTraining,
+//				false,
+//				abrogateCommand.isTreatAsAManager()));
 		
 		jobTitleTraining.get().setAbrogated(true);
     }

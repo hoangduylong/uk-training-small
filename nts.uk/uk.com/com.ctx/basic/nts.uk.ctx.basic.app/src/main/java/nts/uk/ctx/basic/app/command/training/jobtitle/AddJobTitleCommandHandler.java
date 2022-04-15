@@ -25,17 +25,17 @@ public class AddJobTitleCommandHandler extends CommandHandler<JobTitleCommand>{
 		
 		JobTitleCommandCheck.check(addCommand, true);
 		
-		List<HistoryTraining> historyTraining = HistoryTraining.makeListHistory(addCommand.getHistoryId(),
-				addCommand.getJobTitleCode(),
-				addCommand.getJobTitleName(),
-				addCommand.getStartDate(),
-				addCommand.getEndDate());
-		
-		jobTitleRepositoryTraining.add(JobTitleTraining.createFromJavaType(
-				addCommand.getPositionCode(),
-				addCommand.getJobTitleCode(),
-				historyTraining,
-				addCommand.isAbrogated(),
-				addCommand.isTreatAsAManager()));
+//		List<HistoryTraining> historyTraining = HistoryTraining.makeListHistory(addCommand.getHistoryId(),
+//				addCommand.getJobTitleCode(),
+//				addCommand.getJobTitleName(),
+//				addCommand.getStartDate(),
+//				addCommand.getEndDate());
+//		
+//		jobTitleRepositoryTraining.add(JobTitleTraining.createFromJavaType(
+//				addCommand.getPositionCode(),
+//				addCommand.getJobTitleCode(),
+//				historyTraining,
+//				addCommand.isAbrogated(),
+//				addCommand.isTreatAsAManager()));
 	}
 }

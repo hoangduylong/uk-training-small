@@ -195,7 +195,13 @@ module nts.uk.com.view.cmm013.a {
 						let firstHistory = self.historyList.shift();
 						let secondHistory = self.historyList.shift();
 						secondHistory.endDate = "9999/12/31";
-						self.historyList().unshift(secondHistory);
+						self.historyList().unshift(new History(
+							self.selectedJobTitleCode(),
+							self.currentJobTitleName(),
+							"",
+							secondHistory.startDate,
+							firstHistory.endDate
+						));
 						self.selectedHistoryId(self.historyList()[0].historyId);
 						
 						self.historyList.valueHasMutated();
@@ -316,12 +322,10 @@ module nts.uk.com.view.cmm013.a {
 				let self = this;
 
 				return {
-					positionCode: self.currentPositionCode(),
+					positionCodeTraining: self.currentPositionCode(),
+					positionName: "",
 					jobTitleCode: self.selectedJobTitleCode(),
-					historyId: self.historyList().map(e => e.historyId),
-					jobTitleName: self.historyList().map(e => e.jobTitleName),
-					startDate: self.historyList().map(e => e.startDate),
-					endtDate: self.historyList().map(e => e.endDate),
+					historyTrainings: self.historyList(),
 					isAbrogated: self.jobTitleIsManager(),
 					treatAsAManager: self.jobTitleIsManager()
 				}
@@ -334,6 +338,7 @@ module nts.uk.com.view.cmm013.a {
 				service.updateJobTitle(data)
 					.done((result: any) => {
 						location.reload();
+						
 					})
 			}
 

@@ -45,13 +45,13 @@ public class JobTitleCommandCheck{
 		}
 		
 		//Check nếu trùng lịch sử cũ
-		command.getStartDate().forEach((startDate) ->
-		{
-			if (!jobTitleTraining.get().checkNewStartDate(GeneralDate.fromString(startDate, "YYYY/MM/DD")))
-			{
-				throw new BusinessException("Msg_102");
-			}
-		});
+//		command.getStartDate().forEach((startDate) ->
+//		{
+//			if (!jobTitleTraining.get().checkNewStartDate(GeneralDate.fromString(startDate, "YYYY/MM/DD")))
+//			{
+//				throw new BusinessException("Msg_102");
+//			}
+//		});
 	}
 
 }
