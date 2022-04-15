@@ -251,10 +251,17 @@ module nts.uk.com.view.cmm013.a {
 					let firstHistory = self.historyList.shift();
 					
 					preEndDate.setDate(new Date(data.startDate).getDate() - 1);
+					
 					let PreEndDate: string  = moment(preEndDate).format("YYYY-MM-DD");
 					
 					firstHistory.endDate = PreEndDate;
-					self.historyList().unshift(firstHistory);
+					self.historyList().unshift(new History(
+						self.selectedJobTitleCode(),
+						self.currentJobTitleName(),
+						"",
+						firstHistory.startDate,
+						PreEndDate
+					));
 					
 					
 					self.historyList().unshift(new History(
