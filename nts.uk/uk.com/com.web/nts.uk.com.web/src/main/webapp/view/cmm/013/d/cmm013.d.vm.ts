@@ -10,9 +10,9 @@ module nts.uk.com.view.cmm013.d {
 			listHistory: KnockoutObservableArray<History> = ko.observableArray([]);
             
             constructor() {
-                let _self = this;  
-                _self.startDate = ko.observable("");
-                _self.endDate = ko.observable("9999/12/31");
+                let self = this;  
+                self.startDate = ko.observable("");
+                self.endDate = ko.observable("9999/12/31");
             }
             
             /**
@@ -28,27 +28,51 @@ module nts.uk.com.view.cmm013.d {
              * Execution
              */
             public execution(): void {
-                let _self = this;
-                if (!_self.validate()) {
+                let self = this;
+                if (!self.validate()) {
                     return;
                 }
-				let data: any = {
-					startDate:  _self.startDate(),
-					endDate:  _self.endDate()
+				let dataIn: any = nts.uk.ui.windows.getShared('listMasterToD');
+				
+				self.listHistory(dataIn.historyList);
+				let firstHistory = self.listHistory().shift();
+				let preEndDate = new Date();
+				
+				preEndDate.setDate(new Date(self.startDate()).getDate() - 1);
+				let PreEndDate: string  = moment(preEndDate).format("YYYY-MM-DD");
+				
+				self.listHistory().unshift(new History(
+					dataIn.jobCode,
+					dataIn.jobjName,
+					self.listHistory().length + 1 +'',
+					firstHistory.startDate,
+					PreEndDate
+				));
+					
+				self.listHistory().unshift(new History(
+					dataIn.jobCode,
+					dataIn.jobjName,
+					self.listHistory().length + 1 +'',
+					moment(new Date(self.startDate())).format("YYYY-MM-DD"),
+					self.endDate()
+					));
+				let dataOut: any = {
+					listHistory: self.listHistory()
 				};
-                nts.uk.ui.windows.setShared('DialogDToMaster', data);
-                _self.close();
+					
+                nts.uk.ui.windows.setShared('DialogDToMaster', dataOut);
+                self.close();
 			}
             
 			   private validate(): boolean {
-				let _self = this;
+				let self = this;
 				let data: any = nts.uk.ui.windows.getShared('listMasterToD');
-				_self.listHistory(data.historyList);
-				if(_self.startDate() == ""){
+				self.listHistory(data.historyList);
+				if(self.startDate() == ""){
 					nts.uk.ui.dialog.caution({ messageId: "MsgB_1" });
 					return false;
 				}
-				if(new Date(_self.startDate()) < new Date(_self.listHistory()[0].startDate))
+				if(new Date(self.startDate()) < new Date(self.listHistory()[0].startDate))
 				{
 					nts.uk.ui.dialog.caution({ messageId: "Msg_102" });
 					return false;
