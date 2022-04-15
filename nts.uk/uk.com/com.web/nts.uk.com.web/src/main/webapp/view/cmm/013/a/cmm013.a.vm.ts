@@ -31,7 +31,9 @@ module nts.uk.com.view.cmm013.a {
 
 			historyList: KnockoutObservableArray<History> = ko.observableArray([]);
 
-			enableHistory: KnockoutObservable<boolean> = ko.observable(true);
+			enableHistoryCreate: KnockoutObservable<boolean> = ko.observable(true);
+			enableHistoryEdit: KnockoutObservable<boolean> = ko.observable(true);
+			enableHistoryDelete: KnockoutObservable<boolean> = ko.observable(true);
 
 			texteditor: any;
 
@@ -119,9 +121,14 @@ module nts.uk.com.view.cmm013.a {
 								self.currentPositionCode("");
 								self.currentPositionName("");
 								self.jobTitleIsManager(false);
-								self.codeEditor(false)
+								self.codeEditor(false);
+								self.enableHistoryCreate(true);
+								self.enableHistoryEdit(true);
+								self.enableHistoryDelete(true);
 								return;
 							}
+							// check single element of history list
+							
 							// add list history
 							data.historyTrainings.forEach(e => {
 								self.historyList.push(
@@ -136,7 +143,7 @@ module nts.uk.com.view.cmm013.a {
 							
 							self.selectedHistoryId(self.historyList()[0].historyId);
 
-							self.currentPositionName(data.positionCodeTraining);
+							self.currentPositionName(data.positionName);
 							self.currentPositionCode(data.positionCodeTraining);
 						});
 				})
@@ -145,8 +152,11 @@ module nts.uk.com.view.cmm013.a {
 					console.log(newHistoryId);
 					// check lastest history local
 					let isCtrlHistory = self.isLastestHistory(newHistoryId);
-					self.enableHistory(isCtrlHistory);
-
+					// check single history
+					let isSingleHistory = self.historyList().length > 1 ? false:true
+					self.enableHistoryCreate(isCtrlHistory);
+					self.enableHistoryEdit(isCtrlHistory);
+					self.enableHistoryDelete(isCtrlHistory && !isSingleHistory);
 					// get job of history selected
 					let histories = self.historyList().filter(e => (e.historyId == newHistoryId));
 					// exist elements

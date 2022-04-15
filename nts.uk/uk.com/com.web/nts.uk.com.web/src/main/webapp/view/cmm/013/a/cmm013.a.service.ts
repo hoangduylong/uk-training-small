@@ -44,6 +44,7 @@ module nts.uk.com.view.cmm013.a {
 
 			export interface JobTitleDto {
 				positionCodeTraining: string;
+				positionName: string;
 				jobTitleCode: string;
 				historyTrainings: Array<HistoryDto>;
 				isAbrogated: boolean;
@@ -70,7 +71,8 @@ module nts.uk.com.view.cmm013.a {
 
 		export interface JobTitleDtoTraining {
 			positionCodeTraining: string;
-			JobTitleCode: string;
+			positionName: string;
+			jobTitleCode: string;
 			isAbrogated: boolean;
 			treatAsAManager: boolean;
 			historyTrainings: Array<HistoryDto>

@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 @NoArgsConstructor
 public class JobTitleDtoTraining {
 	private String positionCodeTraining;
+	private String positionName;
 	private String jobTitleCode;
 	private List<HistoryDtoTraining> historyTrainings;
 	private boolean isAbrogated;
