@@ -44,7 +44,6 @@ module nts.uk.com.view.cmm013.d {
 				let _self = this;
 				let data: any = nts.uk.ui.windows.getShared('listMasterToD');
 				_self.listHistory(data.historyList);
-				console.log(_self.startDate());
 				if(_self.startDate() == ""){
 					nts.uk.ui.dialog.caution({ messageId: "MsgB_1" });
 					return false;
