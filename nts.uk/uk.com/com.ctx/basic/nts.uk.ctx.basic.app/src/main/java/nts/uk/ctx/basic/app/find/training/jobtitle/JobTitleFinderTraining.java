@@ -63,15 +63,15 @@ public class JobTitleFinderTraining {
 	 * @param jobTitleCode
 	 * @return Job Title Dto
 	 */
-	public JobTitleDtoTraining find(String jobTitleCode) {
-		Optional<JobTitleTraining> jobTitle = this.jobTitleRepositoryTraining.find(jobTitleCode);
+	public JobTitleDtoTraining find(JobTitleFinder obj) {
+		Optional<JobTitleTraining> jobTitle = this.jobTitleRepositoryTraining.find(obj.jobTitleCode);
 		
-		if(jobTitle.isPresent()) {
+		if(!jobTitle.isPresent()) {
 			throw new BusinessException("Msg_102");
 		}
 		
 		return new JobTitleDtoTraining(jobTitle.get().getJobTitleCodeTraining().v(), 
-				jobTitleCode,
+				obj.jobTitleCode,
 				this.toDto(jobTitle.get().getHistoryTrainings()), 
 				jobTitle.get().isAbrogated(), 
 				jobTitle.get().isTreatAsAManager());

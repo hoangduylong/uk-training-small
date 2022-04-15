@@ -46,15 +46,15 @@ module nts.uk.com.view.cmm013 {
          */
         export class History {
             
-            jobTitleId: string;
+            jobTitleCode: string;
 			jobTitleName: string;
             historyId: string;
             startDate: string;
             endDate: string;
 			displayString: string;
             
-            constructor(jobTitleId: string, jobTitleName: string, historyId: string, startDate: string, endDate?: string) {
-                this.jobTitleId = jobTitleId;
+            constructor(jobTitleCode: string, jobTitleName: string, historyId: string, startDate: string, endDate?: string) {
+                this.jobTitleCode = jobTitleCode;
 				this.jobTitleName = jobTitleName;
                 this.historyId = historyId;
 				this.startDate = startDate;

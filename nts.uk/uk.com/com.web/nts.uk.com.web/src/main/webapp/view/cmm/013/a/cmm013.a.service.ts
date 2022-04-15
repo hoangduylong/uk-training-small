@@ -1,63 +1,81 @@
 module nts.uk.com.view.cmm013.a {
-    
-    export module service {
-            
+
+	export module service {
+
         /**
          *  Service paths
          */
-        var servicePath: any = {
-            findJobTitleList: "basic/training/jobtitle/find/all",
+		var servicePath: any = {
+			findJobTitleList: "basic/training/jobtitle/find/all",
 			updateJobTitle: "basic/training/jobtitle/update",
 			addJobTitle: "basic/training/jobtitle/add",
 			findHistoryList: "basic/training/jobtitle/find",
-        }
-    
+		}
+
         /**
          * find history list (get all info of one job title)
          */
-        export function findHistoryList(jobTitleId: string): JQueryPromise<any> {
-            return nts.uk.request.ajax(servicePath.findHistoryList, { jobTitleId });
-        }
-        
+		export function findHistoryList(jobTitleCode: string): JQueryPromise<any> {
+			return nts.uk.request.ajax(servicePath.findHistoryList, { jobTitleCode: jobTitleCode });
+		}
+
         /**
          * find all job title
          */
-        export function findAllJobTitle(): JQueryPromise<Array<model.JobTitleDto>> {
-            return nts.uk.request.ajax(servicePath.findJobTitleList);
-        }
-        
+		export function findAllJobTitle(): JQueryPromise<Array<model.JobTitleDto>> {
+			return nts.uk.request.ajax(servicePath.findJobTitleList);
+		}
+
         /**
          * update job title
          */
-        export function updateJobTitle(command: any): JQueryPromise<any> {
-            return nts.uk.request.ajax(servicePath.updateJobTitle, command);
-        }
-        
+		export function updateJobTitle(command: any): JQueryPromise<any> {
+			return nts.uk.request.ajax(servicePath.updateJobTitle, command);
+		}
+
         /**
          * add job title
          */
-        export function addJobTitle(command: any): JQueryPromise<any> {
-            return nts.uk.request.ajax(servicePath.addJobTitle, command);
-        }
+		export function addJobTitle(command: any): JQueryPromise<any> {
+			return nts.uk.request.ajax(servicePath.addJobTitle, command);
+		}
 
 		export module model {
-	
-			export class JobTitleDto {
+
+			export interface JobTitleDto {
 				positionCodeTraining: string;
 				jobTitleCode: string;
 				historyTrainings: Array<HistoryDto>;
 				isAbrogated: boolean;
 				treatAsAManager: boolean;
 			}
-			
+
 			export class HistoryDto {
-				JobTitleId: string;
-				JobTitleCode: string;
-				JobTitleName: string;
-				StartDate: string;
-				EndDate: string;
+				historyId: string;
+				jobTitleCode: string;
+				jobTitleName: string;
+				startDate: string;
+				endDate: string;
+				displayString: string;
+
+				constructor(historyId: string, jobTitleCode: string, jobTitleName: string, startDate: string, endDate?: string) {
+				this.jobTitleCode = jobTitleCode;
+				this.jobTitleName = jobTitleName;
+				this.historyId = historyId;
+				this.startDate = startDate;
+				this.endDate = endDate ? endDate : "9999/12/31";
+				this.displayString = `${this.startDate} ~ ${this.endDate}`
 			}
-                  
 		}
-    }
+
+		export interface JobTitleDtoTraining {
+			positionCodeTraining: string;
+			JobTitleCode: string;
+			isAbrogated: boolean;
+			treatAsAManager: boolean;
+			historyTrainings: Array<HistoryDto>
+		}
+
+	}
+}
 }
