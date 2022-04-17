@@ -32,4 +32,8 @@ public interface JobTitleRepositoryTraining {
 	
 	
 	List<JobTitleTraining> findAllByJdbc();
+
+	boolean checkAddUpdate(String jobTitleCode);
+
+	boolean findByCode(String jobTitleCode);
 }

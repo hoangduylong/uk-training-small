@@ -29,7 +29,7 @@ public class JobTitleTraining extends AggregateRoot {
 	
 	@Override
 	public void validate() {
-		super.validate();
+		//super.validate();
 		if (this.jobTitleCodeTraining == null || StringUtil.isNullOrEmpty(this.jobTitleCodeTraining.v(), true)) {
 			throw new BusinessException("ER013");
 		}

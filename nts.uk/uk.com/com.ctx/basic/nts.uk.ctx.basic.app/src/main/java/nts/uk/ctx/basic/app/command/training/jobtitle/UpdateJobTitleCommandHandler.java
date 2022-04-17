@@ -15,13 +15,16 @@ public class UpdateJobTitleCommandHandler extends CommandHandler<JobTitleCommand
 	
 	@Inject
 	private JobTitleRepositoryTraining jobTitleRepositoryTraining;
+	
+	@Inject
+	private JobTitleCommandCheck check;
 		
 	@Override
 	protected void handle(CommandHandlerContext<JobTitleCommand> context) {
 		
 		JobTitleCommand updateCommand = context.getCommand();
 		
-		JobTitleCommandCheck.check(updateCommand, false);
+		check.check(updateCommand, false);
 		
 //		List<HistoryTraining> historyTraining = HistoryTraining.makeListHistory(updateCommand.getHistoryId(),
 //				updateCommand.getJobTitleCode(),

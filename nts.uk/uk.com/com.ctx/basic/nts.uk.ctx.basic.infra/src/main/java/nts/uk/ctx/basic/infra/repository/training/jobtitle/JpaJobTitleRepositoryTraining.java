@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+
+import lombok.val;
 import nts.arc.layer.infra.data.JpaRepository;
 import nts.arc.layer.infra.data.jdbc.NtsResultSet;
 import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleTraining;
@@ -19,13 +21,17 @@ import nts.uk.ctx.basic.infra.entity.training.jobtitle.TrainingHistory;
 import nts.uk.ctx.basic.infra.entity.training.jobtitle.TrainingHistoryPK;
 import nts.uk.ctx.basic.infra.entity.training.jobtitle.TrainingJobTitle;
 import nts.uk.ctx.basic.infra.entity.training.jobtitle.TrainingJobTitlePK;
+import nts.uk.ctx.basic.infra.entity.training.jobtitle.TrainingPosition;
 
 @Stateless
 public class JpaJobTitleRepositoryTraining extends JpaRepository implements JobTitleRepositoryTraining {
 	
 	@Inject
 	private static final String SELECT_ALL = "SELECT a FROM TrainingJobTitle a";
-
+	
+	@Inject 
+	private static final String SELECT_BY_CODE = SELECT_ALL
+					+ " WHERE a.trainingJobTitlePK.jobCd = :jobCd";
 
 	@Override
 	public List<JobTitleTraining> findAll() {
@@ -71,6 +77,21 @@ public class JpaJobTitleRepositoryTraining extends JpaRepository implements JobT
 	public Optional<JobTitleTraining> find(String jobTitleCode) {
 		return this.queryProxy().find(new TrainingJobTitlePK(jobTitleCode), TrainingJobTitle.class).map(x -> TrainingJobTitle.toDomain(x));
 	}
+	
+	@Override
+	public boolean findByCode(String jobCd) {
+		boolean resuls = this.queryProxy().query(SELECT_BY_CODE, TrainingJobTitle.class)
+				.setParameter("jobCd", jobCd)
+				.getSingle().isPresent();
+		return resuls;
+	}
+	
+	@Override
+	public boolean checkAddUpdate(String jobTitleCode) {
+		return this.queryProxy().find(new TrainingJobTitlePK(jobTitleCode), TrainingJobTitle.class).isPresent();
+	}
+	
+	
 
 	@Override
 	public void add(JobTitleTraining jobTitleTraining) {
@@ -79,7 +100,17 @@ public class JpaJobTitleRepositoryTraining extends JpaRepository implements JobT
 
 	@Override
 	public void update(JobTitleTraining jobTitleTraining) {
-		this.commandProxy().update(toJobTitleEntity(jobTitleTraining));
+		TrainingJobTitlePK pk = new TrainingJobTitlePK(jobTitleTraining.getJobTitleCodeTraining().v());
+		TrainingJobTitle entity = this.queryProxy().find(pk, TrainingJobTitle.class).get();
+		
+		entity.setTrainingJobTitlePK(pk);
+		entity.setPositionCd(jobTitleTraining.getPositionCodeTraining().v());
+		entity.setAsManager(jobTitleTraining.isTreatAsAManager() ? 1 : 0);
+		entity.setIsAbrogated(jobTitleTraining.isAbrogated() ? 1 : 0);
+		//entity.setLstTrainingHistory(); Lấy data của LstTrainingHistory từ domain convert => entity
+		//entity.setTrainingPosition(); Lấy data của TrainingPosition từ domain convert => entity
+		
+		this.commandProxy().update(entity);
 	}
 
 	public List<TrainingHistory> toHistoryEntity(JobTitleTraining jobTitleTraining) {
@@ -100,12 +131,16 @@ public class JpaJobTitleRepositoryTraining extends JpaRepository implements JobT
 
 	public TrainingJobTitle toJobTitleEntity(JobTitleTraining jobTitleTraining) {
 		TrainingJobTitlePK pk = new TrainingJobTitlePK(jobTitleTraining.getJobTitleCodeTraining().v());
-
-		TrainingJobTitle entity = this.queryProxy().find(pk, TrainingJobTitle.class).orElse(new TrainingJobTitle());
-		entity.setTrainingJobTitlePK(pk);
-		entity.setPositionCd(jobTitleTraining.getPositionCodeTraining().v());
-		entity.setAsManager(jobTitleTraining.isTreatAsAManager() ? 1 : 0);
-		entity.setIsAbrogated(jobTitleTraining.isAbrogated() ? 1 : 0);
+		
+		TrainingJobTitle entity = new TrainingJobTitle(
+				pk, 
+				"code",//positionCd,  convert data từ domain sang
+				1,//asManager, 
+				1,//isAbrogated, 
+				new ArrayList<>(),//lstTrainingHistory, 
+				new TrainingPosition()//trainingPosition
+		);
+		
 		return entity;
 	}
 }

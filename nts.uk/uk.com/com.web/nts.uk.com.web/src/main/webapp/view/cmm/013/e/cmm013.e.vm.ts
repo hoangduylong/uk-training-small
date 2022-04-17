@@ -44,7 +44,7 @@ module nts.uk.com.view.cmm013.e {
 				
 				let preEndDate = new Date();
 				preEndDate.setDate(new Date(self.startDate()).getDate() - 1);
-				let PreEndDate: string  = moment(preEndDate).format("YYYY-MM-DD");
+				let PreEndDate: string  = moment(preEndDate).format("YYYY/MM/DD");
 				
 				self.listHistory().unshift(new History(
 					dataIn.jobCode,
@@ -58,7 +58,7 @@ module nts.uk.com.view.cmm013.e {
 					dataIn.jobCode,
 					dataIn.jobjName,
 					self.listHistory().length + 1 +'',
-					moment(self.startDate()).format("YYYY-MM-DD"),
+					moment(self.startDate()).format("YYYY/MM/DD"),
 					self.endDate()
 				));
 					

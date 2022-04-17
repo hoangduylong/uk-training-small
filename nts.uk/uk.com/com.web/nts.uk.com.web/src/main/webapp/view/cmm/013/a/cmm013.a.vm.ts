@@ -34,7 +34,7 @@ module nts.uk.com.view.cmm013.a {
 			enableHistoryCreate: KnockoutObservable<boolean> = ko.observable(true);
 			enableHistoryEdit: KnockoutObservable<boolean> = ko.observable(true);
 			enableHistoryDelete: KnockoutObservable<boolean> = ko.observable(true);
-
+			checkCode: boolean = false;
 			texteditor: any;
 
 			constructor() {
@@ -214,6 +214,7 @@ module nts.uk.com.view.cmm013.a {
 			public createJobtitle() {
 				let self = this;
 				self.selectedJobTitleCode("");
+				self.checkCode = true;
 			}
 
 			/**
@@ -255,7 +256,7 @@ module nts.uk.com.view.cmm013.a {
 				});
 				nts.uk.ui.windows.sub.modal('/view/cmm/013/d/index.xhtml').onClosed(function(): any {
 					let data: any = getShared('DialogDToMaster');
-					self.historyList(data.listHistory);
+					self.historyList(data?.listHistory);
 					self.selectedHistoryId(self.historyList()[0].historyId);
 
 					console.log(self.historyList());
@@ -293,25 +294,33 @@ module nts.uk.com.view.cmm013.a {
 
 			public prepareToServer(): any {
 				let self = this;
-
 				return {
 					positionCodeTraining: self.currentPositionCode(),
 					positionName: "",
 					jobTitleCode: self.selectedJobTitleCode(),
 					historyTrainings: self.historyList(),
 					isAbrogated: self.jobTitleIsManager(),
-					treatAsAManager: self.jobTitleIsManager()
+					treatAsAManager: self.jobTitleIsManager(),
+					checkCode : self.checkCode
 				}
 			}
 
 			public submitForm() {
 				let self = this;
 				// insert or update;
-				let data = self.prepareToServer()
-				service.updateJobTitle(data)
+				if(self.historyList().length == 0) {
+					self.historyList.push(new History(self.selectedJobTitleCode(),
+					self.currentJobTitleName(), 
+					self.historyList().length+1+'',
+				  	moment().fromNow().toString(),
+			 		"9999/12/31"
+					));
+				}
+				let data = self.prepareToServer();
+				service.addJobTitle(data)
 					.done((result: any) => {
 						location.reload();
-						
+						self.checkCode = false;
 					})
 			}
 

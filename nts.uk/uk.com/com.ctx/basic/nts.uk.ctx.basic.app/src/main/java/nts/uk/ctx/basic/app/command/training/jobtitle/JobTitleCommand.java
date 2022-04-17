@@ -19,6 +19,7 @@ public class JobTitleCommand {
 	private List<HistoryCommand> historyTrainings;
 	private boolean isAbrogated;
 	private boolean treatAsAManager;
+	private boolean isAdd;
 	
 	// To domain
 	public static JobTitleTraining toDomain(JobTitleCommand command) {

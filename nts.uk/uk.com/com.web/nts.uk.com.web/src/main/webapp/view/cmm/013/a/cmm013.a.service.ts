@@ -7,7 +7,7 @@ module nts.uk.com.view.cmm013.a {
          */
 		var servicePath: any = {
 			findJobTitleList: "basic/training/jobtitle/find/all",
-			updateJobTitle: "basic/training/jobtitle/update",
+			//addJobTitle: "basic/training/jobtitle/update",
 			addJobTitle: "basic/training/jobtitle/add",
 			findHistoryList: "basic/training/jobtitle/find",
 		}
