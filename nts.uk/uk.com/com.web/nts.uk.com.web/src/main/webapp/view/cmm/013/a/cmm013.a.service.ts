@@ -60,12 +60,12 @@ module nts.uk.com.view.cmm013.a {
 				displayString: string;
 
 				constructor(historyId: string, jobTitleCode: string, jobTitleName: string, startDate: string, endDate?: string) {
-				this.jobTitleCode = jobTitleCode;
-				this.jobTitleName = jobTitleName;
-				this.historyId = historyId;
-				this.startDate = startDate;
-				this.endDate = endDate ? endDate : "9999/12/31";
-				this.displayString = `${this.startDate} ~ ${this.endDate}`
+					this.jobTitleCode = jobTitleCode;
+					this.jobTitleName = jobTitleName;
+					this.historyId = historyId;
+					this.startDate = startDate;
+					this.endDate = endDate ? endDate : "9999/12/31";
+					this.displayString = `${this.startDate} ~ ${this.endDate}`
 			}
 		}
 

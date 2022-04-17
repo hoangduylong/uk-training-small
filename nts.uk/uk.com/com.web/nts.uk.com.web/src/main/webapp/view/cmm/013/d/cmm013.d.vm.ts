@@ -44,18 +44,18 @@ module nts.uk.com.view.cmm013.d {
 				if(self.listHistory().length != 0)
 				{
 					self.listHistory().unshift(new History(
-					dataIn.jobCode,
-					dataIn.jobjName,
-					self.listHistory().length + 1 +'',
+					dataIn.jobTitleCode,
+					dataIn.jobTitleName,
+					util.randomId(),
 					firstHistory?.startDate,
 					PreEndDate
 				));
 				}
 					
 				self.listHistory().unshift(new History(
-					dataIn.jobCode,
-					dataIn.jobjName,
-					self.listHistory().length + 1 +'',
+					dataIn.jobTitleCode,
+					dataIn.jobTitleName,
+					util.randomId(),
 					moment(new Date(self.startDate())).format("YYYY/MM/DD"),
 					self.endDate()
 					));
