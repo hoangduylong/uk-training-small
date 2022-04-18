@@ -1,7 +1,5 @@
 package nts.uk.ctx.basic.app.command.training.position;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 import javax.ejb.Stateless;
@@ -24,17 +22,14 @@ public class RemovePositionCommandHandler extends CommandHandler<RemovePositionC
 	protected void handle(CommandHandlerContext<RemovePositionCommand> context) {
 
 		RemovePositionCommand command = context.getCommand();
-		
-		List<String> positionCodeList = new ArrayList<String>();
-		positionCodeList.add(command.getPositionCode());
 
-		// check exists position
+		// check if position already exists
 		Optional<PositionTraining> domain = positionRepository.findByPositionCode(command.getPositionCode());
 		if (!domain.isPresent()) {
 			throw new RuntimeException("Position not found");
 		}
 
-		// delete position
+		// remove position
 		positionRepository.remove(command.getPositionCode());
 	}
 	

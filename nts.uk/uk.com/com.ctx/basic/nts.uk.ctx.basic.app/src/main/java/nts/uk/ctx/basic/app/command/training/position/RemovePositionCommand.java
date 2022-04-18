@@ -5,6 +5,8 @@ import lombok.*;
 @NoArgsConstructor
 @Data
 public class RemovePositionCommand {
-
+	
+	// 序列コード
+	// position's code
 	private String positionCode;
 }

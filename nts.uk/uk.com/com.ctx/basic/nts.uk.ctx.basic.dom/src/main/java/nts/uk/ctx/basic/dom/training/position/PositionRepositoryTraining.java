@@ -3,24 +3,26 @@ package nts.uk.ctx.basic.dom.training.position;
 import java.util.List;
 import java.util.Optional;
 
+// Interface PositionRepositoryTraining
+
 public interface PositionRepositoryTraining {
 	
-	// Get list of Position
+	// get all positions
 	List<PositionTraining> findAll();
 	
-	// Find position by positionCode
+	// find position by position's code
 	Optional<PositionTraining> findByPositionCode(String positionCode);
 
-	// Add new position
+	// add new position
 	void add(PositionTraining position);
 
-	// Update position information
+	// update position
 	void update(PositionTraining position);
 
-	// Remove a position
+	// remove position by position's code
 	void remove(String positionCode);
 	
-	// Update position's order
+	// update all positions' order
 	void updateOrder(List<PositionTraining> positionList);
-
+	
 }

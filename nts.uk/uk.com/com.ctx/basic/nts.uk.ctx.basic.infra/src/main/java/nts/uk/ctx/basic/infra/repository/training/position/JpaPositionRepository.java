@@ -17,7 +17,8 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 	private static final String SELECT_ALL = "SELECT p FROM PositionClassification p" + " ORDER BY p.positionOrder ASC";
 	private static final String SELECT_ONE = "SELECT p FROM PositionClassification p " + 
 											"WHERE p.positionCode = :positionCode";
-
+	
+	// get all positions
 	@Override
 	public List<PositionTraining> findAll() {
 		return this.queryProxy().query(SELECT_ALL, PositionClassification.class)
@@ -28,6 +29,7 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 	}
 
 	
+	// find position by position's code
 	@Override
 	public Optional<PositionTraining> findByPositionCode(String positionCode) {	 
 		 return this.queryProxy().query(SELECT_ONE, PositionClassification.class)
@@ -35,25 +37,29 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 		 .getSingle(x -> PositionTraining.toDomain( x.positionCode, x.positionName, x.positionOrder));
 	}
 
-
+	
+	// add position
 	@Override
 	public void add(PositionTraining position) {
 		this.commandProxy().insert(toEntity(position));
 	}
 	
 	
+	// remove position by position's code
 	@Override
 	public void remove(String positionCode) {
 		this.commandProxy().remove(PositionClassification.class, positionCode);
 	}
 	
-
+	
+	// update position
 	@Override
 	public void update(PositionTraining position) {
 		this.commandProxy().update(this.toEntity(position));
 	}
 
-
+	
+	// update all positions' order
 	@Override
 	public void updateOrder(List<PositionTraining> positionList) {
 		this.commandProxy().updateAll(positionList.stream()
@@ -62,7 +68,7 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 	}
 
 	
-	// convert domain to entity 
+	// convert domain into entity
 	private PositionClassification toEntity(PositionTraining domain) {
 		String key = domain.getPositionCode().v();
 		PositionClassification entity = 

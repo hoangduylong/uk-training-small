@@ -3,24 +3,28 @@ package nts.uk.ctx.basic.dom.training.position;
 import lombok.*;
 import nts.arc.layer.dom.objecttype.DomainAggregate;
 
+// 序列の登録
+
 public class PositionTraining implements DomainAggregate {
 
-	// Position Code
+	// 序列コード
+	// position's code
 	@Getter
 	private PositionCodeTraining positionCode;
 	
-	// Position Name
+	// 序列名
+	// position's name
 	@Getter
 	@Setter
 	private PositionNameTraining positionName;
 	
-	// Position Order
+	// 序列順序
+	// position's order
 	@Getter
 	@Setter
 	private int positionOrder;
 
 	
-	// Constructor
 	public PositionTraining(PositionCodeTraining positionCode, PositionNameTraining positionName, int positionOrder) {
 		super();
 		this.positionCode = positionCode;
@@ -29,7 +33,7 @@ public class PositionTraining implements DomainAggregate {
 	}
 
 
-	// Convert java type to domain
+	// convert java type to domain
 	public static PositionTraining toDomain(String positionCode, String positionName, int positionOrder) {
 		return new PositionTraining(
 			new PositionCodeTraining(positionCode),
