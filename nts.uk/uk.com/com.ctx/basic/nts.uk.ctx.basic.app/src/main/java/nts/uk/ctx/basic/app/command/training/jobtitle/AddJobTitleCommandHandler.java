@@ -19,23 +19,20 @@ public class AddJobTitleCommandHandler extends CommandHandler<JobTitleCommand>{
 	@Inject
 	private JobTitleRepositoryTraining jobTitleRepositoryTraining;
 	
+	@Inject
+	private JobTitleCommandCheck check;
+	
 	@Override
 	protected void handle(CommandHandlerContext<JobTitleCommand> context) {
 		JobTitleCommand addCommand = context.getCommand();
+		boolean checkUpdate = jobTitleRepositoryTraining.checkAddUpdate(addCommand.getJobTitleCode());
 		
-		JobTitleCommandCheck.check(addCommand, true);
+		if (addCommand.isAdd() && checkUpdate)
+			check.check(addCommand, checkUpdate);
 		
-//		List<HistoryTraining> historyTraining = HistoryTraining.makeListHistory(addCommand.getHistoryId(),
-//				addCommand.getJobTitleCode(),
-//				addCommand.getJobTitleName(),
-//				addCommand.getStartDate(),
-//				addCommand.getEndDate());
-//		
-//		jobTitleRepositoryTraining.add(JobTitleTraining.createFromJavaType(
-//				addCommand.getPositionCode(),
-//				addCommand.getJobTitleCode(),
-//				historyTraining,
-//				addCommand.isAbrogated(),
-//				addCommand.isTreatAsAManager()));
+		if (!checkUpdate)
+			jobTitleRepositoryTraining.add(JobTitleCommand.toDomain(addCommand));
+		else 
+			jobTitleRepositoryTraining.update(JobTitleCommand.toDomain(addCommand));
 	}
 }

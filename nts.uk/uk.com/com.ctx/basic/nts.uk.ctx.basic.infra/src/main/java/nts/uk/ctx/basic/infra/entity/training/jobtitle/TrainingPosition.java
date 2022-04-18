@@ -49,7 +49,8 @@ public class TrainingPosition extends ContractUkJpaEntity implements Serializabl
 	public TrainingPosition() {
 		super();
 	}
-
+	
+	
 	
 	/**
 	 * Instantiates a new Training History.
@@ -67,6 +68,17 @@ public class TrainingPosition extends ContractUkJpaEntity implements Serializabl
 	@Override
 	protected Object getKey() {
 		return this.trainingPositionPK;
+	}
+
+
+
+	public TrainingPosition(TrainingPositionPK trainingPositionPK, String positionName, int positionOrder,
+			List<TrainingJobTitle> lstTrainingJobTitle) {
+		super();
+		this.trainingPositionPK = trainingPositionPK;
+		this.positionName = positionName;
+		this.positionOrder = positionOrder;
+		this.lstTrainingJobTitle = lstTrainingJobTitle;
 	}
 
 }

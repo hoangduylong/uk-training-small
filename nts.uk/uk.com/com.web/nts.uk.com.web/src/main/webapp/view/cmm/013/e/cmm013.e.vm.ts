@@ -51,7 +51,7 @@ module nts.uk.com.view.cmm013.e {
 				self.listHistory().unshift(new History(
 					dataIn.jobCode,
 					dataIn.jobjName,
-					self.listHistory().length + 1 +'',
+					util.randomId(),
 					secondHistory.startDate,
 					PreEndDate
 				));
@@ -59,8 +59,8 @@ module nts.uk.com.view.cmm013.e {
 				self.listHistory().unshift(new History(
 					dataIn.jobCode,
 					dataIn.jobjName,
-					self.listHistory().length + 1 +'',
-					moment(self.startDate()).format("YYYY-MM-DD"),
+					util.randomId(),
+					moment(self.startDate()).format("YYYY/MM/DD"),
 					self.endDate()
 				));
 					

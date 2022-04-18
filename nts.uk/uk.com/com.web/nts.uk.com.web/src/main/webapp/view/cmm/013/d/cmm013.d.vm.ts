@@ -42,19 +42,22 @@ module nts.uk.com.view.cmm013.d {
 				preEndDate.setFullYear(startDate.getFullYear(),startDate.getMonth(),startDate.getDate() - 1);
 				let PreEndDate: string  = moment(preEndDate).format("YYYY/MM/DD");
 				
-				self.listHistory().unshift(new History(
-					dataIn.jobCode,
-					dataIn.jobjName,
-					self.listHistory().length + 1 +'',
-					firstHistory.startDate,
+				if(self.listHistory().length != 0)
+				{
+					self.listHistory().unshift(new History(
+					dataIn.jobTitleCode,
+					dataIn.jobTitleName,
+					util.randomId(),
+					firstHistory?.startDate,
 					PreEndDate
 				));
+				}
 					
 				self.listHistory().unshift(new History(
-					dataIn.jobCode,
-					dataIn.jobjName,
-					self.listHistory().length + 1 +'',
-					moment(new Date(self.startDate())).format("YYYY-MM-DD"),
+					dataIn.jobTitleCode,
+					dataIn.jobTitleName,
+					util.randomId(),
+					moment(new Date(self.startDate())).format("YYYY/MM/DD"),
 					self.endDate()
 					));
 				let dataOut: any = {
@@ -69,9 +72,14 @@ module nts.uk.com.view.cmm013.d {
 				let self = this;
 				let data: any = nts.uk.ui.windows.getShared('listMasterToD');
 				self.listHistory(data.historyList);
+				
 				if(self.startDate() == ""){
 					nts.uk.ui.dialog.caution({ messageId: "MsgB_1" });
 					return false;
+				}
+				if(self.listHistory().length==0)
+				{
+					return true
 				}
 				if(new Date(self.startDate()) < new Date(self.listHistory()[0].startDate))
 				{

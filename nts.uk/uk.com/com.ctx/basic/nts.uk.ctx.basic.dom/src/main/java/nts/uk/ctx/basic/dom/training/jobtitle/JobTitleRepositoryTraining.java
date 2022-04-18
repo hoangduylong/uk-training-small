@@ -31,5 +31,9 @@ public interface JobTitleRepositoryTraining {
 	void update(JobTitleTraining jobTitleTraining);
 	
 	
-	List<JobTitleTraining> findAllByJdbc();
+//	List<JobTitleTraining> findAllByJdbc();
+
+	boolean checkAddUpdate(String jobTitleCode);
+
+	boolean findByCode(String jobTitleCode);
 }
