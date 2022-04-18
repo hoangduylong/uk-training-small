@@ -70,23 +70,22 @@ public class JobTitleFinderTraining {
 	 * @return Job Title Dto
 	 */
 	public JobTitleDtoTraining find(JobTitleFinder obj) {
-		Optional<JobTitleTraining> jobTitle = this.jobTitleRepositoryTraining.find(obj.jobTitleCode);
+		Optional<JobTitleTraining> jobTitle = this.jobTitleRepositoryTraining.find(obj.getJobTitleCode());
 		if(!jobTitle.isPresent()) {
 			throw new BusinessException("Msg_102");
 		}
-		// get position name by code
-		Optional<PositionTraining> position = this.positionRepositoryTraining.findByPositionCode(
-			jobTitle.get().getPositionCodeTraining().v()
-		);
+		// get position name by code hình như k can update no tu nhay vao day
+		Optional<PositionTraining> position = this.positionRepositoryTraining
+				.findByPositionCode(jobTitle.get().getPositionCodeTraining().v());
 		if (!position.isPresent()) {
 			throw new BusinessException("Msg_102");
 		}
 		
-		
+		// nó đây rồi :)). đưa lộn thứ thự tham aố ok a sửa thôi a. thử lại đi e
 		return new JobTitleDtoTraining(
-				jobTitle.get().getJobTitleCodeTraining().v(), 
+				position.get().getPositionCode().v(), 
 				position.get().getPositionName().v(),
-				obj.jobTitleCode,
+				obj.getJobTitleCode(),
 				this.toDto(jobTitle.get().getHistoryTrainings()), 
 				jobTitle.get().isAbrogated(), 
 				jobTitle.get().isTreatAsAManager());

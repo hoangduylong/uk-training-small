@@ -49,6 +49,7 @@ module nts.uk.com.view.cmm013.a {
 				historyTrainings: Array<HistoryDto>;
 				isAbrogated: boolean;
 				treatAsAManager: boolean;
+				isAdd: boolean;
 			}
 
 			export class HistoryDto {

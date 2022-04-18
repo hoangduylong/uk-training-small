@@ -13,6 +13,7 @@ public class JobTitleCodeTraining extends CodePrimitiveValue<JobTitleCodeTrainin
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+
 	/**
 	 * 
 	 */
