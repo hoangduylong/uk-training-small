@@ -7,7 +7,7 @@ module nts.uk.com.view.cmm013.a {
          */
 		var servicePath: any = {
 			findJobTitleList: "basic/training/jobtitle/find/all",
-			updateJobTitle: "basic/training/jobtitle/update",
+			//addJobTitle: "basic/training/jobtitle/update",
 			addJobTitle: "basic/training/jobtitle/add",
 			findHistoryList: "basic/training/jobtitle/find",
 		}
@@ -44,6 +44,7 @@ module nts.uk.com.view.cmm013.a {
 
 			export interface JobTitleDto {
 				positionCodeTraining: string;
+				positionName: string;
 				jobTitleCode: string;
 				historyTrainings: Array<HistoryDto>;
 				isAbrogated: boolean;
@@ -59,18 +60,19 @@ module nts.uk.com.view.cmm013.a {
 				displayString: string;
 
 				constructor(historyId: string, jobTitleCode: string, jobTitleName: string, startDate: string, endDate?: string) {
-				this.jobTitleCode = jobTitleCode;
-				this.jobTitleName = jobTitleName;
-				this.historyId = historyId;
-				this.startDate = startDate;
-				this.endDate = endDate ? endDate : "9999/12/31";
-				this.displayString = `${this.startDate} ~ ${this.endDate}`
+					this.jobTitleCode = jobTitleCode;
+					this.jobTitleName = jobTitleName;
+					this.historyId = historyId;
+					this.startDate = startDate;
+					this.endDate = endDate ? endDate : "9999/12/31";
+					this.displayString = `${this.startDate} ~ ${this.endDate}`
 			}
 		}
 
 		export interface JobTitleDtoTraining {
 			positionCodeTraining: string;
-			JobTitleCode: string;
+			positionName: string;
+			jobTitleCode: string;
 			isAbrogated: boolean;
 			treatAsAManager: boolean;
 			historyTrainings: Array<HistoryDto>

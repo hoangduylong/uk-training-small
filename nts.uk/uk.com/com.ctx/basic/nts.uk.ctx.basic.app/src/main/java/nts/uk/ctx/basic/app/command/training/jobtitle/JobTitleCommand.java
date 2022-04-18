@@ -11,13 +11,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class JobTitleCommand {
 
-	private String positionCode;
+	private String positionCodeTraining;
 	private String jobTitleCode;
-	private List<String> historyId;
-	private List<String> jobTitleName;
-	private List<String> startDate;
-	private List<String> endDate;
+	private List<HistoryCommand> historyTrainings;
 	private boolean isAbrogated;
 	private boolean treatAsAManager;
-	
+	private boolean isAdd;
 }

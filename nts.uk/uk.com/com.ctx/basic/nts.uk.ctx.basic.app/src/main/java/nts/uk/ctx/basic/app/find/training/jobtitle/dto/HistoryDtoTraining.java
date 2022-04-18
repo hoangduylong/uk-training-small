@@ -9,9 +9,9 @@ import nts.arc.time.GeneralDate;
 @AllArgsConstructor
 public class HistoryDtoTraining {
 	private String historyId;
-	private String JobTitleCode;
-	private String JobTitleName;
-	private GeneralDate StartDate; 
-	private GeneralDate EndDate; 
+	private String jobTitleCode;
+	private String jobTitleName;
+	private GeneralDate startDate; 
+	private GeneralDate endDate; 
 }
 

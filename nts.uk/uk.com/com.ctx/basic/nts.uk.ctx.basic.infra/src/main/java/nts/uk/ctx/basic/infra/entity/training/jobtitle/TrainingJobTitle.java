@@ -20,8 +20,8 @@ import javax.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import nts.uk.ctx.basic.dom.training.jobtitle.HistoryTraining;
-import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleTraining;
 import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleCodeTraining;
+import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleTraining;
 import nts.uk.ctx.basic.dom.training.position.PositionCodeTraining;
 import nts.uk.shr.infra.data.entity.ContractUkJpaEntity;
 

@@ -24,8 +24,8 @@ var nts;
                             /**
                              * find history list (get all info of one job title)
                              */
-                            function findHistoryList(jobTitleId) {
-                                return nts.uk.request.ajax(servicePath.findHistoryList, { jobTitleId: jobTitleId });
+                            function findHistoryList(jobTitleCode) {
+                                return nts.uk.request.ajax(servicePath.findHistoryList, { jobTitleCode: jobTitleCode });
                             }
                             service.findHistoryList = findHistoryList;
                             /**
@@ -51,14 +51,14 @@ var nts;
                             service.addJobTitle = addJobTitle;
                             var model;
                             (function (model) {
-                                var JobTitleDto = /** @class */ (function () {
-                                    function JobTitleDto() {
-                                    }
-                                    return JobTitleDto;
-                                }());
-                                model.JobTitleDto = JobTitleDto;
                                 var HistoryDto = /** @class */ (function () {
-                                    function HistoryDto() {
+                                    function HistoryDto(historyId, jobTitleCode, jobTitleName, startDate, endDate) {
+                                        this.jobTitleCode = jobTitleCode;
+                                        this.jobTitleName = jobTitleName;
+                                        this.historyId = historyId;
+                                        this.startDate = startDate;
+                                        this.endDate = endDate ? endDate : "9999/12/31";
+                                        this.displayString = "".concat(this.startDate, " ~ ").concat(this.endDate);
                                     }
                                     return HistoryDto;
                                 }());
