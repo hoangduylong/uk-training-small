@@ -31,7 +31,7 @@ module nts.uk.com.view.cmm013.e {
             
             /**
              * Execution
-             */
+             */ 
             public execution(): void {
                 let self = this;
                 if (!self.validate()) {
@@ -40,10 +40,12 @@ module nts.uk.com.view.cmm013.e {
                 let dataIn: any = nts.uk.ui.windows.getShared('listMasterToE');
 				
 				self.listHistory(dataIn.historyList);
+				self.listHistory().shift()
 				let secondHistory = self.listHistory().shift();
 				
 				let preEndDate = new Date();
-				preEndDate.setDate(new Date(self.startDate()).getDate() - 1);
+				let startDate = new Date(self.startDate())
+				preEndDate.setFullYear(startDate.getFullYear(),startDate.getMonth(),startDate.getDate() - 1);
 				let PreEndDate: string  = moment(preEndDate).format("YYYY-MM-DD");
 				
 				self.listHistory().unshift(new History(
