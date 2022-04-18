@@ -42,39 +42,21 @@ module nts.uk.com.view.cmm013.e {
                 let dataIn: any = nts.uk.ui.windows.getShared('listMasterToE');
 				self.listHistory(dataIn.historyList);
 				
-				self.listHistory().shift()
-				
 				let preEndDate  = moment( 
 					new Date().setFullYear(
 						new Date(self.startDate()).getFullYear(),
 						new Date(self.startDate()).getMonth(),
 						new Date(self.startDate()).getDate() - 1))
 					.format("YYYY/MM/DD");
-					
-				if(self.listHistory().length > 0){
-					let secondHistory = self.listHistory().shift();
-					self.listHistory().unshift(new History(
-						secondHistory.jobTitleCode,
-						secondHistory.jobTitleName,
-						secondHistory.historyId,
-						secondHistory.startDate,
-						preEndDate));
-				}
 				
-				
-				self.listHistory().unshift(new History(
-					dataIn.jobCode,
-					dataIn.jobjName,
-					util.randomId(),
-					moment(self.startDate()).format("YYYY/MM/DD"),
-					self.endDate()));
-					
-				
+				self.listHistory()[1].endDate = preEndDate;
+				self.listHistory()[1].displayString = `${self.listHistory()[1].startDate} ~ ${self.listHistory()[1].endDate}`;
+				self.listHistory()[0].startDate = moment(self.startDate()).format("YYYY/MM/DD");
+				self.listHistory()[0].displayString = `${self.listHistory()[0].startDate} ~ ${self.listHistory()[0].endDate}`;
 					
 				let dataOut: any = {
 					listHistory: self.listHistory()
 				};
-				
                 nts.uk.ui.windows.setShared('DialogEToMaster', dataOut);
                 self.close();
             }

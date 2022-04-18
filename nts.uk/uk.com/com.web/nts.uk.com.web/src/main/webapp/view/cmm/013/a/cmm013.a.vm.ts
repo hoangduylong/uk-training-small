@@ -2,11 +2,9 @@ module nts.uk.com.view.cmm013.a {
 
 	export module viewmodel {
 
-		import Constants = base.Constants;
-
 		import History = base.History;
 		import JobTitle = base.JobTitle;
-
+		import Position = base.Position;
 		import setShared = nts.uk.ui.windows.setShared;
 		import getShared = nts.uk.ui.windows.getShared;
 
@@ -23,18 +21,18 @@ module nts.uk.com.view.cmm013.a {
 			currentPositionName: KnockoutObservable<string> = ko.observable("");
 			selectedHistoryId: KnockoutObservable<string> = ko.observable("");
 			jobTitleIsManager: KnockoutObservable<boolean> = ko.observable(false);
-
+			
 			codeEditor: KnockoutObservable<boolean> = ko.observable(true);
 
 			jobTitleList: KnockoutObservableArray<JobTitle> = ko.observableArray([]);
 			jobTitleFoundList: KnockoutObservableArray<JobTitle> = ko.observableArray([]);
-
+			positionList: KnockoutObservableArray<Position> = ko.observableArray([]);;
 			historyList: KnockoutObservableArray<History> = ko.observableArray([]);
 
 			enableHistoryCreate: KnockoutObservable<boolean> = ko.observable(true);
 			enableHistoryEdit: KnockoutObservable<boolean> = ko.observable(true);
 			enableHistoryDelete: KnockoutObservable<boolean> = ko.observable(true);
-			checkCode: boolean = false;
+			isAdd: boolean = false;
 			texteditor: any;
 
 			test: any;
@@ -194,14 +192,7 @@ module nts.uk.com.view.cmm013.a {
 				else {
 					nts.uk.ui.dialog.confirm({ messageId: "Msg_18" }).ifYes(() => {
 						self.historyList.shift();
-						let secondHistory = self.historyList.shift();
-						self.historyList().unshift(new History(
-							secondHistory.jobTitleCode,
-							secondHistory.jobTitleName,
-							secondHistory.historyId,
-							secondHistory.startDate,
-							"9999/12/31"
-						));
+						self.historyList()[0].endDate = "9999/12/31";
 						self.selectedHistoryId(self.historyList()[0].historyId);
 						self.historyList.valueHasMutated();
 					});
@@ -212,7 +203,37 @@ module nts.uk.com.view.cmm013.a {
 			public createJobtitle() {
 				let self = this;
 				self.selectedJobTitleCode("");
-				self.checkCode = true;
+				self.isAdd = true;
+				self.loadPositionList().done((data: []) => {
+						self.positionList(data);
+					});
+				self.currentPositionCode(self.positionList()[0].positionCode);
+				self.currentPositionName(self.positionList()[0].positionName);
+				
+				let a  = '';
+				self.historyList.push(new History(
+						self.selectedJobTitleCode(),
+						self.currentJobTitleName(),
+						util.randomId(),
+						"1900/01/01",
+						"9999/12/31"));
+				self.historyList()[0].displayString = `${self.historyList()[0].startDate} ~ ${self.historyList()[0].endDate}`;
+			}
+			
+			// load all positions to position list
+			public loadPositionList(): JQueryPromise<any> {
+				let dfd = $.Deferred<any>();
+				
+				// get all positions
+				service.findAllPosition()
+					.done((data: []) => {
+						dfd.resolve(data);
+					})
+					.fail((res: any) => {
+						dfd.reject(res);
+					});
+
+				return dfd.promise();
 			}
 
 			/**
@@ -254,7 +275,6 @@ module nts.uk.com.view.cmm013.a {
 				});
 				nts.uk.ui.windows.sub.modal('/view/cmm/013/d/index.xhtml').onClosed(function(): any {
 					let data: any = getShared('DialogDToMaster');
-					//data.listHistory[0].jobTitleName = self.currentJobTitleName();
 					self.historyList(data?.listHistory);
 					self.historyList()[0].jobTitleName = self.currentJobTitleName();
 					self.selectedHistoryId(self.historyList()[0].historyId);
@@ -301,7 +321,7 @@ module nts.uk.com.view.cmm013.a {
 					historyTrainings: self.historyList(),
 					isAbrogated: self.jobTitleIsManager(),
 					treatAsAManager: self.jobTitleIsManager(),
-					checkCode: self.checkCode
+					isAdd: self.isAdd
 				}
 			}
 
@@ -309,23 +329,23 @@ module nts.uk.com.view.cmm013.a {
 				let self = this;
 				// insert or update;
 				let data = self.prepareToServer();
-				if(!self.checkCode){
-					ko.utils.arrayFirst(self.historyList(), function(history){
-						return history.historyId == self.selectedHistoryId();
-					}).jobTitleName = self.currentJobTitleName();
-					self.test = ko.utils.arrayFirst(self.historyList(), function(history){
-						return history.historyId == self.selectedHistoryId();
-					}).jobTitleName
-				}
-				
+				self.updateJobTitleName();
 				console.log(data);
 				service.addJobTitle(data)
 					.done((result: any) => {
 						location.reload();
-						self.checkCode = false;
+						self.isAdd = false;
 					});
 			}
-
+			
+			private updateJobTitleName(){
+				let self = this;
+				if(!self.isAdd){
+					ko.utils.arrayFirst(self.historyList(), function(history){
+						return history.historyId == self.selectedHistoryId();
+					}).jobTitleName = self.currentJobTitleName();
+				}
+			}
             /**
              * Validate
              */

@@ -36,25 +36,15 @@ module nts.uk.com.view.cmm013.d {
 
 				nts.uk.ui.errors.clearAll()
 				let dataIn: any = nts.uk.ui.windows.getShared('listMasterToD');
-				let firstHistory: any;
-				self.listHistory(dataIn.historyList);
 				
-				
-				let preEndDate  = moment( 
+				let preEndDate = moment( 
 					new Date().setFullYear(
 						new Date(self.startDate()).getFullYear(),
 						new Date(self.startDate()).getMonth(),
 						new Date(self.startDate()).getDate() - 1))
 					.format("YYYY/MM/DD");
-				if(self.listHistory().length > 0){
-					firstHistory = self.listHistory().shift();
-					self.listHistory().unshift(new History(
-						firstHistory.jobTitleCode,
-						firstHistory.jobTitleName,
-						firstHistory.historyId,
-						firstHistory?.startDate,
-						preEndDate));
-				}
+				self.listHistory()[0].endDate = preEndDate;
+				self.listHistory()[0].displayString = `${self.listHistory()[0].startDate} ~ ${self.listHistory()[0].endDate}`;
 				
 				self.listHistory().unshift(new History(
 					dataIn.jobTitleCode,

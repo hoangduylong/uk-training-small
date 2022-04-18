@@ -7,7 +7,7 @@ module nts.uk.com.view.cmm013.a {
          */
 		var servicePath: any = {
 			findJobTitleList: "basic/training/jobtitle/find/all",
-			//addJobTitle: "basic/training/jobtitle/update",
+            findAllPosition: "basic/training/position/findAll",
 			addJobTitle: "basic/training/jobtitle/add",
 			findHistoryList: "basic/training/jobtitle/find",
 		}
@@ -25,7 +25,12 @@ module nts.uk.com.view.cmm013.a {
 		export function findAllJobTitle(): JQueryPromise<Array<model.JobTitleDto>> {
 			return nts.uk.request.ajax(servicePath.findJobTitleList);
 		}
-
+		
+		// find all positions
+		export function findAllPosition(): JQueryPromise<Array<Position>> {
+			return nts.uk.request.ajax(servicePath.findAllPosition);
+		}
+		
         /**
          * update job title
          */
@@ -49,7 +54,6 @@ module nts.uk.com.view.cmm013.a {
 				historyTrainings: Array<HistoryDto>;
 				isAbrogated: boolean;
 				treatAsAManager: boolean;
-				isAdd: boolean;
 			}
 
 			export class HistoryDto {
@@ -76,7 +80,7 @@ module nts.uk.com.view.cmm013.a {
 			jobTitleCode: string;
 			isAbrogated: boolean;
 			treatAsAManager: boolean;
-			historyTrainings: Array<HistoryDto>
+			historyTrainings: Array<HistoryDto>;
 		}
 
 	}

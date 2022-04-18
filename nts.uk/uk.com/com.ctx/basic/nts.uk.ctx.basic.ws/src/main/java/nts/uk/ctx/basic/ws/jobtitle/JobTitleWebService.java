@@ -11,7 +11,6 @@ import javax.ws.rs.core.MediaType;
 import nts.arc.layer.ws.WebService;
 import nts.uk.ctx.basic.app.command.training.jobtitle.AddJobTitleCommandHandler;
 import nts.uk.ctx.basic.app.command.training.jobtitle.JobTitleCommand;
-import nts.uk.ctx.basic.app.command.training.jobtitle.UpdateJobTitleCommandHandler;
 import nts.uk.ctx.basic.app.find.training.jobtitle.JobTitleFinder;
 import nts.uk.ctx.basic.app.find.training.jobtitle.JobTitleFinderTraining;
 import nts.uk.ctx.basic.app.find.training.jobtitle.dto.JobTitleDtoTraining;
@@ -23,8 +22,6 @@ public class JobTitleWebService extends WebService{
 	@Inject
 	private AddJobTitleCommandHandler addJobTitleCommandHandler;
 	
-	@Inject
-	private UpdateJobTitleCommandHandler updateJobTitleCommandHandler;
 	
 	@Inject
 	private JobTitleFinderTraining jobTitleFinder;
@@ -39,16 +36,6 @@ public class JobTitleWebService extends WebService{
 		this.addJobTitleCommandHandler.handle(command);
 	}
     
-	/**
-	 * update job title
-	 * @param command
-	 */
-	@POST
-	@Path("update")
-	public void update(JobTitleCommand command) {
-		this.updateJobTitleCommandHandler.handle(command);
-	}
-
 	/**
 	 * find all job title
 	 * @return list of job title
