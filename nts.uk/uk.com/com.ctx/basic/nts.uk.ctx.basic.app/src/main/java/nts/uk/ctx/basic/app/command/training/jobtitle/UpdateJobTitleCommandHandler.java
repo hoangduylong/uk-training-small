@@ -31,7 +31,7 @@ public class UpdateJobTitleCommandHandler extends CommandHandler<JobTitleCommand
 //				updateCommand.getJobTitleName(),
 //				updateCommand.getStartDate(),
 //				updateCommand.getEndDate());
-		
-		jobTitleRepositoryTraining.update(JobTitleCommand.toDomain(updateCommand));
+//		
+//		jobTitleRepositoryTraining.update(JobTitleCommand.toDomain(updateCommand));
 	}
 }

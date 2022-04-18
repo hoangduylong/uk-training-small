@@ -5,9 +5,6 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleCodeTraining;
-import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleTraining;
-import nts.uk.ctx.basic.dom.training.position.PositionCodeTraining;
 
 
 @Data
@@ -20,13 +17,4 @@ public class JobTitleCommand {
 	private boolean isAbrogated;
 	private boolean treatAsAManager;
 	private boolean isAdd;
-	
-	// To domain
-	public static JobTitleTraining toDomain(JobTitleCommand command) {
-		return new JobTitleTraining(new PositionCodeTraining(command.positionCodeTraining),
-				new JobTitleCodeTraining(command.jobTitleCode),
-				HistoryCommand.toListDomain(command.historyTrainings),
-				command.isAbrogated,
-				command.treatAsAManager);
-	}
 }
