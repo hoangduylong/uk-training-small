@@ -33,10 +33,10 @@
 		<ui:define name="content">
 			
 			<div id="functions-area">
-				<button class="btnStyle" data-bind="click: createNewPositionMode">新規</button>
+				<button class="btnStyle" data-bind="click: createNewPositionMode" >新規</button>
 				<button class="proceed btnStyle" data-bind="click: save">登録</button>
 				<button class="btnStyle" data-bind="click: close">閉じる</button>
-				<button class="danger btnStyle" data-bind="click: remove">削除</button>
+				<button class="danger btnStyle" data-bind="click: remove, enable: enable_remove_button">削除</button>
 			</div>
 
 			<div id="contents-area">

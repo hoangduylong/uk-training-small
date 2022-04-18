@@ -36,7 +36,7 @@ public class PositionWebService extends WebService {
 	private PositionFinder positionFinder;
 
 	
-	// find all position
+	// get all positions
 	@POST
 	@Path("findAll")
 	public List<PositionDto> findAll() {
@@ -44,7 +44,7 @@ public class PositionWebService extends WebService {
 	}
 
 	
-	// find by positionCode
+	// find position by position's code
 	@POST
 	@Path("findByPositionCode/{positionCode}")
 	public PositionDto findByPositionCode(@PathParam("positionCode") String positionCode) {
@@ -76,7 +76,7 @@ public class PositionWebService extends WebService {
 	}
 
 	
-	// update position's order
+	// update all positions' order
 	@POST
 	@Path("updateOrder")
 	public void updateOrder(List<UpdatePositionCommand> commandList) {

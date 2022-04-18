@@ -4,7 +4,7 @@ module nts.uk.com.view.cmm013.f {
 
 	export module service {
 
-		// Service path
+		// service path
 		let servicePath: any = {
 			findAllPosition: "basic/training/position/findAll",
 			findByPositionCode: "basic/training/position/findByPositionCode",
@@ -14,32 +14,32 @@ module nts.uk.com.view.cmm013.f {
 			updateOrder: "basic/training/position/updateOrder",
 		}
 
-		// findAllPosition
+		// get all positions
 		export function findAllPosition(): JQueryPromise<Array<Position>> {
 			return nts.uk.request.ajax(servicePath.findAllPosition);
 		}
 
-		// findByPositionCode
+		// find position by position's code
 		export function findByPositionCode(positionCode: string): JQueryPromise<any> {
 			return nts.uk.request.ajax(servicePath.findByPositionCode + '/' + positionCode);
 		}
 
-		// addPosition
+		// add position
 		export function addPosition(addCommand: model.AddPositionCommand): JQueryPromise<any> {
 			return nts.uk.request.ajax(servicePath.addPosition, addCommand);
 		}
 
-		// removePosition
+		// remove position
 		export function removePosition(removeCommand: model.RemovePositionCommand): JQueryPromise<any> {
 			return nts.uk.request.ajax(servicePath.removePosition, removeCommand);
 		}
 
-		// updatePosition
+		// update position
 		export function updatePosition(updateCommand: model.UpdatePositionCommand): JQueryPromise<any> {
 			return nts.uk.request.ajax(servicePath.updatePosition, updateCommand);
 		}
 
-		// update order
+		// update all positions' order
 		export function updateOrder(positionList: Position[]): JQueryPromise<any> {
 			return nts.uk.request.ajax(servicePath.updateOrder, positionList);
 		}

@@ -3,6 +3,9 @@ package nts.uk.ctx.basic.dom.training.position;
 import nts.arc.primitive.StringPrimitiveValue;
 import nts.arc.primitive.constraint.StringMaxLength;
 
+// 序列名
+// position's name
+
 @StringMaxLength(10)
 public class PositionNameTraining extends StringPrimitiveValue<PositionNameTraining>{
 	

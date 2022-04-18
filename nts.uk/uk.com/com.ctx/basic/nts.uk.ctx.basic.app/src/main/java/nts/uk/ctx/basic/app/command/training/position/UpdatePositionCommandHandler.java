@@ -26,13 +26,13 @@ public class UpdatePositionCommandHandler extends CommandHandler<UpdatePositionC
 	protected void handle(CommandHandlerContext<UpdatePositionCommand> context) {
 		UpdatePositionCommand command = context.getCommand();
 		
-		// check exists position
+		// check if position already exists
 		Optional<PositionTraining> position = positionRepository.findByPositionCode(command.getPositionCode());
 		if (!position.isPresent()) {
 			throw new RuntimeException("Position not found");
 		}
 		
-		// convert to domain
+		// convert into domain
 		PositionTraining domain = PositionTraining.toDomain(command.getPositionCode(), 
 															command.getPositionName(), 
 															command.getPositionOrder());
@@ -44,6 +44,8 @@ public class UpdatePositionCommandHandler extends CommandHandler<UpdatePositionC
 		positionRepository.update(domain);
 	}
 	
+	
+	// update all positions' order
 	public void updateOrder(List<UpdatePositionCommand> commandList) {
 		this.positionRepository.updateOrder(commandList.stream()
 											.map(command -> command.toDomain(command))

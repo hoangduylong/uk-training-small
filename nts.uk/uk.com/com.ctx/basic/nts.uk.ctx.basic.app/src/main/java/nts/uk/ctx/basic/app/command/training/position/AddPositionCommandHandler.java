@@ -24,18 +24,18 @@ public class AddPositionCommandHandler extends CommandHandler<AddPositionCommand
 	protected void handle(CommandHandlerContext<AddPositionCommand> context) {
 		AddPositionCommand command = context.getCommand();
 		
+		// check if any the data field is missing
 		if(command.getPositionName().isEmpty() || command.getPositionName().isEmpty()) {
 			throw new RuntimeException("Missing position code or position name field");
 		}
 		
-		// check exists position
+		// check if position already exists
 		Optional<PositionTraining> position = positionRepository.findByPositionCode(command.getPositionCode());
 		if (position.isPresent()) {
-			//throw new RuntimeException("This position already exists");
 			throw new BusinessException("ER005");
 		}
 		
-		// convert to domain
+		// convert into domain
 		PositionTraining domain = PositionTraining.toDomain(command.getPositionCode().trim(), 
 															command.getPositionName(), 
 															command.getPositionOrder());

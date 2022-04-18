@@ -7,33 +7,39 @@ module nts.uk.com.view.cmm013.f {
 		import RemovePositionCommand = service.model.RemovePositionCommand;
 
 		export class ScreenModel {
-
+			// check create new mode on/off
 			isCreateNew: KnockoutObservable<boolean>;
-
+			
+			// binding position input in UI
 			positionCode: KnockoutObservable<string>;
 			positionName: KnockoutObservable<string>;
 			positionOrder: KnockoutObservable<number>;
+			
 			currentCode: KnockoutObservable<string>;
-
+			
+			// binding position table in UI
 			positionList: KnockoutObservableArray<Position>;
 			positionColumns: KnockoutObservableArray<any>;
-
+			
+			// binding input and button in UI
 			enable_input_positionCode: KnockoutObservable<boolean>;
+			enable_remove_button: KnockoutObservable<boolean>;
 
 
 			constructor() {
 				let self = this;
 
 				self.isCreateNew = ko.observable(false);
-
 				self.positionList = ko.observableArray([]);
 				self.positionCode = ko.observable("");
 				self.positionName = ko.observable("");
 				self.positionOrder = ko.observable(0);
-
-				self.enable_input_positionCode = ko.observable(null);
 				self.currentCode = ko.observable(null);
 
+				self.enable_input_positionCode = ko.observable(null);
+				self.enable_remove_button = ko.observable(null);
+				
+				// get selected position info when current code changes
 				self.currentCode.subscribe((selectedCode) => {
 					self.select(selectedCode);
 					if (!_.isEmpty(selectedCode)) {
@@ -46,12 +52,14 @@ module nts.uk.com.view.cmm013.f {
 					{ headerText: '名称', key: 'positionName', width: 120 }
 				]);
 			}
+			
 
-
+			// run after page loaded
 			startPage(): JQueryPromise<any> {
 				let self = this;
 				let dfd = $.Deferred<void>();
-
+				
+				// load position list
 				self.loadPositionList()
 					.done((data: Position[]) => {
 						self.positionList(data);
@@ -66,6 +74,7 @@ module nts.uk.com.view.cmm013.f {
 			}
 
 
+			// get info of selected position
 			public select(selectedCode: string): void {
 				let self = this;
 
@@ -73,14 +82,15 @@ module nts.uk.com.view.cmm013.f {
 					self.positionCode(selectedCode);
 					self.isCreateNew(false);
 					self.enable_input_positionCode(false);
+					self.enable_remove_button(true);
 
-					// Find position by position code
+					// find position by position's code
 					service.findByPositionCode(selectedCode)
 						.done((data: Position) => {
 							if (data) {
 								self.positionName(data.positionName);
 								self.positionOrder(data.positionOrder);
-								// Set focus on position name input
+								// set focus on position name input
 								$('#position-name').focus();
 							} else {
 								// position not found
@@ -95,21 +105,27 @@ module nts.uk.com.view.cmm013.f {
 			}
 
 
-			// create new position mode
-			public createNewPositionMode(): void {
+			// start create new position mode
+			createNewPositionMode(): void {
 				let self = this;
+				
 				self.isCreateNew(true);
 				self.enable_input_positionCode(true);
+				self.enable_remove_button(false);
+				
 				self.positionCode("");
 				self.positionName("");
+				self.currentCode("");
+				// set focus on position code input
 				$('#position-code').focus();
 			}
 
 
-			// load position list
+			// load all positions to position list
 			public loadPositionList(): JQueryPromise<any> {
 				let dfd = $.Deferred<any>();
-
+				
+				// get all positions
 				service.findAllPosition()
 					.done((data: Position[]) => {
 						dfd.resolve(data);
@@ -128,10 +144,11 @@ module nts.uk.com.view.cmm013.f {
 
 				service.addPosition(newPosition)
 					.done((data: any) => {
-						// add new position into list in UI
+						// add new position into list
 						self.positionList().push(newPosition);
 						self.currentCode(self.positionCode());
-
+						
+						// update all positions' order
 						self.updatePositionOrder()
 							.done((data: any) => {
 
@@ -140,11 +157,11 @@ module nts.uk.com.view.cmm013.f {
 								self.showMessageError(res);
 							});
 						
+						// notify that position is added successfully
 						nts.uk.ui.dialog.info("データが正常に登録されました");
 					})
 					.fail((res: any) => {
-						nts.uk.ui.dialog.alert("登録に失敗しました! データはすでに存在します");
-						//self.showMessageError(res);
+						self.showMessageError(res);
 					})
 			}
 
@@ -158,16 +175,20 @@ module nts.uk.com.view.cmm013.f {
 													updateCommand.positionName, 
 													updateCommand.positionOrder);
 
+				// get index of position needs to be updated
 				for (let item of self.positionList()) {
 					if (item.positionCode === self.positionCode()) {
 						currentIndex = self.positionList.indexOf(item);
 					}
 				}
-
+				
+				// update position in position list
 				self.positionList().splice(currentIndex, 1, updatedPosition);
-
+				
+				// update all positions' order
 				self.updatePositionOrder()
 					.done((data: any) => {
+						// notify that position added successfully
 						nts.uk.ui.dialog.info("データが正常に登録されました!");
 					})
 					.fail((res: any) => {
@@ -180,7 +201,7 @@ module nts.uk.com.view.cmm013.f {
 			public save(): void {
 				let self = this;
 
-				// Validate
+				// validate
 				if (!self.validate()) {
 					return;
 				}
@@ -201,24 +222,28 @@ module nts.uk.com.view.cmm013.f {
 				let self = this;
 
 				if (self.positionCode() !== "") {
+					// confirm dialog
 					nts.uk.ui.dialog.confirm("選択中のデータを削除しますか？")
 						.ifYes(() => {
-
 							let removeCommand = new RemovePositionCommand(self.positionCode());
+							// remove position
 							service.removePosition(removeCommand)
 								.done((data: any) => {
 									let currentIndex: number;
-									// get index of position to remove in list
+									// get index of position needs to be removed
 									for (let item of self.positionList()) {
 										if (item.positionCode === self.positionCode()) {
 											currentIndex = self.positionList.indexOf(item);
 										}
 									}
+									// remove position from list
 									self.positionList.splice(currentIndex, 1);
 
 									self.positionCode("");
 									self.positionName("");
+									self.currentCode("");
 									
+									// update all positions' order
 									self.updatePositionOrder()
 										.done((data: any) => {
 
@@ -226,7 +251,8 @@ module nts.uk.com.view.cmm013.f {
 										.fail((res: any) => {
 											self.showMessageError(res);
 										});
-
+										
+									// notify position removed successfully
 									nts.uk.ui.dialog.info("データが正常に登録されました!");
 								})
 								.fail((res: any) => {
@@ -237,19 +263,19 @@ module nts.uk.com.view.cmm013.f {
 			}
 
 
-			// update position order
+			// update all positions's order
 			private updatePositionOrder(): JQueryPromise<any> {
 				let self = this;
 				let dfd = $.Deferred<any>();
 				let positionList: any[] = self.positionList();
 				let order = 1;
 
-				// update all position's order in list in UI side
+				// update all position's order in list
 				for (let position of positionList) {
 					position.positionOrder = order;
 					order++;
 				}
-
+				// update all position's order in database
 				service.updateOrder(positionList)
 					.done((data: any) => {
 						self.loadPositionList()
@@ -285,7 +311,7 @@ module nts.uk.com.view.cmm013.f {
 				return !$('.nts-input').ntsError('hasError');
 			}
 
-
+			// show message error
 			public showMessageError(res: any): void {
 
 			}

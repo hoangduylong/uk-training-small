@@ -22,17 +22,18 @@ public class PositionClassification extends UkJpaEntity implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	// position's code - primary key
 	@Id
 	@Column(name="POSITION_CD")
 	public String positionCode;
 
-	
+	// position's name
 	@NotNull
 	@Basic(optional = false)
 	@Column(name = "POSITION_NAME")
 	public String positionName;
 	
-
+	// position's order
 	@NotNull
 	@Basic(optional = false)
 	@Column(name = "POSITION_ORDER")
