@@ -158,6 +158,7 @@ module nts.uk.com.view.cmm013.a {
 								);
 							});
 							self.isAbrogated(data.abrogated);
+							self.jobTitleIsManager(data.treatAsAManager);
 							self.selectedHistoryId(self.historyList()[0].historyId);
 
 							self.currentPositionName(data.positionName);
