@@ -157,6 +157,10 @@ module nts.uk.com.view.cmm013.a {
 										e.endDate)
 								);
 							});
+							self.historyList.sort(function (left, right) {
+								return new Date(left.startDate) === new Date(right.startDate)? 0
+									:new Date(left.startDate) > new Date(right.startDate)? -1 : 1;
+							});
 							self.isAbrogated(data.abrogated);
 							self.jobTitleIsManager(data.treatAsAManager);
 							self.selectedHistoryId(self.historyList()[0].historyId);
@@ -191,8 +195,6 @@ module nts.uk.com.view.cmm013.a {
 				var dfd = $.Deferred<void>();
 				var self = this;
 				nts.uk.ui.block.invisible();
-
-
 				nts.uk.ui.block.clear();
 				dfd.resolve();
 				return dfd.promise();
