@@ -57,7 +57,9 @@ public class TrainingHistory extends ContractUkJpaEntity implements Serializable
 	@PrimaryKeyJoinColumns({ @PrimaryKeyJoinColumn(name = "JOB_CD", referencedColumnName = "JOB_CD")})
     public TrainingJobTitle trainingJobTitle;
     
-    
+    /**
+     * constructor without args
+     */
 	public TrainingHistory() {
 		super();
 	}	
@@ -70,6 +72,11 @@ public class TrainingHistory extends ContractUkJpaEntity implements Serializable
 		return this.trainingHistoryPK;
 	}
 	
+	/**
+	 * convert entity TrainingHistory entity to domain
+	 * @param trainingHistory
+	 * @return domain HistoryTraining
+	 */
 	public static HistoryTraining toDomain(TrainingHistory trainingHistory)
 	{
 		HistoryTraining result = new HistoryTraining(trainingHistory.getTrainingHistoryPK().getHistoryId().toString(), 
@@ -79,6 +86,4 @@ public class TrainingHistory extends ContractUkJpaEntity implements Serializable
 				trainingHistory.getEndDate().toString());
 		return result;
 	}
-
-	
 }

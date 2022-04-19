@@ -26,7 +26,7 @@
 
 			<div id="functions-area">
 				<button tabindex="1"
-					class="btnStyle" data-bind="click: createJobtitle">職位の作成</button>
+					class="btnStyle" id="double-click" data-bind="click: createJobtitle">職位の作成</button>
 				<button tabindex="2" 
 					class="proceed btnStyle" data-bind="click: submitForm">登録</button>
 				<button tabindex="3"
@@ -42,10 +42,10 @@
 						<div id="search-date" class="panel">
 							<span>基準日</span>
 							<div data-bind="ntsDatePicker: { value: baseDate, dateType: 'yearmonth' }"></div>
-							<button class="btnStyle">適用</button>
+							<button class="btnStyle" data-bind="click: dateFilter">適用</button>
 						</div>
 						<div  class="panel" style="width: 300px" data-bind="ntsSearchBox: {
-							searchMode: 'highlight',  
+							searchMode: 'filter',  
 							comId:'job-title-list', 
 							items: jobTitleList, 
 							mode:'igGrid', 

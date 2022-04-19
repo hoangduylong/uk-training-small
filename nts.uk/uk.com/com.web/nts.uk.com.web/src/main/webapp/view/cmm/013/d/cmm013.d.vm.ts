@@ -8,7 +8,6 @@ module nts.uk.com.view.cmm013.d {
             startDate: KnockoutObservable<string>;
             endDate: KnockoutObservable<string>;
 			listHistory: KnockoutObservableArray<History> = ko.observableArray([]);
-			test: any = 99;
             
             constructor() {
                 let self = this;  
@@ -26,17 +25,20 @@ module nts.uk.com.view.cmm013.d {
             }
             
             /**
-             * Execution
+             * Execution on submit, update lastest History and add new History from UI to list to send A screen
              */
             public execution(): void {
                 let self = this;
+				
+				/** validate value from UI */
                 if (!self.validate()) {
                     return null;
                 }
 
-				nts.uk.ui.errors.clearAll()
+				/** get data from A screen */
 				let dataIn: any = nts.uk.ui.windows.getShared('listMasterToD');
 				
+				/** set endDate of lastest history = the previous date of new start date */
 				let preEndDate = moment( 
 					new Date().setFullYear(
 						new Date(self.startDate()).getFullYear(),
@@ -46,21 +48,23 @@ module nts.uk.com.view.cmm013.d {
 				self.listHistory()[0].endDate = preEndDate;
 				self.listHistory()[0].displayString = `${self.listHistory()[0].startDate} ~ ${self.listHistory()[0].endDate}`;
 				
+				/** add new start date */
 				self.listHistory().unshift(new History(
 					dataIn.jobTitleCode,
 					dataIn.jobTitleName,
 					util.randomId(),
 					moment(new Date(self.startDate())).format("YYYY/MM/DD"),
 					self.endDate()));
-					
+				
+				/** send data to A screen */
 				let dataOut: any = {
 					listHistory: self.listHistory()
 				};
-					
                 nts.uk.ui.windows.setShared('DialogDToMaster', dataOut);
                 self.close();
 			}
             
+			/** validate value */
 			private validate(): boolean {
 				let self = this;
 				let data: any = nts.uk.ui.windows.getShared('listMasterToD');

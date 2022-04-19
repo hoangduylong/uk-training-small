@@ -1,13 +1,14 @@
 package nts.uk.ctx.basic.app.command.training.jobtitle;
 
+import java.util.Optional;
+
 import javax.ejb.Stateless;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 
 import nts.arc.error.BusinessException;
+import nts.arc.time.GeneralDate;
 import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleRepositoryTraining;
+import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleTraining;
 
 @Stateless
 public class JobTitleCommandCheck {
@@ -17,24 +18,34 @@ public class JobTitleCommandCheck {
 
 	/**
 	 * validate command
-	 * 
 	 * @param command
-	 * @param jobTitleTraining
-	 * @param isAdd            - true = addCommand, false = updateCommand
 	 */
-	public void check(JobTitleCommand command, boolean isAdd) {
-			if (isAdd) { // check nếu tồn tại JobTitleCode
+	public void check(JobTitleCommand command) {
+		Optional<JobTitleTraining> jobTitleTraining = jobTitleRepositoryTraining.find(command.getJobTitleCode());
+		
+		// check exist JobTitleCode when add and is not exist when update
+		if (command.isAdd()) {
+			if(jobTitleTraining.isPresent()) {
+				throw new BusinessException("Msg_2");
+			}
+		}
+		else {
+			if(!jobTitleTraining.isPresent()) {
 				throw new BusinessException("Msg_3");
-			} 
-
-		// Check nếu trùng lịch sử cũ
-//		command.getStartDate().forEach((startDate) ->
-//		{	
-//			if (!jobTitleTraining.get().checkNewStartDate(GeneralDate.fromString(startDate, "YYYY/MM/DD")))
-//			{
-//				throw new BusinessException("Msg_102");
-//			}
-//		});
+			}
+		}
+		
+		// check HistoryTrainings is empty 
+		if(command.getHistoryTrainings().size() < 1){
+	
+			throw new BusinessException("Msg_5");
+		}
+		
+		// Check start date is invalid
+		command.getHistoryTrainings().forEach((history) ->{	
+			if (!jobTitleTraining.get().checkNewStartDate(GeneralDate.fromString(history.getStartDate(), "YYYY/MM/DD"))){
+				throw new BusinessException("Msg_102");
+			}
+		});
 	}
-
 }

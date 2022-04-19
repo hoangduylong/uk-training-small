@@ -33,10 +33,8 @@ public class TrainingHistoryPK implements Serializable {
     }
 
     /**
-     * Instantiates a new Training History PK.
-     *
-     * @param historyId the history id
-     * @param jobCd the job code
+     * constructor
+     * @param string historyId
      */
     public TrainingHistoryPK(String historyId) {
         this.historyId = historyId;

@@ -17,15 +17,14 @@ import nts.uk.ctx.basic.app.find.training.jobtitle.dto.JobTitleDtoTraining;
 
 @Path("basic/training/jobtitle/")
 @Produces(MediaType.APPLICATION_JSON)
-public class JobTitleWebService extends WebService{
-	
+public class JobTitleWebService extends WebService {
+
 	@Inject
 	private AddJobTitleCommandHandler addJobTitleCommandHandler;
-	
-	
+
 	@Inject
 	private JobTitleFinderTraining jobTitleFinder;
-	
+
 	/**
 	 * add job title
 	 * @param command
@@ -35,26 +34,26 @@ public class JobTitleWebService extends WebService{
 	public void add(JobTitleCommand command) {
 		this.addJobTitleCommandHandler.handle(command);
 	}
-    
+
 	/**
 	 * find all job title
-	 * @return list of job title
+	 * @return list job title
 	 */
 	@POST
 	@Path("find/all")
 	public List<JobTitleDtoTraining> findAll() {
 		return this.jobTitleFinder.findAll();
 	}
-	
+
 	/**
-	 * find one job title by code/id
-	 * @param jobTitleId
-	 * @return one of job title
+	 * find job title by code
+	 * @param obj: jobTitleCode
+	 * @return job title
 	 */
 	@POST
 	@Path("find")
 	public JobTitleDtoTraining find(JobTitleFinder obj) {
 		return this.jobTitleFinder.find(obj);
 	}
-	
+
 }

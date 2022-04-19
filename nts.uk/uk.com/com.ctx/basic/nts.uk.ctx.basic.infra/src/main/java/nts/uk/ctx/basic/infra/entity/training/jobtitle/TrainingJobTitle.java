@@ -21,9 +21,6 @@ import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleTraining;
 import nts.uk.ctx.basic.dom.training.position.PositionCodeTraining;
 import nts.uk.shr.infra.data.entity.ContractUkJpaEntity;
 
-/**
- * The Class Training JobTitle.
- */
 @Getter
 @Setter
 @Entity
@@ -53,14 +50,10 @@ public class TrainingJobTitle extends ContractUkJpaEntity implements Serializabl
 	@OneToMany(targetEntity = TrainingHistory.class, mappedBy = "trainingJobTitle", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
 	@JoinTable(name = "TRAINING_HISTORY")
 	public List<TrainingHistory> lstTrainingHistory;
-
-//	/** The Training Position. */
-//	@ManyToOne(fetch = FetchType.LAZY)
-//	@JoinColumns({ 
-//		@JoinColumn(name = "POSITION_CD", referencedColumnName = "POSITION_CD", insertable = false, updatable = false
-//	)})
-//    public TrainingPosition trainingPosition;
-
+	
+	/**
+	 * constructor
+	 */
 	public TrainingJobTitle(TrainingJobTitlePK trainingJobTitlePK, String positionCd,
 			int asManager, int isAbrogated, List<TrainingHistory> lstTrainingHistory) {
 		super();
@@ -70,16 +63,27 @@ public class TrainingJobTitle extends ContractUkJpaEntity implements Serializabl
 		this.isAbrogated = isAbrogated;
 		this.lstTrainingHistory = lstTrainingHistory;
 	}
-
+	
+	/**
+	 * constructor without args
+	 */
 	public TrainingJobTitle() {
 		super();
 	}
-
+	
+	/**
+	 * get the Training JobTitle primary key
+	 */
 	@Override
 	protected Object getKey() {
 		return this.trainingJobTitlePK;
 	}
-
+	
+	/**
+	 * convert entity TrainingJobTitle to domain 
+	 * @param trainingJobTitle
+	 * @return domain JobTitleTraining
+	 */
 	public static JobTitleTraining toDomain(TrainingJobTitle trainingJobTitle) {
 		List<HistoryTraining> historyTrainings = trainingJobTitle.getLstTrainingHistory()
 				.stream().map(x -> TrainingHistory.toDomain(x))

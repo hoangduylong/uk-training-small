@@ -23,7 +23,7 @@ module nts.uk.com.view.cmm013.e {
                 let self = this;
                 let dfd = $.Deferred<any>();
                 
-                // Load data from parent screen
+				/** get old start date from A screen */
                 let data: any = nts.uk.ui.windows.getShared('listMasterToE');
                 self.startDate(data.startDate);
                 dfd.resolve();
@@ -31,17 +31,21 @@ module nts.uk.com.view.cmm013.e {
             }
             
             /**
-             * Execution
+             * Execution on submit, update next to last History and lastest History from UI to list to send A screen
              */ 
             public execution(): void {
                 let self = this;
+				
+				/** validate value from UI */
                 if (!self.validate()) {
                     return;
                 }
 
+				/** get data from A screen */
                 let dataIn: any = nts.uk.ui.windows.getShared('listMasterToE');
 				self.listHistory(dataIn.historyList);
 				
+				/** set endDate of next to last history = the previous date of lastes start date */
 				let preEndDate  = moment( 
 					new Date().setFullYear(
 						new Date(self.startDate()).getFullYear(),
@@ -51,9 +55,12 @@ module nts.uk.com.view.cmm013.e {
 				
 				self.listHistory()[1].endDate = preEndDate;
 				self.listHistory()[1].displayString = `${self.listHistory()[1].startDate} ~ ${self.listHistory()[1].endDate}`;
+				
+				/** update lastest history from UI */
 				self.listHistory()[0].startDate = moment(self.startDate()).format("YYYY/MM/DD");
 				self.listHistory()[0].displayString = `${self.listHistory()[0].startDate} ~ ${self.listHistory()[0].endDate}`;
-					
+				
+				/** send data to A screen */
 				let dataOut: any = {
 					listHistory: self.listHistory()
 				};
@@ -69,9 +76,8 @@ module nts.uk.com.view.cmm013.e {
             }
             
             
-            /**
-             * Validate
-             */
+            
+			/** validate value */
             private validate(): boolean {
                 let self = this;
 				let data: any = nts.uk.ui.windows.getShared('listMasterToE');

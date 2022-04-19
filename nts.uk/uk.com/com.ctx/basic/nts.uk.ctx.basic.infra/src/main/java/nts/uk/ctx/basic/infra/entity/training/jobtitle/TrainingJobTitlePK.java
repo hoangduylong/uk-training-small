@@ -23,16 +23,14 @@ public class TrainingJobTitlePK implements Serializable{
 	private String jobCd;
 	
 	/**
-     * Instantiates a new Training JobTitle PK.
-     */
+	 * constructor without args
+	 */
     public TrainingJobTitlePK() {
     	super();
     }
 
     /**
-     * Instantiates a new TrainingJobTitlePK.
-     *
-     * @param jobCd the job Code
+     * constructor
      */
     public TrainingJobTitlePK(String jobCd) {
         this.jobCd = jobCd;

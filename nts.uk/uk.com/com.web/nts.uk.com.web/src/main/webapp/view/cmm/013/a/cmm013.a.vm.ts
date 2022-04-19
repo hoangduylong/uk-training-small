@@ -21,7 +21,7 @@ module nts.uk.com.view.cmm013.a {
 			currentPositionName: KnockoutObservable<string> = ko.observable("");
 			selectedHistoryId: KnockoutObservable<string> = ko.observable("");
 			jobTitleIsManager: KnockoutObservable<boolean> = ko.observable(false);
-			
+
 			codeEditor: KnockoutObservable<boolean> = ko.observable(true);
 
 			jobTitleList: KnockoutObservableArray<JobTitle> = ko.observableArray([]);
@@ -34,6 +34,8 @@ module nts.uk.com.view.cmm013.a {
 			enableHistoryDelete: KnockoutObservable<boolean> = ko.observable(true);
 			isAdd: boolean = false;
 			texteditor: any;
+
+			allJob: any = [];
 
 			test: any;
 			constructor() {
@@ -73,6 +75,8 @@ module nts.uk.com.view.cmm013.a {
 									e.positionCodeTraining,
 									"fake", 1)
 							);
+
+							self.allJob.push(e);
 						})
 						// select first element of list job
 						self.selectedJobTitleCode(self.jobTitleList()[0].jobTitleCode);
@@ -96,10 +100,20 @@ module nts.uk.com.view.cmm013.a {
 				// change events
 				self.selectedJobTitleCode.subscribe(newJobCode => {
 					if (!self.jobTitleList().some(e => e.jobTitleCode == newJobCode)) {
-						self.historyList([]);
+						self.historyList([new History(
+							self.selectedJobTitleCode(),
+							self.currentJobTitleName(),
+							util.randomId(),
+							"1900/01/01",
+							"9999/12/31")]);
+							self.historyList()[0].displayString = `${self.historyList()[0].startDate} ~ ${self.historyList()[0].endDate}`;
+					
 						self.currentJobTitleName("");
-						self.currentPositionCode("");
-						self.currentPositionName("");
+						self.loadPositionList().done((data: []) => {
+							self.positionList(data);
+							self.currentPositionCode(self.positionList()[0]?.positionCode);
+							self.currentPositionName(self.positionList()[0]?.positionName);
+						});
 						self.jobTitleIsManager(false);
 						self.codeEditor(true)
 						return;
@@ -192,7 +206,15 @@ module nts.uk.com.view.cmm013.a {
 				else {
 					nts.uk.ui.dialog.confirm({ messageId: "Msg_18" }).ifYes(() => {
 						self.historyList.shift();
-						self.historyList()[0].endDate = "9999/12/31";
+						let secondHistory = self.historyList.shift();
+						self.historyList().unshift(new History(
+							secondHistory.jobTitleCode,
+							secondHistory.jobTitleName,
+							secondHistory.historyId,
+							secondHistory.startDate,
+							"9999/12/31"
+						));
+						nts.uk.ui.dialog.info({ messageId: "Msg_16" })
 						self.selectedHistoryId(self.historyList()[0].historyId);
 						self.historyList.valueHasMutated();
 					});
@@ -202,28 +224,39 @@ module nts.uk.com.view.cmm013.a {
 
 			public createJobtitle() {
 				let self = this;
+
 				self.selectedJobTitleCode("");
 				self.isAdd = true;
-				self.loadPositionList().done((data: []) => {
-						self.positionList(data);
-					});
-				self.currentPositionCode(self.positionList()[0].positionCode);
-				self.currentPositionName(self.positionList()[0].positionName);
-				
-				let a  = '';
-				self.historyList.push(new History(
-						self.selectedJobTitleCode(),
-						self.currentJobTitleName(),
-						util.randomId(),
-						"1900/01/01",
-						"9999/12/31"));
-				self.historyList()[0].displayString = `${self.historyList()[0].startDate} ~ ${self.historyList()[0].endDate}`;
+
 			}
-			
+
+			public dateFilter(): void {
+				let self = this;
+				let newFound: any = [];
+				newFound = self.allJob.filter((x: any) => {
+					let startDate = new Date(x.historyTrainings[x.historyTrainings.length - 1].startDate);
+					let endDate = new Date(x.historyTrainings[0].endDate);
+					let now = new Date(self.baseDate());
+					
+					return now >= startDate && now <= endDate;
+				})
+				console.log(newFound);
+				self.jobTitleList([]);
+				newFound.forEach((x: any) => {					
+					self.jobTitleList.push(new JobTitle(
+						x.jobTitleCode,
+						x.historyTrainings[0].jobTitleName,
+						x.positionCode,
+						x.positionName,
+						1
+					))
+				})
+			}
+
 			// load all positions to position list
 			public loadPositionList(): JQueryPromise<any> {
 				let dfd = $.Deferred<any>();
-				
+
 				// get all positions
 				service.findAllPosition()
 					.done((data: []) => {
@@ -337,11 +370,11 @@ module nts.uk.com.view.cmm013.a {
 						self.isAdd = false;
 					});
 			}
-			
-			private updateJobTitleName(){
+
+			private updateJobTitleName() {
 				let self = this;
-				if(!self.isAdd){
-					ko.utils.arrayFirst(self.historyList(), function(history){
+				if (!self.isAdd) {
+					ko.utils.arrayFirst(self.historyList(), function(history) {
 						return history.historyId == self.selectedHistoryId();
 					}).jobTitleName = self.currentJobTitleName();
 				}

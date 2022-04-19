@@ -8,15 +8,8 @@ import nts.uk.shr.com.primitive.CodePrimitiveValue;
 @StringMaxLength(5)
 @StringCharType(CharType.NUMERIC)
 public class JobTitleCodeTraining extends CodePrimitiveValue<JobTitleCodeTraining> {
-
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * 
-	 */
 
 	public JobTitleCodeTraining(String rawValue) {
 		super(rawValue);

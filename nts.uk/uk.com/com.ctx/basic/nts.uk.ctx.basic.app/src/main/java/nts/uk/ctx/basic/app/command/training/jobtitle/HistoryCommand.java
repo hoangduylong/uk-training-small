@@ -15,7 +15,10 @@ public class HistoryCommand {
 	private String endDate;
 
 	public static HistoryTraining toDomain(HistoryCommand command) {
-		return new HistoryTraining(command.historyId, command.jobTitleCode, command.jobTitleName, command.startDate,
+		return new HistoryTraining(command.historyId,
+				command.jobTitleCode,
+				command.jobTitleName,
+				command.startDate,
 				command.endDate);
 
 	}

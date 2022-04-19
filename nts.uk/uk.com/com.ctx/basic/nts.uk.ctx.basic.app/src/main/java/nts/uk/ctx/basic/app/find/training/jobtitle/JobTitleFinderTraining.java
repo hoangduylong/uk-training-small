@@ -9,13 +9,13 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import nts.arc.error.BusinessException;
-import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleTraining;
-import nts.uk.ctx.basic.dom.training.position.PositionRepositoryTraining;
-import nts.uk.ctx.basic.dom.training.position.PositionTraining;
 import nts.uk.ctx.basic.app.find.training.jobtitle.dto.HistoryDtoTraining;
 import nts.uk.ctx.basic.app.find.training.jobtitle.dto.JobTitleDtoTraining;
 import nts.uk.ctx.basic.dom.training.jobtitle.HistoryTraining;
 import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleRepositoryTraining;
+import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleTraining;
+import nts.uk.ctx.basic.dom.training.position.PositionRepositoryTraining;
+import nts.uk.ctx.basic.dom.training.position.PositionTraining;
 
 
 @Stateless
@@ -72,16 +72,14 @@ public class JobTitleFinderTraining {
 	public JobTitleDtoTraining find(JobTitleFinder obj) {
 		Optional<JobTitleTraining> jobTitle = this.jobTitleRepositoryTraining.find(obj.getJobTitleCode());
 		if(!jobTitle.isPresent()) {
-			throw new BusinessException("Msg_102");
+			throw new BusinessException("Msg_2");
 		}
-		// get position name by code hình như k can update no tu nhay vao day
+		// get position name by code
 		Optional<PositionTraining> position = this.positionRepositoryTraining
 				.findByPositionCode(jobTitle.get().getPositionCodeTraining().v());
 		if (!position.isPresent()) {
-			throw new BusinessException("Msg_102");
+			throw new BusinessException("Msg_2");
 		}
-		
-		// nó đây rồi :)). đưa lộn thứ thự tham aố ok a sửa thôi a. thử lại đi e
 		return new JobTitleDtoTraining(
 				position.get().getPositionCode().v(), 
 				position.get().getPositionName().v(),
