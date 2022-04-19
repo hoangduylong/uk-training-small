@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 import nts.arc.error.BusinessException;
 import nts.arc.layer.dom.AggregateRoot;
-import nts.arc.time.GeneralDate;
 import nts.gul.text.StringUtil;
 import nts.uk.ctx.basic.dom.training.position.PositionCodeTraining;
 
@@ -74,18 +73,7 @@ public class JobTitleTraining extends AggregateRoot {
 	}
 
 	/**
-	 * validate the JobTitle
-	 * 
-	 * @param newStartDate
-	 * @return true if JobTitle is valid
-	 */
-	public boolean checkNewStartDate(GeneralDate newStartDate) {
-		return newStartDate.after(this.historyTrainings.get(this.historyTrainings.size()).getStartDate());
-	}
-
-	/**
 	 * Create a Job Title from Java type
-	 * 
 	 * @param positionCode
 	 * @param jobTitleCode
 	 * @param historyTraining

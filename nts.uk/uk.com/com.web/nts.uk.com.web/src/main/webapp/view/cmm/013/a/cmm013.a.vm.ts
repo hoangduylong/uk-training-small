@@ -108,7 +108,6 @@ module nts.uk.com.view.cmm013.a {
 							"9999/12/31")]);
 							self.historyList()[0].displayString = `${self.historyList()[0].startDate} ~ ${self.historyList()[0].endDate}`;
 					
-						self.currentJobTitleName("");
 						self.loadPositionList().done((data: []) => {
 							self.positionList(data);
 							self.currentPositionCode(self.positionList()[0]?.positionCode);
