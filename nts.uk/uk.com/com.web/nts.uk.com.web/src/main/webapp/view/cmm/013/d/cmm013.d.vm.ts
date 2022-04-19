@@ -71,7 +71,7 @@ module nts.uk.com.view.cmm013.d {
 				self.listHistory(data.historyList);
 				
 				if(self.startDate() == ""){
-					nts.uk.ui.dialog.caution({ messageId: "MsgB_1" });
+					nts.uk.ui.dialog.caution({ messageId: "MsgB_1", messageParams: ["開始日"]});
 					return false;
 				}
 				
