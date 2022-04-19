@@ -33,7 +33,7 @@ public class PositionTraining implements DomainAggregate {
 	}
 
 
-	// convert java type to domain
+	// convert java type into domain
 	public static PositionTraining toDomain(String positionCode, String positionName, int positionOrder) {
 		return new PositionTraining(
 			new PositionCodeTraining(positionCode),

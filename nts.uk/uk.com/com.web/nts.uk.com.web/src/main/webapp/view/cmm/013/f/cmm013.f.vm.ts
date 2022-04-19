@@ -188,8 +188,8 @@ module nts.uk.com.view.cmm013.f {
 				// update all positions' order
 				self.updatePositionOrder()
 					.done((data: any) => {
-						// notify that position added successfully
-						nts.uk.ui.dialog.info("データが正常に登録されました!");
+						// notify that position updated successfully
+						nts.uk.ui.dialog.info("データは正常に更新されました!");
 					})
 					.fail((res: any) => {
 						self.showMessageError(res);
@@ -237,11 +237,7 @@ module nts.uk.com.view.cmm013.f {
 										}
 									}
 									// remove position from list
-									self.positionList.splice(currentIndex, 1);
-
-									self.positionCode("");
-									self.positionName("");
-									self.currentCode("");
+									self.positionList.splice(currentIndex, 1);									
 									
 									// update all positions' order
 									self.updatePositionOrder()
@@ -253,7 +249,11 @@ module nts.uk.com.view.cmm013.f {
 										});
 										
 									// notify position removed successfully
-									nts.uk.ui.dialog.info("データが正常に登録されました!");
+									nts.uk.ui.dialog.info("データは正常に削除されました!");
+									
+									self.positionCode("");
+									self.positionName("");
+									self.currentCode("");
 								})
 								.fail((res: any) => {
 									self.showMessageError(res);
@@ -275,6 +275,7 @@ module nts.uk.com.view.cmm013.f {
 					position.positionOrder = order;
 					order++;
 				}
+				
 				// update all position's order in database
 				service.updateOrder(positionList)
 					.done((data: any) => {
