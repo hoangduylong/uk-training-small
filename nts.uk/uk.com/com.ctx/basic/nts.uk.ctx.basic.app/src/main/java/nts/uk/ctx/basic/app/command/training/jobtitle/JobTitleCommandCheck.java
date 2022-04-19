@@ -6,7 +6,6 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import nts.arc.error.BusinessException;
-import nts.arc.time.GeneralDate;
 import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleRepositoryTraining;
 import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleTraining;
 
@@ -40,12 +39,5 @@ public class JobTitleCommandCheck {
 	
 			throw new BusinessException("Msg_5");
 		}
-		
-		// Check start date is invalid
-		command.getHistoryTrainings().forEach((history) ->{	
-			if (!jobTitleTraining.get().checkNewStartDate(GeneralDate.fromString(history.getStartDate(), "YYYY/MM/DD"))){
-				throw new BusinessException("Msg_102");
-			}
-		});
 	}
 }
