@@ -11,7 +11,7 @@ module nts.uk.com.view.cmm013.a {
 		export class ScreenModel {
 
 			jobTitleColumns: KnockoutObservableArray<any>
-
+			// date display for search
 			baseDate: KnockoutObservable<string>;
 
 			selectedJobTitleCode: KnockoutObservable<string> = ko.observable("");
@@ -68,6 +68,8 @@ module nts.uk.com.view.cmm013.a {
 					.done((data: Array<service.model.JobTitleDto>) => {
 						data.forEach(e => {
 							console.log("Success: " + e.jobTitleCode);
+							// get code for request get info each job
+							// not get position yet
 							self.jobTitleList.push(
 								new JobTitle(
 									e.jobTitleCode,
@@ -96,30 +98,33 @@ module nts.uk.com.view.cmm013.a {
 			}
 
 			public effect() {
+				// all subcribe handle
 				let self = this;
 				// change events
 				self.selectedJobTitleCode.subscribe(newJobCode => {
 					if (!self.jobTitleList().some(e => e.jobTitleCode == newJobCode)) {
 						self.historyList([new History(
 							self.selectedJobTitleCode(),
-							self.currentJobTitleName(),
+							"",
 							util.randomId(),
 							"1900/01/01",
 							"9999/12/31")]);
 							self.historyList()[0].displayString = `${self.historyList()[0].startDate} ~ ${self.historyList()[0].endDate}`;
-					
+												
 						self.loadPositionList().done((data: []) => {
 							self.positionList(data);
 							self.currentPositionCode(self.positionList()[0]?.positionCode);
 							self.currentPositionName(self.positionList()[0]?.positionName);
 						});
+						
+						self.currentJobTitleName("");
 						self.jobTitleIsManager(false);
 						self.codeEditor(true)
 						return;
 					}
-					console.log(newJobCode);
 
 					self.codeEditor(false);
+					// reset historyList
 					self.historyList([]);
 					// get data of history for job title (get by selected job id)
 					service.findHistoryList(self.selectedJobTitleCode())
@@ -127,7 +132,7 @@ module nts.uk.com.view.cmm013.a {
 
 							// check history list empty
 							if (data.historyTrainings.length <= 0) {
-								// error
+								// if error
 								self.historyList([]);
 								self.currentJobTitleName("");
 								self.currentPositionCode("");
@@ -193,11 +198,13 @@ module nts.uk.com.view.cmm013.a {
 			}
 
 			private isLastestHistory(historyId: string): boolean {
+				// check lastest history
 				let self = this;
 				return historyId == self.historyList()[0].historyId;
 			}
 
 			public deleteHistory() {
+				// delete first element of history list and edit second element's endDate
 				let self = this;
 				if (self.historyList().length == 1) {
 					nts.uk.ui.dialog.caution({ messageId: "Msg_57" });
@@ -225,6 +232,9 @@ module nts.uk.com.view.cmm013.a {
 				let self = this;
 
 				self.selectedJobTitleCode("");
+				// then subcribe
+				
+				
 				self.isAdd = true;
 
 			}
@@ -239,7 +249,7 @@ module nts.uk.com.view.cmm013.a {
 					
 					return now >= startDate && now <= endDate;
 				})
-				console.log(newFound);
+
 				self.jobTitleList([]);
 				newFound.forEach((x: any) => {					
 					self.jobTitleList.push(new JobTitle(
@@ -361,11 +371,10 @@ module nts.uk.com.view.cmm013.a {
 				let self = this;
 				// insert or update;
 				let data = self.prepareToServer();
-				for (let key in data){
-					if(!data[key]) {
-						nts.uk.ui.dialog.error({ messageId: "Msg_58" });
-						return;
-					} 
+				data.historyTrainings[0].jobTitleName = self.currentJobTitleName();
+				if (data.jobTitleCode.length != 5 || data.historyTrainings[0]?.jobTitleName.length < 1 ||  data.historyTrainings[0]?.jobTitleName.length > 10) {
+					nts.uk.ui.dialog.error({ messageId: "Msg_57" });
+					return;
 				}
 				self.updateJobTitleName();
 				console.log(data);
