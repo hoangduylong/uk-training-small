@@ -30,7 +30,7 @@
 				<button tabindex="2" 
 					class="proceed btnStyle" data-bind="click: submitForm">登録</button>
 				<button tabindex="3"
-					class="danger btnStyle" data-bind="click: openDialogB">廃止</button>
+					class="danger btnStyle" data-bind="click: openDialogB, disable: isAbrogated">廃止</button>
 				<button tabindex="4" data-bind="click: openDialogF"
 					class="btnStyle">序列の登録</button>
 			</div>

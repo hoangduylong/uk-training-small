@@ -80,13 +80,14 @@ public class JobTitleFinderTraining {
 		if (!position.isPresent()) {
 			throw new BusinessException("Msg_2");
 		}
-		return new JobTitleDtoTraining(
+		JobTitleDtoTraining a = new JobTitleDtoTraining(
 				position.get().getPositionCode().v(), 
 				position.get().getPositionName().v(),
 				obj.getJobTitleCode(),
 				this.toDto(jobTitle.get().getHistoryTrainings()), 
 				jobTitle.get().isAbrogated(), 
 				jobTitle.get().isTreatAsAManager());
+		return a;
 	}
 	
 	/**

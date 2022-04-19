@@ -34,6 +34,7 @@ module nts.uk.com.view.cmm013.a {
 			enableHistoryDelete: KnockoutObservable<boolean> = ko.observable(true);
 			isAdd: boolean = false;
 			texteditor: any;
+			isAbrogated: KnockoutObservable<boolean> = ko.observable(false);
 
 			allJob: any = [];
 
@@ -77,7 +78,6 @@ module nts.uk.com.view.cmm013.a {
 									e.positionCodeTraining,
 									"fake", 1)
 							);
-
 							self.allJob.push(e);
 						})
 						// select first element of list job
@@ -126,10 +126,10 @@ module nts.uk.com.view.cmm013.a {
 					self.codeEditor(false);
 					// reset historyList
 					self.historyList([]);
-					// get data of history for job title (get by selected job id)
+					// get information of history for job title (get by selected job id)
 					service.findHistoryList(self.selectedJobTitleCode())
 						.done((data: service.model.JobTitleDtoTraining) => {
-
+							console.log(data);
 							// check history list empty
 							if (data.historyTrainings.length <= 0) {
 								// if error
@@ -157,7 +157,7 @@ module nts.uk.com.view.cmm013.a {
 										e.endDate)
 								);
 							});
-
+							self.isAbrogated(data.abrogated);
 							self.selectedHistoryId(self.historyList()[0].historyId);
 
 							self.currentPositionName(data.positionName);
@@ -166,14 +166,13 @@ module nts.uk.com.view.cmm013.a {
 				})
 
 				self.selectedHistoryId.subscribe(newHistoryId => {
-					console.log(newHistoryId);
 					// check lastest history local
 					let isCtrlHistory = self.isLastestHistory(newHistoryId);
 					// check single history
 					let isSingleHistory = self.historyList().length > 1 ? false : true
-					self.enableHistoryCreate(isCtrlHistory);
-					self.enableHistoryEdit(isCtrlHistory);
-					self.enableHistoryDelete(isCtrlHistory && !isSingleHistory);
+					self.enableHistoryCreate(isCtrlHistory && !self.isAbrogated());
+					self.enableHistoryEdit(isCtrlHistory && !self.isAbrogated());
+					self.enableHistoryDelete(isCtrlHistory && !isSingleHistory && !self.isAbrogated());
 					// get job of history selected
 					let histories = self.historyList().filter(e => (e.historyId == newHistoryId));
 					// exist elements
@@ -181,6 +180,7 @@ module nts.uk.com.view.cmm013.a {
 						self.currentJobTitleName(histories[0].jobTitleName);
 					}
 				})
+				
 			}
 
             /**
@@ -225,7 +225,6 @@ module nts.uk.com.view.cmm013.a {
 						self.historyList.valueHasMutated();
 					});
 				}
-				console.log(self.historyList());
 			}
 
 			public createJobtitle() {
@@ -291,9 +290,12 @@ module nts.uk.com.view.cmm013.a {
 				nts.uk.ui.windows.sub.modal('/view/cmm/013/b2/index.xhtml').onClosed(function(): any {
 					let data: any = getShared('DialogBToMaster');
 					console.log(data);
-					let first = self.historyList.shift();
-					self.historyList.unshift(new History(first.jobTitleCode, first.jobTitleName, first.historyId, first.startDate, data.abrogatedDate));
-					self.historyList.valueHasMutated();
+					if (data) {						
+						let first = self.historyList.shift();
+						self.historyList.unshift(new History(first.jobTitleCode, first.jobTitleName, first.historyId, first.startDate, data.abrogatedDate));
+						self.isAbrogated(true);
+						self.historyList.valueHasMutated();
+					}
 				});
 			}
 
@@ -361,7 +363,7 @@ module nts.uk.com.view.cmm013.a {
 					positionName: self.currentPositionName(),
 					jobTitleCode: self.selectedJobTitleCode(),
 					historyTrainings: self.historyList(),
-					isAbrogated: self.jobTitleIsManager(),
+					isAbrogated: self.isAbrogated(),
 					treatAsAManager: self.jobTitleIsManager(),
 					isAdd: self.isAdd
 				}

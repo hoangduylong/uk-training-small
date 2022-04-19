@@ -52,7 +52,7 @@ module nts.uk.com.view.cmm013.a {
 				positionName: string;
 				jobTitleCode: string;
 				historyTrainings: Array<HistoryDto>;
-				isAbrogated: boolean;
+				abrogated: boolean;
 				treatAsAManager: boolean;
 			}
 
@@ -78,7 +78,7 @@ module nts.uk.com.view.cmm013.a {
 			positionCodeTraining: string;
 			positionName: string;
 			jobTitleCode: string;
-			isAbrogated: boolean;
+			abrogated: boolean;
 			treatAsAManager: boolean;
 			historyTrainings: Array<HistoryDto>;
 		}

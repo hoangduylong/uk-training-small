@@ -1,24 +1,6 @@
 module nts.uk.com.view.cmm013 {
 
 	export module base {
-
-		/**
-         * Constants
-         */
-        export class Constants {           
-            public static IS_ACCEPT_DIALOG_SELECT_SEQUENCE: string = "IS_ACCEPT_DIALOG_SELECT_SEQUENCE";
-            public static SHARE_IN_DIALOG_REMOVE_JOB: string = "SHARE_IN_DIALOG_REMOVE_JOB";
-            public static SHARE_OUT_DIALOG_REMOVE_JOB: string = "SHARE_OUT_DIALOG_REMOVE_JOB"; 
-            public static SHARE_IN_DIALOG_SELECT_SEQUENCE: string = "SHARE_IN_DIALOG_SELECT_SEQUENCE";
-            public static SHARE_OUT_DIALOG_SELECT_SEQUENCE: string = "SHARE_OUT_DIALOG_SELECT_SEQUENCE"; 
-			public static SHARE_IN_DIALOG_ABROGATE_JOB_TITLE: string = "SHARE_IN_DIALOG_ABROGATE_JOB_TITLE";
-			public static SHARE_OUT_DIALOG_ABROGATE_JOB_TITLE: string = "SHARE_OUT_DIALOG_ABROGATE_JOB_TITLE"; 
-            public static SHARE_IN_DIALOG_ADD_HISTORY: string = "SHARE_IN_DIALOG_ADD_HISTORY"; 
-            public static SHARE_OUT_DIALOG_ADD_HISTORY: string = "SHARE_OUT_DIALOG_ADD_HISTORY"; 
-            public static SHARE_IN_DIALOG_EDIT_HISTORY: string = "SHARE_IN_DIALOG_EDIT_HISTORY"; 
-            public static SHARE_OUT_DIALOG_EDIT_HISTORY: string = "SHARE_OUT_DIALOG_EDIT_HISTORY"; 
-        }
-        
         /**
          * JobTitleHistoryAbstract
          */
