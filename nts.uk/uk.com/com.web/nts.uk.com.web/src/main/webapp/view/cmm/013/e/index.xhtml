@@ -4,52 +4,49 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:com="http://xmlns.jcp.org/jsf/component"
 	xmlns:h="http://xmlns.jcp.org/jsf/html">
-	<body>
-		<ui:composition template="../../../../master/dialog.xhtml">
-			<ui:define name="htmlHead">
-				<script>
-				var dialogSize = 
-				{
-					width : 480,
-					height : 420
+<body>
+	<ui:composition template="../../../../master/dialog.xhtml">
+		<ui:define name="htmlHead">
+			<script>
+				var dialogSize = {
+					width : 460,
+					height : 400
 				};
 				</script>
 
-				<com:scriptfile set="IGNITE" />
+			<com:scriptfile set="IGNITE" />
 
-				<com:stylefile path="style.css" />
-				<com:scriptfile path="../_base/cmm013.base.js" />
-				<com:scriptfile path="cmm013.e.service.js" />
-				<com:scriptfile path="cmm013.e.vm.js" />
-				<com:scriptfile path="cmm013.e.start.js" />
-			</ui:define>
+			<com:stylefile path="style.css" />
+			<com:scriptfile path="../_base/cmm013.base.js" />
+			<com:scriptfile path="cmm013.e.service.js" />
+			<com:scriptfile path="cmm013.e.vm.js" />
+			<com:scriptfile path="cmm013.e.start.js" />
+		</ui:define>
 
-			<!-- PAGE CONTENT -->
-			<ui:define name="content">
-				<div id="contents-area">
-					<div class = "part">
-						<div class = "item">編集する履歴の開始日を入力してください</div>
-						<div class = "group">
-							<span class = "item">期間</span>
-							<div  class = "item" id="start-date"
-								data-bind="ntsDatePicker: {
-									required: true, 
-									value: startDate,
-									dateFormat: 'YYYY/MM/DD'}">
-							</div>
-							<span class = "item">～</span>
-							<span class = "item end_date">9999/12/31</span>
-						</div>
+		<!-- PAGE CONTENT -->
+		<ui:define name="content">
+			<div id="contents-area">
+				<div class="item">編集する履歴の開始日を入力してください</div>
+				<div class="group">
+					<span class="item">期間</span>
+					<div class="item" id="start-date"
+						"
+						data-bind="ntsDatePicker: {
+							required: true,
+							value: startDate,
+							dateFormat: 'YYYY/MM/DD'}">
 					</div>
-					<hr class = "item line"/>
-					<div class = "item group part">
-						<button class="item button submit" data-bind="click: execution">実行</button>
-						<button class="item button cancel" data-bind="click: close">キャンセル</button>
+					<span class="item">～</span> <span class="item end_date">9999/12/31</span>
+				</div>
+				<hr class="line" />
+				<div id="functions-area">
+					<div class="group">
+						<button class="button item submit" data-bind="click: execution">実行</button>
+						<button class="button item cancel" data-bind="click: close">キャンセル</button>
 					</div>
 				</div>
-			</ui:define>
-		</ui:composition>
-	</body>
+			</div>
+		</ui:define>
+	</ui:composition>
+</body>
 </html>
-
-

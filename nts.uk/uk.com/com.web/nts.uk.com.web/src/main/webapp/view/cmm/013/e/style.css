@@ -1,13 +1,8 @@
-#contents-area
+#functions-area
 {
-	height: 363px;
-	width: 480px;
+	height: 20%;
 }
 
-.part
-{
-	padding: 20px 30px;
-}
 .item
 {
 	margin: 12px 8px;
@@ -33,7 +28,7 @@
 
 .line
 {
-	margin-top: 70px;
+	margin-top: 140px;
 	border: 1px solid;
 }
 

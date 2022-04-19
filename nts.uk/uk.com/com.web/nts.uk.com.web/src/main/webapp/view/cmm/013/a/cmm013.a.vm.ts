@@ -109,14 +109,14 @@ module nts.uk.com.view.cmm013.a {
 							util.randomId(),
 							"1900/01/01",
 							"9999/12/31")]);
-							self.historyList()[0].displayString = `${self.historyList()[0].startDate} ~ ${self.historyList()[0].endDate}`;
-												
+						self.historyList()[0].displayString = `${self.historyList()[0].startDate} ~ ${self.historyList()[0].endDate}`;
+
 						self.loadPositionList().done((data: []) => {
 							self.positionList(data);
 							self.currentPositionCode(self.positionList()[0]?.positionCode);
 							self.currentPositionName(self.positionList()[0]?.positionName);
 						});
-						
+
 						self.currentJobTitleName("");
 						self.jobTitleIsManager(false);
 						self.codeEditor(true)
@@ -157,9 +157,9 @@ module nts.uk.com.view.cmm013.a {
 										e.endDate)
 								);
 							});
-							self.historyList.sort(function (left, right) {
-								return new Date(left.startDate) === new Date(right.startDate)? 0
-									:new Date(left.startDate) > new Date(right.startDate)? -1 : 1;
+							self.historyList.sort(function(left, right) {
+								return new Date(left.startDate) === new Date(right.startDate) ? 0
+									: new Date(left.startDate) > new Date(right.startDate) ? -1 : 1;
 							});
 							self.isAbrogated(data.abrogated);
 							self.jobTitleIsManager(data.treatAsAManager);
@@ -185,7 +185,7 @@ module nts.uk.com.view.cmm013.a {
 						self.currentJobTitleName(histories[0].jobTitleName);
 					}
 				})
-				
+
 			}
 
             /**
@@ -235,8 +235,8 @@ module nts.uk.com.view.cmm013.a {
 
 				self.selectedJobTitleCode("");
 				// then subcribe
-				
-				
+
+
 				self.isAdd = true;
 
 			}
@@ -248,12 +248,12 @@ module nts.uk.com.view.cmm013.a {
 					let startDate = new Date(x.historyTrainings[x.historyTrainings.length - 1].startDate);
 					let endDate = new Date(x.historyTrainings[0].endDate);
 					let now = new Date(self.baseDate());
-					
+
 					return now >= startDate && now <= endDate;
 				})
 
 				self.jobTitleList([]);
-				newFound.forEach((x: any) => {					
+				newFound.forEach((x: any) => {
 					self.jobTitleList.push(new JobTitle(
 						x.jobTitleCode,
 						x.historyTrainings[0].jobTitleName,
@@ -293,7 +293,7 @@ module nts.uk.com.view.cmm013.a {
 				nts.uk.ui.windows.sub.modal('/view/cmm/013/b2/index.xhtml').onClosed(function(): any {
 					let data: any = getShared('DialogBToMaster');
 					console.log(data);
-					if (data) {						
+					if (data) {
 						let first = self.historyList.shift();
 						self.historyList.unshift(new History(first.jobTitleCode, first.jobTitleName, first.historyId, first.startDate, data.abrogatedDate));
 						self.isAbrogated(true);
@@ -322,11 +322,11 @@ module nts.uk.com.view.cmm013.a {
 				});
 				nts.uk.ui.windows.sub.modal('/view/cmm/013/d/index.xhtml').onClosed(function(): any {
 					let data: any = getShared('DialogDToMaster');
-					self.historyList(data?.listHistory);
-					self.historyList()[0].jobTitleName = self.currentJobTitleName();
-					self.selectedHistoryId(self.historyList()[0].historyId);
-
-					console.log(self.historyList());
+					if (data != undefined) {
+						self.historyList(data?.listHistory);
+						self.historyList()[0].jobTitleName = self.currentJobTitleName();
+						self.selectedHistoryId(self.historyList()[0].historyId);
+					}
 				});
 			}
 
@@ -336,16 +336,16 @@ module nts.uk.com.view.cmm013.a {
 				setShared('listMasterToE', {
 					jobTitleCode: self.selectedJobTitleCode(),
 					jobTitleName: self.currentJobTitleName(),
-					startDate: self.historyList()[0].startDate,
+					startDate: self.historyList()[0]?.startDate,
 					historyList: self.historyList()
 				});
 				nts.uk.ui.windows.sub.modal('/view/cmm/013/e/index.xhtml').onClosed(function(): any {
 					let data: any = getShared('DialogEToMaster');
-					self.historyList(data.listHistory);
-					self.historyList.valueHasMutated();
-					self.selectedHistoryId(self.historyList()[0].historyId);
-
-					console.log(self.historyList());
+					if (data != undefined) {
+						self.historyList(data?.listHistory);
+						self.historyList.valueHasMutated();
+						self.selectedHistoryId(self.historyList()[0].historyId);
+					}
 				});
 			}
 
@@ -377,7 +377,7 @@ module nts.uk.com.view.cmm013.a {
 				// insert or update;
 				let data = self.prepareToServer();
 				data.historyTrainings[0].jobTitleName = self.currentJobTitleName();
-				if (data.jobTitleCode.length != 5 || data.historyTrainings[0]?.jobTitleName.length < 1 ||  data.historyTrainings[0]?.jobTitleName.length > 10) {
+				if (data.jobTitleCode.length != 5 || data.historyTrainings[0]?.jobTitleName.length < 1 || data.historyTrainings[0]?.jobTitleName.length > 10) {
 					nts.uk.ui.dialog.error({ messageId: "Msg_57" });
 					return;
 				}
