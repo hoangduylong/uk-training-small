@@ -26,7 +26,7 @@ module nts.uk.com.view.cmm013.a {
 
 			jobTitleList: KnockoutObservableArray<JobTitle> = ko.observableArray([]);
 			jobTitleFoundList: KnockoutObservableArray<JobTitle> = ko.observableArray([]);
-			positionList: KnockoutObservableArray<Position> = ko.observableArray([]);;
+			positionList: KnockoutObservableArray<Position> = ko.observableArray([]);
 			historyList: KnockoutObservableArray<History> = ko.observableArray([]);
 
 			enableHistoryCreate: KnockoutObservable<boolean> = ko.observable(true);
@@ -230,7 +230,7 @@ module nts.uk.com.view.cmm013.a {
 
 			}
 
-			public dateFilter(): void {
+			public dateFilter() {
 				let self = this;
 				let newFound: any = [];
 				newFound = self.allJob.filter((x: any) => {
@@ -362,6 +362,12 @@ module nts.uk.com.view.cmm013.a {
 				let self = this;
 				// insert or update;
 				let data = self.prepareToServer();
+				for (let key in data){
+					if(!data[key]) {
+						nts.uk.ui.dialog.error({ messageId: "Msg_58" });
+						return;
+					} 
+				}
 				self.updateJobTitleName();
 				console.log(data);
 				service.addJobTitle(data)
@@ -378,20 +384,6 @@ module nts.uk.com.view.cmm013.a {
 						return history.historyId == self.selectedHistoryId();
 					}).jobTitleName = self.currentJobTitleName();
 				}
-			}
-            /**
-             * Validate
-             */
-			private validate(): any {
-				let _self = this;
-
-				// Clear error
-				nts.uk.ui.errors.clearAll();
-
-				$('#job-title-code').ntsEditor('validate');
-				$('#job-title-name').ntsEditor('validate');
-
-				return !$('.nts-input').ntsError('hasError');
 			}
 
 		}
