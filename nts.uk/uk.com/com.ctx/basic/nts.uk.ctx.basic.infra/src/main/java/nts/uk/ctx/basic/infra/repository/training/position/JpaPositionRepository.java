@@ -14,18 +14,14 @@ import nts.uk.ctx.basic.infra.entity.training.position.PositionClassification;
 @Stateless
 public class JpaPositionRepository extends JpaRepository implements PositionRepositoryTraining {
 	
-	private static final String SELECT_ALL = "SELECT p FROM PositionClassification p" + " ORDER BY p.positionOrder ASC";
-	private static final String SELECT_ONE = "SELECT p FROM PositionClassification p " + 
-											"WHERE p.positionCode = :positionCode";
+	private static final String SELECT_ALL = "SELECT p FROM PositionClassification p " + "ORDER BY p.positionOrder ASC";
+	private static final String SELECT_ONE = "SELECT p FROM PositionClassification p " + "WHERE p.positionCode = :positionCode";
 	
 	// get all positions
 	@Override
 	public List<PositionTraining> findAll() {
 		return this.queryProxy().query(SELECT_ALL, PositionClassification.class)
-		 .getList(x -> PositionTraining.toDomain(
-				 x.positionCode, 
-				 x.positionName,
-				 x.positionOrder));
+		 .getList(x -> PositionTraining.toDomain(x.positionCode, x.positionName, x.positionOrder));
 	}
 
 	
@@ -33,8 +29,8 @@ public class JpaPositionRepository extends JpaRepository implements PositionRepo
 	@Override
 	public Optional<PositionTraining> findByPositionCode(String positionCode) {	 
 		 return this.queryProxy().query(SELECT_ONE, PositionClassification.class)
-		 .setParameter("positionCode", positionCode)
-		 .getSingle(x -> PositionTraining.toDomain( x.positionCode, x.positionName, x.positionOrder));
+				 .setParameter("positionCode", positionCode)
+				 .getSingle(x -> PositionTraining.toDomain( x.positionCode, x.positionName, x.positionOrder));
 	}
 
 	
