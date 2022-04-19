@@ -1,6 +1,8 @@
 package nts.uk.ctx.basic.app.command.training.jobtitle;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
@@ -8,7 +10,6 @@ import nts.arc.error.BusinessException;
 import nts.uk.ctx.basic.dom.training.jobtitle.JobTitleRepositoryTraining;
 
 @Stateless
-@Transactional
 public class JobTitleCommandCheck {
 
 	@Inject

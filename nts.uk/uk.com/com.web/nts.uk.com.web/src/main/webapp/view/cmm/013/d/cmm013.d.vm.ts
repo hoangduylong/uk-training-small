@@ -8,6 +8,7 @@ module nts.uk.com.view.cmm013.d {
             startDate: KnockoutObservable<string>;
             endDate: KnockoutObservable<string>;
 			listHistory: KnockoutObservableArray<History> = ko.observableArray([]);
+			test: any = 99;
             
             constructor() {
                 let self = this;  
@@ -30,36 +31,28 @@ module nts.uk.com.view.cmm013.d {
             public execution(): void {
                 let self = this;
                 if (!self.validate()) {
-                    return;
+                    return null;
                 }
+
+				nts.uk.ui.errors.clearAll()
 				let dataIn: any = nts.uk.ui.windows.getShared('listMasterToD');
 				
-				self.listHistory(dataIn.historyList);
-				let firstHistory = self.listHistory().shift();
+				let preEndDate = moment( 
+					new Date().setFullYear(
+						new Date(self.startDate()).getFullYear(),
+						new Date(self.startDate()).getMonth(),
+						new Date(self.startDate()).getDate() - 1))
+					.format("YYYY/MM/DD");
+				self.listHistory()[0].endDate = preEndDate;
+				self.listHistory()[0].displayString = `${self.listHistory()[0].startDate} ~ ${self.listHistory()[0].endDate}`;
 				
-				let preEndDate = new Date();
-				let startDate = new Date(self.startDate())
-				preEndDate.setFullYear(startDate.getFullYear(),startDate.getMonth(),startDate.getDate() - 1);
-				let PreEndDate: string  = moment(preEndDate).format("YYYY/MM/DD");
-				
-				if(self.listHistory().length != 0)
-				{
-					self.listHistory().unshift(new History(
-					dataIn.jobTitleCode,
-					dataIn.jobTitleName,
-					util.randomId(),
-					firstHistory?.startDate,
-					PreEndDate
-				));
-				}
-					
 				self.listHistory().unshift(new History(
 					dataIn.jobTitleCode,
 					dataIn.jobTitleName,
 					util.randomId(),
 					moment(new Date(self.startDate())).format("YYYY/MM/DD"),
-					self.endDate()
-					));
+					self.endDate()));
+					
 				let dataOut: any = {
 					listHistory: self.listHistory()
 				};
@@ -68,7 +61,7 @@ module nts.uk.com.view.cmm013.d {
                 self.close();
 			}
             
-			   private validate(): boolean {
+			private validate(): boolean {
 				let self = this;
 				let data: any = nts.uk.ui.windows.getShared('listMasterToD');
 				self.listHistory(data.historyList);
@@ -77,17 +70,21 @@ module nts.uk.com.view.cmm013.d {
 					nts.uk.ui.dialog.caution({ messageId: "MsgB_1" });
 					return false;
 				}
-				if(self.listHistory().length==0)
+				
+				nts.uk.ui.errors.clearAll()
+                $('#start-date').ntsEditor('validate'); 
+				
+				if(self.listHistory().length == 0)
 				{
-					return true
+					return !$('.nts-input').ntsError('hasError');
 				}
-				if(new Date(self.startDate()) < new Date(self.listHistory()[0].startDate))
+				else if(new Date(self.startDate()) < new Date(self.listHistory()[0].startDate))
 				{
 					nts.uk.ui.dialog.caution({ messageId: "Msg_102" });
 					return false;
 				}
-				
-                return true;
+				         
+                return !$('.nts-input').ntsError('hasError');
             }
 
             /**

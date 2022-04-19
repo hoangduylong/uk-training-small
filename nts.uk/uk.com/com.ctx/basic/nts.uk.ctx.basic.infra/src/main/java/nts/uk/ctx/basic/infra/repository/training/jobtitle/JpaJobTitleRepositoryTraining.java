@@ -14,7 +14,6 @@ import nts.uk.ctx.basic.infra.entity.training.jobtitle.TrainingHistory;
 import nts.uk.ctx.basic.infra.entity.training.jobtitle.TrainingHistoryPK;
 import nts.uk.ctx.basic.infra.entity.training.jobtitle.TrainingJobTitle;
 import nts.uk.ctx.basic.infra.entity.training.jobtitle.TrainingJobTitlePK;
-import nts.uk.ctx.basic.infra.entity.training.jobtitle.TrainingPosition;
 
 @Stateless
 public class JpaJobTitleRepositoryTraining extends JpaRepository implements JobTitleRepositoryTraining {
@@ -89,7 +88,6 @@ public class JpaJobTitleRepositoryTraining extends JpaRepository implements JobT
 
 	@Override
 	public void update(JobTitleTraining jobTitleTraining) {
-
 		TrainingJobTitlePK pk = new TrainingJobTitlePK(jobTitleTraining.getJobTitleCodeTraining().v());
 		TrainingJobTitle entity = this.queryProxy().find(pk, TrainingJobTitle.class).get();
 
@@ -98,7 +96,6 @@ public class JpaJobTitleRepositoryTraining extends JpaRepository implements JobT
 		entity.setAsManager(jobTitleTraining.isTreatAsAManager() ? 1 : 0);
 		entity.setIsAbrogated(jobTitleTraining.isAbrogated() ? 1 : 0);
 		entity.setLstTrainingHistory(toListHistoryEntity(jobTitleTraining));
-//		entity.setTrainingPosition(new TrainingPosition());
 
 		this.commandProxy().update(entity);
 	}
@@ -117,6 +114,7 @@ public class JpaJobTitleRepositoryTraining extends JpaRepository implements JobT
 			entity.setEndDate(history.getEndDate());
 			return entity;
 		}).collect(Collectors.toList());
+		
 		return listEntity;
 	}
 
@@ -127,8 +125,7 @@ public class JpaJobTitleRepositoryTraining extends JpaRepository implements JobT
 				jobTitleTraining.getPositionCodeTraining().v(),
 				jobTitleTraining.isTreatAsAManager() ? 1 : 0,
 				jobTitleTraining.isAbrogated() ? 1 : 0,
-				this.toListHistoryEntity(jobTitleTraining),
-				new TrainingPosition());
+				this.toListHistoryEntity(jobTitleTraining));
 
 		return entity;
 	}

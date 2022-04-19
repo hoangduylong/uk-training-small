@@ -4,7 +4,7 @@ import nts.arc.primitive.StringPrimitiveValue;
 import nts.arc.primitive.constraint.StringMaxLength;
 
 @StringMaxLength(10)
-public class JobTitleNameTraining extends StringPrimitiveValue<JobTitleNameTraining>{
+public class JobTitleNameTraining extends StringPrimitiveValue<JobTitleNameTraining> {
 
 	/**
 	 * 

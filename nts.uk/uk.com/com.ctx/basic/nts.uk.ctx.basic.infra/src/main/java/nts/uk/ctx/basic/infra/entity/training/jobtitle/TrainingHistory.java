@@ -72,7 +72,7 @@ public class TrainingHistory extends ContractUkJpaEntity implements Serializable
 	
 	public static HistoryTraining toDomain(TrainingHistory trainingHistory)
 	{
-		HistoryTraining result = new HistoryTraining(trainingHistory.getKey().toString(), 
+		HistoryTraining result = new HistoryTraining(trainingHistory.getTrainingHistoryPK().getHistoryId().toString(), 
 				trainingHistory.getJobCd(), 
 				trainingHistory.getJobName(),
 				trainingHistory.getStartDate().toString(),
