@@ -37,7 +37,7 @@ module nts.uk.com.view.cmm013.e {
 				let self = this;
 
 				/** validate value from UI */
-				if (!self.validate()) {
+				if (self.validate()) {
 					return;
 				}
 
@@ -77,22 +77,17 @@ module nts.uk.com.view.cmm013.e {
 				nts.uk.ui.errors.clearAll()
 				$('#start-date').ntsEditor('validate');
 
-				if (self.startDate() == "") {
-					$('.submit').ntsError('set', { messageId: "MsgB_1", messageParams: ["開始日"] });
-					return true;
-				}
-
 				if (self.listHistory()?.length == 1) {
-					return !$('.submit').ntsError('hasError');
+					return $('#start-date').ntsError('hasError');
 				}
 				else if (new Date(self.startDate()) < new Date(self.listHistory()[0].startDate)) {
 					$('.submit').ntsError('set', { messageId: 'Msg_102' });
 					return true;
 				}
 
-				return !$('.submit').ntsError('hasError');
+				return $('#start-date').ntsError('hasError');
 			}
-			
+
             /**
              * Close
              */
