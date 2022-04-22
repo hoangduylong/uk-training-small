@@ -1,44 +1,24 @@
-#functions-area
-{
-	height: 20%;
-}
-
-.item
-{
+.item {
 	margin: 10px 8px;
 }
 
-.group
-{
+.group {
 	text-align: center;
 }
-.button
-{
+
+.button {
 	border: 0.01px solid black;
 	border-radius: 4px;
 	font-size: 19px;
 	height: 40px;
 }
 
-#start-date
-{
-	height: 10px;
-}
-
-.line
-{
-	margin-top: 140px;
-	border: 1px solid;
-}
-
-.submit
-{
+.submit {
 	width: 110px;
 	background: rgb(178, 248, 178);
 	font-weight: bold;
 }
 
-.cancel 
-{
+.cancel {
 	height: 35px;
 }

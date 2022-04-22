@@ -74,10 +74,10 @@ module nts.uk.com.view.cmm013.d {
 				$('#start-date').ntsEditor('validate');
 
 				if (self.listHistory()?.length == 0) {
-					return !$('.submit').ntsError('hasError');
+					return !$('#start-date').ntsError('hasError');
 				}
 				else if (new Date(self.startDate()) < new Date(self.listHistory()[0].startDate)) {
-					$('.submit').ntsError('set', { messageId: 'Msg_102' });
+					$('#start-date').ntsError('set', { messageId: 'Msg_102' });
 					return true;
 				}
 

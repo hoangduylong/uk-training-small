@@ -30,18 +30,18 @@
 					<span class="item">期間</span>
 					<div class="item" id="start-date"
 						data-bind="ntsDatePicker: {
+							name: '開始日',
 							required: true,
 							value: startDate,
 							dateFormat: 'YYYY/MM/DD'}">
 					</div>
 					<span class="item">～</span> <span class="item end_date">9999/12/31</span>
 				</div>
-				<hr class="line" />
-				<div id="functions-area">
-					<div class="group">
-						<button class="button item submit" data-bind="click: execution">実行</button>
-						<button class="button item cancel" data-bind="click: close">キャンセル</button>
-					</div>
+			</div>
+			<div id="functions-area-bottom">
+				<div class="group">
+					<button class="button item submit" data-bind="click: execution">実行</button>
+					<button class="button item cancel" data-bind="click: close">キャンセル</button>
 				</div>
 			</div>
 		</ui:define>
